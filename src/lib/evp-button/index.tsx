@@ -4,7 +4,7 @@ import  { BaseDomProps }from '../evp-dom/index'
 
 interface EvpButtonProps extends BaseDomProps {
   text?: string,
-  type?: 'primary' |'success' | 'warning' | 'danger' | 'info' | 'text',
+  type?: 'primary' |'success' | 'warning' | 'danger' | 'info' | 'dark' | 'text',
   plain?: boolean,
   size?:'small' | 'default' | 'large'
 }
@@ -13,7 +13,7 @@ const EvpButton: React.FC<EvpButtonProps> = (props: EvpButtonProps) => {
   const default_clickHandler = () => undefined;
   const clickHandler = props.onClick?? default_clickHandler;
 
-  const type = props.type?? '';
+  const type = props.type?? 'text';
   return (
     <button className={`evp button ${type}`}
     onClick={(e)=>clickHandler(e)}
