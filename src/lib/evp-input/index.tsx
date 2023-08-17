@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 import React, { useState } from "react";
 import { BaseDomProps } from "../evp-dom";
+import True from '../icons/true.svg';
 
 import "./index.css";
 import EvpRow from "../evp-row";
@@ -9,16 +10,31 @@ import EvpCol from "../evp-col";
 export type EvpInputRule = {
   /** default color is "red" */
   color?: string
-  type?: 'string' | 'number' | 'boolean',
+  /** **required:** If required.on is `false`, all the rules **will not work!**. `on` means to enable this rule, `val` means whether the value input can be empty, `msg` means the warnning message */
   required?: {on: boolean, val: boolean, msg?: string},
+  /** default is `string` */
+  type?: { on: boolean, val: 'text' | 'number', msg?: string},
   /**
-   * When to trigger the rule, default is `onSubmit`
+   * When to trigger the rule, default is `onEnter`
    */
   trigger?: 'onChange' | 'onEnter' | 'onSubmit' | 'Never',
-  max?: {on: boolean, val: number , msg?: string},
+  /** **Smart Trigger:** default is `true`. Initially, it will keep to be `onChange` `until the value is valid`, 
+   * and then the trigger will be `temporarily` set to the `props.rule.trigger`, 
+   * and `at next time` when it get invalid results under `props.rule.trigger` , 
+   * it will reset the trigger to `onChange` until is valid*/
+  smartTrigger?: boolean,
+  /** **MinLength:** `on` means to enable this rule, `val` means the minLength number, `msg` means the warnning message */
   min?: {on: boolean, val: number , msg?: string},
-  /** Customize the rule of validation with a function
-   * @param value binded value
+  /** **MaxLength:** `on` means to enable this rule, `val` means the maxLength number, `msg` means the warnning message */
+  max?: {on: boolean, val: number , msg?: string},
+  /** **RegExp:** `on` means to enable this rule, `val` means the RegExp, `msg` means the warnning message */
+  reg?: {on: boolean, val: RegExp , msg?: string},
+  /** **mustHave:** `on` means to enable this rule, `val` means the slice, `msg` means the warnning message */
+  mustHave?: Array<{ on: boolean, val: any, msg?: string }>,
+  /** **cannotHave:** `on` means to enable this rule, `val` means the slice, `msg` means the warnning message */
+  cannotHave?: Array<{ on: boolean, val: any, msg?: string }>,
+  /** Customize the rule of validation with a function with warning message returned, if valid the message shoule be "".
+   * @param value the input value
    */
   custom?: (value: string) => string | undefined | null | void
 }
@@ -29,29 +45,132 @@ interface EvpInputProps extends BaseDomProps {
   labelSize?: string;
   name?: string;
   placeholder?: string;
+  type?: 'text';
   /** defaultValue assigned to input box*/
   default?: string;
   /** Reactive value assigned to input box */
   value?: string;
   /** The rule to validate the value input */
   rule?: EvpInputRule,
+  /** Default Hint message */
+  hint?: {
+    text?: string;
+    color?: string;
+  },
+  warn?: {
+    ref?: Readonly<string>,
+    setWarn: React.Dispatch<React.SetStateAction<string>>
+  },
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   /** The triggered EventHandler when the key `Enter` down */
   onEnter?: React.KeyboardEventHandler<HTMLInputElement>;
 }
 
 export default function EvpInput(props: EvpInputProps) {
-  const [validateTrigger, setValidateTrigger] = useState(props.rule?.trigger?? 'onChange');
-  const [warning_msg, setWarning_msg] = useState<string|undefined>();
-  function validate() {
-    const result = props.rule?.custom?.(props.value??'');
-    setWarning_msg(result as string|undefined);
-    if (result) {  // if invalid, switch validate trigger to 'onChange'
-      setValidateTrigger('onChange');
-    } else {  // if valid, reset validation trigger to props' trigger
-      setValidateTrigger(props.rule?.trigger?? 'onChange')
+  const inputType = props.type?? 'text';
+  const [validateTrigger, setValidateTrigger] = useState('onChange');
+  const [warning_msg, setWarning_msg] = useState<string|undefined>(props.warn?.ref);
+  const warnColor = props.rule?.color??'red';
+  const hintColor = props.hint?.color??'grey';
+  const [isValid, setIsValid] = useState(false);
+  const smartTrigger = props.rule?.smartTrigger?? true;
+
+  function isEmpty(str?: string): boolean {
+    return str === undefined || str === null || str === '';
+  }
+
+  function isNotNumber(str: string|undefined): boolean {
+    return Number.isNaN(Number(str));
+  }
+
+  function isHave(str: string|undefined, slice: any): boolean {
+    const value = str??'';
+    return value.includes(slice);
+  }
+
+  function checkMin(str: string|undefined, min: number): boolean {
+    if (props.rule?.type?.val === 'text') {
+      let value = '';
+      if (str) {
+        value = str as string;
+      }
+      return value.length >= min;
+    } else {
+      const value = Number(str);
+      console.log('treat it as number: ' + value);
+      return value >= min;
     }
   }
+
+  function checkMax(str: string|undefined, max: number): boolean {
+    if (props.rule?.type?.val === 'text') {
+      let value = '';
+      if (str) {
+        value = str as string;
+      }
+      return value.length <= max;
+    } else {
+      const value = Number(str);
+      return value <= max;
+    }
+  }
+
+  function checkReg(str: string|undefined, reg: RegExp): boolean {
+    const result = str?.match(reg);
+    if (typeof result === 'object' && result) {
+      return result?.length === 0;
+    }
+    return true;
+  }
+
+  function validate() {
+    let result = '';
+    if (props.rule?.custom) {
+      result = props.rule?.custom?.(props.value??'')??'';
+    } else if (props.rule?.type?.on) {
+      result = result? result : props.rule?.required?.on? (isEmpty(props.value)? (`${props.label??props.name??'This field'} can not be empty`) : '') : '';
+      result = props.rule?.type?.on? (isNotNumber(props.value)? (props.rule.type.msg??(`${props.label??props.name??'This field'} must be a number`)) : '') : '';
+      result = result? result : (props.rule?.min?.on? (checkMin(props.value, props.rule.min.val)? '' : props.rule.min.msg??`At least be ${props.rule.min.val} characters`) : '') ;
+      result = result? result : (props.rule?.max?.on? (checkMax(props.value, props.rule.max.val)? '' : props.rule.max.msg??`At most be ${props.rule.max.val} characters`) : '');
+      result = result? result : (props.rule?.reg?.on? (checkReg(props.value, props.rule.reg.val)? '' : props.rule.reg.msg??(props.label??props.name? `${props.label??props.name} has invalid characters` : '')) : '');
+      if (props.rule?.mustHave) {
+        props.rule.mustHave.map(mustHave => {
+          result = mustHave.on? (isHave(props.value, mustHave.val)? '' : `${props.label??props.name??'This field'} must have "${mustHave.val}"`) : '';
+          return result;
+        })
+      }
+      if (props.rule?.cannotHave) {
+        props.rule.cannotHave.map(cannotHave => {
+          result = cannotHave.on? (!isHave(props.value, cannotHave.val)? '' : `${props.label??props.name??'This field'} should not have "${cannotHave.val}"`) : '';
+          return result;
+        })
+      }
+    }
+    setWarning_msg(result);
+    props.warn?.setWarn(result);
+    if (result) {  // if invalid, switch validate trigger to 'onChange'
+      if (smartTrigger) {
+        setValidateTrigger('onChange');
+      }
+      setIsValid(false);
+    } else {  // if valid, reset validation trigger to props' trigger
+      if (smartTrigger) {
+        setValidateTrigger(props.rule?.trigger?? 'onChange');
+      }
+      setIsValid(true);
+    }
+  }
+
+  const [msgColor, setMsgColor] = useState(hintColor);
+  React.useEffect(()=>{
+    if (!isValid) {
+      setMsgColor(warnColor);
+      if (!warning_msg) {
+        setMsgColor(hintColor);
+      }
+    }
+  }, [isValid, warnColor, warning_msg, hintColor])
+
   return (
     <EvpCol>
       <EvpRow>
@@ -65,14 +184,15 @@ export default function EvpInput(props: EvpInputProps) {
             value={props.value}
             defaultValue={props.default}
             placeholder={props.placeholder}
+            type={inputType}
             onKeyDown={(e) => {
               // onEnter
               if (e.key.toLowerCase() === "enter") {
+                if (smartTrigger && props.rule?.trigger === 'onEnter') {
+                  validate();
+                }
                 if (props.onEnter) {
                   props.onEnter(e);
-                }
-                if (validateTrigger === 'onEnter') {
-                  validate();
                 }
               }
             }}
@@ -88,9 +208,10 @@ export default function EvpInput(props: EvpInputProps) {
               }
             }}
           ></input>
+          {/* <div className="evp input icon"><True/></div> */}
         </div>
       </EvpRow>
-      <EvpRow justifyContent='left' style={{color: props.rule?.color??'red'}}>{warning_msg}</EvpRow>
+      <EvpRow justifyContent='left' style={{color: msgColor}}>{isValid?'':(warning_msg?warning_msg:props.hint?.text)}</EvpRow>
     </EvpCol>
   );
 }
