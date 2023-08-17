@@ -2,7 +2,8 @@ import React from 'react';
 
 export interface BaseDomProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>,
-  children?: React.ReactNode
+  children?: React.ReactNode,
+  onChange?: React.ChangeEventHandler
 }
 
 // export default function EvpDom(props: BaseDomProps) {
