@@ -7,15 +7,25 @@ export default function InputView() {
   return(
     <div className="preview-container">
       <EvpInput 
-      label="val"
+      label="数值"
+      labelSize="16px"
       name="val"
       value={val} 
       placeholder="Input something..."
       onChange={(e)=>{
         setVal(e.currentTarget.value);
       }}
+      rule={{
+        color: 'red',
+        trigger: 'onEnter',
+        custom: (val)=>{
+          if (val.length < 6) {
+            return 'value must be at least 6 characters';
+          }
+        },
+      }}
       onEnter={()=>{
-        alert(`Current value is "${val}"`);
+        // alert(`Current value is "${val}"`);
       }}></EvpInput>
     </div>
   )

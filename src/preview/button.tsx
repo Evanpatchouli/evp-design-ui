@@ -6,28 +6,37 @@ export default function ButtonView() {
     <div className="preview-container">
       <EvpButton onClick={()=>{
         alert("Click");
-      }}>click me</EvpButton>
-      <EvpButton type='primary' onClick={()=>{
+      }}>Default</EvpButton>
+      <EvpButton theme='white' onClick={()=>{
         alert("Click");
-      }}>click me</EvpButton>
-      <EvpButton type='danger' onClick={()=>{
+      }}>White</EvpButton>
+      <EvpButton theme='primary' onClick={()=>{
         alert("Click");
-      }}>click me</EvpButton>
-      <EvpButton type='warning' onClick={()=>{
+      }}>Primary</EvpButton>
+      <EvpButton theme='danger' onClick={()=>{
         alert("Click");
-      }}>click me</EvpButton>
-      <EvpButton type='success' onClick={()=>{
+      }}>Danger</EvpButton>
+      <EvpButton theme='warning' onClick={()=>{
         alert("Click");
-      }}>click me</EvpButton>
-      <EvpButton type='info' onClick={()=>{
+      }}>Warning</EvpButton>
+      <EvpButton theme='success' onClick={()=>{
         alert("Click");
-      }}>click me</EvpButton>
-      <EvpButton type='text' onClick={()=>{
+      }}>Success</EvpButton>
+      <EvpButton size="large" theme='info' onClick={()=>{
         alert("Click");
-      }}>click me</EvpButton>
-      <EvpButton type='dark' onClick={()=>{
+      }}>Info Large</EvpButton>
+      <EvpButton size="small" theme='text' onClick={()=>{
         alert("Click");
-      }}>click me</EvpButton>
+      }}>Text Small</EvpButton>
+      <EvpButton size="middle" theme='dark' onClick={()=>{
+        alert("Click");
+      }}>Dark Middle</EvpButton>
+      <EvpButton size="middle" theme='dark' plain onClick={()=>{
+        alert("Click");
+      }}>Dark Plain</EvpButton>
+      <EvpButton size="middle" theme='primary' plain onClick={()=>{
+        alert("Click");
+      }}>Primary Plain</EvpButton>
     </div>
   )
 }
