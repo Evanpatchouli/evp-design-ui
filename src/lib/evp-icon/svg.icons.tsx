@@ -16,9 +16,12 @@ export type SvgIconProps = {
   "$visibleSync"?: boolean,
   /** Is icon displayed. This will remove the icon from dom trees */
   "$displaySync"?: boolean,
+  /** Stroke line width */
   strokeWidth?: number,
-  color?: string,
+  /** Stroke line color, default is #333 */
+  color?: any,
   fill?: string,
+  /** Default redius is 24 */
   redius?: number,
 }
 
