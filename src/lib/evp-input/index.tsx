@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 import React, { useState } from "react";
 import { BaseDomProps } from "../evp-dom";
-import True from '../icons/true.svg';
-
-import "./index.css";
+import Icon from '../evp-icon/index';
 import EvpRow from "../evp-row";
 import EvpCol from "../evp-col";
+
+import "./index.css";
+import { Color } from "../constant";
 
 export type EvpInputRule = {
   /** default color is "red" */
@@ -40,7 +41,8 @@ export type EvpInputRule = {
 }
 
 interface EvpInputProps extends BaseDomProps {
-  label?: string;
+  /** label should be a string or EvpIcon */
+  label?: string | JSX.Element;
   /** **Label font-Size:** default value is 14px */
   labelSize?: string;
   name?: string;
@@ -52,12 +54,14 @@ interface EvpInputProps extends BaseDomProps {
   value?: string;
   /** The rule to validate the value input */
   rule?: EvpInputRule,
+  /** wDefault is false, hether to show the validate result icon on right of the input box */
+  resultIcon?: boolean,
   /** Default Hint message */
   hint?: {
     text?: string;
     color?: string;
   },
-  warn?: {
+  warnReader?: {
     ref?: Readonly<string>,
     setWarn: React.Dispatch<React.SetStateAction<string>>
   },
@@ -69,7 +73,7 @@ interface EvpInputProps extends BaseDomProps {
 export default function EvpInput(props: EvpInputProps) {
   const inputType = props.type?? 'text';
   const [validateTrigger, setValidateTrigger] = useState('onChange');
-  const [warning_msg, setWarning_msg] = useState<string|undefined>(props.warn?.ref);
+  const [warning_msg, setWarning_msg] = useState<string|undefined>(props.warnReader?.ref);
   const warnColor = props.rule?.color??'red';
   const hintColor = props.hint?.color??'grey';
   const [isValid, setIsValid] = useState(false);
@@ -83,13 +87,20 @@ export default function EvpInput(props: EvpInputProps) {
     return Number.isNaN(Number(str));
   }
 
+  function checkNumber(str: string|undefined): boolean {
+    if (props.rule?.type?.val === 'number') {
+      return !isNotNumber(str);
+    }
+    return true;
+  }
+
   function isHave(str: string|undefined, slice: any): boolean {
     const value = str??'';
     return value.includes(slice);
   }
 
   function checkMin(str: string|undefined, min: number): boolean {
-    if (props.rule?.type?.val === 'text') {
+    if (props.rule?.type?.val !== 'number') {
       let value = '';
       if (str) {
         value = str as string;
@@ -97,7 +108,6 @@ export default function EvpInput(props: EvpInputProps) {
       return value.length >= min;
     } else {
       const value = Number(str);
-      console.log('treat it as number: ' + value);
       return value >= min;
     }
   }
@@ -123,31 +133,36 @@ export default function EvpInput(props: EvpInputProps) {
     return true;
   }
 
-  function validate() {
+  /**
+   * validtate input value with rules
+   * @param v should be `e.currentTarget.value` but not `props.value` because it is a step later.
+   */
+  function validate(v?: string) {
     let result = '';
     if (props.rule?.custom) {
       result = props.rule?.custom?.(props.value??'')??'';
-    } else if (props.rule?.type?.on) {
-      result = result? result : props.rule?.required?.on? (isEmpty(props.value)? (`${props.label??props.name??'This field'} can not be empty`) : '') : '';
-      result = props.rule?.type?.on? (isNotNumber(props.value)? (props.rule.type.msg??(`${props.label??props.name??'This field'} must be a number`)) : '') : '';
-      result = result? result : (props.rule?.min?.on? (checkMin(props.value, props.rule.min.val)? '' : props.rule.min.msg??`At least be ${props.rule.min.val} characters`) : '') ;
-      result = result? result : (props.rule?.max?.on? (checkMax(props.value, props.rule.max.val)? '' : props.rule.max.msg??`At most be ${props.rule.max.val} characters`) : '');
-      result = result? result : (props.rule?.reg?.on? (checkReg(props.value, props.rule.reg.val)? '' : props.rule.reg.msg??(props.label??props.name? `${props.label??props.name} has invalid characters` : '')) : '');
+    } else if (props.rule?.required?.on) {
+      result = result? result : props.rule?.required?.on? (isEmpty(v)? (`${props.label?(typeof props.label)=='string'?props.label:props.name??'This field':props.name??'This field'} can not be empty`) : '') : '';
+      result = result? result : (props.rule?.type?.on? (checkNumber(v)? '' : (props.rule.type.msg??(`${props.label?(typeof props.label)=='string'?props.label:props.name??'This field':props.name??'This field'} must be a number`))) : '');
+      result = result? result : (props.rule?.min?.on? (checkMin(v, props.rule.min.val)? '' : props.rule.min.msg??`At least be ${props.rule.min.val} characters`) : '') ;
+      result = result? result : (props.rule?.max?.on? (checkMax(v, props.rule.max.val)? '' : props.rule.max.msg??`At most be ${props.rule.max.val} characters`) : '');
+      result = result? result : (props.rule?.reg?.on? (checkReg(v, props.rule.reg.val)? '' : props.rule.reg.msg??(`${props.label?(typeof props.label)=='string'?props.label:props.name??'This field':props.name??'This field'} has invalid characters`)) : '');
       if (props.rule?.mustHave) {
         props.rule.mustHave.map(mustHave => {
-          result = mustHave.on? (isHave(props.value, mustHave.val)? '' : `${props.label??props.name??'This field'} must have "${mustHave.val}"`) : '';
+          result = mustHave.on? (isHave(v, mustHave.val)? result : `${props.label?(typeof props.label)=='string'?props.label:props.name??'This field':props.name??'This field'} must have "${mustHave.val}"`) : result;
           return result;
         })
       }
+      
       if (props.rule?.cannotHave) {
         props.rule.cannotHave.map(cannotHave => {
-          result = cannotHave.on? (!isHave(props.value, cannotHave.val)? '' : `${props.label??props.name??'This field'} should not have "${cannotHave.val}"`) : '';
+          result = cannotHave.on? (!isHave(v, cannotHave.val)? result : `${props.label?(typeof props.label)=='string'?props.label:props.name??'This field':props.name??'This field'} should not have "${cannotHave.val}"`) : result;
           return result;
         })
       }
     }
     setWarning_msg(result);
-    props.warn?.setWarn(result);
+    props.warnReader?.setWarn(result);
     if (result) {  // if invalid, switch validate trigger to 'onChange'
       if (smartTrigger) {
         setValidateTrigger('onChange');
@@ -171,8 +186,10 @@ export default function EvpInput(props: EvpInputProps) {
     }
   }, [isValid, warnColor, warning_msg, hintColor])
 
+  const showRightIcon = props.resultIcon?? false;
+
   return (
-    <EvpCol>
+    <EvpCol style={{marginTop: '4px', marginBottom: '4px'}}>
       <EvpRow>
         <div className="evp input">
           {props.label ? (
@@ -189,7 +206,7 @@ export default function EvpInput(props: EvpInputProps) {
               // onEnter
               if (e.key.toLowerCase() === "enter") {
                 if (smartTrigger && props.rule?.trigger === 'onEnter') {
-                  validate();
+                  validate(e.currentTarget.value);
                 }
                 if (props.onEnter) {
                   props.onEnter(e);
@@ -199,16 +216,16 @@ export default function EvpInput(props: EvpInputProps) {
             onChange={(e)=>{
               props.onChange?.(e);
               if (validateTrigger === 'onChange') {
-                validate();
+                validate(e.currentTarget.value);
               }
             }}
             onSubmit={(e)=>{
               if (validateTrigger === 'onSubmit') {
-                validate();
+                validate(e.currentTarget.value);
               }
             }}
           ></input>
-          {/* <div className="evp input icon"><True/></div> */}
+          {showRightIcon? <div className="evp input icon"><Icon name="true_circle" color={Color.HeavyGreen} $visibleSync={isValid} /></div> : null}
         </div>
       </EvpRow>
       <EvpRow justifyContent='left' style={{color: msgColor}}>{isValid?'':(warning_msg?warning_msg:props.hint?.text)}</EvpRow>

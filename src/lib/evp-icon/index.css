@@ -1,0 +1,5 @@
+.evp.icon {
+  &:hover {
+    cursor: default;
+  }
+}

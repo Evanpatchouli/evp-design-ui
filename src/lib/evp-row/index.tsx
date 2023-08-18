@@ -8,6 +8,8 @@ export interface EvpRowProps extends BaseDomProps {
   alignItems?: string & ('center' | 'left' | 'right' | 'start' 
   | 'end' | 'flex-start' | 'flex-end' | 'inherit' | 'initial' | 'normal' 
   | 'revert' | 'revert-layer' | 'space-around' | 'space-between' | 'space-evenly' | 'strench' | 'unset');
+  width?: string;
+  height?: string;
 }
 
 export default function EvpRow(props: EvpRowProps) {
@@ -18,6 +20,8 @@ export default function EvpRow(props: EvpRowProps) {
         flexDirection: props.flexDirection??'row',
         justifyContent: props.justifyContent??'flex-start',
         alignItems: props.alignItems??'center',
+        width: props.width,
+        height: props.height,
         ...props.style
       }}
     >

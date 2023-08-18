@@ -9,6 +9,7 @@ import { useLocation } from 'react-router-dom';
 import './App.css';
 import './preview/index.css';
 import './lib/global.css';
+import ColorView from './preview/color';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path='/' key={"home"} element={<Preview/>}></Route>
           <Route path='/button' key={"button"} element={<ButtonView/>}></Route>
           <Route path='/input' key={"input"} element={<InputView/>}></Route>
+          <Route path='/color' key={"color"} element={<ColorView/>}></Route>
         </Routes>
       </header>
     </div>
