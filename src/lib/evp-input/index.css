@@ -4,6 +4,8 @@
 
   margin-bottom: 4px;
 
+  padding: 0;
+
   &[type="number"] {
     -moz-appearance: textfield; /* Firefox */
     appearance: textfield;

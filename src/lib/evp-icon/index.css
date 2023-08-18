@@ -2,4 +2,14 @@
   &:hover {
     cursor: default;
   }
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  > svg {
+    display: block;
+  }
 }

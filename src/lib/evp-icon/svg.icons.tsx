@@ -19,6 +19,7 @@ export type SvgIconProps = {
   strokeWidth?: number,
   color?: string,
   fill?: string,
+  redius?: number,
 }
 
 export type SvgIcon = React.FC<SvgIconProps>;

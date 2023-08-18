@@ -28,6 +28,7 @@ export type EvpIconProps = {
   strokeWidth?: number,
   color?: any,
   fill?: string,
+  redius?: number,
 }
 
 const IconMap: {[x:string]:string} = {
@@ -76,6 +77,7 @@ const EvpIcon = (props: EvpIconProps) => {
       strokeWidth={props.strokeWidth}
       color={props.color}
       fill={props.fill}
+      redius={props.redius}
       style={{
         ...props.style
     }}></Icon>
