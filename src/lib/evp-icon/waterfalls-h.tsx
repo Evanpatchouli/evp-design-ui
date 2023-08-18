@@ -2,7 +2,7 @@ import { SvgIcon, SvgIconProps } from "./svg.icons";
 
 const WaterFallsH: SvgIcon = (props: SvgIconProps)=> {
   return(
-    <div className="evp svg" onClick={props.onClick} 
+    <div className="evp icon" onClick={props.onClick} 
       style={{
         visibility: props.$visibleSync??true? 'visible' : 'hidden',
         display: props.$displaySync??true? 'unset' : 'none',
