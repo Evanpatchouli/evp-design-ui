@@ -189,11 +189,11 @@ export default function EvpInput(props: EvpInputProps) {
   const showRightIcon = props.resultIcon?? false;
 
   return (
-    <EvpCol style={{marginTop: '4px', marginBottom: '4px'}}>
+    <EvpCol mg={[4,0,4,0]}>
       <EvpRow>
         <div className="evp input">
           {props.label ? (
-            <div className="evp input label" style={{fontSize: props.labelSize??'14px'}}>{props.label}</div>
+            <div className="evp input label" style={{fontSize: props.labelSize}}>{props.label}</div>
           ) : null}
           <input
             name={props.name}

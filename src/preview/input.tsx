@@ -17,7 +17,7 @@ export default function InputView() {
     <div className="preview-container">
       <EvpInput
         name="username"
-        label={<Icons.User strokeWidth={4} />}
+        label={<Icons.User strokeWidth={5} />}
         labelSize="16px"
         value={user}
         warnReader={{
@@ -44,7 +44,7 @@ export default function InputView() {
 
       <EvpInput
         name="password"
-        label={<EvpIcon passwords />}
+        label={<EvpIcon passwords strokeWidth={5} />}
         labelSize="16px"
         value={pswd}
         placeholder="Input something..."

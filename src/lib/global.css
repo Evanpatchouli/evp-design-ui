@@ -1,5 +1,7 @@
+@import url(./variable.css);
+
 .evp {
-  font-size: 14px;
+  font-size: var(--text-size);
   * {
     padding: 0;
     margin: 0;

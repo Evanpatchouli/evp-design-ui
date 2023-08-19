@@ -1,11 +1,13 @@
 .evp.button {
-  border-radius: 5px;
+  border-radius: var(--radius);
   text-align: center;
 
-  box-shadow: 0px 1px 3px 1px #0000000e;
+  box-shadow: 0px 0px 3px 1px #0000001e;
   background-color: #fff;
 
-  cursor: pointer;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .evp.button {
@@ -15,7 +17,7 @@
     padding-bottom: 1px;
     background-color: #fff;
     color: #131313;
-    box-shadow: 0px 1px 3px 1px #0000000e;
+    box-shadow: 0px 0.5px 3px 1px #0000001e;
 
     &:hover {
       transition: background-color  0.3s ease;
@@ -234,23 +236,82 @@
 
 /** Button Size*/
 .evp.button {
+  &.mini {
+    height: var(--btn-mini-h);
+    font-size: var(--text-size-mini);
+    border-radius: var(--radius-mini);
+    padding: 0px calc(var(--btn-mini-h) / 2);
+
+    &.circle {
+      width: var(--btn-mini-h);
+      padding: calc(var(--btn-mini-h) / 2);
+    }
+  }
+
   &.small {
-    height: 20px;
-    font-size: 10px;
-    border-radius: 3px;
+    height: var(--btn-small-h);
+    font-size: var(--text-size-small);
+    border-radius: var(--radius-small);
+    padding: 0px calc(var(--btn-small-h) / 2);
+
+    &.circle {
+      width: var(--btn-small-h);
+      padding: calc(var(--btn-small-h) / 2);
+    }
   }
 
   &.middle {
-    height: 30px;
-    font-size: 14px;
+    height: var(--btn-h);
+    font-size: var(--text-size);
+    padding: 0px calc(var(--btn-h) / 2);
+
+    &.circle {
+      width: var(--btn-h);
+      padding: calc(var(--btn-h) / 2);
+    }
   }
 
   &.large {
-    height: 40px;
-    font-size: 20px;
-    border-radius: 5px;
-    padding-left: 12px;
-    padding-right: 12px;
+    height: var(--btn-large-h);
+    font-size: var(--text-size-large);
+    border-radius: var(--radius-large);
+    padding: 0px calc(var(--btn-large-h) / 2);
+
+    &.circle {
+      width: var(--btn-large-h);
+      padding: calc(var(--btn-large-h) / 2);
+    }
+  }
+
+  &.huge {
+    height: var(--btn-huge-h);
+    font-size: var(--text-size-huge);
+    border-radius: var(--radius-huge);
+    padding: 0px calc(var(--btn-huge-h) / 2);
+
+    &.circle {
+      width: var(--btn-huge-h);
+      padding: calc(var(--btn-huge-h) / 2);
+    }
   }
 }
 
+/** Button Shape*/
+.evp.button {
+  /* &.square {
+    border-radius: unset;
+  } */
+
+  &.circle {
+    overflow: hidden;
+    border-radius: var(--radius-circle);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+  }
+
+  &.round {
+    border-radius: var(--radius-round);
+  }
+}

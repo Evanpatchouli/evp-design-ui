@@ -8,7 +8,7 @@ export default function ColorView() {
     <div className="preview-container">
       <EvpCol>
         <EvpRow style={{margin: '12px 0 12px 0'}}>
-          <EvpCol width="120px" style={{alignItems: 'flex-end', paddingRight: '12px'}}>
+          <EvpCol w="120px" style={{alignItems: 'flex-end', paddingRight: '12px'}}>
             <div>Red Series: </div>
           </EvpCol>
           <EvpCol style={{backgroundColor: Color.DarkRed, color: 'white', minWidth: '100px', padding: '12px'}}>
@@ -34,7 +34,7 @@ export default function ColorView() {
           </EvpCol>
         </EvpRow>
         <EvpRow style={{margin: '12px 0 12px 0'}}>
-          <EvpCol width="120px" style={{alignItems: 'flex-end', paddingRight: '12px'}}>
+          <EvpCol w="120px" style={{alignItems: 'flex-end', paddingRight: '12px'}}>
             <div>Green Series: </div>
           </EvpCol>
           <EvpCol style={{backgroundColor: Color.DarkGreen, color: 'white', minWidth: '100px', padding: '12px'}}>
@@ -60,7 +60,7 @@ export default function ColorView() {
           </EvpCol>
         </EvpRow>
         <EvpRow style={{margin: '12px 0 12px 0'}}>
-          <EvpCol width="120px" style={{alignItems: 'flex-end', paddingRight: '12px'}}>
+          <EvpCol w="120px" style={{alignItems: 'flex-end', paddingRight: '12px'}}>
             <div>Blue Series: </div>
           </EvpCol>
           <EvpCol style={{backgroundColor: Color.DarkBlue, color: 'white', minWidth: '100px', padding: '12px'}}>
@@ -86,7 +86,7 @@ export default function ColorView() {
           </EvpCol>
         </EvpRow>
         <EvpRow style={{margin: '12px 0 12px 0'}}>
-          <EvpCol width="120px" style={{alignItems: 'flex-end', paddingRight: '12px'}}>
+          <EvpCol w="120px" style={{alignItems: 'flex-end', paddingRight: '12px'}}>
             <div>Gray Series: </div>
           </EvpCol>
           <EvpCol style={{backgroundColor: Color.DarkGray, color: 'white', minWidth: '100px', padding: '12px'}}>

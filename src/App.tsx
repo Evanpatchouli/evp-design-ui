@@ -10,7 +10,8 @@ import './App.css';
 import './preview/index.css';
 import './lib/global.css';
 import ColorView from './preview/color';
-
+import MenuView from './preview/menu';
+import TestViewView from './preview/test.view';
 
 function App() {
   const location = useLocation();
@@ -24,6 +25,8 @@ function App() {
           <Route path='/button' key={"button"} element={<ButtonView/>}></Route>
           <Route path='/input' key={"input"} element={<InputView/>}></Route>
           <Route path='/color' key={"color"} element={<ColorView/>}></Route>
+          <Route path='/menu' key={"color"} element={<MenuView/>}></Route>
+          <Route path='/test' key={"color"} element={<TestViewView/>}></Route>
         </Routes>
       </header>
     </div>

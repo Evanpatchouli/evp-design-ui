@@ -1,3 +1,4 @@
+import propsParser from "../utils/props.parser";
 import { SvgIcon, SvgIconProps } from "./svg.icons"
 
 const User: SvgIcon = (props: SvgIconProps)=>{
@@ -5,13 +6,18 @@ const User: SvgIcon = (props: SvgIconProps)=>{
     <div className="evp icon" onClick={props.onClick} 
       style={{
         visibility: props.$visibleSync??true? 'visible' : 'hidden',
-        display: props.$displaySync??true? 'unset' : 'none',
+        display: props.$displaySync??true? 'flex' : 'none',
         strokeWidth: props.strokeWidth??4,
         stroke: props.color??'#333',
         fill: props.fill??'none',
+        cursor: props.cursor??(props.pointer?'pointer': 'unset'),
+        width: props.w,
+        height: props.h,
+        padding: propsParser.get('pd')?.(props.pd),
+        margin: propsParser.get('mg')?.(props.mg),
         ...props.style
       }}>
-      <svg width={props.redius??24} height={props.redius??24} viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"
+      <svg width={props.radius??24} height={props.radius??24} viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"
       >
         <circle cx="24" cy="12" r="8" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M42 44C42 34.0589 33.9411 26 24 26C14.0589 26 6 34.0589 6 44" stroke-linecap="round" stroke-linejoin="round"/>

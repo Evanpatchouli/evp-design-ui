@@ -1,3 +1,4 @@
+import propsParser from "../utils/props.parser";
 import { SvgIcon, SvgIconProps } from "./svg.icons";
 
 const All: SvgIcon = (props: SvgIconProps)=> {
@@ -5,13 +6,18 @@ const All: SvgIcon = (props: SvgIconProps)=> {
     <div className="evp icon" onClick={props.onClick} 
       style={{
         visibility: props.$visibleSync??true? 'visible' : 'hidden',
-        display: props.$displaySync??true? 'unset' : 'none',
+        display: props.$displaySync??true? 'flex' : 'none',
         strokeWidth: props.strokeWidth??4,
         stroke: props.color??'#333',
         fill: props.fill??'none',
+        cursor: props.cursor??(props.pointer?'pointer': 'unset'),
+        width: props.w,
+        height: props.h,
+        padding: propsParser.get('pd')?.(props.pd),
+        margin: propsParser.get('mg')?.(props.mg),
         ...props.style
       }}>
-      <svg width={props.redius??24} height={props.redius??24} viewBox="0 0 48 48" fill="none"
+      <svg width={props.radius??24} height={props.radius??24} viewBox="0 0 48 48" fill="none"
         xmlns="http://www.w3.org/2000/svg">
         <path
           d="M18 6H8C6.89543 6 6 6.89543 6 8V18C6 19.1046 6.89543 20 8 20H18C19.1046 20 20 19.1046 20 18V8C20 6.89543 19.1046 6 18 6Z"

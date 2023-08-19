@@ -1,0 +1,41 @@
+.evp {
+  --text-size: 16px;
+  --text-size-mini: 12px;
+  --text-size-small: 14px;
+  --text-size-large: 18px;
+  --text-size-huge: 20px;
+
+  --title-text-size: 24px;
+  --title-text-mini: 20px;
+  --title-text-small: 22px;
+  --title-text-large: 26px;
+  --title-text-huge: 28px;
+
+  --nav-text-size: 18px;
+  --nav-text-small: 16px;
+  --nav-text-large: 20px;
+
+  --hint-text-size: 12px;
+  --hint-text-small: 10px;
+  --hint-text-large: 14px;
+
+  --radius: 4px;
+  --radius-mini: 2px;
+  --radius-small: 3px;
+  --radius-large: 5px;
+  --radius-huge: 6px;
+  --radius-round: 20px;
+  --radius-circle: 50%;
+
+  --len-mini: 14px;
+  --len-small: 16px;
+  --len: 18px;
+  --len-large: 20px;
+  --len-huge: 22px;
+
+  --btn-mini-h: 22px;
+  --btn-small-h: 26px;
+  --btn-h: 30px;
+  --btn-large-h: 34px;
+  --btn-huge-h: 38px;
+}
