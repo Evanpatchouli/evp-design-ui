@@ -37,7 +37,7 @@ export default function EvpMenu(props: EvpMenuProps) {
       }}>
       <EvpRow alignItems="space-around"
       $click={deExpand}>
-        <EvpRow h={'40px'}>
+        <EvpRow h={50}>
           {typeof props.title === 'string'? 
             (
               <>
