@@ -8,44 +8,6 @@ export type ArrayLengthed<T, N extends number> = T[]
 /** This Array must have 4 items */
 export type ArrayStrictLengthed<T, N extends number> = [T, ...T[]] & { length: N }
 
-export type CursorType =
-  "auto" |
-  "default" |
-  "none" |
-  "context-menu" |
-  "help" |
-  "pointer" |
-  "progress" |
-  "wait" |
-  "cell" |
-  "crosshair" |
-  "text" |
-  "vertical-text" |
-  "alias" |
-  "copy" |
-  "move" |
-  "no-drop" |
-  "not-allowed" |
-  "e-resize" |
-  "n-resize" |
-  "ne-resize" |
-  "nw-resize" |
-  "s-resize" |
-  "se-resize" |
-  "sw-resize" |
-  "w-resize" |
-  "ew-resize" |
-  "ns-resize" |
-  "nesw-resize" |
-  "nwse-resize" |
-  "col-resize" |
-  "row-resize" |
-  "all-scroll" |
-  "zoom-in" |
-  "zoom-out" |
-  "grab" |
-  "grabbing";
-
 export type Booleanish = boolean | 'true' | 'false';
 
 export interface EvpDomAttributes<T> extends AriaAttributes, DOMAttributes<T> {

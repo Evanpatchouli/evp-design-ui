@@ -1,8 +1,11 @@
 import { ArrayLengthed } from ".";
+import EvpBaseProps from "../props";
 
 import $cursorParser from "./cursor.parser";
+import $eventParser, { EvpEventMap } from "./event.parser";
+import StylePropsParser from "./style.parser";
 
-const propsParser = new Map<parserKey, PropsParserFunc>();
+export const propsParser = new Map<parserKey, PropsParserFunc>();
 
 export type parserKey = 
   'pd' |
@@ -24,6 +27,9 @@ export interface PropsParserFunc {
 export const cursorParser = $cursorParser;
 propsParser.set('cursor', cursorParser);
 
+export const eventParser = $eventParser;
+propsParser.set('event', eventParser);
+
 /**
  * @param pd This array should have 4 items, but less is also ok. If a member in this array has type of `number` it will be parsed to `${value}px`
  * @returns 
@@ -34,8 +40,12 @@ export const paddingParser: PropsParserFunc = (pd?: ArrayLengthed<string|number|
       `${val}px` : val??'';
   }
   if (pd) {
-    const result = `${parse(pd[0])} ${parse(pd[1])} ${parse(pd[2])} ${parse(pd[3])}`;
-    return result.trim() === ""? undefined : result;
+    if (typeof pd === 'number'){
+      return `${pd}px`;
+    } else {
+      const result = `${parse(pd[0])} ${parse(pd[1])} ${parse(pd[2])} ${parse(pd[3])}`;
+      return result.trim() === ""? undefined : result;
+    }
   } else {
     return undefined;
   }
@@ -48,12 +58,29 @@ export const marginParser: PropsParserFunc = (mg?: ArrayLengthed<string|number|u
       `${val}px` : val??'';
   }
   if (mg) {
-    const result = `${parse(mg[0])} ${parse(mg[1])} ${parse(mg[2])} ${parse(mg[3])}`;
-    return result.trim() === ""? undefined : result;
+    if (typeof mg === 'number'){
+      return `${mg}px`;
+    } else {
+      const result = `${parse(mg[0])} ${parse(mg[1])} ${parse(mg[2])} ${parse(mg[3])}`;
+      return result.trim() === ""? undefined : result;
+    }
   } else {
     return undefined;
   }
 }
 propsParser.set('mg', marginParser);
 
-export default propsParser;
+// export default propsParser;
+
+export default function AllParser(props?: EvpBaseProps) {
+  const style = props?StylePropsParser(props):undefined;
+  const event = props?eventParser<EvpEventMap>(props):{};
+  const children = props?props.children:undefined;
+  return {
+    style,
+    event,
+    children,
+    id: props?.id,
+    class: props?.class
+  }
+}

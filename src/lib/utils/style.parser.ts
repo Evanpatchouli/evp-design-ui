@@ -1,9 +1,8 @@
-import { EvpStyleProps } from "../../test/evp.base.prop";
-import propsParser from "./props.parser";
+import EvpStyleProps from "../props/evp.style.prop";
+import { propsParser } from "./props.parser";
 
 export default function StylePropsParser(props: EvpStyleProps): React.CSSProperties {
   // console.log("StypePropsParser.props", props);
-  const _props = props as {[x:string]:any};
   const keys: string[] = Object.keys(props);
 
   let padding: string|undefined = undefined;
@@ -35,10 +34,18 @@ export default function StylePropsParser(props: EvpStyleProps): React.CSSPropert
     );
   }
 
-  const cursor = propsParser.get('cursor')?.<EvpCursorRule>(props);
+  let font = {
+    size: props.fontSize,
+    weight: props.fontWeight
+  };
 
+  const cursor = propsParser.get('cursor')?.<EvpCursorRule>(props);
   return {
     cursor: cursor,
+    color: props.color,
+    backgroundColor: props.bgColor,
+    fontSize: font.size,
+    fontWeight: font.weight,
     display: props.display,
     flexDirection: props.flexDirection,
     justifyContent: props.justifyContent,
@@ -55,7 +62,7 @@ export default function StylePropsParser(props: EvpStyleProps): React.CSSPropert
   }
 
   function handleMargin (key: string): boolean {
-    if ( key.startsWith('mg') && _props[key]) {
+    if ( key.startsWith('mg') && props[key]) {
       const slices = key.split('_');
       if ( slices.length !== 2 ) {
         return true;
@@ -94,7 +101,7 @@ export default function StylePropsParser(props: EvpStyleProps): React.CSSPropert
   }
 
   function handlePadding(key: string): boolean {
-    if ( key.startsWith('pd') && _props[key]) {
+    if ( key.startsWith('pd') && props[key]) {
       const slices = key.split('_');
       if ( slices.length !== 2 ) {
         return true;

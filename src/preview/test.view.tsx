@@ -1,19 +1,15 @@
-import Test from "../test"
+import { Color } from "../lib/constant"
+import Test from "../test";
+import './test.css'
 
 export default function TestViewView() {
   return(
-    <div style={{border: '1px solid black'}}>
+    <div>
       <Test
-      h={100}
-      pd_10
-      pdt_20
-      pdl_40
-      pdr_40
-      pdr_30
-      display='flex'
-      alignItems="center"
-      not-allowed
-      ></Test>
+      class='Test'
+      bgColor={Color.HeavyGreen}
+      pd={30}
+      >Test</Test>
     </div>
   )
 }

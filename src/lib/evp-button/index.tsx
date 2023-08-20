@@ -2,7 +2,7 @@ import React from "react";
 import './index.css';
 import  { BaseDomProps }from '../evp-dom/index'
 import { ArrayLengthed } from "../utils";
-import propsParser from "../utils/props.parser";
+import { propsParser } from "../utils/props.parser";
 
 interface EvpButtonProps extends BaseDomProps {
   /** The button text, it will be overrided by props.children if that exists */

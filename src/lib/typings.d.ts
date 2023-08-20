@@ -8,6 +8,12 @@ declare type EvpWRule = Hintable<EvpBaseWidth | number>
 
 declare type EvpHRule = Hintable<EvpBaseHeight | number>
 
+declare type EvpFontSize = '12px' | '14px' | '16px' | '24px' | '32px' | '1rem' | '1.2rem' | '2rem';
+
+declare type EvpFontWeight = 'small' | 'normal' | 'bold' | 'bolder' | '300' | '400' | '500' | '600' | '700' | '800';
+
+declare type Option<T extends unknown> = T | undefined
+
 /** This Array should have 4 items */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 declare type ArrayLengthed<T, N extends number> = T[]

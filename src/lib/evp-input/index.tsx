@@ -202,6 +202,7 @@ export default function EvpInput(props: EvpInputProps) {
             defaultValue={props.default}
             placeholder={props.placeholder}
             type={inputType}
+            spellCheck={false}
             onKeyDown={(e) => {
               // onEnter
               if (e.key.toLowerCase() === "enter") {

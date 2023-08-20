@@ -1,4 +1,4 @@
-import propsParser from "../utils/props.parser";
+import { propsParser } from "../utils/props.parser";
 import { SvgIcon, SvgIconProps } from "./svg.icons";
 
 const WaterFallsV: SvgIcon = (props: SvgIconProps)=> {

@@ -10,7 +10,7 @@ import $WaterfallsH from './waterfalls-h';
 import $WaterfallsV from './waterfalls-v';
 import $Down from './down';
 import $Left from './left';
-import { ArrayLengthed, CursorType } from "../utils";
+import { ArrayLengthed } from "../utils";
 
 export type SvgIconProps = Indexable<SvgIconPropsType, any>;
 
@@ -32,7 +32,7 @@ type SvgIconPropsType = {
   /** Cursor pointer, this will be overrided by props.cursor if that exists */
   pointer?: boolean,
   /** Cursor type, this will override props.pointer */
-  cursor?: CursorType,
+  cursor?: EvpCursorRule,
   w?: EvpWRule;
   /** Default height is `100%`, the unit is number when assigned with a number*/
   h?: EvpHRule;

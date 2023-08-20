@@ -1,16 +1,19 @@
-import StylePropsParser from "../lib/utils/style.parser";
-import { EvpStyleProps } from "./evp.base.prop";
+import EvpBaseProps from "../lib/props";
+import EvpDom from "../lib/evp-dom";
+import { Color } from "../lib/constant";
+import { useState } from "react";
 
-export default function Test(props: EvpStyleProps) {
-  console.log("Test.props", props);
-  let style = StylePropsParser(props);
-  console.log("style", style);
-  return (
-  <div style={{
-    border: '1px solid black',
-    ...style,
-    ...props.style,
-  }}>
-    Test
-  </div>)
+export default function Test(props: EvpBaseProps) {
+  console.log('Test.props:', props)
+  const cursorType = ['unset', 'pointer'];
+  const [cursor, setCursor] = useState(cursorType[0]);
+  return(
+    <>
+      <EvpDom
+      props={props}
+      >
+        <div>{props.children}</div>
+      </EvpDom>
+    </>
+  )
 }

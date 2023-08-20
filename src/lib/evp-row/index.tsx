@@ -1,6 +1,6 @@
 import { BaseDomProps } from "../evp-dom";
 import { ArrayLengthed } from "../utils";
-import propsParser from "../utils/props.parser";
+import { propsParser } from "../utils/props.parser";
 
 export interface EvpRowProps extends BaseDomProps {
   flexDirection?: 'row' | 'row-reverse',

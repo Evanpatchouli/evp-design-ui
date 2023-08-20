@@ -1,10 +1,20 @@
 import React from "react";
-import { ArrayLengthed } from "../lib/utils";
+import { ArrayLengthed } from "../utils";
+import { Color } from "../constant";
 
 export type EvpStyleProps = Indexable<EvpStyle, any>
 
+export default EvpStyleProps;
+
 export interface EvpStyle {
+  id?: string,
+  class?: string,
   style?: React.CSSProperties,
+  color?: Hintable<Color>,
+  fontSize?: Hintable<EvpFontSize>,
+  fontWeight?: Hintable<EvpFontWeight>
+  bgColor?: Hintable<Color>,
+
   cursor?: EvpCursorRule,
   'pointer'?: boolean,
   'not-allowed'?: boolean,
@@ -16,6 +26,7 @@ export interface EvpStyle {
   'grab'?: boolean,
   'grabbing'?: boolean,
   'none'?: boolean,
+  
   display?: EvpDisplayRule,
   flexDirection?: EvpFlexDirectionRule,
   justifyContent?: EvpJustifyContentRule,

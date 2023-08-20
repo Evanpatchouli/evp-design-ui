@@ -1,7 +1,7 @@
 import SvgIcons, { SvgIcon, SvgIconType } from './svg.icons';
 import './index.css';
-import { ArrayLengthed, CursorType } from '../utils';
-import propsParser from '../utils/props.parser';
+import { ArrayLengthed } from '../utils';
+import { propsParser } from '../utils/props.parser';
 
 export type IconType = "true_circle" | 
 "false_circle" |
@@ -48,7 +48,7 @@ export interface EvpIconPropsType {
   /** Cursor pointer, this will be overrided by props.cursor if that exists */
   pointer?: boolean,
   /** Cursor type, this will override props.pointer */
-  cursor?: CursorType,
+  cursor?: EvpCursorRule,
   w?: EvpWRule;
   /** Default height is `100%`, the unit is number when assigned with a number*/
   h?: EvpHRule;
