@@ -24,8 +24,8 @@ const Down: SvgIcon = (props: SvgIconProps)=> {
       >
         <path
           d="M36 18L24 30L12 18"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </svg>
     </div>

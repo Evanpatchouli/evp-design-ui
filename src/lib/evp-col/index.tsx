@@ -1,34 +1,40 @@
-import { BaseDomProps } from "../evp-dom";
-import { ArrayLengthed } from "../utils";
-import { propsParser } from "../utils/props.parser";
+import EvpBaseProps from "../props";
+import { shift } from "../utils";
+import AllParser from "../utils/props.parser";
 
-export interface EvpColProps extends BaseDomProps {
-  flexDirection?: 'column' | 'column-reverse',
-  justifyContent?: EvpJustifyContentRule,
-  alignItems?: EvpAlignItemsRule,
-  w?: EvpWRule
-  /** Default height is `100%`, the unit is number when assigned with a number*/
-  h?: EvpHRule
-  /** This array should have 4 items, but less is also ok. If a member in this array has type of `number` it will be parsed to `${value}px` */
-  pd?: ArrayLengthed<string|number|undefined|null, 4>,
-  /** This array should have 4 items, but less is also ok. If a member in this array has type of `number` it will be parsed to `${value}px` */
-  mg?: ArrayLengthed<string|number|undefined|null, 4>,
+export interface EvpColProps extends EvpBaseProps {
+  flexDirection?: "column" | "column-reverse";
 }
 
 export default function EvpCol(props: EvpColProps) {
+  let $props = AllParser(props);
+  const event = $props.event;
+  let style = {
+    display: "flex",
+    flexDirection: props.flexDirection ?? "column",
+    justifyContent: props.justifyContent ?? "flex-start",
+    alignItems: props.alignItems ?? "center",
+    width: props.w ?? "100%",
+    height: props.h,
+    ...shift($props.style),
+  };
   return (
-    <div className="evp col"
-      style={{
-        display: 'flex',
-        flexDirection: props.flexDirection??'column',
-        justifyContent: props.justifyContent??'flex-start',
-        alignItems: props.alignItems??'center',
-        width: props.w??'100%',
-        height: props.h,
-        padding: propsParser.get('pd')?.(props.pd),
-        margin: propsParser.get('mg')?.(props.mg),
-        ...props.style
-      }}
+    <div
+      className={`evp col ${props.class}`}
+      id={props.id}
+      style={style}
+      onMouseEnter={event.onMouseEnter}
+      onMouseOver={event.onMouseOver}
+      onFocus={event.onFocus}
+      onMouseDown={event.onMouseDown}
+      onDoubleClick={event.onDoubleClick}
+      onContextMenu={event.onContextMenu}
+      onMouseUp={event.onMouseUp}
+      onMouseMove={event.onMouseMove}
+      onScroll={event.onScroll}
+      onMouseOut={event.onMouseOut}
+      onMouseLeave={event.onMouseLeave}
+      onKeyDown={event.onKeyDown}
     >
       {props.children}
     </div>

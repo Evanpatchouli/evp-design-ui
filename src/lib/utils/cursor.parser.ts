@@ -29,7 +29,7 @@ const preservedCursors: preservedProp[] = [
 ]
 
 const cursorParser: PropsParserFunc = (props?: EvpStyleProps) => {
-  let cursor: EvpCursorRule | (string & {}) = "unset";
+  let cursor: Option<Hintable<EvpCursorRule>> = undefined;
   if (props) {
     const keys = Object.keys(props);
     let cursors = keys.map(key => {

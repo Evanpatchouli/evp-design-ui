@@ -9,6 +9,7 @@ export default function TestViewView() {
       class='Test'
       bgColor={Color.HeavyGreen}
       pd={30}
+      pointer
       >Test</Test>
     </div>
   )

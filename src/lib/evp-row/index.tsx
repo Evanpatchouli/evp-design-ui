@@ -1,40 +1,40 @@
-import { BaseDomProps } from "../evp-dom";
-import { ArrayLengthed } from "../utils";
-import { propsParser } from "../utils/props.parser";
+import AllParser from "../utils/props.parser";
+import EvpBaseProps from "../props";
+import { shift } from "../utils";
 
-export interface EvpRowProps extends BaseDomProps {
-  flexDirection?: 'row' | 'row-reverse',
-  justifyContent?: string & ('center' | 'left' | 'right' | 'start' 
-  | 'end' | 'flex-start' | 'flex-end' | 'inherit' | 'initial' | 'normal' 
-  | 'revert' | 'revert-layer' | 'space-around' | 'space-between' | 'space-evenly' | 'strench' | 'unset');
-  alignItems?: string & ('center' | 'left' | 'right' | 'start' 
-  | 'end' | 'flex-start' | 'flex-end' | 'inherit' | 'initial' | 'normal' 
-  | 'revert' | 'revert-layer' | 'space-around' | 'space-between' | 'space-evenly' | 'strench' | 'unset');
-  /** Default width is `100%`, the unit is number when assigned with a number*/
-  w?: EvpWRule,
-  /** Default height is `100%`, the unit is number when assigned with a number*/
-  h?: EvpHRule,
-  /** This array should have 4 items, but less is also ok. If a member in this array has type of `number` it will be parsed to `${value}px` */
-  pd?: ArrayLengthed<string|number|undefined|null, 4>,
-  /** This array should have 4 items, but less is also ok. If a member in this array has type of `number` it will be parsed to `${value}px` */
-  mg?: ArrayLengthed<string|number|undefined|null, 4>,
+export interface EvpRowProps extends EvpBaseProps {
+  flexDirection?: "row" | "row-reverse";
 }
 
 export default function EvpRow(props: EvpRowProps) {
-  
+  let $props = AllParser(props);
+  const event = $props.event;
+  const style = {
+    display: "flex",
+    flexDirection: props.flexDirection ?? "row",
+    justifyContent: props.justifyContent ?? "flex-start",
+    alignItems: props.alignItems ?? "center",
+    width: props.w ?? "100%",
+    height: props.h ?? "100%",
+    ...shift($props.style),
+  };
   return (
-    <div className="evp row"
-      style={{
-        display: 'flex',
-        flexDirection: props.flexDirection??'row',
-        justifyContent: props.justifyContent??'flex-start',
-        alignItems: props.alignItems??'center',
-        width: props.w??'100%',
-        height: props.h??'100%',
-        padding: propsParser.get('pd')?.(props.pd),
-        margin: propsParser.get('mg')?.(props.mg),
-        ...props.style
-      }}
+    <div
+      className={`evp ROW ${props.class}`}
+      id={props.id}
+      style={style}
+      onMouseEnter={event.onMouseEnter}
+      onMouseOver={event.onMouseOver}
+      onFocus={event.onFocus}
+      onMouseDown={event.onMouseDown}
+      onDoubleClick={event.onDoubleClick}
+      onContextMenu={event.onContextMenu}
+      onMouseUp={event.onMouseUp}
+      onMouseMove={event.onMouseMove}
+      onScroll={event.onScroll}
+      onMouseOut={event.onMouseOut}
+      onMouseLeave={event.onMouseLeave}
+      onKeyDown={event.onKeyDown}
     >
       {props.children}
     </div>

@@ -8,6 +8,19 @@ export type ArrayLengthed<T, N extends number> = T[]
 /** This Array must have 4 items */
 export type ArrayStrictLengthed<T, N extends number> = [T, ...T[]] & { length: N }
 
+/** This func is to unassign undefined properties from an indexable object, especially invoked during parsing props */
+export function shift(obj?: Indexable<{},any>) {
+    if (obj && typeof obj === 'object') {
+        const keys = Object.keys(obj);
+        keys.forEach(key => {
+            if (obj[key] === undefined) {
+                delete obj[key];
+            }
+        });
+    }
+    return obj;
+}
+
 export type Booleanish = boolean | 'true' | 'false';
 
 export interface EvpDomAttributes<T> extends AriaAttributes, DOMAttributes<T> {

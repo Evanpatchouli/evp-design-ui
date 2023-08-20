@@ -6,7 +6,7 @@ import { IconType } from "../evp-icon";
 export interface EvpMenuItemProps {
   children?: React.ReactNode,
   title?: string | JSX.Element,
-  icon: IconType
+  icon?: IconType
 }
 
 export default function EvpMenuItem(props: EvpMenuItemProps) {
@@ -14,13 +14,13 @@ export default function EvpMenuItem(props: EvpMenuItemProps) {
   return (
     <EvpRow alignItems="space-around">
       <EvpRow h={50}>
-        {props.title && (typeof props.title === 'string')? 
+        {(typeof props.title !== 'object')? 
           <Fragment>
-            <EvpIcon name={icon}></EvpIcon>
+            {icon?<EvpIcon name={icon} pd={[0,14,0,0]}></EvpIcon>:null}
             <div>{props.title??props.children}</div>
           </Fragment>
             :
-          (props.title??<div>props.children</div>)
+          (props.title??<div>{props.children}</div>)
         }
       </EvpRow>
   </EvpRow>

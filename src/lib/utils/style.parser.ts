@@ -1,3 +1,4 @@
+import { shift } from ".";
 import EvpStyleProps from "../props/evp.style.prop";
 import { propsParser } from "./props.parser";
 
@@ -54,7 +55,7 @@ export default function StylePropsParser(props: EvpStyleProps): React.CSSPropert
     height: props.h,
     padding: padding,
     margin: margin,
-    ...props.style
+    ...shift(props.style)
   }
 
   function isValidMgPdArray (array: number[]) {

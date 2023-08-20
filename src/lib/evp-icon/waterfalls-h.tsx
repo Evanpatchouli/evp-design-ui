@@ -19,10 +19,10 @@ const WaterFallsH: SvgIcon = (props: SvgIconProps)=> {
       }}>
       <svg width={props.radius??24} height={props.radius??24} viewBox="0 0 48 48"
         xmlns="http://www.w3.org/2000/svg">
-        <path d="M20 6H6V17H20V6Z" stroke-linejoin="round" />
-        <path d="M42 31H28V42H42V31Z" stroke-linejoin="round" />
-        <path d="M42 6H28V23H42V6Z" stroke-linejoin="round" />
-        <path d="M20 25H6V42H20V25Z" stroke-linejoin="round" />
+        <path d="M20 6H6V17H20V6Z" strokeLinejoin="round" />
+        <path d="M42 31H28V42H42V31Z" strokeLinejoin="round" />
+        <path d="M42 6H28V23H42V6Z" strokeLinejoin="round" />
+        <path d="M20 25H6V42H20V25Z" strokeLinejoin="round" />
       </svg>
     </div>
   )

@@ -5,20 +5,24 @@ import EvpRow from "../lib/evp-row"
 
 export default function MenuView() {
   return(
-    <div className="preview-container" style={{border: '1px solid black'}}>
+    <div className="preview-container">
       <EvpMenu title={
         <EvpRow>
-          <SvgIcons.All/>
+          <SvgIcons.All pd={[0,14,0,0]}/>
           <h4>Main Menu</h4>
         </EvpRow>
       }
-      w={300}
-      pd={[0,20,0,20]}
+      pd={[8,20,0,20]}
       mg={[0,0,0,0]}
       >
         <EvpMenuItem icon='user'>UserIcon Item</EvpMenuItem>
         <EvpMenuItem icon='waterfalls_h'>UserIcon Item</EvpMenuItem>
-        <EvpMenu submenu title="SubMenu">
+        <EvpMenu submenu icon='user' title="SubMenu">
+          <EvpMenuItem icon='unknown'>Unknown Item</EvpMenuItem>
+          <EvpMenuItem icon='unknown'>Unknown Item</EvpMenuItem>
+          <EvpMenuItem icon='unknown'>Unknown Item</EvpMenuItem>
+        </EvpMenu>
+        <EvpMenu submenu icon='user' title="SubMenu">
           <EvpMenuItem icon='unknown'>Unknown Item</EvpMenuItem>
           <EvpMenuItem icon='unknown'>Unknown Item</EvpMenuItem>
           <EvpMenuItem icon='unknown'>Unknown Item</EvpMenuItem>

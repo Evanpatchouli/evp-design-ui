@@ -37,9 +37,9 @@ type SvgIconPropsType = {
   /** Default height is `100%`, the unit is number when assigned with a number*/
   h?: EvpHRule;
   /** This array should have 4 items, but less is also ok. If a member in this array has type of `number` it will be parsed to `${value}px` */
-  pd?: ArrayLengthed<string|number|undefined|null, 4>,
+  pd?: ArrayLengthed<string|number|undefined|null, 4> | number,
   /** This array should have 4 items, but less is also ok. If a member in this array has type of `number` it will be parsed to `${value}px` */
-  mg?: ArrayLengthed<string|number|undefined|null, 4>,
+  mg?: ArrayLengthed<string|number|undefined|null, 4> | number,
 }
 
 export type SvgIcon = React.FC<SvgIconProps>;
