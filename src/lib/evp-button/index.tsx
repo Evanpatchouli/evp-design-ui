@@ -22,6 +22,8 @@ interface EvpButtonSpecProps {
 const EvpButton: React.FC<EvpButtonProps> = (props: EvpButtonProps) => {
   // const default_clickHandler = () => undefined;
   const $props = AllParser(props);
+  // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+  if ($props.children === 'Default') {console.log('$props', $props);}
   const clickHandler = $props.event.onMouseDown;
 
   const theme = props.theme?? 'primary';
@@ -30,7 +32,7 @@ const EvpButton: React.FC<EvpButtonProps> = (props: EvpButtonProps) => {
   const shape = props.shape?? '';
   const $class = props.class ?? '';
   return (
-    <button className={`evp button ${theme} ${size} ${plain} ${shape} ${$class}`} id={$props.id}
+    <button className={`evp button ${theme} ${size} ${plain} ${shape} ${$class}`.trim()} id={$props.id}
     onClick={clickHandler}
     style={$props.style}
     type={props.type??"button"}

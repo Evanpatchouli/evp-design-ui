@@ -20,7 +20,7 @@ export default function EvpRow(props: EvpRowProps) {
   };
   return (
     <div
-      className={`evp ROW ${props.class}`}
+      className={`evp row ${props.class??''}`.trim()}
       id={props.id}
       style={style}
       onMouseEnter={event.onMouseEnter}

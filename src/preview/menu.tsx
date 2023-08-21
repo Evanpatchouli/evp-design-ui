@@ -12,7 +12,7 @@ export default function MenuView() {
           <h4>Main Menu</h4>
         </EvpRow>
       }
-      pd={[8,20,0,20]}
+
       mg={[0,0,0,0]}
       >
         <EvpMenuItem icon='user'>UserIcon Item</EvpMenuItem>

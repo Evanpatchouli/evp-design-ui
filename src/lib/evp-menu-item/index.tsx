@@ -12,7 +12,7 @@ export interface EvpMenuItemProps {
 export default function EvpMenuItem(props: EvpMenuItemProps) {
   const { icon } = props;
   return (
-    <EvpRow alignItems="space-around">
+    <EvpRow alignItems="space-around" pointer>
       <EvpRow h={50}>
         {(typeof props.title !== 'object')? 
           <Fragment>

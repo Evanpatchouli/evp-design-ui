@@ -20,7 +20,7 @@ export default function EvpCol(props: EvpColProps) {
   };
   return (
     <div
-      className={`evp col ${props.class}`}
+      className={`evp col ${props.class??''}`.trim()}
       id={props.id}
       style={style}
       onMouseEnter={event.onMouseEnter}

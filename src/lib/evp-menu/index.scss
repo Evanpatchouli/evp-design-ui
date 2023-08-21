@@ -1,12 +1,9 @@
 .evp-menu-children {
-  display: grid;
-  grid-template-rows: 1fr;
-  overflow: hidden;
-  transition: all 1s;
+  transition: all 1s ease-in-out;
+  max-height: 100vh;
 
   &.close {
-    transition: all 1s;
+    min-height: 0;
     max-height: 0;
-    grid-template-rows: 0fr;
   }
 }

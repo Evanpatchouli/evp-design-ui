@@ -3,7 +3,6 @@ import EvpStyleProps from "../props/evp.style.prop";
 import { propsParser } from "./props.parser";
 
 export default function StylePropsParser(props: EvpStyleProps): React.CSSProperties {
-  // console.log("StypePropsParser.props", props);
   const keys: string[] = Object.keys(props);
 
   let padding: string|undefined = undefined;
@@ -19,7 +18,7 @@ export default function StylePropsParser(props: EvpStyleProps): React.CSSPropert
       // if props.pd not exist, parse quick props
       handleMargin(key);
     });
-    padding = propsParser.get('mg')?.(
+    margin = propsParser.get('mg')?.(
       isValidMgPdArray(marginComputed)? marginComputed : [null,null,null,null]
     );
   }

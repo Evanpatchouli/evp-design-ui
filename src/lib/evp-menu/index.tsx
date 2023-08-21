@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import EvpCol from "../evp-col";
 import EvpRow from "../evp-row";
 import EvpIcon, { IconType } from "../evp-icon";
@@ -26,9 +26,6 @@ export default function EvpMenu(props: EvpMenuProps) {
   const [ expand, setExpand ] = useState(false);
   function deExpand() {
     setExpand(!expand);
-    // if (ref.current) {
-    //   setHeight(ref.current.offsetHeight)
-    // }
   }
 
   useEffect(()=>{
@@ -43,18 +40,18 @@ export default function EvpMenu(props: EvpMenuProps) {
 
   const [height, setHeight] = useState(0);
 
-  // useLayoutEffect(() => {
-  //   console.log('ref.current.offsetHeight', ref.current?.offsetHeight)
-  //   if (ref.current) {
-  //     setHeight(ref.current.offsetHeight)
-  //   }
-  // }, []);
+  useEffect(()=>{
+    if( expand ) {
+      setHeight(ref.current?.offsetHeight as number);
+    } else {
+      setHeight(0);
+    }
+  }, [expand])
 
   const childrenWrapperClass = props.submenu? `evp-menu-children ${expand?'':'close'}` : '';
 
   return (
     <EvpCol alignItems="left"
-      pointer
       pd={props.pd}
       mg={props.mg}
       w={props.w??'200px'}
@@ -64,6 +61,7 @@ export default function EvpMenu(props: EvpMenuProps) {
         ...$props.style
       }}>
       <EvpRow alignItems="space-around"
+      pointer
       $click={deExpand}>
         <EvpRow h={50}>
           {typeof props.title === 'string'? 
@@ -81,13 +79,10 @@ export default function EvpMenu(props: EvpMenuProps) {
           <EvpIcon strokeWidth={2} name={expand?'down':'left'} />
         ):null}
       </EvpRow>
-      <div className={childrenWrapperClass} ref={ref} style={{maxHeight: props.submenu? height : undefined}}>
-      {/* <div className={childrenWrapperClass} ref={ref}> */}
-          <div>
-          {props.submenu?
-          expand? props.children : null
-        :props.children}
-          </div>
+      <div className={childrenWrapperClass} ref={ref} style={{
+        minHeight: height
+      }}>
+        {props.children}
       </div>
     </EvpCol>
   );
