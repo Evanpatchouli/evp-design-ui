@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import EvpCol from "../evp-col";
 import EvpRow from "../evp-row";
 import EvpIcon, { IconType } from "../evp-icon";
 import { Color } from "../constant";
 import EvpBaseProps from "../props";
 import AllParser from "../utils/props.parser";
+
+
+import './index.scss'
 
 export interface EvpMenuProps extends EvpBaseProps {
   children?: React.ReactNode,
@@ -23,7 +26,32 @@ export default function EvpMenu(props: EvpMenuProps) {
   const [ expand, setExpand ] = useState(false);
   function deExpand() {
     setExpand(!expand);
+    // if (ref.current) {
+    //   setHeight(ref.current.offsetHeight)
+    // }
   }
+
+  useEffect(()=>{
+    console.log('menu expanded?', expand);
+    console.log('ref.current.offsetHeight', ref.current?.offsetHeight);
+    if (ref.current) {
+      setHeight(ref.current.offsetHeight)
+    }
+  },[expand])
+
+  const ref = useRef<HTMLDivElement>(null);
+
+  const [height, setHeight] = useState(0);
+
+  // useLayoutEffect(() => {
+  //   console.log('ref.current.offsetHeight', ref.current?.offsetHeight)
+  //   if (ref.current) {
+  //     setHeight(ref.current.offsetHeight)
+  //   }
+  // }, []);
+
+  const childrenWrapperClass = props.submenu? `evp-menu-children ${expand?'':'close'}` : '';
+
   return (
     <EvpCol alignItems="left"
       pointer
@@ -53,9 +81,14 @@ export default function EvpMenu(props: EvpMenuProps) {
           <EvpIcon strokeWidth={2} name={expand?'down':'left'} />
         ):null}
       </EvpRow>
-      {props.submenu?
-        expand? props.children : null
-      :props.children}
+      <div className={childrenWrapperClass} ref={ref} style={{maxHeight: props.submenu? height : undefined}}>
+      {/* <div className={childrenWrapperClass} ref={ref}> */}
+          <div>
+          {props.submenu?
+          expand? props.children : null
+        :props.children}
+          </div>
+      </div>
     </EvpCol>
   );
 }
