@@ -27,8 +27,9 @@ const EvpButton: React.FC<EvpButtonProps> = (props: EvpButtonProps) => {
   const size = props.size?? 'middle';
   const plain = props.plain? 'plain': '';
   const shape = props.shape?? 'square';
+  const $class = props.class ?? '';
   return (
-    <button className={`evp button ${theme} ${size} ${plain} ${shape} ${$props.class}`} id={$props.id}
+    <button className={`evp button ${theme} ${size} ${plain} ${shape} ${$class}`} id={$props.id}
     onClick={clickHandler}
     style={$props.style}
     type={props.type??"button"}
