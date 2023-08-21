@@ -8,13 +8,21 @@ export enum Color {
   DeepRed = "#CD0000",
   DarkRed = "#8B0000",
 
-  PaleBlue = "#B0E2FF",
-  ShallowBlue = "#81D4FA",
-  LightBlue = "#42A5F5",
+  PaleBlue = "#81D4FA",
+  ShallowBlue = "#00BFFF",
+  LightBlue = "#1E90FF",
   Blue = "#0000FF",
-  HeavyBlue = "#0000EE",
-  DeepBlue = "#0000CD",
+  HeavyBlue = "#0000CD",
+  DeepBlue = "#0000AC",
   DarkBlue = "#00008B",
+
+  PaleYellow = "#FFFFE0",
+  ShallowYellow = "#FFF68F",
+  LightYellow = "#FFF68F",
+  Yellow = "#FFFF00",
+  HeavyYellow = "#EEEE00",
+  DeepYellow = "#EEC900",
+  DarkYellow = "#CDCD00",
   
   PaleGreen = "#9AFF9A",
   ShallowGreen = "#00FF7F",
@@ -33,5 +41,13 @@ export enum Color {
   DarkGray = "#363636",
 
   Dark = "1C1C1C",
-  Black = "#000000"
+  Black = "#000000",
+
+  Orange = "#FFA500",
+
+  Azure = "#FFA500",
+
+  Gold = "#FFD700",
+
+  Pink = "#FFC0CB"
 }

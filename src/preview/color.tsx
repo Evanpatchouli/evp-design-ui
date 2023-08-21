@@ -35,6 +35,32 @@ export default function ColorView() {
         </EvpRow>
         <EvpRow style={{margin: '12px 0 12px 0'}}>
           <EvpCol w="120px" style={{alignItems: 'flex-end', paddingRight: '12px'}}>
+            <div>Yellow Series: </div>
+          </EvpCol>
+          <EvpCol style={{backgroundColor: Color.DarkYellow, color: 'black', minWidth: '100px', padding: '12px'}}>
+            DarkYellow
+          </EvpCol>
+          <EvpCol style={{backgroundColor: Color.DeepYellow, color: 'black', minWidth: '100px', padding: '12px'}}>
+            DeepYellow
+          </EvpCol>
+          <EvpCol style={{backgroundColor: Color.HeavyYellow, color: 'black', minWidth: '100px', padding: '12px'}}>
+            HeavyYellow
+          </EvpCol>
+          <EvpCol style={{backgroundColor: Color.Yellow, color: 'black', minWidth: '100px', padding: '12px'}}>
+            Yellow
+          </EvpCol>
+          <EvpCol style={{backgroundColor: Color.LightYellow, color: 'black', minWidth: '100px', padding: '12px'}}>
+            LightYellow
+          </EvpCol>
+          <EvpCol style={{backgroundColor: Color.ShallowYellow, color: 'black', minWidth: '100px', padding: '12px'}}>
+            ShallowYellow
+          </EvpCol>
+          <EvpCol style={{backgroundColor: Color.PaleYellow, color: 'black', minWidth: '100px', padding: '12px'}}>
+            PaleYellow
+          </EvpCol>
+        </EvpRow>
+        <EvpRow style={{margin: '12px 0 12px 0'}}>
+          <EvpCol w="120px" style={{alignItems: 'flex-end', paddingRight: '12px'}}>
             <div>Green Series: </div>
           </EvpCol>
           <EvpCol style={{backgroundColor: Color.DarkGreen, color: 'white', minWidth: '100px', padding: '12px'}}>

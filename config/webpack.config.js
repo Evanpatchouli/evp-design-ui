@@ -310,8 +310,8 @@ module.exports = function (webpackEnv) {
         .map(ext => `.${ext}`)
         .filter(ext => useTypeScript || !ext.includes('ts')),
       alias: {
-        // // Use `@` like Vue.js
-        // '@': path.resolve('src'),
+        // Use `@` like Vue.js
+        '@': path.resolve('src'),
         // Support React Native Web
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
         'react-native': 'react-native-web',
@@ -503,9 +503,9 @@ module.exports = function (webpackEnv) {
                 },
               }),
             },
-            // Opt-in support for SASS (using .scss or .sass extensions).
+            // Opt-in support for SASS (using .scss or .css extensions).
             // By default we support SASS Modules with the
-            // extensions .module.scss or .module.sass
+            // extensions .module.scss or .module.css
             {
               test: sassRegex,
               exclude: sassModuleRegex,
@@ -528,7 +528,7 @@ module.exports = function (webpackEnv) {
               sideEffects: true,
             },
             // Adds support for CSS Modules, but using SASS
-            // using the extension .module.scss or .module.sass
+            // using the extension .module.scss or .module.css
             {
               test: sassModuleRegex,
               use: getStyleLoaders(
