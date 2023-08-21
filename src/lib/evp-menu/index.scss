@@ -1,0 +1,12 @@
+.evp-menu-children {
+  display: grid;
+  grid-template-rows: 1fr;
+  overflow: hidden;
+  transition: all 1s;
+
+  &.close {
+    transition: all 1s;
+    max-height: 0;
+    grid-template-rows: 0fr;
+  }
+}
