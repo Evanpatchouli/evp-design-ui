@@ -7,7 +7,7 @@ import EvpBaseProps from "../props";
 import AllParser from "../utils/props.parser";
 
 export interface EvpMenuProps extends EvpBaseProps {
-  children: React.ReactNode,
+  children?: React.ReactNode,
   title?: string | JSX.Element,
   submenu?: boolean
   /** Default width is 200px */

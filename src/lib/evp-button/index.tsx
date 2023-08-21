@@ -1,7 +1,8 @@
 import React from "react";
-import './index.css';
 import AllParser from "../utils/props.parser";
 import EvpBaseProps from "../props";
+
+import './index.scss';
 
 type EvpButtonProps = EvpButtonSpecProps & EvpBaseProps;
 
@@ -14,7 +15,7 @@ interface EvpButtonSpecProps {
   theme?: 'white' | 'primary' |'success' | 'warning' | 'danger' | 'info' | 'dark' | 'text',
   plain?: boolean,
   size?: 'mini' |'small' | 'middle' | 'large' | 'huge'
-  /** default is square */
+  /** default is undefined, square will has 0 border-radius */
   shape?: 'circle' | 'round' | 'square',
 }
 
@@ -26,9 +27,10 @@ const EvpButton: React.FC<EvpButtonProps> = (props: EvpButtonProps) => {
   const theme = props.theme?? 'primary';
   const size = props.size?? 'middle';
   const plain = props.plain? 'plain': '';
-  const shape = props.shape?? 'square';
+  const shape = props.shape?? '';
+  const $class = props.class ?? '';
   return (
-    <button className={`evp button ${theme} ${size} ${plain} ${shape} ${$props.class}`} id={$props.id}
+    <button className={`evp button ${theme} ${size} ${plain} ${shape} ${$class}`} id={$props.id}
     onClick={clickHandler}
     style={$props.style}
     type={props.type??"button"}

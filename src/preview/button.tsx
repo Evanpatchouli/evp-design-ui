@@ -65,6 +65,9 @@ export default function ButtonView() {
       <EvpButton mg={[20]} size="middle" theme='primary' plain shape="round" onClick={()=>{
         alert("Click");
       }}>Primary Plain Round</EvpButton>
+      <EvpButton mg={[20]} size="middle" theme='primary' plain shape="square" onClick={()=>{
+        alert("Click");
+      }}>Primary Plain Square</EvpButton>
       {/* Dark Plain Circle */}
       <EvpButton mg={[20]} size="mini" theme='dark' plain shape="circle" onClick={()=>{
         alert("Click");

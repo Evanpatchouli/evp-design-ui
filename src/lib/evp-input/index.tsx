@@ -4,9 +4,10 @@ import { BaseDomProps } from "../evp-dom";
 import Icon from '../evp-icon/index';
 import EvpRow from "../evp-row";
 import EvpCol from "../evp-col";
+import { Color } from "../constant";
 
 import "./index.css";
-import { Color } from "../constant";
+
 
 export type EvpInputRule = {
   /** default color is "red" */

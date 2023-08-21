@@ -1,6 +1,5 @@
 .evp.button {
   border-radius: var(--radius);
-  text-align: center;
 
   box-shadow: 0px 0px 3px 1px #0000001e;
   background-color: #fff;
@@ -31,8 +30,8 @@
   }
 
   &.primary {
-    border: 1px solid #0000FF;
-    background-color: #0000FF;
+    border: 1px solid var(--Blue);
+    background-color: var(--Blue);
     color: #fff;
 
     &:hover {
@@ -49,8 +48,8 @@
   }
 
   &.danger {
-    border: 1px solid #FF0000;
-    background-color: #FF0000;
+    border: 1px solid var(--Red);
+    background-color: var(--Red);
     color: #fff;
     &:hover {
       transition: background-color 0.3s ease;
@@ -66,8 +65,8 @@
   }
 
   &.warning {
-    border: 1px solid #ff8800;
-    background-color: #ff8800;
+    border: 1px solid var(--Orange);
+    background-color: var(--Orange);
     color: #fff;
     &:hover {
       transition: background-color 0.3s ease;
@@ -83,8 +82,8 @@
   }
 
   &.success {
-    border: 1px solid #00FF00;
-    background-color: #00FF00;
+    border: 1px solid var(--Green);
+    background-color: var(--Green);
     color: #fff;
     &:hover {
       transition: background-color 0.3s ease;
@@ -117,8 +116,8 @@
   }
 
   &.dark {
-    border: 1px solid #131313;
-    background-color: #131313;
+    border: 1px solid var(--Dark);
+    background-color: var(--Dark);
     color: #fff;
     &:hover {
       transition: background-color 0.3s ease;
@@ -137,7 +136,7 @@
     border: none;
     padding-top: 1px;
     padding-bottom: 1px;
-    background-color: #fff;
+    background-color: var(--White);
     color: #0000FF;
     box-shadow: none;
 
@@ -155,14 +154,14 @@
 
 /** Plain Button*/
 .evp.button.plain {
-  background-color: #fff;
+  background-color: var(--White);
   &:hover {
     transition: background-color  0.3s ease;
     background-color: #ebebeb;
   }
   
   &.white {
-    color: #131313;
+    color: var(--Dark);
 
     &:active {
       transition: background-color 0.1s ease;
@@ -171,7 +170,7 @@
   }
 
   &.primary {
-    color: #0000FF;
+    color: var(--Blue);
 
     &:active {
       transition: background-color 0.1s ease;
@@ -180,7 +179,7 @@
   }
 
   &.danger {
-    color: #FF0000;
+    color: var(--Red);
 
     &:active {
       transition: background-color 0.1s ease;
@@ -189,7 +188,7 @@
   }
 
   &.warning {
-    color: #ff8800;
+    color: var(--Orange);
     
     &:active {
       transition: background-color 0.1s ease;
@@ -198,7 +197,7 @@
   }
 
   &.success {
-    color: #00FF00;
+    color: var(--Green);
     
     &:active {
       transition: background-color 0.1s ease;
@@ -216,7 +215,7 @@
   }
 
   &.dark {
-    color: #131313;
+    color: var(--Dark);
     
     &:active {
       transition: background-color 0.1s ease;
@@ -225,7 +224,7 @@
   }
 
   &.text {
-    color: #0000FF;
+    color: var(--Blue);
 
     &:active {
       transition: background-color 0.1s ease;
@@ -298,9 +297,9 @@
 
 /** Button Shape*/
 .evp.button {
-  /* &.square {
-    border-radius: unset;
-  } */
+  &.square {
+    border-radius: 0;
+  } 
 
   &.circle {
     overflow: hidden;
@@ -315,3 +314,6 @@
     border-radius: var(--radius-round);
   }
 }
+
+
+/** shadow */
