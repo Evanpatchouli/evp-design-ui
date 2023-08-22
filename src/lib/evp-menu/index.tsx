@@ -63,7 +63,7 @@ export default function EvpMenu(props: EvpMenuProps) {
       <EvpRow alignItems="space-around"
       pointer
       $click={deExpand}>
-        <EvpRow h={50}>
+        <EvpRow h={50} pd={[0,0,0,14]}>
           {typeof props.title === 'string'? 
             (
               <>
@@ -76,7 +76,7 @@ export default function EvpMenu(props: EvpMenuProps) {
           }
         </EvpRow>
         {props.submenu?(
-          <EvpIcon strokeWidth={2} name={expand?'down':'left'} />
+          <EvpIcon strokeWidth={2} pd={[0,8,0,0]} name={expand?'down':'left'} />
         ):null}
       </EvpRow>
       <div className={childrenWrapperClass} ref={ref} style={{
