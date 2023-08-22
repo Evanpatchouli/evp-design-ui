@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.Main {
+  min-height: 100vh;
+  display: flex;
+}
+
+.Content {
+  flex: 1;
+  padding: 20px;
+
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0);
+}

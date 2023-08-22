@@ -9,7 +9,8 @@ import { useLocation } from 'react-router-dom';
 import ColorView from './preview/color';
 import MenuView from './preview/menu';
 import TestViewView from './preview/test.view';
-
+import EvpMenu from './lib/evp-menu';
+import EvpMenuItem from './lib/evp-menu-item';
 import './App.css';
 import './preview/index.css';
 import './lib/global.css';
@@ -19,17 +20,34 @@ function App() {
   console.log('route:', location)
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header">
         {location.pathname==='/' ? <img src={logo} className="App-logo" alt="logo" /> : null}
-        <Routes>
-          <Route path='/' key={"home"} element={<Preview/>}></Route>
-          <Route path='/button' key={"button"} element={<ButtonView/>}></Route>
-          <Route path='/input' key={"input"} element={<InputView/>}></Route>
-          <Route path='/color' key={"color"} element={<ColorView/>}></Route>
-          <Route path='/menu' key={"color"} element={<MenuView/>}></Route>
-          <Route path='/test' key={"color"} element={<TestViewView/>}></Route>
-        </Routes>
-      </header>
+      </header> */}
+      <div className='Main'>
+        <div className='NavMenu'>
+          <EvpMenu link={'/'} title={'Components'}>
+            <EvpMenu submenu title={'Layout'}>
+              <EvpMenuItem link={'/'} title={'EvpCol'} />
+              <EvpMenuItem link={'/'} title={'EvpRow'} />
+              <EvpMenuItem link={'/'} title={'EvpDom'} />
+            </EvpMenu>
+            <EvpMenuItem link={'/components/button'} title={'EvpButton'} />
+            <EvpMenuItem link={'/components/input'} title={'EvpInput'} />
+            <EvpMenuItem link={'/components/color'} title={'EvpColor'} />
+            <EvpMenuItem link={'/components/menu'} title={'EvpMenu'} />
+          </EvpMenu>
+        </div>
+        <div className='Content'>
+          <Routes>
+            <Route path='/' key={"home"} element={<Preview/>}></Route>
+            <Route path='/test' key={"test"} element={<TestViewView/>}></Route>
+            <Route path='/components/button' key={"button"} element={<ButtonView/>}></Route>
+            <Route path='/components/input' key={"input"} element={<InputView/>}></Route>
+            <Route path='/components/color' key={"color"} element={<ColorView/>}></Route>
+            <Route path='/components/menu' key={"menu"} element={<MenuView/>}></Route>
+          </Routes>
+        </div>
+      </div>
     </div>
   );
 }
