@@ -1,16 +1,14 @@
-import { Color } from "../lib/constant"
-import Test from "../test";
+import EvpButton from "@/lib/evp-button";
+import EvpMsg from "@/lib/evp-msg";
 import './test.css'
 
 export default function TestViewView() {
+  const $click = () => {
+    EvpMsg.info("this is a message");
+  }
   return(
     <div>
-      <Test
-      class='Test'
-      bgColor={Color.HeavyGreen}
-      pd={30}
-      pointer
-      >Test</Test>
+      <EvpButton $click={$click} children="popver message" />
     </div>
   )
 }
