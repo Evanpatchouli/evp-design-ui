@@ -17,6 +17,8 @@ interface EvpButtonSpecProps {
   size?: 'mini' |'small' | 'middle' | 'large' | 'huge'
   /** default is undefined, square will has 0 border-radius */
   shape?: 'circle' | 'round' | 'square',
+  /** default is true : whether to show preserved box-shadow */
+  shadow?: boolean
 }
 
 const EvpButton: React.FC<EvpButtonProps> = (props: EvpButtonProps) => {
@@ -27,12 +29,13 @@ const EvpButton: React.FC<EvpButtonProps> = (props: EvpButtonProps) => {
   const clickHandler = $props.event.onMouseDown;
 
   const theme = props.theme?? 'primary';
+  const shadow = props.shadow??true? 'evp-pale-shadow' : '';
   const size = props.size?? 'middle';
   const plain = props.plain? 'plain': '';
   const shape = props.shape?? '';
   const $class = props.class ?? '';
   return (
-    <button className={`evp button ${theme} ${size} ${plain} ${shape} ${$class}`.trim()} id={$props.id}
+    <button className={`evp button ${theme} ${shadow} ${size} ${plain} ${shape} ${$class}`.trim()} id={$props.id}
     onClick={clickHandler}
     style={$props.style}
     type={props.type??"button"}

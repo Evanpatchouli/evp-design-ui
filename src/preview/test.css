@@ -1,3 +1,15 @@
 .Test {
-  border: 1px solid black;
+  height: calc(100vh - 40px);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  > div:first-child {
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
 }

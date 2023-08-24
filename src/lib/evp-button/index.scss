@@ -1,7 +1,6 @@
 .evp.button {
   border-radius: var(--radius);
 
-  box-shadow: 0px 0px 3px 1px #0000001e;
   background-color: #fff;
 
   &:hover {
@@ -16,7 +15,6 @@
     padding-bottom: 1px;
     background-color: #fff;
     color: #131313;
-    box-shadow: 0px 0.5px 3px 1px #0000001e;
 
     &:hover {
       transition: background-color  0.3s ease;

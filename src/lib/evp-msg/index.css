@@ -1,5 +1,29 @@
 .evp-msg {
   position: absolute;
-  left: 50%;
-  top: 50%;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  margin: auto;
+
+  box-shadow: 0px 0px 1px 1px #0000001e;
+  background-color: var(--FloralWhite);
+
+  display: flex;
+  height: 60px;
+  justify-content: left;
+  align-items: center;
+
+  > * {
+    float: left;
+  }
+
+  > *:first-child {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  > *:last-child {
+    clear: right;
+    padding-right: 16px;
+  }
 }

@@ -26,6 +26,7 @@ function App() {
       <div className='Main'>
         <div className='NavMenu'>
           <EvpMenu link={'/'} title={'Components'}>
+            <EvpMenuItem link={'/test'} title={'Go Test'} />
             <EvpMenu submenu title={'Layout'}>
               <EvpMenuItem link={'/'} title={'EvpCol'} />
               <EvpMenuItem link={'/'} title={'EvpRow'} />

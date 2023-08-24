@@ -3,10 +3,17 @@ import './index.css';
 import { ArrayLengthed } from '../utils';
 import { propsParser } from '../utils/props.parser';
 
-export type IconType = "true_circle" | 
+export type IconType = 
+"user" |
+"true_circle" | 
+"success" |
 "false_circle" |
+"close_circle" |
+"error" |
 "unknown" | 
 "help" | 
+"warn" |
+"info" |
 "user" | 
 "all" | 
 "waterfalls_h" | 
@@ -20,7 +27,12 @@ export interface EvpIconPropsType {
   /** this can override the icon key */
   name?: Hintable<IconType>;
   true_circle?: boolean;
+  success?: boolean;
   false_circle?: boolean;
+  close_circle?: boolean;
+  error?: boolean;
+  warn?: boolean;
+  info?: boolean;
   unknown?: boolean;
   help?: boolean;
   user?: boolean;
@@ -61,9 +73,14 @@ export interface EvpIconPropsType {
 const IconMap: IndexableFuzzy<SvgIconType> = {
   "": "",
   'TRUE_CIRCLE': "TrueCircle",
+  "SUCCESS": "Success",
   "FALSE_CIRCLE": "FalseCircle",
+  "CLOSE_CIRCLE": "CloseCircle",
+  "ERROR": "Error",
   "UNKNOWN": "Unknown",
   "HELP": "Help",
+  "WARN": "Warn",
+  "INFO": "Info",
   "USER": "User",
   "LOCK": "Lock",
   "PASSWORDS": "Lock",
