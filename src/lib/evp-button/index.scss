@@ -1,4 +1,4 @@
-.evp.button {
+.evp.evp-button {
   border-radius: var(--radius);
 
   background-color: #fff;
@@ -8,7 +8,7 @@
   }
 }
 
-.evp.button {
+.evp.evp-button {
   &.white {
     border: 1px solid #fff;
     padding-top: 1px;
@@ -151,7 +151,7 @@
 }
 
 /** Plain Button*/
-.evp.button.plain {
+.evp.evp-button.plain {
   background-color: var(--White);
   &:hover {
     transition: background-color  0.3s ease;
@@ -232,7 +232,7 @@
 }
 
 /** Button Size*/
-.evp.button {
+.evp.evp-button {
   &.mini {
     height: var(--btn-mini-h);
     font-size: var(--text-size-mini);
@@ -294,7 +294,7 @@
 }
 
 /** Button Shape*/
-.evp.button {
+.evp.evp-button {
   &.square {
     border-radius: 0;
   } 

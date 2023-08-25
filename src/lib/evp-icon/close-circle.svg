@@ -10,20 +10,20 @@
     fill="none"
     stroke="#333"
     stroke-width="4"
-    stroke-linejoin="round"
+    strokeLinejoin="round"
   />
   <path
     d="M29.6567 18.3432L18.343 29.6569"
     stroke="#333"
     stroke-width="4"
-    stroke-linecap="round"
-    stroke-linejoin="round"
+    strokeLinecap="round"
+    strokeLinejoin="round"
   />
   <path
     d="M18.3433 18.3432L29.657 29.6569"
     stroke="#333"
     stroke-width="4"
-    stroke-linecap="round"
-    stroke-linejoin="round"
+    strokeLinecap="round"
+    strokeLinejoin="round"
   />
 </svg>

@@ -22,9 +22,18 @@ export default function TestViewView() {
         <EvpButton theme='success' shadow={false} $click={$click('success')} children="success message" />
       </div>
       <div>
-      <EvpButton theme='info' shadow={false} $click={()=>{
-        EvpToast.info("info toast");
-      }} children="info toast" />
+        <EvpButton theme='info' shadow={false} $click={()=>{
+          EvpToast.info("info toast");
+        }} children="info toast" />
+        <EvpButton theme='warning' shadow={false} $click={()=>{
+          EvpToast.warn("warnning toast");
+        }} children="info toast" />
+        <EvpButton theme='danger' shadow={false} $click={()=>{
+          EvpToast.error("error toast"); console.log(EvpToast.context());
+        }} children="info toast" />
+        <EvpButton theme='success' shadow={false} $click={()=>{
+          EvpToast.success("success toast");
+        }} children="success toast" />
       </div>
     </div>
   )

@@ -32,8 +32,8 @@ const Exclamation: SvgIcon = (props: SvgIconProps) => {
           strokeLinejoin="round"
         />
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M24 37C25.3807 37 26.5 35.8807 26.5 34.5C26.5 33.1193 25.3807 32 24 32C22.6193 32 21.5 33.1193 21.5 34.5C21.5 35.8807 22.6193 37 24 37Z"
           fill={props.color ?? "#333"}
           stroke="none"

@@ -1,18 +1,20 @@
-// import * as zustand from 'zustand';
-
 const storage = new Map();
 
 const state = {
-  toasts: [] as JSX.Element[]
+  toasts: [] as (JSX.Element | React.ReactNode)[],
+  context: [] as string[],
+  config: {
+    reverse: false,
+  }
 }
 
 storage.set('state', state);
 
 const store = {
   state: state,
-  toasts: state.toasts
+  toasts: state.toasts,
+  context: state.context,
+  config: state.config
 }
-
-// const store = zustand.create<typeof state>( set => (state));
 
 export default store;
