@@ -25,11 +25,11 @@ function render(dom: JSX.Element, keep?: number, delay?: number) {
   // const div = document.getElementById('root') as HTMLElement;
   const div = document.createElement('div');
   document.body.appendChild(div);
-  console.log('toasts after render', toasts);
+  
   const timer = setTimeout(() => {
     ReactDOM.render(dom, div);
     toasts.push(dom);
-    
+    console.log('toasts after render', toasts);
     setTimeout(() => {
       ReactDOM.unmountComponentAtNode(div)
       document.body.removeChild(div)
