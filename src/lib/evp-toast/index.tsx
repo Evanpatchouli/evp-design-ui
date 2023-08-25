@@ -5,6 +5,7 @@ import EvpIcon from '../evp-icon';
 import { Color } from '../constant';
 import store from './store';
 import { createRoot } from 'react-dom/client';
+import ToastsContainer from './container';
 // import { createRoot } from 'react-dom/client';
 
 type EvpMsgType = 'info' | 'warn' | 'error' | 'success';
@@ -19,7 +20,7 @@ export interface EvpMessageProps {
 let toasts = store.toasts;
 
 function render(dom: JSX.Element, keep?: number, delay?: number) {
-  
+  // const box = ToastsContainer({toasts});
   console.log('toasts before render', toasts);
   
   
