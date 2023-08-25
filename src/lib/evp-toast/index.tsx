@@ -1,10 +1,10 @@
 // please write a message component with react as a component
-import ReactDOM from 'react-dom';
 import './index.scss';
 import React from 'react';
 import EvpIcon from '../evp-icon';
 import { Color } from '../constant';
 import store from './store';
+import { createRoot } from 'react-dom/client';
 // import { createRoot } from 'react-dom/client';
 
 type EvpMsgType = 'info' | 'warn' | 'error' | 'success';
@@ -22,17 +22,19 @@ function render(dom: JSX.Element, keep?: number, delay?: number) {
   
   console.log('toasts before render', toasts);
   
-  // const div = document.getElementById('root') as HTMLElement;
+  
   const div = document.createElement('div');
   document.body.appendChild(div);
+  const root = createRoot(div);
   
   const timer = setTimeout(() => {
-    ReactDOM.render(dom, div);
     toasts.push(dom);
+    root.render(dom);
     console.log('toasts after render', toasts);
     setTimeout(() => {
-      ReactDOM.unmountComponentAtNode(div)
-      document.body.removeChild(div)
+      root.unmount();
+      document.body.removeChild(div);
+      
       toasts = toasts.filter(toast => toast !== dom);
       console.log('toasts after unmount', toasts);
 
