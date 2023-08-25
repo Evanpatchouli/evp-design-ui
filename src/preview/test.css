@@ -7,9 +7,13 @@
   align-items: center;
 
   > div:first-child {
-    width: 50%;
+    width: 100%;
     display: flex;
     justify-content: space-evenly;
+  }
+
+  > div {
+    padding-block: 8px;
   }
 
 }

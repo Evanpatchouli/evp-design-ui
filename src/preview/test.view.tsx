@@ -1,5 +1,6 @@
 import EvpButton from "@/lib/evp-button";
 import EvpMsg from "@/lib/evp-msg";
+import EvpToast from "@/lib/evp-toast";
 import './test.css'
 
 export default function TestViewView() {
@@ -19,6 +20,11 @@ export default function TestViewView() {
         <EvpButton theme='warning' shadow={false} $click={$click('warn')} children="warn message" />
         <EvpButton theme='danger' shadow={false} $click={$click('error')} children="error message" />
         <EvpButton theme='success' shadow={false} $click={$click('success')} children="success message" />
+      </div>
+      <div>
+      <EvpButton theme='info' shadow={false} $click={()=>{
+        EvpToast.info("info toast");
+      }} children="info toast" />
       </div>
     </div>
   )
