@@ -15,13 +15,13 @@ export default function TestViewView() {
   }
   return(
     <div className="Test">
-      <div>
+      <div className="evp evp-base-shadow">
         <EvpButton theme='info' shadow={false} $click={$click('info')} children="info message" />
         <EvpButton theme='warning' shadow={false} $click={$click('warn')} children="warn message" />
         <EvpButton theme='danger' shadow={false} $click={$click('error')} children="error message" />
         <EvpButton theme='success' shadow={false} $click={$click('success')} children="success message" />
       </div>
-      <div>
+      <div className="evp evp-base-shadow">
         <EvpButton theme='info' shadow={false} $click={()=>{
           EvpToast.info("info toast");
         }} children="info toast" />
