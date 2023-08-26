@@ -24,8 +24,8 @@ function App() {
         {location.pathname==='/' ? <img src={logo} className="App-logo" alt="logo" /> : null}
       </header> */}
       <div className='Main'>
-        <div className='NavMenu'>
-          <EvpMenu link={'/'} title={'Components'}>
+        <div className='evp NavMenu'>
+          <EvpMenu style={{border: 'none'}} link={'/'} title={'Components'}>
             <EvpMenuItem link={'/test'} title={'Go Test'} />
             <EvpMenu submenu title={'Layout'}>
               <EvpMenuItem link={'/'} title={'EvpCol'} />

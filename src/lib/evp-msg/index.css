@@ -1,5 +1,6 @@
 .evp-msg {
-  position: absolute;
+  z-index: 9900;
+  position: fixed;
   left: 0%;
   right: 0%;
   top: 0%;
@@ -21,9 +22,11 @@
     padding-left: 16px;
     padding-right: 16px;
   }
-
+ 
   > *:last-child {
     clear: right;
     padding-right: 16px;
+    /** make the text seems much more vertically middle displayed */
+    padding-bottom: 3px;  
   }
 }

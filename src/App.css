@@ -42,6 +42,10 @@
   display: flex;
 }
 
+.NavMenu {
+  box-shadow: var(--base-shadow);
+}
+
 .Content {
   flex: 1;
   padding: 20px;

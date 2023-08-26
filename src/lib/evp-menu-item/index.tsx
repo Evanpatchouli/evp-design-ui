@@ -30,6 +30,7 @@ export default function EvpMenuItem(props: EvpMenuItemProps) {
   console.log('props', props, '$props', $props);
   return (
     <EvpRow alignItems="space-between"
+    class={props.class}
     style={$props.style}
     $click={$click}
     pointer>

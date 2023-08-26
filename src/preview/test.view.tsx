@@ -23,7 +23,7 @@ export default function TestViewView() {
       </div>
       <div className="evp evp-base-shadow">
         <EvpButton theme='info' shadow={false} $click={()=>{
-          EvpToast.info("info toast");
+          EvpToast.info("INFO toast");
         }} children="info toast" />
         <EvpButton theme='warning' shadow={false} $click={()=>{
           EvpToast.warn("warnning toast");
@@ -32,8 +32,8 @@ export default function TestViewView() {
           EvpToast.error("error toast"); console.log(EvpToast.context());
         }} children="info toast" />
         <EvpButton theme='success' shadow={false} $click={()=>{
-          EvpToast.success("success toast");
-        }} children="success toast" />
+          EvpToast.success("SUCCESS TOAST");
+        }} children="SUCCESS TOAST" />
       </div>
     </div>
   )

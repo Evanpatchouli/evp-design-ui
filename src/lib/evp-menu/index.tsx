@@ -71,6 +71,7 @@ export default function EvpMenu(props: EvpMenuProps) {
 
   return (
     <EvpCol alignItems="left"
+      class={props.class}
       pd={props.pd}
       mg={props.mg}
       w={props.w??'260px'}
