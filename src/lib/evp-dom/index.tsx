@@ -15,9 +15,9 @@ export type EvpDomProps = {
 }
 
 export default function EvpDom($props: EvpDomProps) {
-  console.log('EvpDom.props:', $props)
+  // console.log('EvpDom.props:', $props)
   const props = AllParser($props.props);
-  console.log('EvpDom.props after parsed:', props);
+  // console.log('EvpDom.props after parsed:', props);
   const event = props.event;
   return(
     <div

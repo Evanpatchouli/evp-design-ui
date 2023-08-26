@@ -25,7 +25,6 @@ const EvpButton: React.FC<EvpButtonProps> = (props: EvpButtonProps) => {
   // const default_clickHandler = () => undefined;
   const $props = AllParser(props);
   // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-  if ($props.children === 'Default') {console.log('$props', $props);}
   const clickHandler = $props.event.onMouseDown;
 
   const theme = props.theme?? 'primary';

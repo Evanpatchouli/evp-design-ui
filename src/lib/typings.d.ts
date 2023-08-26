@@ -71,6 +71,33 @@ declare type EvpCursor =
   "grab" |
   "grabbing";
 
+declare type EvpBorder = 
+  "none" |
+  "unset" |
+  "1px solid black" |
+  "1px dashed black";
+
+declare type EvpBorderRule = Hintable<EvpBorder>
+
+/**
+ * `"static"` | `"absolute"` | `"fixed"` | `"relative"` | `"sticky"`
+ */
+declare type EvpPosition = 
+  "static" |
+  "absolute" |
+  "fixed" |
+  "relative" |
+  "sticky" |
+  "inherit" |
+  "initial" |
+  "unset" |
+  "-moz-initial" |
+  "-webkit-sticky" |
+  "revert" |
+  "revert-layer";
+
+declare type EvpPositionRule = Hintable<EvpPosition>
+
 /**
  * `"block"` | `"inline"` | `"inline-block"` | `"flex"` | `"inline-flex"` | `"grid"` | `"inline-grid"` |
   `"flow-root"` | `"none"` | `"contents"` | `"block flow"` | `"inline flow"` | `"inline flow-root"` | `"block flex"` |

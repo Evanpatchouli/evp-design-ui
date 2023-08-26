@@ -27,7 +27,7 @@ export default function EvpMenuItem(props: EvpMenuItemProps) {
       linkTo(props.link);
     }
   }
-  console.log('props', props, '$props', $props);
+
   return (
     <EvpRow alignItems="space-between"
     class={props.class}

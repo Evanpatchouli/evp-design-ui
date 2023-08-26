@@ -25,7 +25,7 @@ function App() {
       </header> */}
       <div className='Main'>
         <div className='evp NavMenu'>
-          <EvpMenu style={{border: 'none'}} link={'/'} title={'Components'}>
+          <EvpMenu border='none' link={'/'} title={'Components'}>
             <EvpMenuItem link={'/test'} title={'Go Test'} />
             <EvpMenu submenu title={'Layout'}>
               <EvpMenuItem link={'/'} title={'EvpCol'} />
