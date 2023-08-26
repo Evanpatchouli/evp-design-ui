@@ -4,6 +4,7 @@ import $User from './user';
 import $TrueCircle from "./true-circle";
 import $FalseCircle from "./false-circle";
 import $CloseCircle from "./close-circle";
+import $Close from "./close";
 import $Lock from "./lock";
 import $Unknown from "./unknown";
 import $Exclamation from './exclamation';
@@ -53,6 +54,7 @@ export const Success = $TrueCircle;
 export const FalseCircle = $FalseCircle;
 export const CloseCircle = $CloseCircle;
 export const Error = $CloseCircle;
+export const Close = $Close;
 export const Lock = $Lock;
 export const Unknown = $Unknown;
 export const Help = $Unknown;
@@ -73,6 +75,7 @@ export type SvgIconType =
 "FalseCircle" |
 "CloseCircle" |
 "Error" |
+"Close" |
 "Lock" |
 "Unknown" |
 "Help" |
@@ -92,6 +95,7 @@ const SvgIcons = {
   "FalseCircle": FalseCircle,
   "CloseCircle": CloseCircle,
   "Error": Error,
+  "Close": Close,
   "Lock": Lock,
   "Unknown": Unknown,
   "Help": Help,

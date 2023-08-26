@@ -10,6 +10,8 @@ export type IconType =
 "false_circle" |
 "close_circle" |
 "error" |
+"close" |
+"lock" |
 "unknown" | 
 "help" | 
 "warn" |
@@ -33,6 +35,7 @@ export interface EvpIconPropsType {
   error?: boolean;
   warn?: boolean;
   info?: boolean;
+  close?: boolean;
   unknown?: boolean;
   help?: boolean;
   user?: boolean;
@@ -78,6 +81,7 @@ const IconMap: IndexableFuzzy<SvgIconType> = {
   "CLOSE_CIRCLE": "CloseCircle",
   "ERROR": "Error",
   "UNKNOWN": "Unknown",
+  "CLOSE": "Close",
   "HELP": "Help",
   "WARN": "Warn",
   "INFO": "Info",

@@ -11,22 +11,29 @@
 
   display: flex;
   height: 60px;
-  justify-content: left;
+  justify-content: space-between;
   align-items: center;
 
-  > * {
-    float: left;
+  > .evp-msg-content {
+    
+    > * {
+      float: left;
+    }
+  
+    > *:first-child {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+   
+    > *:last-child {
+      clear: right;
+      padding-right: 16px;
+      /** make the text seems much more vertically middle displayed */
+      padding-bottom: 3px;  
+    }
   }
 
-  > *:first-child {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
- 
   > *:last-child {
-    clear: right;
-    padding-right: 16px;
-    /** make the text seems much more vertically middle displayed */
-    padding-bottom: 3px;  
+    margin-right: 1rem;
   }
 }
