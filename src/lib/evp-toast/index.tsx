@@ -3,7 +3,6 @@ import { createRoot } from 'react-dom/client';
 import { createToastsContainer } from './container';
 import Toast, { EvpToastCreate, EvpToastType } from './toast';
 import './index.scss';
-import React from 'react';
 
 const div = document.createElement('div');
 document.body.appendChild(div);

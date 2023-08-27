@@ -1,7 +1,51 @@
 .preview-container {
   height: 100vh;
-
+  width: auto;
   /* > * {
-    border: 10px solid black !important;
+    border: 1px solid black !important;
   } */
+}
+
+.ShadowView {
+  text-align: left;
+}
+
+.ShadowBox {
+  display: grid;
+  grid-template-columns: repeat(3, 33.33%);
+  grid-row-gap: 40;
+  > div.card {
+    margin: 40px;
+    height: 300px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.filter-shadow {
+  transition: filter 0.3s ease-out;
+  filter: drop-shadow(0px 0px 50px #6445ff);
+}
+
+.filter-shadow:hover {
+  transition: filter 0.5s ease-in-out;
+  cursor: pointer;
+  filter: drop-shadow(0px 0px 5px #6445ff);
+}
+
+.filter-shadow:active {
+  transition: filter 0.1s ease-out;
+  filter: none;
+}
+
+.ce {
+  box-shadow: 
+  2.767256496646346px 2.767256496646346px 2.2138051973170767px 0px rgba(0, 0, 0, 0.07),
+  6.65010204838622px 6.65010204838622px 5.3200816387089755px 0px rgba(0, 0, 0, 0.050319807161937125),
+  12.52155187358589px 12.52155187358589px 10.017241498868712px 0px rgba(0, 0, 0, 0.041727506542805125),
+  22.336308991857774px 22.336308991857774px 17.869047193486217px 0px rgba(0, 0, 0, 0.035),
+  41.77760933808553px 41.77760933808553px 33.422087470468426px 0px rgba(0, 0, 0, 0.028272493457194875),
+  100px 100px 80px 0px rgba(0, 0, 0, 0.019680192838062896);
 }

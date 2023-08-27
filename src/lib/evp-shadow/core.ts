@@ -4,41 +4,47 @@ class EvpShadow {
   private config = {
     shadowLayers: {
       value: 6,
+      default: 6,
       min: 1,
       max: 10,
       step: 1,
     },
     alpha: {
       value: 0.07,
+      default: 0.01,
       min: 0,
       max: 1,
       step: 0.01,
     },
     xOffset: {
       value: 100,
+      default: 100,
       min: 0,
       max: 500,
       step: 1,
     },
     yOffset: {
       value: 100,
+      default: 100,
       min: 0,
       max: 500,
       step: 1,
     },
     blur: {
       value: 80,
+      default: 80,
       min: 0,
       max: 500,
       step: 1,
     },
     spread: {
       value: 0,
+      default: 0,
       min: -100,
       max: 0,
       step: 1,
     },
-    invertAlpha: { value: false }
+    invertAlpha: { value: false, default: false }
   }
 
   /** Left spot - Right spot */
@@ -66,7 +72,8 @@ class EvpShadow {
   private easedOffsetValues: number[] = []
   private easedBlurValues: number[] = []
 
-  private configure(options?: EvpShadowOptions){
+  /** @todo options should not be set as config */
+  public configure(options?: EvpShadowOptions){
     if (!options) return;
     options.layer? this.config.shadowLayers.value = options.layer : void 0;
     options.blur? this.config.blur.value = options.blur : void 0;
@@ -74,6 +81,15 @@ class EvpShadow {
     options.xOffset? this.config.xOffset.value = options.xOffset : void 0;
     options.yOffset? this.config.yOffset.value = options.yOffset : void 0;
     options.reverse? this.config.invertAlpha.value = options.reverse : void 0;
+  }
+
+  public resetConfig() {
+    this.config.alpha.value = this.config.alpha.default;
+    this.config.blur.value = this.config.blur.default;
+    this.config.xOffset.value = this.config.xOffset.default;
+    this.config.yOffset.value = this.config.yOffset.default;
+    this.config.shadowLayers.value = this.config.shadowLayers.default;
+    this.config.invertAlpha.value = this.config.invertAlpha.default;
   }
 
   private easedBeziering() {
@@ -120,8 +136,23 @@ class EvpShadow {
   }
 
   build(options?: EvpShadowOptions) {
+    // console.log(`blur:${options?.blur}::before build`, this.config)
     this.configure(options);
-    return this.calc();
+    // console.log(`blur:${options?.blur}::after configure`, this.config)
+    const boxShadow =  this.calc();
+    // console.log(`blur:${options?.blur}::after calc`, this.config)
+    this.resetConfig();
+    // console.log(`blur:${options?.blur}::after reset`, this.config)
+    return boxShadow;
+  }
+
+  new() {
+    return new EvpShadow();
+  }
+
+  clone() {
+    let cloned = new EvpShadow();
+    return Object.assign(cloned, this);
   }
 }
 
@@ -143,6 +174,6 @@ const rgba = (r: number, g: number, b: number, a: number) => `rgba(${r}, ${g}, $
 const shadow = (left: number, top: number, blur: number, spread: number, color: string) =>
   `${left}px ${top}px ${blur}px ${spread}px ${color}`;
 
-const shadowFactory = new EvpShadow();
+const boxShadowFactoryInstance = new EvpShadow();
 
-export default shadowFactory;
+export default boxShadowFactoryInstance;

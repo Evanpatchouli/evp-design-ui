@@ -14,6 +14,7 @@ import EvpMenuItem from './lib/evp-menu-item';
 import './App.css';
 import './preview/index.css';
 import './lib/global.css';
+import ShadowView from './preview/shadow';
 
 function App() {
   const location = useLocation();
@@ -32,6 +33,7 @@ function App() {
               <EvpMenuItem link={'/'} title={'EvpRow'} />
               <EvpMenuItem link={'/'} title={'EvpDom'} />
             </EvpMenu>
+            <EvpMenuItem link={'/shadow'} title={'EvpShadow'} />
             <EvpMenuItem link={'/components/button'} title={'EvpButton'} />
             <EvpMenuItem link={'/components/input'} title={'EvpInput'} />
             <EvpMenuItem link={'/components/color'} title={'EvpColor'} />
@@ -46,6 +48,7 @@ function App() {
             <Route path='/components/input' key={"input"} element={<InputView/>}></Route>
             <Route path='/components/color' key={"color"} element={<ColorView/>}></Route>
             <Route path='/components/menu' key={"menu"} element={<MenuView/>}></Route>
+            <Route path='/shadow' key={"shadow"} element={<ShadowView/>}></Route>
           </Routes>
         </div>
       </div>
