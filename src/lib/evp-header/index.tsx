@@ -16,6 +16,7 @@ export interface EvpHeaderProps {
   position?: EvpPosition,
   zIndex?: number;
   height?: number;
+  class?: string,
   style?: React.CSSProperties;
 }
 
@@ -31,6 +32,7 @@ export default function EvpHeader(props: EvpHeaderProps) {
       bgColor={props.bgColor??"#ffffff"}
       boxShadow="var(--base-shadow)"
       zIndex={props.zIndex ?? 8000}
+      class={props.class}
       style={props.style}
     >
       {props.children ? (
