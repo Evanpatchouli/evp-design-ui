@@ -8,7 +8,6 @@ type preservedProp = 'pointer' |
 'col-resize' |
 'row-resize' |
 'all-scroll' |
-'text' |
 'wait' |
 'grab' |
 'grabbing' |
@@ -21,7 +20,6 @@ const preservedCursors: preservedProp[] = [
   'col-resize',
   'row-resize',
   'all-scroll',
-  'text',
   'wait',
   'grab',
   'grabbing',

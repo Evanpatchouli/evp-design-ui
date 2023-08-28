@@ -15,12 +15,15 @@ import './App.css';
 import './preview/index.css';
 import './lib/global.css';
 import ShadowView from './preview/shadow';
+import HeaderView from './preview/evp-header';
+import Header from './components/header';
 
 function App() {
   const location = useLocation();
   console.log('route:', location)
   return (
     <div className="App">
+      <Header />
       {/* <header className="App-header">
         {location.pathname==='/' ? <img src={logo} className="App-logo" alt="logo" /> : null}
       </header> */}
@@ -38,12 +41,14 @@ function App() {
             <EvpMenuItem link={'/components/input'} title={'EvpInput'} />
             <EvpMenuItem link={'/components/color'} title={'EvpColor'} />
             <EvpMenuItem link={'/components/menu'} title={'EvpMenu'} />
+            <EvpMenuItem link={'/components/evp-header'} title={'EvpHeader'} />
           </EvpMenu>
         </div>
         <div className='Content'>
           <Routes>
             <Route path='/' key={"home"} element={<Preview/>}></Route>
             <Route path='/test' key={"test"} element={<TestViewView/>}></Route>
+            <Route path='/components/evp-header' key={"button"} element={<HeaderView/>}></Route>
             <Route path='/components/button' key={"button"} element={<ButtonView/>}></Route>
             <Route path='/components/input' key={"input"} element={<InputView/>}></Route>
             <Route path='/components/color' key={"color"} element={<ColorView/>}></Route>

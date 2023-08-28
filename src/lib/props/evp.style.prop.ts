@@ -21,7 +21,6 @@ export interface EvpStyle {
   'col-resize'?: boolean,
   'row-resize'?: boolean,
   'all-scroll'?: boolean,
-  'text'?: boolean,
   'wait'?: boolean,
   'grab'?: boolean,
   'grabbing'?: boolean,

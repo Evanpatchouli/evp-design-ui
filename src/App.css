@@ -38,15 +38,19 @@
 }
 
 .Main {
-  min-height: 100vh;
+  margin-top: 80px;
+  min-height: calc(100vh - 80px);
   display: flex;
 }
 
 .NavMenu {
   box-shadow: var(--base-shadow);
+  position: fixed;
+  height: 100%;
 }
 
 .Content {
+  margin-left: 260px;
   flex: 1;
   padding: 20px;
 

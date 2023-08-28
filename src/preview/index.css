@@ -1,5 +1,5 @@
 .preview-container {
-  height: 100vh;
+  height: 100%;
   width: auto;
   padding-inline: 40px;
   /* > * {
@@ -39,4 +39,10 @@
 .filter-shadow:active {
   transition: filter 0.1s ease-out;
   filter: none;
+}
+
+.HeaderView {
+  border: 1px solid black;
+  text-align: left;
+  padding-top: 120px;
 }
