@@ -11,7 +11,7 @@ class EvpShadow {
     },
     alpha: {
       value: 0.07,
-      default: 0.01,
+      default: 0.07,
       min: 0,
       max: 1,
       step: 0.01,
@@ -83,6 +83,19 @@ class EvpShadow {
     options.reverse? this.config.invertAlpha.value = options.reverse : void 0;
   }
 
+  public getSimpleConfig(options?: EvpShadowOptions) {
+    const config = {
+      shadowLayers: options?.layer??this.config.shadowLayers.value,
+      alpha: options?.opacity??this.config.alpha.value,
+      xOffset: options?.xOffset??this.config.xOffset.value,
+      yOffset: options?.yOffset??this.config.yOffset.value,
+      blur: options?.blur??this.config.blur.value,
+      spread: options?.spread??this.config.spread.value,
+      invertAlpha: options?.reverse??this.config.invertAlpha.value
+    }
+    return config;
+  }
+
   public resetConfig() {
     this.config.alpha.value = this.config.alpha.default;
     this.config.blur.value = this.config.blur.default;
@@ -106,18 +119,21 @@ class EvpShadow {
     }
   }
 
-  private calc() {
+  private fixed(num: number, precision: number = 2) {
+    return parseFloat(num.toFixed(precision));
+  }
+
+  private calc(precision?: number) {
     this.easedBeziering();
-    
     const boxShadowValues: Array<ArrayLengthed<number,5>> = [];
 
     for (let i = 0; i < this.config.shadowLayers.value; i++) {
       boxShadowValues.push([
-        this.easedOffsetValues[i] * this.config.xOffset.value,
-        this.easedOffsetValues[i] * this.config.yOffset.value,
-        this.easedBlurValues[i] * this.config.blur.value,
-        this.config.spread.value,
-        this.easedAlphaValues[i] * this.config.alpha.value,
+        this.fixed(this.easedOffsetValues[i] * this.config.xOffset.value, precision),
+        this.fixed(this.easedOffsetValues[i] * this.config.yOffset.value, precision),
+        this.fixed(this.easedBlurValues[i] * this.config.blur.value, precision),
+        this.fixed(this.config.spread.value, precision),
+        this.fixed(this.easedAlphaValues[i] * this.config.alpha.value, precision),
       ])
     }
 
@@ -135,14 +151,12 @@ class EvpShadow {
     return boxShadow;
   }
 
-  build(options?: EvpShadowOptions) {
-    // console.log(`blur:${options?.blur}::before build`, this.config)
+  build(options?: EvpShadowOptions, output: boolean = false) {
+    output? console.log('[EvpDesignUI::EvpShadow] Going to build with config as ', this.getSimpleConfig()) : void 0;
     this.configure(options);
-    // console.log(`blur:${options?.blur}::after configure`, this.config)
-    const boxShadow =  this.calc();
-    // console.log(`blur:${options?.blur}::after calc`, this.config)
+    const boxShadow =  this.calc(options?.precision);
     this.resetConfig();
-    // console.log(`blur:${options?.blur}::after reset`, this.config)
+    output? console.log('[EvpDesignUI::EvpShadow] Shadow finally got built is ', boxShadow) : void 0;
     return boxShadow;
   }
 
@@ -166,6 +180,8 @@ type EvpShadowOptions = {
   blur?: number,
   spread?: number,
   reverse?: boolean,
+  /** Default is 2, the calced result number precision */
+  precision?: number
 }
 
 const rgba = (r: number, g: number, b: number, a: number) => `rgba(${r}, ${g}, ${b}, ${a})`;
