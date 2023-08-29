@@ -1,0 +1,19 @@
+.evp-popover-container {
+  position: relative;
+  height: fit-content !important;
+  width: fit-content !important;
+}
+
+.evp-popover {
+  /** 最好比 header 高，以后再调 */
+  z-index: 9000;
+  border: 1px solid black;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  transform: translate(0%, -100%);
+}
+
+.evp-popover.evp-popover__hidden {
+  display: none;
+}
