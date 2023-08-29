@@ -6,17 +6,23 @@ export interface EvpPopoverProps {
   children: React.ReactNode,
   style?: React.CSSProperties,
   class?: string,
-  id?: string
+  id?: string,
+  trigger?: 'hover' | 'click'
 }
 
 export default function EvpPopover(props: EvpPopoverProps){
   const [show, setShow] = useState<boolean>(false);
+  const $trigger = props.trigger?? 'click';
   return(
-    <div className="evp-popover-container">
-      <div className={`evp-popover ${show? '' : 'evp-popover__hidden'} ${props.class}`.trim()} id={props.id}>
-        {props.content}
+    <div className={`evp evp-popover-container`}>
+      <div className={`evp-popover ${show? '' : 'evp-popover__hidden'}`.trim()} id={props.id}>
+        <div className={`evp-popover-content ${props.class}`.trim()}>{props.content}</div>
+        <div className="evp-popover-arrow" />
       </div>
-      <div onClick={()=>setShow(!show)}>{props.children}</div>
+      <div
+      onClick={()=>$trigger==='click'?setShow(!show):void 0}
+      onMouseOver={()=>$trigger==='hover'?setShow(!show):void 0}
+      >{props.children}</div>
     </div>
   )
 }

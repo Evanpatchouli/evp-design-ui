@@ -1,13 +1,14 @@
 import EvpButton from "@/lib/evp-button";
-import EvpHeader from "@/lib/evp-header";
 import EvpPopover from "@/lib/evp-popover";
-import { useState } from "react";
 
 export default function PopoverView() {
   return(
-    <div className="preview-container">
-      <EvpPopover content={"i am a popover"}>
-        <EvpButton theme='dark'>show / hidden popover</EvpButton>
+    <div className="preview-container PopverView">
+      <EvpPopover content={"i am a popover"} trigger='click'>
+        <EvpButton theme='dark'>Click me</EvpButton>
+      </EvpPopover>
+      <EvpPopover content={"i am a popover"} trigger='hover'>
+        <EvpButton theme='dark'>Hover me</EvpButton>
       </EvpPopover>
     </div>
   )

@@ -46,3 +46,9 @@
   text-align: left;
   padding-top: 120px;
 }
+
+.PopverView {
+  > * {
+    margin: 220px;
+  }
+}
