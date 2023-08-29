@@ -17,6 +17,7 @@ import './lib/global.css';
 import ShadowView from './preview/shadow';
 import HeaderView from './preview/evp-header';
 import Header from './components/header';
+import PopoverView from './preview/evp-popover';
 
 function App() {
   const location = useLocation();
@@ -42,6 +43,7 @@ function App() {
             <EvpMenuItem link={'/components/color'} title={'EvpColor'} />
             <EvpMenuItem link={'/components/menu'} title={'EvpMenu'} />
             <EvpMenuItem link={'/components/evp-header'} title={'EvpHeader'} />
+            <EvpMenuItem link={'/components/evp-popver'} title={'EvpPopover'} />
           </EvpMenu>
         </div>
         <div className='Content'>
@@ -54,6 +56,7 @@ function App() {
             <Route path='/components/color' key={"color"} element={<ColorView/>}></Route>
             <Route path='/components/menu' key={"menu"} element={<MenuView/>}></Route>
             <Route path='/shadow' key={"shadow"} element={<ShadowView/>}></Route>
+            <Route path='/components/evp-popver' key={"popver"} element={<PopoverView/>}></Route>
           </Routes>
         </div>
       </div>
