@@ -2,22 +2,24 @@ import React from 'react';
 import logo from './logo.svg';
 import { Route, Routes } from 'react-router-dom';
 import Preview from './preview';
-import ButtonView from './preview/button';
-import InputView from './preview/input';
+import ButtonView from './preview/evp-button';
+import InputView from './preview/evp-input';
 import { useLocation } from 'react-router-dom';
 
-import ColorView from './preview/color';
-import MenuView from './preview/menu';
+import ColorView from './preview/evp-color';
+import MenuView from './preview/evp-menu';
 import TestViewView from './preview/test.view';
 import EvpMenu from './lib/evp-menu';
 import EvpMenuItem from './lib/evp-menu-item';
 import './App.css';
 import './preview/index.css';
 import './lib/global.css';
-import ShadowView from './preview/shadow';
+import ShadowView from './preview/evp-shadow';
 import HeaderView from './preview/evp-header';
 import Header from './components/header';
 import PopoverView from './preview/evp-popover';
+import ToastView from './preview/evp-toast';
+import MsgView from './preview/evp-msg';
 
 function App() {
   const location = useLocation();
@@ -43,6 +45,8 @@ function App() {
             <EvpMenuItem link={'/components/color'} title={'EvpColor'} />
             <EvpMenuItem link={'/components/menu'} title={'EvpMenu'} />
             <EvpMenuItem link={'/components/evp-header'} title={'EvpHeader'} />
+            <EvpMenuItem link={'/components/evp-msg'} title={'EvpMsg'} />
+            <EvpMenuItem link={'/components/evp-toast'} title={'EvpToast'} />
             <EvpMenuItem link={'/components/evp-popver'} title={'EvpPopover'} />
           </EvpMenu>
         </div>
@@ -56,6 +60,8 @@ function App() {
             <Route path='/components/color' key={"color"} element={<ColorView/>}></Route>
             <Route path='/components/menu' key={"menu"} element={<MenuView/>}></Route>
             <Route path='/shadow' key={"shadow"} element={<ShadowView/>}></Route>
+            <Route path='/components/evp-msg' key={"msg"} element={<MsgView/>}></Route>
+            <Route path='/components/evp-toast' key={"toast"} element={<ToastView/>}></Route>
             <Route path='/components/evp-popver' key={"popver"} element={<PopoverView/>}></Route>
           </Routes>
         </div>

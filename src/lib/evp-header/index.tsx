@@ -3,6 +3,7 @@ import EvpIcon from "../evp-icon";
 import EvpRow from "../evp-row";
 
 export interface EvpHeaderProps {
+  icon?: React.ReactNode;
   title?: string;
   /** Default is 40 : left width rate */
   leftRate?: number;
@@ -50,7 +51,7 @@ export default function EvpHeader(props: EvpHeaderProps) {
           >
             {props.leftContent ?? (
               <>
-                <EvpIcon radius={30} strokeWidth={3} name="all" />
+                {props.icon}
                 <div style={{ fontSize: 20, paddingLeft: 20 }}>
                   {props.title}
                 </div>

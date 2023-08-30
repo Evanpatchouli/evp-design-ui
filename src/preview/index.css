@@ -5,6 +5,7 @@
   /* > * {
     border: 1px solid black !important;
   } */
+  text-align: left;
 }
 
 .ShadowView {
@@ -42,13 +43,11 @@
 }
 
 .HeaderView {
-  border: 1px solid black;
   text-align: left;
-  padding-top: 120px;
 }
 
 .PopverView {
   > * {
-    margin: 220px;
+    margin: 20px;
   }
 }
