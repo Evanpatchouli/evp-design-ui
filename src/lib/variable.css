@@ -1,9 +1,9 @@
 .evp {
-  --text-size: 16px;
-  --text-size-mini: 12px;
-  --text-size-small: 14px;
-  --text-size-large: 18px;
-  --text-size-huge: 20px;
+  --text-size: 14px;
+  --text-size-mini: 10px;
+  --text-size-small: 12px;
+  --text-size-large: 16px;
+  --text-size-huge: 18px;
 
   --title-text-size: 24px;
   --title-text-mini: 20px;
