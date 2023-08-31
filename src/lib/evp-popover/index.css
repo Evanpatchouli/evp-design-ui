@@ -31,7 +31,7 @@
   border-radius: 6px;
   height: 60px;
   width: 160px;
-  box-shadow: 0px 5px 10px 3px rgba(0, 9, 0, 0.1);
+  box-shadow: 0px 5px 10px 3px rgba(0, 0, 0, 0.1);
 }
 
 .evp-popover-arrow {
