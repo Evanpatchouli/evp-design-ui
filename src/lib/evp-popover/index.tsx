@@ -8,6 +8,7 @@ export interface EvpPopoverProps {
   class?: string;
   id?: string;
   trigger?: "hover" | "click";
+  hiddenOnBlur?: boolean,
   position?:
     | "top"
     | "topLeft"
@@ -34,6 +35,8 @@ export default function EvpPopover(props: EvpPopoverProps) {
     NodeJS.Timeout | undefined
   >();
   const $trigger = props.trigger ?? "click";
+
+  const $hiddenOnBlur = props.hiddenOnBlur ?? true;
 
   const childRef = useRef<HTMLDivElement>(null);
 
@@ -138,6 +141,7 @@ export default function EvpPopover(props: EvpPopoverProps) {
         onClick={() => ($trigger === "click" ? setShow(!show) : void 0)}
         onMouseOver={() => ($trigger === "hover" ? setShow(true) : void 0)}
         onMouseLeave={() => ($trigger === "hover" ? setShow(false) : void 0)}
+        onBlur={() => $hiddenOnBlur === true? setShow(false) : void 0}
       >
         <div ref={childRef}>{props.children}</div>
       </div>
