@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import "./index.css";
+import EvpBaseProps from "../props";
+import EvpDom from "../evp-dom";
 
-export interface EvpPopoverProps {
+export interface EvpPopoverProps extends EvpBaseProps {
   content?: React.ReactNode;
   children: JSX.Element;
   style?: React.CSSProperties;
@@ -123,9 +125,12 @@ export default function EvpPopover(props: EvpPopoverProps) {
         id={props.id}
         style={{ display, left: left(), top: top() }}
       >
-        <div className={`evp-popover-content ${props.class}`.trim()}>
+        <EvpDom props={{
+          props,
+          class: `evp-popover-content ${props.class}`.trim()
+        }}>
           {props.content}
-        </div>
+        </EvpDom>
         <svg className="evp-popover-arrow"
         width={16}
         height={10}
