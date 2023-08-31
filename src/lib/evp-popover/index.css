@@ -34,11 +34,12 @@
 }
 
 .evp-popover-arrow {
-  width: 0;
-  height: 0;
-  border-left: 10px solid transparent;
+  width: fit-content;
+  height: fit-content;
+  filter: drop-shadow(0px 6px 3px rgba(0, 0, 0, 0.2));
+  /* border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-top: 15px solid #ffffff;
+  border-top: 15px solid #ffffff; */
 }
 
 .evp-popover.evp-popover__hidden {
