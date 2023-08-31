@@ -12,7 +12,6 @@
 
 .evp-popover {
   position: absolute;
-  background: #ffffff;
   border-radius: 6px;
   top: 0%;
   left: 0%;
@@ -27,6 +26,7 @@
 }
 
 .evp-popover-content {
+  background: #ffffff;
   border-radius: 6px;
   height: 60px;
   width: 160px;
