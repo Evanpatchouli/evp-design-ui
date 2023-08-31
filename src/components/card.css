@@ -1,0 +1,15 @@
+.card {
+  
+}
+
+.card-content {
+  padding: 20px;
+  flex-wrap: wrap;
+}
+
+.card-toolbar {
+  padding: 4;
+  display: flex;
+  justify-Content: right;
+  align-Items: center
+}

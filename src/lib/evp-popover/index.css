@@ -8,6 +8,7 @@
   /** 最好比 header 高，以后再调 */
   z-index: 9000;
   /* border: 1px solid black; */
+  pointer-events: none;
 }
 
 .evp-popover {

@@ -46,8 +46,10 @@
   text-align: left;
 }
 
-.PopverView {
+.evp-popover-view-card {
+  display: flex;
   > * {
-    margin: 20px;
+    margin-right: 12px;
+    margin-block: 6px;
   }
 }
