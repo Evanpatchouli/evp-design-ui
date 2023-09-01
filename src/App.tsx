@@ -1,7 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
 import { Route, Routes } from 'react-router-dom';
-import Preview from './preview';
 import ButtonView from './preview/evp-button';
 import InputView from './preview/evp-input';
 import { useLocation } from 'react-router-dom';
@@ -22,6 +21,7 @@ import ToastView from './preview/evp-toast';
 import MsgView from './preview/evp-msg';
 import FlexbarView from './preview/evp-flexbar';
 import CardView from './preview/evp-card';
+import GeneralView from './preview/general';
 
 function App() {
   const location = useLocation();
@@ -34,7 +34,7 @@ function App() {
       </header> */}
       <div className='Main'>
         <div className='evp NavMenu'>
-          <EvpMenu border='none' link={'/'} title={'Components'}>
+          <EvpMenu border='none' link={'/'} title={'General'}>
             <EvpMenuItem link={'/test'} title={'Go Test'} />
             <EvpMenu submenu title={'Layout'}>
               <EvpMenuItem link={'/'} title={'EvpCol'} />
@@ -56,7 +56,7 @@ function App() {
         </div>
         <div className='Content'>
           <Routes>
-            <Route path='/' key={"home"} element={<Preview/>}></Route>
+            <Route path='/' key={"home"} element={<GeneralView/>}></Route>
             <Route path='/test' key={"test"} element={<TestViewView/>}></Route>
             <Route path='/components/evp-header' key={"button"} element={<HeaderView/>}></Route>
             <Route path='/components/evp-button' key={"button"} element={<ButtonView/>}></Route>
