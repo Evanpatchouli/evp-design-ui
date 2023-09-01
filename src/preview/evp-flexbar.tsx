@@ -126,6 +126,51 @@ The trigger can be set to 'click' or 'hover' to expand and close the flexbar.
 `}
 </Code>
 : void 0}
+<Md>
+{`
+## Api
+
+EvpFlexbar Apis:
+
+- **children** ? : content of flexbar
+- **class** ? : className of flexbar
+- **style** ? : style of flexbar
+  + type: React.CSSProperties
+- **contentWritingMode** ? : default is computed thus it is not suggested to be modified
+  + options: 'horizontal-tb' | 'vertical-lr' | 'vertical-rl' | 'sideways-rl' | 'sideways-lr'
+- **contentClass** ? : className of content,
+- **labelClass** ? : className of label,
+- **height** ? : height of flexbar
+  + default: "40px"
+  + type: string | number
+- **labelPosition** ? : the relative position of label to content part
+  + default: 'right'
+  + options: 'right' | 'left' | 'top' | 'bottom'
+- **label** ? : label of flexbar,
+- **fixedLabel** ? : @todo,
+- **gap** ? : gap between flexbars
+  + default: 0.3
+  + type: number | string
+- **flexTime** ? : the flex time of flexbar
+  + default: 0.3
+  + type: number
+- **flexMode** ? : the flex mode of flexbar
+  + default: 'ease-in-out'
+  + options: 'linear' | 'ease' | 'ease-in' | 'ease-out' | 'ease-in-out'
+- **trigger** ? : when to expand / unexpand the flexbar
+  + default "click"
+  + options: 'hover' | 'click'
+- **labelRadius** ? : radius of label box
+  + default: round corner and computed with height
+  + type: number | string
+- **border** ? : border settings
+  + type:
+    * width ? : string | number | Hintable<'thin' | 'medium' | 'thick'>,
+    * color ? : string,
+    * lineStyle ? : 'solid' | 'dashed' | 'dotted' | 'hidden' | 'double' | 'groove' | 'ridge' | 'inset' | 'outset'
+- **contentCurosr** ? : EvpCursorRule
+`}
+</Md>
     </div>
   )
 }

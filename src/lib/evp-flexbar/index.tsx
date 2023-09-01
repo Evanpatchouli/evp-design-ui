@@ -8,7 +8,7 @@ export type EvpFlexbarProps = {
   style?: React.CSSProperties,
   contentWritingMode?: 'horizontal-tb' | 'vertical-lr' | 'vertical-rl' | 'sideways-rl' | 'sideways-lr',
   contentClass?: string,
-  labelpartClass?: string,
+  labelClass?: string,
   height?: string | number,
   /** Default value is `"right"` */
   labelPosition?: 'right' | 'left' | 'top' | 'bottom',
@@ -122,7 +122,7 @@ export default function EvpFlexbar(props: EvpFlexbarProps) {
         flexDirection: calcEvpCarrorFlexDirection(),
       }}
       >{props.children}</div></div>
-      <div className={`evp-flexbar-label ${props.labelpartClass}`.trim()}
+      <div className={`evp-flexbar-label ${props.labelClass}`.trim()}
       onClick={() => {
         trigger === 'click'? setExpand(!expand) : void 0;
       }}
