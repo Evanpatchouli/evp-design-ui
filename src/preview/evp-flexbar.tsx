@@ -73,14 +73,14 @@ The label position can be set to 'left', 'right', 'top' or 'bottom'. Exactly, it
         <EvpFlexbar labelPosition="left" label="left">
           <div>这是往左方向的伸缩条</div>
         </EvpFlexbar>
-        <EvpRow style={{ position: 'relative', paddingTop: 24, paddingBottom: 20 }}>
+        <div style={{ position: 'relative', display: 'flex', paddingBottom: '40px', justifyItems: 'flex-start' }}>
           <EvpFlexbar labelPosition="top" label="top" style={{ position: 'absolute' }}>
             <div>这是竖向顶部的伸缩条</div>
           </EvpFlexbar>
-          <EvpFlexbar labelPosition="bottom" label="bot" style={{ position: 'absolute', left: 60 }}>
+          <EvpFlexbar labelPosition="bottom" label="bot" style={{ position: 'absolute', left: 60}}>
             <div>这是竖向底部的伸缩条</div>
           </EvpFlexbar>
-        </EvpRow>
+        </div>
       </Card>
 {showCode[1]?
 <Code lang="tsx">
@@ -88,17 +88,17 @@ The label position can be set to 'left', 'right', 'top' or 'bottom'. Exactly, it
 <EvpFlexbar labelPosition="right" label="right">
   <div>这是往右方向的伸缩条</div>
 </EvpFlexbar>
-<EvpFlexbar labelPosition="left" label="left">
-  <div>这是往左方向的伸缩条</div>
+  <EvpFlexbar labelPosition="left" label="left">
+<div>这是往左方向的伸缩条</div>
 </EvpFlexbar>
-<EvpRow style={{ position: 'relative', paddingTop: 22 }}>
+<div style={{ position: 'relative', display: 'flex', paddingBottom: '40px', justifyItems: 'flex-start' }}>
   <EvpFlexbar labelPosition="top" label="top" style={{ position: 'absolute' }}>
     <div>这是竖向顶部的伸缩条</div>
   </EvpFlexbar>
-  <EvpFlexbar labelPosition="bottom" label="bot" style={{ position: 'absolute', left: 60 }}>
+  <EvpFlexbar labelPosition="bottom" label="bot" style={{ position: 'absolute', left: 60}}>
     <div>这是竖向底部的伸缩条</div>
   </EvpFlexbar>
-</EvpRow>
+</div>
 `}</Code>
 : void 0}
 <Md>
