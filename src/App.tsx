@@ -20,7 +20,7 @@ import Header from './components/header';
 import PopoverView from './preview/evp-popover';
 import ToastView from './preview/evp-toast';
 import MsgView from './preview/evp-msg';
-import CarrotView from './preview/evp-carrot';
+import FlexbarView from './preview/evp-flexbar';
 
 function App() {
   const location = useLocation();
@@ -49,7 +49,7 @@ function App() {
             <EvpMenuItem link={'/components/evp-msg'} title={'EvpMsg'} />
             <EvpMenuItem link={'/components/evp-toast'} title={'EvpToast'} />
             <EvpMenuItem link={'/components/evp-popver'} title={'EvpPopover'} />
-            <EvpMenuItem link={'/components/evp-carrot'} title={'EvpCarrot'} />
+            <EvpMenuItem link={'/components/evp-flexbar'} title={'EvpFlexbar'} />
           </EvpMenu>
         </div>
         <div className='Content'>
@@ -65,7 +65,7 @@ function App() {
             <Route path='/components/evp-msg' key={"msg"} element={<MsgView/>}></Route>
             <Route path='/components/evp-toast' key={"toast"} element={<ToastView/>}></Route>
             <Route path='/components/evp-popver' key={"popver"} element={<PopoverView/>}></Route>
-            <Route path='/components/evp-carrot' key={"carrot"} element={<CarrotView/>}></Route>
+            <Route path='/components/evp-flexbar' key={"flexbar"} element={<FlexbarView/>}></Route>
           </Routes>
         </div>
       </div>

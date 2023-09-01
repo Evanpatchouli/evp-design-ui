@@ -10,13 +10,17 @@ export type EvpFlexbarProps = {
   contentClass?: string,
   labelpartClass?: string,
   height?: string | number,
+  /** Default value is `"right"` */
   labelPosition?: 'right' | 'left' | 'top' | 'bottom',
   label?: React.ReactNode,
   gap?: number | string,
-  /** Default value is 0.3 */
+  /** Default value is `0.3` */
   flexTime?: number,
+  /** Default value is `"ease-in-out"` */
   flexMode?: 'linear' | 'ease' | 'ease-in' | 'ease-out' | 'ease-in-out',
+  /** Default value is `"click"` */
   trigger?: 'hover' | 'click',
+  /** Default value is half of height */
   labelRadius?: number | string,
   border?: {
     width?: string | number | Hintable<'thin' | 'medium' | 'thick'>,
@@ -90,6 +94,9 @@ export default function EvpFlexbar(props: EvpFlexbarProps) {
 
   return(
     <div className={`evp evp-flexbar ${props.class}`.trim()}
+    onMouseLeave={() => {
+      trigger === 'hover'? setExpand(false) : void 0;
+    }}
     style={{
       flexDirection: calcEvpCarrorFlexDirection(),
       margin: calcMargin(),
@@ -116,9 +123,6 @@ export default function EvpFlexbar(props: EvpFlexbarProps) {
       <div className={`evp-flexbar-label ${props.labelpartClass}`.trim()}
       onClick={() => {
         trigger === 'click'? setExpand(!expand) : void 0;
-      }}
-      onMouseLeave={() => {
-        trigger === 'hover'? setExpand(false) : void 0;
       }}
       onMouseOver={() => {
         trigger === 'hover'? setExpand(true) : void 0;
