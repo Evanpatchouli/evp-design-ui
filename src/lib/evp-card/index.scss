@@ -6,11 +6,12 @@
 
 .evp-card-content {
   padding: 20px;
+  flex: 1;
   flex-wrap: wrap;
 }
 
 .evp-card-toolbar {
   padding: 4;
   display: flex;
-  align-Items: center
+  align-Items: center;
 }

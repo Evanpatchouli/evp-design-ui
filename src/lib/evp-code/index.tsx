@@ -52,23 +52,29 @@ type CodeThemeOptions = Hintable<CodeTheme>;
 export type EvpCodeProps = {
   children?: string, 
   lang?: Hintable<LangOptions>,
-  theme?: CodeThemeOptions
+  theme?: CodeThemeOptions,
+  show?: boolean,
 }
 
 export default function EvpCode(props: EvpCodeProps){
   // @ts-ignore
   const theme = Theme[props.theme??'vscDarkPlus'];
-  console.log(Theme)
+  const $show = props.show?? true;
   return(
-    <Highlight
-      language={props.lang??'text'}
-      PreTag={'div'}
-      style={theme}
-      customStyle={{
-        borderRadius: 6
-      }}
-      >
-      {`${props.children?.replace('\n', '')}`}
-    </Highlight>
+    <>
+      {$show?
+        <Highlight
+          language={props.lang??'text'}
+          PreTag={'div'}
+          style={theme}
+          customStyle={{
+            borderRadius: 6
+          }}
+          >
+          {`${props.children?.replace('\n', '')}`}
+        </Highlight>
+        : void 0
+      }
+    </>
   )
 }

@@ -14,7 +14,7 @@ export interface EvpCardProps extends EvpBaseProps {
   toolBarClass?: string;
 }
 
-export default function EvpCard(props: EvpBaseProps) {
+export default function EvpCard(props: EvpCardProps) {
 
   const toolBarPosition = props.toolBarPosition?? "bottom";
 
@@ -23,6 +23,13 @@ export default function EvpCard(props: EvpBaseProps) {
     bottom: 'column',
     left: 'row-reverse',
     right: 'row'
+  }
+
+  const toolbarFlexDirectionMap: {[x:string]:EvpFlexDirectionRule} = {
+    top: 'row',
+    bottom: 'row',
+    left: 'column',
+    right: 'column'
   }
 
   return (
@@ -44,7 +51,11 @@ export default function EvpCard(props: EvpBaseProps) {
       <div
         className={`evp-card-toolbar ${props.toolBarClass}`.trim()}
         style={{
-          borderTop: props.toolBar? '1px solid rgba(0,0,0,0.05)' : void 0,
+          borderTop: props.toolBar? toolBarPosition === 'bottom'? '1px solid rgba(0,0,0,0.05)' : void 0 : void 0,
+          borderBottom: props.toolBar? toolBarPosition === 'top'? '1px solid rgba(0,0,0,0.05)' : void 0 : void 0,
+          borderLeft: props.toolBar? toolBarPosition === 'right'? '1px solid rgba(0,0,0,0.05)' : void 0 : void 0,
+          borderRight: props.toolBar? toolBarPosition === 'left'? '1px solid rgba(0,0,0,0.05)' : void 0 : void 0,
+          flexDirection: toolbarFlexDirectionMap[toolBarPosition],
           ...props.toolbarStyle
         }}
       >
