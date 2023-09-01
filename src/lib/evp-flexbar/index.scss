@@ -1,0 +1,31 @@
+.evp-flexbar {
+  display: flex;
+  width: fit-content;
+  height: fit-content;
+  position: relative;
+}
+
+.evp-flexbar-content-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  background-color: #ffffff;
+}
+
+.evp-flexbar-content {
+  display: flex;
+}
+
+.evp-flexbar-label {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+}
+
+.evp-flexbar-label:hover {
+  cursor: pointer;
+}
