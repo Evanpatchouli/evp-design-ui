@@ -13,6 +13,8 @@ export type EvpFlexbarProps = {
   /** Default value is `"right"` */
   labelPosition?: 'right' | 'left' | 'top' | 'bottom',
   label?: React.ReactNode,
+  /** @todo */
+  fixedLabel?: boolean,
   gap?: number | string,
   /** Default value is `0.3` */
   flexTime?: number,
