@@ -1,0 +1,16 @@
+.evp-card {
+  display: flex;
+  width: fit-content;
+  height: fit-content;
+}
+
+.evp-card-content {
+  padding: 20px;
+  flex-wrap: wrap;
+}
+
+.evp-card-toolbar {
+  padding: 4;
+  display: flex;
+  align-Items: center
+}
