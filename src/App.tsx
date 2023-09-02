@@ -24,6 +24,7 @@ import CardView from './preview/evp-card';
 import GeneralView from './preview/general';
 import ColView from './preview/evp-col';
 import RowView from './preview/evp-row';
+import DomView from './preview/evp-dom';
 
 function App() {
   const location = useLocation();
@@ -60,9 +61,10 @@ function App() {
           <Routes>
             <Route path='/' key={"home"} element={<GeneralView/>}></Route>
             <Route path='/test' key={"test"} element={<TestViewView/>}></Route>
-            <Route path='/components/evp-col' key={"button"} element={<ColView/>}></Route>
-            <Route path='/components/evp-row' key={"button"} element={<RowView/>}></Route>
-            <Route path='/components/evp-header' key={"button"} element={<HeaderView/>}></Route>
+            <Route path='/components/evp-col' key={"col"} element={<ColView/>}></Route>
+            <Route path='/components/evp-row' key={"row"} element={<RowView/>}></Route>
+            <Route path='/components/evp-dom' key={"dom"} element={<DomView/>}></Route>
+            <Route path='/components/evp-header' key={"header"} element={<HeaderView/>}></Route>
             <Route path='/components/evp-button' key={"button"} element={<ButtonView/>}></Route>
             <Route path='/components/evp-input' key={"input"} element={<InputView/>}></Route>
             <Route path='/components/evp-color' key={"color"} element={<ColorView/>}></Route>
