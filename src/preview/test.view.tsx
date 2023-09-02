@@ -1,5 +1,7 @@
 import Card from '@/components/card'
 import './test.css'
+import EvpFlexbar from '@/lib/evp-flexbar'
+import EvpFlexbarContentfixed from '@/lib/evp-flexbar/content-fixed'
 
 export default function TestViewView() {
 
@@ -41,6 +43,31 @@ export default function TestViewView() {
           ry={10}
           />
         </svg>
+      </Card>
+      <Card class='x123'>
+        <EvpFlexbarContentfixed fixedMode='content'
+        label="R"
+        >
+          <div>user is user</div>
+        </EvpFlexbarContentfixed>
+
+        <EvpFlexbarContentfixed fixedMode='content' labelPosition='left'
+        label="L"
+        >
+          <div>user is user</div>
+        </EvpFlexbarContentfixed>
+
+        <EvpFlexbarContentfixed fixedMode='content' labelPosition='top'
+        label="T"
+        >
+          <div>user is user</div>
+        </EvpFlexbarContentfixed>
+
+        <EvpFlexbarContentfixed fixedMode='content' labelPosition='bottom'
+        label="B"
+        >
+          <div>user is user</div>
+        </EvpFlexbarContentfixed>
       </Card>
     </div>
   )
