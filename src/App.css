@@ -46,7 +46,36 @@
 .NavMenu {
   box-shadow: var(--base-shadow);
   position: fixed;
-  height: 100%;
+  height: calc(100vh - 80px);
+  overflow-y: scroll;
+
+  --scrollbar-width: 10px;
+
+  /* width */
+  &::-webkit-scrollbar {
+    width: var(--scrollbar-width);
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    border-radius: calc(var(--scrollbar-width) / 2);
+    background: #eee;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #ddd;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:active {
+    background: #ccc;
+  }
 }
 
 .Content {
