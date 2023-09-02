@@ -22,6 +22,8 @@ import MsgView from './preview/evp-msg';
 import FlexbarView from './preview/evp-flexbar';
 import CardView from './preview/evp-card';
 import GeneralView from './preview/general';
+import ColView from './preview/evp-col';
+import RowView from './preview/evp-row';
 
 function App() {
   const location = useLocation();
@@ -37,9 +39,9 @@ function App() {
           <EvpMenu border='none' link={'/'} title={'General'}>
             <EvpMenuItem link={'/test'} title={'Go Test'} />
             <EvpMenu submenu title={'Layout'}>
-              <EvpMenuItem link={'/'} title={'EvpCol'} />
-              <EvpMenuItem link={'/'} title={'EvpRow'} />
-              <EvpMenuItem link={'/'} title={'EvpDom'} />
+              <EvpMenuItem link={'/components/evp-col'} title={'EvpCol'} />
+              <EvpMenuItem link={'/components/evp-row'} title={'EvpRow'} />
+              <EvpMenuItem link={'/components/evp-dom'} title={'EvpDom'} />
             </EvpMenu>
             <EvpMenuItem link={'/components/evp-shadow'} title={'EvpShadow'} />
             <EvpMenuItem link={'/components/evp-button'} title={'EvpButton'} />
@@ -58,6 +60,8 @@ function App() {
           <Routes>
             <Route path='/' key={"home"} element={<GeneralView/>}></Route>
             <Route path='/test' key={"test"} element={<TestViewView/>}></Route>
+            <Route path='/components/evp-col' key={"button"} element={<ColView/>}></Route>
+            <Route path='/components/evp-row' key={"button"} element={<RowView/>}></Route>
             <Route path='/components/evp-header' key={"button"} element={<HeaderView/>}></Route>
             <Route path='/components/evp-button' key={"button"} element={<ButtonView/>}></Route>
             <Route path='/components/evp-input' key={"input"} element={<InputView/>}></Route>
