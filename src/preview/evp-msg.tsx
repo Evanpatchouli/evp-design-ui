@@ -1,9 +1,13 @@
 import Code from "@/components/code";
 import EvpButton from "@/lib/evp-button";
 import EvpMsg from "@/lib/evp-msg";
+import { useEffect } from "react";
 import Md from 'react-markdown';
 
 export default function MsgView() {
+  useEffect(()=>{
+    window.scrollTo(0,0);
+  }, [])
   const $msg = (type: "info"|"warn"|"error"|"success") => {
     switch (type) {
       case "info": return ()=>EvpMsg.info("info message");
@@ -68,6 +72,9 @@ EvpMsg has 4 types: \`info\`, \`warn\`, \`success\` and \`error\`.
     * default: 0 (ms)
 `}
       </Md>
+      <EvpButton position="absolute" right={40} bottom={0}
+        plain shadow={false}
+        link="/components/evp-toast" text="★ Next Doc EvpToast >" />
     </div>
   )
 }

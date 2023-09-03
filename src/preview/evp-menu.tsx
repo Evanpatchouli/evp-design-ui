@@ -5,10 +5,13 @@ import EvpMenuItem from "../lib/evp-menu-item"
 import EvpRow from "../lib/evp-row"
 import Tsx from "@/components/tsx"
 import Card from "@/components/card"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import EvpButton from "evp-design-ui/evp-button"
 
 export default function MenuView() {
+  useEffect(()=>{
+    window.scrollTo(0,0);
+  }, [])
   const [showCode, setShowCode] = useState<{[x:number]:boolean}>({
     1: false,
     2: false,
@@ -202,6 +205,9 @@ If you want to navigate to a route while clicking, you can assign to the link at
   + type : string
 `}
 </Md>
+      <EvpButton position="absolute" right={40} bottom={0}
+        plain shadow={false}
+        link="/components/evp-header" text="★ Next Doc EvpHeader >" />
     </div>
   )
 }

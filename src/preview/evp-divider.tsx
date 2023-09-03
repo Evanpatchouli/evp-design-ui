@@ -4,9 +4,13 @@ import Tsx from "@/components/tsx";
 import EvpButton from "@/lib/evp-button";
 import EvpDivider from "@/lib/evp-divider";
 import SvgIcons from "@/lib/evp-icon/svg.icons";
-import { useState } from "react";  
+import { useEffect, useState } from "react";  
 
 export default function DividerView() {
+  useEffect(()=>{
+    window.scrollTo(0,0);
+  }, [])
+  
   const [showCode, setShowCode] = useState<{[x:number]:boolean}>({
     1: false,
     2: false,
@@ -319,6 +323,9 @@ top={10} bottom={10} gap={20}
   + type : string
 `}
 </Md>
+      <EvpButton position="absolute" right={40} bottom={0}
+        plain shadow={false}
+        link="/components/evp-shadow" text="★ Next Doc EvpShadow >" />
     </div>
   ) 
 }

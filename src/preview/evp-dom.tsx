@@ -2,12 +2,15 @@ import Card from "@/components/card";
 import Code from "@/components/code";
 import Tsx from "@/components/tsx";
 import EvpButton from "@/lib/evp-button";
-import EvpCol from "@/lib/evp-col";
 import EvpDom from "@/lib/evp-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Md from 'react-markdown';
 
 export default function DomView() {
+  useEffect(()=>{
+    window.scrollTo(0,0);
+  }, [])
+  
   const [showCode, setShowCode] = useState<{[x:number]:boolean}>({
     1: false,
     2: false,
@@ -154,6 +157,9 @@ mg\`\${[l,r,t,b]}\`_* is similar to pd.
 Please refer to EvpBaseProps in docs of EvpDom.
 `}
       </Md>
+      <EvpButton position="absolute" right={40} bottom={0}
+        plain shadow={false}
+        link="/components/evp-divider" text="★ Next Doc EvpDivider >" />
     </div>
   )
 }

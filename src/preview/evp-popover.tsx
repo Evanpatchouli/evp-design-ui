@@ -3,10 +3,13 @@ import Code from "@/components/code";
 import Md from "@/components/md";
 import EvpButton from "@/lib/evp-button";
 import EvpPopover from "@/lib/evp-popover";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function PopoverView() {
-
+  useEffect(()=>{
+    window.scrollTo(0,0);
+  }, [])
+  
   const [showCode, setShowCode] = useState({
     1: false,
     2: false
@@ -235,6 +238,9 @@ How to tigger the popover to show / hidden? There are two trigger: "click" | "ho
   + options: "top" | "topLeft" | "topRight" | "bottom" | "bottomLeft" | "bottomRight" | "left" | "leftTop" | "leftBottom" | "right" | "rightTop" | "rightBottom" | "upperLeftCorner" | "upperRightCorner" | "lowerLeftCorner" | "lowerRightCorner"
 `}
 </Md>
+      <EvpButton position="absolute" right={40} bottom={0}
+        plain shadow={false}
+        link="/components/evp-flexbar" text="★ Next Doc EvpFlexbar >" />
     </div>
   )
 }

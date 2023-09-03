@@ -3,9 +3,12 @@ import Code from "@/components/code";
 import Md from "@/components/md";
 import EvpButton from "@/lib/evp-button";
 import EvpFlexbar from "@/lib/evp-flexbar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function FlexbarView() {
+  useEffect(()=>{
+    window.scrollTo(0,0);
+  }, [])
 
   const [showCode, setShowCode] = useState<{[x:number]:boolean}>({
     1: false,

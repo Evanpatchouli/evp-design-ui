@@ -54,7 +54,7 @@ function App() {
             <EvpMenuItem link={'/components/evp-header'} title={'EvpHeader'} />
             <EvpMenuItem link={'/components/evp-msg'} title={'EvpMsg'} />
             <EvpMenuItem link={'/components/evp-toast'} title={'EvpToast'} />
-            <EvpMenuItem link={'/components/evp-popver'} title={'EvpPopover'} />
+            <EvpMenuItem link={'/components/evp-popover'} title={'EvpPopover'} />
             <EvpMenuItem link={'/components/evp-flexbar'} title={'EvpFlexbar'} />
           </EvpMenu>
         </div>
@@ -75,7 +75,7 @@ function App() {
             <Route path='/components/evp-shadow' key={"shadow"} element={<ShadowView/>}></Route>
             <Route path='/components/evp-msg' key={"msg"} element={<MsgView/>}></Route>
             <Route path='/components/evp-toast' key={"toast"} element={<ToastView/>}></Route>
-            <Route path='/components/evp-popver' key={"popver"} element={<PopoverView/>}></Route>
+            <Route path='/components/evp-popover' key={"popver"} element={<PopoverView/>}></Route>
             <Route path='/components/evp-flexbar' key={"flexbar"} element={<FlexbarView/>}></Route>
           </Routes>
           <div className='foot'>

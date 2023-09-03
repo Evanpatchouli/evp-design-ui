@@ -2,10 +2,14 @@ import Card from "@/components/card";
 import Tsx from "@/components/tsx";
 import EvpButton from "@/lib/evp-button";
 import EvpRow from "@/lib/evp-row";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Md from 'react-markdown';
 
 export default function RowView() {
+  useEffect(()=>{
+    window.scrollTo(0,0);
+  }, [])
+  
   const [showCode, setShowCode] = useState<{[x:number]:boolean}>({
     1: false,
     2: false,
@@ -124,6 +128,9 @@ You need to set alignItems to "flex-start" if you want to align the child-elemen
 Please refer to EvpBaseProps in docs of EvpDom.
 `}
       </Md>
+      <EvpButton position="absolute" right={40} bottom={0}
+        plain shadow={false}
+        link="/components/evp-dom" text="★ Next Doc EvpDom >" />
     </div>
   )
 }

@@ -1,11 +1,13 @@
-import Card from "@/components/card";
 import Md from "@/components/md";
 import Tsx from "@/components/tsx";
 import EvpButton from "@/lib/evp-button";
 import EvpCard from "@/lib/evp-card";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function CardView() {
+  useEffect(()=>{
+    window.scrollTo(0,0);
+  }, [])
   const [showCode, setShowCode] = useState<{[x:number]:boolean}>({
     1: false,
     2: false,
@@ -231,6 +233,9 @@ Toolbar can be displayed on its four side
 - toolBarClass ? : className of card toolbar element;
 `}
 </Md>
+      <EvpButton position="absolute" right={40} bottom={0}
+        plain shadow={false}
+        link="/components/evp-menu" text="★ Next Doc EvpMenu >" />
     </div>
   )
 }

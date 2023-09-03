@@ -2,9 +2,13 @@ import Code from "@/components/code";
 import EvpButton from "@/lib/evp-button";
 import EvpToast from "@/lib/evp-toast";
 import { EvpToastType } from "@/lib/evp-toast/toast";
+import { useEffect } from "react";
 import Md from 'react-markdown';
 
 export default function ToastView() {
+  useEffect(()=>{
+    window.scrollTo(0,0);
+  }, [])
   const $toast = (content?: string, type: EvpToastType = 'info') => {
     switch (type) {
       case "info": return ()=>EvpToast.info(content);
@@ -69,6 +73,9 @@ EvpMsg has 4 types: \`info\`, \`warn\`, \`success\` and \`error\`.
     * default: 0 (ms)
 `}
       </Md>
+      <EvpButton position="absolute" right={40} bottom={0}
+        plain shadow={false}
+        link="/components/evp-popover" text="★ Next Doc EvpPopover >" />
     </div>
   )
 }

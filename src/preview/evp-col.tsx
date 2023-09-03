@@ -2,10 +2,14 @@ import Card from "@/components/card";
 import Tsx from "@/components/tsx";
 import EvpButton from "@/lib/evp-button";
 import EvpCol from "@/lib/evp-col";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Md from 'react-markdown';
 
 export default function ColView() {
+  useEffect(()=>{
+    window.scrollTo(0,0);
+  }, [])
+  
   const [showCode, setShowCode] = useState<{[x:number]:boolean}>({
     1: false,
     2: false,
@@ -124,6 +128,9 @@ You need to set justifyContent to "flex-start" if you want to justify the child-
 Please refer to EvpBaseProps in docs of EvpDom.
 `}
       </Md>
+      <EvpButton position="absolute" right={40} bottom={0}
+        plain shadow={false}
+        link="/components/evp-row" text="★ Next Doc EvpRow >" />
     </div>
   )
 }

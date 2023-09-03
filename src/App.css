@@ -73,7 +73,8 @@ body {
 
 .Main {
   margin-top: 80px;
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh - 160px - 2px);
+  padding-bottom: 20px;
   display: flex;
 }
 

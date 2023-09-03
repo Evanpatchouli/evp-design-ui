@@ -2,6 +2,8 @@ import * as EvpShadow from "@/lib/evp-shadow";
 import Md from 'react-markdown'
 import shopcart from '@/assets/shopcart.svg'
 import Code from "@/components/code";
+import { useEffect } from "react";
+import EvpButton from "@/lib/evp-button";
 // import { ClassAttributes, HTMLAttributes } from "react";
 // import { JSX } from "react/jsx-runtime";
 
@@ -101,6 +103,10 @@ const myBoxShadow = Shadow.build({
 ]
 
 export default function ShadowView() {
+  useEffect(()=>{
+    window.scrollTo(0,0);
+  }, [])
+  
   return(
     <div className="preview-container ShadowView">
       <Md>{docs[0]}</Md>
@@ -130,6 +136,9 @@ export default function ShadowView() {
       <Md>{docs[4]}</Md>
       <Code lang='typescript'>{codes[3]}</Code>
       <Md>{docs[5]}</Md>
+      <EvpButton position="absolute" right={40} bottom={0}
+        plain shadow={false}
+        link="/components/evp-button" text="★ Next Doc EvpButton >" />
     </div>
   )
 }

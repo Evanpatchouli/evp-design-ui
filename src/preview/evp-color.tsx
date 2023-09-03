@@ -1,13 +1,32 @@
+import Md from "@/components/md"
 import { Color } from "../lib/constant"
 import EvpCol from "../lib/evp-col"
 import EvpRow from "../lib/evp-row"
+import Card from "@/components/card"
+import Tsx from "@/components/tsx"
+import EvpButton from "@/lib/evp-button"
+import { useEffect } from "react"
 
 export default function ColorView() {
-
+  useEffect(()=>{
+    window.scrollTo(0,0);
+  }, [])
+  
   return(
     <div className="preview-container">
-      <EvpCol>
-        <EvpRow style={{margin: '12px 0 12px 0'}}>
+<Md>
+{`
+# Color
+
+Evp Design UI provides a series of basic colors with 7 level degrees.
+
+The level sequence is : Dark > Deep > Heavy > [Normal] > Light > Shallow > Pale
+
+## Examples
+`}
+</Md>
+      <Card>
+        <EvpRow style={{margin: '12px 0 12px 0'}} w={400}>
           <EvpCol w="120px" style={{alignItems: 'flex-end', paddingRight: '12px'}}>
             <div>Red Series: </div>
           </EvpCol>
@@ -33,7 +52,7 @@ export default function ColorView() {
             PaleRed
           </EvpCol>
         </EvpRow>
-        <EvpRow style={{margin: '12px 0 12px 0'}}>
+        <EvpRow style={{margin: '12px 0 12px 0'}} w={400}>
           <EvpCol w="120px" style={{alignItems: 'flex-end', paddingRight: '12px'}}>
             <div>Yellow Series: </div>
           </EvpCol>
@@ -59,7 +78,7 @@ export default function ColorView() {
             PaleYellow
           </EvpCol>
         </EvpRow>
-        <EvpRow style={{margin: '12px 0 12px 0'}}>
+        <EvpRow style={{margin: '12px 0 12px 0'}} w={400}>
           <EvpCol w="120px" style={{alignItems: 'flex-end', paddingRight: '12px'}}>
             <div>Green Series: </div>
           </EvpCol>
@@ -85,7 +104,7 @@ export default function ColorView() {
             PaleGreen
           </EvpCol>
         </EvpRow>
-        <EvpRow style={{margin: '12px 0 12px 0'}}>
+        <EvpRow style={{margin: '12px 0 12px 0'}} w={400}>
           <EvpCol w="120px" style={{alignItems: 'flex-end', paddingRight: '12px'}}>
             <div>Blue Series: </div>
           </EvpCol>
@@ -111,7 +130,7 @@ export default function ColorView() {
             PaleBlue
           </EvpCol>
         </EvpRow>
-        <EvpRow style={{margin: '12px 0 12px 0'}}>
+        <EvpRow style={{margin: '12px 0 12px 0'}} w={400}>
           <EvpCol w="120px" style={{alignItems: 'flex-end', paddingRight: '12px'}}>
             <div>Gray Series: </div>
           </EvpCol>
@@ -137,7 +156,42 @@ export default function ColorView() {
             PaleGray
           </EvpCol>
         </EvpRow>
-      </EvpCol>
+      </Card>
+<Md>
+{`
+## Basic Usage
+
+**import:**
+`}
+</Md>
+<Tsx>
+{`
+import { Color } from 'evp-design-ui'
+`}
+</Tsx>
+<Md>
+{`
+**usage:**
+`}
+</Md>
+<Tsx>
+{`
+<div
+style={{
+  backgroundColor: Color.Red
+}}
+>
+</div>
+`}
+</Tsx>
+<Md>
+{`
+Besides basic leveled colors, there are alse several special colors provided.
+`}
+</Md>
+      <EvpButton position="absolute" right={40} bottom={0}
+        plain shadow={false}
+        link="/components/evp-card" text="★ Next Doc EvpCard >" />
     </div>
   )
 }

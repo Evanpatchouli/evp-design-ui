@@ -1,6 +1,12 @@
 import Md from "@/components/md";
+import EvpButton from "@/lib/evp-button";
+import { useEffect } from "react";
 
 export default function GeneralView() {
+  useEffect(()=>{
+    window.scrollTo(0,0);
+  }, [])
+  
   return(
 <div className="preview-container">
 <Md>
@@ -37,6 +43,9 @@ Notice that not every components in evp-design-ui extends EvpBaseProps, especail
 
 `}
 </Md>
+      <EvpButton position="absolute" right={40} bottom={0}
+        plain shadow={false}
+        link="/components/evp-col" text="★ Next Doc EvpCol >" />
 </div>
   )
 }
