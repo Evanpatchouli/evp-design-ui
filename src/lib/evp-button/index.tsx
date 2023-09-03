@@ -3,6 +3,7 @@ import AllParser from "../utils/props.parser";
 import EvpBaseProps from "../props";
 
 import './index.scss';
+import { useNavigate } from "react-router";
 
 type EvpButtonProps = EvpButtonSpecProps & EvpBaseProps;
 
@@ -17,18 +18,23 @@ interface EvpButtonSpecProps {
   size?: 'mini' |'small' | 'middle' | 'large' | 'huge'
   /** default is undefined, square will has 0 border-radius */
   shape?: 'circle' | 'round' | 'square',
-  /** default is true : whether to show preserved box-shadow */
-  shadow?: boolean
+  /** default is false : whether to show preserved box-shadow */
+  shadow?: boolean,
+  link?: string
 }
 
 const EvpButton: React.FC<EvpButtonProps> = (props: EvpButtonProps) => {
   // const default_clickHandler = () => undefined;
   const $props = AllParser(props);
+  const linkTo = useNavigate();
   // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-  const clickHandler = $props.event.onMouseDown;
+  const clickHandler = (e: React.MouseEvent) => {
+    $props.event.onMouseDown?.(e);
+    props.link? linkTo(props.link): void 0;
+  };
 
   const theme = props.theme?? 'primary';
-  const shadow = props.shadow??true? 'evp-pale-shadow' : '';
+  const shadow = props.shadow? 'evp-pale-shadow' : '';
   const size = props.size?? 'middle';
   const plain = props.plain? 'plain': '';
   const shape = props.shape?? '';

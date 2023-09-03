@@ -3,8 +3,13 @@ import EvpButton from "../lib/evp-button";
 import EvpIcon from "../lib/evp-icon";
 import Card from "@/components/card";
 import Code from "@/components/code";
+import { useEffect } from "react";
 
 export default function ButtonView() {
+  useEffect(()=>{
+    window.scrollTo(0,0);
+  }, [])
+  
   const alert = (e: any) => {};
   return(
     <div className="preview-container">
@@ -142,42 +147,42 @@ Button can be set to plain with common border and white background.
 {`
 ## Shadow
 
-By default, all buttons will have a pale box-shadow. If you dont't wanna it, you can set the shadow attribute to \`false\`.
+By default, all buttons will not have box-shadow. If you wanna it, you can set the shadow attribute to \`true\`.
 `}
 </Md>
-        {/* Primary Plain noShadow */}
-        <EvpButton mg={[8]} theme='primary' plain shadow={false} $click={()=>{
+        {/* Primary Plain Shadow */}
+        <EvpButton mg={[8]} theme='primary' plain shadow $click={()=>{
           alert("Click");
-        }}>Primary Plain noShadow</EvpButton>
-        {/* Primary noShadow*/}
-        <EvpButton mg={[8]} theme='primary' shadow={false} $click={()=>{
+        }}>Primary Plain Shadow</EvpButton>
+        {/* Primary Shadow*/}
+        <EvpButton mg={[8]} theme='primary' shadow $click={()=>{
           alert("Click");
-        }}>Primary noShadow</EvpButton>
-        {/* Success noShadow*/}
-        <EvpButton mg={[8]} theme='success' shadow={false} $click={()=>{
+        }}>Primary Shadow</EvpButton>
+        {/* Success Shadow*/}
+        <EvpButton mg={[8]} theme='success' shadow $click={()=>{
           alert("Click");
-        }}>Success noShadow</EvpButton>
-        {/* Dark noShadow */}
-        <EvpButton mg={[8]} theme='dark' shadow={false} $click={()=>{
+        }}>Success Shadow</EvpButton>
+        {/* Dark Shadow */}
+        <EvpButton mg={[8]} theme='dark' shadow $click={()=>{
           alert("Click");
-        }}>Dark noShadow</EvpButton>
+        }}>Dark Shadow</EvpButton>
 <Code lang="typescript">
 {`
-<EvpButton mg={[8]} theme='primary' plain shadow={false} $click={()=>{
+<EvpButton mg={[8]} theme='primary' plain shadow $click={()=>{
   alert("Click");
 }}>Primary Plain noShadow</EvpButton>
 
-<EvpButton mg={[8]} theme='primary' shadow={false} $click={()=>{
+<EvpButton mg={[8]} theme='primary' shadow $click={()=>{
   alert("Click");
-}}>Primary noShadow</EvpButton>
+}}>Primary Shadow</EvpButton>
 
-<EvpButton mg={[8]} theme='success' shadow={false} $click={()=>{
+<EvpButton mg={[8]} theme='success' shadow $click={()=>{
   alert("Click");
-}}>Success noShadow</EvpButton>
+}}>Success Shadow</EvpButton>
 
-<EvpButton mg={[8]} theme='dark' shadow={false} $click={()=>{
+<EvpButton mg={[8]} theme='dark' shadow $click={()=>{
   alert("Click");
-}}>Dark noShadow</EvpButton>
+}}>Dark Shadow</EvpButton>
 `}
 </Code>
 <Md>
@@ -312,6 +317,9 @@ Buttons have total 4 shapes and default is undefined with radius-mini.
   + options: true | false
 `}
 </Md>
+      <EvpButton position="absolute" right={40} bottom={0}
+        plain shadow={false}
+        link="/components/evp-input" text="★ Next Doc EvpInput >" />
     </div>
   )
 }
