@@ -5,8 +5,27 @@ import EvpMenuItem from "../lib/evp-menu-item"
 import EvpRow from "../lib/evp-row"
 import Tsx from "@/components/tsx"
 import Card from "@/components/card"
+import { useState } from "react"
+import EvpButton from "evp-design-ui/evp-button"
 
 export default function MenuView() {
+  const [showCode, setShowCode] = useState<{[x:number]:boolean}>({
+    1: false,
+    2: false,
+    3: false,
+    4: false,
+    5: false,
+    6: false,
+    7: false,
+    8: false
+  })
+
+  const clickCode = (idx: number) => {
+    let $showCode = { ...showCode };
+    $showCode[idx] = !showCode[idx];
+    setShowCode($showCode);
+    return void 0;
+  }
   return(
     <div className="preview-container">
 <Md>
@@ -39,11 +58,13 @@ import { EvpMenu } from 'evp-design-ui'
 </EvpMenu>
 `}
 </Tsx>
-      <EvpMenu title="Main Menu">
-        <EvpMenuItem icon='user'>User Space</EvpMenuItem>
-        <EvpMenuItem icon='user'>User Space</EvpMenuItem>
-        <EvpMenuItem icon='user'>User Space</EvpMenuItem>
-      </EvpMenu>
+      <Card>
+        <EvpMenu title="Main Menu">
+          <EvpMenuItem icon='user'>User Space</EvpMenuItem>
+          <EvpMenuItem icon='user'>User Space</EvpMenuItem>
+          <EvpMenuItem icon='user'>User Space</EvpMenuItem>
+        </EvpMenu>
+      </Card>
 <Md>
 {`
 ## EvpMenuItem
@@ -67,7 +88,10 @@ If you want to display a submenu, you can set a EvpMenu as one of a menu childre
 If you want to disable some menu or menuitem, you can assign not-allowed attribute to it.
 `}
 </Md>
-      <Card>
+      <Card toolBar={<>
+        <EvpButton $click={()=>clickCode(1)} plain size="mini" text="code" />
+        <EvpButton plain size="mini" text="copy" />
+      </>}>
         <EvpMenu title={
           <EvpRow>
             <SvgIcons.All radius={18} pd={[0,20,0,0]}/>
@@ -75,7 +99,6 @@ If you want to disable some menu or menuitem, you can assign not-allowed attribu
           </EvpRow>
         }
         mg={[0,0,0,0]}
-        class="woc"
         >
           <EvpMenuItem icon='user'>UserIcon Item</EvpMenuItem>
           <EvpMenuItem icon='waterfalls_h'>UserIcon Item</EvpMenuItem>
@@ -92,6 +115,93 @@ If you want to disable some menu or menuitem, you can assign not-allowed attribu
           <EvpMenuItem icon='true_circle'>UserIcon Item</EvpMenuItem>
         </EvpMenu>
       </Card>
+{showCode[1]?
+<Tsx>
+{`
+<EvpMenu title={
+  <EvpRow>
+    <SvgIcons.All radius={18} pd={[0,20,0,0]}/>
+    <h4>Main Menu</h4>
+  </EvpRow>
+}
+mg={[0,0,0,0]}
+>
+  <EvpMenuItem icon='user'>UserIcon Item</EvpMenuItem>
+  <EvpMenuItem icon='waterfalls_h'>UserIcon Item</EvpMenuItem>
+  <EvpMenu not-allowed submenu icon='user' title="SubMenu">
+    <EvpMenuItem not-allowed icon='unknown'>Unknown Item</EvpMenuItem>
+    <EvpMenuItem icon='unknown'>Unknown Item</EvpMenuItem>
+    <EvpMenuItem icon='unknown'>Unknown Item</EvpMenuItem>
+  </EvpMenu>
+  <EvpMenu submenu icon='user' title="SubMenu">
+    <EvpMenuItem not-allowed icon='unknown'>Unknown Item</EvpMenuItem>
+    <EvpMenuItem icon='unknown'>Unknown Item</EvpMenuItem>
+    <EvpMenuItem icon='unknown'>Unknown Item</EvpMenuItem>
+  </EvpMenu>
+  <EvpMenuItem icon='true_circle'>UserIcon Item</EvpMenuItem>
+</EvpMenu>
+`}
+</Tsx>
+: void 0}
+<Md>
+{`
+## Link
+
+If you want to navigate to a route while clicking, you can assign to the link attribute.
+`}
+</Md>
+      <Card toolBar={<>
+        <EvpButton $click={()=>clickCode(2)} plain size="mini" text="code" />
+        <EvpButton plain size="mini" text="copy" />
+      </>}>
+        <EvpMenu title={
+          <span style={{ fontWeight: 'bold' }}>Route Menu</span>
+        }>
+          <EvpMenuItem link='/'>Home</EvpMenuItem>
+          <EvpMenuItem link='/components/evp-menu'>EvpMenu</EvpMenuItem>
+        </EvpMenu>
+      </Card>
+{showCode[2]?
+<Tsx>
+{`
+<EvpMenu title={
+  <span style={{ fontWeight: 'bold' }}>Route Menu</span>
+}>
+  <EvpMenuItem link='/'>Home</EvpMenuItem>
+  <EvpMenuItem link='/components/evp-menu'>EvpMenu</EvpMenuItem>
+</EvpMenu>
+`}
+</Tsx>
+: void 0}
+<Md>
+{`
+## Api
+
+**EvpMenu Apis**
+
+★ container based on EvpCol and EvpRow
+★ props extends EvpBaseProps
+
+- **children** ? : The following contents of this menu, usually to be of EvpMenuItem
+  + type : React.ReactNode | EvpMenu => JSX.Element | EvpMenuItem => JSX.Element
+- **title** ? : Title text could be a string or JSX.Element
+  + type : string | JSX.Element,
+- **submenu** ? : is this EvpMenu a submenu of another EvpMenu
+  + default : false
+  + type: boolean
+- **w** ? : Default width is 260px
+  + type : string | number
+- **h** ? : Default height is "100%"
+  + default : "100%"
+  + type : string | number
+- **icon** ? : The EvpIcon by the left side with default redius 18 rather than the default 24 redius of EvpIcon
+  + default : undefined
+  + type : IconType
+- **link** ? : route-link to where
+  + default : undefined
+  + type : string
+`}
+</Md>
     </div>
   )
 }

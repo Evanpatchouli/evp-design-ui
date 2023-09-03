@@ -42,7 +42,7 @@ export default function EvpMenu(props: EvpMenuProps) {
   function $click(e: React.MouseEvent){
     if (!props["not-allowed"]) {
       deExpand();
-      $event.onMouseEnter?.(e);
+      $event.onMouseDown?.(e);
       if (props.link) {
         linkTo(props.link);
       }

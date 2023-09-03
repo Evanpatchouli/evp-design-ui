@@ -5,7 +5,6 @@ import { IconType } from "../evp-icon";
 import EvpBaseProps from "../props";
 import AllParser from "../utils/props.parser";
 import { useNavigate } from "react-router";
-import { Color } from "../constant";
 
 export interface EvpMenuItemProps extends EvpBaseProps {
   children?: React.ReactNode,
@@ -23,7 +22,7 @@ export default function EvpMenuItem(props: EvpMenuItemProps) {
   const $event = $props.event;
   const $click = props["not-allowed"]?undefined :
   (e: React.MouseEvent) => {
-    $event.onMouseEnter?.(e);
+    $event.onMouseDown?.(e);
     if (props.link) {
       linkTo(props.link);
     }
