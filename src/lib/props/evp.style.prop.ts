@@ -21,11 +21,21 @@ export interface EvpStyle {
   'col-resize'?: boolean,
   'row-resize'?: boolean,
   'all-scroll'?: boolean,
-  'text'?: boolean,
   'wait'?: boolean,
   'grab'?: boolean,
   'grabbing'?: boolean,
   'none'?: boolean,
+
+  border?: EvpBorderRule,
+  boxShadow?: string,
+
+  zIndex?: number,
+
+  position?: EvpPositionRule,
+  top?: number | string,
+  right?: number | string,
+  bottom?: number | string,
+  left?: number | string,
   
   display?: EvpDisplayRule,
   flexDirection?: EvpFlexDirectionRule,

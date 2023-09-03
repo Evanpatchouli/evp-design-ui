@@ -1,7 +1,6 @@
-.evp.button {
+.evp.evp-button {
   border-radius: var(--radius);
 
-  box-shadow: 0px 0px 3px 1px #0000001e;
   background-color: #fff;
 
   &:hover {
@@ -9,14 +8,13 @@
   }
 }
 
-.evp.button {
+.evp.evp-button {
   &.white {
     border: 1px solid #fff;
     padding-top: 1px;
     padding-bottom: 1px;
     background-color: #fff;
     color: #131313;
-    box-shadow: 0px 0.5px 3px 1px #0000001e;
 
     &:hover {
       transition: background-color  0.3s ease;
@@ -153,7 +151,7 @@
 }
 
 /** Plain Button*/
-.evp.button.plain {
+.evp.evp-button.plain {
   background-color: var(--White);
   &:hover {
     transition: background-color  0.3s ease;
@@ -234,7 +232,7 @@
 }
 
 /** Button Size*/
-.evp.button {
+.evp.evp-button {
   &.mini {
     height: var(--btn-mini-h);
     font-size: var(--text-size-mini);
@@ -296,7 +294,7 @@
 }
 
 /** Button Shape*/
-.evp.button {
+.evp.evp-button {
   &.square {
     border-radius: 0;
   } 

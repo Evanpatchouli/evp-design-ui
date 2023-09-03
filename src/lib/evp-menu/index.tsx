@@ -8,29 +8,48 @@ import AllParser from "../utils/props.parser";
 
 
 import './index.scss'
+import { useNavigate } from "react-router";
 
 export interface EvpMenuProps extends EvpBaseProps {
+  /** The following contents of this menu, usually to be of `EvpMenuItem` */
   children?: React.ReactNode,
+  /** Title text could be a string or JSX.Element */
   title?: string | JSX.Element,
   submenu?: boolean
-  /** Default width is 200px */
+  /** Default width is 260px */
   w?: EvpWRule,
   /** Default height is `100%`, the unit is number when assigned with a number*/
   h?: EvpHRule,
-  icon?: IconType
+  /** The EvpIcon by the left side with default redius 18 rather than the default 24 redius of EvpIcon */
+  icon?: IconType,
+  /** route-link to where */
+  link?: string
 }
 
 export default function EvpMenu(props: EvpMenuProps) {
+  const linkTo = useNavigate();
+  
   const { icon } = props;
   let $props = AllParser(props);
+  // the cursor type on hovering the menu title, default is poniter
+  $props.style.cursor = $props.style.cursor??'pointer';
+  const $event = $props.event;
   const [ expand, setExpand ] = useState(false);
   function deExpand() {
     setExpand(!expand);
   }
 
+  function $click(e: React.MouseEvent){
+    if (!props["not-allowed"]) {
+      deExpand();
+      $event.onMouseEnter?.(e);
+      if (props.link) {
+        linkTo(props.link);
+      }
+    }
+  }
+
   useEffect(()=>{
-    console.log('menu expanded?', expand);
-    console.log('ref.current.offsetHeight', ref.current?.offsetHeight);
     if (ref.current) {
       setHeight(ref.current.offsetHeight)
     }
@@ -52,22 +71,23 @@ export default function EvpMenu(props: EvpMenuProps) {
 
   return (
     <EvpCol alignItems="left"
+      class={props.class}
       pd={props.pd}
       mg={props.mg}
-      w={props.w??'200px'}
+      w={props.w??'260px'}
       style={{
         overflow: 'hidden',
-        border: props.submenu? 'unset' : `1px solid ${Color.LightGray}`,
+        border: props.submenu? 'unset' : `1px solid ${Color.PaleGray}`,
         ...$props.style
       }}>
-      <EvpRow alignItems="space-around"
-      pointer
-      $click={deExpand}>
-        <EvpRow h={50}>
+      <EvpRow alignItems="space-between"
+      color={props["not-allowed"]? Color.Gray : Color.Black}
+      $click={$click}>
+        <EvpRow h={50} pd={[0,0,0,20]}>
           {typeof props.title === 'string'? 
             (
               <>
-                {icon?<EvpIcon name={icon} pd={[0,14,0,0]}></EvpIcon>:null}
+                {icon?<EvpIcon name={icon} radius={18} pd={[0,20,0,0]}></EvpIcon>:null}
                 <div>{props.title}</div>
               </>
             )
@@ -76,7 +96,7 @@ export default function EvpMenu(props: EvpMenuProps) {
           }
         </EvpRow>
         {props.submenu?(
-          <EvpIcon strokeWidth={2} name={expand?'down':'left'} />
+          <EvpIcon strokeWidth={2} radius={18} pd={[0,16,0,0]} name={expand?'down':'left'} />
         ):null}
       </EvpRow>
       <div className={childrenWrapperClass} ref={ref} style={{

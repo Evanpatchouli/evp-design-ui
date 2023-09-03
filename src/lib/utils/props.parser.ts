@@ -5,6 +5,7 @@ import $cursorParser from "./cursor.parser";
 import $eventParser, { EvpEventMap } from "./event.parser";
 import StylePropsParser from "./style.parser";
 import { shift } from './index';
+import React from "react";
 
 export const propsParser = new Map<parserKey, PropsParserFunc>();
 
@@ -78,7 +79,7 @@ export default function AllParser(props?: EvpBaseProps) {
   const event = props?eventParser<EvpEventMap>(props):{};
   const children = props?props.children:undefined;
   return {
-    style: shift(style),
+    style: shift(style) as React.CSSProperties,
     event,
     children,
     id: props?.id,

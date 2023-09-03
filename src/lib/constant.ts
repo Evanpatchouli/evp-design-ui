@@ -49,5 +49,20 @@ export enum Color {
 
   Gold = "#FFD700",
 
-  Pink = "#FFC0CB"
+  Pink = "#FFC0CB",
+
+  White = "#FFFFFF",
+
+  /** 米黄色 */
+  Beige = "#F7EED6",
+
+  /** 花卉白 */
+  FloralWhite = "#FFFAF0",
+}
+
+
+
+export enum Shadow {
+  Base = '0 2px 4px 0 rgba(0, 0, 0, 0.1)',
+  Pale = '0px 0px 3px 1px #0000001e'
 }

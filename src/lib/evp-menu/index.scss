@@ -2,6 +2,9 @@
   transition: all 1s ease-in-out;
   max-height: 100vh;
 
+  will-change: min-height;
+  will-change: max-height;
+
   &.close {
     min-height: 0;
     max-height: 0;

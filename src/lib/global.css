@@ -8,6 +8,14 @@
   }
 }
 
+.evp-base-shadow {
+  box-shadow: var(--base-shadow);
+}
+
+.evp-pale-shadow {
+  box-shadow: var(--pale-shadow);
+}
+
 *,*:focus,*:hover{
   outline:none;
 }

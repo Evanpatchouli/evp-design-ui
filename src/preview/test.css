@@ -1,3 +1,39 @@
 .Test {
-  border: 1px solid black;
+  height: calc(100vh - 40px);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  > div {
+    width: 98%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    padding: 12px;
+    border-radius: 4px;
+    background-color: #fff;
+    /* box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1); */
+  }
+
+  > div:first-child {
+
+    display: flex;
+    justify-content: left;
+
+    > .evp-button {
+      margin-right: 12px;
+    }
+  }
+
+  > div:nth-child(2) {
+
+    display: flex;
+
+    > .evp-button {
+      margin-right: 12px;
+    }
+  }
+
 }

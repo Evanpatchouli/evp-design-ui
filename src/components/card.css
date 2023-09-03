@@ -1,0 +1,17 @@
+.card {
+  height: fit-content; 
+}
+
+.card-content {
+  padding: 20px;
+  flex-wrap: wrap;
+  text-align: left;
+  width: 100%;
+}
+
+.card-toolbar {
+  padding: 4;
+  display: flex;
+  justify-Content: right;
+  align-Items: center
+}

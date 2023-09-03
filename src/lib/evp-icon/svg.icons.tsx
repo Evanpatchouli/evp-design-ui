@@ -3,8 +3,12 @@ import React from "react";
 import $User from './user';
 import $TrueCircle from "./true-circle";
 import $FalseCircle from "./false-circle";
+import $CloseCircle from "./close-circle";
+import $Close from "./close";
 import $Lock from "./lock";
 import $Unknown from "./unknown";
+import $Exclamation from './exclamation';
+import $Info from "./info";
 import $All from "./all";
 import $WaterfallsH from './waterfalls-h';
 import $WaterfallsV from './waterfalls-v';
@@ -46,10 +50,17 @@ export type SvgIcon = React.FC<SvgIconProps>;
 
 export const User = $User;
 export const TrueCircle = $TrueCircle;
+export const Success = $TrueCircle;
 export const FalseCircle = $FalseCircle;
+export const CloseCircle = $CloseCircle;
+export const Error = $CloseCircle;
+export const Close = $Close;
 export const Lock = $Lock;
 export const Unknown = $Unknown;
 export const Help = $Unknown;
+export const Exclamation = $Exclamation;
+export const Warn = $Exclamation;
+export const Info = $Info;
 export const All = $All;
 export const WaterfallsH = $WaterfallsH;
 export const WaterfallsV = $WaterfallsV;
@@ -60,10 +71,16 @@ export type SvgIconType =
 "" |
 "User" |
 "TrueCircle" |
+"Success" |
 "FalseCircle" |
+"CloseCircle" |
+"Error" |
+"Close" |
 "Lock" |
 "Unknown" |
 "Help" |
+"Warn" |
+"Info" |
 "All" |
 "WaterfallsH" |
 "WaterfallsV" |
@@ -74,10 +91,16 @@ const SvgIcons = {
   "": undefined,
   "User": User,
   "TrueCircle": TrueCircle,
+  "Success": Success,
   "FalseCircle": FalseCircle,
+  "CloseCircle": CloseCircle,
+  "Error": Error,
+  "Close": Close,
   "Lock": Lock,
   "Unknown": Unknown,
   "Help": Help,
+  "Warn": Warn,
+  "Info": Info,
   "All": All,
   "WaterfallsH": WaterfallsH,
   "WaterfallsV": WaterfallsV,

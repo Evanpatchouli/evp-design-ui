@@ -1,22 +1,43 @@
-import { Fragment } from "react";
+import React, { Fragment } from "react";
 import EvpIcon from "../evp-icon";
 import EvpRow from "../evp-row";
 import { IconType } from "../evp-icon";
+import EvpBaseProps from "../props";
+import AllParser from "../utils/props.parser";
+import { useNavigate } from "react-router";
 
-export interface EvpMenuItemProps {
+export interface EvpMenuItemProps extends EvpBaseProps {
   children?: React.ReactNode,
   title?: string | JSX.Element,
-  icon?: IconType
+  icon?: IconType,
+  /** route-link to where */
+  link?: string
 }
 
 export default function EvpMenuItem(props: EvpMenuItemProps) {
+  const linkTo = useNavigate();
+
   const { icon } = props;
+  let $props = AllParser(props);
+  const $event = $props.event;
+  const $click = props["not-allowed"]?undefined :
+  (e: React.MouseEvent) => {
+    $event.onMouseEnter?.(e);
+    if (props.link) {
+      linkTo(props.link);
+    }
+  }
+
   return (
-    <EvpRow alignItems="space-around" pointer>
-      <EvpRow h={50}>
+    <EvpRow alignItems="space-between"
+    class={props.class}
+    style={$props.style}
+    $click={$click}
+    pointer>
+      <EvpRow h={50} pd={[0,0,0,20]}>
         {(typeof props.title !== 'object')? 
           <Fragment>
-            {icon?<EvpIcon name={icon} pd={[0,14,0,0]}></EvpIcon>:null}
+            {icon?<EvpIcon name={icon} radius={18} pd={[0,20,0,0]}></EvpIcon>:null}
             <div>{props.title??props.children}</div>
           </Fragment>
             :
