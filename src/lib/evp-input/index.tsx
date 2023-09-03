@@ -141,7 +141,7 @@ export default function EvpInput(props: EvpInputProps) {
   function validate(v?: string) {
     let result = '';
     if (props.rule?.custom) {
-      result = props.rule?.custom?.(props.value??'')??'';
+      result = props.rule?.custom?.(v??'')??'';
     } else if (props.rule?.required?.on) {
       result = result? result : props.rule?.required?.on? (isEmpty(v)? (`${props.label?(typeof props.label)=='string'?props.label:props.name??'This field':props.name??'This field'} can not be empty`) : '') : '';
       result = result? result : (props.rule?.type?.on? (checkNumber(v)? '' : (props.rule.type.msg??(`${props.label?(typeof props.label)=='string'?props.label:props.name??'This field':props.name??'This field'} must be a number`))) : '');
