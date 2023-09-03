@@ -5,10 +5,10 @@ import EvpIcon, { IconType } from "../evp-icon";
 import { Color } from "../constant";
 import EvpBaseProps from "../props";
 import AllParser from "../utils/props.parser";
-
+import { useNavigate } from "react-router";
 
 import './index.scss'
-import { useNavigate } from "react-router";
+
 
 export interface EvpMenuProps extends EvpBaseProps {
   /** The following contents of this menu, usually to be of `EvpMenuItem` */
@@ -69,9 +69,11 @@ export default function EvpMenu(props: EvpMenuProps) {
 
   const childrenWrapperClass = props.submenu? `evp-menu-children ${expand?'':'close'}` : '';
 
+  const disabled = props["not-allowed"]? 'evp-disabled' : '';
+
   return (
     <EvpCol alignItems="left"
-      class={props.class}
+      class={`${disabled} ${props.class??''}`.trim()}
       pd={props.pd}
       mg={props.mg}
       w={props.w??'260px'}
@@ -81,7 +83,6 @@ export default function EvpMenu(props: EvpMenuProps) {
         ...$props.style
       }}>
       <EvpRow alignItems="space-between"
-      color={props["not-allowed"]? Color.Gray : Color.Black}
       $click={$click}>
         <EvpRow h={50} pd={[0,0,0,20]}>
           {typeof props.title === 'string'? 

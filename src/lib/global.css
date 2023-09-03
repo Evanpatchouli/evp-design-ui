@@ -16,6 +16,31 @@
   box-shadow: var(--pale-shadow);
 }
 
+.evp-disabled {
+  color: var(--LightGray) !important;
+  stroke: var(--LightGray) !important;
+
+  > * * * {
+    color: var(--LightGray) !important;
+    stroke: var(--LightGray) !important;
+  }
+
+  > * * {
+    color: var(--LightGray) !important;
+    stroke: var(--LightGray) !important;
+  }
+
+  > * {
+    color: var(--LightGray) !important;
+    stroke: var(--LightGray) !important;
+  }
+
+  * {
+    color: var(--LightGray) !important;
+    stroke: var(--LightGray) !important;
+  }
+}
+
 *,*:focus,*:hover{
   outline:none;
 }

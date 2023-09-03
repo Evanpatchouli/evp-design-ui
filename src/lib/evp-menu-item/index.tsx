@@ -5,6 +5,7 @@ import { IconType } from "../evp-icon";
 import EvpBaseProps from "../props";
 import AllParser from "../utils/props.parser";
 import { useNavigate } from "react-router";
+import { Color } from "../constant";
 
 export interface EvpMenuItemProps extends EvpBaseProps {
   children?: React.ReactNode,
@@ -28,13 +29,16 @@ export default function EvpMenuItem(props: EvpMenuItemProps) {
     }
   }
 
+  const disabled = props["not-allowed"]? 'evp-disabled' : '';
+
   return (
     <EvpRow alignItems="space-between"
-    class={props.class}
+    class={`${disabled} ${props.class??''}`.trim()}
     style={$props.style}
     $click={$click}
     pointer>
-      <EvpRow h={50} pd={[0,0,0,20]}>
+      <EvpRow h={50} pd={[0,0,0,20]}
+      >
         {(typeof props.title !== 'object')? 
           <Fragment>
             {icon?<EvpIcon name={icon} radius={18} pd={[0,20,0,0]}></EvpIcon>:null}
