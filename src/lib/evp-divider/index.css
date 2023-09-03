@@ -1,0 +1,17 @@
+.evp-divider.with-text::before, .evp-divider.with-text::after {
+  flex: 1;
+  content: '';
+  margin-top: calc(var(--line-width) / 2);
+  border-top: var(--line-width) var(--type) var(--color);
+  border-radius: var(--border-radius);
+}
+
+.evp-divider-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  > * {
+    margin-inline: var(--content-item-gap);
+  }
+}

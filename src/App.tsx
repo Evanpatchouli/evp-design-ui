@@ -25,6 +25,7 @@ import GeneralView from './preview/general';
 import ColView from './preview/evp-col';
 import RowView from './preview/evp-row';
 import DomView from './preview/evp-dom';
+import DividerView from './preview/evp-divider';
 
 function App() {
   const location = useLocation();
@@ -43,6 +44,7 @@ function App() {
               <EvpMenuItem link={'/components/evp-col'} title={'EvpCol'} />
               <EvpMenuItem link={'/components/evp-row'} title={'EvpRow'} />
               <EvpMenuItem link={'/components/evp-dom'} title={'EvpDom'} />
+              <EvpMenuItem link={'/components/evp-divider'} title={'EvpDivider'} />
             </EvpMenu>
             <EvpMenuItem link={'/components/evp-shadow'} title={'EvpShadow'} />
             <EvpMenuItem link={'/components/evp-button'} title={'EvpButton'} />
@@ -64,6 +66,7 @@ function App() {
             <Route path='/components/evp-col' key={"col"} element={<ColView/>}></Route>
             <Route path='/components/evp-row' key={"row"} element={<RowView/>}></Route>
             <Route path='/components/evp-dom' key={"dom"} element={<DomView/>}></Route>
+            <Route path='/components/evp-divider' key={"divider"} element={<DividerView/>}></Route>
             <Route path='/components/evp-header' key={"header"} element={<HeaderView/>}></Route>
             <Route path='/components/evp-button' key={"button"} element={<ButtonView/>}></Route>
             <Route path='/components/evp-input' key={"input"} element={<InputView/>}></Route>
@@ -76,6 +79,9 @@ function App() {
             <Route path='/components/evp-popver' key={"popver"} element={<PopoverView/>}></Route>
             <Route path='/components/evp-flexbar' key={"flexbar"} element={<FlexbarView/>}></Route>
           </Routes>
+          <div className='foot'>
+            <p>CopyRight &copy; 2023-2023 Evp Design UI</p>
+          </div>
         </div>
       </div>
     </div>

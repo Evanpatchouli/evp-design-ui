@@ -1,7 +1,7 @@
 import "./card.css";
 
 export default function Card(props: {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   style?: React.CSSProperties;
   contentStyle?: React.CSSProperties;
   toolbarStyle?: React.CSSProperties;

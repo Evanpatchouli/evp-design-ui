@@ -1,7 +1,7 @@
 import Card from '@/components/card'
 import './test.css'
-import EvpFlexbar from '@/lib/evp-flexbar'
 import EvpFlexbarContentfixed from '@/lib/evp-flexbar/content-fixed'
+import EvpDivider from '@/lib/evp-divider'
 
 export default function TestViewView() {
 
@@ -68,6 +68,10 @@ export default function TestViewView() {
         >
           <div>user is user</div>
         </EvpFlexbarContentfixed>
+      </Card>
+      <Card>
+        <EvpDivider />
+        <EvpDivider>我姓石</EvpDivider>
       </Card>
     </div>
   )
