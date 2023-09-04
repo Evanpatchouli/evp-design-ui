@@ -1,3 +1,4 @@
+import { Hintable } from "@/lib";
 import { Prism as Highlight } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism"; // 代码高亮主题风格
 

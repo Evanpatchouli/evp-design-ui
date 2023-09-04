@@ -8,7 +8,11 @@ import { useEffect, useState } from "react";
 
 export default function DividerView() {
   useEffect(()=>{
-    window.scrollTo(0,0);
+    window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: 'smooth'
+});
   }, [])
   
   const [showCode, setShowCode] = useState<{[x:number]:boolean}>({

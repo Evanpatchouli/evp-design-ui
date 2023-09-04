@@ -6,7 +6,11 @@ import Md from 'react-markdown';
 
 export default function MsgView() {
   useEffect(()=>{
-    window.scrollTo(0,0);
+    window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: 'smooth'
+});
   }, [])
   const $msg = (type: "info"|"warn"|"error"|"success") => {
     switch (type) {
