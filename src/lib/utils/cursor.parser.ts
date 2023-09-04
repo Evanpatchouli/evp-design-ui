@@ -1,6 +1,7 @@
 // cursor: props.cursor??(props.pointer?'pointer': 'unset')
 
 import EvpStyleProps from "../props/evp.style.prop";
+import { EvpCursorRule, Hintable, Option } from "../typings";
 import { PropsParserFunc } from "./props.parser";
 
 type preservedProp = 'pointer' |

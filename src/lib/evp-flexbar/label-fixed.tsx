@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Color } from '../constant';
 import { EvpFlexbarProps } from '.';
 import './index.scss';
+import { EvpFlexDirectionRule } from '../typings';
 
 
 export default function EvpFlexbarLabelfixed(props: EvpFlexbarProps) {

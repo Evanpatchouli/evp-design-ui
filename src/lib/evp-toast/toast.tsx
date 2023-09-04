@@ -1,6 +1,7 @@
 import { Color } from "../constant";
 import EvpIcon from "../evp-icon";
 import { nanoid } from 'nanoid';
+import { IndexableFuzzy } from "../typings";
 
 export type EvpToastType = 'info' | 'warn' | 'error' | 'success';
 

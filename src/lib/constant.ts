@@ -63,6 +63,6 @@ export enum Color {
 
 
 export enum Shadow {
-  Base = '0 2px 4px 0 rgba(0, 0, 0, 0.1)',
-  Pale = '0px 0px 3px 1px #0000001e'
+  Base = '0px 2px 5px 0px rgba(0, 0, 0, 0.1)',
+  Pale = '0px 2px 5px 1px #0000001e'
 }

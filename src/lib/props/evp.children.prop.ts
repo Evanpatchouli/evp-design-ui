@@ -1,4 +1,5 @@
 import React from "react";
+import { Indexable } from "../typings";
 
 export type EvpCommonProps = Indexable<EvpCommon, any>;
 

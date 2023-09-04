@@ -41,7 +41,7 @@ export type EvpInputRule = {
   custom?: (value: string) => string | undefined | null | void
 }
 
-interface EvpInputProps extends BaseDomProps {
+export interface EvpInputProps extends BaseDomProps {
   /** label should be a string or EvpIcon */
   label?: string | JSX.Element;
   /** **Label font-Size:** default value is 14px */

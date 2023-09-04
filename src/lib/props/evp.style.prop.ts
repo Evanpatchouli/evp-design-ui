@@ -1,6 +1,7 @@
 import React from "react";
-import { ArrayLengthed } from "../utils";
+import { ArrayLengthed, Hintable, Indexable } from "../utils";
 import { Color } from "../constant";
+import { EvpFontSize, EvpFontWeight, EvpCursorRule, EvpBorderRule, EvpPositionRule, EvpDisplayRule, EvpFlexDirectionRule, EvpJustifyContentRule, EvpAlignItemsRule, EvpWRule, EvpHRule } from "../typings";
 
 export type EvpStyleProps = Indexable<EvpStyle, any>
 

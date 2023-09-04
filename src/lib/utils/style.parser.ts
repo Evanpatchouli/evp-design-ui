@@ -1,6 +1,7 @@
 import { shift } from ".";
 import EvpStyleProps from "../props/evp.style.prop";
 import { propsParser } from "./props.parser";
+import { EvpCursorRule, EvpPosition } from "../typings";
 
 export default function StylePropsParser(props: EvpStyleProps): React.CSSProperties {
   const keys: string[] = Object.keys(props);

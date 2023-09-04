@@ -1,5 +1,6 @@
 import EvpStyleProps from "../props/evp.style.prop";
 import { PropsParserFunc } from "./props.parser";
+import { Option } from "../typings";
 
 const fontParser: PropsParserFunc = (props?: EvpStyleProps): Option<string> => {
   if (!props) {

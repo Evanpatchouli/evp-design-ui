@@ -1,4 +1,5 @@
 import BezierEasing from 'bezier-easing';
+import { ArrayLengthed } from '../typings';
 
 class EvpShadow {
   private config = {

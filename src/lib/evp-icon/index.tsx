@@ -1,7 +1,9 @@
 import SvgIcons, { SvgIcon, SvgIconType } from './svg.icons';
-import './index.css';
-import { ArrayLengthed } from '../utils';
+import { ArrayLengthed, Hintable, IndexableFuzzy } from '../utils';
 import { propsParser } from '../utils/props.parser';
+
+import './index.css';
+import { EvpCursorRule, EvpWRule, EvpHRule } from '../typings';
 
 export type IconType = 
 "user" |
@@ -23,7 +25,7 @@ export type IconType =
 "down" |
 "left";
 
-type EvpIconProps = EvpIconPropsType & {[x: string]: any};
+export type EvpIconProps = EvpIconPropsType & {[x: string]: any};
 
 export interface EvpIconPropsType {
   /** this can override the icon key */

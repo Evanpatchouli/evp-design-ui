@@ -1,6 +1,7 @@
 import React, { SyntheticEvent } from "react";
 import EvpEventProps from "../props/evp.event.prop";
 import { PropsParserFunc } from "./props.parser";
+import { Indexable } from "../typings";
 
 // type preservedProp = 
 //   '$in' |

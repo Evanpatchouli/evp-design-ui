@@ -21,6 +21,18 @@ export function shift(obj?: Indexable<{},any>) {
     return obj;
 }
 
+export type Option<T extends unknown> = T | undefined
+
+export type Hintable<T> = T | (string & {})
+
+export type Indexable<T, E extends unknown> = T & { [x:string]: E }
+
+// @ts-ignore
+export type IndexableVididy<T, E extends unknown> = T & { [x:Hintable<T>]: E }
+
+/** Force to convert an object as to be indexable with string key without given hintable type */
+export type IndexableFuzzy<E extends unknown> = { [x:string]: E }
+
 export type Booleanish = boolean | 'true' | 'false';
 
 export interface EvpDomAttributes<T> extends AriaAttributes, DOMAttributes<T> {

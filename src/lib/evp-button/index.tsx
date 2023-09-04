@@ -1,11 +1,11 @@
 import React from "react";
 import AllParser from "../utils/props.parser";
 import EvpBaseProps from "../props";
-
-import './index.scss';
 import { useNavigate } from "react-router";
 
-type EvpButtonProps = EvpButtonSpecProps & EvpBaseProps;
+import './index.scss';
+
+export type EvpButtonProps = EvpButtonSpecProps & EvpBaseProps;
 
 interface EvpButtonSpecProps {
   /** The button text, it will be overrided by props.children if that exists */

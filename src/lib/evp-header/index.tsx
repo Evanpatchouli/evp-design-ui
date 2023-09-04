@@ -1,6 +1,6 @@
 import { Color } from "../constant";
-import EvpIcon from "../evp-icon";
 import EvpRow from "../evp-row";
+import { EvpPosition, Hintable } from "../typings";
 
 export interface EvpHeaderProps {
   icon?: React.ReactNode;

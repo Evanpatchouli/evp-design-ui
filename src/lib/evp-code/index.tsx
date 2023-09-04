@@ -1,7 +1,8 @@
 import { Prism as Highlight } from 'react-syntax-highlighter';
 import * as Theme from 'react-syntax-highlighter/dist/esm/styles/prism';// 代码高亮主题风格
+import { Hintable } from '../utils';
 
-type LangOptions = 'javascript' | 'typescript' | 'java' | 'python' | 'c' | 'cpp' | 'csharp' | 'go' | 'ruby' | 'rust' | 'swift' | 'kotlin' | 'php' | 'html' | 'css' | 'scss' | 'less' | 'json' | 'xml' | 'yml' | 'yaml' | 'bash' | 'sh' | 'shell' | 'cmd' | 'bat' | 'console' | 'sql' | 'markdown' | 'text';
+export type LangOptions = 'javascript' | 'typescript' | 'java' | 'python' | 'c' | 'cpp' | 'csharp' | 'go' | 'ruby' | 'rust' | 'swift' | 'kotlin' | 'php' | 'html' | 'css' | 'scss' | 'less' | 'json' | 'xml' | 'yml' | 'yaml' | 'bash' | 'sh' | 'shell' | 'cmd' | 'bat' | 'console' | 'sql' | 'markdown' | 'text';
 
 export type CodeTheme = 
 'a11yDark'
@@ -47,7 +48,7 @@ export type CodeTheme =
 | 'zTouch'
 ;
 
-type CodeThemeOptions = Hintable<CodeTheme>;
+export type CodeThemeOptions = Hintable<CodeTheme>;
 
 export type EvpCodeProps = {
   children?: string, 

@@ -14,7 +14,8 @@ import $WaterfallsH from './waterfalls-h';
 import $WaterfallsV from './waterfalls-v';
 import $Down from './down';
 import $Left from './left';
-import { ArrayLengthed } from "../utils";
+import { ArrayLengthed, Indexable } from "../utils";
+import { EvpCursorRule, EvpWRule, EvpHRule } from "../typings";
 
 export type SvgIconProps = Indexable<SvgIconPropsType, any>;
 
