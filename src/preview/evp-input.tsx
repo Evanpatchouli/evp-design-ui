@@ -302,9 +302,10 @@ If you like to show a right icon when validation success, you can assign resultI
         <EvpButton theme="text" $click={()=>clickCode(4)} plain size="mini" text="code" />
         <EvpButton theme="text" size="mini" text="copy" />
       </>}>
-        <label>Show result Icon by right :
+        <div>Show result Icon by right :
             <EvpInput
               name="account"
+              label={"account"}
               labelSize="16px"
               placeholder="Input your account..."
               resultIcon
@@ -313,7 +314,7 @@ If you like to show a right icon when validation success, you can assign resultI
                 required: { on: true, val: true },
               }}
             ></EvpInput>
-          </label>
+          </div>
       </Card>
 {showCode[4]?
 <Tsx>

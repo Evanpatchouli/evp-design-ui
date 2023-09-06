@@ -38,6 +38,12 @@
   width: 300px;
 }
 
+.evp-input-msg {
+  display: flex;
+  justify-content: left !important;
+  align-items: center;
+}
+
 .evp.input.icon {
   justify-content: center;
   align-items: center;

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { BaseDomProps } from "../evp-dom";
 import Icon from '../evp-icon/index';
 import EvpRow from "../evp-row";
@@ -189,12 +189,18 @@ export default function EvpInput(props: EvpInputProps) {
 
   const showRightIcon = props.resultIcon?? false;
 
+  const labelRef = useRef<HTMLDivElement>(null);
+
+  const calcMsgLeft = () => {
+    return `${labelRef.current?.offsetWidth??0}px`;
+  }
+
   return (
-    <EvpCol mg={[4,0,4,0]}>
+    <EvpCol mg={[4,0,4,0]} alignItems='flex-start'>
       <EvpRow>
         <div className="evp input">
           {props.label ? (
-            <div className="evp input label" style={{fontSize: props.labelSize}}>{props.label}</div>
+            <div ref={labelRef} className="evp input label" style={{fontSize: props.labelSize}}>{props.label}</div>
           ) : null}
           <input
             name={props.name}
@@ -209,6 +215,7 @@ export default function EvpInput(props: EvpInputProps) {
               if (e.key.toLowerCase() === "enter") {
                 if (smartTrigger && props.rule?.trigger === 'onEnter') {
                   validate(e.currentTarget.value);
+                  alert(labelRef.current?.offsetWidth)
                 }
                 if (props.onEnter) {
                   props.onEnter(e);
@@ -230,7 +237,12 @@ export default function EvpInput(props: EvpInputProps) {
           {showRightIcon? <div className="evp input icon"><Icon name="true_circle" color={Color.HeavyGreen} $visibleSync={isValid} /></div> : null}
         </div>
       </EvpRow>
-      <EvpRow justifyContent='left' style={{color: msgColor}}>{isValid?'':(warning_msg?warning_msg:props.hint?.text)}</EvpRow>
+      <div className="evp-input-msg" style={{
+        color: msgColor,
+        paddingLeft: calcMsgLeft(),
+      }}>
+        {isValid?'':(warning_msg?warning_msg:props.hint?.text)}
+      </div>
     </EvpCol>
   );
 }

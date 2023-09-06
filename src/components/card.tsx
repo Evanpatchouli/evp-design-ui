@@ -18,13 +18,13 @@ export default function Card(props: {
       }}
     >
       <div
-        className={`card-content ${props.contentClass}`.trim()}
+        className={`card-content ${props.contentClass??''}`.trim()}
         style={{ ...props.contentStyle }}
       >
         {props.children}
       </div>
       <div
-        className={`card-toolbar ${props.toolBarClass}`.trim()}
+        className={`card-toolbar ${props.toolBarClass??''}`.trim()}
         style={{
           borderTop: props.toolBar? '1px solid rgba(0,0,0,0.05)' : void 0,
           ...props.toolbarStyle
