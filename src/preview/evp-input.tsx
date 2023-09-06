@@ -101,8 +101,8 @@ You can assign onEnter event to EvpInput.
 `}
 </Md>
       <Card toolBar={<>
-        <EvpButton $click={()=>clickCode(1)} plain size="mini" text="code" />
-        <EvpButton plain size="mini" text="copy" />
+        <EvpButton theme="text" $click={()=>clickCode(1)} plain size="mini" text="code" />
+        <EvpButton theme="text" size="mini" text="copy" />
       </>}>
         <EvpInput
           name="account"
@@ -137,8 +137,8 @@ You can add a label at the left of input box by assigning a string or Element to
 `}
 </Md>
       <Card toolBar={<>
-        <EvpButton $click={()=>clickCode(2)} plain size="mini" text="code" />
-        <EvpButton plain size="mini" text="copy" />
+        <EvpButton theme="text" $click={()=>clickCode(2)} plain size="mini" text="code" />
+        <EvpButton theme="text" size="mini" text="copy" />
       </>}>
         <EvpInput
           name="account"
@@ -180,8 +180,8 @@ Here are some examples:
 `}
 </Md>
       <Card toolBar={<>
-        <EvpButton $click={()=>clickCode(3)} plain size="mini" text="code" />
-        <EvpButton plain size="mini" text="copy" />
+        <EvpButton theme="text" $click={()=>clickCode(3)} plain size="mini" text="code" />
+        <EvpButton theme="text" size="mini" text="copy" />
       </>}>
         <label>Required :
           <EvpInput
@@ -299,8 +299,8 @@ If you like to show a right icon when validation success, you can assign resultI
 `}
 </Md>
       <Card toolBar={<>
-        <EvpButton $click={()=>clickCode(4)} plain size="mini" text="code" />
-        <EvpButton plain size="mini" text="copy" />
+        <EvpButton theme="text" $click={()=>clickCode(4)} plain size="mini" text="code" />
+        <EvpButton theme="text" size="mini" text="copy" />
       </>}>
         <label>Show result Icon by right :
             <EvpInput

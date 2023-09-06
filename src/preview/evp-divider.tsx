@@ -97,8 +97,8 @@ Attributes of "top", "right", "bottom", "left" mean the gap of the divider to su
       <EvpDivider style={{ border: '1px solid gray' }} 
       top={10} bottom={10} right={20} />
       <Card toolBar={<>
-        <EvpButton $click={()=>clickCode(1)} plain size="mini" text="code" />
-        <EvpButton plain size="mini" text="copy" />
+        <EvpButton theme="text" $click={()=>clickCode(1)} plain size="mini" text="code" />
+        <EvpButton theme="text" size="mini" text="copy" />
       </>} 
       style={{ marginTop: 20 }}
       contentStyle={{ padding: 0 }}/>
@@ -131,8 +131,8 @@ Attribute of "width" means the width of the divider line, not the divider contai
       <EvpDivider style={{ border: '1px solid gray' }}
       top={10} bottom={10} right={20} width={400} />
       <Card toolBar={<>
-        <EvpButton $click={()=>clickCode(2)} plain size="mini" text="code" />
-        <EvpButton plain size="mini" text="copy" />
+        <EvpButton theme="text" $click={()=>clickCode(2)} plain size="mini" text="code" />
+        <EvpButton theme="text" size="mini" text="copy" />
       </>} 
       style={{ marginTop: 20 }}
       contentStyle={{ padding: 0 }}/>
@@ -161,8 +161,8 @@ Attribute of "gap" means the gap between left and right and does not override at
       <EvpDivider style={{ border: '1px solid gray' }}
       top={10} bottom={10} width={400} left={10} gap={10} />
       <Card toolBar={<>
-        <EvpButton $click={()=>clickCode(3)} plain size="mini" text="code" />
-        <EvpButton plain size="mini" text="copy" />
+        <EvpButton theme="text" $click={()=>clickCode(3)} plain size="mini" text="code" />
+        <EvpButton theme="text" size="mini" text="copy" />
       </>} 
       style={{ marginTop: 20 }}
       contentStyle={{ padding: 0 }}/>
@@ -197,8 +197,8 @@ Attribute of "radius" makes you to customize the corner radius of the divider li
       type="solid"
       lineWidth={10} top={10} bottom={10} radius="round" />
       <Card toolBar={<>
-        <EvpButton $click={()=>clickCode(4)} plain size="mini" text="code" />
-        <EvpButton plain size="mini" text="copy" />
+        <EvpButton theme="text" $click={()=>clickCode(4)} plain size="mini" text="code" />
+        <EvpButton theme="text" size="mini" text="copy" />
       </>} 
       style={{ marginTop: 20 }}
       contentStyle={{ padding: 0 }}/>
@@ -241,8 +241,8 @@ You can assign any elements in the center of a divider line.
         Hello, World! <SvgIcons.Info color={'#CFCFCF'} />
       </EvpDivider>
       <Card toolBar={<>
-        <EvpButton $click={()=>clickCode(5)} plain size="mini" text="code" />
-        <EvpButton plain size="mini" text="copy" />
+        <EvpButton theme="text" $click={()=>clickCode(5)} plain size="mini" text="code" />
+        <EvpButton theme="text" size="mini" text="copy" />
       </>} 
       style={{ marginTop: 20 }}
       contentStyle={{ padding: 0 }}/>

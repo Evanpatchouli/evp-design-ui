@@ -96,8 +96,8 @@ If you want to disable some menu or menuitem, you can assign not-allowed attribu
 `}
 </Md>
       <Card toolBar={<>
-        <EvpButton $click={()=>clickCode(1)} plain size="mini" text="code" />
-        <EvpButton plain size="mini" text="copy" />
+        <EvpButton theme="text" $click={()=>clickCode(1)} plain size="mini" text="code" />
+        <EvpButton theme="text" size="mini" text="copy" />
       </>}>
         <EvpMenu title={
           <EvpRow>
@@ -158,8 +158,8 @@ If you want to navigate to a route while clicking, you can assign to the link at
 `}
 </Md>
       <Card toolBar={<>
-        <EvpButton $click={()=>clickCode(2)} plain size="mini" text="code" />
-        <EvpButton plain size="mini" text="copy" />
+        <EvpButton theme="text" $click={()=>clickCode(2)} plain size="mini" text="code" />
+        <EvpButton theme="text" size="mini" text="copy" />
       </>}>
         <EvpMenu title={
           <span style={{ fontWeight: 'bold' }}>Route Menu</span>
