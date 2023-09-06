@@ -14,6 +14,7 @@ import $WaterfallsH from './waterfalls-h';
 import $WaterfallsV from './waterfalls-v';
 import $Down from './down';
 import $Left from './left';
+import $Evp from './evp';
 import { ArrayLengthed, Indexable } from "../utils";
 import { EvpCursorRule, EvpWRule, EvpHRule } from "../typings";
 
@@ -67,6 +68,7 @@ export const WaterfallsH = $WaterfallsH;
 export const WaterfallsV = $WaterfallsV;
 export const Down = $Down;
 export const Left = $Left;
+export const Evp = $Evp;
 
 export type SvgIconType = 
 "" |
@@ -86,7 +88,8 @@ export type SvgIconType =
 "WaterfallsH" |
 "WaterfallsV" |
 "Down" |
-"Left";
+"Left" |
+"Evp";
 
 const SvgIcons = {
   "": undefined,
@@ -107,6 +110,7 @@ const SvgIcons = {
   "WaterfallsV": WaterfallsV,
   "Down": Down,
   "Left": Left,
+  "Evp": Evp
 }
 
 export default SvgIcons;

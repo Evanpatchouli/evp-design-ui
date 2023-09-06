@@ -23,7 +23,8 @@ export type IconType =
 "waterfalls_h" | 
 "waterfalls_v" |
 "down" |
-"left";
+"left" |
+"evp";
 
 export type EvpIconProps = EvpIconPropsType & {[x: string]: any};
 
@@ -47,6 +48,7 @@ export interface EvpIconPropsType {
   waterfalls_v?: boolean;
   down?: boolean;
   left?: boolean;
+  evp?: boolean,
   passwords?: boolean;
   $click?: React.MouseEventHandler<HTMLDivElement>;
   "style"?: React.CSSProperties;
@@ -95,6 +97,7 @@ const IconMap: IndexableFuzzy<SvgIconType> = {
   "WATERFALLS_V": "WaterfallsV",
   "DOWN": "Down",
   "LEFT": "Left",
+  "EVP": "Evp"
 }
 
 /** EvpIcon: not raw SVG but with a `<div><div/>` wrapper, key's value is props.name or the unique icon key
