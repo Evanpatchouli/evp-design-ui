@@ -180,12 +180,21 @@ If you want to navigate to a route while clicking, you can assign to the link at
 `}
 </Tsx>
 : void 0}
+<Md>
+{`
+## ItemIndent
+
+If you want to indent the menu item, you can assign to the itemIndent attribute. 
+
+Default is no indent, if you set it to true, it will be indented at 18px. You can also set it to a valid number or string.
+`}
+</Md>
       <Card toolBar={<>
         <EvpButton theme='text' $click={()=>clickCode(3)} plain size="mini" text="code" />
         <EvpButton theme='text' size="mini" text="copy" />
       </>}>
         <EvpMenu title={
-          <span style={{ fontWeight: 'bold' }}>Route Menu</span>
+          <span style={{ fontWeight: 'bold' }}>Menu ItemIndent</span>
         }>
           <EvpMenuItem icon="user">User</EvpMenuItem>
           <EvpMenu submenu itemIndent icon="help" title="Help">
@@ -193,6 +202,20 @@ If you want to navigate to a route while clicking, you can assign to the link at
           </EvpMenu>
         </EvpMenu>
       </Card>
+{showCode[3]?
+<Tsx>
+{`
+<EvpMenu title={
+  <span style={{ fontWeight: 'bold' }}>Route Menu</span>
+}>
+  <EvpMenuItem icon="user">User</EvpMenuItem>
+  <EvpMenu submenu itemIndent icon="help" title="Help">
+    <EvpMenuItem icon="user">User</EvpMenuItem>
+  </EvpMenu>
+</EvpMenu>
+`}
+</Tsx>
+: void 0}
 <Md>
 {`
 ## Api
@@ -220,6 +243,9 @@ If you want to navigate to a route while clicking, you can assign to the link at
 - **link** ? : route-link to where
   + default : undefined
   + type : string
+- **itemIndent** ? : indent of submenu items
+  + default : undefined when not assigned / 18px when true
+  + type : boolean | number | string
 `}
 </Md>
       <EvpButton position="absolute" right={40} bottom={0}
