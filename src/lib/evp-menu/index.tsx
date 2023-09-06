@@ -91,7 +91,7 @@ export default function EvpMenu(props: EvpMenuProps) {
             {typeof props.title === 'string'? 
               (
                 <>
-                  {icon?<EvpIcon name={icon} radius={18} pd={[0,20,0,0]}></EvpIcon>:null}
+                  {icon?<EvpIcon name={icon} radius={18} pd={[0,12,0,0]}></EvpIcon>:null}
                   <div>{props.title}</div>
                 </>
               )
@@ -106,7 +106,7 @@ export default function EvpMenu(props: EvpMenuProps) {
       <div className={`evp-menu-items ${childrenWrapperClass}`} ref={ref} style={{
         minHeight: height,
         // @ts-ignore
-        '--itemIndent': props.submenu? props.itemIndent? typeof props.itemIndent === 'number'? `${props.itemIndent}px` : typeof props.itemIndent === 'string'? props.itemIndent : '14px' : 0 : 0
+        '--itemIndent': props.submenu? props.itemIndent? typeof props.itemIndent === 'number'? `${props.itemIndent}px` : typeof props.itemIndent === 'string'? props.itemIndent : '18px' : 0 : 0
       }}>
         {props.children}
       </div>

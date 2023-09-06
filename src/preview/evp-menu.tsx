@@ -101,7 +101,7 @@ If you want to disable some menu or menuitem, you can assign not-allowed attribu
       </>}>
         <EvpMenu title={
           <EvpRow>
-            <SvgIcons.All radius={18} pd={[0,20,0,0]}/>
+            <SvgIcons.All radius={18} pd={[0,12,0,0]}/>
             <h4>Main Menu</h4>
           </EvpRow>
         }
@@ -127,7 +127,7 @@ If you want to disable some menu or menuitem, you can assign not-allowed attribu
 {`
 <EvpMenu title={
   <EvpRow>
-    <SvgIcons.All radius={18} pd={[0,20,0,0]}/>
+    <SvgIcons.All radius={18} pd={[0,12,0,0]}/>
     <h4>Main Menu</h4>
   </EvpRow>
 }
@@ -180,6 +180,19 @@ If you want to navigate to a route while clicking, you can assign to the link at
 `}
 </Tsx>
 : void 0}
+      <Card toolBar={<>
+        <EvpButton theme='text' $click={()=>clickCode(3)} plain size="mini" text="code" />
+        <EvpButton theme='text' size="mini" text="copy" />
+      </>}>
+        <EvpMenu title={
+          <span style={{ fontWeight: 'bold' }}>Route Menu</span>
+        }>
+          <EvpMenuItem icon="user">User</EvpMenuItem>
+          <EvpMenu submenu itemIndent icon="help" title="Help">
+            <EvpMenuItem icon="user">User</EvpMenuItem>
+          </EvpMenu>
+        </EvpMenu>
+      </Card>
 <Md>
 {`
 ## Api

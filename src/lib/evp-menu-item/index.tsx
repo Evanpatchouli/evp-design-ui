@@ -41,7 +41,7 @@ export default function EvpMenuItem(props: EvpMenuItemProps) {
       >
         {(typeof props.title !== 'object')? 
           <Fragment>
-            {icon?<EvpIcon name={icon} radius={18} pd={[0,20,0,0]}></EvpIcon>:null}
+            {icon?<EvpIcon name={icon} radius={18} pd={[0,12,0,0]}></EvpIcon>:null}
             <div>{props.title??props.children}</div>
           </Fragment>
             :
