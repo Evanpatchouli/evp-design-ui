@@ -22,19 +22,21 @@
   background-color: #81D4FA25;
 }
 
-.evp-menu-children {
-  transition: all 1s ease-in-out;
+.evp-menu-children-wrapper {
+  transition: all 0.3s ease-in-out;
   max-height: 100vh;
 
-  will-change: min-height;
-  will-change: max-height;
+  will-change: height;
 
   &.close {
-    min-height: 0;
-    max-height: 0;
+    height: 0px !important;
   }
 
   > * {
     padding-left: var(--itemIndent) !important;
   }
+}
+
+.evp-menu-children {
+  padding-left: 0px;
 }

@@ -50,17 +50,13 @@ export default function EvpMenu(props: EvpMenuProps) {
     }
   }
 
-  useEffect(()=>{
-    if (ref.current) {
-      setHeight(ref.current.offsetHeight)
-    }
-  },[expand])
-
   const ref = useRef<HTMLDivElement>(null);
 
   const [height, setHeight] = useState(0);
 
   useEffect(()=>{
+    console.log(ref.current?.clientHeight)
+    console.log(ref.current?.offsetHeight)
     if( expand ) {
       setHeight(ref.current?.offsetHeight as number);
     } else {
@@ -68,7 +64,13 @@ export default function EvpMenu(props: EvpMenuProps) {
     }
   }, [expand])
 
-  const childrenWrapperClass = props.submenu? `evp-menu-children ${expand?'':'close'}` : '';
+  useEffect(()=>{
+    if (ref.current) {
+      setHeight(ref.current.offsetHeight)
+    }
+  }, [expand])
+
+  const childrenWrapperClass = props.submenu? `evp-menu-children-wrapper ${expand?'':'close'}` : '';
 
   const disabled = props["not-allowed"]? 'evp-disabled' : '';
 
@@ -86,7 +88,7 @@ export default function EvpMenu(props: EvpMenuProps) {
       <EvpRow alignItems="space-between"
       class="evp-menu-title"
       $click={$click}>
-        <EvpRow h={50} pd={[0,0,0,8]}>
+        <EvpRow h={50} pd={[0,0,0,16]}>
             {typeof props.title === 'string'? 
               (
                 <>
@@ -99,15 +101,15 @@ export default function EvpMenu(props: EvpMenuProps) {
             }
           </EvpRow>
           {props.submenu?(
-            <EvpIcon strokeWidth={2} radius={18} pd={[0,4,0,0]} name={expand?'down':'left'} />
+            <EvpIcon strokeWidth={2} radius={18} pd={[0,16,0,0]} name={expand?'down':'left'} />
           ):null}
-      </EvpRow>
-      <div className={`${childrenWrapperClass}`} ref={ref} style={{
-        minHeight: height,
-        // @ts-ignore
-        '--itemIndent': props.submenu? props.itemIndent? typeof props.itemIndent === 'number'? `${props.itemIndent}px` : typeof props.itemIndent === 'string'? props.itemIndent : '18px' : 0 : 0
-      }}>
-        {props.children}
+        </EvpRow>
+        <div className={`${childrenWrapperClass}`} style={{
+          height: props.submenu? height : void 0,
+          // @ts-ignore
+          '--itemIndent': props.submenu? props.itemIndent? typeof props.itemIndent === 'number'? `${props.itemIndent}px` : typeof props.itemIndent === 'string'? props.itemIndent : '18px' : 0 : 0
+        }}>
+        <div className={`evp-menu-children`} ref={ref}>{props.children}</div>
       </div>
     </EvpCol>
   );
