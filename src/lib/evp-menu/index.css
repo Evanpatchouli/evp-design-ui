@@ -33,8 +33,8 @@
     min-height: 0;
     max-height: 0;
   }
-}
 
-.evp-menu-items > * {
-  padding-left: var(--itemIndent);
+  > * {
+    padding-left: var(--itemIndent) !important;
+  }
 }

@@ -6,10 +6,9 @@ import { Color } from "../constant";
 import EvpBaseProps from "../props";
 import AllParser from "../utils/props.parser";
 import { useNavigate } from "react-router";
-
-import './index.scss'
 import { EvpWRule, EvpHRule } from "../typings";
 
+import './index.css'
 
 export interface EvpMenuProps extends EvpBaseProps {
   /** The following contents of this menu, usually to be of `EvpMenuItem` */
@@ -103,7 +102,7 @@ export default function EvpMenu(props: EvpMenuProps) {
             <EvpIcon strokeWidth={2} radius={18} pd={[0,4,0,0]} name={expand?'down':'left'} />
           ):null}
       </EvpRow>
-      <div className={`evp-menu-items ${childrenWrapperClass}`} ref={ref} style={{
+      <div className={`${childrenWrapperClass}`} ref={ref} style={{
         minHeight: height,
         // @ts-ignore
         '--itemIndent': props.submenu? props.itemIndent? typeof props.itemIndent === 'number'? `${props.itemIndent}px` : typeof props.itemIndent === 'string'? props.itemIndent : '18px' : 0 : 0
