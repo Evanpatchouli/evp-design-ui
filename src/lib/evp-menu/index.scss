@@ -1,3 +1,28 @@
+.evp-menu {
+  padding-left: 8px;
+}
+
+.evp-menu.sub {
+  padding-left: 0px;
+}
+
+.evp-menu-title-content {
+  display: flex;
+  width: 100%;
+}
+
+.evp-menu-title {
+  border-bottom: 1px solid var(--PaleGray);
+  display: flex;
+  justify-content: space-between;
+}
+
+.evp-menu-title:hover {
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background-color: #81D4FA25;
+}
+
 .evp-menu-children {
   transition: all 1s ease-in-out;
   max-height: 100vh;
@@ -9,4 +34,8 @@
     min-height: 0;
     max-height: 0;
   }
+}
+
+.evp-menu-items > * {
+  padding-left: var(--itemIndent);
 }

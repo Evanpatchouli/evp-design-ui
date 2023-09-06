@@ -16,7 +16,8 @@ export interface EvpMenuProps extends EvpBaseProps {
   children?: React.ReactNode,
   /** Title text could be a string or JSX.Element */
   title?: string | JSX.Element,
-  submenu?: boolean
+  submenu?: boolean,
+  itemIndent?: boolean | number | string,
   /** Default width is 260px */
   w?: EvpWRule,
   /** Default height is `100%`, the unit is number when assigned with a number*/
@@ -74,7 +75,7 @@ export default function EvpMenu(props: EvpMenuProps) {
 
   return (
     <EvpCol alignItems="left"
-      class={`${disabled} ${props.class??''}`.trim()}
+      class={`evp-menu ${props.submenu?'sub':''} ${disabled} ${props.class??''}`.trim()}
       pd={props.pd}
       mg={props.mg}
       w={props.w??'260px'}
@@ -84,25 +85,28 @@ export default function EvpMenu(props: EvpMenuProps) {
         ...$props.style
       }}>
       <EvpRow alignItems="space-between"
+      class="evp-menu-title"
       $click={$click}>
-        <EvpRow h={50} pd={[0,0,0,20]}>
-          {typeof props.title === 'string'? 
-            (
-              <>
-                {icon?<EvpIcon name={icon} radius={18} pd={[0,20,0,0]}></EvpIcon>:null}
-                <div>{props.title}</div>
-              </>
-            )
-              :
-            (props.title)
-          }
-        </EvpRow>
-        {props.submenu?(
-          <EvpIcon strokeWidth={2} radius={18} pd={[0,16,0,0]} name={expand?'down':'left'} />
-        ):null}
+        <EvpRow h={50} pd={[0,0,0,8]}>
+            {typeof props.title === 'string'? 
+              (
+                <>
+                  {icon?<EvpIcon name={icon} radius={18} pd={[0,20,0,0]}></EvpIcon>:null}
+                  <div>{props.title}</div>
+                </>
+              )
+                :
+              (props.title)
+            }
+          </EvpRow>
+          {props.submenu?(
+            <EvpIcon strokeWidth={2} radius={18} pd={[0,4,0,0]} name={expand?'down':'left'} />
+          ):null}
       </EvpRow>
-      <div className={childrenWrapperClass} ref={ref} style={{
-        minHeight: height
+      <div className={`evp-menu-items ${childrenWrapperClass}`} ref={ref} style={{
+        minHeight: height,
+        // @ts-ignore
+        '--itemIndent': props.submenu? props.itemIndent? typeof props.itemIndent === 'number'? `${props.itemIndent}px` : typeof props.itemIndent === 'string'? props.itemIndent : '14px' : 0 : 0
       }}>
         {props.children}
       </div>

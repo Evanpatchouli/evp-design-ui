@@ -39,7 +39,7 @@ function App() {
       <div className='Main'>
         <div className='evp NavMenu'>
           <EvpMenu border='none' link={'/'} title={'General'}>
-            <EvpMenu submenu title={'Layout'}>
+            <EvpMenu submenu itemIndent title={'Layout'}>
               <EvpMenuItem link={'/components/evp-col'} title={'EvpCol'} />
               <EvpMenuItem link={'/components/evp-row'} title={'EvpRow'} />
               <EvpMenuItem link={'/components/evp-dom'} title={'EvpDom'} />
