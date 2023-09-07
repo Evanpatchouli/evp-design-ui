@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/evp-design-ui/static/css/main.7abbeeab.css",
-    "main.js": "/evp-design-ui/static/js/main.05b7a833.js",
+    "main.js": "/evp-design-ui/static/js/main.5f7bfb96.js",
     "static/js/787.b426a438.chunk.js": "/evp-design-ui/static/js/787.b426a438.chunk.js",
     "static/media/shopcart.svg": "/evp-design-ui/static/media/shopcart.c8df4d63c66b2a93f74a467d40ee5642.svg",
     "index.html": "/evp-design-ui/index.html",
     "main.7abbeeab.css.map": "/evp-design-ui/static/css/main.7abbeeab.css.map",
-    "main.05b7a833.js.map": "/evp-design-ui/static/js/main.05b7a833.js.map",
+    "main.5f7bfb96.js.map": "/evp-design-ui/static/js/main.5f7bfb96.js.map",
     "787.b426a438.chunk.js.map": "/evp-design-ui/static/js/787.b426a438.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7abbeeab.css",
-    "static/js/main.05b7a833.js"
+    "static/js/main.5f7bfb96.js"
   ]
 }
