@@ -52,7 +52,7 @@ usage:
       </Md>
       <Card>
         <EvpDom
-          props={{
+          {...{
             h: 100, w: 300,
             border: '1px dotted black'
           }}
@@ -62,11 +62,11 @@ usage:
       <Tsx>
 {`
 <EvpDom
-  props={{
+  {...{
     h: 100, w: 300,
     border: '1px dotted black'
   }}
->
+  >
 </EvpDom>
 `}
       </Tsx>

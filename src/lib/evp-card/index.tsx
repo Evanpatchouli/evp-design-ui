@@ -34,15 +34,13 @@ export default function EvpCard(props: EvpCardProps) {
   }
 
   return (
-    <EvpDom
-      props={{
-        style: {
-          flexDirection: flexDirectionMap[toolBarPosition],
-        },
-        ...props,
-        class: `evp evp-card evp-base-shadow ${props.class} ?? ""`.trim(),
-      }}
-    >
+    <EvpDom {...{
+      style: {
+        flexDirection: flexDirectionMap[toolBarPosition],
+      },
+      ...props,
+      class: `evp evp-card evp-base-shadow ${props.class} ?? ""`.trim(),
+    }}>
       <div
         className={`evp-card-content ${props.contentClass}`.trim()}
         style={{ ...props.contentStyle }}

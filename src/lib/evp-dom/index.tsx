@@ -9,14 +9,11 @@ export interface BaseDomProps {
   style?: React.CSSProperties
 }
 
-export type EvpDomProps = {
-  props?: EvpBaseProps,
-  children?: React.ReactNode
-}
+export type EvpDomProps = EvpBaseProps
 
 export default function EvpDom($props: EvpDomProps) {
   // console.log('EvpDom.props:', $props)
-  const props = AllParser($props.props);
+  const props = AllParser($props);
   // console.log('EvpDom.props after parsed:', props);
   const event = props.event;
   return(

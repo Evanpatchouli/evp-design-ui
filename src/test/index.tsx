@@ -5,8 +5,7 @@ export default function Test(props: EvpBaseProps) {
   console.log('Test.props:', props)
   return(
     <>
-      <EvpDom
-      props={props}
+      <EvpDom {...props}
       >
         <div>{props.children}</div>
       </EvpDom>

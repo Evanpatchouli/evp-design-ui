@@ -125,7 +125,7 @@ export default function EvpPopover(props: EvpPopoverProps) {
         id={props.id}
         style={{ display, left: left(), top: top() }}
       >
-        <EvpDom props={{
+        <EvpDom {...{
           props,
           class: `evp-popover-content ${props.class}`.trim()
         }}>
