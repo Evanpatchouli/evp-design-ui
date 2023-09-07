@@ -6,6 +6,7 @@ import EvpBaseProps from "../props";
 import AllParser from "../utils/props.parser";
 import { useNavigate } from "react-router";
 import './index.scss'
+import EvpCol from "../evp-col";
 
 export interface EvpMenuItemProps extends EvpBaseProps {
   children?: React.ReactNode,
@@ -32,7 +33,7 @@ export default function EvpMenuItem(props: EvpMenuItemProps) {
   const disabled = props["not-allowed"]? 'evp-disabled' : '';
 
   return (
-    <EvpRow alignItems="space-between"
+    <EvpCol alignItems="space-between"
     class={`evp-menu-item ${disabled} ${props.class??''}`.trim()}
     style={$props.style}
     $click={$click}
@@ -48,6 +49,6 @@ export default function EvpMenuItem(props: EvpMenuItemProps) {
           (props.title??<div>{props.children}</div>)
         }
       </EvpRow>
-  </EvpRow>
+  </EvpCol>
   );
 }

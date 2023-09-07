@@ -25,18 +25,12 @@
 .evp-menu-children-wrapper {
   transition: all 0.3s ease-in-out;
   max-height: 100vh;
-
   will-change: height;
-
-  &.close {
-    height: 0px !important;
-  }
-
-  > * {
-    padding-left: var(--itemIndent) !important;
-  }
+}
+.evp-menu-children-wrapper.close {
+  height: 0px !important;
 }
 
-.evp-menu-children {
-  padding-left: 0px;
+.evp-menu-children > .evp-menu-item {
+  padding-left: var(--item-indent);
 }
