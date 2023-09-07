@@ -1,7 +1,6 @@
 import EvpDom from "../evp-dom";
 import EvpBaseProps from "../props";
 import { EvpFlexDirectionRule } from "../typings";
-import "./index.scss";
 
 export interface EvpCardProps extends EvpBaseProps {
   children: React.ReactNode;

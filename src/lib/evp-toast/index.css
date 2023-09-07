@@ -1,0 +1,40 @@
+.evp-toast {
+  transform: translate(0%, 50%);
+  box-shadow: var(--base-shadow);
+  background-color: var(--FloralWhite);
+  border-radius: 20px;
+  display: flex;
+  height: 40px;
+  justify-content: left;
+  align-items: center;
+}
+.evp-toast > * {
+  float: left;
+}
+.evp-toast > *:first-child {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+.evp-toast > *:last-child {
+  clear: right;
+  padding-right: 12px;
+  padding-bottom: 3px;
+}
+
+.evp-toasts-container {
+  z-index: 9999;
+  position: fixed;
+  top: 0%;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0);
+  pointer-events: none;
+  overflow: hidden;
+}
+.evp-toasts-container > * {
+  margin-bottom: 20px;
+}

@@ -1,8 +1,6 @@
 import SvgIcons, { SvgIcon, SvgIconType } from './svg.icons';
 import { ArrayLengthed, Hintable, IndexableFuzzy } from '../utils';
 import { propsParser } from '../utils/props.parser';
-
-import './index.css';
 import { EvpCursorRule, EvpWRule, EvpHRule } from '../typings';
 
 export type IconType = 

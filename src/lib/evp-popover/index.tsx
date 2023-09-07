@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import "./index.css";
 import EvpBaseProps from "../props";
 import EvpDom from "../evp-dom";
 

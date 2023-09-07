@@ -1,7 +1,6 @@
 import React from 'react';
 import EvpFlexbarContentfixed from './content-fixed';
 import EvpFlexbarLabelfixed from './label-fixed';
-import './index.scss';
 import { EvpCursorRule } from '../typings';
 import { Hintable } from '../utils';
 

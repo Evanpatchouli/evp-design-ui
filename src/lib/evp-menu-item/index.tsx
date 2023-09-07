@@ -5,7 +5,6 @@ import { IconType } from "../evp-icon";
 import EvpBaseProps from "../props";
 import AllParser from "../utils/props.parser";
 import { useNavigate } from "react-router";
-import './index.scss'
 import EvpCol from "../evp-col";
 
 export interface EvpMenuItemProps extends EvpBaseProps {

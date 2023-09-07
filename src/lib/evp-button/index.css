@@ -1,0 +1,263 @@
+.evp.evp-button {
+  border-radius: var(--radius);
+  background-color: #fff;
+}
+.evp.evp-button:hover {
+  cursor: pointer;
+}
+
+.evp.evp-button.white {
+  border: 1px solid #fff;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  background-color: #fff;
+  color: #131313;
+}
+.evp.evp-button.white:hover {
+  transition: background-color 0.3s ease;
+  background-color: #e6e6e6;
+}
+.evp.evp-button.white:active {
+  transition: background-color 0.1s ease;
+  background-color: #aaaaaa;
+}
+.evp.evp-button.primary {
+  border: 1px solid var(--Blue);
+  background-color: var(--Blue);
+  color: #fff;
+}
+.evp.evp-button.primary:hover {
+  transition: background-color 0.3s ease;
+  border: 1px solid #4d4dff;
+  background-color: #4d4dff;
+}
+.evp.evp-button.primary:active {
+  transition: background-color 0.1s ease;
+  border: 1px solid #8282ff;
+  background-color: #8282ff;
+}
+.evp.evp-button.danger {
+  border: 1px solid var(--Red);
+  background-color: var(--Red);
+  color: #fff;
+}
+.evp.evp-button.danger:hover {
+  transition: background-color 0.3s ease;
+  border: 1px solid #ff3838;
+  background-color: #ff3838;
+}
+.evp.evp-button.danger:active {
+  transition: background-color 0.1s ease;
+  border: 1px solid #ff7575;
+  background-color: #ff7575;
+}
+.evp.evp-button.warning {
+  border: 1px solid var(--Orange);
+  background-color: var(--Orange);
+  color: #fff;
+}
+.evp.evp-button.warning:hover {
+  transition: background-color 0.3s ease;
+  border: 1px solid #fcb22a;
+  background-color: #fcb22a;
+}
+.evp.evp-button.warning:active {
+  transition: background-color 0.1s ease;
+  border: 1px solid #fcce7a;
+  background-color: #fcce7a;
+}
+.evp.evp-button.success {
+  border: 1px solid var(--Green);
+  background-color: var(--Green);
+  color: #fff;
+}
+.evp.evp-button.success:hover {
+  transition: background-color 0.3s ease;
+  border: 1px solid #3dff3d;
+  background-color: #3dff3d;
+}
+.evp.evp-button.success:active {
+  transition: background-color 0.1s ease;
+  border: 1px solid #9fff9f;
+  background-color: #9fff9f;
+}
+.evp.evp-button.info {
+  border: 1px solid #87CEEB;
+  background-color: #87CEEB;
+  color: #fff;
+}
+.evp.evp-button.info:hover {
+  transition: background-color 0.3s ease;
+  border: 1px solid #aad9ec;
+  background-color: #aad9ec;
+}
+.evp.evp-button.info:active {
+  transition: background-color 0.1s ease;
+  border: 1px solid #d6e3e9;
+  background-color: #d6e3e9;
+}
+.evp.evp-button.dark {
+  border: 1px solid var(--Dark);
+  background-color: var(--Dark);
+  color: #fff;
+}
+.evp.evp-button.dark:hover {
+  transition: background-color 0.3s ease;
+  border: 1px solid #292929;
+  background-color: #292929;
+}
+.evp.evp-button.dark:active {
+  transition: background-color 0.1s ease;
+  border: 1px solid #5c5c5c;
+  background-color: #5c5c5c;
+}
+.evp.evp-button.text {
+  border: none;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  background-color: var(--White);
+  color: #0000FF;
+  box-shadow: none;
+}
+.evp.evp-button.text:hover {
+  transition: background-color 0.3s ease;
+  background-color: #e6e6e6;
+}
+.evp.evp-button.text:active {
+  transition: background-color 0.1s ease;
+  background-color: #aaaaaa;
+}
+
+/** Plain Button*/
+.evp.evp-button.plain {
+  background-color: var(--White);
+}
+.evp.evp-button.plain:hover {
+  transition: background-color 0.3s ease;
+  background-color: #ebebeb;
+}
+.evp.evp-button.plain.white {
+  color: var(--Dark);
+}
+.evp.evp-button.plain.white:active {
+  transition: background-color 0.1s ease;
+  background-color: #bdbdbd;
+}
+.evp.evp-button.plain.primary {
+  color: var(--Blue);
+}
+.evp.evp-button.plain.primary:active {
+  transition: background-color 0.1s ease;
+  background-color: #cfcfff;
+}
+.evp.evp-button.plain.danger {
+  color: var(--Red);
+}
+.evp.evp-button.plain.danger:active {
+  transition: background-color 0.1s ease;
+  background-color: #ffd3d3;
+}
+.evp.evp-button.plain.warning {
+  color: var(--Orange);
+}
+.evp.evp-button.plain.warning:active {
+  transition: background-color 0.1s ease;
+  background-color: #ffe0bd;
+}
+.evp.evp-button.plain.success {
+  color: var(--Green);
+}
+.evp.evp-button.plain.success:active {
+  transition: background-color 0.1s ease;
+  background-color: #b8ffb8;
+}
+.evp.evp-button.plain.info {
+  color: #87CEEB;
+}
+.evp.evp-button.plain.info:active {
+  transition: background-color 0.1s ease;
+  background-color: #baebff;
+}
+.evp.evp-button.plain.dark {
+  color: var(--Dark);
+}
+.evp.evp-button.plain.dark:active {
+  transition: background-color 0.1s ease;
+  background-color: #bebebe;
+}
+.evp.evp-button.plain.text {
+  color: var(--Blue);
+}
+.evp.evp-button.plain.text:active {
+  transition: background-color 0.1s ease;
+  background-color: #fff;
+}
+
+/** Button Size*/
+.evp.evp-button.mini {
+  height: var(--btn-mini-h);
+  font-size: var(--text-size-mini);
+  border-radius: var(--radius-mini);
+  padding: 0px calc(var(--btn-mini-h) / 2);
+}
+.evp.evp-button.mini.circle {
+  width: var(--btn-mini-h);
+  padding: calc(var(--btn-mini-h) / 2);
+}
+.evp.evp-button.small {
+  height: var(--btn-small-h);
+  font-size: var(--text-size-small);
+  border-radius: var(--radius-small);
+  padding: 0px calc(var(--btn-small-h) / 2);
+}
+.evp.evp-button.small.circle {
+  width: var(--btn-small-h);
+  padding: calc(var(--btn-small-h) / 2);
+}
+.evp.evp-button.middle {
+  height: var(--btn-h);
+  font-size: var(--text-size);
+  padding: 0px calc(var(--btn-h) / 2);
+}
+.evp.evp-button.middle.circle {
+  width: var(--btn-h);
+  padding: calc(var(--btn-h) / 2);
+}
+.evp.evp-button.large {
+  height: var(--btn-large-h);
+  font-size: var(--text-size-large);
+  border-radius: var(--radius-large);
+  padding: 0px calc(var(--btn-large-h) / 2);
+}
+.evp.evp-button.large.circle {
+  width: var(--btn-large-h);
+  padding: calc(var(--btn-large-h) / 2);
+}
+.evp.evp-button.huge {
+  height: var(--btn-huge-h);
+  font-size: var(--text-size-huge);
+  border-radius: var(--radius-huge);
+  padding: 0px calc(var(--btn-huge-h) / 2);
+}
+.evp.evp-button.huge.circle {
+  width: var(--btn-huge-h);
+  padding: calc(var(--btn-huge-h) / 2);
+}
+
+/** Button Shape*/
+.evp.evp-button.square {
+  border-radius: 0;
+}
+.evp.evp-button.circle {
+  overflow: hidden;
+  border-radius: var(--radius-circle);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+.evp.evp-button.round {
+  border-radius: var(--radius-round);
+}
+
+/** shadow */

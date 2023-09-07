@@ -1,8 +1,5 @@
 "use client";
 
-import './variable.css'
-import './global.css'
-
 export { type default as EvpBaseProps } from "./props";
 
 export {

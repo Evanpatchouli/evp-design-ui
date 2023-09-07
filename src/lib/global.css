@@ -1,4 +1,16 @@
 @import url(./variable.css);
+@import url(./evp-anchor/index.css);
+@import url(./evp-button/index.css);
+@import url(./evp-card//index.css);
+@import url(./evp-divider/index.css);
+@import url(./evp-flexbar/index.css);
+@import url(./evp-input/index.css);
+@import url(./evp-menu/index.css);
+@import url(./evp-menu-item/index.css);
+@import url(./evp-msg/index.css);
+@import url(./evp-popover/index.css);
+@import url(./evp-toast/index.css);
+@import url(./evp-icon/index.css);
 
 .evp {
   font-size: var(--text-size);

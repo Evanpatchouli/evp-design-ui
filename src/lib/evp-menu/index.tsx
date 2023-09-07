@@ -8,8 +8,6 @@ import AllParser from "../utils/props.parser";
 import { useNavigate } from "react-router";
 import { EvpWRule, EvpHRule } from "../typings";
 
-import "./index.css";
-
 export interface EvpMenuProps extends EvpBaseProps {
   /** The following contents of this menu, usually to be of `EvpMenuItem` */
   children?: React.ReactNode;

@@ -6,7 +6,6 @@ import { Color } from '../constant';
 import Close from '../evp-icon/close';
 import { nanoid } from 'nanoid';
 import store, { MsgState } from './store';
-import './index.css';
 import { IndexableFuzzy } from '../typings';
 
 type EvpMsgType = 'info' | 'warn' | 'error' | 'success';

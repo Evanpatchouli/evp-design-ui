@@ -1,5 +1,4 @@
 import { useRef } from 'react';
-import './index.css';
 import { Color } from '../constant';
 
 export type EvpDividerProps = {

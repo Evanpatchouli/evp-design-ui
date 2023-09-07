@@ -6,9 +6,6 @@ import EvpRow from "../evp-row";
 import EvpCol from "../evp-col";
 import { Color } from "../constant";
 
-import "./index.css";
-
-
 export type EvpInputRule = {
   /** default color is "red" */
   color?: string

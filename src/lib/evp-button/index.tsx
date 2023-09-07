@@ -3,8 +3,6 @@ import AllParser from "../utils/props.parser";
 import EvpBaseProps from "../props";
 import { useNavigate } from "react-router";
 
-import './index.scss';
-
 export type EvpButtonProps = EvpButtonSpecProps & EvpBaseProps;
 
 interface EvpButtonSpecProps {
