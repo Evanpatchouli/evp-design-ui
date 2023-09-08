@@ -3,12 +3,15 @@ import './test.css'
 import EvpFlexbarContentfixed from '@/lib/evp-flexbar/content-fixed'
 import EvpDivider from '@/lib/evp-divider'
 import { observer } from "mobx-react";
-import { Anchor, Button, EvpRow, Input, Toast } from '@/lib'
+import { Anchor, Button, EvpButton, EvpRow, Input, Toast } from '@/lib'
 import useMobx from '@/store/hooks';
+import EvpForm from '@/lib/evp-form';
+import { useRef } from 'react';
+import useForm from '@/lib/evp-form/hooks';
 
 export default function TestViewView() {
   const store = useMobx("store");
-
+  const formRef = useForm();
   return(
     <div className="preview-container" id='first'>
       <h4>圆形 ( circle )</h4>
@@ -105,10 +108,17 @@ export default function TestViewView() {
         }}>Reverse Theme</Button>
       </Card>
       <Card>
-        <form>
-          <Input required label="用户名" labelWidth={60} />
+        <EvpForm formRef={formRef} $submit={(e)=>{
+          console.log(formRef)
+        }}>
+          <Input required label="用户名" rule={{
+            smartTrigger: false,
+            trigger: 'onSubmit',
+            required: { on: true, val: true, msg: '用户名不能为空' },
+          }} labelWidth={60} />
           <Input required label="密码" labelWidth={60} />
-        </form>
+          <EvpButton type="submit" text='提交' />
+        </EvpForm>
       </Card>
     </div>
   )
