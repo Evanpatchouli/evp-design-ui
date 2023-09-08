@@ -3,16 +3,16 @@ import './test.css'
 import EvpFlexbarContentfixed from '@/lib/evp-flexbar/content-fixed'
 import EvpDivider from '@/lib/evp-divider'
 import { observer } from "mobx-react";
-import { Anchor, Button, EvpRow, Toast } from '@/lib'
+import { Anchor, Button, EvpRow, Input, Toast } from '@/lib'
 import useMobx from '@/store/hooks';
 
 export default function TestViewView() {
   const store = useMobx("store");
 
   return(
-    <div className="Test" id='first'>
+    <div className="preview-container" id='first'>
       <h4>圆形 ( circle )</h4>
-      <div className="evp evp-base-shadow">
+      <Card>
         <svg version='1.1'style={{ border: '1px solid black' }} 
         width={50}
         height={50}
@@ -24,9 +24,15 @@ export default function TestViewView() {
           strokeWidth={1}  // 描边宽度
           stroke='#000'  // 描边颜色
           fill='none'  // 封闭图形的填充颜色
-        />
+        >
+          <circle
+          cx={20}
+          cy={20}
+          stroke='#000'  // 描边颜色
+          ></circle>
+        </circle>
         </svg>
-      </div>
+      </Card>
       <h4>矩形 ( rect )</h4>
       <Card>
         <svg version='1.1' style={{ border: '1px solid black' }} 
@@ -75,7 +81,7 @@ export default function TestViewView() {
       </Card>
       <Card>
         <EvpDivider />
-        <EvpDivider>我姓石</EvpDivider>
+        <EvpDivider>我是分界线</EvpDivider>
       </Card>
       <Card>
         <EvpRow>
@@ -99,7 +105,10 @@ export default function TestViewView() {
         }}>Reverse Theme</Button>
       </Card>
       <Card>
-        
+        <form>
+          <Input required label="用户名" labelWidth={60} />
+          <Input required label="密码" labelWidth={60} />
+        </form>
       </Card>
     </div>
   )

@@ -43,6 +43,10 @@ export interface EvpInputProps extends BaseDomProps {
   label?: string | JSX.Element;
   /** **Label font-Size:** default value is 14px */
   labelSize?: string;
+  labelWidth?: number | string;
+  labelAlign?: 'left' | 'center' | 'right';
+  /** Whether to show a required `*` character, this is `only` a character not a validation! */
+  required?: boolean,
   name?: string;
   placeholder?: string;
   type?: 'text';
@@ -186,6 +190,8 @@ export default function EvpInput(props: EvpInputProps) {
 
   const showRightIcon = props.resultIcon?? false;
 
+  const labelWidth = props.labelWidth? typeof props.labelWidth === 'number'? `${props.labelWidth}px` : props.labelWidth : void 0;
+  const labelAlign = props.labelAlign?? 'left';
   const labelRef = useRef<HTMLDivElement>(null);
 
   const calcMsgLeft = () => {
@@ -196,8 +202,13 @@ export default function EvpInput(props: EvpInputProps) {
     <EvpCol mg={[4,0,4,0]} alignItems='flex-start'>
       <EvpRow>
         <div className="evp input">
+          {props.required? <div className="evp-required">*</div> : void 0}
           {props.label ? (
-            <div ref={labelRef} className="evp input label" style={{fontSize: props.labelSize}}>{props.label}</div>
+            <div ref={labelRef} className="evp input label" style={{
+              fontSize: props.labelSize,
+              width: labelWidth,
+              textAlign: labelAlign
+            }}>{props.label}</div>
           ) : null}
           <input
             name={props.name}
