@@ -8,10 +8,14 @@ import useMobx from '@/store/hooks';
 import EvpForm from '@/lib/evp-form';
 import { useRef } from 'react';
 import useForm from '@/lib/evp-form/hooks';
+import EvpFormField from '@/lib/evp-form/field';
 
 export default function TestViewView() {
   const store = useMobx("store");
-  const formRef = useForm();
+  const [formRef] = useForm<{
+    "name": string
+  }>();
+  
   return(
     <div className="preview-container" id='first'>
       <h4>圆形 ( circle )</h4>
@@ -109,14 +113,18 @@ export default function TestViewView() {
       </Card>
       <Card>
         <EvpForm formRef={formRef} $submit={(e)=>{
-          console.log(formRef)
+          const name = formRef?.getFieldValue("name");
+          console.log(name)
         }}>
-          <Input required label="用户名" rule={{
-            smartTrigger: false,
-            trigger: 'onSubmit',
-            required: { on: true, val: true, msg: '用户名不能为空' },
-          }} labelWidth={60} />
-          <Input required label="密码" labelWidth={60} />
+            <EvpFormField name='name'>
+              <input name='name' placeholder='Input your name...' />
+            </EvpFormField>
+            <Input required label="用户名" name='username' rule={{
+              smartTrigger: false,
+              trigger: 'onSubmit',
+              required: { on: true, val: true, msg: '用户名不能为空' },
+            }} labelWidth={60} />
+          <Input required label="密码" name='password' labelWidth={60} />
           <EvpButton type="submit" text='提交' />
         </EvpForm>
       </Card>

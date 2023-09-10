@@ -1,21 +1,26 @@
-import { useRef } from "react"
-import useForm from "./hooks";
+import useForm, { EvpFormInstance } from "./hooks";
+import EvpFormContext from "./context";
 
 
-export type EvpFormProps = {
+export type EvpFormProps<T = any> = {
   children: JSX.Element | React.ReactNode
   $submit?: React.FormEventHandler<HTMLFormElement>,
-  formRef?: any
+  formRef?: EvpFormInstance<T>
 }
 
 export default function EvpForm(props: EvpFormProps) {
-  const formRef = useForm();
+  let [formRef] = useForm();
+  if (props.formRef) {
+    formRef = props.formRef;
+  }
   return(
-    <form ref={props.formRef??formRef} onSubmit={(e) => {
+    <form onSubmit={(e) => {
       e.preventDefault();
       props.$submit?.(e);
     }}>
-      {props.children}
+      <EvpFormContext.Provider value={formRef as EvpFormInstance<{ [x: string]: any; [x: number]: any; }>}>
+        {props.children}
+      </EvpFormContext.Provider>
     </form>
   )
 }

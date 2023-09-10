@@ -1,14 +1,14 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 
-export interface EvpFormInstance<F = {}> {
-  getFieldValue: <V = any>(name: string) => V,
-  getFieldsValue: () => F,
+export interface EvpFormInstance<T = any, P extends Partial<T> = Partial<{}>> {
+  getFieldValue: (name: keyof T) => P[keyof T],
+  getFieldsValue: () => T,
   setFieldsValue: (fields: {}) => void,
   registerField: (form: {}) => void,
   submit: () => void,
 }
 
-class FormStore {
+export class FormStore<T extends Partial<T> = Partial<{}>> {
   private store: any = {};
   // 用来存储每个 Field 的实例数据，因此在store中可以通过 fieldEntities 来访问到每个表单项
   private fieldEntities: any = [];
@@ -22,7 +22,7 @@ class FormStore {
     }
   }
   // 获取单个字段值
-  getFieldValue = (name:string) => {
+  getFieldValue = (name: keyof T) => {
     return this.store[name]
   }
   // 获取所有字段值
@@ -52,7 +52,7 @@ class FormStore {
     console.log(this)
   }
   // 提供FormStore实例方法
-  getForm = (): EvpFormInstance => ({
+  getForm = (): EvpFormInstance<T> => ({
     getFieldValue: this.getFieldValue,
     getFieldsValue: this.getFieldsValue,
     setFieldsValue: this.setFieldsValue,
@@ -62,10 +62,11 @@ class FormStore {
 }
 
 // 创建单例formStore
-export default function useForm() {
-  const formRef = useRef<EvpFormInstance>();
+export default function useForm<T extends Partial<T> = Partial<{}>>() {
+  const formRef = useRef<EvpFormInstance<T>>();
   if (!formRef.current) {
     const formStore = new FormStore();
+    // @ts-ignore
     formRef.current = formStore.getForm();
   }
   return [formRef.current];
