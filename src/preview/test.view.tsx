@@ -111,17 +111,17 @@ export default function TestViewView() {
       </Card>
       <Card>
         <EvpForm formRef={formRef} $submit={(e)=>{
-          const name = formRef?.getFieldValue("name");
+          const name = formRef?.getFieldsValue();
           console.log(name)
         }}>
             <EvpFormField name='name'>
-              <input name='name' placeholder='Input your name...' />
+              <Input required label="用户名" name='name' rule={{
+                smartTrigger: false,
+                trigger: 'onSubmit',
+                required: { on: true, val: true, msg: '用户名不能为空' },
+              }} labelWidth={60} />
             </EvpFormField>
-            <Input required label="用户名" name='username' rule={{
-              smartTrigger: false,
-              trigger: 'onSubmit',
-              required: { on: true, val: true, msg: '用户名不能为空' },
-            }} labelWidth={60} />
+            
           <Input required label="密码" name='password' labelWidth={60} />
           <EvpButton type="submit" text='提交' />
         </EvpForm>
