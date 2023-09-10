@@ -9,7 +9,7 @@ export type EvpFormProps<T = any> = {
 }
 
 export default function EvpForm(props: EvpFormProps) {
-  let [formRef] = useForm();
+  let formRef = useForm();
   if (props.formRef) {
     formRef = props.formRef;
   }

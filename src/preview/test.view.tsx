@@ -10,7 +10,7 @@ import EvpFormField from '@/lib/evp-form/field';
 
 export default function TestViewView() {
   const store = useMobx("store");
-  const [formRef] = useForm<{
+  const formRef = useForm<{
     name: string
   }>();
   
@@ -111,7 +111,7 @@ export default function TestViewView() {
       </Card>
       <Card>
         <EvpForm formRef={formRef} $submit={(e)=>{
-          const name = formRef?.getFieldsValue();
+          const name = formRef.getFieldsValue();
           console.log(name)
         }}>
             <EvpFormField name='name'>

@@ -63,11 +63,11 @@ export class FormStore<T extends Partial<T> = Partial<{}>> {
 
 // 创建单例formStore
 export default function useForm<T extends Partial<T> = Partial<{}>>() {
-  const formRef = useRef<EvpFormInstance<T>>();
+  const formRef = useRef<EvpFormInstance<T>>() as React.MutableRefObject<EvpFormInstance<T>>;
   if (!formRef.current) {
     const formStore = new FormStore();
     // @ts-ignore
     formRef.current = formStore.getForm();
   }
-  return [formRef.current];
+  return formRef.current;
 }
