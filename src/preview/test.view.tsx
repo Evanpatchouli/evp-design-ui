@@ -121,7 +121,6 @@ export default function TestViewView() {
                 required: { on: true, val: true, msg: '用户名不能为空' },
               }} labelWidth={60} />
             </EvpFormField>
-            
           <Input required label="密码" name='password' labelWidth={60} />
           <EvpButton type="submit" text='提交' />
         </EvpForm>
