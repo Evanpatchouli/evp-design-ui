@@ -38,6 +38,7 @@ export default function EvpFormField(props: EvpFormFieldProps) {
     const { getFieldValue, setFieldsValue } = context;
 
     return {
+      // @ts-ignore
       value: getFieldValue?.(props.name), // get
       onChange: (e: any) => {
         // set

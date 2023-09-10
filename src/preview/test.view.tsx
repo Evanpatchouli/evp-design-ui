@@ -2,18 +2,16 @@ import Card from '@/components/card'
 import './test.css'
 import EvpFlexbarContentfixed from '@/lib/evp-flexbar/content-fixed'
 import EvpDivider from '@/lib/evp-divider'
-import { observer } from "mobx-react";
 import { Anchor, Button, EvpButton, EvpRow, Input, Toast } from '@/lib'
 import useMobx from '@/store/hooks';
 import EvpForm from '@/lib/evp-form';
-import { useRef } from 'react';
 import useForm from '@/lib/evp-form/hooks';
 import EvpFormField from '@/lib/evp-form/field';
 
 export default function TestViewView() {
   const store = useMobx("store");
   const [formRef] = useForm<{
-    "name": string
+    name: string
   }>();
   
   return(

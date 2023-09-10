@@ -1,7 +1,7 @@
 import { useRef } from "react";
 
-export interface EvpFormInstance<T = any, P extends Partial<T> = Partial<{}>> {
-  getFieldValue: (name: keyof T) => P[keyof T],
+export interface EvpFormInstance<T extends Partial<T> = Partial<{}>> {
+  getFieldValue: (name: keyof T) => T[keyof T],
   getFieldsValue: () => T,
   setFieldsValue: (fields: {}) => void,
   registerField: (form: {}) => void,
