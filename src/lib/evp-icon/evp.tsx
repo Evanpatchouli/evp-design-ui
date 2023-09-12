@@ -30,30 +30,30 @@ const Lock: SvgIcon = (props: SvgIconProps) => {
         <path
           d="M4 6C4 6 15.5878 14 24 14C32.4122 14 44 6 44 6"
           stroke="#333"
-          stroke-width="3"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M4 42C4 42 15.5878 34 24 34C32.4122 34 44 42 44 42"
           stroke="#333"
-          stroke-width="3"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M15 12V36"
           stroke="#333"
-          stroke-width="3"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M33 12V36"
           stroke="#333"
-          stroke-width="3"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </svg>
     </div>

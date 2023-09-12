@@ -2,6 +2,7 @@
 
 # custom
 /src/temp
+.idea
 
 # dependencies
 /node_modules
