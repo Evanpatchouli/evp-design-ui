@@ -111,8 +111,7 @@ export default function TestViewView() {
       </Card>
       <Card>
         <EvpForm formRef={formRef} $submit={(e)=>{
-          const name = formRef.getFieldsValue();
-          console.log(name)
+          formRef.submit();
         }}>
             <EvpFormField name='name'>
               <Input required label="用户名" name='name' rule={{
