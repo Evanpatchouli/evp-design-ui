@@ -202,13 +202,12 @@ export default function EvpInput(props: EvpInputProps) {
     <EvpCol mg={[4,0,4,0]} alignItems='flex-start'>
       <EvpRow>
         <div className="evp input">
-          {props.required? <div className="evp-required">*</div> : void 0}
           {props.label ? (
             <div ref={labelRef} className="evp input label" style={{
               fontSize: props.labelSize,
               width: labelWidth,
               textAlign: labelAlign
-            }}>{props.label}</div>
+            }}>{props.required? <div className="evp-required">*</div> : void 0}{props.label}</div>
           ) : null}
           <input
             name={props.name}
