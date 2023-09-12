@@ -11,6 +11,7 @@
 @import url(./evp-popover/index.css);
 @import url(./evp-toast/index.css);
 @import url(./evp-icon/index.css);
+@import url(./evp-checkbox/index.css);
 
 .evp {
   font-size: var(--text-size);
