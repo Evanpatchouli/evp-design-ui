@@ -128,28 +128,20 @@ export default function TestViewView() {
         </Button>
       </Card>
       <Card>
-        <EvpForm
-          formRef={formRef}
-          $submit={(e) => {
-            const name = formRef.getFieldsValue();
-            console.log(name);
-          }}
-        >
-          <EvpFormField name="name">
-            <Input
-              required
-              label="用户名"
-              name="name"
-              rule={{
+        <EvpForm formRef={formRef} $submit={(e)=>{
+          formRef.submit();
+        }}>
+            <EvpFormField name='name'>
+              <Input required label="用户名" name='name' rule={{
                 smartTrigger: false,
-                trigger: "onSubmit",
-                required: { on: true, val: true, msg: "用户名不能为空" },
-              }}
-              labelWidth={60}
-            />
-          </EvpFormField>
-          <Input required label="密码" name="password" labelWidth={60} />
-          <EvpButton type="submit" text="提交" />
+                trigger: 'onSubmit',
+                required: { on: true, val: true, msg: '用户名不能为空' },
+              }} labelWidth={60} />
+            </EvpFormField>
+            <EvpFormField name='password'>
+              <Input required label="密码" name='password' labelWidth={60} />
+            </EvpFormField>
+          <EvpButton type="submit" text='提交' />
         </EvpForm>
       </Card>
     </div>

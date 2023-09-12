@@ -49,7 +49,7 @@ export class FormStore<T extends Partial<T> = Partial<{}>> {
   // 提交数据，这里只简单的打印了store中的数据。
   submit = ()=>{
     // console.log(this.getFieldsValue());
-    console.log(this)
+    console.log(this.getFieldsValue());
   }
   // 提供FormStore实例方法
   getForm = (): EvpFormInstance<T> => ({
