@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import EvpRow from "../evp-row";
 import EvpCol from "../evp-col";
 import { Icon } from "..";
 import { Color } from "../constant";
 import CheckedBox from "../evp-icon/checked-box";
 import UncheckedBox from "../evp-icon/unchecked-box";
+import EvpFormContext from "../evp-form-v2/context";
 
 export type EvpCheckBoxRule = {
   /** default color is "red" */
@@ -50,6 +51,16 @@ export type EvpCheckBoxProps = {
 };
 
 export default function EvpCheckBox(props: EvpCheckBoxProps) {
+  const formCtx = useContext(EvpFormContext);
+
+  useEffect(() => {
+    return formCtx.register({
+      // @ts-ignore
+      name: props.name as string,
+      value: props.value,
+    });
+  }, [formCtx, props.name, props.value]);
+
   const labelWidth = props.labelWidth
     ? typeof props.labelWidth === "number"
       ? `${props.labelWidth}px`
@@ -84,9 +95,13 @@ export default function EvpCheckBox(props: EvpCheckBoxProps) {
   const [checked, setChecked] = useState<boolean>(false);
   const deChecked = () => {
     if (checked) {
-      setVal('');
+      setVal("");
+      // @ts-ignore
+      formCtx.set(props.name, undefined);
     } else {
-      setVal(props.value)
+      setVal(props.value);
+      // @ts-ignore
+      formCtx.set(props.name, props.value);
     }
     setChecked(!checked);
     return void 0;
