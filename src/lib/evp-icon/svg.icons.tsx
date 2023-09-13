@@ -1,4 +1,6 @@
 import React from "react";
+import { ArrayLengthed, Indexable } from "../utils";
+import { EvpCursorRule, EvpWRule, EvpHRule } from "../typings";
 
 import $User from './user';
 import $TrueCircle from "./true-circle";
@@ -15,8 +17,8 @@ import $WaterfallsV from './waterfalls-v';
 import $Down from './down';
 import $Left from './left';
 import $Evp from './evp';
-import { ArrayLengthed, Indexable } from "../utils";
-import { EvpCursorRule, EvpWRule, EvpHRule } from "../typings";
+import $UncheckedBox from "./unchecked-box";
+import $CheckedBox from "./checked-box";
 
 export type SvgIconProps = Indexable<SvgIconPropsType, any>;
 
@@ -33,6 +35,7 @@ type SvgIconPropsType = {
   color?: any,
   /** fill the blank with certain color */
   fill?: string,
+  border?: string,
   /** Default radius is `24`, and unit is `px` */
   radius?: number,
   /** Cursor pointer, this will be overrided by props.cursor if that exists */
@@ -68,6 +71,8 @@ export const WaterfallsH = $WaterfallsH;
 export const WaterfallsV = $WaterfallsV;
 export const Down = $Down;
 export const Left = $Left;
+export const UncheckedBox = $UncheckedBox;
+export const CheckedBox = $CheckedBox;
 export const Evp = $Evp;
 
 export type SvgIconType = 
@@ -89,6 +94,8 @@ export type SvgIconType =
 "WaterfallsV" |
 "Down" |
 "Left" |
+"UncheckedBox" |
+"CheckedBox" |
 "Evp";
 
 const SvgIcons = {
@@ -110,6 +117,8 @@ const SvgIcons = {
   "WaterfallsV": WaterfallsV,
   "Down": Down,
   "Left": Left,
+  "UncheckedBox": UncheckedBox,
+  "CheckedBox": CheckedBox,
   "Evp": Evp
 }
 

@@ -40,7 +40,7 @@ export enum Color {
   DeepGray = "#4F4F4F",
   DarkGray = "#363636",
 
-  Dark = "1C1C1C",
+  Dark = "#1C1C1C",
   Black = "#000000",
 
   Orange = "#FFA500",

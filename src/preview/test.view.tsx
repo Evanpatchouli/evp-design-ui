@@ -162,19 +162,17 @@ export default function TestViewView() {
             </EvpFormField>
             <EvpFormField name="admin">
               {/* @todo 要包个 div 才能注册到 formRef 的 BUG */}
-              <div>
-                <EvpCheckBox
-                  labelWidth={60}
-                  required
-                  label={"Valid"}
-                  name="admin"
-                  value="true"
-                />
-              </div>
+              <EvpCheckBox
+                labelWidth={60}
+                required
+                label={"管理员"}
+                name="admin"
+                value="true"
+              />
             </EvpFormField>
             <EvpFormField name="sex">
               <div>
-                <EvpRadioGroup labelWidth={60} required label="Sex" name="sex">
+                <EvpRadioGroup labelWidth={60} required label="性别" name="sex">
                   <EvpRadio label="Male" name="sex" value="male" />
                   <EvpRadio label="Female" name="sex" value="female" />
                 </EvpRadioGroup>

@@ -22,6 +22,8 @@ export type IconType =
 "waterfalls_v" |
 "down" |
 "left" |
+"unchecked_box" |
+"checked_box" |
 "evp";
 
 export type EvpIconProps = EvpIconPropsType & {[x: string]: any};
@@ -46,6 +48,8 @@ export interface EvpIconPropsType {
   waterfalls_v?: boolean;
   down?: boolean;
   left?: boolean;
+  unchecked_box?: boolean;
+  checked_box?: boolean;
   evp?: boolean,
   passwords?: boolean;
   $click?: React.MouseEventHandler<HTMLDivElement>;
@@ -95,6 +99,8 @@ const IconMap: IndexableFuzzy<SvgIconType> = {
   "WATERFALLS_V": "WaterfallsV",
   "DOWN": "Down",
   "LEFT": "Left",
+  "UNCHECKEDBOX": 'UncheckedBox',
+  "CHECKEDBOX": 'CheckedBox',
   "EVP": "Evp"
 }
 

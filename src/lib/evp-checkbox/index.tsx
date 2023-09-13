@@ -3,6 +3,8 @@ import EvpRow from "../evp-row";
 import EvpCol from "../evp-col";
 import { Icon } from "..";
 import { Color } from "../constant";
+import CheckedBox from "../evp-icon/checked-box";
+import UncheckedBox from "../evp-icon/unchecked-box";
 
 export type EvpCheckBoxRule = {
   /** default color is "red" */
@@ -78,6 +80,17 @@ export default function EvpCheckBox(props: EvpCheckBoxProps) {
   const calcMsgLeft = () => {
     return `${labelRef.current?.offsetWidth ?? 0}px`;
   };
+  const [val, setVal] = useState(props.value);
+  const [checked, setChecked] = useState<boolean>(false);
+  const deChecked = () => {
+    if (checked) {
+      setVal('');
+    } else {
+      setVal(props.value)
+    }
+    setChecked(!checked);
+    return void 0;
+  };
   return (
     <EvpCol mg={[4, 0, 4, 0]} alignItems="flex-start">
       <EvpRow>
@@ -96,12 +109,30 @@ export default function EvpCheckBox(props: EvpCheckBoxProps) {
               {props.label}
             </div>
           ) : null}
+          {checked ? (
+            <CheckedBox
+              fill={Color.Blue}
+              color={Color.Blue}
+              radius={21}
+              cursor="pointer"
+              onClick={deChecked}
+            />
+          ) : (
+            <UncheckedBox
+              color={Color.PaleBlue}
+              strokeWidth={2}
+              radius={21}
+              cursor="pointer"
+              onClick={deChecked}
+            />
+          )}
           <input
-            placeholder="check"
+            hidden
             className={`evp input-checkbox`}
             type="checkbox"
             name={props.name}
-            value={props.value}
+            value={val}
+            checked={checked}
             defaultValue={props.default}
           />
           {showRightIcon ? (
