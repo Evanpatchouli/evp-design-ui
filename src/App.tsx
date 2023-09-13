@@ -26,6 +26,7 @@ import ColView from './preview/evp-col';
 import RowView from './preview/evp-row';
 import DomView from './preview/evp-dom';
 import DividerView from './preview/evp-divider';
+import RadioView from './preview/evp-radio';
 
 function App() {
   const location = useLocation();
@@ -56,6 +57,7 @@ function App() {
             <EvpMenuItem link={'/components/evp-toast'} title={'EvpToast'} />
             <EvpMenuItem link={'/components/evp-popover'} title={'EvpPopover'} />
             <EvpMenuItem link={'/components/evp-flexbar'} title={'EvpFlexbar'} />
+            <EvpMenuItem link={'/components/evp-radio'} title={'EvpRadio'} />
           </EvpMenu>
         </div>
         <div className='Content'>
@@ -77,6 +79,7 @@ function App() {
             <Route path='/components/evp-toast' key={"toast"} element={<ToastView/>}></Route>
             <Route path='/components/evp-popover' key={"popver"} element={<PopoverView/>}></Route>
             <Route path='/components/evp-flexbar' key={"flexbar"} element={<FlexbarView/>}></Route>
+            <Route path='/components/evp-radio' key={"flexbar"} element={<RadioView/>}></Route>
           </Routes>
           <div className='foot'>
             <p>CopyRight &copy; 2023-2023 Evp Design UI</p>

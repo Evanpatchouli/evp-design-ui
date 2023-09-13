@@ -10,6 +10,8 @@ import EvpFormField from "@/lib/evp-form/field";
 import PreContext from "./context";
 import Contest from "./components/contest";
 import EvpCheckBox from "@/lib/evp-checkbox";
+import EvpRadioGroup from "@/lib/evp-radio-group/inedx";
+import EvpRadio from "@/lib/evp-radio";
 
 export default function TestViewView() {
   const store = useMobx("store");
@@ -19,9 +21,11 @@ export default function TestViewView() {
 
   return (
     <div className="preview-container" id="first">
-      <PreContext.Provider value={{
-        pageName: 'TestView',
-      }}>
+      <PreContext.Provider
+        value={{
+          pageName: "TestView",
+        }}
+      >
         <h4>圆形 ( circle )</h4>
         <Card>
           <svg
@@ -157,7 +161,24 @@ export default function TestViewView() {
               <Input required label="密码" name="password" labelWidth={60} />
             </EvpFormField>
             <EvpFormField name="admin">
-              <EvpCheckBox labelWidth={60} required label={'Valid'} />
+              {/* @todo 要包个 div 才能注册到 formRef 的 BUG */}
+              <div>
+                <EvpCheckBox
+                  labelWidth={60}
+                  required
+                  label={"Valid"}
+                  name="admin"
+                  value="true"
+                />
+              </div>
+            </EvpFormField>
+            <EvpFormField name="sex">
+              <div>
+                <EvpRadioGroup labelWidth={60} required label="Sex" name="sex">
+                  <EvpRadio label="Male" name="sex" value="male" />
+                  <EvpRadio label="Female" name="sex" value="female" />
+                </EvpRadioGroup>
+              </div>
             </EvpFormField>
             <EvpButton type="submit" text="提交" />
           </EvpForm>
