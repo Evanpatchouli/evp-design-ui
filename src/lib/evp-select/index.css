@@ -45,6 +45,7 @@
   padding-left: 6px;
   border-radius: var(--radius);
   padding-block: 4px;
+  transition: background-color 0.1s ease-in-out;
 }
 
 .evp-select-option:hover {
@@ -52,5 +53,5 @@
 }
 
 .evp-select-option.evp-select-option-selected {
-  background-color: rgba(0, 0, 255, 0.1);
+  background-color: rgba(0, 0, 255, 0.10);
 }

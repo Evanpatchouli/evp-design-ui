@@ -25,6 +25,7 @@ export default function EvpSelect(props: EvpSelectProps) {
   const formCtx = useContext(EvpFormContext);
 
   const [val, setVal] = useState<typeof props.value>();
+  const [label, setLabel] = useState<string>();
 
   const [closeDelay, setCloseDelay] = useState("0s");
 
@@ -90,7 +91,7 @@ export default function EvpSelect(props: EvpSelectProps) {
             placeholder="Select"
             ref={inputRef}
             className="evp input input-box evp-select-input"
-            value={val}
+            value={label}
             readOnly
             onClick={() => {
               optionsRef.current?.focus();
@@ -127,6 +128,7 @@ export default function EvpSelect(props: EvpSelectProps) {
                   setCloseDelay("0.3s");
                   setCur(option.key);
                   setVal(option.value);
+                  setLabel(option.label);
                 }}
               >
                 {option.label}
