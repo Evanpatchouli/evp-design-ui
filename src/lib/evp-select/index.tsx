@@ -7,8 +7,10 @@ import { Toast } from "..";
 
 export type EvpSelectProps = {
   name?: string;
-  options?: Array<{ label: string; value: any; key: React.Key }>;
+  options?: Array<{ label: string; value: any; key: React.Key; disabled?: boolean }>;
+  children?: React.ReactNode;
   value?: any;
+  placeholder?: string;
   /** label should be a string or EvpIcon */
   label?: string | JSX.Element;
   /** **Label font-Size:** default value is 14px */
@@ -89,7 +91,7 @@ export default function EvpSelect(props: EvpSelectProps) {
         ) : null}
         <div className="evp evp-select">
           <input
-            placeholder="Select"
+            placeholder={props.placeholder}
             ref={inputRef}
             className="evp input input-box evp-select-input"
             value={label}
@@ -124,7 +126,9 @@ export default function EvpSelect(props: EvpSelectProps) {
           >
             {props.options?.map((option) => (
               <div
-                className={`evp-select-option ${optionSelected(option)}`.trim()}
+                className={`evp-select-option ${optionSelected(option)} ${
+                  option.disabled ? "evp-disabled" : ""
+                }`.trim()}
                 key={option.value}
                 onMouseUp={() => {
                   setCloseDelay("0.3s");

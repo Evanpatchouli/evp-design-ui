@@ -34,8 +34,7 @@ export type EvpCheckBoxProps = {
   required?: boolean;
   name?: string;
   placeholder?: string;
-  /** defaultValue assigned to input box*/
-  default?: string | number;
+  defaultChecked?: boolean;
   /** Reactive value assigned to input box */
   value: string;
   hint?: {
@@ -50,6 +49,7 @@ export type EvpCheckBoxProps = {
   };
   resultIcon?: boolean;
   radius?: number;
+  disabled?: boolean;
 };
 
 export default function EvpCheckBox(props: EvpCheckBoxProps) {
@@ -103,7 +103,9 @@ export default function EvpCheckBox(props: EvpCheckBoxProps) {
     return `${labelRef.current?.offsetWidth ?? 0}px`;
   };
 
-  const [checked, setChecked] = useState<boolean>(false);
+  const [checked, setChecked] = useState<boolean>(
+    props.defaultChecked ?? false
+  );
   const deChecked = () => {
     setChecked(!checked);
     return void 0;
@@ -123,7 +125,11 @@ export default function EvpCheckBox(props: EvpCheckBoxProps) {
   }, [checked, formCtx, name, props.value]);
 
   return (
-    <EvpCol mg={[4, 0, 4, 0]} alignItems="flex-start">
+    <EvpCol
+      mg={[4, 0, 4, 0]}
+      alignItems="flex-start"
+      class={`${props.disabled ? "evp-disabled" : ""}`.trim()}
+    >
       <EvpRow>
         <div className="evp input">
           {checked ? (
@@ -132,7 +138,7 @@ export default function EvpCheckBox(props: EvpCheckBoxProps) {
               fill={Color.Blue}
               color={Color.Blue}
               radius={props.radius ?? 21}
-              cursor="pointer"
+              cursor={props.disabled? 'not-allowed' : 'pointer'}
               onClick={deChecked}
             />
           ) : (
@@ -141,7 +147,7 @@ export default function EvpCheckBox(props: EvpCheckBoxProps) {
               color={Color.PaleBlue}
               strokeWidth={2}
               radius={props.radius ?? 21}
-              cursor="pointer"
+              cursor={props.disabled? 'not-allowed' : 'pointer'}
               onClick={deChecked}
             />
           )}
@@ -165,7 +171,7 @@ export default function EvpCheckBox(props: EvpCheckBoxProps) {
             name={name}
             value={val}
             checked={checked}
-            defaultValue={props.default}
+            defaultChecked={props.defaultChecked}
           />
           {showRightIcon ? (
             <div className="evp input icon">

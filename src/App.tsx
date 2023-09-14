@@ -27,6 +27,9 @@ import RowView from './preview/evp-row';
 import DomView from './preview/evp-dom';
 import DividerView from './preview/evp-divider';
 import RadioView from './preview/evp-radio';
+import CheckBoxView from './preview/evp-checkbox';
+import SelectView from './preview/evp-select';
+import FormView from './preview/evp-form';
 
 function App() {
   const location = useLocation();
@@ -58,6 +61,9 @@ function App() {
             <EvpMenuItem link={'/components/evp-popover'} title={'EvpPopover'} />
             <EvpMenuItem link={'/components/evp-flexbar'} title={'EvpFlexbar'} />
             <EvpMenuItem link={'/components/evp-radio'} title={'EvpRadio'} />
+            <EvpMenuItem link={'/components/evp-checkbox'} title={'EvpCheckBox'} />
+            <EvpMenuItem link={'/components/evp-select'} title={'EvpSelect'} />
+            <EvpMenuItem link={'/components/evp-form'} title={'EvpForm'} />
           </EvpMenu>
         </div>
         <div className='Content'>
@@ -79,7 +85,10 @@ function App() {
             <Route path='/components/evp-toast' key={"toast"} element={<ToastView/>}></Route>
             <Route path='/components/evp-popover' key={"popver"} element={<PopoverView/>}></Route>
             <Route path='/components/evp-flexbar' key={"flexbar"} element={<FlexbarView/>}></Route>
-            <Route path='/components/evp-radio' key={"flexbar"} element={<RadioView/>}></Route>
+            <Route path='/components/evp-radio' key={"radio"} element={<RadioView/>}></Route>
+            <Route path='/components/evp-checkbox' key={"checkbox"} element={<CheckBoxView/>}></Route>
+            <Route path='/components/evp-select' key={"select"} element={<SelectView/>}></Route>
+            <Route path='/components/evp-form' key={"select"} element={<FormView/>}></Route>
           </Routes>
           <div className='foot'>
             <p>CopyRight &copy; 2023-2023 Evp Design UI</p>

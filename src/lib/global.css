@@ -34,7 +34,8 @@
 }
 
 .evp-disabled {
-  pointer-events: none !important;
+  cursor: not-allowed !important;
+
   color: var(--LightGray) !important;
   stroke: var(--LightGray) !important;
 
@@ -59,7 +60,11 @@
   }
 }
 
+.evp-disabled:active {
+  pointer-events: none !important;
+  cursor: not-allowed !important;
+}
+
 *,*:focus,*:hover{
   outline:none;
 }
-

@@ -66,6 +66,9 @@ export default function EvpRadio(props: EvpRadioProps) {
         onChange={(e) => {
           setVal(e.target.value);
         }}
+        style={{
+          cursor: props.disabled? 'not-allowed' : 'pointer'
+        }}
       />
       {props.label ? (
         <div

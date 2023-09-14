@@ -181,6 +181,9 @@ EvpFlexbar Apis:
 - **contentCurosr** ? : EvpCursorRule
 `}
 </Md>
+      <EvpButton position="absolute" right={40} bottom={0}
+        plain shadow={false}
+        link="/components/evp-radio" text="★ Next Doc EvpRadio >" />
     </div>
   )
 }

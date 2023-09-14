@@ -66,7 +66,7 @@ export class FormStore<T extends Partial<T> = Partial<any>> {
   };
 
   submit: VoidFunction = () => {
-    console.log(this.gets());
+    // console.log(this.gets());
     void 0;
   };
 }
