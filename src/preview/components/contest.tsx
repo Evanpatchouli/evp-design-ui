@@ -8,6 +8,7 @@ import { Color, EvpButton, EvpInput, Toast } from "@/lib";
 import EvpCheckBoxGroup from "@/lib/evp-checkbox-group/inedx";
 import EvpRadioGroup from "@/lib/evp-radio-group/inedx";
 import EvpRadio from "@/lib/evp-radio";
+import EvpSelect from "@/lib/evp-select";
 
 export default function Contest() {
   const preContext = useContext(PreContext);
@@ -17,7 +18,7 @@ export default function Contest() {
   }>();
   return (
     <Card>
-      <div>{preContext?.pageName}</div>
+      <h3>{preContext?.pageName}</h3>
       <EvpForm formRef={ref}>
         <EvpInput label="Project" name="project" required labelWidth={60} />
         <EvpCheckBoxGroup label="Types" name="types" required labelWidth={60}>
@@ -28,6 +29,18 @@ export default function Contest() {
           <EvpRadio label="Private" value="private" />
           <EvpRadio label="Public" value="public" />
         </EvpRadioGroup>
+        <EvpSelect
+          label="Role"
+          name="role"
+          required
+          labelWidth={60}
+          options={[
+            { label: "Visitor", value: "1", key: "Visitor" },
+            { label: "User", value: "2", key: "User" },
+            { label: "Admin", value: "3", key: "Admin" },
+            { label: "Boss", value: "4", key: "Boss" },
+          ]}
+        />
         <EvpButton
           $click={() => {
             console.log(ref.current?.gets());

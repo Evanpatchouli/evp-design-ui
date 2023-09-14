@@ -12,6 +12,7 @@ import Contest from "./components/contest";
 import EvpCheckBox from "@/lib/evp-checkbox";
 import EvpRadioGroup from "@/lib/evp-radio-group/inedx";
 import EvpRadio from "@/lib/evp-radio";
+import EvpSelect from "@/lib/evp-select";
 
 export default function TestViewView() {
   const store = useMobx("store");
@@ -182,6 +183,14 @@ export default function TestViewView() {
           </EvpForm>
         </Card>
         <Contest />
+        <Card>
+          <EvpSelect label="Select" required options={[
+            { label: 'Option 1', value: '1', key: '1' },
+            { label: 'Option 2', value: '2', key: '2' },
+            { label: 'Option 3', value: '3', key: '3' },
+            { label: 'Option 4', value: '4', key: '4' },
+          ]} />
+        </Card>
       </PreContext.Provider>
     </div>
   );

@@ -15,6 +15,7 @@
 @import url(./evp-checkbox-group/index.css);
 @import url(./evp-radio/index.css);
 @import url(./evp-radio-group/index.css);
+@import url(./evp-select/index.css);
 
 .evp {
   font-size: var(--text-size);
