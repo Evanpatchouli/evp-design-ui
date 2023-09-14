@@ -4,7 +4,7 @@ import { SvgIcon, SvgIconProps } from "./svg.icons";
 const Close: SvgIcon = (props: SvgIconProps) => {
   return (
     <div
-      className="evp icon"
+      className={`evp icon ${props.class ?? ""}`.trim()}
       onClick={props.onClick}
       style={{
         visibility: props.$visibleSync ?? true ? "visible" : "hidden",
@@ -27,16 +27,8 @@ const Close: SvgIcon = (props: SvgIconProps) => {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <path
-          d="M14 14L34 34"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M14 34L34 14"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
+        <path d="M14 14L34 34" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M14 34L34 14" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     </div>
   );

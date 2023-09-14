@@ -4,7 +4,7 @@ import { SvgIcon, SvgIconProps } from "./svg.icons";
 const CheckedBox: SvgIcon = (props: SvgIconProps) => {
   return (
     <div
-      className="evp icon"
+      className={`evp icon ${props.class ?? ""}`.trim()}
       onClick={props.onClick}
       style={{
         visibility: props.$visibleSync ?? true ? "visible" : "hidden",

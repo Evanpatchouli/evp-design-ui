@@ -24,6 +24,7 @@ export type SvgIconProps = Indexable<SvgIconPropsType, any>;
 
 type SvgIconPropsType = {
   onClick?: React.MouseEventHandler<HTMLDivElement>,
+  class?: string;
   "style"?: React.CSSProperties;
   /** Is icon visible. This is only hidden it, but still keeps the icon in dom trees */
   "$visibleSync"?: boolean,

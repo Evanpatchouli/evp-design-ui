@@ -1,10 +1,10 @@
 import { propsParser } from "../utils/props.parser";
 import { SvgIcon, SvgIconProps } from "./svg.icons";
 
-const Info: SvgIcon = (props: SvgIconProps)=> {
+const Info: SvgIcon = (props: SvgIconProps) => {
   return (
     <div
-      className="evp icon"
+      className={`evp icon ${props.class ?? ""}`.trim()}
       onClick={props.onClick}
       style={{
         visibility: props.$visibleSync ?? true ? "visible" : "hidden",
@@ -44,14 +44,10 @@ const Info: SvgIcon = (props: SvgIconProps)=> {
           strokeLinecap="round"
           strokeLinejoin="round"
         />
-        <path
-          d="M21 34H28"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
+        <path d="M21 34H28" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     </div>
   );
-}
+};
 
 export default Info;
