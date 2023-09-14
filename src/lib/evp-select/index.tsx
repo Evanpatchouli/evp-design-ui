@@ -17,6 +17,7 @@ export type EvpSelectProps = {
   labelAlign?: "left" | "center" | "right";
   /** Whether to show a required `*` character, this is `only` a character not a validation! */
   required?: boolean;
+  rows?: number;
 };
 
 export default function EvpSelect(props: EvpSelectProps) {
@@ -106,6 +107,7 @@ export default function EvpSelect(props: EvpSelectProps) {
             }}
           ></input>
           <div
+            className={`evp-select-options ${expand ? "" : "evp-close"}`.trim()}
             tabIndex={-1}
             ref={optionsRef}
             onBlur={(e) => {
@@ -113,18 +115,18 @@ export default function EvpSelect(props: EvpSelectProps) {
                 setExpand(false);
               }
             }}
-            className={`evp-select-options ${expand ? "" : "evp-close"}`.trim()}
             style={{
               width: inputRef.current?.clientWidth,
               cursor: "pointer",
               animationDelay: closeDelay,
+              height: props.rows ? props.rows * (24 + 8) + 4 * 2 + 0 : void 0,
             }}
           >
             {props.options?.map((option) => (
               <div
                 className={`evp-select-option ${optionSelected(option)}`.trim()}
                 key={option.value}
-                onClick={() => {
+                onMouseUp={() => {
                   setCloseDelay("0.3s");
                   setCur(option.key);
                   setVal(option.value);

@@ -33,12 +33,14 @@ export default function Contest() {
           label="Role"
           name="role"
           required
+          rows={3}
           labelWidth={60}
           options={[
             { label: "Visitor", value: "1", key: "Visitor" },
             { label: "User", value: "2", key: "User" },
-            { label: "Admin", value: "3", key: "Admin" },
-            { label: "Boss", value: "4", key: "Boss" },
+            { label: "Leader", value: "3", key: "Leader" },
+            { label: "Admin", value: "4", key: "Admin" },
+            { label: "Boss", value: "5", key: "Boss" },
           ]}
         />
         <EvpButton

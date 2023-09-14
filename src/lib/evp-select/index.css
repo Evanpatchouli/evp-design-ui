@@ -9,17 +9,23 @@
 }
 
 .evp-select-options {
-  z-index: 9000;
   position: absolute;
+  z-index: 9000;
   display: block;
   box-sizing: border-box;
   padding: 4px;
+  
+  overflow-y: scroll;
+  overflow: auto;
   background-color: #fff;
   border: 1px solid #fcfcfc;
   border-radius: var(--radius-large);
   box-shadow: 0px 5px 10px 3px rgba(0, 0, 0, 0.1);
   opacity: 100%;
-  /* transition: opacity 0.2s ease-in-out; */
+
+  /* &::-webkit-scrollbar {
+    display: none;
+  } */
 }
 
 .evp-select-options.evp-close {
@@ -41,11 +47,13 @@
 }
 
 .evp-select-option {
+  height: 24px;
   padding-right: 6px;
   padding-left: 6px;
+  line-height: 24px;
   border-radius: var(--radius);
-  padding-block: 4px;
   transition: background-color 0.1s ease-in-out;
+  padding-block: 4px;
 }
 
 .evp-select-option:hover {
@@ -53,5 +61,5 @@
 }
 
 .evp-select-option.evp-select-option-selected {
-  background-color: rgba(0, 0, 255, 0.10);
+  background-color: rgba(0, 0, 255, 0.1);
 }
