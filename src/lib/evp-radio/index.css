@@ -7,44 +7,46 @@
   position: relative;
   width: 14px;
   height: 14px;
-  appearance: none;
+
+  margin-right: 14px;
+  margin-left: 2px !important;
 
   cursor: pointer;
-
-  margin-right: 8px;
+  appearance: none;
 
   &:before {
-    display: inline-block;
     position: absolute;
     top: 4px;
-    left: -2px;
+    display: inline-block;
     width: 16px;
     height: 16px;
     vertical-align: middle;
     border: 1px solid var(--PaleBlue);
     border-radius: 50%;
     content: "";
+    /* background-image: url(./unradio_blue.svg);
+    background-size: cover; */
   }
 
   &:checked:before {
+    top: 4px;
     display: inline-block;
-    width: 14px;
-    height: 14px;
-    vertical-align: middle;
-    border: 2px solid var(--Blue);
-    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    background: none;
     content: "";
   }
 
   &:checked:after {
     position: absolute;
-    top: 8px;
-    left: 2px;
-    display: block;
-    width: 10px;
-    height: 10px;
+    top: 4px;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
     text-align: center;
-    background: var(--Blue);
+    background-image: url(./round_blue.svg);
+    background-size: cover;
+    border: 2px solid var(--Blue);
     border-radius: 50%;
     content: "";
   }

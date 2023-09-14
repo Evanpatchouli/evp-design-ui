@@ -4,7 +4,7 @@ import Card from "@/components/card";
 import EvpForm from "@/lib/evp-form-v2";
 import EvpCheckBox from "@/lib/evp-checkbox";
 import useForm from "@/lib/evp-form-v2/hooks";
-import { EvpButton, EvpInput, Toast } from "@/lib";
+import { Color, EvpButton, EvpInput, Toast } from "@/lib";
 import EvpCheckBoxGroup from "@/lib/evp-checkbox-group/inedx";
 import EvpRadioGroup from "@/lib/evp-radio-group/inedx";
 import EvpRadio from "@/lib/evp-radio";
@@ -26,7 +26,7 @@ export default function Contest() {
         </EvpCheckBoxGroup>
         <EvpRadioGroup label="Access" name="access" required labelWidth={60}>
           <EvpRadio label="Private" value="private" />
-          <EvpRadio label="Private" value="public" />
+          <EvpRadio label="Public" value="public" />
         </EvpRadioGroup>
         <EvpButton
           $click={() => {

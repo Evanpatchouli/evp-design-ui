@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import GroupContext from "../evp-radio-group/context";
 import EvpFormContext from "../evp-form-v2/context";
 
@@ -29,6 +29,9 @@ export default function EvpRadio(props: EvpRadioProps) {
   const labelAlign = props.labelAlign ?? "left";
   const labelRef = useRef<HTMLDivElement>(null);
 
+  const [val, setVal] = useState<typeof props.value>();
+  const inputRef = useRef<HTMLInputElement>(null);
+
   useEffect(() => {
     if (formCtx) {
       const state = formCtx.get(name) as string | number | undefined;
@@ -43,9 +46,9 @@ export default function EvpRadio(props: EvpRadioProps) {
 
   useEffect(() => {
     if (formCtx) {
-      formCtx.set(name as string, props.value);
+      formCtx.set(name as string, val);
     }
-  }, [formCtx, name, props.value]);
+  }, [formCtx, name, val]);
 
   return (
     <div
@@ -56,9 +59,13 @@ export default function EvpRadio(props: EvpRadioProps) {
       <input
         className="evp input-radio"
         name={name}
+        ref={inputRef}
         type="radio"
         value={props.value as string | number | undefined}
         defaultChecked={props.defaultChecked}
+        onChange={(e) => {
+          setVal(e.target.value);
+        }}
       />
       {props.label ? (
         <div

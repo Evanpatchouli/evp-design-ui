@@ -49,6 +49,7 @@ export type EvpCheckBoxProps = {
     setWarn: React.Dispatch<React.SetStateAction<string>>;
   };
   resultIcon?: boolean;
+  radius?: number;
 };
 
 export default function EvpCheckBox(props: EvpCheckBoxProps) {
@@ -130,7 +131,7 @@ export default function EvpCheckBox(props: EvpCheckBoxProps) {
               class="input-checkbox"
               fill={Color.Blue}
               color={Color.Blue}
-              radius={21}
+              radius={props.radius ?? 21}
               cursor="pointer"
               onClick={deChecked}
             />
@@ -139,7 +140,7 @@ export default function EvpCheckBox(props: EvpCheckBoxProps) {
               class="input-checkbox"
               color={Color.PaleBlue}
               strokeWidth={2}
-              radius={21}
+              radius={props.radius ?? 21}
               cursor="pointer"
               onClick={deChecked}
             />

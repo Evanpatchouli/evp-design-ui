@@ -43,7 +43,7 @@ export type EvpRadioGroupProps = {
     setWarn: React.Dispatch<React.SetStateAction<string>>;
   };
   resultIcon?: boolean;
-  class?: string
+  class?: string;
 };
 
 export default function EvpRadioGroup(props: EvpRadioGroupProps) {
@@ -55,32 +55,34 @@ export default function EvpRadioGroup(props: EvpRadioGroupProps) {
   const labelAlign = props.labelAlign ?? "left";
   const labelRef = useRef<HTMLDivElement>(null);
 
-  const [validateTrigger, setValidateTrigger] = useState('onChange');
-  const [warning_msg, setWarning_msg] = useState<string|undefined>(props.warnReader?.ref);
-  const warnColor = props.rule?.color??'red';
-  const hintColor = props.hint?.color??'grey';
+  const [validateTrigger, setValidateTrigger] = useState("onChange");
+  const [warning_msg, setWarning_msg] = useState<string | undefined>(
+    props.warnReader?.ref
+  );
+  const warnColor = props.rule?.color ?? "red";
+  const hintColor = props.hint?.color ?? "grey";
   const [isValid, setIsValid] = useState(false);
-  const smartTrigger = props.rule?.smartTrigger?? true;
+  const smartTrigger = props.rule?.smartTrigger ?? true;
 
   const [msgColor, setMsgColor] = useState(hintColor);
-  useEffect(()=>{
+  useEffect(() => {
     if (!isValid) {
       setMsgColor(warnColor);
       if (!warning_msg) {
         setMsgColor(hintColor);
       }
     }
-  }, [isValid, warnColor, warning_msg, hintColor])
+  }, [isValid, warnColor, warning_msg, hintColor]);
 
   const calcMsgLeft = () => {
-    return `${labelRef.current?.offsetWidth??0}px`;
-  }
+    return `${labelRef.current?.offsetWidth ?? 0}px`;
+  };
 
-  const showRightIcon = props.resultIcon?? false;
+  const showRightIcon = props.resultIcon ?? false;
 
   return (
-    <Col mg={[4,0,4,0]} alignItems='flex-start'>
-      <div className={`evp evp-radio-group ${props.class??''}`.trim()}>
+    <Col mg={[4, 0, 4, 0]} alignItems="flex-start">
+      <div className={`evp evp-radio-group ${props.class ?? ""}`.trim()}>
         {props.label ? (
           <div
             ref={labelRef}
@@ -100,13 +102,24 @@ export default function EvpRadioGroup(props: EvpRadioGroupProps) {
             {props.children}
           </Context.Provider>
         </div>
-        {showRightIcon? <div className="evp input icon"><Icon name="true_circle" color={Color.HeavyGreen} $visibleSync={isValid} /></div> : null}
+        {showRightIcon ? (
+          <div className="evp input icon">
+            <Icon
+              name="true_circle"
+              color={Color.HeavyGreen}
+              $visibleSync={isValid}
+            />
+          </div>
+        ) : null}
       </div>
-      <div className="evp-input-msg" style={{
-        color: msgColor,
-        paddingLeft: calcMsgLeft(),
-      }}>
-        {isValid?'':(warning_msg?warning_msg:props.hint?.text)}
+      <div
+        className="evp-input-msg"
+        style={{
+          color: msgColor,
+          paddingLeft: calcMsgLeft(),
+        }}
+      >
+        {isValid ? "" : warning_msg ? warning_msg : props.hint?.text}
       </div>
     </Col>
   );
