@@ -36,7 +36,7 @@ export type EvpCheckBoxProps = {
   /** defaultValue assigned to input box*/
   default?: string | number;
   /** Reactive value assigned to input box */
-  value?: string | number;
+  value?: "true" | "false";
   hint?: {
     text?: string;
     color?: string;
@@ -52,14 +52,19 @@ export type EvpCheckBoxProps = {
 
 export default function EvpCheckBox(props: EvpCheckBoxProps) {
   const formCtx = useContext(EvpFormContext);
+  const [val, setVal] = useState<typeof props.value>(props.value ?? "false");
 
   useEffect(() => {
-    return formCtx.register({
-      // @ts-ignore
-      name: props.name as string,
-      value: props.value,
-    });
-  }, [formCtx, props.name, props.value]);
+    if (formCtx) {
+      const state = formCtx.get(props.name) as Array<string> | undefined;
+      if (!state) {
+        formCtx.register({
+          name: props.name as string,
+          value: [],
+        });
+      }
+    }
+  }, [formCtx, props.name]);
 
   const labelWidth = props.labelWidth
     ? typeof props.labelWidth === "number"
@@ -80,6 +85,7 @@ export default function EvpCheckBox(props: EvpCheckBoxProps) {
   const showRightIcon = props.resultIcon ?? false;
 
   const [msgColor, setMsgColor] = useState(hintColor);
+
   useEffect(() => {
     if (!isValid) {
       setMsgColor(warnColor);
@@ -88,28 +94,61 @@ export default function EvpCheckBox(props: EvpCheckBoxProps) {
       }
     }
   }, [isValid, warnColor, warning_msg, hintColor]);
+
   const calcMsgLeft = () => {
     return `${labelRef.current?.offsetWidth ?? 0}px`;
   };
-  const [val, setVal] = useState(props.value);
+
   const [checked, setChecked] = useState<boolean>(false);
   const deChecked = () => {
-    if (checked) {
-      setVal("");
-      // @ts-ignore
-      formCtx.set(props.name, undefined);
-    } else {
-      setVal(props.value);
-      // @ts-ignore
-      formCtx.set(props.name, props.value);
-    }
     setChecked(!checked);
     return void 0;
   };
+
+  useEffect(() => {
+    if (checked) {
+      setVal("true");
+    } else {
+      setVal("false");
+    }
+  }, [checked]);
+
+  useEffect(() => {
+    if (formCtx) {
+      const state = formCtx.get(props.name) as Array<string>;
+      if (checked) {
+        state.push(props.name as string);
+        formCtx.set(props.name as string, state);
+      } else {
+        state.splice(state.indexOf(props.value as string), 1);
+        formCtx.set(props.name as string, state);
+      }
+    }
+  }, [checked, formCtx, props.name, props.value]);
+
   return (
     <EvpCol mg={[4, 0, 4, 0]} alignItems="flex-start">
       <EvpRow>
         <div className="evp input">
+          {checked ? (
+            <CheckedBox
+              class="input-checkbox"
+              fill={Color.Blue}
+              color={Color.Blue}
+              radius={21}
+              cursor="pointer"
+              onClick={deChecked}
+            />
+          ) : (
+            <UncheckedBox
+              class="input-checkbox"
+              color={Color.PaleBlue}
+              strokeWidth={2}
+              radius={21}
+              cursor="pointer"
+              onClick={deChecked}
+            />
+          )}
           {props.label ? (
             <div
               ref={labelRef}
@@ -124,26 +163,8 @@ export default function EvpCheckBox(props: EvpCheckBoxProps) {
               {props.label}
             </div>
           ) : null}
-          {checked ? (
-            <CheckedBox
-              fill={Color.Blue}
-              color={Color.Blue}
-              radius={21}
-              cursor="pointer"
-              onClick={deChecked}
-            />
-          ) : (
-            <UncheckedBox
-              color={Color.PaleBlue}
-              strokeWidth={2}
-              radius={21}
-              cursor="pointer"
-              onClick={deChecked}
-            />
-          )}
           <input
             hidden
-            className={`evp input-checkbox`}
             type="checkbox"
             name={props.name}
             value={val}

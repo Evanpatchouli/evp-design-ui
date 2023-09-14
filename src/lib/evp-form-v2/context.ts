@@ -1,6 +1,6 @@
 import { createContext } from "react";
-import { EvpFormInstance, FormStore } from "./hooks";
+import { EvpFormInstance } from "./hooks";
 
-const EvpFormContext = createContext<EvpFormInstance>(new FormStore());
+const EvpFormContext = createContext<EvpFormInstance|undefined>(undefined);
 
 export default EvpFormContext;

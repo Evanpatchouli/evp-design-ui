@@ -23,7 +23,7 @@ export default function Contest() {
         ceshi
       </EvpButton>
       <EvpForm formRef={ref}>
-        <EvpCheckBox name="test" label="test" value={"true"} />
+        <EvpCheckBox name="test" label="Test" value={"true"} />
       </EvpForm>
     </Card>
   );

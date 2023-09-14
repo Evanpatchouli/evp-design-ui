@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-export interface EvpFormInstance<T extends Partial<T> = Partial<{}>> {
+export interface EvpFormInstance<T extends Partial<T> = Partial<any>> {
   get: (name?: string & keyof T) => T[keyof T];
 
   set: (name: string & keyof T, value?: T[keyof T]) => void;
@@ -18,7 +18,7 @@ export interface EvpFormInstance<T extends Partial<T> = Partial<{}>> {
   }) => () => void
 }
 
-export class FormStore<T extends Partial<T> = Partial<{}>> {
+export class FormStore<T extends Partial<T> = Partial<any>> {
   private store: Array<{ name: string & keyof T; value?: any; msg?: string }> =
     [];
 
@@ -71,7 +71,7 @@ export class FormStore<T extends Partial<T> = Partial<{}>> {
   };
 }
 
-const useForm = <T extends Partial<T> = Partial<{}>>(): React.MutableRefObject<EvpFormInstance<T>> => {
+const useForm = <T extends Partial<T> = Partial<any>>(): React.MutableRefObject<EvpFormInstance<T>> => {
   const formRef = useRef<EvpFormInstance<T>>() as React.MutableRefObject<EvpFormInstance<T>>;
   if (!formRef.current) {
     const formStore = new FormStore();
