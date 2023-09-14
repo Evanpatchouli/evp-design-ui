@@ -6,6 +6,7 @@ import { Color } from "../constant";
 import CheckedBox from "../evp-icon/checked-box";
 import UncheckedBox from "../evp-icon/unchecked-box";
 import EvpFormContext from "../evp-form-v2/context";
+import GroupContext from "../evp-checkbox-group/context";
 
 export type EvpCheckBoxRule = {
   /** default color is "red" */
@@ -36,7 +37,7 @@ export type EvpCheckBoxProps = {
   /** defaultValue assigned to input box*/
   default?: string | number;
   /** Reactive value assigned to input box */
-  value?: "true" | "false";
+  value: string;
   hint?: {
     text?: string;
     color?: string;
@@ -51,20 +52,22 @@ export type EvpCheckBoxProps = {
 };
 
 export default function EvpCheckBox(props: EvpCheckBoxProps) {
+  const groupContext = useContext(GroupContext);
+  const name = props.name ?? groupContext.name;
   const formCtx = useContext(EvpFormContext);
-  const [val, setVal] = useState<typeof props.value>(props.value ?? "false");
+  const val = props.value;
 
   useEffect(() => {
     if (formCtx) {
-      const state = formCtx.get(props.name) as Array<string> | undefined;
+      const state = formCtx.get(name) as Array<string> | undefined;
       if (!state) {
         formCtx.register({
-          name: props.name as string,
+          name: name as string,
           value: [],
         });
       }
     }
-  }, [formCtx, props.name]);
+  }, [formCtx, name]);
 
   const labelWidth = props.labelWidth
     ? typeof props.labelWidth === "number"
@@ -106,25 +109,17 @@ export default function EvpCheckBox(props: EvpCheckBoxProps) {
   };
 
   useEffect(() => {
-    if (checked) {
-      setVal("true");
-    } else {
-      setVal("false");
-    }
-  }, [checked]);
-
-  useEffect(() => {
     if (formCtx) {
-      const state = formCtx.get(props.name) as Array<string>;
+      const state = formCtx.get(name) as Array<string>;
       if (checked) {
-        state.push(props.name as string);
-        formCtx.set(props.name as string, state);
+        state.push(props.value as string);
+        formCtx.set(name as string, state);
       } else {
         state.splice(state.indexOf(props.value as string), 1);
-        formCtx.set(props.name as string, state);
+        formCtx.set(name as string, state);
       }
     }
-  }, [checked, formCtx, props.name, props.value]);
+  }, [checked, formCtx, name, props.value]);
 
   return (
     <EvpCol mg={[4, 0, 4, 0]} alignItems="flex-start">
@@ -166,7 +161,7 @@ export default function EvpCheckBox(props: EvpCheckBoxProps) {
           <input
             hidden
             type="checkbox"
-            name={props.name}
+            name={name}
             value={val}
             checked={checked}
             defaultValue={props.default}

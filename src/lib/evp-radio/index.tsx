@@ -1,6 +1,6 @@
-import { useContext, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import GroupContext from "../evp-radio-group/context";
-import { Booleanish, Hintable } from "../utils";
+import EvpFormContext from "../evp-form-v2/context";
 
 export type EvpRadioProps = {
   label?: React.ReactNode;
@@ -10,7 +10,7 @@ export type EvpRadioProps = {
   /** Whether to show a required `*` character, this is `only` a character not a validation! */
   required?: boolean;
   name?: string;
-  value?: Hintable<Booleanish> | number;
+  value: string | number;
   defaultChecked?: boolean;
   children?: React.ReactNode;
   disabled?: boolean;
@@ -19,6 +19,8 @@ export type EvpRadioProps = {
 
 export default function EvpRadio(props: EvpRadioProps) {
   const groupContext = useContext(GroupContext);
+  const name = props.name ?? groupContext.name;
+  const formCtx = useContext(EvpFormContext);
   const labelWidth = props.labelWidth
     ? typeof props.labelWidth === "number"
       ? `${props.labelWidth}px`
@@ -26,6 +28,25 @@ export default function EvpRadio(props: EvpRadioProps) {
     : void 0;
   const labelAlign = props.labelAlign ?? "left";
   const labelRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (formCtx) {
+      const state = formCtx.get(name) as string | number | undefined;
+      if (!state) {
+        formCtx.register({
+          name: name as string,
+          value: undefined,
+        });
+      }
+    }
+  }, [formCtx, name]);
+
+  useEffect(() => {
+    if (formCtx) {
+      formCtx.set(name as string, props.value);
+    }
+  }, [formCtx, name, props.value]);
+
   return (
     <div
       className={`evp input evp-radio ${props.class ?? ""} ${
@@ -34,7 +55,7 @@ export default function EvpRadio(props: EvpRadioProps) {
     >
       <input
         className="evp input-radio"
-        name={props.name ?? groupContext.name}
+        name={name}
         type="radio"
         value={props.value as string | number | undefined}
         defaultChecked={props.defaultChecked}
