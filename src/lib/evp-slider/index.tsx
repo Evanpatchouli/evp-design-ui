@@ -7,6 +7,7 @@ import EvpFormContext from "../evp-form-v2/context";
 import { emptyImg } from "../utils/img.utils";
 import EvpCol from "../evp-col";
 import { ArrayLengthed } from "../utils";
+import NumUtils from "../utils/num.util";
 
 export type EvpSliderProps = {
   name: string;
@@ -16,29 +17,44 @@ export type EvpSliderProps = {
   labelSize?: string;
   labelWidth?: number | string;
   labelAlign?: "left" | "center" | "right";
-  /** Whether to show a required `*` character, this is `only` a character not a validation! */
+  /** Whether to show a required \`*\` character, this is \`only\` a character not a validation! */
   required?: boolean;
 
   value?: number;
+  /** default is 0 */
   defaultValue?: number;
-  max?: number;
-  min?: number;
+  /** start (default 0) to end (default 100) */
   range?: ArrayLengthed<number | undefined, 2>;
+  /** min limit, default is 0 */
+  min?: number;
+  /** max limit, default is max */
+  max?: number;
+  /** value precision, default is 0 */
   precision?: number;
-  step?: number;
+  /** max width (px) or slider bar */
   width?: number;
+  /** whether to show etc, default is true */
+  showEtc?: boolean;
   style?: React.CSSProperties;
+  /**
+   * @Todo unstart now
+   * @Exterminal unsupport now */
+  step?: number;
 };
 
 export default function EvpSlider(props: EvpSliderProps) {
   const groupContext = useContext(GroupContext);
   const name = props.name ?? groupContext.name;
   const formCtx = useContext(EvpFormContext);
-  const [width, setWidth] = useState(props.width ?? 200);
+  const width = props.width ?? 200;
   const length = (props.range?.[1] ?? 100) - (props.range?.[0] ?? 0);
-  const [min, setMin] = useState(props.min ?? props.range?.[0] ?? 0);
-  const [max, setMax] = useState(props.max ?? ((props.range?.[0] ?? 0) + length));
-  const [val, setVal] = useState(props.value ?? props.defaultValue ?? min);
+  const min = props.min ?? props.range?.[0] ?? 0;
+  const max = props.max ?? (props.range?.[0] ?? 0) + length;
+  const [val, setVal] = useState(
+    (props.value ?? props.defaultValue ?? min) >= min
+      ? props.value ?? props.defaultValue ?? min
+      : min
+  );
   const [hiddenTip, setHiddenTip] = useState(true);
   const prgsRef = useRef<HTMLDivElement>(null);
 
@@ -89,16 +105,8 @@ export default function EvpSlider(props: EvpSliderProps) {
 
   const step = () => width / length;
 
-  /**
-   * @deprecated
-   * ~Used to use rate to controll width~
-   */
-  const calcRate = () => {
-    return ((val >= min ? val : min) / length) * 100;
-  };
-
   return (
-    <EvpCol mg={[4, 0, 4, 0]} alignItems="flex-start">
+    <EvpCol mg={[4, 0, 4, 0]} alignItems="flex-start" class="evp-form-item">
       <div
         className={`evp evp-slider ${props.class ?? ""}`.trim()}
         onMouseOver={() => {
@@ -123,7 +131,9 @@ export default function EvpSlider(props: EvpSliderProps) {
           e.preventDefault();
         }}
         style={{
-          width: `calc(${width}px + ${labelWidth} + ${32}px)`,
+          width: `calc(${width}px + ${
+            labelRef.current?.clientWidth ?? "0px"
+          } + 0px)`,
           ...props.style,
         }}
       >
@@ -155,9 +165,6 @@ export default function EvpSlider(props: EvpSliderProps) {
           tabIndex={-1}
           onMouseOver={stressThumb}
           onBlur={recoverThumb}
-          // onDragStart={(e) => {
-          //   e.currentTarget.classList.add("evp-dragging");
-          // }}
           onDrag={(e) => {
             const deltaX =
               e.clientX - e.currentTarget.getBoundingClientRect().x;
@@ -170,19 +177,27 @@ export default function EvpSlider(props: EvpSliderProps) {
                 newVal = min;
               }
               newVal = Number(newVal.toFixed(props.precision ?? 0));
+              console.log(
+                "strictFixed: ",
+                NumUtils.toFixedStrictly(newVal, props.precision ?? 0)
+              );
               setVal(newVal);
               formCtx?.set(name, newVal);
               return false;
             }
           }}
-          // onDragEnd={(e) => {
-          //   e.currentTarget.classList.remove("evp-dragging");
-          // }}
         >
-          <EvpToolTip content={val} hidden={hiddenTip}>
+          <EvpToolTip
+            content={NumUtils.toFixedStrictly(val, props.precision ?? 0)}
+            hidden={hiddenTip}
+          >
             <Thumb {...thumbColors} cursor={"pointer"} />
           </EvpToolTip>
         </div>
+        <div
+          hidden={!(props.showEtc === false ? false : true)}
+          className="evp-slider-progress-etc"
+        ></div>
       </div>
     </EvpCol>
   );

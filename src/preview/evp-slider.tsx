@@ -3,7 +3,7 @@ import Md from "@/components/md";
 import Tsx from "@/components/tsx";
 import EvpButton from "@/lib/evp-button";
 import { useEffect, useState } from "react";
-import { EvpSlider } from "evp-design-ui";
+import { EvpCode, EvpSlider } from "evp-design-ui";
 
 export default function SliderView() {
   useEffect(() => {
@@ -93,47 +93,137 @@ The first elem is the range start, default is 0, the second one is rhe range end
       </Card>
       <Tsx show={showCode[1]}>
         {`
-<EvpCard w={400}
-toolbarStyle={{
-  justifyContent: 'flex-end'
-}}
-toolBar={
-<>
-  <EvpButton plain size="mini" text="Hello" />
-  <EvpButton plain size="mini" text="World" />
-</>}
->
-  <p>Hello, i am EvpCard.</p>
-  <p>I extends EvpBaseProps.</p>
-  <p>I use EvpDom as container.</p>
-  <p>That's me.</p>
-  <EvpButton text="Greet" />
-</EvpCard>
+<EvpSlider name="slider-demo-1" range={[10, 50]} defaultValue={20} />
 `}
       </Tsx>
       <Md>
         {`
-## Api
+### Min & Max
 
-★ container based on EvpDom  
-★ props extends EvpBaseProps
-
-**EvpCard Apis:**
-
-- children? : card content
-  + type: React.ReactNode
-- contentStyle ? : css style of card content element
-- toolBar ? : toolbar content
-  + type: React.ReactNode
-- toolBarPosition ? : where the toolbar is
-  + default: 'bottom'
-  + options: 'top' | 'bottom' | 'left' | 'right'
-- toolbarStyle ? : css style of card toolbar element
-- class ? : className of card;
-- contentClass ? : className of card content element;
-- toolBarClass ? : className of card toolbar element;
+You can set the minimum and maximum limits on the slider. For example, there is a slider with its range of
+[0, 100], and the minimum and maximum limits are set to 20 and 80 respectively.
 `}
       </Md>
+      <Card
+        toolbarStyle={{
+          justifyContent: "flex-end",
+        }}
+        toolBar={
+          <>
+            <EvpButton
+              $click={() => clickCode(2)}
+              theme="text"
+              size="mini"
+              text="code"
+            />
+            <EvpButton theme="text" size="mini" text="copy" />
+          </>
+        }
+      >
+        <EvpSlider
+          name="slider-demo-2"
+          range={[0, 100]}
+          min={20}
+          max={80}
+          defaultValue={0}
+        />
+      </Card>
+      <Tsx show={showCode[2]}>
+        {`
+<EvpSlider
+  name="slider-demo-1"
+  range={[0, 100]}
+  min={20}
+  max={80}
+  defaultValue={0}
+/>
+`}
+      </Tsx>
+      <Md>
+        {`
+### Precision
+
+Default precision is 0, you can set the precision to more to make the value as float.
+        `}
+      </Md>
+      <Card
+        toolbarStyle={{
+          justifyContent: "flex-end",
+        }}
+        toolBar={
+          <>
+            <EvpButton
+              $click={() => clickCode(3)}
+              theme="text"
+              size="mini"
+              text="code"
+            />
+            <EvpButton theme="text" size="mini" text="copy" />
+          </>
+        }
+      >
+        <EvpSlider
+          name="slider-demo-3"
+          range={[0, 100]}
+          defaultValue={75.0}
+          precision={1}
+        />
+      </Card>
+      <Tsx show={showCode[2]}>
+        {`
+<EvpSlider
+  name="slider-demo-3"
+  range={[0, 100]}
+  defaultValue={75.00}
+  precision={2}
+/>
+`}
+      </Tsx>
+      <Md>
+        {`
+## Api 
+
+**EvpSlider Apis:**
+
+★ container based on EvpCol 
+`}
+      </Md>
+      <EvpCode lang="typescript" theme="coldarkDark">
+        {`
+export type EvpSliderProps = {
+  name: string;
+  class?: string;
+  label?: string | JSX.Element;
+  /** **Label font-Size:** default value is 14px */
+  labelSize?: string;
+  labelWidth?: number | string;
+  labelAlign?: "left" | "center" | "right";
+  /** Whether to show a required \`*\` character, this is \`only\` a character not a validation! */
+  required?: boolean;
+ 
+  value?: number;
+  /** default is 0 */
+  defaultValue?: number;
+  /** start (default 0) to end (default 100) */
+  range?: ArrayLengthed<number | undefined, 2>;
+  /** min limit, default is 0 */
+  min?: number;
+  /** max limit, default is max */
+  max?: number;
+  /** value precision, default is 0 */
+  precision?: number;
+  /** max width (px) or slider bar */
+  width?: number;
+  /** whether to show etc, default is true */
+  showEtc?: boolean;
+  style?: React.CSSProperties;
+  /**
+   * @Todo unstart now
+   * @Exterminal unsupport now */
+  step?: number;
+}
+`}
+      </EvpCode>
       <EvpButton
         position="absolute"
         right={40}

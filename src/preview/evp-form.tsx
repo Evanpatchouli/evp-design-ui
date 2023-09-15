@@ -1,6 +1,7 @@
 import Card from "@/components/card";
 import Md from "@/components/md";
 import Tsx from "@/components/tsx";
+import { EvpSlider } from "@/lib";
 import EvpButton from "@/lib/evp-button";
 import EvpCheckBox from "@/lib/evp-checkbox";
 import EvpCheckBoxGroup from "@/lib/evp-checkbox-group/inedx";
@@ -13,14 +14,14 @@ import EvpSelect from "@/lib/evp-select";
 import { useEffect, useState } from "react";
 
 export default function FormView() {
-  useEffect(()=>{
+  useEffect(() => {
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
-  }, [])
-  const [showCode, setShowCode] = useState<{[x:number]:boolean}>({
+  }, []);
+  const [showCode, setShowCode] = useState<{ [x: number]: boolean }>({
     1: false,
     2: false,
     3: false,
@@ -28,20 +29,20 @@ export default function FormView() {
     5: false,
     6: false,
     7: false,
-    8: false
-  })
+    8: false,
+  });
 
   const clickCode = (idx: number) => {
     let $showCode = { ...showCode };
     $showCode[idx] = !showCode[idx];
     setShowCode($showCode);
-  }
+  };
 
   const ref = useForm();
-  return(
+  return (
     <div className="preview-container">
-<Md>
-{`
+      <Md>
+        {`
 # EvpForm
 
 A form component is a UI element used to collect user input in a web form. 
@@ -52,22 +53,22 @@ as well as buttons to submit the form or reset the form.
 
 **import:**
 `}
-</Md>
-<Tsx>
-{`
+      </Md>
+      <Tsx>
+        {`
 import { EvpForm } from 'evp-design-ui'
 `}
-</Tsx>
-<Md>
-{`
+      </Tsx>
+      <Md>
+        {`
 **usage:**
 `}
-</Md>
-<Tsx>
-{`
+      </Md>
+      <Tsx>
+        {`
 <EvpForm style={{ width: 390 }}>
-  <EvpInput labelWidth={80} label="Username" required />
-  <EvpInput labelWidth={80} label="Password" required />
+  <EvpInput labelWidth={70} label="Username" required />
+  <EvpInput labelWidth={70} label="Password" required />
   <div style={{
     display: 'flex',
     justifyContent: 'flex-end'
@@ -76,85 +77,104 @@ import { EvpForm } from 'evp-design-ui'
   </div>
 </EvpForm>
 `}
-</Tsx>
+      </Tsx>
       <Card>
         <EvpForm style={{ width: 390 }}>
-          <EvpInput labelWidth={80} label="Username" required />
-          <EvpInput labelWidth={80} label="Password" required />
-          <div style={{
-            display: 'flex',
-            justifyContent: 'flex-end'
-          }}>
+          <EvpInput labelWidth={70} label="Username" required />
+          <EvpInput labelWidth={70} label="Password" required />
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+            }}
+          >
             <EvpButton theme="dark" text="Login" type="submit" />
           </div>
         </EvpForm>
       </Card>
-<Md>
-{`
+      <Md>
+        {`
 ## Examples
 
 Here are some examples about EvpCard.
 `}
-</Md>
+      </Md>
       <Card
-      toolbarStyle={{
-        justifyContent: 'flex-end'
-      }}
-      toolBar={
-      <>
-        <EvpButton $click={() => clickCode(1)} theme="text" size="mini" text="code" />
-        <EvpButton theme="text" size="mini" text="copy" />
-      </>}>
-      <EvpForm formRef={ref}
-      $submit={() => {
-        const formData = ref.current?.gets();
-        console.table(formData);
-      }}>
-        <EvpInput label="Project" name="project" required labelWidth={60} />
-        <EvpCheckBoxGroup label="Types" name="types" required labelWidth={60}>
-          <EvpCheckBox label="Test" value="Test" />
-          <EvpCheckBox label="Beta" value="Beta" />
-        </EvpCheckBoxGroup>
-        <EvpRadioGroup label="Access" name="access" required labelWidth={60}>
-          <EvpRadio label="Private" value="private" />
-          <EvpRadio label="Public" value="public" />
-        </EvpRadioGroup>
-        <EvpSelect
-          label="Role"
-          name="role"
-          required
-          rows={3}
-          labelWidth={60}
-          options={[
-            { label: "Visitor", value: "1", key: "Visitor" },
-            { label: "User", value: "2", key: "User" },
-            { label: "Leader", value: "3", key: "Leader" },
-            { label: "Admin", value: "4", key: "Admin" },
-            { label: "Boss", value: "5", key: "Boss" },
-          ]}
-        />
-        <EvpButton
-          $click={() => {
-            ref.current?.submit();
+        toolbarStyle={{
+          justifyContent: "flex-end",
+        }}
+        toolBar={
+          <>
+            <EvpButton
+              $click={() => clickCode(1)}
+              theme="text"
+              size="mini"
+              text="code"
+            />
+            <EvpButton theme="text" size="mini" text="copy" />
+          </>
+        }
+      >
+        <EvpForm
+          formRef={ref}
+          $submit={() => {
+            const formData = ref.current?.gets();
+            console.table(formData);
           }}
         >
-          Submit
-        </EvpButton>
-      </EvpForm>
+          <EvpInput label="Project" name="project" required labelWidth={70} />
+          <EvpCheckBoxGroup label="Types" name="types" required labelWidth={70}>
+            <EvpCheckBox label="Test" value="Test" />
+            <EvpCheckBox label="Beta" value="Beta" />
+          </EvpCheckBoxGroup>
+          <EvpRadioGroup label="Access" name="access" required labelWidth={70}>
+            <EvpRadio label="Private" value="private" />
+            <EvpRadio label="Public" value="public" />
+          </EvpRadioGroup>
+          <EvpSelect
+            label="Role"
+            name="role"
+            required
+            rows={3}
+            labelWidth={70}
+            options={[
+              { label: "Visitor", value: "1", key: "Visitor" },
+              { label: "User", value: "2", key: "User" },
+              { label: "Leader", value: "3", key: "Leader" },
+              { label: "Admin", value: "4", key: "Admin" },
+              { label: "Boss", value: "5", key: "Boss" },
+            ]}
+          />
+          <EvpSlider
+            label="Members"
+            name="members"
+            required
+            range={[0, 10]}
+            width={400}
+            min={1}
+          />
+          <EvpButton
+            $click={() => {
+              ref.current?.submit();
+            }}
+          >
+            Submit
+          </EvpButton>
+        </EvpForm>
       </Card>
-<Tsx show={showCode[1]}>
-{`
+      <Tsx show={showCode[1]}>
+        {`
 <EvpForm formRef={ref}
 $submit={() => {
   const formData = ref.current?.gets();
   console.table(formData);
 }}>
-  <EvpInput label="Project" name="project" required labelWidth={60} />
-  <EvpCheckBoxGroup label="Types" name="types" required labelWidth={60}>
+  <EvpInput label="Project" name="project" required labelWidth={70} />
+  <EvpCheckBoxGroup label="Types" name="types" required labelWidth={70}>
     <EvpCheckBox label="Test" value="Test" />
     <EvpCheckBox label="Beta" value="Beta" />
   </EvpCheckBoxGroup>
-  <EvpRadioGroup label="Access" name="access" required labelWidth={60}>
+  <EvpRadioGroup label="Access" name="access" required labelWidth={70}>
     <EvpRadio label="Private" value="private" />
     <EvpRadio label="Public" value="public" />
   </EvpRadioGroup>
@@ -163,7 +183,7 @@ $submit={() => {
     name="role"
     required
     rows={3}
-    labelWidth={60}
+    labelWidth={70}
     options={[
       { label: "Visitor", value: "1", key: "Visitor" },
       { label: "User", value: "2", key: "User" },
@@ -181,9 +201,9 @@ $submit={() => {
   </EvpButton>
 </EvpForm>
 `}
-</Tsx>
-<Md>
-{`
+      </Tsx>
+      <Md>
+        {`
 ## Api
 
 ★ container based on EvpDom  
@@ -204,10 +224,16 @@ $submit={() => {
 - contentClass ? : className of card content element;
 - toolBarClass ? : className of card toolbar element;
 `}
-</Md>
-      <EvpButton position="absolute" right={40} bottom={0}
-        plain shadow={false}
-        link="/components/evp-menu" text="★ Next Doc EvpMenu >" />
+      </Md>
+      <EvpButton
+        position="absolute"
+        right={40}
+        bottom={0}
+        plain
+        shadow={false}
+        link="/components/evp-menu"
+        text="★ Next Doc EvpMenu >"
+      />
     </div>
-  )
+  );
 }

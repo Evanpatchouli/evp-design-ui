@@ -1,6 +1,6 @@
 import { Hintable } from "@/lib";
 import { Prism as Highlight } from "react-syntax-highlighter";
-import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism"; // 代码高亮主题风格
+import { coldarkDark as Dark } from "react-syntax-highlighter/dist/esm/styles/prism"; // 代码高亮主题风格
 
 type LangOptions =
   | "javascript"
@@ -48,7 +48,7 @@ export default function Code(props: {
         <Highlight
           language={props.lang ?? "text"}
           PreTag={"div"}
-          style={vscDarkPlus}
+          style={Dark}
           customStyle={{
             borderRadius: 6,
           }}

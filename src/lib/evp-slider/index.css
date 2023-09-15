@@ -3,13 +3,21 @@
   display: flex;
   align-items: center;
   justify-content: left;
-  width: fit-content;
+  box-sizing: border-box;
+  padding-right: 14px;
 }
 
 .evp-slider-progress {
   background-color: var(--PaleBlue);
   height: 4px;
-  border-radius: 5px;
+  border-radius: 100px;
+}
+
+.evp-slider-progress-etc {
+  background-color: var(--PaleGray);
+  height: 4px;
+  border-radius: 100px;
+  flex: 1;
 }
 
 .evp-draggable {
