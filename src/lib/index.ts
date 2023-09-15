@@ -121,3 +121,9 @@ export {
 } from "./evp-popover";
 
 export * as EvpShadow from "./evp-shadow";
+
+export {
+  default as EvpSlider,
+  default as Slider,
+  type EvpSliderProps,
+} from "./evp-slider";

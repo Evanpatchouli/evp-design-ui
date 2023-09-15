@@ -30,6 +30,7 @@ import RadioView from './preview/evp-radio';
 import CheckBoxView from './preview/evp-checkbox';
 import SelectView from './preview/evp-select';
 import FormView from './preview/evp-form';
+import SliderView from './preview/evp-slider';
 
 function App() {
   const location = useLocation();
@@ -63,6 +64,7 @@ function App() {
             <EvpMenuItem link={'/components/evp-radio'} title={'EvpRadio'} />
             <EvpMenuItem link={'/components/evp-checkbox'} title={'EvpCheckBox'} />
             <EvpMenuItem link={'/components/evp-select'} title={'EvpSelect'} />
+            <EvpMenuItem link={'/components/evp-slider'} title={'EvpSlider'} />
             <EvpMenuItem link={'/components/evp-form'} title={'EvpForm'} />
           </EvpMenu>
         </div>
@@ -88,7 +90,8 @@ function App() {
             <Route path='/components/evp-radio' key={"radio"} element={<RadioView/>}></Route>
             <Route path='/components/evp-checkbox' key={"checkbox"} element={<CheckBoxView/>}></Route>
             <Route path='/components/evp-select' key={"select"} element={<SelectView/>}></Route>
-            <Route path='/components/evp-form' key={"select"} element={<FormView/>}></Route>
+            <Route path='/components/evp-slider' key={"slider"} element={<SliderView/>}></Route>
+            <Route path='/components/evp-form' key={"form"} element={<FormView/>}></Route>
           </Routes>
           <div className='foot'>
             <p>CopyRight &copy; 2023-2023 Evp Design UI</p>

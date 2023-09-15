@@ -6,7 +6,7 @@ import EvpRow from "../lib/evp-row"
 import Tsx from "@/components/tsx"
 import Card from "@/components/card"
 import { useEffect, useState } from "react"
-import EvpButton from "evp-design-ui/evp-button"
+import { EvpButton } from "evp-design-ui"
 
 export default function MenuView() {
   useEffect(()=>{

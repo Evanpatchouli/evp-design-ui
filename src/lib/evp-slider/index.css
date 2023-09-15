@@ -1,0 +1,21 @@
+.evp.evp-slider {
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  width: fit-content;
+}
+
+.evp-slider-progress {
+  background-color: var(--PaleBlue);
+  height: 4px;
+  border-radius: 5px;
+}
+
+.evp-draggable {
+  cursor: no-drop !important;
+}
+
+.evp-dragging {
+  cursor: pointer !important;
+}

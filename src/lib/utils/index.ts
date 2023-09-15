@@ -2,10 +2,10 @@
 
 import { AriaAttributes, DOMAttributes, CSSProperties, AriaRole } from "react";
 
-/** This Array should have 4 items */
+/** This Array should have N items */
 export type ArrayLengthed<T, N extends number> = T[]
 
-/** This Array must have 4 items */
+/** This Array must have N items */
 export type ArrayStrictLengthed<T, N extends number> = [T, ...T[]] & { length: N }
 
 /** This func is to unassign undefined properties from an indexable object, especially invoked during parsing props */

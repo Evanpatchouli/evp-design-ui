@@ -16,6 +16,8 @@
 @import url(./evp-radio/index.css);
 @import url(./evp-radio-group/index.css);
 @import url(./evp-select/index.css);
+@import url(./evp-slider/index.css);
+@import url(./evp-tooltip/index.css);
 
 .evp {
   font-size: var(--text-size);

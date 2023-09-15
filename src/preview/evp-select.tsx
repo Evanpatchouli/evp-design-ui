@@ -140,7 +140,7 @@ If you want to ban an option, you can set it to disabled
 </Md>
       <EvpButton position="absolute" right={40} bottom={0}
         plain shadow={false}
-        link="/components/evp-menu" text="★ Next Doc EvpMenu >" />
+        link="/components/evp-slider" text="★ Next Doc EvpSlider >" />
     </div>
   )
 }
