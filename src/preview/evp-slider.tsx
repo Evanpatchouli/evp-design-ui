@@ -169,7 +169,7 @@ Default precision is 0, you can set the precision to more to make the value as f
           precision={1}
         />
       </Card>
-      <Tsx show={showCode[2]}>
+      <Tsx show={showCode[3]}>
         {`
 <EvpSlider
   name="slider-demo-3"
