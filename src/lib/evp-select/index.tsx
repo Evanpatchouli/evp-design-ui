@@ -3,11 +3,15 @@ import EvpCol from "../evp-col";
 import EvpRow from "../evp-row";
 import GroupContext from "../evp-radio-group/context";
 import EvpFormContext from "../evp-form-v2/context";
-import { Toast } from "..";
 
 export type EvpSelectProps = {
   name?: string;
-  options?: Array<{ label: string; value: any; key: React.Key; disabled?: boolean }>;
+  options?: Array<{
+    label: string;
+    value: any;
+    key: React.Key;
+    disabled?: boolean;
+  }>;
   children?: React.ReactNode;
   value?: any;
   placeholder?: string;
@@ -17,6 +21,8 @@ export type EvpSelectProps = {
   labelSize?: string;
   labelWidth?: number | string;
   labelAlign?: "left" | "center" | "right";
+  /** Default is false */
+  labelColon?: boolean | React.ReactNode;
   /** Whether to show a required `*` character, this is `only` a character not a validation! */
   required?: boolean;
   rows?: number;
@@ -87,6 +93,7 @@ export default function EvpSelect(props: EvpSelectProps) {
           >
             {props.required ? <div className="evp-required">*</div> : void 0}
             {props.label}
+            {props.labelColon === true ? ":" : props.labelColon ?? void 0}
           </div>
         ) : null}
         <div className="evp evp-select">

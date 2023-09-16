@@ -24,6 +24,8 @@ export type EvpRadioGroupProps = {
   labelSize?: string;
   labelWidth?: number | string;
   labelAlign?: "left" | "center" | "right";
+  /** Default is false */
+  labelColon?: boolean | React.ReactNode;
   /** Whether to show a required `*` character, this is `only` a character not a validation! */
   required?: boolean;
   name?: string;
@@ -95,6 +97,7 @@ export default function EvpRadioGroup(props: EvpRadioGroupProps) {
           >
             {props.required ? <div className="evp-required">*</div> : void 0}
             {props.label}
+            {props.labelColon === true ? ":" : props.labelColon ?? void 0}
           </div>
         ) : null}
         <div className="evp-radio-group-options">

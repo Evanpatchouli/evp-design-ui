@@ -46,6 +46,8 @@ export interface EvpInputProps extends BaseDomProps {
   labelSize?: string;
   labelWidth?: number | string;
   labelAlign?: "left" | "center" | "right";
+  /** Default is false */
+  labelColon?: boolean | React.ReactNode;
   /** Whether to show a required `*` character, this is `only` a character not a validation! */
   required?: boolean;
   name?: string;
@@ -314,6 +316,7 @@ export default function EvpInput(props: EvpInputProps) {
             >
               {props.required ? <div className="evp-required">*</div> : void 0}
               {props.label}
+              {props.labelColon === true ? ":" : props.labelColon ?? void 0}
             </div>
           ) : null}
           <input

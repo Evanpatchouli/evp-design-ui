@@ -24,6 +24,8 @@ export type EvpCheckBoxGroupProps = {
   labelSize?: string;
   labelWidth?: number | string;
   labelAlign?: "left" | "center" | "right";
+  /** Default is false */
+  labelColon?: boolean | React.ReactNode;
   /** Whether to show a required `*` character, this is `only` a character not a validation! */
   required?: boolean;
   name?: string;
@@ -43,7 +45,7 @@ export type EvpCheckBoxGroupProps = {
     setWarn: React.Dispatch<React.SetStateAction<string>>;
   };
   resultIcon?: boolean;
-  class?: string
+  class?: string;
 };
 
 export default function EvpCheckBoxGroup(props: EvpCheckBoxGroupProps) {
@@ -55,32 +57,34 @@ export default function EvpCheckBoxGroup(props: EvpCheckBoxGroupProps) {
   const labelAlign = props.labelAlign ?? "left";
   const labelRef = useRef<HTMLDivElement>(null);
 
-  const [validateTrigger, setValidateTrigger] = useState('onChange');
-  const [warning_msg, setWarning_msg] = useState<string|undefined>(props.warnReader?.ref);
-  const warnColor = props.rule?.color??'red';
-  const hintColor = props.hint?.color??'grey';
+  const [validateTrigger, setValidateTrigger] = useState("onChange");
+  const [warning_msg, setWarning_msg] = useState<string | undefined>(
+    props.warnReader?.ref
+  );
+  const warnColor = props.rule?.color ?? "red";
+  const hintColor = props.hint?.color ?? "grey";
   const [isValid, setIsValid] = useState(false);
-  const smartTrigger = props.rule?.smartTrigger?? true;
+  const smartTrigger = props.rule?.smartTrigger ?? true;
 
   const [msgColor, setMsgColor] = useState(hintColor);
-  useEffect(()=>{
+  useEffect(() => {
     if (!isValid) {
       setMsgColor(warnColor);
       if (!warning_msg) {
         setMsgColor(hintColor);
       }
     }
-  }, [isValid, warnColor, warning_msg, hintColor])
+  }, [isValid, warnColor, warning_msg, hintColor]);
 
   const calcMsgLeft = () => {
-    return `${labelRef.current?.offsetWidth??0}px`;
-  }
+    return `${labelRef.current?.offsetWidth ?? 0}px`;
+  };
 
-  const showRightIcon = props.resultIcon?? false;
+  const showRightIcon = props.resultIcon ?? false;
 
   return (
-    <Col mg={[4,0,4,0]} alignItems='flex-start'>
-      <div className={`evp evp-checkbox-group ${props.class??''}`.trim()}>
+    <Col mg={[4, 0, 4, 0]} alignItems="flex-start">
+      <div className={`evp evp-checkbox-group ${props.class ?? ""}`.trim()}>
         {props.label ? (
           <div
             ref={labelRef}
@@ -93,6 +97,7 @@ export default function EvpCheckBoxGroup(props: EvpCheckBoxGroupProps) {
           >
             {props.required ? <div className="evp-required">*</div> : void 0}
             {props.label}
+            {props.labelColon === true ? ":" : props.labelColon ?? void 0}
           </div>
         ) : null}
         <div className="evp-checkbox-group-options">
@@ -100,13 +105,24 @@ export default function EvpCheckBoxGroup(props: EvpCheckBoxGroupProps) {
             {props.children}
           </Context.Provider>
         </div>
-        {showRightIcon? <div className="evp input icon"><Icon name="true_circle" color={Color.HeavyGreen} $visibleSync={isValid} /></div> : null}
+        {showRightIcon ? (
+          <div className="evp input icon">
+            <Icon
+              name="true_circle"
+              color={Color.HeavyGreen}
+              $visibleSync={isValid}
+            />
+          </div>
+        ) : null}
       </div>
-      <div className="evp-input-msg" style={{
-        color: msgColor,
-        paddingLeft: calcMsgLeft(),
-      }}>
-        {isValid?'':(warning_msg?warning_msg:props.hint?.text)}
+      <div
+        className="evp-input-msg"
+        style={{
+          color: msgColor,
+          paddingLeft: calcMsgLeft(),
+        }}
+      >
+        {isValid ? "" : warning_msg ? warning_msg : props.hint?.text}
       </div>
     </Col>
   );
