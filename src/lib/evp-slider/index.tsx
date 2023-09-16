@@ -103,6 +103,8 @@ export default function EvpSlider(props: EvpSliderProps) {
   const labelAlign = props.labelAlign ?? "left";
   const labelRef = useRef<HTMLDivElement>(null);
 
+  const thumbRef = useRef<HTMLDivElement>(null);
+
   const step = () => width / length;
 
   return (
@@ -131,9 +133,6 @@ export default function EvpSlider(props: EvpSliderProps) {
           e.preventDefault();
         }}
         style={{
-          width: `calc(${width}px + ${
-            labelRef.current?.clientWidth ?? "0px"
-          } + 0px)`,
           ...props.style,
         }}
       >
@@ -152,52 +151,58 @@ export default function EvpSlider(props: EvpSliderProps) {
           </div>
         ) : null}
         <div
-          className="evp-slider-progress"
-          ref={prgsRef}
+          className="evp-slider-bar"
           style={{
-            // width: `${calcRate()}%`,
-            width: (val - (props.range?.[0] ?? 0)) * step(),
-          }}
-        ></div>
-        <div
-          draggable
-          className="evp-draggable"
-          tabIndex={-1}
-          onMouseOver={stressThumb}
-          onBlur={recoverThumb}
-          onDrag={(e) => {
-            const deltaX =
-              e.clientX - e.currentTarget.getBoundingClientRect().x;
-            if (e.clientX) {
-              let newVal = val + deltaX / step();
-
-              if (newVal >= max) {
-                newVal = max;
-              } else if (newVal <= min) {
-                newVal = min;
-              }
-              newVal = Number(newVal.toFixed(props.precision ?? 0));
-              console.log(
-                "strictFixed: ",
-                NumUtils.toFixedStrictly(newVal, props.precision ?? 0)
-              );
-              setVal(newVal);
-              formCtx?.set(name, newVal);
-              return false;
-            }
+            width: `calc(${width}px + ${
+              thumbRef.current?.clientWidth ?? "24px"
+            } + 0px)`,
           }}
         >
-          <EvpToolTip
-            content={NumUtils.toFixedStrictly(val, props.precision ?? 0)}
-            hidden={hiddenTip}
+          <div
+            className="evp-slider-progress"
+            ref={prgsRef}
+            style={{
+              // width: `${calcRate()}%`,
+              width: (val - (props.range?.[0] ?? 0)) * step(),
+            }}
+          ></div>
+          <div
+            draggable
+            className="evp-draggable"
+            ref={thumbRef}
+            tabIndex={-1}
+            onMouseOver={stressThumb}
+            onBlur={recoverThumb}
+            onDrag={(e) => {
+              const deltaX =
+                e.clientX - e.currentTarget.getBoundingClientRect().x;
+              if (e.clientX) {
+                let newVal = val + deltaX / step();
+
+                if (newVal >= max) {
+                  newVal = max;
+                } else if (newVal <= min) {
+                  newVal = min;
+                }
+                newVal = Number(newVal.toFixed(props.precision ?? 0));
+                setVal(newVal);
+                formCtx?.set(name, newVal);
+                return false;
+              }
+            }}
           >
-            <Thumb {...thumbColors} cursor={"pointer"} />
-          </EvpToolTip>
+            <EvpToolTip
+              content={NumUtils.toFixedStrictly(val, props.precision ?? 0)}
+              hidden={hiddenTip}
+            >
+              <Thumb {...thumbColors} cursor={"pointer"} />
+            </EvpToolTip>
+          </div>
+          <div
+            hidden={!(props.showEtc === false ? false : true)}
+            className="evp-slider-progress-etc"
+          ></div>
         </div>
-        <div
-          hidden={!(props.showEtc === false ? false : true)}
-          className="evp-slider-progress-etc"
-        ></div>
       </div>
     </EvpCol>
   );

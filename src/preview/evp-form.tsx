@@ -149,8 +149,8 @@ Here are some examples about EvpCard.
             label="Members"
             name="members"
             required
-            range={[0, 10]}
-            width={400}
+            range={[0, 5]}
+            width={200}
             min={1}
           />
           <EvpButton
@@ -191,6 +191,14 @@ $submit={() => {
       { label: "Admin", value: "4", key: "Admin" },
       { label: "Boss", value: "5", key: "Boss" },
     ]}
+  />
+  <EvpSlider
+    label="Members"
+    name="members"
+    required
+    range={[0, 5]}
+    width={200}
+    min={1}
   />
   <EvpButton
     $click={() => {
