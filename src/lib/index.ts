@@ -1,5 +1,3 @@
-"use client";
-
 export { type default as EvpBaseProps } from "./props";
 
 export {
