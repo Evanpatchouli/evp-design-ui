@@ -1,0 +1,102 @@
+.evp.evp-tag {
+  display: inline-block;
+}
+
+.evp.evp-tag.white {
+  border: 1px solid var(--LightGray);
+  color: #000 !important;
+}
+
+.evp.evp-tag.primary {
+  border: 1px solid var(--LightBlue);
+  background-color: var(--LightBlue);
+}
+
+.evp.evp-tag.success {
+  border: 1px solid var(--Green);
+  background-color: var(--Green);
+}
+
+.evp.evp-tag.warning {
+  border: 1px solid var(--Orange);
+  background-color: var(--Orange);
+}
+
+.evp.evp-tag.danger {
+  border: 1px solid var(--Red);
+  background-color: var(--Red);
+}
+
+.evp.evp-tag.info {
+  border: 1px solid var(--Gray);
+  background-color: var(--Gray);
+}
+
+.evp.evp-tag.dark {
+  border: 1px solid var(--Dark);
+  background-color: var(--Dark);
+}
+
+.evp.evp-tag.white.light {
+  border: 1px solid var(--LightGray);
+  color: #000 !important;
+}
+
+.evp.evp-tag.primary.light {
+  border: 1px solid var(--PaleBlue);
+  background-color: #ecf5ff;
+  color: var(--LightBlue);
+}
+
+.evp.evp-tag.success.light {
+  border: 1px solid var(--PaleGreen);
+  background-color: #e9ffe9;
+  color: var(--Green);
+}
+
+.evp.evp-tag.warning.light {
+  border: 1px solid rgb(255, 212, 132);
+  background-color: #fff6e5;
+  color: var(--Orange);
+}
+
+.evp.evp-tag.danger.light {
+  border: 1px solid rgb(255, 184, 184);
+  background-color: #fee5e5;
+  color: var(--Red);
+}
+
+.evp.evp-tag.info.light {
+  border: 1px solid var(--Gray);
+  background-color: var(--PaleGray);
+  color: var(--DeepGray);
+}
+
+.evp.evp-tag.dark.light {
+  border: 1px solid var(--HeavyGray);
+  background-color: var(--LightGray);
+  color: var(--Dark);
+}
+
+.evp.evp-tag.plain {
+  background-color: #fff;
+
+  &.primary {
+    color: var(--LightBlue);
+  }
+  &.success {
+    color: var(--Green);
+  }
+  &.danger {
+    color: var(--Red);
+  }
+  &.warning {
+    color: var(--Orange);
+  }
+  &.info {
+    color: var(--DeepGray);
+  }
+  &.dark {
+    color: var(--Dark);
+  }
+}

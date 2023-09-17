@@ -165,3 +165,9 @@ export {
   default as Slider,
   type EvpSliderProps,
 } from "./evp-slider";
+
+export {
+  default as EvpTag,
+  default as Tag,
+  type EvpTagProps,
+} from './evp-tag';

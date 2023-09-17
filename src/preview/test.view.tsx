@@ -2,7 +2,16 @@ import Card from "@/components/card";
 import "./test.css";
 import EvpFlexbarContentfixed from "@/lib/evp-flexbar/content-fixed";
 import EvpDivider from "@/lib/evp-divider";
-import { Anchor, Button, EvpButton, EvpRow, Input, Toast } from "@/lib";
+import {
+  Anchor,
+  Button,
+  EvpButton,
+  EvpRow,
+  EvpTag,
+  Input,
+  Row,
+  Toast,
+} from "@/lib";
 import useMobx from "@/store/hooks";
 import EvpForm from "@/lib/evp-form";
 import useForm from "@/lib/evp-form/hooks";
@@ -204,6 +213,106 @@ export default function TestViewView() {
             range={[0, 100]}
             value={50}
           />
+        </Card>
+        <Card>
+          <Row>
+            <EvpTag text="Tag 1" theme="white" style={{ marginRight: 12 }} />
+            <EvpTag text="Tag 1" theme="primary" style={{ marginRight: 12 }} />
+            <EvpTag text="Tag 1" theme="success" style={{ marginRight: 12 }} />
+            <EvpTag text="Tag 1" theme="warning" style={{ marginRight: 12 }} />
+            <EvpTag text="Tag 1" theme="danger" style={{ marginRight: 12 }} />
+            <EvpTag text="Tag 1" theme="info" style={{ marginRight: 12 }} />
+            <EvpTag text="Tag 1" theme="dark" style={{ marginRight: 12 }} />
+          </Row>
+          <Row mgt_20>
+            <EvpTag
+              text="Tag 1"
+              theme="white"
+              light
+              style={{ marginRight: 12 }}
+            />
+            <EvpTag
+              text="Tag 1"
+              theme="primary"
+              light
+              style={{ marginRight: 12 }}
+            />
+            <EvpTag
+              text="Tag 1"
+              theme="success"
+              light
+              style={{ marginRight: 12 }}
+            />
+            <EvpTag
+              text="Tag 1"
+              theme="warning"
+              light
+              style={{ marginRight: 12 }}
+            />
+            <EvpTag
+              text="Tag 1"
+              theme="danger"
+              light
+              style={{ marginRight: 12 }}
+            />
+            <EvpTag
+              text="Tag 1"
+              theme="info"
+              light
+              style={{ marginRight: 12 }}
+            />
+            <EvpTag
+              text="Tag 1"
+              theme="dark"
+              light
+              style={{ marginRight: 12 }}
+            />
+          </Row>
+
+          <Row mgt_20>
+            <EvpTag
+              text="Tag 1"
+              theme="white"
+              plain
+              style={{ marginRight: 12 }}
+            />
+            <EvpTag
+              text="Tag 1"
+              theme="primary"
+              plain
+              style={{ marginRight: 12 }}
+            />
+            <EvpTag
+              text="Tag 1"
+              theme="success"
+              plain
+              style={{ marginRight: 12 }}
+            />
+            <EvpTag
+              text="Tag 1"
+              theme="warning"
+              plain
+              style={{ marginRight: 12 }}
+            />
+            <EvpTag
+              text="Tag 1"
+              theme="danger"
+              plain
+              style={{ marginRight: 12 }}
+            />
+            <EvpTag
+              text="Tag 1"
+              theme="info"
+              plain
+              style={{ marginRight: 12 }}
+            />
+            <EvpTag
+              text="Tag 1"
+              theme="dark"
+              plain
+              style={{ marginRight: 12 }}
+            />
+          </Row>
         </Card>
       </PreContext.Provider>
     </div>

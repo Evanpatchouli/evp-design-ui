@@ -39,63 +39,63 @@
   --btn-large-h: 34px;
   --btn-huge-h: 38px;
 
-  --PaleRed: #FF7256;
-  --ShallowRed: #FF6347;
-  --LightRed: #FF4500;
-  --Red: #FF0000;
-  --HeavyRed: #EE0000;
-  --DeepRed: #CD0000;
-  --DarkRed: #8B0000;
+  --PaleRed: #ff7256;
+  --ShallowRed: #ff6347;
+  --LightRed: #ff4500;
+  --Red: #ff0000;
+  --HeavyRed: #ee0000;
+  --DeepRed: #cd0000;
+  --DarkRed: #8b0000;
 
-  --PaleBlue: #81D4FA;
-  --ShallowBlue: #00BFFF;
-  --LightBlue: #1E90FF;
-  --Blue: #0000FF;
-  --HeavyBlue: #0000CD;
-  --DeepBlue: #0000AC;
-  --DarkBlue: #00008B;
+  --PaleBlue: #81d4fa;
+  --ShallowBlue: #00bfff;
+  --LightBlue: #1e90ff;
+  --Blue: #0000ff;
+  --HeavyBlue: #0000cd;
+  --DeepBlue: #0000ac;
+  --DarkBlue: #00008b;
 
-  --PaleYellow: #FFFFE0;
-  --ShallowYellow: #FFF68F;
-  --LightYellow: #FFF68F;
-  --Yellow: #FFFF00;
-  --HeavyYellow: #EEEE00;
-  --DeepYellow: #EEC900;
-  --DarkYellow: #CDCD00;
-  
-  --PaleGreen: #9AFF9A;
-  --ShallowGreen: #00FF7F;
-  --LightGreen: #7FFF00;
-  --Green: #00FF00;
-  --HeavyGreen: #66CD00;
-  --DeepGreen: #2E8B57;
+  --PaleYellow: #ffffe0;
+  --ShallowYellow: #fff68f;
+  --LightYellow: #fff68f;
+  --Yellow: #ffff00;
+  --HeavyYellow: #eeee00;
+  --DeepYellow: #eec900;
+  --DarkYellow: #cdcd00;
+
+  --PaleGreen: #9aff9a;
+  --ShallowGreen: #00ff7f;
+  --LightGreen: #7fff00;
+  --Green: #00ff00;
+  --HeavyGreen: #66cd00;
+  --DeepGreen: #2e8b57;
   --DarkGreen: #006400;
 
-  --PaleGray: #E8E8E8;
-  --ShallowGray: #CFCFCF;
-  --LightGray: #B5B5B5;
-  --Gray: #9C9C9C;
+  --PaleGray: #e8e8e8;
+  --ShallowGray: #cfcfcf;
+  --LightGray: #b5b5b5;
+  --Gray: #9c9c9c;
   --HeavyGray: #828282;
-  --DeepGray: #4F4F4F;
+  --DeepGray: #4f4f4f;
   --DarkGray: #363636;
 
-  --Dark: #1C1C1C;
+  --Dark: #1c1c1c;
   --Black: #000000;
 
-  --Orange: #FFA500;
+  --Orange: #ffa500;
 
-  --Azure: #FFA500;
+  --Azure: #f0ffff;
 
-  --Gold: #FFD700;
+  --Gold: #ffd700;
 
-  --Pink: #FFC0CB;
+  --Pink: #ffc0cb;
 
-  --White: #FFFFFF;
+  --White: #ffffff;
   /** 米黄色 */
-  --Beige: #F7EED6;
+  --Beige: #f7eed6;
 
   /** 花卉白 */
-  --FloralWhite: #FFFAF0;
+  --FloralWhite: #fffaf0;
 
   --base-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
   --pale-shadow: 0px 2px 5px 1px #0000001e;
