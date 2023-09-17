@@ -11593,12 +11593,12 @@ function requireSql () {
 	return sql_1;
 }
 
-var refractorSql = requireSql();
+var refractorSql$1 = requireSql();
 var apex_1 = apex;
 apex.displayName = 'apex';
 apex.aliases = [];
 function apex(Prism) {
-  Prism.register(refractorSql)
+  Prism.register(refractorSql$1)
   ;(function (Prism) {
     var keywords =
       /\b(?:(?:after|before)(?=\s+[a-z])|abstract|activate|and|any|array|as|asc|autonomous|begin|bigdecimal|blob|boolean|break|bulk|by|byte|case|cast|catch|char|class|collect|commit|const|continue|currency|date|datetime|decimal|default|delete|desc|do|double|else|end|enum|exception|exit|export|extends|final|finally|float|for|from|get(?=\s*[{};])|global|goto|group|having|hint|if|implements|import|in|inner|insert|instanceof|int|integer|interface|into|join|like|limit|list|long|loop|map|merge|new|not|null|nulls|number|object|of|on|or|outer|override|package|parallel|pragma|private|protected|public|retrieve|return|rollback|select|set|short|sObject|sort|static|string|super|switch|synchronized|system|testmethod|then|this|throw|time|transaction|transient|trigger|try|undelete|update|upsert|using|virtual|void|webservice|when|where|while|(?:inherited|with|without)\s+sharing)\b/i;
@@ -25140,154 +25140,154 @@ function oz(Prism) {
   };
 }
 
-var parigp_1 = parigp;
-parigp.displayName = 'parigp';
-parigp.aliases = [];
-function parigp(Prism) {
-  Prism.languages.parigp = {
-    comment: /\/\*[\s\S]*?\*\/|\\\\.*/,
-    string: {
-      pattern: /"(?:[^"\\\r\n]|\\.)*"/,
-      greedy: true
-    },
-    // PARI/GP does not care about white spaces at all
-    // so let's process the keywords to build an appropriate regexp
-    // (e.g. "b *r *e *a *k", etc.)
-    keyword: (function () {
-      var keywords = [
-        'breakpoint',
-        'break',
-        'dbg_down',
-        'dbg_err',
-        'dbg_up',
-        'dbg_x',
-        'forcomposite',
-        'fordiv',
-        'forell',
-        'forpart',
-        'forprime',
-        'forstep',
-        'forsubgroup',
-        'forvec',
-        'for',
-        'iferr',
-        'if',
-        'local',
-        'my',
-        'next',
-        'return',
-        'until',
-        'while'
-      ];
-      keywords = keywords
-        .map(function (keyword) {
-          return keyword.split('').join(' *')
-        })
-        .join('|');
-      return RegExp('\\b(?:' + keywords + ')\\b')
-    })(),
-    function: /\b\w(?:[\w ]*\w)?(?= *\()/,
-    number: {
-      // The lookbehind and the negative lookahead prevent from breaking the .. operator
-      pattern:
-        /((?:\. *\. *)?)(?:\b\d(?: *\d)*(?: *(?!\. *\.)\.(?: *\d)*)?|\. *\d(?: *\d)*)(?: *e *(?:[+-] *)?\d(?: *\d)*)?/i,
-      lookbehind: true
-    },
-    operator:
-      /\. *\.|[*\/!](?: *=)?|%(?: *=|(?: *#)?(?: *')*)?|\+(?: *[+=])?|-(?: *[-=>])?|<(?: *>|(?: *<)?(?: *=)?)?|>(?: *>)?(?: *=)?|=(?: *=){0,2}|\\(?: *\/)?(?: *=)?|&(?: *&)?|\| *\||['#~^]/,
-    punctuation: /[\[\]{}().,:;|]/
-  };
+var parigp_1;
+var hasRequiredParigp;
+
+function requireParigp () {
+	if (hasRequiredParigp) return parigp_1;
+	hasRequiredParigp = 1;
+
+	parigp_1 = parigp;
+	parigp.displayName = 'parigp';
+	parigp.aliases = [];
+	function parigp(Prism) {
+	  Prism.languages.parigp = {
+	    comment: /\/\*[\s\S]*?\*\/|\\\\.*/,
+	    string: {
+	      pattern: /"(?:[^"\\\r\n]|\\.)*"/,
+	      greedy: true
+	    },
+	    // PARI/GP does not care about white spaces at all
+	    // so let's process the keywords to build an appropriate regexp
+	    // (e.g. "b *r *e *a *k", etc.)
+	    keyword: (function () {
+	      var keywords = [
+	        'breakpoint',
+	        'break',
+	        'dbg_down',
+	        'dbg_err',
+	        'dbg_up',
+	        'dbg_x',
+	        'forcomposite',
+	        'fordiv',
+	        'forell',
+	        'forpart',
+	        'forprime',
+	        'forstep',
+	        'forsubgroup',
+	        'forvec',
+	        'for',
+	        'iferr',
+	        'if',
+	        'local',
+	        'my',
+	        'next',
+	        'return',
+	        'until',
+	        'while'
+	      ];
+	      keywords = keywords
+	        .map(function (keyword) {
+	          return keyword.split('').join(' *')
+	        })
+	        .join('|');
+	      return RegExp('\\b(?:' + keywords + ')\\b')
+	    })(),
+	    function: /\b\w(?:[\w ]*\w)?(?= *\()/,
+	    number: {
+	      // The lookbehind and the negative lookahead prevent from breaking the .. operator
+	      pattern:
+	        /((?:\. *\. *)?)(?:\b\d(?: *\d)*(?: *(?!\. *\.)\.(?: *\d)*)?|\. *\d(?: *\d)*)(?: *e *(?:[+-] *)?\d(?: *\d)*)?/i,
+	      lookbehind: true
+	    },
+	    operator:
+	      /\. *\.|[*\/!](?: *=)?|%(?: *=|(?: *#)?(?: *')*)?|\+(?: *[+=])?|-(?: *[-=>])?|<(?: *>|(?: *<)?(?: *=)?)?|>(?: *>)?(?: *=)?|=(?: *=){0,2}|\\(?: *\/)?(?: *=)?|&(?: *&)?|\| *\||['#~^]/,
+	    punctuation: /[\[\]{}().,:;|]/
+	  };
+	}
+	return parigp_1;
 }
 
-var parser_1;
-var hasRequiredParser;
-
-function requireParser () {
-	if (hasRequiredParser) return parser_1;
-	hasRequiredParser = 1;
-
-	parser_1 = parser;
-	parser.displayName = 'parser';
-	parser.aliases = [];
-	function parser(Prism) {
+var parser_1 = parser;
+parser.displayName = 'parser';
+parser.aliases = [];
+function parser(Prism) {
 (function (Prism) {
-	    var parser = (Prism.languages.parser = Prism.languages.extend('markup', {
-	      keyword: {
-	        pattern:
-	          /(^|[^^])(?:\^(?:case|eval|for|if|switch|throw)\b|@(?:BASE|CLASS|GET(?:_DEFAULT)?|OPTIONS|SET_DEFAULT|USE)\b)/,
-	        lookbehind: true
-	      },
-	      variable: {
-	        pattern: /(^|[^^])\B\$(?:\w+|(?=[.{]))(?:(?:\.|::?)\w+)*(?:\.|::?)?/,
-	        lookbehind: true,
-	        inside: {
-	          punctuation: /\.|:+/
-	        }
-	      },
-	      function: {
-	        pattern: /(^|[^^])\B[@^]\w+(?:(?:\.|::?)\w+)*(?:\.|::?)?/,
-	        lookbehind: true,
-	        inside: {
-	          keyword: {
-	            pattern: /(^@)(?:GET_|SET_)/,
-	            lookbehind: true
-	          },
-	          punctuation: /\.|:+/
-	        }
-	      },
-	      escape: {
-	        pattern: /\^(?:[$^;@()\[\]{}"':]|#[a-f\d]*)/i,
-	        alias: 'builtin'
-	      },
-	      punctuation: /[\[\](){};]/
-	    }));
-	    parser = Prism.languages.insertBefore('parser', 'keyword', {
-	      'parser-comment': {
-	        pattern: /(\s)#.*/,
-	        lookbehind: true,
-	        alias: 'comment'
-	      },
-	      expression: {
-	        // Allow for 3 levels of depth
-	        pattern: /(^|[^^])\((?:[^()]|\((?:[^()]|\((?:[^()])*\))*\))*\)/,
-	        greedy: true,
-	        lookbehind: true,
-	        inside: {
-	          string: {
-	            pattern: /(^|[^^])(["'])(?:(?!\2)[^^]|\^[\s\S])*\2/,
-	            lookbehind: true
-	          },
-	          keyword: parser.keyword,
-	          variable: parser.variable,
-	          function: parser.function,
-	          boolean: /\b(?:false|true)\b/,
-	          number: /\b(?:0x[a-f\d]+|\d+(?:\.\d*)?(?:e[+-]?\d+)?)\b/i,
-	          escape: parser.escape,
-	          operator:
-	            /[~+*\/\\%]|!(?:\|\|?|=)?|&&?|\|\|?|==|<[<=]?|>[>=]?|-[fd]?|\b(?:def|eq|ge|gt|in|is|le|lt|ne)\b/,
-	          punctuation: parser.punctuation
-	        }
-	      }
-	    });
-	    Prism.languages.insertBefore(
-	      'inside',
-	      'punctuation',
-	      {
-	        expression: parser.expression,
-	        keyword: parser.keyword,
-	        variable: parser.variable,
-	        function: parser.function,
-	        escape: parser.escape,
-	        'parser-punctuation': {
-	          pattern: parser.punctuation,
-	          alias: 'punctuation'
-	        }
-	      },
-	      parser['tag'].inside['attr-value']
-	    );
-	  })(Prism);
-	}
-	return parser_1;
+    var parser = (Prism.languages.parser = Prism.languages.extend('markup', {
+      keyword: {
+        pattern:
+          /(^|[^^])(?:\^(?:case|eval|for|if|switch|throw)\b|@(?:BASE|CLASS|GET(?:_DEFAULT)?|OPTIONS|SET_DEFAULT|USE)\b)/,
+        lookbehind: true
+      },
+      variable: {
+        pattern: /(^|[^^])\B\$(?:\w+|(?=[.{]))(?:(?:\.|::?)\w+)*(?:\.|::?)?/,
+        lookbehind: true,
+        inside: {
+          punctuation: /\.|:+/
+        }
+      },
+      function: {
+        pattern: /(^|[^^])\B[@^]\w+(?:(?:\.|::?)\w+)*(?:\.|::?)?/,
+        lookbehind: true,
+        inside: {
+          keyword: {
+            pattern: /(^@)(?:GET_|SET_)/,
+            lookbehind: true
+          },
+          punctuation: /\.|:+/
+        }
+      },
+      escape: {
+        pattern: /\^(?:[$^;@()\[\]{}"':]|#[a-f\d]*)/i,
+        alias: 'builtin'
+      },
+      punctuation: /[\[\](){};]/
+    }));
+    parser = Prism.languages.insertBefore('parser', 'keyword', {
+      'parser-comment': {
+        pattern: /(\s)#.*/,
+        lookbehind: true,
+        alias: 'comment'
+      },
+      expression: {
+        // Allow for 3 levels of depth
+        pattern: /(^|[^^])\((?:[^()]|\((?:[^()]|\((?:[^()])*\))*\))*\)/,
+        greedy: true,
+        lookbehind: true,
+        inside: {
+          string: {
+            pattern: /(^|[^^])(["'])(?:(?!\2)[^^]|\^[\s\S])*\2/,
+            lookbehind: true
+          },
+          keyword: parser.keyword,
+          variable: parser.variable,
+          function: parser.function,
+          boolean: /\b(?:false|true)\b/,
+          number: /\b(?:0x[a-f\d]+|\d+(?:\.\d*)?(?:e[+-]?\d+)?)\b/i,
+          escape: parser.escape,
+          operator:
+            /[~+*\/\\%]|!(?:\|\|?|=)?|&&?|\|\|?|==|<[<=]?|>[>=]?|-[fd]?|\b(?:def|eq|ge|gt|in|is|le|lt|ne)\b/,
+          punctuation: parser.punctuation
+        }
+      }
+    });
+    Prism.languages.insertBefore(
+      'inside',
+      'punctuation',
+      {
+        expression: parser.expression,
+        keyword: parser.keyword,
+        variable: parser.variable,
+        function: parser.function,
+        escape: parser.escape,
+        'parser-punctuation': {
+          pattern: parser.punctuation,
+          alias: 'punctuation'
+        }
+      },
+      parser['tag'].inside['attr-value']
+    );
+  })(Prism);
 }
 
 var pascal_1;
@@ -25803,37 +25803,29 @@ function phpdoc(Prism) {
   })(Prism);
 }
 
-var plsql_1;
-var hasRequiredPlsql;
-
-function requirePlsql () {
-	if (hasRequiredPlsql) return plsql_1;
-	hasRequiredPlsql = 1;
-	var refractorSql = requireSql();
-	plsql_1 = plsql;
-	plsql.displayName = 'plsql';
-	plsql.aliases = [];
-	function plsql(Prism) {
-	  Prism.register(refractorSql);
-	  Prism.languages.plsql = Prism.languages.extend('sql', {
-	    comment: {
-	      pattern: /\/\*[\s\S]*?\*\/|--.*/,
-	      greedy: true
-	    },
-	    // https://docs.oracle.com/en/database/oracle/oracle-database/21/lnpls/plsql-reserved-words-keywords.html
-	    keyword:
-	      /\b(?:A|ACCESSIBLE|ADD|AGENT|AGGREGATE|ALL|ALTER|AND|ANY|ARRAY|AS|ASC|AT|ATTRIBUTE|AUTHID|AVG|BEGIN|BETWEEN|BFILE_BASE|BINARY|BLOB_BASE|BLOCK|BODY|BOTH|BOUND|BULK|BY|BYTE|C|CALL|CALLING|CASCADE|CASE|CHAR|CHARACTER|CHARSET|CHARSETFORM|CHARSETID|CHAR_BASE|CHECK|CLOB_BASE|CLONE|CLOSE|CLUSTER|CLUSTERS|COLAUTH|COLLECT|COLUMNS|COMMENT|COMMIT|COMMITTED|COMPILED|COMPRESS|CONNECT|CONSTANT|CONSTRUCTOR|CONTEXT|CONTINUE|CONVERT|COUNT|CRASH|CREATE|CREDENTIAL|CURRENT|CURSOR|CUSTOMDATUM|DANGLING|DATA|DATE|DATE_BASE|DAY|DECLARE|DEFAULT|DEFINE|DELETE|DESC|DETERMINISTIC|DIRECTORY|DISTINCT|DOUBLE|DROP|DURATION|ELEMENT|ELSE|ELSIF|EMPTY|END|ESCAPE|EXCEPT|EXCEPTION|EXCEPTIONS|EXCLUSIVE|EXECUTE|EXISTS|EXIT|EXTERNAL|FETCH|FINAL|FIRST|FIXED|FLOAT|FOR|FORALL|FORCE|FROM|FUNCTION|GENERAL|GOTO|GRANT|GROUP|HASH|HAVING|HEAP|HIDDEN|HOUR|IDENTIFIED|IF|IMMEDIATE|IMMUTABLE|IN|INCLUDING|INDEX|INDEXES|INDICATOR|INDICES|INFINITE|INSERT|INSTANTIABLE|INT|INTERFACE|INTERSECT|INTERVAL|INTO|INVALIDATE|IS|ISOLATION|JAVA|LANGUAGE|LARGE|LEADING|LENGTH|LEVEL|LIBRARY|LIKE|LIKE2|LIKE4|LIKEC|LIMIT|LIMITED|LOCAL|LOCK|LONG|LOOP|MAP|MAX|MAXLEN|MEMBER|MERGE|MIN|MINUS|MINUTE|MOD|MODE|MODIFY|MONTH|MULTISET|MUTABLE|NAME|NAN|NATIONAL|NATIVE|NCHAR|NEW|NOCOMPRESS|NOCOPY|NOT|NOWAIT|NULL|NUMBER_BASE|OBJECT|OCICOLL|OCIDATE|OCIDATETIME|OCIDURATION|OCIINTERVAL|OCILOBLOCATOR|OCINUMBER|OCIRAW|OCIREF|OCIREFCURSOR|OCIROWID|OCISTRING|OCITYPE|OF|OLD|ON|ONLY|OPAQUE|OPEN|OPERATOR|OPTION|OR|ORACLE|ORADATA|ORDER|ORGANIZATION|ORLANY|ORLVARY|OTHERS|OUT|OVERLAPS|OVERRIDING|PACKAGE|PARALLEL_ENABLE|PARAMETER|PARAMETERS|PARENT|PARTITION|PASCAL|PERSISTABLE|PIPE|PIPELINED|PLUGGABLE|POLYMORPHIC|PRAGMA|PRECISION|PRIOR|PRIVATE|PROCEDURE|PUBLIC|RAISE|RANGE|RAW|READ|RECORD|REF|REFERENCE|RELIES_ON|REM|REMAINDER|RENAME|RESOURCE|RESULT|RESULT_CACHE|RETURN|RETURNING|REVERSE|REVOKE|ROLLBACK|ROW|SAMPLE|SAVE|SAVEPOINT|SB1|SB2|SB4|SECOND|SEGMENT|SELECT|SELF|SEPARATE|SEQUENCE|SERIALIZABLE|SET|SHARE|SHORT|SIZE|SIZE_T|SOME|SPARSE|SQL|SQLCODE|SQLDATA|SQLNAME|SQLSTATE|STANDARD|START|STATIC|STDDEV|STORED|STRING|STRUCT|STYLE|SUBMULTISET|SUBPARTITION|SUBSTITUTABLE|SUBTYPE|SUM|SYNONYM|TABAUTH|TABLE|TDO|THE|THEN|TIME|TIMESTAMP|TIMEZONE_ABBR|TIMEZONE_HOUR|TIMEZONE_MINUTE|TIMEZONE_REGION|TO|TRAILING|TRANSACTION|TRANSACTIONAL|TRUSTED|TYPE|UB1|UB2|UB4|UNDER|UNION|UNIQUE|UNPLUG|UNSIGNED|UNTRUSTED|UPDATE|USE|USING|VALIST|VALUE|VALUES|VARIABLE|VARIANCE|VARRAY|VARYING|VIEW|VIEWS|VOID|WHEN|WHERE|WHILE|WITH|WORK|WRAPPED|WRITE|YEAR|ZONE)\b/i,
-	    // https://docs.oracle.com/en/database/oracle/oracle-database/21/lnpls/plsql-language-fundamentals.html#GUID-96A42F7C-7A71-4B90-8255-CA9C8BD9722E
-	    operator: /:=?|=>|[<>^~!]=|\.\.|\|\||\*\*|[-+*/%<>=@]/
-	  });
-	  Prism.languages.insertBefore('plsql', 'operator', {
-	    label: {
-	      pattern: /<<\s*\w+\s*>>/,
-	      alias: 'symbol'
-	    }
-	  });
-	}
-	return plsql_1;
+var refractorSql = requireSql();
+var plsql_1 = plsql;
+plsql.displayName = 'plsql';
+plsql.aliases = [];
+function plsql(Prism) {
+  Prism.register(refractorSql);
+  Prism.languages.plsql = Prism.languages.extend('sql', {
+    comment: {
+      pattern: /\/\*[\s\S]*?\*\/|--.*/,
+      greedy: true
+    },
+    // https://docs.oracle.com/en/database/oracle/oracle-database/21/lnpls/plsql-reserved-words-keywords.html
+    keyword:
+      /\b(?:A|ACCESSIBLE|ADD|AGENT|AGGREGATE|ALL|ALTER|AND|ANY|ARRAY|AS|ASC|AT|ATTRIBUTE|AUTHID|AVG|BEGIN|BETWEEN|BFILE_BASE|BINARY|BLOB_BASE|BLOCK|BODY|BOTH|BOUND|BULK|BY|BYTE|C|CALL|CALLING|CASCADE|CASE|CHAR|CHARACTER|CHARSET|CHARSETFORM|CHARSETID|CHAR_BASE|CHECK|CLOB_BASE|CLONE|CLOSE|CLUSTER|CLUSTERS|COLAUTH|COLLECT|COLUMNS|COMMENT|COMMIT|COMMITTED|COMPILED|COMPRESS|CONNECT|CONSTANT|CONSTRUCTOR|CONTEXT|CONTINUE|CONVERT|COUNT|CRASH|CREATE|CREDENTIAL|CURRENT|CURSOR|CUSTOMDATUM|DANGLING|DATA|DATE|DATE_BASE|DAY|DECLARE|DEFAULT|DEFINE|DELETE|DESC|DETERMINISTIC|DIRECTORY|DISTINCT|DOUBLE|DROP|DURATION|ELEMENT|ELSE|ELSIF|EMPTY|END|ESCAPE|EXCEPT|EXCEPTION|EXCEPTIONS|EXCLUSIVE|EXECUTE|EXISTS|EXIT|EXTERNAL|FETCH|FINAL|FIRST|FIXED|FLOAT|FOR|FORALL|FORCE|FROM|FUNCTION|GENERAL|GOTO|GRANT|GROUP|HASH|HAVING|HEAP|HIDDEN|HOUR|IDENTIFIED|IF|IMMEDIATE|IMMUTABLE|IN|INCLUDING|INDEX|INDEXES|INDICATOR|INDICES|INFINITE|INSERT|INSTANTIABLE|INT|INTERFACE|INTERSECT|INTERVAL|INTO|INVALIDATE|IS|ISOLATION|JAVA|LANGUAGE|LARGE|LEADING|LENGTH|LEVEL|LIBRARY|LIKE|LIKE2|LIKE4|LIKEC|LIMIT|LIMITED|LOCAL|LOCK|LONG|LOOP|MAP|MAX|MAXLEN|MEMBER|MERGE|MIN|MINUS|MINUTE|MOD|MODE|MODIFY|MONTH|MULTISET|MUTABLE|NAME|NAN|NATIONAL|NATIVE|NCHAR|NEW|NOCOMPRESS|NOCOPY|NOT|NOWAIT|NULL|NUMBER_BASE|OBJECT|OCICOLL|OCIDATE|OCIDATETIME|OCIDURATION|OCIINTERVAL|OCILOBLOCATOR|OCINUMBER|OCIRAW|OCIREF|OCIREFCURSOR|OCIROWID|OCISTRING|OCITYPE|OF|OLD|ON|ONLY|OPAQUE|OPEN|OPERATOR|OPTION|OR|ORACLE|ORADATA|ORDER|ORGANIZATION|ORLANY|ORLVARY|OTHERS|OUT|OVERLAPS|OVERRIDING|PACKAGE|PARALLEL_ENABLE|PARAMETER|PARAMETERS|PARENT|PARTITION|PASCAL|PERSISTABLE|PIPE|PIPELINED|PLUGGABLE|POLYMORPHIC|PRAGMA|PRECISION|PRIOR|PRIVATE|PROCEDURE|PUBLIC|RAISE|RANGE|RAW|READ|RECORD|REF|REFERENCE|RELIES_ON|REM|REMAINDER|RENAME|RESOURCE|RESULT|RESULT_CACHE|RETURN|RETURNING|REVERSE|REVOKE|ROLLBACK|ROW|SAMPLE|SAVE|SAVEPOINT|SB1|SB2|SB4|SECOND|SEGMENT|SELECT|SELF|SEPARATE|SEQUENCE|SERIALIZABLE|SET|SHARE|SHORT|SIZE|SIZE_T|SOME|SPARSE|SQL|SQLCODE|SQLDATA|SQLNAME|SQLSTATE|STANDARD|START|STATIC|STDDEV|STORED|STRING|STRUCT|STYLE|SUBMULTISET|SUBPARTITION|SUBSTITUTABLE|SUBTYPE|SUM|SYNONYM|TABAUTH|TABLE|TDO|THE|THEN|TIME|TIMESTAMP|TIMEZONE_ABBR|TIMEZONE_HOUR|TIMEZONE_MINUTE|TIMEZONE_REGION|TO|TRAILING|TRANSACTION|TRANSACTIONAL|TRUSTED|TYPE|UB1|UB2|UB4|UNDER|UNION|UNIQUE|UNPLUG|UNSIGNED|UNTRUSTED|UPDATE|USE|USING|VALIST|VALUE|VALUES|VARIABLE|VARIANCE|VARRAY|VARYING|VIEW|VIEWS|VOID|WHEN|WHERE|WHILE|WITH|WORK|WRAPPED|WRITE|YEAR|ZONE)\b/i,
+    // https://docs.oracle.com/en/database/oracle/oracle-database/21/lnpls/plsql-language-fundamentals.html#GUID-96A42F7C-7A71-4B90-8255-CA9C8BD9722E
+    operator: /:=?|=>|[<>^~!]=|\.\.|\|\||\*\*|[-+*/%<>=@]/
+  });
+  Prism.languages.insertBefore('plsql', 'operator', {
+    label: {
+      pattern: /<<\s*\w+\s*>>/,
+      alias: 'symbol'
+    }
+  });
 }
 
 var powerquery_1;
@@ -26134,20 +26126,29 @@ function requirePromql () {
 	return promql_1;
 }
 
-var properties_1 = properties;
-properties.displayName = 'properties';
-properties.aliases = [];
-function properties(Prism) {
-  Prism.languages.properties = {
-    comment: /^[ \t]*[#!].*$/m,
-    'attr-value': {
-      pattern:
-        /(^[ \t]*(?:\\(?:\r\n|[\s\S])|[^\\\s:=])+(?: *[=:] *(?! )| ))(?:\\(?:\r\n|[\s\S])|[^\\\r\n])+/m,
-      lookbehind: true
-    },
-    'attr-name': /^[ \t]*(?:\\(?:\r\n|[\s\S])|[^\\\s:=])+(?= *[=:]| )/m,
-    punctuation: /[=:]/
-  };
+var properties_1;
+var hasRequiredProperties;
+
+function requireProperties () {
+	if (hasRequiredProperties) return properties_1;
+	hasRequiredProperties = 1;
+
+	properties_1 = properties;
+	properties.displayName = 'properties';
+	properties.aliases = [];
+	function properties(Prism) {
+	  Prism.languages.properties = {
+	    comment: /^[ \t]*[#!].*$/m,
+	    'attr-value': {
+	      pattern:
+	        /(^[ \t]*(?:\\(?:\r\n|[\s\S])|[^\\\s:=])+(?: *[=:] *(?! )| ))(?:\\(?:\r\n|[\s\S])|[^\\\r\n])+/m,
+	      lookbehind: true
+	    },
+	    'attr-name': /^[ \t]*(?:\\(?:\r\n|[\s\S])|[^\\\s:=])+(?= *[=:]| )/m,
+	    punctuation: /[=:]/
+	  };
+	}
+	return properties_1;
 }
 
 var protobuf_1;
@@ -33142,8 +33143,8 @@ refractor.register(ocaml_1);
 refractor.register(opencl_1);
 refractor.register(openqasm_1);
 refractor.register(oz_1);
-refractor.register(parigp_1);
-refractor.register(requireParser());
+refractor.register(requireParigp());
+refractor.register(parser_1);
 refractor.register(requirePascal());
 refractor.register(pascaligo_1);
 refractor.register(requirePcaxis());
@@ -33152,13 +33153,13 @@ refractor.register(requirePerl());
 refractor.register(requirePhpExtras());
 refractor.register(requirePhp());
 refractor.register(phpdoc_1);
-refractor.register(requirePlsql());
+refractor.register(plsql_1);
 refractor.register(requirePowerquery());
 refractor.register(powershell_1);
 refractor.register(requireProcessing());
 refractor.register(prolog_1);
 refractor.register(requirePromql());
-refractor.register(properties_1);
+refractor.register(requireProperties());
 refractor.register(requireProtobuf());
 refractor.register(psl_1);
 refractor.register(requirePug());
@@ -76140,6 +76141,612 @@ var index = /*#__PURE__*/Object.freeze({
   'default': boxShadowFactoryInstance
 });
 
+var Context$1 = /*#__PURE__*/React.createContext({
+  name: ''
+});
+
+function EvpCheckBox(props) {
+  var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p;
+  var groupContext = useContext(Context$1);
+  var name = (_a = props.name) !== null && _a !== void 0 ? _a : groupContext.name;
+  var formCtx = useContext(EvpFormContext);
+  var val = props.value;
+  useEffect(function () {
+    if (formCtx) {
+      var state = formCtx.get(name);
+      if (!state) {
+        formCtx.register({
+          name: name,
+          value: []
+        });
+      }
+    }
+  }, [formCtx, name]);
+  var labelWidth = props.labelWidth ? typeof props.labelWidth === "number" ? "".concat(props.labelWidth, "px") : props.labelWidth : void 0;
+  var labelAlign = (_b = props.labelAlign) !== null && _b !== void 0 ? _b : "left";
+  var labelRef = useRef(null);
+  var _q = useState("onChange");
+    _q[0];
+    _q[1];
+  var _r = useState((_c = props.warnReader) === null || _c === void 0 ? void 0 : _c.ref),
+    warning_msg = _r[0];
+    _r[1];
+  var warnColor = (_e = (_d = props.rule) === null || _d === void 0 ? void 0 : _d.color) !== null && _e !== void 0 ? _e : "red";
+  var hintColor = (_g = (_f = props.hint) === null || _f === void 0 ? void 0 : _f.color) !== null && _g !== void 0 ? _g : "grey";
+  var _s = useState(false),
+    isValid = _s[0];
+    _s[1];
+  (_j = (_h = props.rule) === null || _h === void 0 ? void 0 : _h.smartTrigger) !== null && _j !== void 0 ? _j : true;
+  var showRightIcon = (_k = props.resultIcon) !== null && _k !== void 0 ? _k : false;
+  var _t = useState(hintColor),
+    msgColor = _t[0],
+    setMsgColor = _t[1];
+  useEffect(function () {
+    if (!isValid) {
+      setMsgColor(warnColor);
+      if (!warning_msg) {
+        setMsgColor(hintColor);
+      }
+    }
+  }, [isValid, warnColor, warning_msg, hintColor]);
+  var calcMsgLeft = function calcMsgLeft() {
+    var _a, _b;
+    return "".concat((_b = (_a = labelRef.current) === null || _a === void 0 ? void 0 : _a.offsetWidth) !== null && _b !== void 0 ? _b : 0, "px");
+  };
+  var _u = useState((_l = props.defaultChecked) !== null && _l !== void 0 ? _l : false),
+    checked = _u[0],
+    setChecked = _u[1];
+  var deChecked = function deChecked() {
+    setChecked(!checked);
+    return void 0;
+  };
+  useEffect(function () {
+    if (formCtx) {
+      var state = formCtx.get(name);
+      if (checked) {
+        state.push(props.value);
+        formCtx.set(name, state);
+      } else {
+        state.splice(state.indexOf(props.value), 1);
+        formCtx.set(name, state);
+      }
+    }
+  }, [checked, formCtx, name, props.value]);
+  return jsxRuntimeExports.jsxs(EvpCol, __assign({
+    mg: [4, 0, 4, 0],
+    alignItems: "flex-start",
+    class: "".concat(props.disabled ? "evp-disabled" : "").trim()
+  }, {
+    children: [jsxRuntimeExports.jsx(EvpRow, {
+      children: jsxRuntimeExports.jsxs("div", __assign({
+        className: "evp input"
+      }, {
+        children: [checked ? jsxRuntimeExports.jsx(CheckedBox$1, {
+          class: "input-checkbox",
+          fill: Color.Blue,
+          color: Color.Blue,
+          radius: (_m = props.radius) !== null && _m !== void 0 ? _m : 21,
+          cursor: props.disabled ? 'not-allowed' : 'pointer',
+          onClick: deChecked
+        }) : jsxRuntimeExports.jsx(UncheckedBox$1, {
+          class: "input-checkbox",
+          color: Color.PaleBlue,
+          strokeWidth: 2,
+          radius: (_o = props.radius) !== null && _o !== void 0 ? _o : 21,
+          cursor: props.disabled ? 'not-allowed' : 'pointer',
+          onClick: deChecked
+        }), props.label ? jsxRuntimeExports.jsxs("div", __assign({
+          ref: labelRef,
+          className: "evp input label",
+          style: {
+            fontSize: props.labelSize,
+            width: labelWidth,
+            textAlign: labelAlign
+          }
+        }, {
+          children: [props.required ? jsxRuntimeExports.jsx("div", __assign({
+            className: "evp-required"
+          }, {
+            children: "*"
+          })) : void 0, props.label]
+        })) : null, jsxRuntimeExports.jsx("input", {
+          hidden: true,
+          type: "checkbox",
+          name: name,
+          value: val,
+          checked: checked,
+          defaultChecked: props.defaultChecked
+        }), showRightIcon ? jsxRuntimeExports.jsx("div", __assign({
+          className: "evp input icon"
+        }, {
+          children: jsxRuntimeExports.jsx(EvpIcon, {
+            name: "true_circle",
+            color: Color.HeavyGreen,
+            "$visibleSync": isValid
+          })
+        })) : null]
+      }))
+    }), jsxRuntimeExports.jsx("div", __assign({
+      className: "evp-input-msg",
+      style: {
+        color: msgColor,
+        paddingLeft: calcMsgLeft()
+      }
+    }, {
+      children: isValid ? "" : warning_msg ? warning_msg : (_p = props.hint) === null || _p === void 0 ? void 0 : _p.text
+    }))]
+  }));
+}
+
+function EvpCheckBoxGroup(props) {
+  var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m;
+  var labelWidth = props.labelWidth ? typeof props.labelWidth === "number" ? "".concat(props.labelWidth, "px") : props.labelWidth : void 0;
+  var labelAlign = (_a = props.labelAlign) !== null && _a !== void 0 ? _a : "left";
+  var labelRef = useRef(null);
+  var _o = useState("onChange");
+    _o[0];
+    _o[1];
+  var _p = useState((_b = props.warnReader) === null || _b === void 0 ? void 0 : _b.ref),
+    warning_msg = _p[0];
+    _p[1];
+  var warnColor = (_d = (_c = props.rule) === null || _c === void 0 ? void 0 : _c.color) !== null && _d !== void 0 ? _d : "red";
+  var hintColor = (_f = (_e = props.hint) === null || _e === void 0 ? void 0 : _e.color) !== null && _f !== void 0 ? _f : "grey";
+  var _q = useState(false),
+    isValid = _q[0];
+    _q[1];
+  (_h = (_g = props.rule) === null || _g === void 0 ? void 0 : _g.smartTrigger) !== null && _h !== void 0 ? _h : true;
+  var _r = useState(hintColor),
+    msgColor = _r[0],
+    setMsgColor = _r[1];
+  useEffect(function () {
+    if (!isValid) {
+      setMsgColor(warnColor);
+      if (!warning_msg) {
+        setMsgColor(hintColor);
+      }
+    }
+  }, [isValid, warnColor, warning_msg, hintColor]);
+  var calcMsgLeft = function calcMsgLeft() {
+    var _a, _b;
+    return "".concat((_b = (_a = labelRef.current) === null || _a === void 0 ? void 0 : _a.offsetWidth) !== null && _b !== void 0 ? _b : 0, "px");
+  };
+  var showRightIcon = (_j = props.resultIcon) !== null && _j !== void 0 ? _j : false;
+  return jsxRuntimeExports.jsxs(EvpCol, __assign({
+    mg: [4, 0, 4, 0],
+    alignItems: "flex-start"
+  }, {
+    children: [jsxRuntimeExports.jsxs("div", __assign({
+      className: "evp evp-checkbox-group ".concat((_k = props.class) !== null && _k !== void 0 ? _k : "").trim()
+    }, {
+      children: [props.label ? jsxRuntimeExports.jsxs("div", __assign({
+        ref: labelRef,
+        className: "evp input label",
+        style: {
+          fontSize: props.labelSize,
+          width: labelWidth,
+          textAlign: labelAlign
+        }
+      }, {
+        children: [props.required ? jsxRuntimeExports.jsx("div", __assign({
+          className: "evp-required"
+        }, {
+          children: "*"
+        })) : void 0, props.label, props.labelColon === true ? ":" : (_l = props.labelColon) !== null && _l !== void 0 ? _l : void 0]
+      })) : null, jsxRuntimeExports.jsx("div", __assign({
+        className: "evp-checkbox-group-options"
+      }, {
+        children: jsxRuntimeExports.jsx(Context$1.Provider, __assign({
+          value: {
+            name: props.name
+          }
+        }, {
+          children: props.children
+        }))
+      })), showRightIcon ? jsxRuntimeExports.jsx("div", __assign({
+        className: "evp input icon"
+      }, {
+        children: jsxRuntimeExports.jsx(EvpIcon, {
+          name: "true_circle",
+          color: Color.HeavyGreen,
+          "$visibleSync": isValid
+        })
+      })) : null]
+    })), jsxRuntimeExports.jsx("div", __assign({
+      className: "evp-input-msg",
+      style: {
+        color: msgColor,
+        paddingLeft: calcMsgLeft()
+      }
+    }, {
+      children: isValid ? "" : warning_msg ? warning_msg : (_m = props.hint) === null || _m === void 0 ? void 0 : _m.text
+    }))]
+  }));
+}
+
+var Context = /*#__PURE__*/React.createContext({
+  name: ""
+});
+
+function EvpRadio(props) {
+  var _a, _b, _c;
+  var groupContext = useContext(Context);
+  var name = (_a = props.name) !== null && _a !== void 0 ? _a : groupContext.name;
+  var formCtx = useContext(EvpFormContext);
+  var labelWidth = props.labelWidth ? typeof props.labelWidth === "number" ? "".concat(props.labelWidth, "px") : props.labelWidth : void 0;
+  var labelAlign = (_b = props.labelAlign) !== null && _b !== void 0 ? _b : "left";
+  var labelRef = useRef(null);
+  var _d = useState(),
+    val = _d[0],
+    setVal = _d[1];
+  var inputRef = useRef(null);
+  useEffect(function () {
+    if (formCtx) {
+      var state = formCtx.get(name);
+      if (!state) {
+        formCtx.register({
+          name: name,
+          value: undefined
+        });
+      }
+    }
+  }, [formCtx, name]);
+  useEffect(function () {
+    if (formCtx) {
+      formCtx.set(name, val);
+    }
+  }, [formCtx, name, val]);
+  return jsxRuntimeExports.jsxs("div", __assign({
+    className: "evp input evp-radio ".concat((_c = props.class) !== null && _c !== void 0 ? _c : "", " ").concat(props.disabled ? "evp-disabled" : "").trim()
+  }, {
+    children: [jsxRuntimeExports.jsx("input", {
+      className: "evp input-radio",
+      name: name,
+      ref: inputRef,
+      type: "radio",
+      value: props.value,
+      defaultChecked: props.defaultChecked,
+      onChange: function onChange(e) {
+        setVal(e.target.value);
+      },
+      style: {
+        cursor: props.disabled ? 'not-allowed' : 'pointer'
+      }
+    }), props.label ? jsxRuntimeExports.jsxs("div", __assign({
+      ref: labelRef,
+      className: "evp input label",
+      style: {
+        fontSize: props.labelSize,
+        width: labelWidth,
+        textAlign: labelAlign
+      }
+    }, {
+      children: [props.required ? jsxRuntimeExports.jsx("div", __assign({
+        className: "evp-required"
+      }, {
+        children: "*"
+      })) : void 0, props.label]
+    })) : jsxRuntimeExports.jsxs("div", __assign({
+      ref: labelRef,
+      className: "evp input label",
+      style: {
+        fontSize: props.labelSize,
+        width: labelWidth,
+        textAlign: labelAlign
+      }
+    }, {
+      children: [props.required ? jsxRuntimeExports.jsx("div", __assign({
+        className: "evp-required"
+      }, {
+        children: "*"
+      })) : void 0, props.children]
+    }))]
+  }));
+}
+
+function EvpRadioGroup(props) {
+  var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m;
+  var labelWidth = props.labelWidth ? typeof props.labelWidth === "number" ? "".concat(props.labelWidth, "px") : props.labelWidth : void 0;
+  var labelAlign = (_a = props.labelAlign) !== null && _a !== void 0 ? _a : "left";
+  var labelRef = useRef(null);
+  var _o = useState("onChange");
+    _o[0];
+    _o[1];
+  var _p = useState((_b = props.warnReader) === null || _b === void 0 ? void 0 : _b.ref),
+    warning_msg = _p[0];
+    _p[1];
+  var warnColor = (_d = (_c = props.rule) === null || _c === void 0 ? void 0 : _c.color) !== null && _d !== void 0 ? _d : "red";
+  var hintColor = (_f = (_e = props.hint) === null || _e === void 0 ? void 0 : _e.color) !== null && _f !== void 0 ? _f : "grey";
+  var _q = useState(false),
+    isValid = _q[0];
+    _q[1];
+  (_h = (_g = props.rule) === null || _g === void 0 ? void 0 : _g.smartTrigger) !== null && _h !== void 0 ? _h : true;
+  var _r = useState(hintColor),
+    msgColor = _r[0],
+    setMsgColor = _r[1];
+  useEffect(function () {
+    if (!isValid) {
+      setMsgColor(warnColor);
+      if (!warning_msg) {
+        setMsgColor(hintColor);
+      }
+    }
+  }, [isValid, warnColor, warning_msg, hintColor]);
+  var calcMsgLeft = function calcMsgLeft() {
+    var _a, _b;
+    return "".concat((_b = (_a = labelRef.current) === null || _a === void 0 ? void 0 : _a.offsetWidth) !== null && _b !== void 0 ? _b : 0, "px");
+  };
+  var showRightIcon = (_j = props.resultIcon) !== null && _j !== void 0 ? _j : false;
+  return jsxRuntimeExports.jsxs(EvpCol, __assign({
+    mg: [4, 0, 4, 0],
+    alignItems: "flex-start"
+  }, {
+    children: [jsxRuntimeExports.jsxs("div", __assign({
+      className: "evp evp-radio-group ".concat((_k = props.class) !== null && _k !== void 0 ? _k : "").trim()
+    }, {
+      children: [props.label ? jsxRuntimeExports.jsxs("div", __assign({
+        ref: labelRef,
+        className: "evp input label",
+        style: {
+          fontSize: props.labelSize,
+          width: labelWidth,
+          textAlign: labelAlign
+        }
+      }, {
+        children: [props.required ? jsxRuntimeExports.jsx("div", __assign({
+          className: "evp-required"
+        }, {
+          children: "*"
+        })) : void 0, props.label, props.labelColon === true ? ":" : (_l = props.labelColon) !== null && _l !== void 0 ? _l : void 0]
+      })) : null, jsxRuntimeExports.jsx("div", __assign({
+        className: "evp-radio-group-options"
+      }, {
+        children: jsxRuntimeExports.jsx(Context.Provider, __assign({
+          value: {
+            name: props.name
+          }
+        }, {
+          children: props.children
+        }))
+      })), showRightIcon ? jsxRuntimeExports.jsx("div", __assign({
+        className: "evp input icon"
+      }, {
+        children: jsxRuntimeExports.jsx(EvpIcon, {
+          name: "true_circle",
+          color: Color.HeavyGreen,
+          "$visibleSync": isValid
+        })
+      })) : null]
+    })), jsxRuntimeExports.jsx("div", __assign({
+      className: "evp-input-msg",
+      style: {
+        color: msgColor,
+        paddingLeft: calcMsgLeft()
+      }
+    }, {
+      children: isValid ? "" : warning_msg ? warning_msg : (_m = props.hint) === null || _m === void 0 ? void 0 : _m.text
+    }))]
+  }));
+}
+
+function EvpSelect(props) {
+  var _a, _b, _c, _d, _e, _f;
+  var groupContext = useContext(Context);
+  var name = (_a = props.name) !== null && _a !== void 0 ? _a : groupContext.name;
+  var formCtx = useContext(EvpFormContext);
+  var _g = useState(),
+    val = _g[0],
+    setVal = _g[1];
+  var _h = useState(),
+    label = _h[0],
+    setLabel = _h[1];
+  var _j = useState("0s"),
+    closeDelay = _j[0],
+    setCloseDelay = _j[1];
+  useEffect(function () {
+    if (formCtx) {
+      var state = formCtx.get(name);
+      if (!state) {
+        formCtx.register({
+          name: name,
+          value: undefined
+        });
+      }
+    }
+  }, [formCtx, name]);
+  useEffect(function () {
+    if (formCtx) {
+      formCtx.set(name, val);
+    }
+  }, [formCtx, name, val]);
+  var inputRef = useRef(null);
+  var optionsRef = useRef(null);
+  var _k = useState(false),
+    expand = _k[0],
+    setExpand = _k[1];
+  var _l = useState(),
+    cur = _l[0],
+    setCur = _l[1];
+  var optionSelected = function optionSelected(option) {
+    return option.key === cur ? "evp-select-option-selected" : "";
+  };
+  var labelWidth = props.labelWidth ? typeof props.labelWidth === "number" ? "".concat(props.labelWidth, "px") : props.labelWidth : void 0;
+  var labelAlign = (_b = props.labelAlign) !== null && _b !== void 0 ? _b : "left";
+  var labelRef = useRef(null);
+  return jsxRuntimeExports.jsx(EvpCol, __assign({
+    mg: [4, 0, 4, 0],
+    alignItems: "flex-start"
+  }, {
+    children: jsxRuntimeExports.jsxs(EvpRow, {
+      children: [props.label ? jsxRuntimeExports.jsxs("div", __assign({
+        ref: labelRef,
+        className: "evp input label",
+        style: {
+          fontSize: props.labelSize,
+          width: labelWidth,
+          textAlign: labelAlign
+        }
+      }, {
+        children: [props.required ? jsxRuntimeExports.jsx("div", __assign({
+          className: "evp-required"
+        }, {
+          children: "*"
+        })) : void 0, props.label, props.labelColon === true ? ":" : (_c = props.labelColon) !== null && _c !== void 0 ? _c : void 0]
+      })) : null, jsxRuntimeExports.jsxs("div", __assign({
+        className: "evp evp-select"
+      }, {
+        children: [jsxRuntimeExports.jsx("input", {
+          placeholder: props.placeholder,
+          ref: inputRef,
+          className: "evp input input-box evp-select-input",
+          value: label,
+          readOnly: true,
+          onClick: function onClick() {
+            var _a;
+            (_a = optionsRef.current) === null || _a === void 0 ? void 0 : _a.focus();
+            setCloseDelay("0.3s");
+            setExpand(!expand);
+          },
+          onBlur: function onBlur(e) {
+            setCloseDelay("0.1s");
+            if (expand) {
+              setExpand(false);
+            }
+          }
+        }), jsxRuntimeExports.jsx("div", __assign({
+          className: "evp-select-options ".concat(expand ? "" : "evp-close").trim(),
+          tabIndex: -1,
+          ref: optionsRef,
+          onBlur: function onBlur(e) {
+            if (expand) {
+              setExpand(false);
+            }
+          },
+          style: {
+            width: (_d = inputRef.current) === null || _d === void 0 ? void 0 : _d.clientWidth,
+            cursor: "pointer",
+            animationDelay: closeDelay,
+            height: props.rows ? props.rows * (24 + 8) + 4 * 2 + 0 : void 0
+          }
+        }, {
+          children: (_e = props.options) === null || _e === void 0 ? void 0 : _e.map(function (option) {
+            return jsxRuntimeExports.jsx("div", __assign({
+              className: "evp-select-option ".concat(optionSelected(option), " ").concat(option.disabled ? "evp-disabled" : "").trim(),
+              onMouseUp: function onMouseUp() {
+                setCloseDelay("0.3s");
+                setCur(option.key);
+                setVal(option.value);
+                setLabel(option.label);
+              }
+            }, {
+              children: option.label
+            }), option.value);
+          })
+        })), jsxRuntimeExports.jsx("select", __assign({
+          name: name,
+          hidden: true
+        }, {
+          children: (_f = props.options) === null || _f === void 0 ? void 0 : _f.map(function (option) {
+            return jsxRuntimeExports.jsx("option", __assign({
+              value: option.value
+            }, {
+              children: option.label
+            }), option.value);
+          })
+        }))]
+      }))]
+    })
+  }));
+}
+
+var FormStore = /** @class */function () {
+  function FormStore() {
+    var _this = this;
+    this.store = [];
+    this.register = function (entity) {
+      _this.store.push(entity);
+      return function () {
+        _this.store = _this.store.filter(function (item) {
+          return item.name !== entity.name;
+        });
+      };
+    };
+    this.get = function (name) {
+      var _a;
+      return (_a = _this.store.find(function (item) {
+        return item.name === name;
+      })) === null || _a === void 0 ? void 0 : _a.value;
+    };
+    this.set = function (name, value) {
+      var item = _this.store.find(function (item) {
+        return item.name === name;
+      });
+      if (item) {
+        item.value = value;
+      } else {
+        throw new Error("Field ".concat(name, " not exists on form"));
+      }
+    };
+    this.gets = function (names) {
+      var keys = (names === null || names === void 0 ? void 0 : names.length) ? names : _this.store.map(function (item) {
+        return item.name;
+      });
+      var results = {};
+      keys.forEach(function (key) {
+        results[key] = _this.get(key);
+      });
+      return results;
+    };
+    this.sets = function (map) {
+      if (map) {
+        Object.keys(map).forEach(function (key) {
+          _this.set(key, map[key]);
+        });
+      }
+    };
+    this.submit = function () {
+    };
+  }
+  return FormStore;
+}();
+var useForm = function useForm() {
+  var formRef = useRef();
+  if (!formRef.current) {
+    var formStore = new FormStore();
+    formRef.current = formStore;
+  }
+  return {
+    current: {
+      get: formRef.current.get,
+      set: formRef.current.set,
+      gets: formRef.current.gets,
+      sets: formRef.current.sets,
+      submit: formRef.current.submit,
+      register: formRef.current.register
+    }
+  };
+};
+
+function EvpForm(props) {
+  var formRef = useForm();
+  if (props.formRef) {
+    formRef = props.formRef;
+  }
+  return jsxRuntimeExports.jsx("form", __assign({
+    onSubmit: function onSubmit(e) {
+      var _a;
+      e.preventDefault();
+      (_a = props.$submit) === null || _a === void 0 ? void 0 : _a.call(props, e);
+    },
+    style: props.style
+  }, {
+    children: jsxRuntimeExports.jsx(EvpFormContext.Provider, __assign({
+      value: formRef.current
+    }, {
+      children: props.children
+    }))
+  }));
+}
+
 var Radio = function Radio(props) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
   return jsxRuntimeExports.jsx("div", __assign({
@@ -76212,10 +76819,6 @@ function EvpToolTip(props) {
     })), props.children]
   }));
 }
-
-var Context = /*#__PURE__*/React.createContext({
-  name: ""
-});
 
 var emptyImg = document.createElement("img");
 emptyImg.src = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
@@ -76403,4 +77006,4 @@ function EvpSlider(props) {
   }));
 }
 
-export { AllParser, EvpAnchor as Anchor, EvpButton as Button, EvpCard as Card, EvpCode as Code, EvpCol as Col, Color, EvpDivider as Divider, EvpDom as Dom, EvpAnchor, EvpButton, EvpCard, EvpCode, EvpCol, Color as EvpColor, EvpDivider, EvpDom, EvpFlexbar, EvpHeader, EvpIcon, EvpInput, EvpMenu, EvpMenuItem, EvpMsg, EvpPopover, EvpRow, index as EvpShadow, EvpSlider, SvgIcons as EvpSvgIcon, EvpToast, EvpFlexbar as Flexbar, EvpHeader as Header, EvpIcon as Icon, EvpInput as Input, EvpMenu as Menu, EvpMenuItem as MenuItem, EvpMsg as Msg, EvpPopover as Popover, EvpRow as Row, EvpSlider as Slider, SvgIcons as SvgIcon, EvpToast as Toast, shift };
+export { AllParser, EvpAnchor as Anchor, EvpButton as Button, EvpCard as Card, EvpCheckBox as CheckBox, EvpCheckBoxGroup as CheckBoxGroup, EvpCode as Code, EvpCol as Col, Color, EvpDivider as Divider, EvpDom as Dom, EvpAnchor, EvpButton, EvpCard, EvpCheckBox, EvpCheckBoxGroup, EvpCode, EvpCol, Color as EvpColor, EvpDivider, EvpDom, EvpFlexbar, EvpForm, EvpHeader, EvpIcon, EvpInput, EvpMenu, EvpMenuItem, EvpMsg, EvpPopover, EvpRadio, EvpRadioGroup, EvpRow, EvpSelect, index as EvpShadow, EvpSlider, SvgIcons as EvpSvgIcon, EvpToast, EvpFlexbar as Flexbar, EvpForm as Form, EvpHeader as Header, EvpIcon as Icon, EvpInput as Input, EvpMenu as Menu, EvpMenuItem as MenuItem, EvpMsg as Msg, EvpPopover as Popover, EvpRadio as Radio, EvpRadioGroup as RadioGroup, EvpRow as Row, EvpSelect as Select, EvpSlider as Slider, SvgIcons as SvgIcon, EvpToast as Toast, shift, useForm };
