@@ -31,6 +31,7 @@ import CheckBoxView from './preview/evp-checkbox';
 import SelectView from './preview/evp-select';
 import FormView from './preview/evp-form';
 import SliderView from './preview/evp-slider';
+import TagView from './preview/evp-tag';
 
 function App() {
   const location = useLocation();
@@ -66,32 +67,34 @@ function App() {
             <EvpMenuItem link={'/components/evp-select'} title={'EvpSelect'} />
             <EvpMenuItem link={'/components/evp-slider'} title={'EvpSlider'} />
             <EvpMenuItem link={'/components/evp-form'} title={'EvpForm'} />
+            <EvpMenuItem link={'/components/evp-tag'} title={'EvpTag'} />
           </EvpMenu>
         </div>
         <div className='Content'>
           <Routes>
-            <Route path='/' key={"home"} element={<GeneralView/>}></Route>
-            <Route path='/test' key={"test"} element={<TestViewView/>}></Route>
-            <Route path='/components/evp-col' key={"col"} element={<ColView/>}></Route>
-            <Route path='/components/evp-row' key={"row"} element={<RowView/>}></Route>
-            <Route path='/components/evp-dom' key={"dom"} element={<DomView/>}></Route>
-            <Route path='/components/evp-divider' key={"divider"} element={<DividerView/>}></Route>
-            <Route path='/components/evp-header' key={"header"} element={<HeaderView/>}></Route>
-            <Route path='/components/evp-button' key={"button"} element={<ButtonView/>}></Route>
-            <Route path='/components/evp-input' key={"input"} element={<InputView/>}></Route>
-            <Route path='/components/evp-color' key={"color"} element={<ColorView/>}></Route>
-            <Route path='/components/evp-card' key={"card"} element={<CardView/>}></Route>
-            <Route path='/components/evp-menu' key={"menu"} element={<MenuView/>}></Route>
-            <Route path='/components/evp-shadow' key={"shadow"} element={<ShadowView/>}></Route>
-            <Route path='/components/evp-msg' key={"msg"} element={<MsgView/>}></Route>
-            <Route path='/components/evp-toast' key={"toast"} element={<ToastView/>}></Route>
-            <Route path='/components/evp-popover' key={"popver"} element={<PopoverView/>}></Route>
-            <Route path='/components/evp-flexbar' key={"flexbar"} element={<FlexbarView/>}></Route>
-            <Route path='/components/evp-radio' key={"radio"} element={<RadioView/>}></Route>
-            <Route path='/components/evp-checkbox' key={"checkbox"} element={<CheckBoxView/>}></Route>
-            <Route path='/components/evp-select' key={"select"} element={<SelectView/>}></Route>
-            <Route path='/components/evp-slider' key={"slider"} element={<SliderView/>}></Route>
-            <Route path='/components/evp-form' key={"form"} element={<FormView/>}></Route>
+            <Route path='/' key={"home"} element={<GeneralView />}></Route>
+            <Route path='/test' key={"test"} element={<TestViewView />}></Route>
+            <Route path='/components/evp-col' key={"col"} element={<ColView />}></Route>
+            <Route path='/components/evp-row' key={"row"} element={<RowView />}></Route>
+            <Route path='/components/evp-dom' key={"dom"} element={<DomView />}></Route>
+            <Route path='/components/evp-divider' key={"divider"} element={<DividerView />}></Route>
+            <Route path='/components/evp-header' key={"header"} element={<HeaderView />}></Route>
+            <Route path='/components/evp-button' key={"button"} element={<ButtonView />}></Route>
+            <Route path='/components/evp-input' key={"input"} element={<InputView />}></Route>
+            <Route path='/components/evp-color' key={"color"} element={<ColorView />}></Route>
+            <Route path='/components/evp-card' key={"card"} element={<CardView />}></Route>
+            <Route path='/components/evp-menu' key={"menu"} element={<MenuView />}></Route>
+            <Route path='/components/evp-shadow' key={"shadow"} element={<ShadowView />}></Route>
+            <Route path='/components/evp-msg' key={"msg"} element={<MsgView />}></Route>
+            <Route path='/components/evp-toast' key={"toast"} element={<ToastView />}></Route>
+            <Route path='/components/evp-popover' key={"popver"} element={<PopoverView />}></Route>
+            <Route path='/components/evp-flexbar' key={"flexbar"} element={<FlexbarView />}></Route>
+            <Route path='/components/evp-radio' key={"radio"} element={<RadioView />}></Route>
+            <Route path='/components/evp-checkbox' key={"checkbox"} element={<CheckBoxView />}></Route>
+            <Route path='/components/evp-select' key={"select"} element={<SelectView />}></Route>
+            <Route path='/components/evp-slider' key={"slider"} element={<SliderView />}></Route>
+            <Route path='/components/evp-form' key={"form"} element={<FormView />}></Route>
+            <Route path='/components/evp-tag' key={"tag"} element={<TagView />}></Route>
           </Routes>
           <div className='foot'>
             <p>CopyRight &copy; 2023-2023 Evp Design UI</p>

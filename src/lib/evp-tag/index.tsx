@@ -49,7 +49,7 @@ const EvpTag = (props: EvpTagProps) => {
         textAlign: "center",
         verticalAlign: "middle",
         padding: "0 12px",
-        borderRadius: "4px",
+        borderRadius: rounded ? "100px" : "4px",
         ...rest.style,
       }}
       {...$rest}
