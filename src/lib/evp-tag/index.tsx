@@ -2,16 +2,10 @@ import classNames from "classnames";
 import { cloneDeep } from "lodash";
 
 const EvpTag = (props: EvpTagProps) => {
-  const { theme, plain, light, size, rounded } = props;
+  const { theme, plain, light, size, round } = props;
   const { children, text, class: className, ...rest } = props;
   const $type = light ? "light" : plain ? "plain" : "deep";
-  const classes = classNames(
-    "evp",
-    "evp-tag",
-    theme ?? "primary",
-    $type,
-    className
-  );
+  const classes = classNames("evp", "evp-tag", theme ?? "primary", $type, className);
 
   const sizer = () => {
     switch (size) {
@@ -49,7 +43,7 @@ const EvpTag = (props: EvpTagProps) => {
         textAlign: "center",
         verticalAlign: "middle",
         padding: "0 12px",
-        borderRadius: rounded ? "100px" : "4px",
+        borderRadius: round ? "100px" : "4px",
         ...rest.style,
       }}
       {...$rest}
@@ -68,17 +62,11 @@ export interface EvpTagProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode;
   text?: string;
   class?: string;
-  theme?:
-    | "white"
-    | "primary"
-    | "success"
-    | "warning"
-    | "danger"
-    | "info"
-    | "dark";
+  theme?: "white" | "primary" | "success" | "warning" | "danger" | "info" | "dark";
   plain?: boolean;
   deep?: boolean;
   light?: boolean;
+  /** Default is `md` */
   size?: "sm" | "md" | "lg";
-  rounded?: boolean;
+  round?: boolean;
 }
