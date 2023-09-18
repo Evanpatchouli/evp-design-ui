@@ -1,7 +1,7 @@
 import Card from "@/components/card";
 import Md from "@/components/md";
 import Tsx from "@/components/tsx";
-import { EvpSlider } from "@/lib";
+import { EvpCode, EvpSlider } from "@/lib";
 import EvpButton from "@/lib/evp-button";
 import EvpCheckBox from "@/lib/evp-checkbox";
 import EvpCheckBoxGroup from "@/lib/evp-checkbox-group/inedx";
@@ -218,21 +218,18 @@ $submit={() => {
 ★ props extends EvpBaseProps
 
 **EvpForm Apis:**
-
-- children? : card content
-  + type: React.ReactNode
-- contentStyle ? : css style of card content element
-- toolBar ? : toolbar content
-  + type: React.ReactNode
-- toolBarPosition ? : where the toolbar is
-  + default: 'bottom'
-  + options: 'top' | 'bottom' | 'left' | 'right'
-- toolbarStyle ? : css style of card toolbar element
-- class ? : className of card;
-- contentClass ? : className of card content element;
-- toolBarClass ? : className of card toolbar element;
 `}
       </Md>
+      <EvpCode lang="typescript" theme="coldarkDark">
+{`
+export type EvpFormProps<T = any> = {
+  children: JSX.Element | React.ReactNode;
+  $submit?: (formData: { [K in keyof T]: T[K]; }) => void;
+  formRef?: React.MutableRefObject<EvpFormInstance<T>>;
+  style?: React.CSSProperties;
+};
+`}
+      </EvpCode>
       <EvpButton
         position="absolute"
         right={40}
