@@ -70,7 +70,7 @@ import { EvpBadge } from 'evp-design-ui'
 
 Here are some examples about EvpBadge.
 
-If the badge content is a number and greater than the max value, the badge content will be replaced by the (max value - 1) plus a plus sign.  
+If the badge content is a number and greater than the **max** value, the badge content will be replaced by the (max value - 1) plus a plus sign.  
 (Default max value is 100, if you do not wanna max, you can set the max value to much more great number like 9999)
 `}
       </Md>
@@ -118,6 +118,59 @@ If the badge content is a number and greater than the max value, the badge conte
       </Tsx>
       <Md>
         {`
+### show & invisble & showZero
+
+If you wanna to not show badge dot element, you can set **show** to false to hidden it.
+
+If you wanna to not show exactly content of badge dot, you can set **invisble** to true to make it only a small dot.
+
+Default, when content is number 0, the badge dot will hidden, if you want to show it anyway, you can set **showZero** to true.
+        `}
+      </Md>
+      <Card
+        toolbarStyle={{
+          justifyContent: "flex-end",
+        }}
+        toolBar={
+          <>
+            <EvpButton $click={() => clickCode(2)} theme="text" size="mini" text="code" />
+            <EvpButton theme="text" size="mini" text="copy" />
+          </>
+        }
+      >
+        <Row>
+          <EvpBadge content={20} show={false} mgr_14>
+            <EvpIcon name="warn" />
+          </EvpBadge>
+          <EvpBadge content={20} invisble mgr_14>
+            <EvpIcon name="warn" />
+          </EvpBadge>
+          <EvpBadge content={0} mgr_14>
+            <EvpIcon name="warn" />
+          </EvpBadge>
+          <EvpBadge content={0} showZero mgr_14>
+            <EvpIcon name="warn" />
+          </EvpBadge>
+        </Row>
+      </Card>
+      <Tsx show={showCode[2]}>
+        {`
+<EvpBadge content={20} show={false} mgr_14>
+  <EvpIcon name="warn" />
+</EvpBadge>
+<EvpBadge content={20} invisble mgr_14>
+  <EvpIcon name="warn" />
+</EvpBadge>
+<EvpBadge content={0} mgr_14>
+  <EvpIcon name="warn" />
+</EvpBadge>
+<EvpBadge content={0} showZero mgr_14>
+  <EvpIcon name="warn" />
+</EvpBadge>
+        `}
+      </Tsx>
+      <Md>
+        {`
 ## Api
 
 ★ container based on div  
@@ -136,6 +189,12 @@ export interface EvpBadgeProps extends EvpBaseProps {
   max?: number;
   /** dot size */
   size?: "sm" | "md" | "lg" | number;
+  /** whether to show badge dot */
+  show?: boolean;
+  /** whether to show badge dot when number content is 0, default is false */
+  showZero?: boolean;
+  /** whether to show exactly badge content, default is true */
+  invisble?: boolean;
   children?: React.ReactNode;
   /** component className */
   class?: string;
@@ -161,7 +220,7 @@ export interface EvpBadgeProps extends EvpBaseProps {
         plain
         shadow={false}
         link="/components/"
-        text={`★ Next Doc Evp${''} >`}
+        text={`★ Next Doc Evp${""} >`}
       />
     </div>
   );

@@ -9,6 +9,12 @@ export interface EvpBadgeProps extends EvpBaseProps {
   max?: number;
   /** dot size */
   size?: "sm" | "md" | "lg" | number;
+  /** whether to show badge dot */
+  show?: boolean;
+  /** whether to show badge dot when number content is 0, default is false */
+  showZero?: boolean;
+  /** whether to show exactly badge content, default is true */
+  invisble?: boolean;
   children?: React.ReactNode;
   /** component className */
   class?: string;
@@ -29,6 +35,12 @@ export interface EvpBadgeProps extends EvpBaseProps {
 const EvpBadge: React.FC<EvpBadgeProps> = (props) => {
   const $props = AllParser(props);
   const sizer = () => {
+    if (props.invisble) {
+      return {
+        width: 8,
+        height: 8,
+      };
+    }
     switch (props.size) {
       case "sm":
         return {
@@ -65,13 +77,25 @@ const EvpBadge: React.FC<EvpBadgeProps> = (props) => {
       <div
         className={classNames("evp-badge-dot", props.dotClass)}
         style={{
+          display: (() => {
+            if (props.content === 0 && props.showZero !== true) {
+              return "none";
+            }
+            return props.show === false ? "none" : "block";
+          })(),
           backgroundColor: "red",
           ...sizer(),
           color: "#fff",
           borderRadius: "100px",
           padding: (() => {
+            if (props.invisble) {
+              return "0px";
+            }
             const len = String(props.content ?? "").length;
             switch (len) {
+              case 0: {
+                return "0px";
+              }
               case 1: {
                 return "0px";
               }
@@ -87,6 +111,9 @@ const EvpBadge: React.FC<EvpBadgeProps> = (props) => {
         }}
       >
         {(() => {
+          if (props.invisble) {
+            return "";
+          }
           if (typeof props.content === "number" && props.content >= (props.max ?? 100)) {
             return `${(props.max ?? 100) - 1}+`;
           }
