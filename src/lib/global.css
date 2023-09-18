@@ -20,6 +20,7 @@
 @import url(./evp-tooltip/index.css);
 @import url(./evp-tag/index.css);
 @import url(./evp-badge/index.css);
+@import url(./evp-breadcrumb/index.css);
 
 .evp {
   font-size: var(--text-size);

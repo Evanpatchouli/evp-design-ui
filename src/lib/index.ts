@@ -183,3 +183,9 @@ export {
   default as Badge,
   type EvpBadgeProps
 } from './evp-badge';
+
+export {
+  default as EvpBreadCrumb,
+  default as BreadCrume,
+  type EvpBreadCrumbProps,
+} from './evp-breadcrumb';

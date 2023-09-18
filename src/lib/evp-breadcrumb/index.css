@@ -1,0 +1,13 @@
+.evp-breadcrumb-title {
+  text-decoration: none;
+}
+
+.evp-breadcrumb-title.linked:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: lightgray;
+}
+
+.evp-breadcrumb-title.linked.last:hover {
+  text-decoration-color: #000;
+}
