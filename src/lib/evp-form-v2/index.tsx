@@ -3,7 +3,7 @@ import EvpFormContext from "./context";
 
 export type EvpFormProps<T = any> = {
   children: JSX.Element | React.ReactNode;
-  $submit?: React.FormEventHandler<HTMLFormElement>;
+  $submit?: (formData: { [K in keyof T]: T[K]; }) => void;
   formRef?: React.MutableRefObject<EvpFormInstance<T>>;
   style?: React.CSSProperties;
 };
@@ -13,6 +13,7 @@ export default function EvpForm(props: EvpFormProps) {
   if (props.formRef) {
     formRef = props.formRef;
   }
+  formRef.current.set$Submit(props.$submit);
   return (
     <form
       onSubmit={(e) => {
@@ -21,9 +22,7 @@ export default function EvpForm(props: EvpFormProps) {
       }}
       style={props.style}
     >
-      <EvpFormContext.Provider value={formRef.current}>
-        {props.children}
-      </EvpFormContext.Provider>
+      <EvpFormContext.Provider value={formRef.current}>{props.children}</EvpFormContext.Provider>
     </form>
   );
 }

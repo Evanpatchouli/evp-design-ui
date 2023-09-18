@@ -9,27 +9,30 @@ export interface EvpFormInstance<T extends Partial<T> = Partial<any>> {
 
   sets: (map?: T) => void;
 
-  submit: VoidFunction;
+  submit: () => void;
 
-  register: (entity: {
-    name: string & keyof T;
-    value?: any;
-    msg?: string;
-  }) => () => void
+  set$Submit: (handler?: (formData: { [K in keyof T]: T[K]; }) => void) => void;
+
+  register: (entity: { name: string & keyof T; value?: any; msg?: string }) => () => void;
 }
 
 export class FormStore<T extends Partial<T> = Partial<any>> {
-  private store: Array<{ name: string & keyof T; value?: any; msg?: string }> =
-    [];
+  private store: Array<{ name: string & keyof T; value?: any; msg?: string }> = [];
 
-  register = (entity: {
-    name: string & keyof T; value?: any; msg?: string
-  }) => {
-    this.store.push(entity)
+  private $submit: Function | undefined;
+
+  set$Submit = (handler?: (formData: { [K in keyof T]: T[K]; }) => void) => {
+    this.$submit = handler;
+  };
+
+  register = (entity: { name: string & keyof T; value?: any; msg?: string }) => {
+    this.store.push(entity);
     return () => {
-      this.store = this.store.filter((item: { name: string & keyof T; value?: any; msg?: string }) => item.name !== entity.name)
-    }
-  }
+      this.store = this.store.filter(
+        (item: { name: string & keyof T; value?: any; msg?: string }) => item.name !== entity.name
+      );
+    };
+  };
 
   get: (name?: string & keyof T) => T[keyof T] = (name) => {
     return this.store.find((item) => item.name === name)?.value;
@@ -44,12 +47,8 @@ export class FormStore<T extends Partial<T> = Partial<any>> {
     }
   };
 
-  gets: (names?: Array<string & keyof T>) => { [K in keyof T]: T[K] } = (
-    names
-  ) => {
-    const keys = names?.length
-      ? names
-      : (this.store.map(item => item.name) as Array<string & keyof T>);
+  gets: (names?: Array<string & keyof T>) => { [K in keyof T]: T[K] } = (names) => {
+    const keys = names?.length ? names : (this.store.map((item) => item.name) as Array<string & keyof T>);
     const results: any = {};
     keys.forEach((key) => {
       results[key] = this.get(key);
@@ -65,8 +64,9 @@ export class FormStore<T extends Partial<T> = Partial<any>> {
     }
   };
 
-  submit: VoidFunction = () => {
-    // console.log(this.gets());
+  submit: () => void = () => {
+    const formData = this.gets();
+    this.$submit?.(formData);
     void 0;
   };
 }
@@ -84,9 +84,10 @@ const useForm = <T extends Partial<T> = Partial<any>>(): React.MutableRefObject<
       gets: formRef.current.gets,
       sets: formRef.current.sets,
       submit: formRef.current.submit,
+      set$Submit: formRef.current.set$Submit,
       register: formRef.current.register,
-    }
+    },
   };
-}
+};
 
 export default useForm;
