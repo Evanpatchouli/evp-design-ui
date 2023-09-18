@@ -2,7 +2,7 @@ import Card from "@/components/card";
 import Md from "@/components/md";
 import Tsx from "@/components/tsx";
 import { EvpCode } from "@/lib";
-import EvpButton from "@/lib/evp-button";
+import { EvpButton } from "evp-design-ui";
 import { useEffect, useState } from "react";
 
 export default function View() {
