@@ -3,9 +3,9 @@ import { Booleanish } from "./utils";
 
 export type EvpBaseEvenNumbers = "2px" | "4px" | "6px" | "8px" | "10px" | "12px" | "14px" | "16px" | "18px" | "20px" | "22px" | "24px" | "26px" | "28px" | "30px"; 
 
-export type EvpBaseWidth = "10px" | "20px" | "30px" | "40px" | "50px" | "60px" | "70px" | "80px" | "90px" | "100px" | "200px" | "300px" | "400px" | "500px";
+export type EvpBaseWidth = "fit-content" | "10px" | "20px" | "30px" | "40px" | "50px" | "60px" | "70px" | "80px" | "90px" | "100px" | "200px" | "300px" | "400px" | "500px";
 
-export type EvpBaseHeight = "10px" | "20px" | "30px" | "40px" | "50px" | "60px" | "70px" | "80px" | "90px" | "100px" | "200px" | "300px" | "400px" | "500px";
+export type EvpBaseHeight = "fit-content" | "10px" | "20px" | "30px" | "40px" | "50px" | "60px" | "70px" | "80px" | "90px" | "100px" | "200px" | "300px" | "400px" | "500px";
 
 export type EvpWRule = Hintable<EvpBaseWidth | number>
 

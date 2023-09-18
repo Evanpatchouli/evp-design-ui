@@ -9,6 +9,58 @@
   position: relative;
 }
 
+.Home {
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  display: flex;
+  padding: 0 !important;
+  width: 100%;
+  min-height: 100vh;
+  justify-content: center;
+}
+
+.home__container {
+  width: 80%;
+
+  /* > * {
+    border: 1px solid black;
+  } */
+}
+
+.home__icon:hover {
+  transition: all 0.3s ease-in-out;
+  transform: scale(2) rotateZ(30deg);
+  cursor: pointer !important;
+}
+
+.home__title {
+  font-weight: bold;
+  font-size: 32px;
+  margin-left: 12px;
+  Letter-spacing: -1px;
+  color: blueviolet;
+}
+
+.home_motto {
+  font-size: 76px !important;
+  font-weight: bolder;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  Letter-spacing: -3px;
+}
+
+.home_desc {
+  font-size: 20px !important;
+}
+
+.home__featlister__left {
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+  padding-right: 0%;
+}
+
+.home__featlist {
+  font-size: 18px !important;
+}
+
 .ShadowView {
   text-align: left;
 }

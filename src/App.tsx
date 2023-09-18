@@ -36,6 +36,7 @@ import ToolTipView from './preview/evp-tooltip';
 import BadgeView from './preview/evp-badge';
 import AnchorView from './preview/evp-anchor';
 import BreadCrumbView from './preview/evp-breadcrumb';
+import Preview from './preview';
 
 function App() {
   const location = useLocation();
@@ -47,8 +48,10 @@ function App() {
         {location.pathname==='/' ? <img src={logo} className="App-logo" alt="logo" /> : null}
       </header> */}
       <div className='Main'>
-        <div className='evp NavMenu'>
-          <EvpMenu border='none' link={'/'} title={'General'}>
+        <div className='evp NavMenu' style={{
+          display: location.pathname === '/' ? 'none' : void 0
+        }}>
+          <EvpMenu border='none' link={'/general'} title={'General'}>
             <EvpMenu submenu itemIndent title={'Layout'}>
               <EvpMenuItem link={'/components/evp-col'} title={'EvpCol'} />
               <EvpMenuItem link={'/components/evp-row'} title={'EvpRow'} />
@@ -78,9 +81,12 @@ function App() {
             <EvpMenuItem link={'/components/evp-breadcrumb'} title={'EvpBreadCrumb'} />
           </EvpMenu>
         </div>
-        <div className='Content'>
+        <div className='Content' style={{
+          marginLeft: location.pathname === '/' ? '0px' : '260px'
+        }}>
           <Routes>
-            <Route path='/' key={"home"} element={<GeneralView />}></Route>
+            <Route path='/' key={"home"} element={<Preview />}></Route>
+            <Route path='/general' key={"home"} element={<GeneralView />}></Route>
             <Route path='/test' key={"test"} element={<TestViewView />}></Route>
             <Route path='/components/evp-col' key={"col"} element={<ColView />}></Route>
             <Route path='/components/evp-row' key={"row"} element={<RowView />}></Route>
