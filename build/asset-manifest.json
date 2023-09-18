@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/evp-design-ui/static/css/main.772eaad8.css",
-    "main.js": "/evp-design-ui/static/js/main.1e80f4cd.js",
+    "main.js": "/evp-design-ui/static/js/main.d6e9a0fb.js",
     "static/js/787.b426a438.chunk.js": "/evp-design-ui/static/js/787.b426a438.chunk.js",
     "static/media/shopcart.svg": "/evp-design-ui/static/media/shopcart.c8df4d63c66b2a93f74a467d40ee5642.svg",
     "index.html": "/evp-design-ui/index.html",
     "static/media/round_blue.svg": "/evp-design-ui/static/media/round_blue.fe9b3856b116cfa03dda.svg",
     "main.772eaad8.css.map": "/evp-design-ui/static/css/main.772eaad8.css.map",
-    "main.1e80f4cd.js.map": "/evp-design-ui/static/js/main.1e80f4cd.js.map",
+    "main.d6e9a0fb.js.map": "/evp-design-ui/static/js/main.d6e9a0fb.js.map",
     "787.b426a438.chunk.js.map": "/evp-design-ui/static/js/787.b426a438.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.772eaad8.css",
-    "static/js/main.1e80f4cd.js"
+    "static/js/main.d6e9a0fb.js"
   ]
 }
