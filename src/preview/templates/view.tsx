@@ -130,8 +130,8 @@ toolBar={
         bottom={0}
         plain
         shadow={false}
-        link="/components/evp-menu"
-        text="★ Next Doc EvpMenu >"
+        link="/components/"
+        text={`★ Next Doc Evp${''} >`}
       />
     </div>
   );
