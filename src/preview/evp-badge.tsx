@@ -219,8 +219,8 @@ export interface EvpBadgeProps extends EvpBaseProps {
         bottom={0}
         plain
         shadow={false}
-        link="/components/"
-        text={`★ Next Doc Evp${""} >`}
+        link="/components/evp-anchor"
+        text={`★ Next Doc Evp${"Anchor"} >`}
       />
     </div>
   );

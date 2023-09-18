@@ -34,6 +34,7 @@ import SliderView from './preview/evp-slider';
 import TagView from './preview/evp-tag';
 import ToolTipView from './preview/evp-tooltip';
 import BadgeView from './preview/evp-badge';
+import AnchorView from './preview/evp-anchor';
 
 function App() {
   const location = useLocation();
@@ -72,6 +73,7 @@ function App() {
             <EvpMenuItem link={'/components/evp-tag'} title={'EvpTag'} />
             <EvpMenuItem link={'/components/evp-tooltip'} title={'EvpToolTip'} />
             <EvpMenuItem link={'/components/evp-badge'} title={'EvpBadge'} />
+            <EvpMenuItem link={'/components/evp-anchor'} title={'EvpAchor'} />
           </EvpMenu>
         </div>
         <div className='Content'>
@@ -101,6 +103,7 @@ function App() {
             <Route path='/components/evp-tag' key={"tag"} element={<TagView />}></Route>
             <Route path='/components/evp-tooltip' key={"tooltip"} element={<ToolTipView />}></Route>
             <Route path='/components/evp-badge' key={"badge"} element={<BadgeView />}></Route>
+            <Route path='/components/evp-anchor' key={"anchor"} element={<AnchorView />}></Route>
           </Routes>
           <div className='foot'>
             <p>CopyRight &copy; 2023-2023 Evp Design UI</p>
