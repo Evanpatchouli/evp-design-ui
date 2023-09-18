@@ -255,8 +255,8 @@ export interface EvpTagProps extends React.HTMLAttributes<HTMLDivElement> {
         bottom={0}
         plain
         shadow={false}
-        link="/components/evp-menu"
-        text="★ Next Doc EvpMenu >"
+        link="/components/evp-tooltip"
+        text="★ Next Doc EvpToolTip >"
       />
     </div>
   );

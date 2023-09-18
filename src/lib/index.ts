@@ -171,3 +171,9 @@ export {
   default as Tag,
   type EvpTagProps,
 } from './evp-tag';
+
+export {
+  default as EvpToolTip,
+  default as ToolTip,
+  type EvpToolTipProps
+} from './evp-tooltip';
