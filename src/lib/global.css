@@ -19,6 +19,7 @@
 @import url(./evp-slider/index.css);
 @import url(./evp-tooltip/index.css);
 @import url(./evp-tag/index.css);
+@import url(./evp-badge/index.css);
 
 .evp {
   font-size: var(--text-size);

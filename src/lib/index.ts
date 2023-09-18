@@ -177,3 +177,9 @@ export {
   default as ToolTip,
   type EvpToolTipProps
 } from './evp-tooltip';
+
+export {
+  default as EvpBadge,
+  default as Badge,
+  type EvpBadgeProps
+} from './evp-badge';
