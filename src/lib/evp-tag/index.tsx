@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import { cloneDeep } from "lodash";
+import { type EvpDisplayRule } from "../typings";
 
 const EvpTag = (props: EvpTagProps) => {
   const { theme, plain, light, size, round } = props;
@@ -44,6 +45,7 @@ const EvpTag = (props: EvpTagProps) => {
         verticalAlign: "middle",
         padding: "0 12px",
         borderRadius: round ? "100px" : "4px",
+        display: props.display,
         ...rest.style,
       }}
       {...$rest}
@@ -69,4 +71,6 @@ export interface EvpTagProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Default is `md` */
   size?: "sm" | "md" | "lg";
   round?: boolean;
+  /** the display of evp-tag */
+  display?: EvpDisplayRule;
 }

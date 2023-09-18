@@ -246,6 +246,8 @@ export interface EvpTagProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Default is \`md\` */
   size?: "sm" | "md" | "lg";
   round?: boolean;
+  ** the display of evp-tag */
+  display?: EvpDisplayRule;
 }
 `}
       </EvpCode>
