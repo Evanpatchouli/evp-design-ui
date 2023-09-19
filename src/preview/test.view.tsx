@@ -6,6 +6,8 @@ import {
   Anchor,
   Button,
   EvpButton,
+  EvpCard,
+  EvpCol,
   EvpRow,
   EvpTag,
   Input,
@@ -314,6 +316,10 @@ export default function TestViewView() {
             />
           </Row>
         </Card>
+
+        <EvpCard class="t-card">
+          <EvpRow class="t-col">123</EvpRow>
+        </EvpCard>
       </PreContext.Provider>
     </div>
   );

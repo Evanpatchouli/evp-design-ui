@@ -77,7 +77,7 @@ export default function EvpRadio(props: EvpRadioProps) {
           style={{
             fontSize: props.labelSize,
             width: labelWidth,
-            textAlign: labelAlign,
+            justifyContent: labelAlign,
           }}
         >
           {props.required ? <div className="evp-required">*</div> : void 0}
@@ -90,7 +90,7 @@ export default function EvpRadio(props: EvpRadioProps) {
           style={{
             fontSize: props.labelSize,
             width: labelWidth,
-            textAlign: labelAlign,
+            justifyContent: labelAlign,
           }}
         >
           {props.required ? <div className="evp-required">*</div> : void 0}

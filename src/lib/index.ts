@@ -189,3 +189,9 @@ export {
   default as BreadCrume,
   type EvpBreadCrumbProps,
 } from './evp-breadcrumb';
+
+export {
+  default as EvpCounter,
+  default as Counter,
+  type EvpCounterProps,
+} from './evp-counter';

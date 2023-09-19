@@ -92,7 +92,7 @@ export default function EvpRadioGroup(props: EvpRadioGroupProps) {
             style={{
               fontSize: props.labelSize,
               width: labelWidth,
-              textAlign: labelAlign,
+              justifyContent: labelAlign,
             }}
           >
             {props.required ? <div className="evp-required">*</div> : void 0}

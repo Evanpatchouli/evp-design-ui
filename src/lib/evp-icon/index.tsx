@@ -22,6 +22,7 @@ export type IconType =
   | "waterfalls_v"
   | "down"
   | "left"
+  | "right"
   | "unchecked_box"
   | "checked_box"
   | "evp";
@@ -48,6 +49,7 @@ export interface EvpIconPropsType {
   waterfalls_v?: boolean;
   down?: boolean;
   left?: boolean;
+  right?: boolean;
   unchecked_box?: boolean;
   checked_box?: boolean;
   evp?: boolean;
@@ -100,6 +102,7 @@ const IconMap: IndexableFuzzy<SvgIconType> = {
   WATERFALLS_V: "WaterfallsV",
   DOWN: "Down",
   LEFT: "Left",
+  RIGHT: "Right",
   UNCHECKEDBOX: "UncheckedBox",
   CHECKEDBOX: "CheckedBox",
   EVP: "Evp",

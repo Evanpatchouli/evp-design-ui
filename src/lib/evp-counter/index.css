@@ -1,0 +1,42 @@
+.evp.evp-counter {
+  width: fit-content;
+  height: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.evp-counter-main {
+  border-bottom: 4px;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.evp-counter-lefter, .evp-counter-righter {
+  transition: all 0.2s ease-in-out;
+  border: 1px solid gainsboro;
+  height: 30px;
+  width: 30px;
+  border-radius: 5px;
+  background-color: #fff;
+
+  &:active {
+    background-color: rgb(232, 232, 255);
+  }
+}
+
+.evp-counter-input {
+  transition: all 0.3s ease-in-out;
+  padding-inline: 16px;
+  height: 28px;
+  line-height: 28px;
+  border: 1px solid gainsboro;
+  border-radius: 5px;
+  margin-inline: 8px;
+  width: 30px;
+  text-align: center;
+
+  &:focus {
+    border: 1px solid rgb(128, 128, 255);
+  }
+}

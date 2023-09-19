@@ -16,6 +16,7 @@ import $WaterfallsH from './waterfalls-h';
 import $WaterfallsV from './waterfalls-v';
 import $Down from './down';
 import $Left from './left';
+import $Right from './right';
 import $Evp from './evp';
 import $UncheckedBox from "./unchecked-box";
 import $CheckedBox from "./checked-box";
@@ -72,6 +73,7 @@ export const WaterfallsH = $WaterfallsH;
 export const WaterfallsV = $WaterfallsV;
 export const Down = $Down;
 export const Left = $Left;
+export const Right = $Right;
 export const UncheckedBox = $UncheckedBox;
 export const CheckedBox = $CheckedBox;
 export const Evp = $Evp;
@@ -95,6 +97,7 @@ export type SvgIconType =
 "WaterfallsV" |
 "Down" |
 "Left" |
+"Right" |
 "UncheckedBox" |
 "CheckedBox" |
 "Evp";
@@ -118,6 +121,7 @@ const SvgIcons = {
   "WaterfallsV": WaterfallsV,
   "Down": Down,
   "Left": Left,
+  "Right": Right,
   "UncheckedBox": UncheckedBox,
   "CheckedBox": CheckedBox,
   "Evp": Evp

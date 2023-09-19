@@ -88,7 +88,7 @@ export default function EvpSelect(props: EvpSelectProps) {
             style={{
               fontSize: props.labelSize,
               width: labelWidth,
-              textAlign: labelAlign,
+              justifyContent: labelAlign,
             }}
           >
             {props.required ? <div className="evp-required">*</div> : void 0}
