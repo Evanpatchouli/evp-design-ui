@@ -5,6 +5,7 @@ import { IconType } from "../evp-icon";
 import EvpBaseProps from "../props";
 import AllParser from "../utils/props.parser";
 import EvpCol from "../evp-col";
+import { linkTo } from "../utils/route";
 
 export interface EvpMenuItemProps extends EvpBaseProps {
   children?: React.ReactNode,
@@ -12,22 +13,10 @@ export interface EvpMenuItemProps extends EvpBaseProps {
   icon?: IconType,
   /** route-link to where */
   link?: string | { path?: string; hash?: boolean };
+  hash?: boolean;
 }
 
 export default function EvpMenuItem(props: EvpMenuItemProps) {
-  const linkTo = (path?: EvpMenuItemProps['link']) => {
-    if (path) {
-      if (typeof path === 'string' || !path.hash) {
-        if (window.location.hash) {
-          window.location.hash = path as string;
-        } else {
-          window.location.assign(path as string);
-        }
-      } else {
-        path.path? window.location.hash = path.path : void 0;
-      }
-    }
-  };
 
   const { icon } = props;
   let $props = AllParser(props);
@@ -36,7 +25,7 @@ export default function EvpMenuItem(props: EvpMenuItemProps) {
   (e: React.MouseEvent) => {
     $event.onMouseDown?.(e);
     if (props.link) {
-      linkTo(props.link);
+      linkTo(props.link, props.hash);
     }
   }
 

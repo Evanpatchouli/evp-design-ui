@@ -6,6 +6,7 @@ import { Color } from "../constant";
 import EvpBaseProps from "../props";
 import AllParser from "../utils/props.parser";
 import { EvpWRule, EvpHRule } from "../typings";
+import { linkTo } from "../utils/route";
 
 export interface EvpMenuProps extends EvpBaseProps {
   /** The following contents of this menu, usually to be of `EvpMenuItem` */
@@ -22,22 +23,10 @@ export interface EvpMenuProps extends EvpBaseProps {
   icon?: IconType;
   /** route-link to where */
   link?: string | { path?: string; hash?: boolean };
+  hash?: boolean;
 }
 
 export default function EvpMenu(props: EvpMenuProps) {
-  const linkTo = (path?: EvpMenuProps['link']) => {
-    if (path) {
-      if (typeof path === 'string' || !path.hash) {
-        if (window.location.hash) {
-          window.location.hash = path as string;
-        } else {
-          window.location.assign(path as string);
-        }
-      } else {
-        path.path? window.location.hash = path.path : void 0;
-      }
-    }
-  };
 
   const { icon } = props;
   let $props = AllParser(props);
@@ -54,7 +43,7 @@ export default function EvpMenu(props: EvpMenuProps) {
       deExpand();
       $event.onMouseDown?.(e);
       if (props.link) {
-        linkTo(props.link);
+        linkTo(props.link, props.hash);
       }
     }
   }

@@ -164,10 +164,10 @@ You can customize the click event handler of routes items by set itemClick. The 
       <EvpCode lang="typescript" theme="coldarkDark">
         {`
 export interface EvpBreadCrumbProps extends EvpBaseProps {
-  routes?: { title: string; path?: string; meta?: any }[];
-  itemClick?: (
+  routes?: { title: string; path?: string | { path?: string; hash?: boolean }; hash?: boolean; meta?: any }[];
+  itemClick?: <T extends Record<string, unknown>>(
     e?: React.MouseEvent<HTMLSpanElement, MouseEvent>,
-    route?: { title: string; path?: string; meta?: any }
+    route?: { title: string; path?: string | { path?: string; hash?: boolean }; hash?: boolean; meta?: T }
   ) => void;
   fontSize?: string;
   class?: string;

@@ -1,6 +1,7 @@
 import React from "react";
 import AllParser from "../utils/props.parser";
 import EvpBaseProps from "../props";
+import { linkTo } from "../utils/route";
 
 export type EvpButtonProps = EvpButtonSpecProps & EvpBaseProps;
 
@@ -18,28 +19,17 @@ interface EvpButtonSpecProps {
   /** default is false : whether to show preserved box-shadow */
   shadow?: boolean;
   link?: string | { path?: string; hash?: boolean };
+  hash?: boolean;
 }
 
 const EvpButton: React.FC<EvpButtonProps> = (props: EvpButtonProps) => {
   // const default_clickHandler = () => undefined;
   const $props = AllParser(props);
-  const linkTo = (path?: EvpButtonSpecProps['link']) => {
-    if (path) {
-      if (typeof path === 'string' || !path.hash) {
-        if (window.location.hash) {
-          window.location.hash = path as string;
-        } else {
-          window.location.assign(path as string);
-        }
-      } else {
-        path.path? window.location.hash = path.path : void 0;
-      }
-    }
-  };
+
   // eslint-disable-next-line @typescript-eslint/no-unused-expressions
   const clickHandler = (e: React.MouseEvent) => {
     $props.event.onMouseDown?.(e);
-    props.link ? linkTo(props.link) : void 0;
+    props.link ? linkTo(props.link, props.hash) : void 0;
   };
 
   const theme = props.theme ?? "primary";
