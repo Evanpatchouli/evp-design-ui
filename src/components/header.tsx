@@ -1,10 +1,19 @@
 import { EvpIcon } from "@/lib";
 import EvpButton from "@/lib/evp-button";
 import EvpHeader from "@/lib/evp-header";
+import { linkTo } from "@/lib/utils/route";
 
 export default function Header() {
   return(
-    <EvpHeader title="Evp Design UI"
+    <EvpHeader title={
+      <span 
+        onClick={() => {
+          linkTo("/", true);
+        }}
+        style={{
+          cursor: 'pointer',
+      }}>Evp Design UI</span>
+    }
     icon={<>
       <EvpIcon evp />
     </>}
