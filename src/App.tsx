@@ -38,6 +38,7 @@ import AnchorView from './preview/evp-anchor';
 import BreadCrumbView from './preview/evp-breadcrumb';
 import Preview from './preview';
 import CounterView from './preview/evp-counter';
+import DateTimePickerView from './preview/evp-datetime-picker';
 
 function App() {
   const location = useLocation();
@@ -81,6 +82,7 @@ function App() {
             <EvpMenuItem link={'/components/evp-anchor'} title={'EvpAchor'} />
             <EvpMenuItem link={'/components/evp-breadcrumb'} title={'EvpBreadCrumb'} />
             <EvpMenuItem link={'/components/evp-counter'} title={'EvpCounter'} />
+            <EvpMenuItem link={'/components/evp-datetime-picker'} title={'EvpDateTimePicker'} />
           </EvpMenu>
         </div>
         <div className='Content' style={{
@@ -115,7 +117,7 @@ function App() {
             <Route path='/components/evp-badge' key={"badge"} element={<BadgeView />}></Route>
             <Route path='/components/evp-anchor' key={"anchor"} element={<AnchorView />}></Route>
             <Route path='/components/evp-breadcrumb' key={"breadcrumb"} element={<BreadCrumbView />}></Route>
-            <Route path='/components/evp-counter' key={"counter"} element={<CounterView />}></Route>
+            <Route path='/components/evp-datetime-picker' key={"counter"} element={<DateTimePickerView />}></Route>
           </Routes>
           <div className='foot'>
             <p>CopyRight &copy; 2023-2023 Evp Design UI</p>

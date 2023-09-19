@@ -1,0 +1,14 @@
+.evp-datetime-picker-input {
+  padding-inline: 8px;
+}
+
+.evp-datetime-picker-icon {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  cursor: pointer;
+  color: #999;
+  font-size: 16px;
+  z-index: 1;
+}

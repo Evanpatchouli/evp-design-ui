@@ -22,6 +22,7 @@
 @import url(./evp-badge/index.css);
 @import url(./evp-breadcrumb/index.css);
 @import url(./evp-counter/index.css);
+@import url(./evp-datetime-picker/index.css);
 
 .evp {
   font-size: var(--text-size);

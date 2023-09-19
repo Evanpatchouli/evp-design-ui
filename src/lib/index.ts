@@ -195,3 +195,9 @@ export {
   default as Counter,
   type EvpCounterProps,
 } from './evp-counter';
+
+export {
+  default as EvpDateTimePicker,
+  default as DateTimePicker,
+  type EvpDateTimePickerProps,
+} from './evp-datetime-picker';
