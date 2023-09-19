@@ -10,7 +10,7 @@ export default function Header() {
     </>}
     rightContent={
       <>
-        <EvpButton theme='text' link="/general" text="Docs" />
+        <EvpButton theme='text' link={{ path: "/general", hash: true }} text="Docs" />
         <EvpButton theme='text' $click={()=> window.open("https://github.com/Evanpatchouli/evp-design-ui")} pointer text="Github" />
         <EvpButton theme='text' $click={()=> window.open("https://gitee.com/jun-laner/evp-design-ui")} pointer text="Gitee" />
       </>

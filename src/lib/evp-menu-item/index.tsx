@@ -4,7 +4,6 @@ import EvpRow from "../evp-row";
 import { IconType } from "../evp-icon";
 import EvpBaseProps from "../props";
 import AllParser from "../utils/props.parser";
-import { useNavigate } from "react-router";
 import EvpCol from "../evp-col";
 
 export interface EvpMenuItemProps extends EvpBaseProps {
@@ -12,11 +11,23 @@ export interface EvpMenuItemProps extends EvpBaseProps {
   title?: string | JSX.Element,
   icon?: IconType,
   /** route-link to where */
-  link?: string
+  link?: string | { path?: string; hash?: boolean };
 }
 
 export default function EvpMenuItem(props: EvpMenuItemProps) {
-  const linkTo = useNavigate();
+  const linkTo = (path?: EvpMenuItemProps['link']) => {
+    if (path) {
+      if (typeof path === 'string' || !path.hash) {
+        if (window.location.hash) {
+          window.location.hash = path as string;
+        } else {
+          window.location.assign(path as string);
+        }
+      } else {
+        path.path? window.location.hash = path.path : void 0;
+      }
+    }
+  };
 
   const { icon } = props;
   let $props = AllParser(props);

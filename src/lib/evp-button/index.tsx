@@ -1,51 +1,64 @@
 import React from "react";
 import AllParser from "../utils/props.parser";
 import EvpBaseProps from "../props";
-import { useNavigate } from "react-router";
 
 export type EvpButtonProps = EvpButtonSpecProps & EvpBaseProps;
 
 interface EvpButtonSpecProps {
   /** The button text, it will be overrided by props.children if that exists */
-  text?: string,
+  text?: string;
   /** Default type is 'button' */
-  type?: 'button' | 'reset' | 'submit',
+  type?: "button" | "reset" | "submit";
   /** Default theme is 'primary' */
-  theme?: 'white' | 'primary' |'success' | 'warning' | 'danger' | 'info' | 'dark' | 'text',
-  plain?: boolean,
-  size?: 'mini' |'small' | 'middle' | 'large' | 'huge'
+  theme?: "white" | "primary" | "success" | "warning" | "danger" | "info" | "dark" | "text";
+  plain?: boolean;
+  size?: "mini" | "small" | "middle" | "large" | "huge";
   /** default is undefined, square will has 0 border-radius */
-  shape?: 'circle' | 'round' | 'square',
+  shape?: "circle" | "round" | "square";
   /** default is false : whether to show preserved box-shadow */
-  shadow?: boolean,
-  link?: string
+  shadow?: boolean;
+  link?: string | { path?: string; hash?: boolean };
 }
 
 const EvpButton: React.FC<EvpButtonProps> = (props: EvpButtonProps) => {
   // const default_clickHandler = () => undefined;
   const $props = AllParser(props);
-  const linkTo = useNavigate();
+  const linkTo = (path?: EvpButtonSpecProps['link']) => {
+    if (path) {
+      if (typeof path === 'string' || !path.hash) {
+        if (window.location.hash) {
+          window.location.hash = path as string;
+        } else {
+          window.location.assign(path as string);
+        }
+      } else {
+        path.path? window.location.hash = path.path : void 0;
+      }
+    }
+  };
   // eslint-disable-next-line @typescript-eslint/no-unused-expressions
   const clickHandler = (e: React.MouseEvent) => {
     $props.event.onMouseDown?.(e);
-    props.link? linkTo(props.link): void 0;
+    props.link ? linkTo(props.link) : void 0;
   };
 
-  const theme = props.theme?? 'primary';
-  const shadow = props.shadow? 'evp-pale-shadow' : '';
-  const size = props.size?? 'middle';
-  const plain = props.plain? 'plain': '';
-  const shape = props.shape?? '';
-  const $class = props.class ?? '';
+  const theme = props.theme ?? "primary";
+  const shadow = props.shadow ? "evp-pale-shadow" : "";
+  const size = props.size ?? "middle";
+  const plain = props.plain ? "plain" : "";
+  const shape = props.shape ?? "";
+  const $class = props.class ?? "";
   return (
-    <button className={`evp evp-button ${theme} ${shadow} ${size} ${plain} ${shape} ${$class}`.trim()} id={$props.id}
-    onClick={clickHandler}
-    style={$props.style}
-    type={props.type??"button"}
+    <button
+      className={`evp evp-button ${theme} ${shadow} ${size} ${plain} ${shape} ${$class}`.trim()}
+      id={$props.id}
+      onClick={clickHandler}
+      style={$props.style}
+      type={props.type ?? "button"}
     >
-      {props.children?? props.text?? ''}
+      {props.children ?? props.text ?? ""}
     </button>
-  )
-}
+  );
+};
 
 export default EvpButton;
