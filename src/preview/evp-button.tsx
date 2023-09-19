@@ -319,6 +319,10 @@ Buttons have total 4 shapes and default is undefined with radius-mini.
 - shadow: whether to show preserved box-shadow
   + default: true
   + options: true | false
+- link: bind route link to button
+  + type: string | { path?: string; hash?: boolean; }
+- hash: is link a hash route
+  + type: boolean
 `}
 </Md>
       <EvpButton position="absolute" right={40} bottom={0}

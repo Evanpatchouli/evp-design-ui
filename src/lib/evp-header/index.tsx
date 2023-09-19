@@ -4,7 +4,7 @@ import { EvpPosition, Hintable } from "../typings";
 
 export interface EvpHeaderProps {
   icon?: React.ReactNode;
-  title?: string;
+  title?: React.ReactNode;
   /** Default is 40 : left width rate */
   leftRate?: number;
   children?: React.ReactNode;

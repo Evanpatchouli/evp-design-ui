@@ -1,12 +1,13 @@
 import classNames from "classnames";
 import EvpBaseProps from "../props";
 import AllParser from "../utils/props.parser";
+import { linkTo } from "../utils/route";
 
 export interface EvpBreadCrumbProps extends EvpBaseProps {
-  routes?: { title: string; path?: string; meta?: any }[];
+  routes?: { title: string; path?: string | { path?: string; hash?: boolean }; hash?: boolean; meta?: any }[];
   itemClick?: <T extends Record<string, unknown>>(
     e?: React.MouseEvent<HTMLSpanElement, MouseEvent>,
-    route?: { title: string; path?: string; meta?: T }
+    route?: { title: string; path?: string | { path?: string; hash?: boolean }; hash?: boolean; meta?: T }
   ) => void;
   fontSize?: string;
   class?: string;
@@ -41,11 +42,7 @@ const EvpBreadCrumb: React.FC<EvpBreadCrumbProps> = (props) => {
                   props.itemClick(e, route);
                 } else {
                   if (route.path) {
-                    if (window.location.hash) {
-                      window.location.hash = route.path as string;
-                    } else {
-                      window.location.assign(route.path as string);
-                    }
+                    linkTo(route.path, route.hash);
                   }
                 }
               }}

@@ -15,6 +15,7 @@ import {
   EvpSelect,
   EvpSlider,
   Toast,
+  EvpCode,
 } from "evp-design-ui";
 import React from "react";
 
@@ -38,7 +39,7 @@ const Preview: React.FC = () => {
         <Row class="home_desc" h={"fit-content"}>
           <p>
             evp design ui is a{" "}
-            <span style={{ color: "gray" }}>lightweight</span> and
+            <span style={{ color: "gray" }}>lightweight</span> and{" "}
             <span style={{ color: "gray" }}>easy-custom</span> UI framework with{" "}
             <span style={{ color: "gray" }}>atomlized</span> attributes for
             React.js. It is much more easy customizable than common UI
@@ -51,7 +52,7 @@ const Preview: React.FC = () => {
         <Row h={"fit-content"}>
           <Button size="huge" theme="dark" display="flex" alignItems="center">
             <div>Get right now</div>
-            <div style={{ paddingBottom: 10, paddingLeft: 8 }}>👉</div>
+            <div style={{ paddingBottom: 4, paddingLeft: 8 }}>👉</div>
           </Button>
           <Tag
             light
@@ -89,7 +90,9 @@ const Preview: React.FC = () => {
               </ul>
             </p>
           </Col>
-          <EvpCard w={"fit-content"} mgl_100 pd={20} h={"100%"} style={{ borderRadius: 12 }}>
+          <EvpCard w={"60%"} mgl_100 pd={20} h={"100%"} style={{ borderRadius: 12 }} contentStyle={{
+            display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row'
+          }}>
             <EvpCard>
               <EvpForm>
                 <EvpInput
@@ -152,6 +155,25 @@ const Preview: React.FC = () => {
                 </Row>
               </EvpForm>
             </EvpCard>
+            <div style={{ width: '300px' }}>
+            <EvpCode lang="tsx">
+{`
+<EvpCard>
+  <EvpForm formRef={ref}
+  >
+    <EvpInput
+      label="Project"
+      name="project"
+      required
+      labelWidth={80}
+      default="evp design ui"
+    />
+    // ...
+  </EvpForm>
+</EvpCard>
+`}
+            </EvpCode>
+            </div>
           </EvpCard>
         </Row>
       </div>

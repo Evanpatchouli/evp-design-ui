@@ -5,8 +5,8 @@ import EvpIcon, { IconType } from "../evp-icon";
 import { Color } from "../constant";
 import EvpBaseProps from "../props";
 import AllParser from "../utils/props.parser";
-import { useNavigate } from "react-router";
 import { EvpWRule, EvpHRule } from "../typings";
+import { linkTo } from "../utils/route";
 
 export interface EvpMenuProps extends EvpBaseProps {
   /** The following contents of this menu, usually to be of `EvpMenuItem` */
@@ -22,11 +22,11 @@ export interface EvpMenuProps extends EvpBaseProps {
   /** The EvpIcon by the left side with default redius 18 rather than the default 24 redius of EvpIcon */
   icon?: IconType;
   /** route-link to where */
-  link?: string;
+  link?: string | { path?: string; hash?: boolean };
+  hash?: boolean;
 }
 
 export default function EvpMenu(props: EvpMenuProps) {
-  const linkTo = useNavigate();
 
   const { icon } = props;
   let $props = AllParser(props);
@@ -43,7 +43,7 @@ export default function EvpMenu(props: EvpMenuProps) {
       deExpand();
       $event.onMouseDown?.(e);
       if (props.link) {
-        linkTo(props.link);
+        linkTo(props.link, props.hash);
       }
     }
   }
