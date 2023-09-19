@@ -1,0 +1,45 @@
+.evp.evp-switch {
+  transition: all 0.2s ease-in-out;
+  /* border: 1px solid black; */
+  width: 60px;
+  height: 30px;
+  border-radius: 100px;
+  background-color: gainsboro;
+  position: relative;
+
+  &:hover {
+    background-color: gray;
+  }
+}
+
+.evp.evp-switch.active {
+  background-color: #0091ff;
+
+  &:hover {
+    background-color: #4bb1ff;
+  }
+}
+
+.evp-switch-btn {
+  position: absolute;
+  transition: all 0.2s ease-in-out;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 16px;
+  z-index: 1;
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.evp-switch-btn-content {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #fff;
+}
