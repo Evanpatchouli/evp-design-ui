@@ -20,6 +20,7 @@ export type IconType =
   | "all"
   | "waterfalls_h"
   | "waterfalls_v"
+  | "up"
   | "down"
   | "left"
   | "right"
@@ -47,6 +48,7 @@ export interface EvpIconPropsType {
   all?: boolean;
   waterfalls_h?: boolean;
   waterfalls_v?: boolean;
+  up?: boolean;
   down?: boolean;
   left?: boolean;
   right?: boolean;
@@ -100,6 +102,7 @@ const IconMap: IndexableFuzzy<SvgIconType> = {
   ALL: "All",
   WATERFALLS_H: "WaterfallsH",
   WATERFALLS_V: "WaterfallsV",
+  UP: "Up",
   DOWN: "Down",
   LEFT: "Left",
   RIGHT: "Right",

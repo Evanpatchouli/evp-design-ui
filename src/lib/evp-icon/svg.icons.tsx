@@ -14,6 +14,7 @@ import $Info from "./info";
 import $All from "./all";
 import $WaterfallsH from './waterfalls-h';
 import $WaterfallsV from './waterfalls-v';
+import $Up from './up';
 import $Down from './down';
 import $Left from './left';
 import $Right from './right';
@@ -71,6 +72,7 @@ export const Info = $Info;
 export const All = $All;
 export const WaterfallsH = $WaterfallsH;
 export const WaterfallsV = $WaterfallsV;
+export const Up = $Up;
 export const Down = $Down;
 export const Left = $Left;
 export const Right = $Right;
@@ -95,6 +97,7 @@ export type SvgIconType =
 "All" |
 "WaterfallsH" |
 "WaterfallsV" |
+"Up" |
 "Down" |
 "Left" |
 "Right" |
@@ -119,6 +122,7 @@ const SvgIcons = {
   "All": All,
   "WaterfallsH": WaterfallsH,
   "WaterfallsV": WaterfallsV,
+  "Up": Up,
   "Down": Down,
   "Left": Left,
   "Right": Right,

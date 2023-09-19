@@ -181,8 +181,8 @@ export interface EvpBreadCrumbProps extends EvpBaseProps {
         bottom={0}
         plain
         shadow={false}
-        link="/components/"
-        text={`★ Next Doc Evp${""} >`}
+        link="/components/evp-counter"
+        text={`★ Next Doc Evp${"Counter"} >`}
       />
     </div>
   );

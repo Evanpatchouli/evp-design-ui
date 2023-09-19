@@ -3,6 +3,7 @@
   width: fit-content;
   height: fit-content;
   box-sizing: border-box;
+  background-color: #fff;
 }
 
 .evp-card-content {

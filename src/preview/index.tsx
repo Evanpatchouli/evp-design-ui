@@ -16,8 +16,10 @@ import {
   EvpSlider,
   Toast,
   EvpCode,
+  EvpShadow,
 } from "evp-design-ui";
 import React from "react";
+import { Re_Common_ZeroBlur_HighDespread } from '../lib/evp-shadow/index';
 
 const Preview: React.FC = () => {
   return (
@@ -90,10 +92,23 @@ const Preview: React.FC = () => {
               </ul>
             </p>
           </Col>
-          <EvpCard w={"60%"} mgl_100 pd={20} h={"100%"} style={{ borderRadius: 12 }} contentStyle={{
-            display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row'
-          }}>
-            <EvpCard>
+          <EvpCard
+            w={"60%"}
+            mgl_100
+            pd={20}
+            h={"100%"}
+            style={{ borderRadius: 12 }}
+            contentStyle={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "row",
+              backgroundColor: 'rgba(0, 0, 0, 0.75)',
+              borderRadius: 12,
+            }}
+            boxShadow={EvpShadow.Re_Common_HighBlur_PaleDespread}
+          >
+            <EvpCard style={{ borderRadius: 8 }}>
               <EvpForm>
                 <EvpInput
                   label="Project"
@@ -118,7 +133,7 @@ const Preview: React.FC = () => {
                   labelWidth={80}
                 >
                   <EvpRadio label="Private" value="private" />
-                  <EvpRadio label="Public" value="public" defaultChecked/>
+                  <EvpRadio label="Public" value="public" defaultChecked />
                 </EvpRadioGroup>
                 <EvpSelect
                   label="Role"
@@ -155,25 +170,6 @@ const Preview: React.FC = () => {
                 </Row>
               </EvpForm>
             </EvpCard>
-            <div style={{ width: '300px' }}>
-            <EvpCode lang="tsx">
-{`
-<EvpCard>
-  <EvpForm formRef={ref}
-  >
-    <EvpInput
-      label="Project"
-      name="project"
-      required
-      labelWidth={80}
-      default="evp design ui"
-    />
-    // ...
-  </EvpForm>
-</EvpCard>
-`}
-            </EvpCode>
-            </div>
           </EvpCard>
         </Row>
       </div>
