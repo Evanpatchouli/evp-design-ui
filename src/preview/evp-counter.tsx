@@ -165,8 +165,8 @@ export interface EvpCounterProps extends EvpBaseProps {
         bottom={0}
         plain
         shadow={false}
-        link="/components/"
-        text={`★ Next Doc Evp${""} >`}
+        link="/components/evp-switch"
+        text={`★ Next Doc Evp${"Switch"} >`}
       />
     </div>
   );

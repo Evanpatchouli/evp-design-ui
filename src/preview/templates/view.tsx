@@ -6,6 +6,7 @@ import { EvpButton } from "evp-design-ui";
 import { useEffect, useState } from "react";
 
 export default function View() {
+  const next = { route: "", name: "" };
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -130,8 +131,8 @@ toolBar={
         bottom={0}
         plain
         shadow={false}
-        link="/components/"
-        text={`★ Next Doc Evp${''} >`}
+        link={`/${next.name ? `component/${next.name}` : ""}`}
+        text={`★ Next Doc Evp${""} >`}
       />
     </div>
   );

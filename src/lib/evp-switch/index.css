@@ -9,6 +9,7 @@
 
   &:hover {
     background-color: gray;
+    cursor: pointer;
   }
 }
 
@@ -16,7 +17,7 @@
   background-color: #0091ff;
 
   &:hover {
-    background-color: #4bb1ff;
+    background-color: #28a2ff;
   }
 }
 

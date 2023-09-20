@@ -201,3 +201,9 @@ export {
   default as DateTimePicker,
   type EvpDateTimePickerProps,
 } from './evp-datetime-picker';
+
+export {
+  default as EvpSwitch,
+  default as Switch,
+  type EvpSwitchProps
+} from './evp-switch';

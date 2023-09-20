@@ -35,6 +35,12 @@ export type IndexableFuzzy<E extends unknown> = { [x:string]: E }
 
 export type Booleanish = boolean | 'true' | 'false';
 
+export type Pretify<T> = { [P in keyof T]: T[P] } & {};
+
+export type PartialByKeys<T, K extends keyof T> = {
+	[P in K]?: T[P];
+} & Pick<T, Exclude<keyof T, K>>;
+
 export interface EvpDomAttributes<T> extends AriaAttributes, DOMAttributes<T> {
     // React-specific Attributes
     defaultChecked?: boolean | undefined;
@@ -106,4 +112,8 @@ export interface EvpDomAttributes<T> extends AriaAttributes, DOMAttributes<T> {
      * @see https://html.spec.whatwg.org/multipage/custom-elements.html#attr-is
      */
     is?: string | undefined;
+}
+
+export function boolStringfy(value: boolean = false) {
+    return value ? 'true' : 'false';
 }

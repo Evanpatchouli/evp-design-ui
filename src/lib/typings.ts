@@ -34,6 +34,10 @@ export type IndexableVididy<T, E extends unknown> = T & { [x:Hintable<T>]: E }
 /** Force to convert an object as to be indexable with string key without given hintable type */
 export type IndexableFuzzy<E extends unknown> = { [x:string]: E }
 
+export type PartialByKeys<T, K extends keyof T> = {
+	[P in K]?: T[P];
+} & Pick<T, Exclude<keyof T, K>>;
+
 export type EvpCursorRule = Hintable<EvpCursor>;
 
 export type EvpCursor =
