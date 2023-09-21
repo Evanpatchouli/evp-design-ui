@@ -104,7 +104,14 @@ We provides five size switch: mini, small, middle and large. Default is middle.
       </Card>
       <Tsx show={showCode[1]}>
         {`
-<EvpSwitch label="Switcher" />
+<Card>
+  <EvpSwitch label="Default" labelWidth={60} />
+  <EvpSwitch label="Mini" size="mini" labelWidth={60} />
+  <EvpSwitch label="Small" size="small" labelWidth={60} />
+  <EvpSwitch label="Medium" size="middle" labelWidth={60} />
+  <EvpSwitch label="Large" size="large" labelWidth={60} mgt_6 />
+  <EvpSwitch label="Huge" size="huge" labelWidth={60} mgt_8 />
+</Card>
 `}
       </Tsx>
       <Md>
@@ -136,7 +143,11 @@ Default widthFactor is 2, which means the width of switch is twice of height. Yo
       </Card>
       <Tsx show={showCode[2]}>
         {`
-        
+<Card>
+  <EvpSwitch label="Default" labelWidth={80} />
+  <EvpSwitch label="Trible" widthFactor={3} labelWidth={80} />
+  <EvpSwitch label="Quadruple" widthFactor={4} labelWidth={80} />   
+</Card>  
 `}
       </Tsx>
       <Md>
