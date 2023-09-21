@@ -75,6 +75,8 @@ import { EvpSwitch } from 'evp-design-ui'
 ## Examples
 
 Here are some examples about EvpSwitch.
+
+We provides five size switch: mini, small, middle and large. Default is middle.
 `}
       </Md>
       <Card
@@ -93,7 +95,12 @@ Here are some examples about EvpSwitch.
           </>
         }
       >
-        <EvpSwitch label="Switcher" />
+        <EvpSwitch label="Default" labelWidth={60} />
+        <EvpSwitch label="Mini" size="mini" labelWidth={60} />
+        <EvpSwitch label="Small" size="small" labelWidth={60} />
+        <EvpSwitch label="Medium" size="middle" labelWidth={60} />
+        <EvpSwitch label="Large" size="large" labelWidth={60} mgt_6 />
+        <EvpSwitch label="Huge" size="huge" labelWidth={60} mgt_8 />
       </Card>
       <Tsx show={showCode[1]}>
         {`
@@ -102,12 +109,44 @@ Here are some examples about EvpSwitch.
       </Tsx>
       <Md>
         {`
+### widthFactor
+
+Default widthFactor is 2, which means the width of switch is twice of height. You can change it by \`widthFactor\` prop.
+`}
+      </Md>
+      <Card
+        toolbarStyle={{
+          justifyContent: "flex-end",
+        }}
+        toolBar={
+          <>
+            <EvpButton
+              $click={() => clickCode(2)}
+              theme="text"
+              size="mini"
+              text="code"
+            />
+            <EvpButton theme="text" size="mini" text="copy" />
+          </>
+        }
+      >
+        <EvpSwitch label="Default" labelWidth={80} />
+        <EvpSwitch label="Trible" widthFactor={3} labelWidth={80} />
+        <EvpSwitch label="Quadruple" widthFactor={4} labelWidth={80} />
+      </Card>
+      <Tsx show={showCode[2]}>
+        {`
+        
+`}
+      </Tsx>
+      <Md>
+        {`
 ## EvpSwitch
 
 ★ container based on div  
-★ props extends none
+★ props extends EvpBaseProps
 
-**EvpCard Apis:**
+**EvpSwitch Apis:**
 
 `}
       </Md>
@@ -126,6 +165,9 @@ interface IEvpSwitchProp {
   labelAlign?: "left" | "center" | "right";
   /** Whether to show a required \`*\` character, this is \`only\` a character not a validation! */
   required?: boolean;
+  size?: "mini" | "small" | "middle" | "large" | "huge";
+  /** default is twice (2) of height */
+  widthFactor?: number;
   style?: React.CSSProperties;
 }
 `}

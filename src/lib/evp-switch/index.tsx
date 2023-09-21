@@ -2,8 +2,10 @@ import classNames from "classnames";
 import { useContext, useEffect, useRef, useState } from "react";
 import { boolStringfy } from "../utils";
 import EvpFormContext from "../evp-form-v2/context";
+import EvpBaseProps from "../props";
+import AllParser from "../utils/props.parser";
 
-interface IEvpSwitchProp {
+interface IEvpSwitchProp extends EvpBaseProps {
   class?: string;
   /** If name exists, the component will be a formItem and try to register to formContext */
   name?: string;
@@ -15,6 +17,9 @@ interface IEvpSwitchProp {
   labelAlign?: "left" | "center" | "right";
   /** Whether to show a required `*` character, this is `only` a character not a validation! */
   required?: boolean;
+  size?: "mini" | "small" | "middle" | "large" | "huge";
+  /** default is twice (2) of height */
+  widthFactor?: number;
   style?: React.CSSProperties;
 }
 
@@ -38,6 +43,8 @@ export type EvpSwitchProps = IEvpSwitchProp;
 
 const EvpSwitch: React.FC<EvpSwitchProps> = (props) => {
   const formCtx = useContext(EvpFormContext);
+
+  const pureProps = AllParser(props);
 
   const [active, setActive] = useState<boolean>(props.defaultActive ?? false);
   function Active() {
@@ -76,7 +83,12 @@ const EvpSwitch: React.FC<EvpSwitchProps> = (props) => {
 
   return (
     <div
-      style={{ display: "flex", alignItems: "center", justifyContent: "left" }}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "left",
+        ...pureProps.style,
+      }}
     >
       {props.label ? (
         <div
@@ -96,13 +108,17 @@ const EvpSwitch: React.FC<EvpSwitchProps> = (props) => {
         className={classNames(
           "evp",
           "evp-switch",
+          props.size,
           active === true ? "active" : ""
         )}
         onClick={() => {
           setActive(!active);
           setVal(boolStringfy(!active));
         }}
-        style={props.style}
+        style={{
+          // @ts-ignore
+          "--width-factor": props.widthFactor ?? 2,
+        }}
       >
         <div
           className="evp-switch-btn"
