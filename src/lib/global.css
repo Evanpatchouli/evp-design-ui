@@ -24,6 +24,8 @@
 @import url(./evp-counter/index.css);
 @import url(./evp-datetime-picker/index.css);
 @import url(./evp-switch/index.css);
+@import url(./evp-loading/index.css);
+@import url(./evp-label/index.css);
 
 .evp {
   font-size: var(--text-size);
@@ -42,8 +44,9 @@
 }
 
 .evp-disabled {
-  cursor: not-allowed !important;
-
+  /* cursor: not-allowed !important; */
+  pointer-events: none !important;
+  opacity: 0.5 !important;
   color: var(--LightGray) !important;
   stroke: var(--LightGray) !important;
 
@@ -65,6 +68,7 @@
   * {
     color: var(--LightGray) !important;
     stroke: var(--LightGray) !important;
+    
   }
 }
 

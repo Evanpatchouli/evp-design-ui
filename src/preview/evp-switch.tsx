@@ -6,7 +6,7 @@ import { EvpButton, Row, EvpSwitch, EvpTag } from "evp-design-ui";
 import { useEffect, useState } from "react";
 
 export default function SwitchView() {
-  const next = { route: "", name: "" };
+  const next = { route: "evp-loading", name: "Loading" };
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -189,8 +189,8 @@ interface IEvpSwitchProp {
         bottom={0}
         plain
         shadow={false}
-        link={`/${next.name ? `component/${next.name}` : ""}`}
-        text={`★ Next Doc Evp${""} >`}
+        link={`/${next.route ? `components/${next.route}` : ""}`}
+        text={`★ Next Doc Evp${next.name} >`}
       />
     </div>
   );

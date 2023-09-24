@@ -131,8 +131,8 @@ toolBar={
         bottom={0}
         plain
         shadow={false}
-        link={`/${next.name ? `component/${next.name}` : ""}`}
-        text={`★ Next Doc Evp${""} >`}
+        link={`/${next.route ? `component/${next.route}` : ""}`}
+        text={`★ Next Doc Evp${next.name} >`}
       />
     </div>
   );

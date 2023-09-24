@@ -1,0 +1,38 @@
+@import url(./wave.css);
+@import url(./breathe-spin.css);
+@import url(./grid.css);
+@import url(./spin.css);
+@import url(./spin-dot.css);
+
+.evp-loading {
+  width: fit-content;
+  height: fit-content;
+}
+
+.evp-loading > .text {
+  border: 1px solid hsla(185, 100%, 62%, 0);
+  border-top-color: var(--loading-color);
+  border-radius: 50%;
+
+  animation: evp-loading__spin 1s linear infinite;
+
+  &.light {
+    border-width: 1px;
+    width: calc(1em - 1px);
+    height: calc(1em - 1px);
+  }
+
+  &.normal {
+    border-width: 3px;
+    width: calc(1em - 3px);
+    height: calc(1em - 3px);
+  }
+
+  &.bold {
+    border-width: 4px;
+    width: calc(1em - 4px);
+    height: calc(1em - 4px);
+  }
+}
+
+@import url(./chase.css);

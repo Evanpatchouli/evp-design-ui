@@ -2,6 +2,8 @@ import React from "react";
 import AllParser from "../utils/props.parser";
 import EvpBaseProps from "../props";
 import { linkTo } from "../utils/route";
+import EvpLoading from "../evp-loading";
+import classNames from "classnames";
 
 export type EvpButtonProps = EvpButtonSpecProps & EvpBaseProps;
 
@@ -11,7 +13,15 @@ interface EvpButtonSpecProps {
   /** Default type is 'button' */
   type?: "button" | "reset" | "submit";
   /** Default theme is 'primary' */
-  theme?: "white" | "primary" | "success" | "warning" | "danger" | "info" | "dark" | "text";
+  theme?:
+    | "white"
+    | "primary"
+    | "success"
+    | "warning"
+    | "danger"
+    | "info"
+    | "dark"
+    | "text";
   plain?: boolean;
   size?: "mini" | "small" | "middle" | "large" | "huge";
   /** default is undefined, square will has 0 border-radius */
@@ -20,6 +30,7 @@ interface EvpButtonSpecProps {
   shadow?: boolean;
   link?: string | { path?: string; hash?: boolean };
   hash?: boolean;
+  loading?: boolean;
 }
 
 const EvpButton: React.FC<EvpButtonProps> = (props: EvpButtonProps) => {
@@ -40,13 +51,30 @@ const EvpButton: React.FC<EvpButtonProps> = (props: EvpButtonProps) => {
   const $class = props.class ?? "";
   return (
     <button
-      className={`evp evp-button ${theme} ${shadow} ${size} ${plain} ${shape} ${$class}`.trim()}
+      className={`evp evp-button ${theme} ${shadow} ${size} ${plain} ${shape} ${$class} ${
+        props.loading ? "evp-disabled" : ""
+      }`.trim()}
       id={$props.id}
       onClick={clickHandler}
       style={$props.style}
       type={props.type ?? "button"}
     >
-      {props.children ?? props.text ?? ""}
+      <div className="evp-button-content">
+        {
+          <EvpLoading.Text
+            className={classNames("btn-loading", props.loading ? "" : "hidden")}
+            style={{
+              marginRight:
+                props.loading === true
+                  ? props.children ?? props.text
+                    ? 14
+                    : 0
+                  : 0,
+            }}
+          />
+        }
+        {props.children ?? props.text ?? ""}
+      </div>
     </button>
   );
 };

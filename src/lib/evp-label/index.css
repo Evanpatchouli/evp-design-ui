@@ -1,0 +1,8 @@
+.evp.label {
+  display: flex;
+  height: 30px;
+  justify-content: left;
+  align-items: center;
+  padding-right: 8px;
+  border-radius: 5px;
+}

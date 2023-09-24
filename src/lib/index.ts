@@ -207,3 +207,14 @@ export {
   default as Switch,
   type EvpSwitchProps
 } from './evp-switch';
+
+export {
+  default as EvpLoading,
+  default as Loading,
+} from './evp-loading';
+
+export {
+  default as EvpLabel,
+  default as Label,
+  type EvpLabelProps
+} from './evp-label';

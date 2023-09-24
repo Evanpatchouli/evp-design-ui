@@ -40,10 +40,12 @@ import Preview from './preview';
 import CounterView from './preview/evp-counter';
 import DateTimePickerView from './preview/evp-datetime-picker';
 import SwitchView from './preview/evp-switch';
+import LoadingView from './preview/evp-loading';
+import LabelView from './preview/evp-label';
 
 function App() {
   const location = useLocation();
-  console.log('route:', location)
+  const now = new Date().toLocaleDateString();
   return (
     <div className="App">
       <Header />
@@ -85,6 +87,8 @@ function App() {
             <EvpMenuItem link={'/components/evp-counter'} title={'EvpCounter'} />
             <EvpMenuItem link={'/components/evp-datetime-picker'} title={'EvpDateTimePicker'} />
             <EvpMenuItem link={'/components/evp-switch'} title={'EvpSwitch'} />
+            <EvpMenuItem link={'/components/evp-loading'} title={'EvpLoading'} />
+            <EvpMenuItem link={'/components/evp-label'} title={'EvpLabel'} />
           </EvpMenu>
         </div>
         <div className='Content' style={{
@@ -122,9 +126,11 @@ function App() {
             <Route path='/components/evp-counter' key={"counter"} element={<CounterView />}></Route>
             <Route path='/components/evp-datetime-picker' key={"datetime-picker"} element={<DateTimePickerView />}></Route>
             <Route path='/components/evp-switch' key={"breadcrumb"} element={<SwitchView />}></Route>
+            <Route path='/components/evp-loading' key={"loading"} element={<LoadingView />}></Route>
+            <Route path='/components/evp-label' key={"label"} element={<LabelView />}></Route>
           </Routes>
           <div className='foot'>
-            <p>CopyRight &copy; 2023-2023 Evp Design UI</p>
+            <p>CopyRight &copy; 2023-{now} Evp Design UI</p>
           </div>
         </div>
       </div>

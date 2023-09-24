@@ -6,6 +6,12 @@
   cursor: pointer;
 }
 
+.evp-button-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .evp.evp-button.white {
   border: 1px solid #fff;
   padding-top: 1px;
@@ -262,3 +268,16 @@
 }
 
 /** shadow */
+
+
+.btn-loading {
+  width: 18px;
+  opacity: 1;
+  transition: all 0.2s ease-in-out;
+  box-sizing: border-box;
+
+  &.hidden {
+    width: 0px;
+    opacity: 0;
+  }
+}
