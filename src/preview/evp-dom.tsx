@@ -1,36 +1,41 @@
 import Card from "@/components/card";
 import Code from "@/components/code";
 import Tsx from "@/components/tsx";
+import { Button, EvpCard, Row } from "@/lib";
 import EvpButton from "@/lib/evp-button";
 import EvpDom from "@/lib/evp-dom";
 import { useEffect, useState } from "react";
-import Md from 'react-markdown';
+import Md from "react-markdown";
 
 export default function DomView() {
-  useEffect(()=>{
+  useEffect(() => {
     window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: 'smooth'
-});
-  }, [])
-  
-  const [showCode, setShowCode] = useState<{[x:number]:boolean}>({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, []);
+
+  const [showCode, setShowCode] = useState<{ [x: number]: boolean }>({
     1: false,
     2: false,
     3: false,
-    4: false
-  })
+    4: false,
+  });
 
   const clickCode = (idx: number) => {
     let $showCode = { ...showCode };
     $showCode[idx] = !showCode[idx];
     setShowCode($showCode);
-  }
-  return(
+  };
+
+  const [loading, setLoading] = useState(false);
+  const [modal, setModal] = useState(false);
+
+  return (
     <div className="preview-container DomView">
-            <Md>
-{`
+      <Md>
+        {`
 # EvpDom
 
 A wrapper component that can be easy customized.
@@ -41,26 +46,26 @@ import:
 `}
       </Md>
       <Tsx>
-{`
+        {`
 import { EvpDom } from 'evp-design-ui';
 `}
       </Tsx>
       <Md>
-{`
+        {`
 usage:
 `}
       </Md>
       <Card>
         <EvpDom
           {...{
-            h: 100, w: 300,
-            border: '1px dotted black'
+            h: 100,
+            w: 300,
+            border: "1px dotted black",
           }}
-        >
-        </EvpDom>
+        ></EvpDom>
       </Card>
       <Tsx>
-{`
+        {`
 <EvpDom
   {...{
     h: 100, w: 300,
@@ -71,19 +76,19 @@ usage:
 `}
       </Tsx>
       <Md>
-{`
+        {`
 ## Examples
 
 Here are some necessary examples about how to use props extends EvpBaseProps Interface and EvpBaseProps is form of EvpStyleProps, EvpEventProps and EvpCommonProps.
 `}
       </Md>
-<Code lang="typescript">
-{`
+      <Code lang="typescript">
+        {`
 type EvpBaseProps = EvpStyleProps & EvpEventProps & EvpCommonProps;
 `}
-</Code>
+      </Code>
       <Md>
-{`
+        {`
 Lets start with these three Props Interface just now!
 
 ### EvpStyleProps
@@ -108,8 +113,8 @@ I beleive that you can find out the meaning of these attributes by yourself. Yes
 Besides, it will be overrided by the "cursor" attributes if exists.
 `}
       </Md>
-<Md>
-{`
+      <Md>
+        {`
 #### measurement
 
 - w : width of this element
@@ -149,11 +154,196 @@ mg\`\${[l,r,t,b]}\`_* is similar to pd.
 - children : React.ReactNode
 - id : string
 - class : string
+- loading : boolean
 
+Here are examples of loading and modal:
 `}
-</Md>
+      </Md>
+      <Card
+        toolbarStyle={{
+          justifyContent: "flex-end",
+        }}
+        toolBar={
+          <>
+            <EvpButton
+              $click={() => clickCode(1)}
+              theme="text"
+              size="mini"
+              text="code"
+            />
+            <EvpButton theme="text" size="mini" text="copy" />
+          </>
+        }
+      >
+        <Button
+          $click={() => {
+            setLoading(!loading);
+          }}
+        >
+          {loading ? "Cancle" : "Loading"}
+        </Button>
+        <EvpDom w={800} h={400} border="1px solid gray" loading={loading}>
+          Dom with loading
+        </EvpDom>
+        <EvpDom
+          w={800}
+          border="1px solid gray"
+          modal={modal}
+          modalContent={
+            <>
+              <EvpCard
+                w={200}
+                h={120}
+                toolbarStyle={{
+                  justifyContent: "flex-end",
+                }}
+                toolBar={
+                  <>
+                    <Button
+                      mg_12
+                      $click={() => {
+                        setModal(false);
+                      }}
+                      text="Close"
+                    />
+                  </>
+                }
+              >
+                Hello
+              </EvpCard>
+            </>
+          }
+        >
+          <p>
+            <h2>Modal in EvpDom</h2>
+            <Row justifyContent="left">
+              <div>
+                Besides Loading Modal, EvpDom also has a Internal common modal.
+                You can use it like this:
+              </div>
+              <Button
+                mgl_20
+                $click={() => {
+                  setModal(!modal);
+                }}
+              >
+                {modal ? "Close" : "Open"}
+              </Button>
+            </Row>
+          </p>
+
+          <Tsx>
+            {`
+<EvpDom
+  w={800}  h={600} border="1px solid gray"
+  modal={modal}
+  modalContent={
+    <>
+      <EvpCard w={200} h={120}
+        toolbarStyle={{
+          justifyContent: "flex-end",
+        }}
+        toolBar={
+          <><Button mg_12 $click={() => { setModal(false); }} text="Close" /></>
+        }
+      >
+        Hello
+      </EvpCard>
+    </>
+}>
+  content in evpdom...
+</EvpDom>
+            `}
+          </Tsx>
+        </EvpDom>
+      </Card>
+      <Tsx show={showCode[1]}>
+        {`
+<Button
+$click={() => {
+  setLoading(!loading);
+}}
+>
+{loading ? "Cancle" : "Loading"}
+</Button>
+<EvpDom w={800} h={400} border="1px solid gray" loading={loading}>
+Dom with loading
+</EvpDom>
+<EvpDom
+w={800}
+border="1px solid gray"
+modal={modal}
+modalContent={
+  <>
+    <EvpCard
+      w={200}
+      h={120}
+      toolbarStyle={{
+        justifyContent: "flex-end",
+      }}
+      toolBar={
+        <>
+          <Button
+            mg_12
+            $click={() => {
+              setModal(false);
+            }}
+            text="Close"
+          />
+        </>
+      }
+    >
+      Hello
+    </EvpCard>
+  </>
+}
+>
+<p>
+  <h2>Modal in EvpDom</h2>
+  <Row justifyContent="left">
+    <div>
+      Besides Loading Modal, EvpDom also has a Internal common modal.
+      You can use it like this:
+    </div>
+    <Button
+      mgl_20
+      $click={() => {
+        setModal(!modal);
+      }}
+    >
+      {modal ? "Close" : "Open"}
+    </Button>
+  </Row>
+</p>
+
+<Tsx>
+  {\`
+<EvpDom
+w={800}  h={600} border="1px solid gray"
+modal={modal}
+modalContent={
+<>
+<EvpCard w={200} h={120}
+toolbarStyle={{
+justifyContent: "flex-end",
+}}
+toolBar={
+<><Button mg_12 $click={() => { setModal(false); }} text="Close" /></>
+}
+>
+Hello
+</EvpCard>
+</>
+}>
+content in evpdom...
+</EvpDom>
+  \`}
+</Tsx>
+</EvpDom>
+`}
+      </Tsx>
       <Md>
-{`
+        {`
 ## Api
 
 **EvpCol Apis:**
@@ -161,9 +351,15 @@ mg\`\${[l,r,t,b]}\`_* is similar to pd.
 Please refer to EvpBaseProps in docs of EvpDom.
 `}
       </Md>
-      <EvpButton position="absolute" right={40} bottom={0}
-        plain shadow={false}
-        link="/components/evp-divider" text="★ Next Doc EvpDivider >" />
+      <EvpButton
+        position="absolute"
+        right={40}
+        bottom={0}
+        plain
+        shadow={false}
+        link="/components/evp-divider"
+        text="★ Next Doc EvpDivider >"
+      />
     </div>
-  )
+  );
 }
