@@ -42,6 +42,7 @@ import DateTimePickerView from './preview/evp-datetime-picker';
 import SwitchView from './preview/evp-switch';
 import LoadingView from './preview/evp-loading';
 import LabelView from './preview/evp-label';
+import ModalView from "@/preview/evp-modal";
 
 function App() {
   const location = useLocation();
@@ -89,6 +90,7 @@ function App() {
             <EvpMenuItem link={'/components/evp-switch'} title={'EvpSwitch'} />
             <EvpMenuItem link={'/components/evp-loading'} title={'EvpLoading'} />
             <EvpMenuItem link={'/components/evp-label'} title={'EvpLabel'} />
+            <EvpMenuItem link={'/components/evp-modal'} title={'EvpModal'} />
           </EvpMenu>
         </div>
         <div className='Content' style={{
@@ -128,6 +130,7 @@ function App() {
             <Route path='/components/evp-switch' key={"breadcrumb"} element={<SwitchView />}></Route>
             <Route path='/components/evp-loading' key={"loading"} element={<LoadingView />}></Route>
             <Route path='/components/evp-label' key={"label"} element={<LabelView />}></Route>
+            <Route path='/components/evp-modal' key={"modal"} element={<ModalView />}></Route>
           </Routes>
           <div className='foot'>
             <p>CopyRight &copy; 2023-{now} Evp Design UI</p>

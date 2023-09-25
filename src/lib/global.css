@@ -27,6 +27,7 @@
 @import url(./evp-switch/index.css);
 @import url(./evp-loading/index.css);
 @import url(./evp-label/index.css);
+@import url(./evp-modal/index.css);
 
 .evp {
   font-size: var(--text-size);
@@ -69,7 +70,7 @@
   * {
     color: var(--LightGray) !important;
     stroke: var(--LightGray) !important;
-    
+
   }
 }
 

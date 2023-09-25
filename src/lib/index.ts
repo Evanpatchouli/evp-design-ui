@@ -1,4 +1,4 @@
-export { type default as EvpBaseProps } from "./props";
+export type { default as EvpBaseProps } from "./props";
 
 export {
   shift,
@@ -218,3 +218,9 @@ export {
   default as Label,
   type EvpLabelProps
 } from './evp-label';
+
+export {
+  default as EvpModal,
+  default as Modal,
+  type EvpModalProps,
+} from './evp-modal';
