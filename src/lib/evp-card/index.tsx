@@ -3,7 +3,7 @@ import EvpBaseProps from "../props";
 import { EvpFlexDirectionRule } from "../typings";
 
 export interface EvpCardProps extends EvpBaseProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   style?: React.CSSProperties;
   contentStyle?: React.CSSProperties;
   toolbarStyle?: React.CSSProperties;

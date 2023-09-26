@@ -224,3 +224,9 @@ export {
   default as Modal,
   type EvpModalProps,
 } from './evp-modal';
+
+export {
+  default as EvpDialog,
+  default as Dialog,
+  type EvpDialogProps,
+} from './evp-dialog';
