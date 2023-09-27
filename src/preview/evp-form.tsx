@@ -236,8 +236,8 @@ export type EvpFormProps<T = any> = {
         bottom={0}
         plain
         shadow={false}
-        link="/components/evp-menu"
-        text="★ Next Doc EvpMenu >"
+        link="/components/evp-tag"
+        text="★ Next Doc EvpTag >"
       />
     </div>
   );

@@ -86,5 +86,6 @@ export default function AllParser(props?: EvpBaseProps) {
     id: props?.id,
     class: props?.class,
     loading: props?.loading,
+    hidden: props?.hidden,
   };
 }

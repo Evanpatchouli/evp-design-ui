@@ -94,7 +94,9 @@ If you want to ban an option, you can set it to disabled
         <EvpButton $click={() => clickCode(1)} theme="text" size="mini" text="code" />
         <EvpButton theme="text" size="mini" text="copy" />
       </>}>
-        <Card>
+        <Card style={{
+          width: 'fit-content'
+        }}>
           <EvpSelect name="demo2" 
             placeholder="Select one option"
             options={[

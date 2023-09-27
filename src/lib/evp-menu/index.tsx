@@ -53,8 +53,8 @@ export default function EvpMenu(props: EvpMenuProps) {
   const [height, setHeight] = useState(0);
 
   useEffect(() => {
-    console.log(ref.current?.clientHeight);
-    console.log(ref.current?.offsetHeight);
+    // console.log(ref.current?.clientHeight);
+    // console.log(ref.current?.offsetHeight);
     if (expand) {
       setHeight(ref.current?.offsetHeight as number);
     } else {

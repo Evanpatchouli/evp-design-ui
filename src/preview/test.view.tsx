@@ -2,18 +2,7 @@ import Card from "@/components/card";
 import "./test.css";
 import EvpFlexbarContentfixed from "@/lib/evp-flexbar/content-fixed";
 import EvpDivider from "@/lib/evp-divider";
-import {
-  Anchor,
-  Button,
-  EvpButton,
-  EvpCard,
-  EvpCol,
-  EvpRow,
-  EvpTag,
-  Input,
-  Row,
-  Toast,
-} from "@/lib";
+import { Anchor, Button, EvpButton, EvpCard, EvpCol, EvpRow, EvpTag, Input, Row, Toast } from "@/lib";
 import useMobx from "@/store/hooks";
 import EvpForm from "@/lib/evp-form";
 import useForm from "@/lib/evp-form/hooks";
@@ -25,6 +14,7 @@ import EvpRadioGroup from "@/lib/evp-radio-group/inedx";
 import EvpRadio from "@/lib/evp-radio";
 import EvpSelect from "@/lib/evp-select";
 import EvpSlider from "@/lib/evp-slider";
+import EvpCardV2 from "@/lib/evp-card/index.v2";
 
 export default function TestViewView() {
   const store = useMobx("store");
@@ -41,13 +31,7 @@ export default function TestViewView() {
       >
         <h4>圆形 ( circle )</h4>
         <Card>
-          <svg
-            version="1.1"
-            style={{ border: "1px solid black" }}
-            width={50}
-            height={50}
-            viewBox="0 0 100 100"
-          >
+          <svg version="1.1" style={{ border: "1px solid black" }} width={50} height={50} viewBox="0 0 100 100">
             <circle // circle 是原点
               cx={50} // x 坐标
               cy={50} // y 坐标
@@ -66,13 +50,7 @@ export default function TestViewView() {
         </Card>
         <h4>矩形 ( rect )</h4>
         <Card>
-          <svg
-            version="1.1"
-            style={{ border: "1px solid black" }}
-            width={50}
-            height={50}
-            viewBox="0 0 100 100"
-          >
+          <svg version="1.1" style={{ border: "1px solid black" }} width={50} height={50} viewBox="0 0 100 100">
             <rect
               width={100}
               height={40}
@@ -93,27 +71,15 @@ export default function TestViewView() {
             <div>user is user</div>
           </EvpFlexbarContentfixed>
 
-          <EvpFlexbarContentfixed
-            fixedMode="content"
-            labelPosition="left"
-            label="L"
-          >
+          <EvpFlexbarContentfixed fixedMode="content" labelPosition="left" label="L">
             <div>user is user</div>
           </EvpFlexbarContentfixed>
 
-          <EvpFlexbarContentfixed
-            fixedMode="content"
-            labelPosition="top"
-            label="T"
-          >
+          <EvpFlexbarContentfixed fixedMode="content" labelPosition="top" label="T">
             <div>user is user</div>
           </EvpFlexbarContentfixed>
 
-          <EvpFlexbarContentfixed
-            fixedMode="content"
-            labelPosition="bottom"
-            label="B"
-          >
+          <EvpFlexbarContentfixed fixedMode="content" labelPosition="bottom" label="B">
             <div>user is user</div>
           </EvpFlexbarContentfixed>
         </Card>
@@ -175,13 +141,7 @@ export default function TestViewView() {
             </EvpFormField>
             <EvpFormField name="admin">
               {/* @todo 要包个 div 才能注册到 formRef 的 BUG */}
-              <EvpCheckBox
-                labelWidth={60}
-                required
-                label={"管理员"}
-                name="admin"
-                value="true"
-              />
+              <EvpCheckBox labelWidth={60} required label={"管理员"} name="admin" value="true" />
             </EvpFormField>
             <EvpFormField name="sex">
               <div>
@@ -208,13 +168,7 @@ export default function TestViewView() {
           />
         </Card>
         <Card>
-          <EvpSlider
-            name="number"
-            label="Number"
-            required
-            range={[0, 100]}
-            value={50}
-          />
+          <EvpSlider name="number" label="Number" required range={[0, 100]} value={50} />
         </Card>
         <Card>
           <Row>
@@ -227,98 +181,53 @@ export default function TestViewView() {
             <EvpTag text="Tag 1" theme="dark" style={{ marginRight: 12 }} />
           </Row>
           <Row mgt_20>
-            <EvpTag
-              text="Tag 1"
-              theme="white"
-              light
-              style={{ marginRight: 12 }}
-            />
-            <EvpTag
-              text="Tag 1"
-              theme="primary"
-              light
-              style={{ marginRight: 12 }}
-            />
-            <EvpTag
-              text="Tag 1"
-              theme="success"
-              light
-              style={{ marginRight: 12 }}
-            />
-            <EvpTag
-              text="Tag 1"
-              theme="warning"
-              light
-              style={{ marginRight: 12 }}
-            />
-            <EvpTag
-              text="Tag 1"
-              theme="danger"
-              light
-              style={{ marginRight: 12 }}
-            />
-            <EvpTag
-              text="Tag 1"
-              theme="info"
-              light
-              style={{ marginRight: 12 }}
-            />
-            <EvpTag
-              text="Tag 1"
-              theme="dark"
-              light
-              style={{ marginRight: 12 }}
-            />
+            <EvpTag text="Tag 1" theme="white" light style={{ marginRight: 12 }} />
+            <EvpTag text="Tag 1" theme="primary" light style={{ marginRight: 12 }} />
+            <EvpTag text="Tag 1" theme="success" light style={{ marginRight: 12 }} />
+            <EvpTag text="Tag 1" theme="warning" light style={{ marginRight: 12 }} />
+            <EvpTag text="Tag 1" theme="danger" light style={{ marginRight: 12 }} />
+            <EvpTag text="Tag 1" theme="info" light style={{ marginRight: 12 }} />
+            <EvpTag text="Tag 1" theme="dark" light style={{ marginRight: 12 }} />
           </Row>
 
           <Row mgt_20>
-            <EvpTag
-              text="Tag 1"
-              theme="white"
-              plain
-              style={{ marginRight: 12 }}
-            />
-            <EvpTag
-              text="Tag 1"
-              theme="primary"
-              plain
-              style={{ marginRight: 12 }}
-            />
-            <EvpTag
-              text="Tag 1"
-              theme="success"
-              plain
-              style={{ marginRight: 12 }}
-            />
-            <EvpTag
-              text="Tag 1"
-              theme="warning"
-              plain
-              style={{ marginRight: 12 }}
-            />
-            <EvpTag
-              text="Tag 1"
-              theme="danger"
-              plain
-              style={{ marginRight: 12 }}
-            />
-            <EvpTag
-              text="Tag 1"
-              theme="info"
-              plain
-              style={{ marginRight: 12 }}
-            />
-            <EvpTag
-              text="Tag 1"
-              theme="dark"
-              plain
-              style={{ marginRight: 12 }}
-            />
+            <EvpTag text="Tag 1" theme="white" plain style={{ marginRight: 12 }} />
+            <EvpTag text="Tag 1" theme="primary" plain style={{ marginRight: 12 }} />
+            <EvpTag text="Tag 1" theme="success" plain style={{ marginRight: 12 }} />
+            <EvpTag text="Tag 1" theme="warning" plain style={{ marginRight: 12 }} />
+            <EvpTag text="Tag 1" theme="danger" plain style={{ marginRight: 12 }} />
+            <EvpTag text="Tag 1" theme="info" plain style={{ marginRight: 12 }} />
+            <EvpTag text="Tag 1" theme="dark" plain style={{ marginRight: 12 }} />
           </Row>
         </Card>
 
         <EvpCard class="t-card">
-          <EvpRow class="t-col">123</EvpRow>
+          <EvpCardV2
+            header="EvpCardV2"
+            footer={
+              <>
+                <Button>Hello</Button>
+              </>
+            }
+            lefter={
+              <>
+                <Button shape="circle">&copy;</Button>
+              </>
+            }
+            righter={
+              <>
+                <Button shape="circle">&copy;</Button>
+              </>
+            }
+          >
+            <div
+              style={{
+                width: "200px",
+                height: "100px",
+                border: "1px solid black",
+              }}
+            ></div>
+          </EvpCardV2>
         </EvpCard>
       </PreContext.Provider>
     </div>

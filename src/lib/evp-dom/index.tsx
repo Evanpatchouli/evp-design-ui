@@ -21,6 +21,7 @@ export default function EvpDom($props: EvpDomProps) {
     <div
       id={props.id}
       className={props.class}
+      hidden={props.hidden}
       style={{
         position: "relative",
         ...props.style,

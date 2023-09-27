@@ -29,10 +29,16 @@ export {
 } from "./evp-button";
 
 export {
+  default as _EvpCard,
+  default as _Card,
+  type EvpCardProps as _EvpCardProps,
+} from "./evp-card/index";
+
+export {
   default as EvpCard,
   default as Card,
   type EvpCardProps,
-} from "./evp-card";
+} from "./evp-card/index.v2";
 
 export {
   default as EvpCode,

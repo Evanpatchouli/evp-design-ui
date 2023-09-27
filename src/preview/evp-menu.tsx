@@ -243,7 +243,7 @@ Default is no indent, if you set it to true, it will be indented at 18px. You ca
 - **link** ? : route-link to where
   + default : undefined
   + type: string | { path?: string; hash?: boolean; }
-- hash: is link a hash route
+- **hash** ? : is link a hash route
   + default: 
   + type: boolean
 - **itemIndent** ? : indent of submenu items

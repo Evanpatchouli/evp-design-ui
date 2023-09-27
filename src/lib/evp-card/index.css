@@ -1,19 +1,58 @@
 .evp-card {
   display: flex;
+  box-sizing: border-box;
   width: fit-content;
   height: fit-content;
-  box-sizing: border-box;
   background-color: #fff;
 }
 
 .evp-card-content {
-  padding: 20px;
   flex: 1;
   flex-wrap: wrap;
+  padding: 20px;
 }
 
 .evp-card-toolbar {
-  padding: 4;
   display: flex;
-  align-Items: center;
+  align-items: center;
+  padding: 4;
+}
+
+.evp-card-lefter {
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.evp-card-righter {
+  border-left: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.evp-card-lefter,
+.evp-card-righter {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 8px;
+}
+
+.evp-card-main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.evp-card-header {
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  padding: 8px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.evp-card-footer {
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  padding: 8px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
 }

@@ -10,6 +10,7 @@ export interface EvpCommon {
   modal?: boolean;
   modalContent?: React.ReactNode;
   loading?: boolean;
+  hidden?: boolean;
 }
 
 export default EvpCommonProps

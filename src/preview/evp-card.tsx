@@ -1,54 +1,54 @@
 import Md from "@/components/md";
 import Tsx from "@/components/tsx";
 import EvpButton from "@/lib/evp-button";
-import EvpCard from "@/lib/evp-card";
+import { EvpCard } from "evp-design-ui";
 import { useEffect, useState } from "react";
 
 export default function CardView() {
-  useEffect(()=>{
+  useEffect(() => {
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
-  }, [])
-  const [showCode, setShowCode] = useState<{[x:number]:boolean}>({
+  }, []);
+  const [showCode, setShowCode] = useState<{ [x: number]: boolean }>({
     1: false,
     2: false,
     3: false,
-    4: false
-  })
+    4: false,
+  });
 
   const clickCode = (idx: number) => {
     let $showCode = { ...showCode };
     $showCode[idx] = !showCode[idx];
     setShowCode($showCode);
-  }
-  return(
+  };
+  return (
     <div className="preview-container">
-<Md>
-{`
+      <Md>
+        {`
 # EvpCard
 
-Collect several infos and show in a card container.
+A card component is a part of a digital interface that serves as a container for displaying information or an action.
 
 ## Basic Usage
 
 **import:**
 `}
-</Md>
-<Tsx>
-{`
+      </Md>
+      <Tsx>
+        {`
 import { EvpCard } from 'evp-design-ui'
 `}
-</Tsx>
-<Md>
-{`
+      </Tsx>
+      <Md>
+        {`
 **usage:**
 `}
-</Md>
-<Tsx>
-{`
+      </Md>
+      <Tsx>
+        {`
 <EvpCard w={400}>
   <p>Hello, i am EvpCard.</p>
   <p>I extends EvpBaseProps.</p>
@@ -57,7 +57,7 @@ import { EvpCard } from 'evp-design-ui'
   <EvpButton text="Greet" />
 </EvpCard>
 `}
-</Tsx>
+      </Tsx>
       <EvpCard w={400}>
         <p>Hello, i am EvpCard.</p>
         <p>I extends EvpBaseProps.</p>
@@ -65,32 +65,39 @@ import { EvpCard } from 'evp-design-ui'
         <p>That's me.</p>
         <EvpButton text="Greet" />
       </EvpCard>
-<Md>
-{`
+      <Md>
+        {`
 ## ToolBar
 
 Default is not but EvpCard can be with a toolbar side of it.
 `}
-</Md>
+      </Md>
       <EvpCard
-      w={'100%'}
-      toolbarStyle={{
-        justifyContent: 'flex-end'
-      }}
-      toolBar={
-      <>
-        <EvpButton $click={() => clickCode(1)} theme="text" size="mini" text="code" />
-        <EvpButton theme="text" size="mini" text="copy" />
-      </>}>
-        <EvpCard w={400}
-        toolbarStyle={{
-          justifyContent: 'flex-end'
+        w={"100%"}
+        footerProps={{
+          style: {
+            justifyContent: "flex-end",
+            padding: 0,
+          },
         }}
-        toolBar={
-        <>
-          <EvpButton plain size="mini" text="Hello" />
-          <EvpButton plain size="mini" text="World" />
-        </>}
+        footer={
+          <>
+            <EvpButton $click={() => clickCode(1)} theme="text" size="mini" text="code" />
+            <EvpButton theme="text" size="mini" text="copy" />
+          </>
+        }
+      >
+        <EvpCard
+          w={400}
+          footerProps={{
+            justifyContent: "flex-end",
+          }}
+          footer={
+            <>
+              <EvpButton plain size="mini" text="Hello" />
+              <EvpButton plain size="mini" text="World" />
+            </>
+          }
         >
           <p>Hello, i am EvpCard.</p>
           <p>I extends EvpBaseProps.</p>
@@ -99,8 +106,8 @@ Default is not but EvpCard can be with a toolbar side of it.
           <EvpButton text="Greet" />
         </EvpCard>
       </EvpCard>
-<Tsx show={showCode[1]}>
-{`
+      <Tsx show={showCode[1]}>
+        {`
 <EvpCard w={400}
 toolbarStyle={{
   justifyContent: 'flex-end'
@@ -118,67 +125,43 @@ toolBar={
   <EvpButton text="Greet" />
 </EvpCard>
 `}
-</Tsx>
-<Md>
-{`
+      </Tsx>
+      <Md>
+        {`
 ## ToolBarPosition
 
 Toolbar can be displayed on its four side
 `}
-</Md>
-      <EvpCard w={'100%'} contentStyle={{ display: 'flex', flexDirection: 'row' }}
-      toolBar={
-      <>
-        <EvpButton $click={() => clickCode(2)} theme="text" size="mini" text="code" />
-        <EvpButton theme="text" size="mini" text="copy" />
-      </>}
-      toolbarStyle={{
-        justifyContent: 'flex-end'
-      }}>
-        <EvpCard
-        mgr_30
-        h={120}
-        toolBar={
-          <span>code</span>
+      </Md>
+      <EvpCard
+        w={"100%"}
+        contentStyle={{ display: "flex", flexDirection: "row" }}
+        footer={
+          <>
+            <EvpButton $click={() => clickCode(2)} theme="text" size="mini" text="code" />
+            <EvpButton theme="text" size="mini" text="copy" />
+          </>
         }
-        toolBarPosition="top"
-        >
-          <h3>top toolbar</h3>
+        footerProps={{
+          justifyContent: "flex-end",
+        }}
+      >
+        <EvpCard mgr_30 h={120} header={<span>code</span>} toolBarPosition="top">
+          <h3>header toolbar</h3>
         </EvpCard>
-        <EvpCard
-        mgr_30
-        h={120}
-        toolBar={
-          <span>code</span>
-        }
-        toolBarPosition="bottom"
-        >
-          <h3>bottom toolbar</h3>
+        <EvpCard mgr_30 h={120} footer={<span>code</span>} toolBarPosition="bottom">
+          <h3>footer toolbar</h3>
         </EvpCard>
-        <EvpCard
-        mgr_30
-        h={120}
-        toolBar={
-          <span>code</span>
-        }
-        toolBarPosition="left"
-        >
+        <EvpCard mgr_30 h={120} lefter={<span>code</span>} toolBarPosition="left">
           <h3>left toolbar</h3>
         </EvpCard>
-        <EvpCard
-        mgr_30
-        h={120}
-        toolBar={
-          <span>code</span>
-        }
-        toolBarPosition="right"
-        >
+        <EvpCard mgr_30 h={120} righter={<span>code</span>} toolBarPosition="right">
           <h3>right toolbar</h3>
         </EvpCard>
       </EvpCard>
-{showCode[2]?
-<Tsx>
-{`
+      {showCode[2] ? (
+        <Tsx>
+          {`
 <EvpCard mgr_30 h={120}
   toolBar={
     <span>code</span>
@@ -212,10 +195,12 @@ Toolbar can be displayed on its four side
   <h3>right toolbar</h3>
 </EvpCard>
 `}
-</Tsx>
-: void 0}
-<Md>
-{`
+        </Tsx>
+      ) : (
+        void 0
+      )}
+      <Md>
+        {`
 ## Api
 
 ★ container based on EvpDom  
@@ -223,23 +208,30 @@ Toolbar can be displayed on its four side
 
 **EvpCard Apis:**
 
-- children? : card content
-  + type: React.ReactNode
-- contentStyle ? : css style of card content element
-- toolBar ? : toolbar content
-  + type: React.ReactNode
-- toolBarPosition ? : where the toolbar is
-  + default: 'bottom'
-  + options: 'top' | 'bottom' | 'left' | 'right'
-- toolbarStyle ? : css style of card toolbar element
-- class ? : className of card;
-- contentClass ? : className of card content element;
-- toolBarClass ? : className of card toolbar element;
+- children ? : React.ReactNode
+- style ? : React.CSSProperties
+- contentStyle ? : React.CSSProperties
+- class ? : string
+- contentClass ? : string
+- lefter ? : React.ReactNode
+- lefterProps ? : EvpDomProps
+- righter ? : React.ReactNode
+- righterProps ? : EvpDomProps
+- header ? : React.ReactNode
+- headerProps ? : EvpDomProps
+- footer ? : React.ReactNode
+- footerProps ? : EvpDomProps
 `}
-</Md>
-      <EvpButton position="absolute" right={40} bottom={0}
-        plain shadow={false}
-        link="/components/evp-menu" text="★ Next Doc EvpMenu >" />
+      </Md>
+      <EvpButton
+        position="absolute"
+        right={40}
+        bottom={0}
+        plain
+        shadow={false}
+        link="/components/evp-menu"
+        text="★ Next Doc EvpMenu >"
+      />
     </div>
-  )
+  );
 }
