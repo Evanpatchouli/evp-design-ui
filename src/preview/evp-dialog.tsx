@@ -156,7 +156,7 @@ Or if you only want to customize the cancel and confirm button, you can use \`ca
           confirmProps={{
             text: "确认",
             $click: () => {
-              Toast.info("You should close by clicking the cancel button.");
+              Toast.info("你应该点击关闭");
             },
           }}
           cancelProps={{
@@ -196,6 +196,8 @@ Or if you only want to customize the cancel and confirm button, you can use \`ca
         {`
 ## content
 
+The modal is based on EvpModal and its close and open events are also based on EvpModal. You can set onOpen and onClose to listen to the events.
+
 The content's container of the dialog card is based on EvpDom. Therefore, you can customize it like as EvpDom.
 `}
       </Md>
@@ -217,9 +219,17 @@ The content's container of the dialog card is based on EvpDom. Therefore, you ca
         >
           open
         </Button>
-        <Dialog open={openFour} setOpen={setOpenFour} loading={loading} onClose={() => {
-          Toast.success(`${openFour}`)
-        }}>
+        <Dialog
+          open={openFour}
+          setOpen={setOpenFour}
+          loading={loading}
+          onOpen={() => {
+            Toast.success(`Dialog opened!`);
+          }}
+          onClose={() => {
+            Toast.success(`Dialog closed!`);
+          }}
+        >
           <Button
             loading={loading}
             $click={() => {

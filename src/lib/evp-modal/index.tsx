@@ -1,6 +1,5 @@
 import classNames from "classnames";
-import Toast from "../evp-toast";
-import { useCallback, useEffect, useMemo, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 export type EvpModalProps = {
   open?: boolean;
@@ -45,15 +44,15 @@ export default function EvpModal(props: EvpModalProps) {
 
   useEffect(() => {
     if (didMountRef.current) {
-      if (`${open}` === `true`) {
-        onClose?.();
-      } else if (`${open}` === `false`) {
+      if (open === true) {
         onOpen?.();
+      } else {
+        onClose?.();
       }
     } else {
       didMountRef.current = true;
     }
-  }, [open]);
+  }, [onClose, onOpen, open]);
   return (
     <div
       className={classNames(`evp`, `evp-modal`)}

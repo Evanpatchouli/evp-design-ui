@@ -2,7 +2,7 @@ import Card from "@/components/card";
 import Md from "@/components/md";
 import Tsx from "@/components/tsx";
 import { Button, EvpCard, EvpCode, Row } from "@/lib";
-import { EvpButton, Modal } from "evp-design-ui";
+import { EvpButton, Modal, Toast } from "evp-design-ui";
 import { useEffect, useState } from "react";
 
 export default function ModalView() {
@@ -125,25 +125,81 @@ Here are some examples about EvpModal.
           </>
         }
       >
-        <Card>
-          <h3>Templates</h3>
-        </Card>
+        <Modal
+          open={modalOne}
+          onOpen={() => {
+            Toast.success("Modal opened");
+          }}
+          onClose={() => {
+            Toast.success("Modal closed");
+          }}
+        >
+          <EvpCard
+            w={300}
+            h={160}
+            footer={
+              <Row justifyContent="right">
+                <Button
+                  $click={() => {
+                    modalOneShow(false);
+                  }}
+                >
+                  Close
+                </Button>
+              </Row>
+            }
+            footerProps={{
+              justifyContent: "flex-end",
+            }}
+          >
+            Hello, I'm a card in Modal.
+          </EvpCard>
+        </Modal>
+        <EvpButton
+          text="Open"
+          $click={() => {
+            modalOneShow(true);
+          }}
+        />
       </Card>
       <Tsx show={showCode[1]}>
         {`
-<EvpCard w={400}
-toolbarStyle={{
-  justifyContent: 'flex-end'
+<Modal
+  open={modalOne}
+  onOpen={() => {
+    Toast.success("Modal opened");
+  }}
+  onClose={() => {
+    Toast.success("Modal closed");
+  }}
+  >
+  <EvpCard
+    w={300}
+    h={160}
+    footer={
+      <Row justifyContent="right">
+        <Button
+          $click={() => {
+            modalOneShow(false);
+          }}
+        >
+          Close
+        </Button>
+      </Row>
+    }
+    footerProps={{
+      justifyContent: "flex-end",
+    }}
+  >
+    Hello, I'm a card in Modal.
+  </EvpCard>
+</Modal>
+<EvpButton
+text="Open"
+$click={() => {
+  modalOneShow(true);
 }}
-toolBar={
-<>
-  <EvpButton plain size="mini" text="Hello" />
-  <EvpButton plain size="mini" text="World" />
-</>}
->
-  <EvpButton text="Greet" />
-  
-</EvpCard>
+/>
 `}
       </Tsx>
       <Md>
@@ -157,7 +213,46 @@ toolBar={
 
 `}
       </Md>
-      <EvpCode lang="typescript" theme="coldarkDark"></EvpCode>
+      <EvpCode lang="typescript" theme="coldarkDark">
+        {`
+export type EvpModalProps = {
+  open?: boolean;
+  setOpen?: React.Dispatch<React.SetStateAction<boolean>>;
+  children?: React.ReactNode;
+  /**
+   * @defaultValue 0%
+   * @desc left
+   * */
+  x?: string;
+  /**
+   * @defaultValue -50%
+   * @desc translateX
+   * */
+  translateX?: string;
+  /**
+   * @defaultValue 0%
+   * @desc top
+   * */
+  y?: string;
+  /**
+   * @defaultValue -50%
+   * @desc translateY
+   * */
+  translateY?: string;
+  contentClass?: string;
+  contentStyle?: React.CSSProperties;
+  /**
+   * @defaultValue 0.5
+   * @desc Modal background color opacity
+   * number between 0 and 1
+   * */
+  alpha?: number;
+  scrollable?: boolean;
+  onClose?: () => void;
+  onOpen?: () => void;
+};
+`}
+      </EvpCode>
       <EvpButton
         position="absolute"
         right={40}

@@ -35,7 +35,7 @@ export default function EvpDialog(props: EvpDialogProps) {
   const { open, setOpen, onClose, onOpen, class: className, ...rest } = props;
 
   return (
-    <EvpModal open={props.open !== undefined ? props.open : open} onClose={onClose} onOpen={onClose}>
+    <EvpModal open={props.open !== undefined ? props.open : open} onClose={onClose} onOpen={onOpen}>
       <EvpCard
         class={classNames(`evp`, `evp-dialog`, className)}
         w={400}
