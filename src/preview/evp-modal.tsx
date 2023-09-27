@@ -6,7 +6,7 @@ import { EvpButton, Modal } from "evp-design-ui";
 import { useEffect, useState } from "react";
 
 export default function ModalView() {
-  const next = { route: "", name: "" };
+  const next = { route: "evp-dialog", name: "Dialog" };
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -39,7 +39,7 @@ export default function ModalView() {
         {`
 # EvpModal
 
-Collect several infos and show in a card container.
+A modal component is a dialog component that restricts user access to the rest of the application until the modal window is closed.
 
 ## Basic Usage
 
@@ -61,7 +61,7 @@ import { Modal } from 'evp-design-ui'
 <Card>
 	<Modal open={modalOne}>
 		<EvpCard w={300} h={160}
-		toolBar={
+		footer={
 			<Row justifyContent="right">
 				<Button mg_8 $click={()=>{
 					modalOneShow(false);
@@ -82,10 +82,9 @@ import { Modal } from 'evp-design-ui'
           <EvpCard
             w={300}
             h={160}
-            toolBar={
+            footer={
               <Row justifyContent="right">
                 <Button
-                  mg_8
                   $click={() => {
                     modalOneShow(false);
                   }}
@@ -94,6 +93,9 @@ import { Modal } from 'evp-design-ui'
                 </Button>
               </Row>
             }
+            footerProps={{
+              justifyContent: "flex-end",
+            }}
           >
             Hello, I'm a card in Modal.
           </EvpCard>
@@ -109,7 +111,7 @@ import { Modal } from 'evp-design-ui'
         {`
 ## Examples
 
-Here are some examples about EvpCard.
+Here are some examples about EvpModal.
 `}
       </Md>
       <Card
@@ -118,12 +120,7 @@ Here are some examples about EvpCard.
         }}
         toolBar={
           <>
-            <EvpButton
-              $click={() => clickCode(1)}
-              theme="text"
-              size="mini"
-              text="code"
-            />
+            <EvpButton $click={() => clickCode(1)} theme="text" size="mini" text="code" />
             <EvpButton theme="text" size="mini" text="copy" />
           </>
         }
@@ -167,7 +164,7 @@ toolBar={
         bottom={0}
         plain
         shadow={false}
-        link={`/${next.route ? `component/${next.route}` : ""}`}
+        link={`/${next.route ? `components/${next.route}` : ""}`}
         text={`★ Next Doc Evp${next.name} >`}
       />
     </div>

@@ -12,6 +12,8 @@ export interface EvpCardProps extends EvpBaseProps {
   class?: string;
   contentClass?: string;
   toolBarClass?: string;
+  /** Make the whole card into loading status */
+  cardLoading?: boolean;
 }
 
 export default function EvpCard(props: EvpCardProps) {
@@ -37,6 +39,7 @@ export default function EvpCard(props: EvpCardProps) {
         style: {
           flexDirection: flexDirectionMap[toolBarPosition],
         },
+        loading: props.cardLoading,
         ...props,
         class: `evp evp-card evp-base-shadow ${props.class} ?? ""`.trim(),
       }}

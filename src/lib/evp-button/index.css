@@ -22,11 +22,11 @@
 }
 .evp.evp-button.white:hover {
   transition: background-color 0.3s ease;
-  background-color: #e6e6e6;
+  background-color: #f7f7f7;
 }
 .evp.evp-button.white:active {
   transition: background-color 0.1s ease;
-  background-color: #aaaaaa;
+  background-color: #e6e6e6;;
 }
 .evp.evp-button.primary {
   border: 1px solid var(--Blue);
@@ -128,11 +128,11 @@
 }
 .evp.evp-button.text:hover {
   transition: background-color 0.3s ease;
-  background-color: #e6e6e6;
+  background-color: #f7f7f7;
 }
 .evp.evp-button.text:active {
   transition: background-color 0.1s ease;
-  background-color: #aaaaaa;
+  background-color: #e6e6e6;;
 }
 
 /** Plain Button*/

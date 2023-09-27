@@ -221,6 +221,8 @@ Toolbar can be displayed on its four side
 - headerProps ? : EvpDomProps
 - footer ? : React.ReactNode
 - footerProps ? : EvpDomProps
+- cardLoading?: Make the whole card into loading status
+  + type : boolean
 `}
       </Md>
       <EvpButton

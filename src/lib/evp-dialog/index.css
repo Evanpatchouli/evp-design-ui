@@ -1,0 +1,18 @@
+.evp-dialog-close-btn > svg {
+  transition: all 0.2s ease-in-out;
+  fill: gray;
+  stroke: gray;
+}
+
+.evp-dialog-close-btn:hover {
+  cursor: pointer !important;
+
+  > svg {
+    fill: #333;
+    stroke: #333;
+  }
+}
+
+.evp-dialog-close-btn:hover {
+  stroke: #333;
+}

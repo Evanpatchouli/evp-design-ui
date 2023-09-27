@@ -7,6 +7,8 @@
   height: 40px;
   justify-content: left;
   align-items: center;
+
+  animation: evp-toast-apper 0.2s ease-in-out forwards;
 }
 .evp-toast > * {
   float: left;
@@ -37,4 +39,22 @@
 }
 .evp-toasts-container > * {
   margin-bottom: 20px;
+}
+
+@keyframes evp-toast-apper {
+  0% {
+    /* opacity: 0; */
+    /* scale: 0.8; */
+    translate: 0% 0%;
+  }
+  50% {
+    /* opacity: 0.5; */
+    /* scale: 1.1; */
+    translate: 0% 30%;
+  }
+  100% {
+    /* opacity: 1; */
+    /* scale: 1; */
+    translate: 0% 0%;
+  }
 }

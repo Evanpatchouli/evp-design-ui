@@ -1,7 +1,10 @@
 import classNames from "classnames";
+import Toast from "../evp-toast";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 
 export type EvpModalProps = {
   open?: boolean;
+  setOpen?: React.Dispatch<React.SetStateAction<boolean>>;
   children?: React.ReactNode;
   /**
    * @defaultValue 0%
@@ -32,9 +35,25 @@ export type EvpModalProps = {
    * */
   alpha?: number;
   scrollable?: boolean;
+  onClose?: () => void;
+  onOpen?: () => void;
 };
 
 export default function EvpModal(props: EvpModalProps) {
+  const { open, onClose, onOpen } = props;
+  const didMountRef = useRef(false);
+
+  useEffect(() => {
+    if (didMountRef.current) {
+      if (`${open}` === `true`) {
+        onClose?.();
+      } else if (`${open}` === `false`) {
+        onOpen?.();
+      }
+    } else {
+      didMountRef.current = true;
+    }
+  }, [open]);
   return (
     <div
       className={classNames(`evp`, `evp-modal`)}
@@ -54,9 +73,7 @@ export default function EvpModal(props: EvpModalProps) {
         style={{
           left: props.x,
           top: props.y,
-          transform: `translate(${props.translateX ?? "-50%"}, ${
-            props.translateY ?? "-50%"
-          })`,
+          transform: `translate(${props.translateX ?? "-50%"}, ${props.translateY ?? "-50%"})`,
           ...props.contentStyle,
         }}
       >

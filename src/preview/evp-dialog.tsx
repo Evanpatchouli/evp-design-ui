@@ -32,6 +32,10 @@ export default function DialogView() {
   };
 
   const [openOne, setOpenOne] = useState(false);
+  const [openTwo, setOpenTwo] = useState(false);
+  const [openThree, setOpenThree] = useState(false);
+  const [openFour, setOpenFour] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   return (
     <div className="preview-container">
@@ -39,7 +43,7 @@ export default function DialogView() {
         {`
 # EvpDialog
 
-Collect several infos and show in a card container.
+A dialog component is a part of a digital interface that enables users to perform a specific action or obtain information.
 
 ## Basic Usage
 
@@ -68,12 +72,6 @@ import { Dialog } from 'evp-design-ui'
 <Dialog
   open={openOne}
   setOpen={setOpenOne}
-  onClose={() => {
-    Toast.success("Close");
-  }}
-  onOpen={() => {
-    Toast.success("Open");
-  }}
 >
   Hello
 </Dialog>
@@ -87,16 +85,7 @@ import { Dialog } from 'evp-design-ui'
         >
           open
         </Button>
-        <Dialog
-          open={openOne}
-          setOpen={setOpenOne}
-          onClose={() => {
-            Toast.success("Close");
-          }}
-          onOpen={() => {
-            Toast.success("Open");
-          }}
-        >
+        <Dialog open={openOne} setOpen={setOpenOne}>
           Hello
         </Dialog>
       </Card>
@@ -104,7 +93,9 @@ import { Dialog } from 'evp-design-ui'
         {`
 ## Examples
 
-Here are some examples about EvpCard.
+Here are some examples about EvpDialog.
+
+You can customize by overriding the footer of Dialog (same with header) .
 `}
       </Md>
       <Card
@@ -113,52 +104,183 @@ Here are some examples about EvpCard.
         }}
         toolBar={
           <>
-            <EvpButton
-              $click={() => clickCode(1)}
-              theme="text"
-              size="mini"
-              text="code"
-            />
+            <EvpButton $click={() => clickCode(1)} theme="text" size="mini" text="code" />
             <EvpButton theme="text" size="mini" text="copy" />
           </>
         }
       >
-        <Card>
-          <h3>Templates</h3>
-        </Card>
+        <Button
+          $click={() => {
+            setOpenTwo(true);
+          }}
+        >
+          open
+        </Button>
+        <Dialog open={openTwo} setOpen={setOpenTwo} footer={<div>My footer.</div>}>
+          Hello
+        </Dialog>
       </Card>
       <Tsx show={showCode[1]}>
         {`
-<EvpCard w={400}
-toolbarStyle={{
-  justifyContent: 'flex-end'
-}}
-toolBar={
-<>
-  <EvpButton plain size="mini" text="Hello" />
-  <EvpButton plain size="mini" text="World" />
-</>}
+<Dialog open={openTwo} setOpen={setOpenTwo} footer={<div>My footer.</div>}>
+  Hello
+</Dialog>
+`}
+      </Tsx>
+      <Md>
+        {`
+Or if you only want to customize the cancel and confirm button, you can use \`cancelProps\` and \`confirmProps\` to do that.        
+`}
+      </Md>
+      <Card
+        toolbarStyle={{
+          justifyContent: "flex-end",
+        }}
+        toolBar={
+          <>
+            <EvpButton $click={() => clickCode(2)} theme="text" size="mini" text="code" />
+            <EvpButton theme="text" size="mini" text="copy" />
+          </>
+        }
+      >
+        <Button
+          $click={() => {
+            setOpenThree(true);
+          }}
+        >
+          open
+        </Button>
+        <Dialog
+          open={openThree}
+          setOpen={setOpenThree}
+          confirmProps={{
+            text: "确认",
+            $click: () => {
+              Toast.info("You should close by clicking the cancel button.");
+            },
+          }}
+          cancelProps={{
+            text: "取消",
+          }}
+        >
+          Hello
+        </Dialog>
+      </Card>
+      <Tsx show={showCode[2]}>
+        {`
+<Button
+  $click={() => {
+    setOpenThree(true);
+  }}
 >
-  <p>Hello, i am EvpCard.</p>
-  <p>I extends EvpBaseProps.</p>
-  <p>I use EvpDom as container.</p>
-  <p>That's me.</p>
-  <EvpButton text="Greet" />
-</EvpCard>
+  open
+</Button>
+<Dialog
+  open={openThree}
+  setOpen={setOpenThree}
+  confirmProps={{
+     text: "确认",
+    $click: () => {
+      Toast.info("You should close by clicking the cancel button.");
+     }
+   }}
+  cancelProps={{
+    text: "取消",
+   }}
+>
+  Hello
+</Dialog>
+`}
+      </Tsx>
+      <Md>
+        {`
+## content
+
+The content's container of the dialog card is based on EvpDom. Therefore, you can customize it like as EvpDom.
+`}
+      </Md>
+      <Card
+        toolbarStyle={{
+          justifyContent: "flex-end",
+        }}
+        toolBar={
+          <>
+            <EvpButton $click={() => clickCode(3)} theme="text" size="mini" text="code" />
+            <EvpButton theme="text" size="mini" text="copy" />
+          </>
+        }
+      >
+        <Button
+          $click={() => {
+            setOpenFour(true);
+          }}
+        >
+          open
+        </Button>
+        <Dialog open={openFour} setOpen={setOpenFour} loading={loading} onClose={() => {
+          Toast.success(`${openFour}`)
+        }}>
+          <Button
+            loading={loading}
+            $click={() => {
+              setLoading(true);
+              setTimeout(() => {
+                setLoading(false);
+              }, 2000);
+            }}
+          >
+            {loading ? "loading" : "click me"}
+          </Button>
+        </Dialog>
+      </Card>
+      <Tsx show={showCode[3]}>
+        {`
+<Button
+  $click={() => {
+    setOpenFour(true);
+  }}
+>
+  open
+</Button>
+<Dialog open={openFour} setOpen={setOpenFour} loading={loading}>
+  <Button
+    loading={loading}
+    $click={() => {
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+    }}
+  >
+    {loading ? "loading" : "click me"}
+  </Button>
+</Dialog>
 `}
       </Tsx>
       <Md>
         {`
 ## Api
 
-★ container based on EvpDom  
+★ container based on EvpCard and EvpModal  
 ★ props extends EvpBaseProps
 
-**EvpCard Apis:**
-
+**EvpDialog Apis:**
 `}
       </Md>
-      <EvpCode lang="typescript" theme="coldarkDark"></EvpCode>
+      <EvpCode lang="typescript" theme="coldarkDark">
+        {`
+export type EvpDialogProps = {
+  children?: React.ReactNode;
+  open?: boolean;
+  setOpen?: React.Dispatch<React.SetStateAction<boolean>>;
+  onClose?: (e?: DialogCloseEvent) => void;
+  onOpen?: (e?: DialogOpenEvent) => void;
+  cancelProps?: EvpButtonProps;
+  confirmProps?: EvpButtonProps;
+  loading?: boolean;
+} & EvpCardProps;
+`}
+      </EvpCode>
       <EvpButton
         position="absolute"
         right={40}

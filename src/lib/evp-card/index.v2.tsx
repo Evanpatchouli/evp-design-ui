@@ -16,6 +16,7 @@ export interface EvpCardProps extends EvpBaseProps {
   headerProps?: EvpDomProps;
   footer?: React.ReactNode;
   footerProps?: EvpDomProps;
+  cardLoading?: boolean;
 }
 
 export default function EvpCardV2(props: EvpCardProps) {
@@ -34,6 +35,8 @@ export default function EvpCardV2(props: EvpCardProps) {
       headerProps,
       footer,
       footerProps,
+      loading,
+      cardLoading,
       ...rest
     } = props;
     return {
@@ -41,6 +44,7 @@ export default function EvpCardV2(props: EvpCardProps) {
         flexDirection: "row",
         ...style,
       },
+      loading: cardLoading,
       ...rest,
       class: `evp evp-card evp-base-shadow ${props.class} ?? ""`.trim(),
     };
@@ -55,14 +59,14 @@ export default function EvpCardV2(props: EvpCardProps) {
 
   const righterProps = () => {
     return {
-      ...(props.lefterProps ?? {}),
+      ...(props.righterProps ?? {}),
       class: classNames(`evp-card-righter`, props.righterProps?.class),
     };
   };
 
   const headerProps = () => {
     return {
-      ...(props.righterProps ?? {}),
+      ...(props.headerProps ?? {}),
       class: classNames(`evp-card-header`, props.headerProps?.class),
     };
   };
@@ -79,9 +83,13 @@ export default function EvpCardV2(props: EvpCardProps) {
       {props.lefter !== undefined ? <EvpDom {...lefterProps()}>{props.lefter}</EvpDom> : void 0}
       <div className={`evp-card-main`}>
         {props.header !== undefined ? <EvpDom {...headerProps()}>{props.header}</EvpDom> : void 0}
-        <div className={`evp-card-content ${props.contentClass}`.trim()} style={{ ...props.contentStyle }}>
+        <EvpDom
+          class={`evp-card-content ${props.contentClass}`.trim()}
+          style={{ ...props.contentStyle }}
+          loading={props.loading}
+        >
           {props.children}
-        </div>
+        </EvpDom>
         {props.footer !== undefined ? <EvpDom {...footerProps()}>{props.footer}</EvpDom> : void 0}
       </div>
       {props.righter !== undefined ? <EvpDom {...righterProps()}>{props.righter}</EvpDom> : void 0}

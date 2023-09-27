@@ -1,8 +1,9 @@
 import classNames from "classnames";
 import EvpModal from "../evp-modal";
 import React from "react";
-import EvpCard from "../evp-card";
-import EvpButton from "../evp-button";
+import EvpCard, { EvpCardProps } from "../evp-card/index.v2";
+import EvpButton, { EvpButtonProps } from "../evp-button";
+import Close from "../evp-icon/close";
 
 const DialogCloseEventExample = new Event("DialogCloseEvent", {
   bubbles: true,
@@ -22,69 +23,57 @@ export type EvpDialogProps = {
   setOpen?: React.Dispatch<React.SetStateAction<boolean>>;
   onClose?: (e?: DialogCloseEvent) => void;
   onOpen?: (e?: DialogOpenEvent) => void;
-} & React.ComponentProps<typeof EvpCard>;
+  cancelProps?: EvpButtonProps;
+  confirmProps?: EvpButtonProps;
+  /**
+   * **This is applied to content rather than the whole card**
+   */
+  loading?: boolean;
+} & EvpCardProps;
 
 export default function EvpDialog(props: EvpDialogProps) {
-  const {
-    open: propsOpen,
-    setOpen: propsSetOpen,
-    onClose,
-    onOpen,
-    class: className,
-    ...rest
-  } = props;
-  const [open, setOpen] = React.useState(false);
-  const didMountRef = React.useRef(false);
-
-  const realOpen = React.useCallback(() => {
-    if (propsOpen === undefined) {
-      return open;
-    }
-    return propsOpen;
-  }, [open, propsOpen]);
-
-  React.useEffect(() => {
-    if (didMountRef.current) {
-      if (realOpen() === false) {
-        onClose && onClose();
-      } else if (realOpen() === true) {
-        onOpen && onOpen();
-      }
-    } else {
-      didMountRef.current = true;
-    }
-  }, [onClose, onOpen, realOpen]);
+  const { open, setOpen, onClose, onOpen, class: className, ...rest } = props;
 
   return (
-    <EvpModal open={props.open !== undefined ? props.open : open}>
+    <EvpModal open={props.open !== undefined ? props.open : open} onClose={onClose} onOpen={onClose}>
       <EvpCard
         class={classNames(`evp`, `evp-dialog`, className)}
         w={400}
         h={200}
-        toolbarStyle={{
-          padding: 12,
+        headerProps={{
           justifyContent: "flex-end",
         }}
-        toolBar={
+        header={
+          <>
+            <Close
+              class="evp-dialog-close-btn"
+              onClick={() => {
+                setOpen?.(false);
+              }}
+            />
+          </>
+        }
+        footerProps={{
+          justifyContent: "flex-end",
+        }}
+        footer={
           <>
             <EvpButton
               theme="white"
               mgr_8
+              text="cancel"
               $click={() => {
-                propsSetOpen?.(false);
-                setOpen(false);
+                setOpen?.(false);
               }}
-            >
-              cancle
-            </EvpButton>
+              {...props.cancelProps}
+            />
             <EvpButton
+              text="confirm"
               $click={() => {
-                propsSetOpen?.(false);
-                setOpen(false);
+                setOpen?.(false);
               }}
-            >
-              confirm
-            </EvpButton>
+              {...props.confirmProps}
+            />
           </>
         }
         {...rest}

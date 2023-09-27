@@ -6,7 +6,7 @@ import { EvpButton, EvpLabel } from "evp-design-ui";
 import { useEffect, useState } from "react";
 
 export default function LabelView() {
-  const next = { route: "", name: "" };
+  const next = { route: "evp-modal", name: "Modal" };
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -149,7 +149,7 @@ export type EvpLabelProps = {
         bottom={0}
         plain
         shadow={false}
-        link={`/${next.route ? `component/${next.route}` : ""}`}
+        link={`/${next.route ? `components/${next.route}` : ""}`}
         text={`★ Next Doc Evp${next.name} >`}
       />
     </div>
