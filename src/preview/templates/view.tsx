@@ -2,10 +2,10 @@ import Card from "@/components/card";
 import Md from "@/components/md";
 import Tsx from "@/components/tsx";
 import { EvpCode } from "@/lib";
-import { EvpButton } from "evp-design-ui";
+import { EvpButton, Code } from "evp-design-ui";
 import { useEffect, useState } from "react";
 
-export default function View() {
+export default function CodeView() {
   const next = { route: "", name: "" };
   useEffect(() => {
     window.scrollTo({
@@ -34,9 +34,9 @@ export default function View() {
     <div className="preview-container">
       <Md>
         {`
-# EvpCard
+# EvpCode
 
-Collect several infos and show in a card container.
+Code is a component that can show code in a container with highlight.
 
 ## Basic Usage
 
@@ -45,37 +45,33 @@ Collect several infos and show in a card container.
       </Md>
       <Tsx>
         {`
-import { EvpCard } from 'evp-design-ui'
+import { EvpCode } from 'evp-design-ui'
 `}
       </Tsx>
       <Md>
         {`
-**usage:**
+**example:**
 `}
       </Md>
-      <Tsx>
-        {`
-<EvpCard w={400}>
-  <p>Hello, i am EvpCard.</p>
-  <p>I extends EvpBaseProps.</p>
-  <p>I use EvpDom as container.</p>
-  <p>That's me.</p>
-  <EvpButton text="Greet" />
-</EvpCard>
-`}
-      </Tsx>
       <Card>
-        <p>Hello, i am EvpCard.</p>
-        <p>I extends EvpBaseProps.</p>
-        <p>I use EvpDom as container.</p>
-        <p>That's me.</p>
-        <EvpButton text="Greet" />
+        <Code lang="tsx" style={{ width: 400 }}>
+          {`
+export function View() {
+  return(
+    <div>
+      <h2>View</h2>
+    </div>
+  )
+}`}
+        </Code>
       </Card>
       <Md>
         {`
 ## Examples
 
-Here are some examples about EvpCard.
+Here are some examples about EvpCode.
+
+EvpCode is based on react-syntax-highlighter.Prism
 `}
       </Md>
       <Card
@@ -89,42 +85,157 @@ Here are some examples about EvpCard.
           </>
         }
       >
-        <Card>
-          <h3>Templates</h3>
-        </Card>
+        <Code
+          lang="tsx"
+          style={{ width: 400, backgroundColor: "white", boxShadow: "0 2px 12px 0 rgba(0, 0, 0, 0.1)" }}
+          showLineNumbers
+          lineNumberStyle={{ textAlign: "left" }}
+        >
+          {`
+export function View() {
+  return(
+    <div>
+      <h2>View</h2>
+    </div>
+  )
+}`}
+        </Code>
       </Card>
       <Tsx show={showCode[1]}>
         {`
-<EvpCard w={400}
-toolbarStyle={{
-  justifyContent: 'flex-end'
-}}
-toolBar={
-<>
-  <EvpButton plain size="mini" text="Hello" />
-  <EvpButton plain size="mini" text="World" />
-</>}
+<Code
+  lang="tsx"
+  style={{ width: 400, backgroundColor: "white", boxShadow: "0 2px 12px 0 rgba(0, 0, 0, 0.1)" }}
+  showLineNumbers
+  lineNumberStyle={{ textAlign: "left" }}
 >
-  <p>Hello, i am EvpCard.</p>
-  <p>I extends EvpBaseProps.</p>
-  <p>I use EvpDom as container.</p>
-  <p>That's me.</p>
-  <EvpButton text="Greet" />
-</EvpCard>
+{\`
+export function View() {
+  return(
+    <div>
+      <h2>View</h2>
+    </div>
+  )
+}\`
+}
+</Code>
 `}
       </Tsx>
       <Md>
         {`
 ## Api
 
-★ container based on EvpDom  
-★ props extends EvpBaseProps
+★ based on react-syntax-highlighter.Prism
 
-**EvpCard Apis:**
+**EvpCode Apis:**
 
 `}
       </Md>
-      <EvpCode lang="typescript" theme="coldarkDark"></EvpCode>
+      <EvpCode lang="typescript" theme="coldarkDark">
+        {`
+export type EvpCodeProps = {
+  children?: string;
+  lang?: Hintable<LangOptions>;
+  theme?: CodeThemeOptions;
+  show?: boolean;
+  style?: React.CSSProperties;
+  class?: string;
+  showLineNumbers?: boolean;
+  showInlineLineNumbers?: boolean;
+  startingLineNumber?: number;
+  lineNumberContainerStyle?: React.CSSProperties;
+  lineNumberStyle?: React.CSSProperties;
+  wrapLines?: boolean;
+  wrapLongLines?: boolean;
+  lineProps?: lineTagPropsFunction | React.HTMLProps<HTMLElement>;
+  renderer?: (props: rendererProps) => React.ReactNode;
+  PreTag?: React.ComponentType<any> | keyof JSX.IntrinsicElements;
+  CodeTag?: React.ComponentType<any> | keyof JSX.IntrinsicElements;
+  codeTagProps?: React.HTMLProps<HTMLElement>;
+};
+
+export type CodeThemeOptions = Hintable<CodeTheme>;
+
+export type LangOptions =
+  | "javascript"
+  | "js"
+  | "jsx"
+  | "typescript"
+  | "ts"
+  | "tsx"
+  | "java"
+  | "python"
+  | "c"
+  | "cpp"
+  | "csharp"
+  | "go"
+  | "ruby"
+  | "rust"
+  | "swift"
+  | "kotlin"
+  | "php"
+  | "html"
+  | "css"
+  | "scss"
+  | "less"
+  | "json"
+  | "xml"
+  | "yml"
+  | "yaml"
+  | "bash"
+  | "sh"
+  | "shell"
+  | "cmd"
+  | "bat"
+  | "console"
+  | "sql"
+  | "markdown"
+  | "text";
+
+export type CodeTheme =
+  | "a11yDark"
+  | "atomDark"
+  | "base16AteliersulphurpoolLight"
+  | "cb"
+  | "coldarkCold"
+  | "coldarkDark"
+  | "coy"
+  | "darcula"
+  | "duotoneDark"
+  | "duotoneEarth"
+  | "duotoneForest"
+  | "duotoneLight"
+  | "duotoneSea"
+  | "duotoneSpace"
+  | "funky"
+  | "ghcolors"
+  | "gruvboxDark"
+  | "gruvboxLight"
+  | "holiTheme"
+  | "hopscotch"
+  | "lucario"
+  | "materialDark"
+  | "materialLight"
+  | "materialOceanic"
+  | "nightOwl"
+  | "nord"
+  | "okaidia"
+  | "oneDark"
+  | "oneLight"
+  | "pojoaque"
+  | "prism"
+  | "shadesOfPurple"
+  | "solarizedDarkAtom"
+  | "solarizedlight"
+  | "synthwave84"
+  | "tomorrow"
+  | "twilight"
+  | "vs"
+  | "vscDarkPlus"
+  | "xonokai"
+  | "zTouch";
+`}
+      </EvpCode>
       <EvpButton
         position="absolute"
         right={40}

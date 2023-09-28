@@ -44,6 +44,7 @@ import LoadingView from './preview/evp-loading';
 import LabelView from './preview/evp-label';
 import ModalView from "@/preview/evp-modal";
 import DialogView from './preview/evp-dialog';
+import CodeView from './preview/templates/view';
 
 function App() {
   const location = useLocation();
@@ -93,6 +94,7 @@ function App() {
             <EvpMenuItem link={'/components/evp-label'} title={'EvpLabel'} />
             <EvpMenuItem link={'/components/evp-modal'} title={'EvpModal'} />
             <EvpMenuItem link={'/components/evp-dialog'} title={'EvpDialog'} />
+            <EvpMenuItem link={'/components/evp-code'} title={'EvpCode'} />
           </EvpMenu>
         </div>
         <div className='Content' style={{
@@ -134,6 +136,7 @@ function App() {
             <Route path='/components/evp-label' key={"label"} element={<LabelView />}></Route>
             <Route path='/components/evp-modal' key={"modal"} element={<ModalView />}></Route>
             <Route path='/components/evp-dialog' key={"dialog"} element={<DialogView />}></Route>
+            <Route path='/components/evp-code' key={"code"} element={<CodeView />}></Route>
           </Routes>
           <div className='foot'>
             <p>CopyRight &copy; 2023-{now} Evp Design UI</p>

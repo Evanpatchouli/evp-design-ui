@@ -29,8 +29,8 @@ export type EvpModalProps = {
   contentStyle?: React.CSSProperties;
   /**
    * @defaultValue 0.5
+   * @type {number} between 0 and 1
    * @desc Modal background color opacity
-   * number between 0 and 1
    * */
   alpha?: number;
   scrollable?: boolean;
@@ -52,7 +52,7 @@ export default function EvpModal(props: EvpModalProps) {
     } else {
       didMountRef.current = true;
     }
-  }, [onClose, onOpen, open]);
+  }, [open]);
   return (
     <div
       className={classNames(`evp`, `evp-modal`)}
