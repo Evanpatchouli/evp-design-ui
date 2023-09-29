@@ -1,6 +1,6 @@
+import classNames from "classnames";
 import { Color } from "../constant";
 import EvpIcon from "../evp-icon";
-import { nanoid } from "nanoid";
 import { IndexableFuzzy } from "../typings";
 
 export type EvpToastType = "info" | "warn" | "error" | "success";
@@ -10,6 +10,10 @@ export interface ToastProps {
   keep?: number;
   delay?: number;
   type?: EvpToastType;
+  key: any;
+  id: any;
+  firstRendered?: boolean;
+  lastRendered?: boolean;
 }
 
 function Toast(props: ToastProps) {
@@ -28,7 +32,15 @@ function Toast(props: ToastProps) {
   };
 
   return (
-    <div key={`evp-toast:${nanoid()}`} className="evp evp-toast">
+    <div
+      key={`evp-toast:${props.id}`}
+      className={classNames(
+        "evp",
+        "evp-toast",
+        props.firstRendered ? "evp-toast-appear" : "",
+        props.lastRendered ? "evp-toast-leave" : ""
+      )}
+    >
       <EvpIcon name={icon[props.type ?? "info"]} color={color[props.type ?? "info"]} />
       <div children={props.text} />
     </div>
@@ -36,7 +48,15 @@ function Toast(props: ToastProps) {
 }
 
 export interface EvpToastCreate {
-  (type?: EvpToastType, text?: string, keep?: number, delay?: number): JSX.Element;
+  (
+    key: any,
+    type?: EvpToastType,
+    text?: string,
+    keep?: number,
+    delay?: number,
+    firstRendered?: boolean,
+    lastRendered?: boolean
+  ): JSX.Element;
 }
 
 export default Toast;
