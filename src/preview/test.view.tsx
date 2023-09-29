@@ -2,7 +2,7 @@ import Card from "@/components/card";
 import "./test.css";
 import EvpFlexbarContentfixed from "@/lib/evp-flexbar/content-fixed";
 import EvpDivider from "@/lib/evp-divider";
-import { Anchor, Button, EvpButton, EvpCard, EvpCol, EvpRow, EvpTag, Input, Row, Toast } from "@/lib";
+import { Anchor, Button, EvpButton, EvpCard, Img, EvpRow, EvpTag, Input, Row, Toast } from "@/lib";
 import useMobx from "@/store/hooks";
 import EvpForm from "@/lib/evp-form";
 import useForm from "@/lib/evp-form/hooks";
@@ -15,12 +15,15 @@ import EvpRadio from "@/lib/evp-radio";
 import EvpSelect from "@/lib/evp-select";
 import EvpSlider from "@/lib/evp-slider";
 import EvpCardV2 from "@/lib/evp-card/index.v2";
+import { useState } from "react";
 
 export default function TestViewView() {
   const store = useMobx("store");
   const formRef = useForm<{
     name: string;
   }>();
+
+  const [preview, previewSet] = useState(false);
 
   return (
     <div className="preview-container" id="first">
@@ -201,7 +204,7 @@ export default function TestViewView() {
           </Row>
         </Card>
 
-        <EvpCard class="t-card">
+        <EvpCard w={"100%"}>
           <EvpCardV2
             header="EvpCardV2"
             footer={
@@ -229,6 +232,19 @@ export default function TestViewView() {
             ></div>
           </EvpCardV2>
         </EvpCard>
+        <h3>Img：</h3>
+        <EvpCardV2 w={"100%"}>
+          <Img
+            alt="imger"
+            src="https://tse4-mm.cn.bing.net/th/id/OIP-C.lxPAUsFZrjEJvnt5iS6HZwHaKe?w=182&h=257&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+            pointer
+            preview={preview}
+            setPreview={previewSet}
+            $click={() => {
+              previewSet(true);
+            }}
+          />
+        </EvpCardV2>
       </PreContext.Provider>
     </div>
   );

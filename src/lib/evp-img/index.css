@@ -1,0 +1,38 @@
+.evp.evp-img-wrapper {
+  position: relative;
+}
+
+.evp-img-preview-container {
+  width: 60vw !important;
+  height: 80vh !important;
+}
+
+.evp-img-preview-content {
+  overflow: scroll;
+  overflow: auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.evp-img-preview {
+  /* position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+}
+
+.evp-img-preview-footer > .evp-button svg {
+  transition: all 0.2s ease-in-out;
+  fill: gray !important;
+  stroke: gray !important;
+}
+
+.evp-img-preview-footer > .evp-button:hover {
+  cursor: pointer !important;
+  svg {  
+    fill: #333 !important;
+    stroke: #333 !important;
+  }
+}

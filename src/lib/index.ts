@@ -242,3 +242,9 @@ export {
   default as Drawer,
   type EvpDrawerProps,
 } from './evp-drawer';
+
+export {
+  default as EvpImg,
+  default as Img,
+  type EvpImgProps,
+} from './evp-img';

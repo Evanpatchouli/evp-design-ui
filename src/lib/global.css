@@ -30,9 +30,11 @@
 @import url(./evp-modal/index.css);
 @import url(./evp-dialog/index.css);
 @import url(./evp-drawer/index.css);
+@import url(./evp-img/index.css);
 
 .evp {
   font-size: var(--text-size);
+  transition: all 0.2s ease-in-out;
   * {
     padding: 0;
     margin: 0;
