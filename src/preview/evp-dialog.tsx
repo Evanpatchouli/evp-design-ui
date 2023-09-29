@@ -6,7 +6,7 @@ import { EvpButton, Button, Dialog } from "evp-design-ui";
 import { useEffect, useState } from "react";
 
 export default function DialogView() {
-  const next = { route: "", name: "" };
+  const next = { route: "evp-drawer", name: "Drawer" };
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -297,7 +297,7 @@ export type EvpDialogProps = {
         bottom={0}
         plain
         shadow={false}
-        link={`/${next.route ? `component/${next.route}` : ""}`}
+        link={`/${next.route ? `components/${next.route}` : ""}`}
         text={`★ Next Doc Evp${next.name} >`}
       />
     </div>

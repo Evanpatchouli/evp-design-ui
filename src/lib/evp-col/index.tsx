@@ -10,7 +10,7 @@ export default function EvpCol(props: EvpColProps) {
   let $props = AllParser(props);
   const event = $props.event;
   let style = {
-    display: "flex",
+    display: props.hidden ? "none" : "flex",
     flexDirection: props.flexDirection ?? "column",
     justifyContent: props.justifyContent ?? "flex-start",
     alignItems: props.alignItems ?? "center",

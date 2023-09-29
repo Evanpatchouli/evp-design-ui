@@ -10,7 +10,7 @@ export default function EvpRow(props: EvpRowProps) {
   let $props = AllParser(props);
   const event = $props.event;
   const style = {
-    display: "flex",
+    display: props.hidden ? "none" : "flex",
     flexDirection: props.flexDirection ?? "row",
     justifyContent: props.justifyContent ?? "flex-start",
     alignItems: props.alignItems ?? "center",

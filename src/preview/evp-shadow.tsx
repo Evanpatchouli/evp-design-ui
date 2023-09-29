@@ -1,6 +1,6 @@
 import * as EvpShadow from "@/lib/evp-shadow";
-import Md from 'react-markdown'
-import shopcart from '@/assets/shopcart.svg'
+import Md from "react-markdown";
+import shopcart from "@/assets/shopcart.svg";
 import Code from "@/components/code";
 import { useEffect } from "react";
 import EvpButton from "@/lib/evp-button";
@@ -11,11 +11,11 @@ import EvpButton from "@/lib/evp-button";
 //   em: (props: JSX.IntrinsicAttributes & ClassAttributes<HTMLElement> & HTMLAttributes<HTMLElement>) => <i {...props} />
 // }
 
-const ShadowBox = (props: { children: React.ReactNode }) => <div className="ShadowBox">{props.children}</div>
+const ShadowBox = (props: { children: React.ReactNode }) => <div className="ShadowBox">{props.children}</div>;
 
 const docs = [
-//0
-`# EvpShadow
+  //0
+  `# EvpShadow
 
 EvpShadow is an useful tool that helps you to make smooth and beautiful shadows.
 
@@ -23,22 +23,22 @@ It is a retor of <https://shadows.brumm.af> so you are suggested to use EvpShado
 
 Following are some examples exported from EvpShadow:
 `,
-//1
-`
+  //1
+  `
 ## Preserved BoxShadow
 
 - 1. \`Common\` 2. \`Common_MiddleBlur\` 3. \`Common_HighBlur\`
 `,
-//2
-`
+  //2
+  `
 - 1. \`Common_MaxBlur\` 2. \`Common_ZeroBlur\` 3. \`Re_Common_MiddleBlur_MiddleDespread\`
 `,
-//3
-`
+  //3
+  `
 - 1. \`Common_MiddleBlur_PaleDespread\` 2. \`Re_Common_MiddleBlur_PaleDespread\` 3. \`Common_LightDespread\`
 `,
-//4
-`
+  //4
+  `
 ## Build your ownself
 
 Besides, you can also build shadow by yousrself. The build options are these:
@@ -54,16 +54,15 @@ Besides, you can also build shadow by yousrself. The build options are these:
 
 Here is an example:
 `,
-//5
-`
+  //5
+  `
 You can get further customed by changing the shadow builder's properties of \`alphaEasingValue\`, \`offsetEasingValue\` and \`blurEasingValue\`.  
 **Notice:** unless you have known what these properties mean, you're not suggested to change them.
-`
-
+`,
 ];
 
 const codes = [
-`
+  `
 import * as EvpShadow from "@/lib/evp-shadow";
 
 <div className="card" style={{ boxShadow: EvpShadow.Common }}>
@@ -73,7 +72,7 @@ import * as EvpShadow from "@/lib/evp-shadow";
 <div className="card" style={{ boxShadow: EvpShadow.Re_Common }}></div>
 `,
 
-`
+  `
 import * as EvpShadow from "@/lib/evp-shadow";
 
 <div className="card" style={{ boxShadow: EvpShadow.Common_MaxBlur }}></div>
@@ -81,7 +80,7 @@ import * as EvpShadow from "@/lib/evp-shadow";
 <div className="card" style={{ boxShadow: EvpShadow.Re_Common_MiddleBlur_MiddleDespread }}></div>
 `,
 
-`
+  `
 import * as EvpShadow from "@/lib/evp-shadow";
 
 <div className="card" style={{ boxShadow: EvpShadow.Common_MiddleBlur_PaleDespread }}></div>
@@ -89,7 +88,7 @@ import * as EvpShadow from "@/lib/evp-shadow";
 <div className="card" style={{ boxShadow: EvpShadow.Common_LightDespread }}></div>
 `,
 
-`
+  `
 import * as EvpShadow from "@/lib/evp-shadow";
 
 const { EvpShadow: Shadow } = EvpShadow;
@@ -99,19 +98,19 @@ const myBoxShadow = Shadow.build({
   spread: -10,
   opacity: 0.25,
 })
-`
-]
+`,
+];
 
 export default function ShadowView() {
-  useEffect(()=>{
+  useEffect(() => {
     window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: 'smooth'
-});
-  }, [])
-  
-  return(
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, []);
+
+  return (
     <div className="preview-container ShadowView">
       <Md>{docs[0]}</Md>
       <Md>{docs[1]}</Md>
@@ -122,27 +121,33 @@ export default function ShadowView() {
         <div className="card" style={{ boxShadow: EvpShadow.Common_MiddleBlur }}></div>
         <div className="card" style={{ boxShadow: EvpShadow.Re_Common }}></div>
       </ShadowBox>
-      <Code lang='typescript'>{codes[0]}</Code>
+      <Code lang="typescript">{codes[0]}</Code>
       <Md>{docs[2]}</Md>
       <ShadowBox>
         <div className="card" style={{ boxShadow: EvpShadow.Common_MaxBlur }}></div>
         <div className="card" style={{ boxShadow: EvpShadow.Common_ZeroBlur }}></div>
         <div className="card" style={{ boxShadow: EvpShadow.Re_Common_MiddleBlur_MiddleDespread }}></div>
       </ShadowBox>
-      <Code lang='typescript'>{codes[1]}</Code>
+      <Code lang="typescript">{codes[1]}</Code>
       <Md>{docs[3]}</Md>
       <ShadowBox>
         <div className="card" style={{ boxShadow: EvpShadow.Common_MiddleBlur_PaleDespread }} />
         <div className="card" style={{ boxShadow: EvpShadow.Re_Common_MiddleBlur_PaleDespread }} />
         <div className="card" style={{ boxShadow: EvpShadow.Common_LightDespread }} />
       </ShadowBox>
-      <Code lang='typescript'>{codes[2]}</Code>
+      <Code lang="typescript">{codes[2]}</Code>
       <Md>{docs[4]}</Md>
-      <Code lang='typescript'>{codes[3]}</Code>
+      <Code lang="typescript">{codes[3]}</Code>
       <Md>{docs[5]}</Md>
-      <EvpButton position="absolute" right={40} bottom={0}
-        plain shadow={false}
-        link="/components/evp-button" text="★ Next Doc EvpButton >" />
+      <EvpButton
+        position="absolute"
+        right={40}
+        bottom={0}
+        plain
+        shadow={false}
+        link="/components/evp-button"
+        text="★ Next Doc EvpButton >"
+      />
     </div>
-  )
+  );
 }

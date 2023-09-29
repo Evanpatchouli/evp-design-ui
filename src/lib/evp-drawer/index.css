@@ -1,0 +1,85 @@
+.evp.evp-modal.evp-drawer-modal {
+  transition: all 0.2s ease-in-out;
+}
+
+.evp.evp-modal.evp-drawer-modal.close {
+  background-color: transparent !important;
+  pointer-events: none !important;
+}
+
+.evp.evp-modal.evp-drawer-modal.open {
+  pointer-events: all !important;
+}
+
+.evp.evp-modal.evp-drawer-modal.without {
+  background-color: transparent !important;
+  pointer-events: none !important;
+}
+
+.evp.evp-modal.evp-drawer-modal.without.open {
+  background-color: transparent !important;
+  pointer-events: none !important;
+}
+
+.evp-drawer-container {
+  left: 0;
+  top: 0;
+  transition: transform 0.3s ease-in-out;
+  pointer-events: all !important;
+}
+
+.evp-drawer-container.left {
+  left: 0;
+  top: 0;
+  height: 100%;
+}
+
+.evp-drawer-container.left.close {
+  transform: translate(-100%, 0%) !important;
+}
+
+.evp-drawer-container.left.open {
+  transform: translate(0%, 0%) !important;
+}
+
+.evp-drawer-container.top {
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+.evp-drawer-container.top.close {
+  transform: translate(0%, -100%) !important;
+}
+
+.evp-drawer-container.top.open {
+  transform: translate(0%, 0%) !important;
+}
+
+.evp-drawer-container.right {
+  left: 100%;
+  top: 0;
+  height: 100%;
+}
+
+.evp-drawer-container.right.close {
+  transform: translate(0%, 0%) !important;
+}
+
+.evp-drawer-container.right.open {
+  transform: translate(-100%, 0%) !important;
+}
+
+.evp-drawer-container.bottom {
+  left: 0%;
+  top: 100%;
+  width: 100%;
+}
+
+.evp-drawer-container.bottom.close {
+  transform: translate(0%, 0%) !important;
+}
+
+.evp-drawer-container.bottom.open {
+  transform: translate(0%, -100%) !important;
+}

@@ -29,6 +29,7 @@
 @import url(./evp-label/index.css);
 @import url(./evp-modal/index.css);
 @import url(./evp-dialog/index.css);
+@import url(./evp-drawer/index.css);
 
 .evp {
   font-size: var(--text-size);

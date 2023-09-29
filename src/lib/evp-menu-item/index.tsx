@@ -36,6 +36,7 @@ export default function EvpMenuItem(props: EvpMenuItemProps) {
     class={`evp-menu-item ${disabled} ${props.class??''}`.trim()}
     style={$props.style}
     $click={$click}
+    hidden={props.hidden}
     pointer>
       <EvpRow class="evp-menu-item-title" h={50} pd={[0,8,0,8]}
       >

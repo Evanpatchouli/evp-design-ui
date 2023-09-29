@@ -1,5 +1,5 @@
-import React from 'react';
-import logo from './logo.svg';
+// import React from 'react';
+// import logo from './logo.svg';
 import { Route, Routes } from 'react-router-dom';
 import ButtonView from './preview/evp-button';
 import InputView from './preview/evp-input';
@@ -45,6 +45,8 @@ import LabelView from './preview/evp-label';
 import ModalView from "@/preview/evp-modal";
 import DialogView from './preview/evp-dialog';
 import CodeView from './preview/templates/view';
+import DrawerView from './preview/evp-drawer';
+import Anchors from './components/anchors';
 
 function App() {
   const location = useLocation();
@@ -88,12 +90,13 @@ function App() {
             <EvpMenuItem link={'/components/evp-anchor'} title={'EvpAchor'} />
             <EvpMenuItem link={'/components/evp-breadcrumb'} title={'EvpBreadCrumb'} />
             <EvpMenuItem link={'/components/evp-counter'} title={'EvpCounter'} />
-            <EvpMenuItem link={'/components/evp-datetime-picker'} title={'EvpDateTimePicker'} />
+            <EvpMenuItem hidden link={'/components/evp-datetime-picker'} title={'EvpDateTimePicker'} />
             <EvpMenuItem link={'/components/evp-switch'} title={'EvpSwitch'} />
             <EvpMenuItem link={'/components/evp-loading'} title={'EvpLoading'} />
             <EvpMenuItem link={'/components/evp-label'} title={'EvpLabel'} />
             <EvpMenuItem link={'/components/evp-modal'} title={'EvpModal'} />
             <EvpMenuItem link={'/components/evp-dialog'} title={'EvpDialog'} />
+            <EvpMenuItem link={'/components/evp-drawer'} title={'EvpDrawer'} />
             <EvpMenuItem link={'/components/evp-code'} title={'EvpCode'} />
           </EvpMenu>
         </div>
@@ -137,7 +140,9 @@ function App() {
             <Route path='/components/evp-modal' key={"modal"} element={<ModalView />}></Route>
             <Route path='/components/evp-dialog' key={"dialog"} element={<DialogView />}></Route>
             <Route path='/components/evp-code' key={"code"} element={<CodeView />}></Route>
+            <Route path='/components/evp-drawer' key={"drawer"} element={<DrawerView />}></Route>
           </Routes>
+          <Anchors />
           <div className='foot'>
             <p>CopyRight &copy; 2023-{now} Evp Design UI</p>
           </div>

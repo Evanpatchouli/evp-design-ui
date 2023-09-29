@@ -236,3 +236,9 @@ export {
   default as Dialog,
   type EvpDialogProps,
 } from './evp-dialog';
+
+export {
+  default as EvpDrawer,
+  default as Drawer,
+  type EvpDrawerProps,
+} from './evp-drawer';

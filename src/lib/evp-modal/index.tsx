@@ -27,6 +27,8 @@ export type EvpModalProps = {
   translateY?: string;
   contentClass?: string;
   contentStyle?: React.CSSProperties;
+  modalClass?: string;
+  modalStyle?: React.CSSProperties;
   /**
    * @defaultValue 0.5
    * @type {number} between 0 and 1
@@ -53,12 +55,14 @@ export default function EvpModal(props: EvpModalProps) {
       didMountRef.current = true;
     }
   }, [open]);
+  
   return (
     <div
-      className={classNames(`evp`, `evp-modal`)}
+      className={classNames(`evp`, `evp-modal`, props.modalClass)}
       hidden={!props.open}
       style={{
         backgroundColor: `rgba(0, 0, 0, ${props.alpha ?? "0.5"})`,
+        ...props.modalStyle
       }}
       onTouchStart={(e) => {
         if (!props.scrollable) {
