@@ -248,3 +248,9 @@ export {
   default as Img,
   type EvpImgProps,
 } from './evp-img';
+
+export {
+  default as EvpTable,
+  default as Table,
+  type EvpTableProps,
+} from './evp-table';

@@ -47,6 +47,7 @@ import DialogView from './preview/evp-dialog';
 import CodeView from './preview/templates/view';
 import DrawerView from './preview/evp-drawer';
 import Anchors from './components/anchors';
+import TableView from './preview/evp-table';
 
 function App() {
   const location = useLocation();
@@ -98,6 +99,7 @@ function App() {
             <EvpMenuItem link={'/components/evp-dialog'} title={'EvpDialog'} />
             <EvpMenuItem link={'/components/evp-drawer'} title={'EvpDrawer'} />
             <EvpMenuItem link={'/components/evp-code'} title={'EvpCode'} />
+            <EvpMenuItem link={'/components/evp-table'} title={'EvpTable'} />
           </EvpMenu>
         </div>
         <div className='Content' style={{
@@ -141,6 +143,7 @@ function App() {
             <Route path='/components/evp-dialog' key={"dialog"} element={<DialogView />}></Route>
             <Route path='/components/evp-code' key={"code"} element={<CodeView />}></Route>
             <Route path='/components/evp-drawer' key={"drawer"} element={<DrawerView />}></Route>
+            <Route path='/components/evp-table' key={"table"} element={<TableView />}></Route>
           </Routes>
           <Anchors />
           <div className='foot'>
