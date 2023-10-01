@@ -9,7 +9,7 @@
     d="M19 12L31 24L19 36"
     stroke="#333"
     stroke-width="4"
-    stroke-linecap="round"
+    strokeLinecap="round"
     strokeLinejoin="round"
   />
 </svg>

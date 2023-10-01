@@ -41,8 +41,8 @@ const DownImg: SvgIcon = (props: SvgIconProps) => {
           strokeLinecap="round"
           strokeLinejoin="round"
         />
-        <path d="M32 13L37 18L42 13" stroke-linecap="round" strokeLinejoin="round" />
-        <path d="M37 6L37 18" stroke-linecap="round" strokeLinejoin="round" />
+        <path d="M32 13L37 18L42 13" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M37 6L37 18" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     </div>
   );

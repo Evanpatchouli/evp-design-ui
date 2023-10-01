@@ -34,7 +34,7 @@ const CopyLink: SvgIcon = (props: SvgIconProps) => {
         <rect x="4" y="10" width="34" height="34" rx="3" fill="none" strokeLinejoin="round" />
         <path
           d="M18.4394 23.1101L23.7319 17.6006C25.1835 16.1489 27.5691 16.1809 29.0602 17.672C30.5513 19.1631 30.5833 21.5487 29.1316 23.0003L27.2215 25.0231"
-          stroke-linecap="round"
+          strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path

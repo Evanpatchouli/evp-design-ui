@@ -13,16 +13,16 @@
     d="M6 35L16.6931 25.198C17.4389 24.5143 18.5779 24.4953 19.3461 25.1538L32 36"
     stroke="#333"
     stroke-width="4"
-    stroke-linecap="round"
+    strokeLinecap="round"
     strokeLinejoin="round"
   />
   <path
     d="M28 31L32.7735 26.2265C33.4772 25.5228 34.5914 25.4436 35.3877 26.0408L42 31"
     stroke="#333"
     stroke-width="4"
-    stroke-linecap="round"
+    strokeLinecap="round"
     strokeLinejoin="round"
   />
-  <path d="M32 13L37 18L42 13" stroke="#333" stroke-width="4" stroke-linecap="round" strokeLinejoin="round" />
-  <path d="M37 6L37 18" stroke="#333" stroke-width="4" stroke-linecap="round" strokeLinejoin="round" />
+  <path d="M32 13L37 18L42 13" stroke="#333" stroke-width="4" strokeLinecap="round" strokeLinejoin="round" />
+  <path d="M37 6L37 18" stroke="#333" stroke-width="4" strokeLinecap="round" strokeLinejoin="round" />
 </svg>

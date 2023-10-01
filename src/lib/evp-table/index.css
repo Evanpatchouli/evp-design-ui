@@ -18,7 +18,7 @@
     }
   }
 
-  > tbody {
+  > tbody.zebra {
     .evp-table-column-record-row:nth-child(2n) {
       background-color: azure;
     }
@@ -49,4 +49,5 @@ td {
   border: 1px solid #ebeef5;
   border-inline: none;
   border-top: none;
+  text-align: center;
 }

@@ -4,6 +4,9 @@ import Tsx from "@/components/tsx";
 import { EvpCode } from "@/lib";
 import { EvpButton, Code, Table } from "evp-design-ui";
 import { useEffect, useState } from "react";
+import Example from "./demos/table/example";
+import Render from "./demos/table/render";
+import WithoutSchema from "./demos/table/without-schema";
 
 export default function TableView() {
   const next = { route: "", name: "" };
@@ -36,7 +39,8 @@ export default function TableView() {
         {`
 # EvpCode
 
-Code is a component that can show code in a container with highlight.
+EvpTable is a UI component that displays data in a tabular format, typically with rows and columns. . 
+It receives a schema to define the columns to display and the data to show the records.
 
 ## Basic Usage
 
@@ -53,200 +57,32 @@ import { EvpCode } from 'evp-design-ui'
 **example:**
 `}
       </Md>
-      <Card
-        w={"100%"}
-        footer={
-          <div style={{ width: "100%" }}>
-            <Row justifyContent="right" w={"100%"} h={"fit-content"}>
-              <EvpButton $click={() => clickCode(1)} theme="text" size="mini" text="code" />
-              <EvpButton theme="text" size="mini" text="copy" />
-            </Row>
-            <Tsx show={showCode[1]}>
-              {`
-<Table
-schema={[
-  {
-    label: "Name",
-    prop: "name",
-  },
-  {
-    label: "Gender",
-    prop: "gender",
-  },
-  {
-    label: "Age",
-    prop: "age",
-  },
-  {
-    label: "Address",
-    prop: "address",
-  },
-  {
-    label: "Phone",
-    prop: "phone",
-  },
-  {
-    label: "Actions",
-    rerender(value, row, records) {
-      return (
-        <div>
-          <EvpButton size="small" plain text="edit" />
-          <EvpButton size="small" plain mgl_8 text="delete" />
-        </div>
-      );
-    },
-  },
-]}
-data={[
-  {
-    name: "John",
-    gender: "Male",
-    age: 22,
-    address: "Hangzhou",
-    phone: "123456789",
-  },
-  {
-    name: "Jane",
-    gender: "Female",
-    age: 22,
-    address: "Hangzhou",
-    phone: "123456789",
-  },
-  {
-    name: "Jasmine",
-    gender: "Female",
-    age: 22,
-    address: "Burnaby",
-    phone: "123456789",
-  },
-]}
-></Table>
-`}
-            </Tsx>
-          </div>
-        }
-      >
-        <Table
-          selection
-          schema={[
-            {
-              label: "Name",
-              prop: "name",
-            },
-            {
-              label: "Gender",
-              prop: "gender",
-            },
-            {
-              label: "Age",
-              prop: "age",
-            },
-            {
-              label: "Address",
-              prop: "address",
-            },
-            {
-              label: "Phone",
-              prop: "phone",
-            },
-            {
-              label: "Actions",
-              render(value, row, records) {
-                return (
-                  <div>
-                    <EvpButton size="small" plain text="edit" />
-                    <EvpButton size="small" plain mgl_8 text="delete" />
-                  </div>
-                );
-              },
-            },
-          ]}
-          data={[
-            {
-              name: "John",
-              gender: "Male",
-              age: 22,
-              address: "Hangzhou",
-              phone: "123456789",
-            },
-            {
-              name: "Jane",
-              gender: "Female",
-              age: 22,
-              address: "Hangzhou",
-              phone: "123456789",
-            },
-            {
-              name: "Jasmine",
-              gender: "Female",
-              age: 22,
-              address: "Burnaby",
-              phone: "123456789",
-            },
-          ]}
-        ></Table>
-      </Card>
+      <Example />
       <Md>
         {`
 ## Examples
 
-Here are some examples about EvpCode.
+Here are some examples about EvpTable.
 
-EvpCode is based on react-syntax-highlighter.Prism
+EvpTable recieve a schema to know which columns in table are needed to show, and recieve a data to show the records.
 `}
       </Md>
-      <Card
-        toolbarStyle={{
-          justifyContent: "flex-end",
-        }}
-        toolBar={
-          <>
-            <EvpButton $click={() => clickCode(2)} theme="text" size="mini" text="code" />
-            <EvpButton theme="text" size="mini" text="copy" />
-          </>
-        }
-      >
-        <Code
-          lang="tsx"
-          style={{ width: 400, backgroundColor: "white", boxShadow: "0 2px 12px 0 rgba(0, 0, 0, 0.1)" }}
-          showLineNumbers
-          lineNumberStyle={{ textAlign: "left" }}
-        >
-          {`
-export function View() {
-  return(
-    <div>
-      <h2>View</h2>
-    </div>
-  )
-}`}
-        </Code>
-      </Card>
-      <Tsx show={showCode[2]}>
+      <Render />
+      <Md>
         {`
-<Code
-  lang="tsx"
-  style={{ width: 400, backgroundColor: "white", boxShadow: "0 2px 12px 0 rgba(0, 0, 0, 0.1)" }}
-  showLineNumbers
-  lineNumberStyle={{ textAlign: "left" }}
->
-{\`
-export function View() {
-  return(
-    <div>
-      <h2>View</h2>
-    </div>
-  )
-}\`
-}
-</Code>
+### without schema
+
+If you want to use record feild key as col title, you can use Table directly without schema.
 `}
-      </Tsx>
+      </Md>
+      <WithoutSchema />
       <Md>
         {`
 ## Api
 
-★ based on react-syntax-highlighter.Prism
+★ container based on <table>  
+★ row based on <tr>  
+★ cell based on <td>
 
 **EvpCode Apis:**
 
@@ -254,107 +90,34 @@ export function View() {
       </Md>
       <EvpCode lang="typescript" theme="coldarkDark">
         {`
-export type EvpCodeProps = {
-  children?: string;
-  lang?: Hintable<LangOptions>;
-  theme?: CodeThemeOptions;
-  show?: boolean;
-  style?: React.CSSProperties;
-  class?: string;
-  showLineNumbers?: boolean;
-  showInlineLineNumbers?: boolean;
-  startingLineNumber?: number;
-  lineNumberContainerStyle?: React.CSSProperties;
-  lineNumberStyle?: React.CSSProperties;
-  wrapLines?: boolean;
-  wrapLongLines?: boolean;
-  lineProps?: lineTagPropsFunction | React.HTMLProps<HTMLElement>;
-  renderer?: (props: rendererProps) => React.ReactNode;
-  PreTag?: React.ComponentType<any> | keyof JSX.IntrinsicElements;
-  CodeTag?: React.ComponentType<any> | keyof JSX.IntrinsicElements;
-  codeTagProps?: React.HTMLProps<HTMLElement>;
+export type TableItemSchema<T extends Object = any> = {
+  label?: any;
+  prop?: string;
+  key?: keyof T | (string & {});
+  hidden?: boolean;
+  // @ts-ignore
+  render?: (value: T[keyof T | (string & {})], row: T, records: T[]) => React.ReactNode;
 };
 
-export type CodeThemeOptions = Hintable<CodeTheme>;
-
-export type LangOptions =
-  | "javascript"
-  | "js"
-  | "jsx"
-  | "typescript"
-  | "ts"
-  | "tsx"
-  | "java"
-  | "python"
-  | "c"
-  | "cpp"
-  | "csharp"
-  | "go"
-  | "ruby"
-  | "rust"
-  | "swift"
-  | "kotlin"
-  | "php"
-  | "html"
-  | "css"
-  | "scss"
-  | "less"
-  | "json"
-  | "xml"
-  | "yml"
-  | "yaml"
-  | "bash"
-  | "sh"
-  | "shell"
-  | "cmd"
-  | "bat"
-  | "console"
-  | "sql"
-  | "markdown"
-  | "text";
-
-export type CodeTheme =
-  | "a11yDark"
-  | "atomDark"
-  | "base16AteliersulphurpoolLight"
-  | "cb"
-  | "coldarkCold"
-  | "coldarkDark"
-  | "coy"
-  | "darcula"
-  | "duotoneDark"
-  | "duotoneEarth"
-  | "duotoneForest"
-  | "duotoneLight"
-  | "duotoneSea"
-  | "duotoneSpace"
-  | "funky"
-  | "ghcolors"
-  | "gruvboxDark"
-  | "gruvboxLight"
-  | "holiTheme"
-  | "hopscotch"
-  | "lucario"
-  | "materialDark"
-  | "materialLight"
-  | "materialOceanic"
-  | "nightOwl"
-  | "nord"
-  | "okaidia"
-  | "oneDark"
-  | "oneLight"
-  | "pojoaque"
-  | "prism"
-  | "shadesOfPurple"
-  | "solarizedDarkAtom"
-  | "solarizedlight"
-  | "synthwave84"
-  | "tomorrow"
-  | "twilight"
-  | "vs"
-  | "vscDarkPlus"
-  | "xonokai"
-  | "zTouch";
+export type EvpTableProps<RecordType extends Object = any> = {
+  children?: React.ReactNode;
+  schema?: Array<TableItemSchema<RecordType>>;
+  data?: RecordType[];
+  pagination?: {
+    pageSize?: number;
+    pageSizes?: number[];
+    currentPage?: number;
+    total?: number;
+    showTotal?: (total: number, range: [number, number]) => React.ReactNode;
+    showQuickJumper?: boolean;
+    showSizeChanger?: boolean;
+    onChange?: (page: number, pageSize: number) => void;
+    onShowSizeChange?: (current: number, size: number) => void;
+  };
+  zebra?: boolean;
+  caption?: React.ReactNode;
+  selection?: boolean;
+};
 `}
       </EvpCode>
       <EvpButton

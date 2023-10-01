@@ -26,6 +26,8 @@ export type IconType =
   | "right"
   | "unchecked_box"
   | "checked_box"
+  | "male"
+  | "female"
   | "evp";
 
 export type EvpIconProps = EvpIconPropsType & { [x: string]: any };
@@ -54,6 +56,8 @@ export interface EvpIconPropsType {
   right?: boolean;
   unchecked_box?: boolean;
   checked_box?: boolean;
+  male?: boolean;
+  female?: boolean;
   evp?: boolean;
   passwords?: boolean;
   $click?: React.MouseEventHandler<HTMLDivElement>;
@@ -108,6 +112,8 @@ const IconMap: IndexableFuzzy<SvgIconType> = {
   RIGHT: "Right",
   UNCHECKEDBOX: "UncheckedBox",
   CHECKEDBOX: "CheckedBox",
+  MALE: "Male",
+  FEMALE: "Female",
   EVP: "Evp",
 };
 

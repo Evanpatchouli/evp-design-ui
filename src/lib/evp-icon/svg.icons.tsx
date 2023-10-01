@@ -21,6 +21,8 @@ import $Right from './right';
 import $Evp from './evp';
 import $UncheckedBox from "./unchecked-box";
 import $CheckedBox from "./checked-box";
+import $Male from "./male";
+import $Female from "./female";
 
 export type SvgIconProps = Indexable<SvgIconPropsType, any>;
 
@@ -78,6 +80,8 @@ export const Left = $Left;
 export const Right = $Right;
 export const UncheckedBox = $UncheckedBox;
 export const CheckedBox = $CheckedBox;
+export const Male = $Male;
+export const Female = $Female;
 export const Evp = $Evp;
 
 export type SvgIconType = 
@@ -103,6 +107,8 @@ export type SvgIconType =
 "Right" |
 "UncheckedBox" |
 "CheckedBox" |
+"Male" |
+"Female" |
 "Evp";
 
 const SvgIcons = {
@@ -128,6 +134,8 @@ const SvgIcons = {
   "Right": Right,
   "UncheckedBox": UncheckedBox,
   "CheckedBox": CheckedBox,
+  "Male": Male,
+  "Female": Female,
   "Evp": Evp
 }
 
