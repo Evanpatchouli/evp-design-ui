@@ -31,8 +31,6 @@ export default function WithoutSchema() {
 export default function WithoutSchema() {
   return (
     <Table
-      selection
-      zebra
       data={[
         {
           name: "John",
@@ -64,8 +62,6 @@ export default function WithoutSchema() {
         }
       >
         <Table
-          selection
-          zebra
           data={[
             {
               name: "John",

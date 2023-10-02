@@ -99,9 +99,7 @@ export default function EvpInput(props: EvpInputProps) {
 
   const inputType = props.type ?? "text";
   const [validateTrigger, setValidateTrigger] = useState("onChange");
-  const [warning_msg, setWarning_msg] = useState<string | undefined>(
-    props.warnReader?.ref
-  );
+  const [warning_msg, setWarning_msg] = useState<string | undefined>(props.warnReader?.ref);
   const warnColor = props.rule?.color ?? "red";
   const hintColor = props.hint?.color ?? "grey";
   const [isValid, setIsValid] = useState(false);
@@ -321,6 +319,9 @@ export default function EvpInput(props: EvpInputProps) {
           ) : null}
           <input
             name={props.name}
+            autoComplete="off"
+            autoCorrect="off"
+            autoSave="off"
             className={`evp input input-box`}
             value={val}
             defaultValue={props.default}
@@ -352,14 +353,11 @@ export default function EvpInput(props: EvpInputProps) {
                 validate(e.currentTarget.value);
               }
             }}
+            style={props.style}
           ></input>
           {showRightIcon ? (
             <div className="evp input icon">
-              <Icon
-                name="true_circle"
-                color={Color.HeavyGreen}
-                $visibleSync={isValid}
-              />
+              <Icon name="true_circle" color={Color.HeavyGreen} $visibleSync={isValid} />
             </div>
           ) : null}
         </div>

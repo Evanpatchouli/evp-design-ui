@@ -1,13 +1,12 @@
-
 /**
  * To fix a number with certain precision strictly with zero added at the end
- * @param num 
+ * @param num
  * @param precision default is 2
- * @returns 
+ * @returns
  */
 export const toFixedStrictly = (num: number, precision: number = 2) => {
-  if (typeof num !== 'number') {
-    throw new Error('The proped num must be a number');
+  if (typeof num !== "number") {
+    throw new Error("The proped num must be a number");
   }
   let s = num.toFixed(precision);
   // Deal with the case where the number is negative
@@ -18,8 +17,36 @@ export const toFixedStrictly = (num: number, precision: number = 2) => {
   return s;
 };
 
+interface RangeOptions {
+  inclusiveStart?: boolean;
+  inclusiveEnd?: boolean;
+}
+
+export function range(start: number, end: number, options: RangeOptions = {}) {
+  if (typeof start !== "number" || typeof end !== "number") {
+    throw new Error("The proped start and end must be numbers");
+  }
+  if (start > end) {
+    throw new Error("The proped start must be smaller than or equal to end");
+  }
+  if (start === end) return [start];
+  const { inclusiveStart = true, inclusiveEnd = true } = options;
+  const result = [];
+  const step = start <= end ? 1 : -1;
+  if (start === end) return [start];
+  for (let i = start; i !== end + step; i += step) {
+    if ((i === start && inclusiveStart) || (i === end && inclusiveEnd)) {
+      result.push(i);
+    } else if (i !== start && i !== end) {
+      result.push(i);
+    }
+  }
+  return result;
+}
+
 const NumUtils = {
   toFixedStrictly,
+  range,
 };
 
 export default NumUtils;

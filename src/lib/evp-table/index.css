@@ -45,9 +45,8 @@
   } */
 }
 
-td {
+td.evp-table-td {
   border: 1px solid #ebeef5;
   border-inline: none;
   border-top: none;
-  text-align: center;
 }

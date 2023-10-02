@@ -11,7 +11,7 @@
     -webkit-appearance: textfield;
     appearance: textfield;
   }
-  
+
   &[type="number"]::-webkit-inner-spin-button,
   &[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none; /* Safari */
@@ -34,7 +34,10 @@
   text-indent: 0.5rem;
   line-height: 30px;
   height: 100%;
-  width: 300px;
+
+  &:focus {
+    border: 1px solid rgb(128, 128, 255);
+  }
 }
 
 .evp-input-msg {
@@ -57,5 +60,3 @@
   margin-top: 4px;
   align-items: center;
 }
-
-

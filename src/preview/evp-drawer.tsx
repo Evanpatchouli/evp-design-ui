@@ -2,11 +2,11 @@ import Card from "@/components/card";
 import Md from "@/components/md";
 import Tsx from "@/components/tsx";
 import { Button, EvpCode, Row } from "@/lib";
-import { EvpButton, Code, Toast, Drawer } from "evp-design-ui";
+import { EvpButton, Drawer } from "evp-design-ui";
 import { useEffect, useState } from "react";
 
 export default function DrawerView() {
-  const next = { route: "", name: "" };
+  const next = { route: "evp-code", name: "Code" };
   useEffect(() => {
     window.scrollTo({
       top: 0,

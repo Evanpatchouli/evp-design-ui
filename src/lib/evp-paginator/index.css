@@ -1,0 +1,5 @@
+.evp-paginator-tab {
+  &::selection {
+    background: none !important;
+  }
+}

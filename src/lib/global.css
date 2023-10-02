@@ -32,6 +32,7 @@
 @import url(./evp-drawer/index.css);
 @import url(./evp-img/index.css);
 @import url(./evp-table/index.css);
+@import url(./evp-paginator/index.css);
 
 .evp {
   font-size: var(--text-size);

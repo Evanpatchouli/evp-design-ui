@@ -163,7 +163,7 @@ export default function Render() {
   ];
 
   return(
-    <Table selection zebra schema={this.schema} data={this.state.data}></Table>
+    <Table schema={this.schema} data={this.state.data}></Table>
   )
 }
 `}
@@ -171,7 +171,7 @@ export default function Render() {
             </div>
           }
         >
-          <Table selection zebra schema={this.schema} data={this.state.data}></Table>
+          <Table schema={this.schema} data={this.state.data}></Table>
         </Card>
       </>
     );

@@ -254,3 +254,9 @@ export {
   default as Table,
   type EvpTableProps,
 } from './evp-table';
+
+export {
+  default as EvpPaginator,
+  default as Paginator,
+  type EvpPaginatorProps,
+} from './evp-paginator';
