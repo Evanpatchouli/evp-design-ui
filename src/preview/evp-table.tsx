@@ -103,7 +103,7 @@ If you want to show the provided paginator in Table, just set \`paginator\` to \
 ★ row based on <tr>  
 ★ cell based on <td>
 
-**EvpCode Apis:**
+**Table Apis:**
 
 `}
       </Md>

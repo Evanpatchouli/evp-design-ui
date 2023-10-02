@@ -8,6 +8,9 @@ import ZoomIn from "../evp-icon/zoom-in";
 import ZoomOut from "../evp-icon/zoom-out";
 import DownImg from "../evp-icon/down-img";
 import CopyLink from "../evp-icon/copy-link";
+import Toast from "../evp-toast";
+import EvpToolTip from "../evp-tooltip";
+import ImgUtils from "../utils/img.utils";
 
 interface BaseImgProps extends React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement> {
   alt: string;
@@ -48,9 +51,16 @@ const EvpImg: React.FC<EvpImgProps> = ({ alt, class: className, id, style, previ
         }}
         footer={
           <>
-            <EvpButton theme="text">
-              <DownImg />
-            </EvpButton>
+            <EvpToolTip content="Download">
+              <EvpButton
+                theme="text"
+                $click={() => {
+                  ImgUtils.downloadImage(props.src ?? "", props.alt ?? "");
+                }}
+              >
+                <DownImg />
+              </EvpButton>
+            </EvpToolTip>
 
             <EvpButton
               theme="text"
@@ -69,9 +79,24 @@ const EvpImg: React.FC<EvpImgProps> = ({ alt, class: className, id, style, previ
             >
               <ZoomIn />
             </EvpButton>
-            <EvpButton theme="text" $click={() => {}}>
-              <CopyLink />
-            </EvpButton>
+            <EvpToolTip content="Copy URL">
+              <EvpButton
+                theme="text"
+                $click={() => {
+                  navigator.clipboard
+                    .writeText(props.src ?? "")
+                    .then(() => {
+                      Toast.success("copy success");
+                    })
+                    .catch((err) => {
+                      console.error(err);
+                      Toast.error("copy failed");
+                    });
+                }}
+              >
+                <CopyLink />
+              </EvpButton>
+            </EvpToolTip>
           </>
         }
       >

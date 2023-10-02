@@ -79,9 +79,9 @@ import { EvpForm } from 'evp-design-ui'
 `}
       </Tsx>
       <Card>
-        <EvpForm style={{ width: 390 }}>
-          <EvpInput labelWidth={70} label="Username" required />
-          <EvpInput labelWidth={70} label="Password" required />
+        <EvpForm style={{ width: 264 }}>
+          <EvpInput labelWidth={80} label="Username" required />
+          <EvpInput labelWidth={80} label="Password" required />
           <div
             style={{
               display: "flex",

@@ -8,8 +8,8 @@ import { useLocation } from "react-router-dom";
 import ColorView from "./preview/evp-color";
 import MenuView from "./preview/evp-menu";
 import TestViewView from "./preview/test.view";
-import EvpMenu from "./lib/evp-menu";
-import EvpMenuItem from "./lib/evp-menu-item";
+import Menu from "./lib/evp-menu";
+import MenuItem from "./lib/evp-menu-item";
 import "./App.css";
 import "./preview/index.css";
 import "./lib/global.css";
@@ -49,6 +49,8 @@ import DrawerView from "./preview/evp-drawer";
 import Anchors from "./components/anchors";
 import TableView from "./preview/evp-table";
 import NotFound from "./preview/404";
+import ImgView from "./preview/evp-img";
+import PaginatorView from "./preview/evp-paginator";
 
 function App() {
   const location = useLocation();
@@ -66,45 +68,47 @@ function App() {
             display: location.pathname === "/" || location.pathname === "/404" ? "none" : void 0,
           }}
         >
-          <EvpMenu border="none" link={"/general"} title={"General"}>
-            <EvpMenu submenu itemIndent title={"Layout"}>
-              <EvpMenuItem link={"/components/evp-col"} title={"EvpCol"} />
-              <EvpMenuItem link={"/components/evp-row"} title={"EvpRow"} />
-              <EvpMenuItem link={"/components/evp-dom"} title={"EvpDom"} />
-              <EvpMenuItem link={"/components/evp-divider"} title={"EvpDivider"} />
-            </EvpMenu>
-            <EvpMenuItem link={"/components/evp-shadow"} title={"EvpShadow"} />
-            <EvpMenuItem link={"/components/evp-button"} title={"EvpButton"} />
-            <EvpMenuItem link={"/components/evp-input"} title={"EvpInput"} />
-            <EvpMenuItem link={"/components/evp-color"} title={"EvpColor"} />
-            <EvpMenuItem link={"/components/evp-card"} title={"EvpCard"} />
-            <EvpMenuItem link={"/components/evp-menu"} title={"EvpMenu"} />
-            <EvpMenuItem link={"/components/evp-header"} title={"EvpHeader"} />
-            <EvpMenuItem link={"/components/evp-msg"} title={"EvpMsg"} />
-            <EvpMenuItem link={"/components/evp-toast"} title={"EvpToast"} />
-            <EvpMenuItem link={"/components/evp-popover"} title={"EvpPopover"} />
-            <EvpMenuItem link={"/components/evp-flexbar"} title={"EvpFlexbar"} />
-            <EvpMenuItem link={"/components/evp-radio"} title={"EvpRadio"} />
-            <EvpMenuItem link={"/components/evp-checkbox"} title={"EvpCheckBox"} />
-            <EvpMenuItem link={"/components/evp-select"} title={"EvpSelect"} />
-            <EvpMenuItem link={"/components/evp-slider"} title={"EvpSlider"} />
-            <EvpMenuItem link={"/components/evp-form"} title={"EvpForm"} />
-            <EvpMenuItem link={"/components/evp-tag"} title={"EvpTag"} />
-            <EvpMenuItem link={"/components/evp-tooltip"} title={"EvpToolTip"} />
-            <EvpMenuItem link={"/components/evp-badge"} title={"EvpBadge"} />
-            <EvpMenuItem link={"/components/evp-anchor"} title={"EvpAchor"} />
-            <EvpMenuItem link={"/components/evp-breadcrumb"} title={"EvpBreadCrumb"} />
-            <EvpMenuItem link={"/components/evp-counter"} title={"EvpCounter"} />
-            <EvpMenuItem hidden link={"/components/evp-datetime-picker"} title={"EvpDateTimePicker"} />
-            <EvpMenuItem link={"/components/evp-switch"} title={"EvpSwitch"} />
-            <EvpMenuItem link={"/components/evp-loading"} title={"EvpLoading"} />
-            <EvpMenuItem link={"/components/evp-label"} title={"EvpLabel"} />
-            <EvpMenuItem link={"/components/evp-modal"} title={"EvpModal"} />
-            <EvpMenuItem link={"/components/evp-dialog"} title={"EvpDialog"} />
-            <EvpMenuItem link={"/components/evp-drawer"} title={"EvpDrawer"} />
-            <EvpMenuItem link={"/components/evp-code"} title={"EvpCode"} />
-            <EvpMenuItem link={"/components/evp-table"} title={"EvpTable"} />
-          </EvpMenu>
+          <Menu border="none" link={"/general"} title={"General"}>
+            <Menu submenu itemIndent title={"Layout"}>
+              <MenuItem link={"/components/evp-col"} title={"Col"} />
+              <MenuItem link={"/components/evp-row"} title={"Row"} />
+              <MenuItem link={"/components/evp-dom"} title={"Dom"} />
+              <MenuItem link={"/components/evp-divider"} title={"Divider"} />
+            </Menu>
+            <MenuItem link={"/components/evp-shadow"} title={"Shadow"} />
+            <MenuItem link={"/components/evp-button"} title={"Button"} />
+            <MenuItem link={"/components/evp-input"} title={"Input"} />
+            <MenuItem link={"/components/evp-color"} title={"Color"} />
+            <MenuItem link={"/components/evp-card"} title={"Card"} />
+            <MenuItem link={"/components/evp-menu"} title={"Menu"} />
+            <MenuItem link={"/components/evp-header"} title={"Header"} />
+            <MenuItem link={"/components/evp-msg"} title={"Msg"} />
+            <MenuItem link={"/components/evp-toast"} title={"Toast"} />
+            <MenuItem link={"/components/evp-popover"} title={"Popover"} />
+            <MenuItem link={"/components/evp-flexbar"} title={"Flexbar"} />
+            <MenuItem link={"/components/evp-radio"} title={"Radio"} />
+            <MenuItem link={"/components/evp-checkbox"} title={"CheckBox"} />
+            <MenuItem link={"/components/evp-select"} title={"Select"} />
+            <MenuItem link={"/components/evp-slider"} title={"Slider"} />
+            <MenuItem link={"/components/evp-form"} title={"Form"} />
+            <MenuItem link={"/components/evp-tag"} title={"Tag"} />
+            <MenuItem link={"/components/evp-tooltip"} title={"ToolTip"} />
+            <MenuItem link={"/components/evp-badge"} title={"Badge"} />
+            <MenuItem link={"/components/evp-anchor"} title={"Achor"} />
+            <MenuItem link={"/components/evp-breadcrumb"} title={"BreadCrumb"} />
+            <MenuItem link={"/components/evp-counter"} title={"Counter"} />
+            <MenuItem hidden link={"/components/evp-datetime-picker"} title={"DateTimePicker"} />
+            <MenuItem link={"/components/evp-switch"} title={"Switch"} />
+            <MenuItem link={"/components/evp-loading"} title={"Loading"} />
+            <MenuItem link={"/components/evp-label"} title={"Label"} />
+            <MenuItem link={"/components/evp-modal"} title={"Modal"} />
+            <MenuItem link={"/components/evp-dialog"} title={"Dialog"} />
+            <MenuItem link={"/components/evp-drawer"} title={"Drawer"} />
+            <MenuItem link={"/components/evp-code"} title={"Code"} />
+            <MenuItem link={"/components/evp-table"} title={"Table"} />
+            <MenuItem link={"/components/evp-paginator"} title={"Paginator"} />
+            <MenuItem link={"/components/evp-img"} title={"Img"} />
+          </Menu>
         </div>
         <div
           className="Content"
@@ -155,12 +159,18 @@ function App() {
             <Route path="/components/evp-code" key={"code"} element={<CodeView />}></Route>
             <Route path="/components/evp-drawer" key={"drawer"} element={<DrawerView />}></Route>
             <Route path="/components/evp-table" key={"table"} element={<TableView />}></Route>
+            <Route
+              path="/components/evp-paginator"
+              key={"paginator"}
+              element={<PaginatorView next={{ route: "evp-img", name: "Img" }} />}
+            ></Route>
+            <Route path="/components/evp-img" key={"img"} element={<ImgView />}></Route>
             <Route path="/404" key={"404"} element={<NotFound />}></Route>
             <Route path="*" key={"404-catch"} element={<NotFound />}></Route>
           </Routes>
           <Anchors />
           <div className="foot">
-            <p>CopyRight &copy; 2023-{now} Evp Design UI</p>
+            <p>CopyRight &copy; 2023-{now} Design UI</p>
           </div>
         </div>
       </div>

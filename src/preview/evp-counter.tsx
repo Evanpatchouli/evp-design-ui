@@ -130,7 +130,7 @@ Besides, you can set step to change the step of the counter ( default is 1 ).
 ★ container based on EvpDom  
 ★ props extends EvpBaseProps
 
-**EvpCard Apis:**
+**Counter Apis:**
 
 `}
       </Md>

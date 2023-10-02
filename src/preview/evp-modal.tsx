@@ -209,7 +209,7 @@ $click={() => {
 ★ container based on EvpDom  
 ★ props extends EvpBaseProps
 
-**EvpCard Apis:**
+**Modal Apis:**
 
 `}
       </Md>

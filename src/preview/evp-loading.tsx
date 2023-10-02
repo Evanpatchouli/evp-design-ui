@@ -315,7 +315,7 @@ You can alse make other components loadable if supported. By now, only Button is
 ★ container based on div  
 ★ props extends React.HTMLAttributes<HTMLDivElement>
 
-**EvpCard Apis:**
+**Loading Apis:**
 `}
       </Md>
       <EvpCode lang="typescript" theme="coldarkDark">

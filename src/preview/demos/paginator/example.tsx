@@ -1,0 +1,68 @@
+import Tsx from "@/components/tsx";
+import { Card, Row } from "@/lib";
+import React, { useState } from "react";
+
+import { Button, Paginator } from "evp-design-ui";
+
+const Demo: React.FC = () => {
+  const [cur, setCur] = useState(1);
+  const [pageSize] = useState(10);
+
+  return <Paginator total={48} currentPage={cur} setCurrentPage={setCur} pageSize={pageSize} />;
+};
+
+export default class Example extends React.Component {
+  state: Readonly<{
+    showCode: boolean;
+  }> = {
+    showCode: false,
+  };
+
+  render() {
+    return (
+      <>
+        <Card
+          w={"100%"}
+          footer={
+            <div style={{ width: "100%" }}>
+              <Row justifyContent="right" w={"100%"} h={"fit-content"}>
+                <Button
+                  $click={() =>
+                    this.setState({
+                      ...this.state,
+                      showCode: !this.state.showCode,
+                    })
+                  }
+                  theme="text"
+                  size="mini"
+                  text="code"
+                />
+                <Button theme="text" size="mini" text="copy" />
+              </Row>
+              <Tsx show={this.state.showCode}>
+                {`
+import { Paginator } from "evp-design-ui";
+
+const Demo: React.FC = () => {
+  const [cur, setCur] = useState(1);
+  const [pageSize] = useState(10);
+
+  return (
+    <Paginator 
+      total={48} 
+      currentPage={cur} 
+      setCurrentPage={setCur} 
+      pageSize={pageSize} />
+  );
+};
+`}
+              </Tsx>
+            </div>
+          }
+        >
+          <Demo />
+        </Card>
+      </>
+    );
+  }
+}
