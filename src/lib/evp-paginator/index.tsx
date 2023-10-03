@@ -59,7 +59,7 @@ const Taber = ({
   return (
     <>
       {showTaber !== false ? (
-        <>
+        <div style={{ display: 'flex', alignItems: 'center', marginRight: 8 }}>
           <Left
             class={classNames("evp-counter-lefter", banLeft())}
             style={{
@@ -112,7 +112,7 @@ const Taber = ({
             }}
             pointer
           />
-        </>
+        </div>
       ) : (
         void 0
       )}

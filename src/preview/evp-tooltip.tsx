@@ -205,6 +205,7 @@ export type EvpToolTipProps = {
   cursor?: EvpCursorRule;
   /** the display of trigger tooltip container */
   display?: EvpDisplayRule;
+  position?: "top" | "bottom" | "left" | "right"
 };
 `}
       </EvpCode>

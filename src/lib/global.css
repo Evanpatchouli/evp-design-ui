@@ -34,6 +34,7 @@
 @import url(./evp-table/index.css);
 @import url(./evp-paginator/index.css);
 @import url(./evp-calendar/index.css);
+@import url(./evp-row/index.css);
 
 .evp {
   font-size: var(--text-size);

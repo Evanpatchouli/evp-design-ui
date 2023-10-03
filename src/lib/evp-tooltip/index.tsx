@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { type EvpCursorRule, type EvpDisplayRule } from "../typings";
 
 export type EvpToolTipProps = {
@@ -27,22 +27,43 @@ export type EvpToolTipProps = {
   cursor?: EvpCursorRule;
   /** the display of trigger tooltip container */
   display?: EvpDisplayRule;
+  position?: "top" | "bottom" | "left" | "right";
 };
 
 export default function EvpToolTip(props: EvpToolTipProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
   const [hidden, setHidden] = useState(true);
-  const calcCtnLeft = () => ((ref.current?.clientWidth ?? 0) - (contentRef.current?.clientWidth ?? 0)) / 2;
   const triggers: "hover" | "click" | Array<"hover" | "click"> = props.trigger
     ? typeof props.trigger === "string"
       ? [props.trigger]
       : props.trigger
     : ["hover"];
+
+  const offsetMap = {
+    top: {
+      top: "0%",
+      left: "50%",
+      transform: "translate(-50%, calc(-100% - 4px))",
+    },
+    bottom: {
+      bottom: "0%",
+      left: "50%",
+      transform: "translate(-50%, 4px)",
+    },
+    left: {
+      left: "0%",
+      top: "50%",
+      transform: "translate(calc(-100% - 4px), -50%)",
+    },
+    right: {
+      right: "0%",
+      top: "50%",
+      transform: "translate(4px, -50%)",
+    },
+  };
+
   return (
     <div
       className="evp evp-tooltip-container"
-      ref={ref}
       onMouseOver={() => {
         if (triggers.includes("hover")) {
           setHidden(false);
@@ -68,11 +89,10 @@ export default function EvpToolTip(props: EvpToolTipProps) {
         style={{
           visibility: (typeof props.hidden === "boolean" ? props.hidden : hidden) ? "hidden" : "visible",
           pointerEvents: (typeof props.hidden === "boolean" ? props.hidden : hidden) ? "none" : "auto",
-          left: calcCtnLeft(),
+          ...offsetMap[props.position ?? "top"],
         }}
       >
         <div
-          ref={contentRef}
           className={classNames("evp-tooltip-content", props.class)}
           style={{
             padding: "4px 12px 4px 12px",

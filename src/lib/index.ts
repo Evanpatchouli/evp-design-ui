@@ -266,3 +266,9 @@ export {
   default as Calendar,
   type EvpCalendarProps,
 } from './evp-calendar';
+
+export {
+  default as EvpProgress,
+  default as Progress,
+  type EvpProgressProps,
+} from './evp-progress';

@@ -10,7 +10,7 @@
 }
 
 .Home {
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   display: flex;
   padding: 0 !important;
   width: 100%;
@@ -26,25 +26,56 @@
   } */
 }
 
-.home__icon:hover {
+.home__icon {
   transition: all 0.3s ease-in-out;
-  transform: scale(2) rotateZ(30deg);
+}
+
+.home__icon.home__icon-live {
+  animation: home__icon_rotate 2s infinite ease alternate;
+}
+
+.home__icon:hover {
   cursor: pointer !important;
+}
+
+@keyframes home__icon_rotate {
+  0% {
+    transform: rotateZ(0deg);
+    scale: 1;
+  }
+  /* 20% {
+    transform: rotateZ(30deg);
+  } */
+  15% {
+    transform: rotateZ(-60deg);
+    scale: 0.5;
+  }
+  85% {
+    transform: rotateZ(30deg);
+    scale: 1.2;
+  }
+  /* 80% {
+    transform: rotateZ(-30deg);
+  } */
+  100% {
+    transform: rotateZ(0deg);
+    scale: 1;
+  }
 }
 
 .home__title {
   font-weight: bold;
   font-size: 32px;
   margin-left: 12px;
-  Letter-spacing: -1px;
+  letter-spacing: -1px;
   color: blueviolet;
 }
 
 .home_motto {
   font-size: 76px !important;
   font-weight: bolder;
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  Letter-spacing: -3px;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  letter-spacing: -3px;
 }
 
 .home_desc {

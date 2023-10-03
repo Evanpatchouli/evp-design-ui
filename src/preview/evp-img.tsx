@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import Example from "./demos/img/example";
 
 export default function ImgView() {
-  const next = { route: "", name: "" };
+  const next = { route: "evp-calendar", name: "Calendar" };
   useEffect(() => {
     window.scrollTo({
       top: 0,

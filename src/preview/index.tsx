@@ -15,13 +15,13 @@ import {
   EvpSelect,
   EvpSlider,
   Toast,
-  EvpCode,
   EvpShadow,
 } from "evp-design-ui";
-import React from "react";
-import { Re_Common_ZeroBlur_HighDespread } from '../lib/evp-shadow/index';
+import React, { useState } from "react";
+import classNames from "classnames";
 
 const Preview: React.FC = () => {
+  const home_icon_live = useState("home__icon-live");
   return (
     <div className="preview-container Home">
       <div
@@ -32,7 +32,17 @@ const Preview: React.FC = () => {
         }}
       >
         <Row h={120}>
-          <Evp class="home__icon" radius={40} />
+          <Evp
+            class={classNames("home__icon", home_icon_live[0])}
+            radius={40}
+            onClick={() => {
+              if (home_icon_live[0]) {
+                home_icon_live[1]("");
+              } else {
+                home_icon_live[1]("home__icon-live");
+              }
+            }}
+          />
           <div className="home__title">evp design ui</div>
         </Row>
         <Row class="home_motto" h={"fit-content"}>
@@ -40,15 +50,11 @@ const Preview: React.FC = () => {
         </Row>
         <Row class="home_desc" h={"fit-content"}>
           <p>
-            evp design ui is a{" "}
-            <span style={{ color: "gray" }}>lightweight</span> and{" "}
+            evp design ui is a <span style={{ color: "gray" }}>lightweight</span> and{" "}
             <span style={{ color: "gray" }}>easy-custom</span> UI framework with{" "}
-            <span style={{ color: "gray" }}>atomlized</span> attributes for
-            React.js. It is much more easy customizable than common UI
-            frameworks, and it is also much more lightweight than others. You
-            can use it in your project{" "}
-            <span style={{ color: "gray" }}>with just a few lines of code</span>
-            .
+            <span style={{ color: "gray" }}>atomlized</span> attributes for React.js. It is much more easy customizable
+            than common UI frameworks, and it is also much more lightweight than others. You can use it in your project{" "}
+            <span style={{ color: "gray" }}>with just a few lines of code</span>.
           </p>
         </Row>
         <Row h={"fit-content"}>
@@ -74,20 +80,17 @@ const Preview: React.FC = () => {
             <p>
               <ul className="home__featlist">
                 <li style={{ marginBottom: 20 }}>
-                  <span style={{ fontWeight: "bold" }}>lightweight</span> ✨ :
-                  it doesn't have heavy and complex components structure and CSS
-                  styles but still is simple and of good look.
+                  <span style={{ fontWeight: "bold" }}>lightweight</span> ✨ : it doesn't have heavy and complex
+                  components structure and CSS styles but still is simple and of good look.
                 </li>
                 <li style={{ marginBottom: 20 }}>
-                  <span style={{ fontWeight: "bold" }}>easy-custom</span> 🎉 :
-                  it provides many apis out of the box to custom the components
-                  directly as the way you like rather than siting the nodes by
-                  debugging with dev tools hardly.
+                  <span style={{ fontWeight: "bold" }}>easy-custom</span> 🎉 : it provides many apis out of the box to
+                  custom the components directly as the way you like rather than siting the nodes by debugging with dev
+                  tools hardly.
                 </li>
                 <li style={{ marginBottom: 20 }}>
-                  <span style={{ fontWeight: "bold" }}>atomlized</span> 🎨 : it
-                  provides many components with atomic attributes to make the
-                  components more quickly to be build.
+                  <span style={{ fontWeight: "bold" }}>atomlized</span> 🎨 : it provides many components with atomic
+                  attributes to make the components more quickly to be build.
                 </li>
               </ul>
             </p>
@@ -103,35 +106,19 @@ const Preview: React.FC = () => {
               justifyContent: "center",
               alignItems: "center",
               flexDirection: "row",
-              backgroundColor: 'rgba(0, 0, 0, 0.75)',
+              backgroundColor: "rgba(0, 0, 0, 0.75)",
               borderRadius: 12,
             }}
             boxShadow={EvpShadow.Re_Common_HighBlur_PaleDespread}
           >
             <EvpCard style={{ borderRadius: 8 }}>
               <EvpForm>
-                <EvpInput
-                  label="Project"
-                  name="project"
-                  required
-                  labelWidth={80}
-                  default="evp design ui"
-                />
-                <EvpCheckBoxGroup
-                  label="Types"
-                  name="types"
-                  required
-                  labelWidth={80}
-                >
+                <EvpInput label="Project" name="project" required labelWidth={80} default="evp design ui" />
+                <EvpCheckBoxGroup label="Types" name="types" required labelWidth={80}>
                   <EvpCheckBox label="Test" value="Test" />
                   <EvpCheckBox label="Beta" value="Beta" />
                 </EvpCheckBoxGroup>
-                <EvpRadioGroup
-                  label="Access"
-                  name="access"
-                  required
-                  labelWidth={80}
-                >
+                <EvpRadioGroup label="Access" name="access" required labelWidth={80}>
                   <EvpRadio label="Private" value="private" />
                   <EvpRadio label="Public" value="public" defaultChecked />
                 </EvpRadioGroup>

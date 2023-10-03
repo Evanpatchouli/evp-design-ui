@@ -4,6 +4,7 @@ import { EvpCode } from "@/lib";
 import { EvpButton } from "evp-design-ui";
 import { useEffect } from "react";
 import Example from "./demos/paginator/example";
+import Quene from "./demos/paginator/quene";
 
 export default function PaginatorView(props: { next?: { route: string; name: string } }) {
   const next = { route: props.next?.route ?? "", name: props.next?.name ?? "" };
@@ -47,7 +48,14 @@ Here are some examples about Paginator.
 
 `}
       </Md>
+      <Md>
+        {`
+### quene
 
+You can use \`quene\` prop to set the order of the components. The default order is \`["total", "sizer", "taber", "jumper"]\`.
+`}
+      </Md>
+      <Quene />
       <Md>
         {`
 ## Api

@@ -4,6 +4,7 @@ import { shift } from "../utils";
 
 export interface EvpRowProps extends EvpBaseProps {
   flexDirection?: "row" | "row-reverse";
+  gap?: number;
 }
 
 export default function EvpRow(props: EvpRowProps) {
@@ -20,9 +21,13 @@ export default function EvpRow(props: EvpRowProps) {
   };
   return (
     <div
-      className={`evp row ${props.class??''}`.trim()}
+      className={`evp evp-row ${props.class ?? ""}`.trim()}
       id={props.id}
-      style={style}
+      style={{
+        // @ts-ignore
+        "--row-item-gap": `${props.gap ?? 0}px`,
+        ...style,
+      }}
       onMouseEnter={event.onMouseEnter}
       onMouseOver={event.onMouseOver}
       onFocus={event.onFocus}

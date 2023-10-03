@@ -28,6 +28,9 @@ export type IconType =
   | "checked_box"
   | "male"
   | "female"
+  | "component"
+  | "github"
+  | "gitee"
   | "evp";
 
 export type EvpIconProps = EvpIconPropsType & { [x: string]: any };
@@ -58,6 +61,9 @@ export interface EvpIconPropsType {
   checked_box?: boolean;
   male?: boolean;
   female?: boolean;
+  component?: boolean;
+  github?: boolean;
+  gitee?: boolean;
   evp?: boolean;
   passwords?: boolean;
   $click?: React.MouseEventHandler<HTMLDivElement>;
@@ -114,6 +120,9 @@ const IconMap: IndexableFuzzy<SvgIconType> = {
   CHECKEDBOX: "CheckedBox",
   MALE: "Male",
   FEMALE: "Female",
+  COMPONENT: "Component",
+  GITHUB: "Github",
+  GITEE: "Gitee",
   EVP: "Evp",
 };
 
@@ -141,13 +150,9 @@ const EvpIcon = (props: EvpIconProps) => {
   if (props.name) {
     key = props.name.toUpperCase();
   } else {
-    let keys = Object.keys(props).filter(
-      (k) => props[k] && !keyFilter.includes(k)
-    );
+    let keys = Object.keys(props).filter((k) => props[k] && !keyFilter.includes(k));
     if (keys.length === 0) {
-      throw new Error(
-        "EvpIcon should have name attribute or one valid icon key!"
-      );
+      throw new Error("EvpIcon should have name attribute or one valid icon key!");
     } else if (keys.length > 1) {
       throw new Error("EvpIcon should have only one valid icon key!");
     } else {

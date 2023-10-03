@@ -8,7 +8,7 @@ import Time from "./demos/calendar/time";
 import TimeFormat from "./demos/calendar/timeFormat";
 
 export default function CalendarView() {
-  const next = { route: "", name: "" };
+  const next = { route: "evp-progress", name: "Progress" };
   useEffect(() => {
     window.scrollTo({
       top: 0,

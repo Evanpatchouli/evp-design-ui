@@ -1,0 +1,70 @@
+.evp-progress {
+  background-color: var(--bgColor);
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  position: relative;
+}
+
+.evp-progress__extra {
+  background-color: var(--blankColor);
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  clip: rect(0, calc(var(--size) * 0.5), auto, 0);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.evp-progress__fill {
+  background-color: var(--fillColor);
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  clip: rect(0, auto, auto, calc(var(--size) * 0.5));
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: rotate(var(--fillRotate));
+}
+
+.evp-progress__fill::after {
+  content: "";
+  background-color: var(--fillAfterColor);
+  border-radius: 50%;
+  width: var(--size);
+  height: var(--size);
+  clip: rect(0, auto, auto, calc(var(--size) * 0.5));
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translate(calc(var(--size) * 0), 0) rotate(calc(var(--fillRotate) * -1));
+}
+
+.evp-progress__mask {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  width: 80%;
+  height: 80%;
+  background-color: var(--textBlankColor);
+}
+
+.evp-progress__mask > span {
+  display: block;
+  font-size: calc(var(--size) * 0.25);
+  color: var(--textColor);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

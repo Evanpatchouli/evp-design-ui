@@ -11,7 +11,6 @@
   overflow: visible;
   text-align: center;
   border-radius: 5px;
-  transform: translateY(-120%);
 }
 
 .evp-tooltip-content {

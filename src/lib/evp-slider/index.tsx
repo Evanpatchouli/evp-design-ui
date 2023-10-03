@@ -23,8 +23,10 @@ export type EvpSliderProps = {
   required?: boolean;
 
   value?: number;
+  setValue?: (value: number) => void;
   /** default is 0 */
   defaultValue?: number;
+  onChange?: (value: number) => void;
   /** start (default 0) to end (default 100) */
   range?: ArrayLengthed<number | undefined, 2>;
   /** min limit, default is 0 */
@@ -53,10 +55,19 @@ export default function EvpSlider(props: EvpSliderProps) {
   const min = props.min ?? props.range?.[0] ?? 0;
   const max = props.max ?? (props.range?.[0] ?? 0) + length;
   const [val, setVal] = useState(
-    (props.value ?? props.defaultValue ?? min) >= min
-      ? props.value ?? props.defaultValue ?? min
-      : min
+    (props.value ?? props.defaultValue ?? min) >= min ? props.value ?? props.defaultValue ?? min : min
   );
+
+  const CompDidMount = useRef(false);
+
+  useEffect(() => {
+    if (CompDidMount.current) {
+      props.onChange?.(val);
+    } else {
+      CompDidMount.current = true;
+    }
+  }, [val]);
+
   const [hiddenTip, setHiddenTip] = useState(true);
   const prgsRef = useRef<HTMLDivElement>(null);
 
@@ -156,9 +167,7 @@ export default function EvpSlider(props: EvpSliderProps) {
         <div
           className="evp-slider-bar"
           style={{
-            width: `calc(${width}px + ${
-              thumbRef.current?.clientWidth ?? "24px"
-            } + 0px)`,
+            width: `calc(${width}px + ${thumbRef.current?.clientWidth ?? "24px"} + 0px)`,
           }}
         >
           <div
@@ -177,8 +186,7 @@ export default function EvpSlider(props: EvpSliderProps) {
             onMouseOver={stressThumb}
             onBlur={recoverThumb}
             onDrag={(e) => {
-              const deltaX =
-                e.clientX - e.currentTarget.getBoundingClientRect().x;
+              const deltaX = e.clientX - e.currentTarget.getBoundingClientRect().x;
               if (e.clientX) {
                 let newVal = val + deltaX / step();
 
@@ -189,26 +197,17 @@ export default function EvpSlider(props: EvpSliderProps) {
                 }
                 newVal = Number(newVal.toFixed(props.precision ?? 0));
                 setVal(newVal);
+                props.setValue?.(newVal);
                 formCtx?.set(name, newVal);
                 return false;
               }
             }}
           >
-            <EvpToolTip
-              content={NumUtils.toFixedStrictly(val, props.precision ?? 0)}
-              hidden={hiddenTip}
-            >
-              <Thumb
-                class="evp-slider-thumb"
-                {...thumbColors}
-                cursor={"pointer"}
-              />
+            <EvpToolTip content={NumUtils.toFixedStrictly(val, props.precision ?? 0)} hidden={hiddenTip}>
+              <Thumb class="evp-slider-thumb" {...thumbColors} cursor={"pointer"} />
             </EvpToolTip>
           </div>
-          <div
-            hidden={!(props.showEtc === false ? false : true)}
-            className="evp-slider-progress-etc"
-          ></div>
+          <div hidden={!(props.showEtc === false ? false : true)} className="evp-slider-progress-etc"></div>
         </div>
       </div>
     </EvpCol>
