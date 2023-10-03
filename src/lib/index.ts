@@ -260,3 +260,9 @@ export {
   default as Paginator,
   type EvpPaginatorProps,
 } from './evp-paginator';
+
+export {
+  default as EvpCalendar,
+  default as Calendar,
+  type EvpCalendarProps,
+} from './evp-calendar';

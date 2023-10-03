@@ -33,6 +33,7 @@
 @import url(./evp-img/index.css);
 @import url(./evp-table/index.css);
 @import url(./evp-paginator/index.css);
+@import url(./evp-calendar/index.css);
 
 .evp {
   font-size: var(--text-size);
@@ -76,13 +77,17 @@
   * {
     color: var(--LightGray) !important;
     stroke: var(--LightGray) !important;
-
   }
 }
 
 .evp-disabled:active {
   pointer-events: none !important;
   cursor: not-allowed !important;
+}
+
+.evp-readonly,
+.evp.evp-readonly {
+  pointer-events: none !important;
 }
 
 *,
