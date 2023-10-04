@@ -10,7 +10,7 @@ export type EvpRadioProps = {
   /** Whether to show a required `*` character, this is `only` a character not a validation! */
   required?: boolean;
   name?: string;
-  value: string | number;
+  value: string | number | undefined;
   defaultChecked?: boolean;
   children?: React.ReactNode;
   disabled?: boolean;
@@ -51,11 +51,7 @@ export default function EvpRadio(props: EvpRadioProps) {
   }, [formCtx, name, val]);
 
   return (
-    <div
-      className={`evp input evp-radio ${props.class ?? ""} ${
-        props.disabled ? "evp-disabled" : ""
-      }`.trim()}
-    >
+    <div className={`evp input evp-radio ${props.class ?? ""} ${props.disabled ? "evp-disabled" : ""}`.trim()}>
       <input
         className="evp input-radio"
         name={name}
@@ -63,11 +59,14 @@ export default function EvpRadio(props: EvpRadioProps) {
         type="radio"
         value={props.value as string | number | undefined}
         defaultChecked={props.defaultChecked}
-        onChange={(e) => {
-          setVal(e.target.value);
+        // onChange={(e) => {
+        //   setVal(e.target.value);
+        // }}
+        onClick={(e) => {
+          setVal(props.value);
         }}
         style={{
-          cursor: props.disabled? 'not-allowed' : 'pointer'
+          cursor: props.disabled ? "not-allowed" : "pointer",
         }}
       />
       {props.label ? (

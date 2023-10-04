@@ -2,4 +2,4 @@
 
 - [ ] make Paginator tab color customizable.
 - [ ] make Img toolbtns' tooltips customizable.
-- [ ] complete position of Tooltip.
+- [x] complete position of Tooltip.

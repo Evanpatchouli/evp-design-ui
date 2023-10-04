@@ -1,6 +1,26 @@
 import classNames from "classnames";
 import { useState } from "react";
 import { type EvpCursorRule, type EvpDisplayRule } from "../typings";
+import { OffsetMap, transformMap } from "./map";
+import { Hintable } from "../utils";
+
+export type PositionOptions =
+  | "top"
+  | "topLeft"
+  | "topLeftCorner"
+  | "topRight"
+  | "topRightCorner"
+  | "left"
+  | "leftTop"
+  | "leftBottom"
+  | "right"
+  | "rightTop"
+  | "rightBottom"
+  | "bottom"
+  | "bottomLeft"
+  | "bottomRight"
+  | "bottomLeftCorner"
+  | "bottomRightCorner";
 
 export type EvpToolTipProps = {
   /** The element to trigger tooltip */
@@ -27,7 +47,16 @@ export type EvpToolTipProps = {
   cursor?: EvpCursorRule;
   /** the display of trigger tooltip container */
   display?: EvpDisplayRule;
-  position?: "top" | "bottom" | "left" | "right";
+  position?:
+    | PositionOptions
+    | {
+        top?: string | number;
+        left?: string | number;
+      };
+  transform?: {
+    vertical?: Hintable<"top" | "center" | "bottom" | number>;
+    horizontal?: Hintable<"left" | "center" | "right" | number>;
+  };
 };
 
 export default function EvpToolTip(props: EvpToolTipProps) {
@@ -38,28 +67,14 @@ export default function EvpToolTip(props: EvpToolTipProps) {
       : props.trigger
     : ["hover"];
 
-  const offsetMap = {
-    top: {
-      top: "0%",
-      left: "50%",
-      transform: "translate(-50%, calc(-100% - 4px))",
-    },
-    bottom: {
-      bottom: "0%",
-      left: "50%",
-      transform: "translate(-50%, 4px)",
-    },
-    left: {
-      left: "0%",
-      top: "50%",
-      transform: "translate(calc(-100% - 4px), -50%)",
-    },
-    right: {
-      right: "0%",
-      top: "50%",
-      transform: "translate(4px, -50%)",
-    },
-  };
+  const offsetMap: Record<
+    Hintable<PositionOptions>,
+    {
+      top: string;
+      left: string;
+      transform: string;
+    }
+  > = OffsetMap(props);
 
   return (
     <div
@@ -89,7 +104,16 @@ export default function EvpToolTip(props: EvpToolTipProps) {
         style={{
           visibility: (typeof props.hidden === "boolean" ? props.hidden : hidden) ? "hidden" : "visible",
           pointerEvents: (typeof props.hidden === "boolean" ? props.hidden : hidden) ? "none" : "auto",
-          ...offsetMap[props.position ?? "top"],
+          ...(typeof (props.position ?? "top") === "string"
+            ? offsetMap[(props.position ?? "top") as string]
+            : {
+                ...(props.position as {}),
+                transform: `translateX(${
+                  transformMap.vertical[props.transform?.vertical ?? "center"] ?? props.transform?.vertical
+                }) translateY(${
+                  transformMap.horizontal[props.transform?.horizontal ?? "center"] ?? props.transform?.horizontal
+                })`,
+              }),
         }}
       >
         <div
@@ -97,8 +121,8 @@ export default function EvpToolTip(props: EvpToolTipProps) {
           style={{
             padding: "4px 12px 4px 12px",
             color: props.plain ? "#000" : props.color,
-            backgroundColor: props.plain ? "#fff" : props.bgColor,
-            border: props.border ?? `1px ${props.bgColor ?? "rgba(60, 60, 60, 1) solid"}`,
+            backgroundColor: props.plain ? "#fff" : props.bgColor ?? "rgba(0, 0, 0, 0.75)",
+            border: props.border ?? `1px ${props.bgColor ?? "rgba(60, 60, 60, 1)"} solid`,
             ...props.style,
           }}
         >

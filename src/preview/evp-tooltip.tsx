@@ -1,8 +1,10 @@
+import Api from "@/components/api";
 import Card from "@/components/card";
 import Md from "@/components/md";
 import Tsx from "@/components/tsx";
 import { EvpButton, EvpCode, EvpTag, EvpToolTip } from "evp-design-ui";
 import { useEffect, useState } from "react";
+import Position from "./demos/tooltip/position";
 
 export default function ToolTipView() {
   useEffect(() => {
@@ -159,7 +161,7 @@ You can set trigger to control tooltip trigger type, default is hover. The value
         </EvpToolTip>
       </Card>
       <Tsx show={showCode[2]}>
-{`
+        {`
 <EvpToolTip content="This is a evp-tag" display="inline-block">
   <EvpTag light text="Hover Me" />
 </EvpToolTip>
@@ -170,45 +172,112 @@ You can set trigger to control tooltip trigger type, default is hover. The value
       </Tsx>
       <Md>
         {`
-## Api
+### Position and Transform
 
-★ container based on EvpDom  
-★ props extends EvpBaseProps
-
-**EvpToolTip Apis:**
+By default, the tooltip will be positioned relative to the trigger element.
 `}
       </Md>
-      <EvpCode lang="typescript" theme="coldarkDark">
+      <Position />
+      <Md>
         {`
-export type EvpToolTipProps = {
-  /** The element to trigger tooltip */
-  children?: React.ReactNode;
-  /** tooltip content */
-  content?: React.ReactNode;
-  /** tooltip content className */
-  class?: string;
-  /** manage hidden customly */
-  hidden?: boolean;
-  /** tooltip content font color */
-  color?: string;
-  /** tooltip content background color */
-  bgColor?: string;
-  /** tooltip content border */
-  border?: string;
-  /** whether to make tooltip plain, default is false */
-  plain?: boolean;
-  /** tooltip content style */
-  style?: React.CSSProperties;
-  /** Default is hover */
-  trigger?: "hover" | "click" | Array<"hover" | "click">;
-  /** cursor type while hovering trigger, default is only when trigger is "click" to be "pointer" */
-  cursor?: EvpCursorRule;
-  /** the display of trigger tooltip container */
-  display?: EvpDisplayRule;
-  position?: "top" | "bottom" | "left" | "right"
-};
+## Api
+
+**ToolTip Apis:**
 `}
-      </EvpCode>
+      </Md>
+      <Api
+        data={[
+          {
+            property: "children",
+            type: "React.ReactNode",
+            default: "undefined",
+            desc: "The element to trigger tooltip",
+          },
+          { property: "content", type: "React.ReactNode", default: "undefined", desc: "tooltip content" },
+          { property: "class", type: "string", default: "undefined", desc: "tooltip content className" },
+          { property: "hidden", type: "boolean", default: "false", desc: "manage hidden customly" },
+          { property: "color", type: "string", default: "white", desc: "tooltip content font color" },
+          {
+            property: "bgColor",
+            type: "string",
+            default: "rgba(0, 0, 0, 0.75)",
+            desc: "tooltip content background color",
+          },
+          {
+            property: "border",
+            type: "string",
+            default: "rgba(60, 60, 60, 1) / sync with bgColor",
+            desc: "tooltip content border",
+          },
+          { property: "plain", type: "boolean", default: "false", desc: "whether to make tooltip plain" },
+          { property: "style", type: "React.CSSProperties", default: "null", desc: "tooltip content style" },
+          {
+            property: "trigger",
+            type: "elem of options",
+            default: '"hover"',
+            options: '"hover" | "click" | Array<"hover" | "click">',
+            desc: "Default is hover",
+          },
+          {
+            property: "cursor",
+            type: "EvpCursorRule",
+            default: undefined,
+            desc: "cursor type while hovering trigger",
+          },
+          {
+            property: "display",
+            type: "EvpDisplayRule",
+            default: undefined,
+            desc: "the display of trigger tooltip container",
+          },
+          {
+            property: "position",
+            type: (
+              <>
+                <div>elem of options</div>
+                <div>{"/ { top, left }"}</div>
+              </>
+            ),
+            default: '"top"',
+            options: `"top"
+            | "topLeft"
+            | "topLeftCorner"
+            | "topRight"
+            | "topRightCorner"
+            | "left"
+            | "leftTop"
+            | "leftBottom"
+            | "right"
+            | "rightTop"
+            | "rightBottom"
+            | "bottom"
+            | "bottomLeft"
+            | "bottomRight"
+            | "bottomLeftCorner"
+            | "bottomRightCorner"
+            | {
+              top?: string | number;
+              left?: string | number;
+            }`,
+            desc: "the position of trigger tooltip container",
+          },
+          { property: "transform", type: "{ vertial, horizontal }", default: undefined, desc: "tooltip offset" },
+          {
+            property: "transform.vertial",
+            type: `string | number`,
+            default: "sync with position",
+            options: `"top" | "center" | "bottom" | string | number`,
+            desc: "tooltip translateX",
+          },
+          {
+            property: "transform.horizontal",
+            type: `string | number`,
+            default: "sync with position",
+            options: `"left" | "center" | "right" | string | number`,
+            desc: "tooltip translateY",
+          },
+        ]}
+      />
       <EvpButton
         position="absolute"
         right={40}
