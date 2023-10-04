@@ -8,7 +8,7 @@ import Size from "./demos/progress/size";
 import Color from "./demos/progress/color";
 
 export default function ProgressView() {
-  const next = { route: "", name: "" };
+  const next = { route: "evp-steps", name: "Steps" };
   useEffect(() => {
     window.scrollTo({
       top: 0,

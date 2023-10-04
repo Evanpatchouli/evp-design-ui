@@ -53,6 +53,7 @@ import ImgView from "./preview/evp-img";
 import PaginatorView from "./preview/evp-paginator";
 import CalendarView from "./preview/evp-calendar";
 import ProgressView from "./preview/evp-progress";
+import StepView from "./preview/evp-steps";
 
 function App() {
   const location = useLocation();
@@ -112,6 +113,7 @@ function App() {
             <MenuItem link={"/components/evp-img"} title={"Img"} />
             <MenuItem link={"/components/evp-calendar"} title={"Calendar"} />
             <MenuItem link={"/components/evp-progress"} title={"Progress"} />
+            <MenuItem link={"/components/evp-steps"} title={"Steps"} />
           </Menu>
         </div>
         <div
@@ -171,6 +173,7 @@ function App() {
             <Route path="/components/evp-img" key={"img"} element={<ImgView />}></Route>
             <Route path="/components/evp-calendar" key={"calendar"} element={<CalendarView />} />
             <Route path="/components/evp-progress" key={"progress"} element={<ProgressView />} />
+            <Route path="/components/evp-steps" key={"steps"} element={<StepView />} />
             <Route path="/404" key={"404"} element={<NotFound />}></Route>
             <Route path="*" key={"404-catch"} element={<NotFound />}></Route>
           </Routes>

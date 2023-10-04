@@ -272,3 +272,9 @@ export {
   default as Progress,
   type EvpProgressProps,
 } from './evp-progress';
+
+export {
+  default as EvpSteps,
+  default as Steps,
+  type EvpStepsProps,
+} from './evp-steps';
