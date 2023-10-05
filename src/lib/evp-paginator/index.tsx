@@ -7,7 +7,7 @@ import NumUtils from "../utils/num.util";
 import Left from "../evp-icon/left";
 import { useEffect, useState } from "react";
 import { isInteger } from "lodash";
-import { ArrayStrictLengthed } from "../utils";
+import { ArrayStrictLengthed, hexAlpha } from "../utils";
 
 const Total = ({ showTotal, total }: { showTotal?: boolean; total?: number }) => (
   <EvpDom hidden={showTotal === false} mgr_8>
@@ -29,6 +29,7 @@ const Taber = ({
   setCurrentPage,
   counters,
   onPageChange,
+  colors,
 }: {
   showTaber?: boolean;
   total: number;
@@ -37,6 +38,14 @@ const Taber = ({
   setCurrentPage?: React.Dispatch<React.SetStateAction<number>>;
   counters?: number;
   onPageChange?: (current: number, pageSize: number) => void;
+  colors?: {
+    tabColor?: string;
+    tabBgColor?: string;
+    tabActiveColor?: string;
+    tabActiveBgColor?: string;
+    tabHoverColor?: string;
+    tabHoverBgColor?: string;
+  };
 }) => {
   const pagesMax = total > 0 ? Math.ceil(total / (pageSize ?? 10)) : 1;
 
@@ -59,7 +68,7 @@ const Taber = ({
   return (
     <>
       {showTaber !== false ? (
-        <div style={{ display: 'flex', alignItems: 'center', marginRight: 8 }}>
+        <div style={{ display: "flex", alignItems: "center", marginRight: 8 }}>
           <Left
             class={classNames("evp-counter-lefter", banLeft())}
             style={{
@@ -80,14 +89,23 @@ const Taber = ({
             .slice(countersWindow[0], countersWindow[1])
             .map((item) => (
               <EvpDom
-                class="evp-paginator-tab"
+                class={classNames(currentPage === item ? "evp-paginator-tab-active" : "evp-paginator-tab")}
                 mgr_8
                 w={30}
                 h={30}
-                style={{ textAlign: "center", lineHeight: "30px", borderRadius: 5 }}
+                style={{
+                  textAlign: "center",
+                  lineHeight: "30px",
+                  borderRadius: 5,
+                  // @ts-ignore
+                  "--tabColor": colors?.tabColor ?? Color.Black,
+                  "--tabBgColor": colors?.tabBgColor ?? Color.White,
+                  "--tabActiveColor": colors?.tabActiveColor ?? Color.White,
+                  "--tabActiveBgColor": colors?.tabActiveBgColor ?? Color.Blue,
+                  "--tabHoverColor": colors?.tabHoverColor ?? colors?.tabColor ?? Color.Black,
+                  "--tabHoverBgColor": colors?.tabHoverBgColor ?? hexAlpha(colors?.tabActiveBgColor ?? Color.Blue, 11),
+                }}
                 pointer
-                bgColor={currentPage === item ? Color.Blue : void 0}
-                color={currentPage === item ? Color.White : Color.Black}
                 $click={() => {
                   setCurrentPage?.(item);
                   onPageChange?.(item, pageSize ?? 10);
@@ -190,6 +208,33 @@ export interface EvpPaginatorProps
   onShowSizeChange?: (current: number, size: number) => void;
   onPageChange?: (current: number, pageSize: number) => void;
   quene?: ArrayStrictLengthed<"total" | "sizer" | "taber" | "jumper", 4>;
+  /**
+   * @defaultValue [string] `var(--tabColor) = Color.Black`
+   * @description tab text color
+   */
+  tabColor?: string;
+  /**
+   * @defaultValue [string] `var(--tabBgColor) = Color.White`
+   */
+  tabBgColor?: string;
+  /**
+   * @defaultValue [string] `var(--tabActiveColor) = Color.White`
+   * @description tab text color when active
+   */
+  tabActiveColor?: string;
+  /**
+   * @defaultValue [string] `var(--tabActiveBgColor) = Color.Blue`
+   */
+  tabActiveBgColor?: string;
+  /**
+   * @defaultValue [string] `var(--tabHoverColor) = var(--tabColor) = Color.Black`
+   * @description tab text color when hover
+   */
+  tabHoverColor?: string;
+  /**
+   * @defaultValue [string] `var(--tabHoverBgColor) = var(--tabActiveBgColor) + "11" = Color.Blue11`
+   */
+  tabHoverBgColor?: string;
 }
 
 const EvpPaginator: React.FC<EvpPaginatorProps> = ({
@@ -209,6 +254,12 @@ const EvpPaginator: React.FC<EvpPaginatorProps> = ({
   onPageChange,
   style,
   quene: _quene,
+  tabColor,
+  tabBgColor,
+  tabActiveColor,
+  tabActiveBgColor,
+  tabHoverColor,
+  tabHoverBgColor,
   ...props
 }) => {
   const quene = _quene ?? ["total", "sizer", "taber", "jumper"];
@@ -224,6 +275,14 @@ const EvpPaginator: React.FC<EvpPaginatorProps> = ({
         setCurrentPage={setCurrentPage}
         counters={counters}
         onPageChange={onPageChange}
+        colors={{
+          tabColor,
+          tabBgColor,
+          tabActiveColor,
+          tabActiveBgColor,
+          tabHoverColor,
+          tabHoverBgColor,
+        }}
       />
     ),
     jumper: (
@@ -247,6 +306,7 @@ const EvpPaginator: React.FC<EvpPaginatorProps> = ({
         ...style,
       }}
       {...props}
+      className={props.className ?? className}
     >
       {Elem[quene[0]]}
       {Elem[quene[1]]}

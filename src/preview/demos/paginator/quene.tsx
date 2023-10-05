@@ -2,7 +2,7 @@ import Tsx from "@/components/tsx";
 import { Card, Row } from "@/lib";
 import React, { useState } from "react";
 
-import { Button } from "evp-design-ui";
+import { Button, Toast } from "evp-design-ui";
 
 import { Paginator } from "evp-design-ui";
 
@@ -70,7 +70,22 @@ export default class Quene extends React.Component {
                   size="mini"
                   text="code"
                 />
-                <Button theme="text" size="mini" text="copy" />
+                <Button
+                  theme="text"
+                  size="mini"
+                  text="copy"
+                  $click={() => {
+                    navigator.clipboard
+                      .writeText(codes)
+                      .then(() => {
+                        Toast.success("Copy Success !");
+                      })
+                      .catch((err) => {
+                        console.error(err);
+                        Toast.error("Copy Failed !");
+                      });
+                  }}
+                />
               </Row>
               <Tsx show={this.state.showCode}>{codes}</Tsx>
             </div>

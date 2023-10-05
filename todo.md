@@ -1,5 +1,50 @@
 # Todo
 
-- [ ] make Paginator tab color customizable.
-- [ ] make Img toolbtns' tooltips customizable.
-- [x] complete position of Tooltip.
+- 2023 / 10 / 05
+  - [ ] upgrade docs' api to AptTable and DemoCard to latest.
+    - [ ] anchor
+    - [ ] badge
+    - [ ] breadcrumb
+    - [ ] button
+    - [ ] calendar
+    - [ ] card
+    - [ ] checkbox
+    - [ ] code
+    - [ ] col
+    - [ ] color
+    - [ ] counter
+    - [ ] datetime-picker
+    - [ ] dialog
+    - [ ] divider
+    - [ ] dom
+    - [ ] drawer
+    - [ ] flexbar
+    - [ ] form
+    - [ ] header
+    - [ ] img
+    - [ ] input
+    - [ ] label
+    - [ ] loading
+    - [ ] menu
+    - [ ] modal
+    - [ ] msg
+    - [ ] paginator
+    - [ ] popover
+    - [ ] progress
+    - [ ] radio
+    - [ ] row
+    - [ ] select
+    - [ ] shadow
+    - [ ] slider
+    - [ ] steps
+    - [ ] switch
+    - [ ] table
+    - [ ] tags
+    - [ ] toast
+    - [x] tooltip
+  - [ ] fix popover position. ( same with tooltip )
+
+- 2023 / 10 / 04
+  - [x] make Paginator tab color customizable.
+  - [ ] make Img toolbtns' tooltips customizable.
+  - [x] complete position of Tooltip.

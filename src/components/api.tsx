@@ -2,6 +2,7 @@ import { Table } from "evp-design-ui";
 
 export default function Api({
   data,
+  widths,
 }: {
   data: {
     property: string;
@@ -10,6 +11,13 @@ export default function Api({
     options?: any;
     desc?: any;
   }[];
+  widths?: {
+    preperty?: number | string;
+    type?: number | string;
+    default?: number | string;
+    options?: number | string;
+    desc?: number | string;
+  };
 }) {
   return (
     <Table
@@ -21,6 +29,9 @@ export default function Api({
           render: (val: string) => {
             return <span style={{ fontWeight: val.includes(".") ? "normal" : "bold" }}>{val}</span>;
           },
+          cellProps: {
+            width: widths?.preperty,
+          },
         },
         {
           label: "Type",
@@ -29,7 +40,7 @@ export default function Api({
             return <span style={{ color: val ? "black" : "lightGray" }}>{val ?? "any"}</span>;
           },
           cellProps: {
-            width: 100,
+            width: widths?.type ?? 100,
           },
         },
         {
@@ -40,6 +51,9 @@ export default function Api({
               <span style={{ color: val && val !== "undefined" ? "black" : "lightGray" }}>{val ?? "undefined"}</span>
             );
           },
+          cellProps: {
+            width: widths?.default,
+          },
         },
         {
           label: "Options",
@@ -48,7 +62,7 @@ export default function Api({
             return <span style={{ color: val ? "black" : "lightGray" }}>{val ?? "——"}</span>;
           },
           cellProps: {
-            width: 200,
+            width: widths?.options ?? 200,
           },
         },
         {
@@ -56,6 +70,9 @@ export default function Api({
           prop: "desc",
           render: (val) => {
             return <span style={{ color: val ? "black" : "lightGray" }}>{val ?? "——"}</span>;
+          },
+          cellProps: {
+            width: widths?.desc,
           },
         },
       ]}

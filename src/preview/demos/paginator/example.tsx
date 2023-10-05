@@ -1,8 +1,9 @@
 import Tsx from "@/components/tsx";
 import { Card, Row } from "@/lib";
 import React, { useState } from "react";
+import { Button, Toast } from "evp-design-ui";
 
-import { Button, Paginator } from "evp-design-ui";
+import { Paginator } from "evp-design-ui";
 
 const Demo: React.FC = () => {
   const [cur, setCur] = useState(1);
@@ -10,6 +11,23 @@ const Demo: React.FC = () => {
 
   return <Paginator total={48} currentPage={cur} setCurrentPage={setCur} pageSize={pageSize} />;
 };
+
+const codes = `
+import { Paginator } from "evp-design-ui";
+
+const Demo: React.FC = () => {
+  const [cur, setCur] = useState(1);
+  const [pageSize] = useState(10);
+
+  return (
+    <Paginator 
+      total={48} 
+      currentPage={cur} 
+      setCurrentPage={setCur} 
+      pageSize={pageSize} />
+  );
+};
+`;
 
 export default class Example extends React.Component {
   state: Readonly<{
@@ -37,26 +55,24 @@ export default class Example extends React.Component {
                   size="mini"
                   text="code"
                 />
-                <Button theme="text" size="mini" text="copy" />
+                <Button
+                  theme="text"
+                  size="mini"
+                  text="copy"
+                  $click={() => {
+                    navigator.clipboard
+                      .writeText(codes)
+                      .then(() => {
+                        Toast.success("Copy Success !");
+                      })
+                      .catch((err) => {
+                        console.error(err);
+                        Toast.error("Copy Failed !");
+                      });
+                  }}
+                />
               </Row>
-              <Tsx show={this.state.showCode}>
-                {`
-import { Paginator } from "evp-design-ui";
-
-const Demo: React.FC = () => {
-  const [cur, setCur] = useState(1);
-  const [pageSize] = useState(10);
-
-  return (
-    <Paginator 
-      total={48} 
-      currentPage={cur} 
-      setCurrentPage={setCur} 
-      pageSize={pageSize} />
-  );
-};
-`}
-              </Tsx>
+              <Tsx show={this.state.showCode}>{codes}</Tsx>
             </div>
           }
         >
