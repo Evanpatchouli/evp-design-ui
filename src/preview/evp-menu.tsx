@@ -1,22 +1,24 @@
-import Md from "@/components/md"
-import SvgIcons from "../lib/evp-icon/svg.icons"
-import EvpMenu from "../lib/evp-menu"
-import EvpMenuItem from "../lib/evp-menu-item"
-import EvpRow from "../lib/evp-row"
-import Tsx from "@/components/tsx"
-import Card from "@/components/card"
-import { useEffect, useState } from "react"
-import { EvpButton } from "evp-design-ui"
+import Md from "@/components/md";
+import SvgIcons from "../lib/evp-icon/svg.icons";
+import EvpMenu from "../lib/evp-menu";
+import EvpMenuItem from "../lib/evp-menu-item";
+import EvpRow from "../lib/evp-row";
+import Tsx from "@/components/tsx";
+import Card from "@/components/card";
+import { useEffect, useState } from "react";
+import { EvpButton } from "evp-design-ui";
+import MenuApi from "./apis/menu.api";
+import ItemColor from "./demos/menu/item-color";
 
 export default function MenuView() {
-  useEffect(()=>{
+  useEffect(() => {
     window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: 'smooth'
-});
-  }, [])
-  const [showCode, setShowCode] = useState<{[x:number]:boolean}>({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, []);
+  const [showCode, setShowCode] = useState<{ [x: number]: boolean }>({
     1: false,
     2: false,
     3: false,
@@ -24,19 +26,19 @@ export default function MenuView() {
     5: false,
     6: false,
     7: false,
-    8: false
-  })
+    8: false,
+  });
 
   const clickCode = (idx: number) => {
     let $showCode = { ...showCode };
     $showCode[idx] = !showCode[idx];
     setShowCode($showCode);
     return void 0;
-  }
-  return(
+  };
+  return (
     <div className="preview-container">
-<Md>
-{`
+      <Md>
+        {`
 # EvpMenu
 
 Menu is a component that displays a list of options.
@@ -45,35 +47,35 @@ Menu is a component that displays a list of options.
 
 **import:**
 `}
-</Md>
-<Tsx>
-{`
+      </Md>
+      <Tsx>
+        {`
 import { EvpMenu } from 'evp-design-ui'
 `}
-</Tsx>
-<Md>
-{`
+      </Tsx>
+      <Md>
+        {`
 **usage:**
 `}
-</Md>
-<Tsx>
-{`
+      </Md>
+      <Tsx>
+        {`
 <EvpMenu title="Main Menu">
   <EvpMenuItem icon='user'>User Space</EvpMenuItem>
   <EvpMenuItem icon='user'>User Space</EvpMenuItem>
   <EvpMenuItem icon='user'>User Space</EvpMenuItem>
 </EvpMenu>
 `}
-</Tsx>
+      </Tsx>
       <Card>
         <EvpMenu title="Main Menu">
-          <EvpMenuItem icon='user'>User Space</EvpMenuItem>
-          <EvpMenuItem icon='user'>User Space</EvpMenuItem>
-          <EvpMenuItem icon='user'>User Space</EvpMenuItem>
+          <EvpMenuItem icon="user">User Space</EvpMenuItem>
+          <EvpMenuItem icon="user">User Space</EvpMenuItem>
+          <EvpMenuItem icon="user">User Space</EvpMenuItem>
         </EvpMenu>
       </Card>
-<Md>
-{`
+      <Md>
+        {`
 ## EvpMenuItem
 
 EvpMenu use its children as menu options, both EvpMenu and EvpMenuItem are standard menu option item.
@@ -94,37 +96,47 @@ If you want to display a submenu, you can set a EvpMenu as one of a menu childre
 
 If you want to disable some menu or menuitem, you can assign not-allowed attribute to it.
 `}
-</Md>
-      <Card toolBar={<>
-        <EvpButton theme="text" $click={()=>clickCode(1)} plain size="mini" text="code" />
-        <EvpButton theme="text" size="mini" text="copy" />
-      </>}>
-        <EvpMenu title={
-          <EvpRow>
-            <SvgIcons.All radius={18} pd={[0,12,0,0]}/>
-            <h4>Main Menu</h4>
-          </EvpRow>
+      </Md>
+      <Card
+        toolBar={
+          <>
+            <EvpButton theme="text" $click={() => clickCode(1)} plain size="mini" text="code" />
+            <EvpButton theme="text" size="mini" text="copy" />
+          </>
         }
-        mg={[0,0,0,0]}
+      >
+        <EvpMenu
+          title={
+            <EvpRow>
+              <SvgIcons.All radius={18} pd={[0, 12, 0, 0]} />
+              <h4>Main Menu</h4>
+            </EvpRow>
+          }
+          mg={[0, 0, 0, 0]}
+          keyId={"MainMenu"}
         >
-          <EvpMenuItem icon='user'>UserIcon Item</EvpMenuItem>
-          <EvpMenuItem icon='waterfalls_h'>UserIcon Item</EvpMenuItem>
-          <EvpMenu not-allowed submenu icon='user' title="SubMenu">
-            <EvpMenuItem not-allowed icon='unknown'>Unknown Item</EvpMenuItem>
-            <EvpMenuItem icon='unknown'>Unknown Item</EvpMenuItem>
-            <EvpMenuItem icon='unknown'>Unknown Item</EvpMenuItem>
+          <EvpMenuItem icon="user">UserIcon Item</EvpMenuItem>
+          <EvpMenuItem icon="waterfalls_h">UserIcon Item</EvpMenuItem>
+          <EvpMenu not-allowed submenu icon="user" title="SubMenu">
+            <EvpMenuItem not-allowed icon="unknown">
+              Unknown Item
+            </EvpMenuItem>
+            <EvpMenuItem icon="unknown">Unknown Item</EvpMenuItem>
+            <EvpMenuItem icon="unknown">Unknown Item</EvpMenuItem>
           </EvpMenu>
-          <EvpMenu submenu icon='user' title="SubMenu">
-            <EvpMenuItem not-allowed icon='unknown'>Unknown Item</EvpMenuItem>
-            <EvpMenuItem icon='unknown'>Unknown Item</EvpMenuItem>
-            <EvpMenuItem icon='unknown'>Unknown Item</EvpMenuItem>
+          <EvpMenu submenu icon="user" title="SubMenu">
+            <EvpMenuItem not-allowed icon="unknown">
+              Not-allowed Item
+            </EvpMenuItem>
+            <EvpMenuItem icon="unknown">Unknown Item</EvpMenuItem>
+            <EvpMenuItem icon="unknown">Unknown Item</EvpMenuItem>
           </EvpMenu>
-          <EvpMenuItem icon='true_circle'>UserIcon Item</EvpMenuItem>
+          <EvpMenuItem icon="true_circle">UserIcon Item</EvpMenuItem>
         </EvpMenu>
       </Card>
-{showCode[1]?
-<Tsx>
-{`
+      {showCode[1] ? (
+        <Tsx>
+          {`
 <EvpMenu title={
   <EvpRow>
     <SvgIcons.All radius={18} pd={[0,12,0,0]}/>
@@ -148,29 +160,33 @@ mg={[0,0,0,0]}
   <EvpMenuItem icon='true_circle'>UserIcon Item</EvpMenuItem>
 </EvpMenu>
 `}
-</Tsx>
-: void 0}
-<Md>
-{`
+        </Tsx>
+      ) : (
+        void 0
+      )}
+      <Md>
+        {`
 ## Link
 
 If you want to navigate to a route while clicking, you can assign to the link attribute.
 `}
-</Md>
-      <Card toolBar={<>
-        <EvpButton theme="text" $click={()=>clickCode(2)} plain size="mini" text="code" />
-        <EvpButton theme="text" size="mini" text="copy" />
-      </>}>
-        <EvpMenu title={
-          <span style={{ fontWeight: 'bold' }}>Route Menu</span>
-        }>
-          <EvpMenuItem link='/'>Home</EvpMenuItem>
-          <EvpMenuItem link='/components/evp-menu'>EvpMenu</EvpMenuItem>
+      </Md>
+      <Card
+        toolBar={
+          <>
+            <EvpButton theme="text" $click={() => clickCode(2)} plain size="mini" text="code" />
+            <EvpButton theme="text" size="mini" text="copy" />
+          </>
+        }
+      >
+        <EvpMenu title={<span style={{ fontWeight: "bold" }}>Route Menu</span>}>
+          <EvpMenuItem link="/">Home</EvpMenuItem>
+          <EvpMenuItem link="/components/evp-menu">EvpMenu</EvpMenuItem>
         </EvpMenu>
       </Card>
-{showCode[2]?
-<Tsx>
-{`
+      {showCode[2] ? (
+        <Tsx>
+          {`
 <EvpMenu title={
   <span style={{ fontWeight: 'bold' }}>Route Menu</span>
 }>
@@ -178,33 +194,37 @@ If you want to navigate to a route while clicking, you can assign to the link at
   <EvpMenuItem link='/components/evp-menu'>EvpMenu</EvpMenuItem>
 </EvpMenu>
 `}
-</Tsx>
-: void 0}
-<Md>
-{`
+        </Tsx>
+      ) : (
+        void 0
+      )}
+      <Md>
+        {`
 ## ItemIndent
 
 If you want to indent the menu item, you can assign to the itemIndent attribute. 
 
 Default is no indent, if you set it to true, it will be indented at 18px. You can also set it to a valid number or string.
 `}
-</Md>
-      <Card toolBar={<>
-        <EvpButton theme='text' $click={()=>clickCode(3)} plain size="mini" text="code" />
-        <EvpButton theme='text' size="mini" text="copy" />
-      </>}>
-        <EvpMenu title={
-          <span style={{ fontWeight: 'bold' }}>Menu ItemIndent</span>
-        }>
+      </Md>
+      <Card
+        toolBar={
+          <>
+            <EvpButton theme="text" $click={() => clickCode(3)} plain size="mini" text="code" />
+            <EvpButton theme="text" size="mini" text="copy" />
+          </>
+        }
+      >
+        <EvpMenu title={<span style={{ fontWeight: "bold" }}>Menu ItemIndent</span>}>
           <EvpMenuItem icon="user">User</EvpMenuItem>
           <EvpMenu submenu itemIndent icon="help" title="Help">
             <EvpMenuItem icon="user">User</EvpMenuItem>
           </EvpMenu>
         </EvpMenu>
       </Card>
-{showCode[3]?
-<Tsx>
-{`
+      {showCode[3] ? (
+        <Tsx>
+          {`
 <EvpMenu title={
   <span style={{ fontWeight: 'bold' }}>Route Menu</span>
 }>
@@ -214,46 +234,38 @@ Default is no indent, if you set it to true, it will be indented at 18px. You ca
   </EvpMenu>
 </EvpMenu>
 `}
-</Tsx>
-: void 0}
-<Md>
-{`
+        </Tsx>
+      ) : (
+        void 0
+      )}
+      <Md>
+        {`
+### Customize menuitem colors
+
+You can customize menuitem colors at different states by setting \`itemColor\` props.
+`}
+      </Md>
+      <ItemColor />
+      <Md>
+        {`
 ## Api
 
 **EvpMenu Apis**
 
-★ container based on EvpCol and EvpRow
+★ container based on EvpCol and EvpRow  
 ★ props extends EvpBaseProps
-
-- **children** ? : The following contents of this menu, usually to be of EvpMenuItem
-  + type : React.ReactNode | EvpMenu => JSX.Element | EvpMenuItem => JSX.Element
-- **title** ? : Title text could be a string or JSX.Element
-  + type : string | JSX.Element,
-- **submenu** ? : is this EvpMenu a submenu of another EvpMenu
-  + default : false
-  + type: boolean
-- **w** ? : Default width is 260px
-  + type : string | number
-- **h** ? : Default height is "100%"
-  + default : "100%"
-  + type : string | number
-- **icon** ? : The EvpIcon by the left side with default redius 18 rather than the default 24 redius of EvpIcon
-  + default : undefined
-  + type : IconType
-- **link** ? : route-link to where
-  + default : undefined
-  + type: string | { path?: string; hash?: boolean; }
-- **hash** ? : is link a hash route
-  + default: 
-  + type: boolean
-- **itemIndent** ? : indent of submenu items
-  + default : undefined when not assigned / 18px when true
-  + type : boolean | number | string
 `}
-</Md>
-      <EvpButton position="absolute" right={40} bottom={0}
-        plain shadow={false}
-        link="/components/evp-header" text="★ Next Doc EvpHeader >" />
+      </Md>
+      <MenuApi />
+      <EvpButton
+        position="absolute"
+        right={40}
+        bottom={0}
+        plain
+        shadow={false}
+        link="/components/evp-header"
+        text="★ Next Doc EvpHeader >"
+      />
     </div>
-  )
+  );
 }

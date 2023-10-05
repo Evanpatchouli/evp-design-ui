@@ -1,8 +1,37 @@
 .evp-menu-item {
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
   border-bottom: 1px solid var(--PaleGray);
+  --color: var(--menuitem-color-unselected-text);
+  --bg: var(--menuitem-color-unselected-bg);
+  background-color: var(--bg);
+  color: var(--color);
 }
 
 .evp-menu-item:hover {
-  transition: background-color 0.3s ease;
-  background-color: #81D4FA25;
+  --color: var(--menuitem-color-hover-text);
+  --bg: var(--menuitem-color-hover-bg);
+  background-color: var(--bg);
+  color: var(--color);
+}
+
+.evp-menu-item-selected {
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  --color: var(--menuitem-color-selected-text);
+  --bg: var(--menuitem-color-selected-bg);
+  background-color: var(--bg);
+  color: var(--color);
+}
+
+.evp-menu-item-selected:hover {
+  --color: var(--menuitem-color-selected-hover-text);
+  --bg: var(--menuitem-color-selected-hover-bg);
+  background-color: var(--bg);
+  color: var(--color);
+}
+
+.evp-menu-item:active {
+  --color: var(--menuitem-color-click-text);
+  --bg: var(--menuitem-color-click-bg);
+  background-color: var(--bg);
+  color: var(--color);
 }

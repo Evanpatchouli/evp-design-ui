@@ -1,5 +1,4 @@
 export enum Color {
-  
   PaleRed = "#FF7256",
   ShallowRed = "#FF6347",
   LightRed = "#FF4500",
@@ -8,6 +7,7 @@ export enum Color {
   DeepRed = "#CD0000",
   DarkRed = "#8B0000",
 
+  ReallyPaleBlue = "#d7f2ff",
   PaleBlue = "#81D4FA",
   ShallowBlue = "#00BFFF",
   LightBlue = "#1E90FF",
@@ -23,7 +23,7 @@ export enum Color {
   HeavyYellow = "#EEEE00",
   DeepYellow = "#EEC900",
   DarkYellow = "#CDCD00",
-  
+
   PaleGreen = "#9AFF9A",
   ShallowGreen = "#00FF7F",
   LightGreen = "#7FFF00",
@@ -32,6 +32,7 @@ export enum Color {
   DeepGreen = "#2E8B57",
   DarkGreen = "#006400",
 
+  ReallyPaleGray = "#ebeef5",
   PaleGray = "#E8E8E8",
   ShallowGray = "#CFCFCF",
   LightGray = "#B5B5B5",
@@ -60,9 +61,7 @@ export enum Color {
   FloralWhite = "#FFFAF0",
 }
 
-
-
 export enum Shadow {
-  Base = '0px 2px 5px 0px rgba(0, 0, 0, 0.1)',
-  Pale = '0px 2px 5px 1px #0000001e'
+  Base = "0px 2px 5px 0px rgba(0, 0, 0, 0.1)",
+  Pale = "0px 2px 5px 1px #0000001e",
 }

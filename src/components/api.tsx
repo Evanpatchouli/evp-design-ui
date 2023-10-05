@@ -1,4 +1,32 @@
-import { Table } from "evp-design-ui";
+import { Table, Tag } from "evp-design-ui";
+
+const typeRender = (val: any) => {
+  switch (val) {
+    case "React.ReactNode": {
+      return <Tag light>{val}</Tag>;
+    }
+    case "string": {
+      return <Tag light>{val}</Tag>;
+    }
+    case "number": {
+      return (
+        <Tag plain theme="white">
+          {val}
+        </Tag>
+      );
+    }
+    case "boolean": {
+      return (
+        <Tag plain theme="primary">
+          {val}
+        </Tag>
+      );
+    }
+    default: {
+      return <>{val}</>;
+    }
+  }
+};
 
 export default function Api({
   data,
@@ -37,7 +65,7 @@ export default function Api({
           label: "Type",
           prop: "type",
           render: (val) => {
-            return <span style={{ color: val ? "black" : "lightGray" }}>{val ?? "any"}</span>;
+            return <span style={{ color: val ? "black" : "lightGray" }}>{typeRender(val ?? ("any" as any))}</span>;
           },
           cellProps: {
             width: widths?.type ?? 100,

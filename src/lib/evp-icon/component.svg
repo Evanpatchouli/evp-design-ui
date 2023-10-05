@@ -11,7 +11,7 @@
     stroke="#000000"
     stroke-width="4"
     stroke-linecap="round"
-    stroke-linejoin="round"
+    strokeLinejoin="round"
   />
   <path
     d="M30 25L37 18L44 25L37 32L30 25Z"
@@ -19,7 +19,7 @@
     stroke="#000000"
     stroke-width="4"
     stroke-linecap="round"
-    stroke-linejoin="round"
+    strokeLinejoin="round"
   />
   <path
     d="M17 37L24 30L31 37L24 44L17 37Z"
@@ -27,7 +27,7 @@
     stroke="#000000"
     stroke-width="4"
     stroke-linecap="round"
-    stroke-linejoin="round"
+    strokeLinejoin="round"
   />
   <path
     d="M4 24L11 17L18 24L11 31L4 24Z"
@@ -35,6 +35,6 @@
     stroke="#000000"
     stroke-width="4"
     stroke-linecap="round"
-    stroke-linejoin="round"
+    strokeLinejoin="round"
   />
 </svg>

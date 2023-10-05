@@ -18,12 +18,12 @@
 }
 
 .evp-menu-title:hover {
-  transition: background-color 0.3s ease;
+  transition: background-color 0.1s ease-in-out;
   background-color: #81D4FA25;
 }
 
 .evp-menu-children-wrapper {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   max-height: 100vh;
   will-change: height;
 }

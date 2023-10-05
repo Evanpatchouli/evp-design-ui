@@ -55,7 +55,7 @@
 }
 
 .evp-disabled {
-  /* cursor: not-allowed !important; */
+  cursor: default !important;
   pointer-events: none !important;
   opacity: 0.5 !important;
   color: var(--LightGray) !important;
