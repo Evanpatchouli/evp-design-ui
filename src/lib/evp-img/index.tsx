@@ -16,11 +16,23 @@ interface BaseImgProps extends React.DetailedHTMLProps<React.ImgHTMLAttributes<H
   alt: string;
   preview?: boolean;
   setPreview?: React.Dispatch<React.SetStateAction<boolean>>;
+  downLoadTooltipText?: string;
+  copyTooltipText?: string;
 }
 
 export type EvpImgProps = {} & BaseImgProps & EvpBaseProps;
 
-const EvpImg: React.FC<EvpImgProps> = ({ alt, class: className, id, style, preview, setPreview, ...props }) => {
+const EvpImg: React.FC<EvpImgProps> = ({
+  alt,
+  class: className,
+  id,
+  style,
+  preview,
+  setPreview,
+  downLoadTooltipText,
+  copyTooltipText,
+  ...props
+}) => {
   const $props = AllParser(props);
   const { display, ...$style } = $props.style;
 
@@ -51,7 +63,7 @@ const EvpImg: React.FC<EvpImgProps> = ({ alt, class: className, id, style, previ
         }}
         footer={
           <>
-            <EvpToolTip content="Download">
+            <EvpToolTip content={downLoadTooltipText ?? "Download"}>
               <EvpButton
                 theme="text"
                 $click={() => {
@@ -79,7 +91,7 @@ const EvpImg: React.FC<EvpImgProps> = ({ alt, class: className, id, style, previ
             >
               <ZoomIn />
             </EvpButton>
-            <EvpToolTip content="Copy URL">
+            <EvpToolTip content={copyTooltipText ?? "Copy URL"}>
               <EvpButton
                 theme="text"
                 $click={() => {

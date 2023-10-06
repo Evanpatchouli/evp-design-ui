@@ -25,7 +25,7 @@
     - [ ] flexbar
     - [ ] form
     - [ ] header
-    - [ ] img
+    - [x] img
     - [ ] input
     - [ ] label
     - [ ] loading
@@ -50,5 +50,5 @@
 
 - 2023 / 10 / 04
   - [x] make Paginator tab color customizable.
-  - [ ] make Img toolbtns' tooltips customizable.
+  - [x] make Img toolbtns' tooltips customizable.
   - [x] complete position of Tooltip.

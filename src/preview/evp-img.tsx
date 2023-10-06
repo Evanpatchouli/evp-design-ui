@@ -1,9 +1,9 @@
 import Md from "@/components/md";
 import Tsx from "@/components/tsx";
-import { EvpCode } from "@/lib";
 import { EvpButton } from "evp-design-ui";
 import { useEffect } from "react";
 import Example from "./demos/img/example";
+import ImgApi from "./apis/img.api";
 
 export default function ImgView() {
   const next = { route: "evp-calendar", name: "Calendar" };
@@ -59,17 +59,7 @@ Here are some examples about EvpImg.
 
 `}
       </Md>
-      <EvpCode lang="typescript" theme="coldarkDark">
-        {`
-interface BaseImgProps extends React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement> {
-  alt: string;
-  preview?: boolean;
-  setPreview?: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-export type EvpImgProps = {} & BaseImgProps & EvpBaseProps;
-`}
-      </EvpCode>
+      <ImgApi />
       <EvpButton
         position="absolute"
         right={40}
