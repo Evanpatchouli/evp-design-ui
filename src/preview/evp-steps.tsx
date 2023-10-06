@@ -10,7 +10,7 @@ import Controll from "./demos/steps/controll";
 import Header from "./demos/steps/header";
 
 export default function StepView() {
-  const next = { route: "", name: "" };
+  const next = { route: "evp-required", name: "Required" };
   useEffect(() => {
     window.scrollTo({
       top: 0,

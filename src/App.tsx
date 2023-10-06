@@ -54,6 +54,7 @@ import PaginatorView from "./preview/evp-paginator";
 import CalendarView from "./preview/evp-calendar";
 import ProgressView from "./preview/evp-progress";
 import StepView from "./preview/evp-steps";
+import RequiredView from "./preview/evp-required";
 
 function App() {
   const location = useLocation();
@@ -68,7 +69,7 @@ function App() {
         <div
           className="evp NavMenu"
           style={{
-            display: location.pathname === "/" || location.pathname === "/404" ? "none" : void 0,
+            display: location.pathname === "/" || location.pathname.includes("/404") ? "none" : void 0,
           }}
         >
           <Menu border="none" link={"/general"} title={"General"}>
@@ -97,7 +98,7 @@ function App() {
             <MenuItem link={"/components/evp-tag"} title={"Tag"} />
             <MenuItem link={"/components/evp-tooltip"} title={"ToolTip"} />
             <MenuItem link={"/components/evp-badge"} title={"Badge"} />
-            <MenuItem link={"/components/evp-anchor"} title={"Achor"} />
+            <MenuItem link={"/components/evp-anchor"} title={"Anchor"} />
             <MenuItem link={"/components/evp-breadcrumb"} title={"BreadCrumb"} />
             <MenuItem link={"/components/evp-counter"} title={"Counter"} />
             <MenuItem hidden link={"/components/evp-datetime-picker"} title={"DateTimePicker"} />
@@ -114,6 +115,7 @@ function App() {
             <MenuItem link={"/components/evp-calendar"} title={"Calendar"} />
             <MenuItem link={"/components/evp-progress"} title={"Progress"} />
             <MenuItem link={"/components/evp-steps"} title={"Steps"} />
+            <MenuItem link={"/components/evp-required"} title={"Required"} />
           </Menu>
         </div>
         <div
@@ -174,6 +176,7 @@ function App() {
             <Route path="/components/evp-calendar" key={"calendar"} element={<CalendarView />} />
             <Route path="/components/evp-progress" key={"progress"} element={<ProgressView />} />
             <Route path="/components/evp-steps" key={"steps"} element={<StepView />} />
+            <Route path="/components/evp-required" key={"required"} element={<RequiredView />} />
             <Route path="/404" key={"404"} element={<NotFound />}></Route>
             <Route path="*" key={"404-catch"} element={<NotFound />}></Route>
           </Routes>

@@ -52,11 +52,3 @@
   padding-right: 8px;
   padding-left: 8px;
 }
-
-.evp-required {
-  color: #ff0000;
-  width: 14px;
-  display: flex;
-  margin-top: 4px;
-  align-items: center;
-}

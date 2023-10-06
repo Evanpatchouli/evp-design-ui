@@ -1,12 +1,17 @@
-import { Table, Tag } from "evp-design-ui";
+import { Required, Table, Tag } from "evp-design-ui";
 
-const typeRender = (val: any) => {
+const typeRender = (val: any, required: boolean = false) => {
   switch (val) {
     case "React.ReactNode": {
       return <Tag light>{val}</Tag>;
     }
     case "string": {
-      return <Tag light>{val}</Tag>;
+      return (
+        <>
+          {<Required hidden={!required} />}
+          <Tag light>{val}</Tag>
+        </>
+      );
     }
     case "number": {
       return (
@@ -38,6 +43,7 @@ export default function Api({
     default?: any;
     options?: any;
     desc?: any;
+    required?: boolean;
   }[];
   widths?: {
     preperty?: number | string;
@@ -64,8 +70,12 @@ export default function Api({
         {
           label: "Type",
           prop: "type",
-          render: (val) => {
-            return <span style={{ color: val ? "black" : "lightGray" }}>{typeRender(val ?? ("any" as any))}</span>;
+          render: (val, row) => {
+            return (
+              <span style={{ color: val ? "black" : "lightGray" }}>
+                {typeRender(val ?? ("any" as any), row.required)}
+              </span>
+            );
           },
           cellProps: {
             width: widths?.type ?? 100,

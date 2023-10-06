@@ -278,3 +278,8 @@ export {
   default as Steps,
   type EvpStepsProps,
 } from './evp-steps';
+
+export {
+  default as EvpRequired,
+  default as Required,
+} from './evp-required';

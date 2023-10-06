@@ -36,6 +36,7 @@
 @import url(./evp-calendar/index.css);
 @import url(./evp-row/index.css);
 @import url(./evp-steps/index.css);
+@import url(./evp-required/index.css);
 
 .evp {
   font-size: var(--text-size);
