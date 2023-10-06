@@ -4,6 +4,7 @@ import EvpIcon from "../lib/evp-icon";
 import Card from "@/components/card";
 import Code from "@/components/code";
 import { useEffect } from "react";
+import Effect from "./demos/button/effect";
 
 export default function ButtonView() {
   useEffect(()=>{
@@ -296,6 +297,15 @@ Buttons have total 4 shapes and default is undefined with radius-mini.
 }}><EvpIcon unknown /></EvpButton>
 `}
 </Code>
+    <Md>
+{`
+### Effects
+
+Default, Button has a effect of **fade** while being clicked. You can set the fade attribute to \`false\` to disable it.  
+Besides, Button alse has a effect of **ripple**. You can set the ripple attribute to \`true\` to apply it.
+`}
+    </Md>
+    <Effect />
 <Md>
 {`
 ## Api
@@ -323,6 +333,14 @@ Buttons have total 4 shapes and default is undefined with radius-mini.
   + type: string | { path?: string; hash?: boolean; }
 - hash: is link a hash route
   + type: boolean
+- fade: whether to show fade effect When clicked
+  + type : boolean
+  + default: true
+  + options: true | false
+- ripple: whether to show ripple effect When clicked
+  + type : boolean
+  + default: false
+  + options: true | false
 `}
 </Md>
       <EvpButton position="absolute" right={40} bottom={0}

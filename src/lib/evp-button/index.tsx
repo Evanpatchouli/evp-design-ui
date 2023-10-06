@@ -13,15 +13,7 @@ interface EvpButtonSpecProps {
   /** Default type is 'button' */
   type?: "button" | "reset" | "submit";
   /** Default theme is 'primary' */
-  theme?:
-    | "white"
-    | "primary"
-    | "success"
-    | "warning"
-    | "danger"
-    | "info"
-    | "dark"
-    | "text";
+  theme?: "white" | "primary" | "success" | "warning" | "danger" | "info" | "dark" | "text";
   plain?: boolean;
   size?: "mini" | "small" | "middle" | "large" | "huge";
   /** default is undefined, square will has 0 border-radius */
@@ -31,6 +23,8 @@ interface EvpButtonSpecProps {
   link?: string | { path?: string; hash?: boolean };
   hash?: boolean;
   loading?: boolean;
+  fade?: boolean;
+  ripple?: boolean;
 }
 
 const EvpButton: React.FC<EvpButtonProps> = (props: EvpButtonProps) => {
@@ -49,14 +43,48 @@ const EvpButton: React.FC<EvpButtonProps> = (props: EvpButtonProps) => {
   const plain = props.plain ? "plain" : "";
   const shape = props.shape ?? "";
   const $class = props.class ?? "";
+
+  const [rippleMaskConfig, setRippleMaskConfig] = React.useState<any>({});
+
   return (
     <button
-      className={`evp evp-button ${theme} ${shadow} ${size} ${plain} ${shape} ${$class} ${
-        props.loading ? "evp-disabled" : ""
-      }`.trim()}
+      // `evp evp-button ${theme} ${shadow} ${size} ${plain} ${shape} ${$class} ${
+      //   props.loading ? "evp-disabled" : ""
+      // }`.trim()
+      className={classNames({
+        evp: true,
+        "evp-button": true,
+        [theme]: true,
+        [shadow]: true,
+        [size]: true,
+        [plain]: true,
+        [shape]: true,
+        [$class]: true,
+        "evp-btn-fade": props.fade ?? true,
+        ripple: props.ripple ?? false,
+        "evp-disabled": props.loading ?? false,
+      })}
       id={$props.id}
       onClick={clickHandler}
-      style={$props.style}
+      onClickCapture={(e) => {
+        const newRippleMaskConfig = {
+          offsetX: e.nativeEvent.offsetX,
+          offsetY: e.nativeEvent.offsetY,
+          clientX: e.currentTarget.clientWidth,
+          clientY: e.currentTarget.clientHeight,
+        };
+        if (rippleMaskConfig !== newRippleMaskConfig) {
+          setRippleMaskConfig(newRippleMaskConfig);
+        }
+      }}
+      style={{
+        ...$props.style,
+        // @ts-ignore
+        "--ripple-x": `${rippleMaskConfig.offsetX ?? 0}px`,
+        "--ripple-y": `${rippleMaskConfig.offsetY ?? 0}px`,
+        "--ripple-w": `${(rippleMaskConfig.clientX ?? 0) * 3}px`,
+        "--ripple-h": `${(rippleMaskConfig.clientY ?? 0) * 3}px`,
+      }}
       type={props.type ?? "button"}
     >
       <div className="evp-button-content">
@@ -64,16 +92,12 @@ const EvpButton: React.FC<EvpButtonProps> = (props: EvpButtonProps) => {
           <EvpLoading.Text
             className={classNames("btn-loading", props.loading ? "" : "hidden")}
             style={{
-              marginRight:
-                props.loading === true
-                  ? props.children ?? props.text
-                    ? 14
-                    : 0
-                  : 0,
+              marginRight: props.loading === true ? (props.children ?? props.text ? 14 : 0) : 0,
             }}
           />
         }
         {props.children ?? props.text ?? ""}
+        {/* {JSON.stringify(clickSite)} */}
       </div>
     </button>
   );
