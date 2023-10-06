@@ -170,6 +170,18 @@ export {
   default as EvpSlider,
   default as Slider,
   type EvpSliderProps,
+} from "./evp-slider-v2";
+
+export {
+  default as EvpSliderV2,
+  default as SliderV2,
+  type EvpSliderProps as EvpSliderProps_V2,
+} from "./evp-slider-v2";
+
+export {
+  default as EvpSlider_V1,
+  default as Slider_V1,
+  type EvpSliderProps as EvpSliderProps_V1,
 } from "./evp-slider";
 
 export {

@@ -13,7 +13,7 @@ export const toFixedStrictly = (num: number, precision: number = 2) => {
   if (precision > 0 && !s.includes(".")) {
     s = s + ".";
   }
-  s = s.padEnd(s.length + precision, "0");
+  s = s.padEnd(s.length + precision - 1, "0");
   return s;
 };
 

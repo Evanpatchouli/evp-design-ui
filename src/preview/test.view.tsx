@@ -13,9 +13,11 @@ import EvpCheckBox from "@/lib/evp-checkbox";
 import EvpRadioGroup from "@/lib/evp-radio-group/inedx";
 import EvpRadio from "@/lib/evp-radio";
 import EvpSelect from "@/lib/evp-select";
-import EvpSlider from "@/lib/evp-slider";
+// import EvpSlider from "@/lib/evp-slider";
+import EvpSlider from "@/lib/evp-slider-v2";
 import EvpCardV2 from "@/lib/evp-card/index.v2";
 import { useState } from "react";
+import EvpSliderV2 from "@/lib/evp-slider-v2";
 
 export default function TestViewView() {
   const store = useMobx("store");
@@ -245,6 +247,9 @@ export default function TestViewView() {
             }}
           />
         </EvpCardV2>
+        <Card>
+          <EvpSliderV2 name="slid" />
+        </Card>
       </PreContext.Provider>
     </div>
   );

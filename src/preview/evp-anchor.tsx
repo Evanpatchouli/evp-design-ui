@@ -4,7 +4,7 @@ import { EvpButton } from "evp-design-ui";
 import { useEffect } from "react";
 import Example from "./demos/anchor/example";
 import Hash from "./demos/anchor/hash";
-import AnchorApi from "./apis/anchor";
+import AnchorApi from "./apis/anchor.api";
 
 export default function AnchorView() {
   useEffect(() => {

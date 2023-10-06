@@ -1,0 +1,92 @@
+.evp.evp-slider {
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  box-sizing: border-box;
+  padding-right: 14px;
+
+  .evp.evp-tooltip-container {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.evp-slider-input {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 5px;
+  background: #ddd;
+  outline: none;
+  opacity: 0.5;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+
+  &[type="range"] {
+    background: -webkit-linear-gradient(#6060ff, #6060ff) no-repeat, var(--etcColor, #eee);
+    background-size: calc(var(--rate));
+    margin-inline: 0px;
+    margin-block: 8px;
+  }
+}
+
+.evp-slider-input:hover {
+  opacity: 1;
+  cursor: pointer;
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.evp-slider-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 0;
+  background: url("./thumb.svg");
+  background-size: cover;
+
+  /* Not work */
+  &:hover {
+    cursor: grab;
+  }
+
+  /* Not work */
+  &:active {
+    cursor: -webkit-grabbing;
+    cursor: grabbing;
+  }
+
+  /* Not work */
+  /* &::after {
+    position: absolute;
+    content: "tooltip";
+    top: 0;
+    left: 0;
+  } */
+}
+
+.evp-slider-input::-moz-range-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 23px;
+  height: 23px;
+  border: 0;
+  background: url("./thumb.svg");
+  background-size: cover;
+
+  /* Not work */
+  &:hover {
+    cursor: -moz-grab;
+  }
+
+  /* Not work */
+  &:active {
+    cursor: -moz-grabbing;
+    cursor: grabbing;
+  }
+}

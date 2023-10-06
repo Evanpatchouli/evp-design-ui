@@ -1,12 +1,14 @@
 # Todo
 
-- 2023 / 10 / 07
+- 2023 / 10 / 06
   - [ ] upgrade evp-menu's useMenu, useMenuRef and controllability.
   - [x] refactor evp-menu's apis to ApiTable.
+  - [x] refactor evp-slider with raw input
+  - [x] upgrade evp-slider to support step
 
 - 2023 / 10 / 05
   - [ ] upgrade docs' api to AptTable and DemoCard to latest.
-    - [ ] anchor
+    - [x] anchor
     - [ ] badge
     - [ ] breadcrumb
     - [ ] button
@@ -39,7 +41,7 @@
     - [ ] row
     - [ ] select
     - [ ] shadow
-    - [ ] slider
+    - [x] slider
     - [ ] steps
     - [ ] switch
     - [ ] table
