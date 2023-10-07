@@ -38,6 +38,7 @@
 @import url(./evp-row/index.css);
 @import url(./evp-steps/index.css);
 @import url(./evp-required/index.css);
+@import url(./evp-waterfalls/index.css);
 
 .evp {
   font-size: var(--text-size);

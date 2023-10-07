@@ -55,6 +55,7 @@ import CalendarView from "./preview/evp-calendar";
 import ProgressView from "./preview/evp-progress";
 import StepView from "./preview/evp-steps";
 import RequiredView from "./preview/evp-required";
+import WaterfallsView from "./preview/evp-waterfalls";
 
 function App() {
   const location = useLocation();
@@ -116,6 +117,7 @@ function App() {
             <MenuItem link={"/components/evp-progress"} title={"Progress"} />
             <MenuItem link={"/components/evp-steps"} title={"Steps"} />
             <MenuItem link={"/components/evp-required"} title={"Required"} />
+            <MenuItem link={"/components/evp-waterfalls"} title={"Waterfalls"} />
           </Menu>
         </div>
         <div
@@ -176,7 +178,12 @@ function App() {
             <Route path="/components/evp-calendar" key={"calendar"} element={<CalendarView />} />
             <Route path="/components/evp-progress" key={"progress"} element={<ProgressView />} />
             <Route path="/components/evp-steps" key={"steps"} element={<StepView />} />
-            <Route path="/components/evp-required" key={"required"} element={<RequiredView />} />
+            <Route
+              path="/components/evp-required"
+              key={"required"}
+              element={<RequiredView next={{ route: "evp-waterfalls", name: "Waterfalls" }} />}
+            />
+            <Route path="/components/evp-waterfalls" key={"waterfalls"} element={<WaterfallsView />} />
             <Route path="/404" key={"404"} element={<NotFound />}></Route>
             <Route path="*" key={"404-catch"} element={<NotFound />}></Route>
           </Routes>

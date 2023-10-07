@@ -80,7 +80,8 @@
     "start": "set PORT=8888 && node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "publish": "cd src/lib && npm publish"
+    "publish": "cd src/lib && npm publish",
+    "add": "node scripts/add.js"
   },
   "eslintConfig": {
     "extends": [
