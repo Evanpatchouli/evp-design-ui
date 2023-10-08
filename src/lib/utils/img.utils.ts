@@ -37,10 +37,22 @@ function downloadImage(url: string, filename: string) {
     });
 }
 
+const lazy = (dom: any) => {
+  const imgDom: any = dom.children[0];
+  if(!imgDom.src || imgDom.src !== imgDom.dataset.src) {
+    imgDom.src = imgDom.dataset.src;
+  }
+  imgDom.onload = () => {
+    dom.style.backgroundColor = '';
+    dom.style.aspectRatio = '';
+  }
+};
+
 const ImgUtils = {
   emptyImg: emptyImg,
   createEmptyImg: createEmptyImg,
   downloadImage: downloadImage,
+  lazy: lazy,
 };
 
 export default ImgUtils;

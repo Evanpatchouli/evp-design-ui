@@ -307,3 +307,17 @@ export {
   default as Hello,
   type EvpHelloProps,
 } from './evp-hello';
+
+
+export {
+  default as EvpGallery,
+  default as Gallery,
+  type EvpGalleryProps,
+} from './evp-gallery';
+
+
+export {
+  default as EvpSlides,
+  default as Slides,
+  type EvpSlidesProps,
+} from './evp-slides';

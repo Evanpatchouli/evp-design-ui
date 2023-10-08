@@ -56,6 +56,8 @@ import ProgressView from "./preview/evp-progress";
 import StepView from "./preview/evp-steps";
 import RequiredView from "./preview/evp-required";
 import WaterfallsView from "./preview/evp-waterfalls";
+import GalleryView from "./preview/evp-gallery";
+import SlidesView from "./preview/evp-slides";
 
 function App() {
   const location = useLocation();
@@ -118,6 +120,8 @@ function App() {
             <MenuItem link={"/components/evp-steps"} title={"Steps"} />
             <MenuItem link={"/components/evp-required"} title={"Required"} />
             <MenuItem link={"/components/evp-waterfalls"} title={"Waterfalls"} />
+            <MenuItem link={"/components/evp-gallery"} title={"Gallery"} />
+            <MenuItem link={"/components/evp-slides"} title={"Slides"} />
           </Menu>
         </div>
         <div
@@ -184,6 +188,8 @@ function App() {
               element={<RequiredView next={{ route: "evp-waterfalls", name: "Waterfalls" }} />}
             />
             <Route path="/components/evp-waterfalls" key={"waterfalls"} element={<WaterfallsView />} />
+            <Route path="/components/evp-gallery" key={"gallery"} element={<GalleryView />} />
+            <Route path="/components/evp-slides" key={"slides"} element={<SlidesView />} />
             <Route path="/404" key={"404"} element={<NotFound />}></Route>
             <Route path="*" key={"404-catch"} element={<NotFound />}></Route>
           </Routes>
