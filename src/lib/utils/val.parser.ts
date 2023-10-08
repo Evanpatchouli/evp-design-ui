@@ -1,6 +1,9 @@
 import { PropsParserFunc } from "./props.parser";
 import { Option } from "../typings";
 
+/**
+ * Parse number to px
+ */
 const valParser: PropsParserFunc = (props?: string | number): Option<string> => {
   if (!props) {
     return undefined;

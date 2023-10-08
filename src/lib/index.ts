@@ -321,3 +321,10 @@ export {
   default as Slides,
   type EvpSlidesProps,
 } from './evp-slides';
+
+
+export {
+  default as EvpTitle,
+  default as Title,
+  type EvpTitleProps,
+} from './evp-title';

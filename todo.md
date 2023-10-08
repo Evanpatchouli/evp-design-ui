@@ -1,5 +1,9 @@
 # Todo
 
+- 2023 / 10 /09
+  - [ ] standardize all components' props and events.
+  - [ ] remove unnecessary useEffect.
+
 - 2023 / 10 / 06
   - [ ] upgrade evp-menu's useMenu, useMenuRef and controllability.
   - [x] refactor evp-menu's apis to ApiTable.
