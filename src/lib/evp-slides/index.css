@@ -1,3 +1,24 @@
 .evp-slides {
-  
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  background-color: var(--White);
+  border-radius: var(--border-radius);
+  box-shadow: var(--base-shadow);
+  transition: all 0.2s ease-in-out;
+  /* overflow: hidden; */
+}
+
+.evp-slides-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
