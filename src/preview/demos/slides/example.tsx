@@ -1,26 +1,37 @@
-
 import Tsx from "@/components/tsx";
 import { Card, Row } from "@/lib";
 import React from "react";
 import { Button, Toast } from "evp-design-ui";
 
-import { EvpSlides } from "evp-design-ui";
+import { Slides } from "evp-design-ui";
 
 const Demo: React.FC = () => {
+  const items = [
+    <h1>Slide Item 1</h1>,
+    <h1>Slide Item 2</h1>,
+    <h1>Slide Item 3</h1>,
+    <h1>Slide Item 4</h1>,
+  ];
   return (
     <>
-      <EvpSlides />
+      <Slides showScroll children={items} />
     </>
   );
 };
 
 const codes = `
-import { EvpSlides } from "evp-design-ui";
+import { Slides } from "evp-design-ui";
 
 const Demo: React.FC = () => {
+  const items = [
+    <h1>Slide Item 1</h1>,
+    <h1>Slide Item 2</h1>,
+    <h1>Slide Item 3</h1>,
+    <h1>Slide Item 4</h1>,
+  ];
   return (
     <>
-      <EvpSlides />
+      <Slides showScroll children={items} />
     </>
   );
 };
@@ -79,4 +90,3 @@ export default class Example extends React.Component {
     );
   }
 }
-

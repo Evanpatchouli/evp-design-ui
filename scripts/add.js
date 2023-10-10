@@ -36,6 +36,8 @@ const componentNameCamelCase = componentName
   .replace(/-([a-z])/g, (g) => g[1].toUpperCase())
   .replace(/^[a-z]/g, (g) => g[0].toUpperCase());
 
+const componentNameCamelCaseWithoutEvp = componentNameCamelCase.replace(/^Evp/, "");
+
 // Define the component file contents
 const componentFileContents = `
 import React from 'react';
@@ -70,7 +72,7 @@ fs.writeFileSync(cssFilePath, "");
 console.log(chalk.default.green(`Created ${cssFilePath}`));
 
 const collectCssEntryPath = path.join(__dirname, "..", "src", "lib", "collect.css");
-const importCssText = `@import "./${componentName}/index.css";`;
+const importCssText = `@import url(./${componentName}/index.css);`;
 try {
   fs.appendFile(collectCssEntryPath, importCssText, (err) => {
     if (err) throw err;
@@ -87,7 +89,7 @@ const textToAppend = `
 
 export {
   default as ${componentNameCamelCase},
-  default as ${componentNameCamelCase.replace(/^Evp/, "")},
+  default as ${componentNameCamelCaseWithoutEvp},
   type ${componentNameCamelCase}Props,
 } from './${componentName}';
 `;
@@ -117,23 +119,23 @@ import { Card, Row } from "@/lib";
 import React from "react";
 import { Button, Toast } from "evp-design-ui";
 
-import { ${componentNameCamelCase} } from "evp-design-ui";
+import { ${componentNameCamelCaseWithoutEvp} } from "evp-design-ui";
 
 const Demo: React.FC = () => {
   return (
     <>
-      <${componentNameCamelCase} />
+      <${componentNameCamelCaseWithoutEvp} />
     </>
   );
 };
 
 const codes = \`
-import { ${componentNameCamelCase} } from "evp-design-ui";
+import { ${componentNameCamelCaseWithoutEvp} } from "evp-design-ui";
 
 const Demo: React.FC = () => {
   return (
     <>
-      <${componentNameCamelCase} />
+      <${componentNameCamelCaseWithoutEvp} />
     </>
   );
 };

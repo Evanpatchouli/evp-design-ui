@@ -21,7 +21,7 @@ export default function SlidesView() {
         {`
 # Slides
 
-Slides is a component.
+Slides is a component that can be used to display a series of items in a carousel.
 
 ## Basic Usage
 
@@ -43,7 +43,7 @@ import { Slides } from 'evp-design-ui'
         {`
 ## Examples
 
-Here are some examples about Gallery.
+Here are some examples about Slides.
 
 `}
       </Md>
@@ -52,8 +52,8 @@ Here are some examples about Gallery.
         {`
 ## Api
 
-★ based on img  
-★ props extends EvpBaseProps
+★ based on div
+★ props extends Div
 
 **Slides Apis:**
 

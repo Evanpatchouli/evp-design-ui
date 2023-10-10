@@ -39,4 +39,5 @@
 @import url(./evp-steps/index.css);
 @import url(./evp-required/index.css);
 @import url(./evp-waterfalls/index.css);
-@import "./evp-title/index.css";
+@import url(./evp-title/index.css);
+@import url(./evp-slides/index.css);
