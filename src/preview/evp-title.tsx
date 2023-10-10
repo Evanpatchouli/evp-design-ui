@@ -4,6 +4,10 @@ import { EvpCode } from "@/lib";
 import { EvpButton } from "evp-design-ui";
 import { useEffect } from "react";
 import Example from "./demos/title/example";
+import Size from "./demos/title/size";
+import Stress from "./demos/title/stress";
+import Weight from "./demos/title/weight";
+import TitleApi from "./apis/title";
 
 export default function TitleView() {
   const next = { route: "", name: "" };
@@ -43,33 +47,46 @@ import { Title } from 'evp-design-ui'
         {`
 ## Examples
 
-Here are some examples about Gallery.
+Here are some examples about Title.
 
+### Size
+
+You can set the size of Title by setting \`size\`, \`fontSize\`, or \`style.fontSize\` prop.
 `}
       </Md>
+      <Size />
+      <Md>
+        {`
+### Stress
 
+You can set the stress line of Title by setting \`stressed\` prop. And you can set color of stress line by setting \`stressLineColor\` prop.
+`}
+      </Md>
+      <Stress />
+      <Md>
+        {`
+### Weight
+
+You can set the weight of Title by setting \`weight\` prop.
+`}
+      </Md>
+      <Weight />
+      <Md>
+        {`
+`}
+      </Md>
       <Md>
         {`
 ## Api
 
-★ based on img  
-★ props extends EvpBaseProps
+★ based on div  
+★ props extends Div but not applied to component container but title content.
 
-**Slides Apis:**
+**Title Apis:**
 
 `}
       </Md>
-      <EvpCode lang="typescript" theme="coldarkDark">
-        {`
-interface BaseImgProps extends React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement> {
-  alt: string;
-  preview?: boolean;
-  setPreview?: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-export type EvpImgProps = {} & BaseImgProps & EvpBaseProps;
-`}
-      </EvpCode>
+      <TitleApi />
       <EvpButton
         position="absolute"
         right={40}

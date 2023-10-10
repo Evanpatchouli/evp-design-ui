@@ -235,7 +235,7 @@
 .evp.evp-button {
   &.mini {
     height: var(--btn-mini-h);
-    font-size: var(--text-size-mini);
+    font-size: var(--text-size-mn);
     border-radius: var(--radius-mini);
     padding: 0px calc(var(--btn-mini-h) / 2);
 
@@ -247,7 +247,7 @@
 
   &.small {
     height: var(--btn-small-h);
-    font-size: var(--text-size-small);
+    font-size: var(--text-size-sm);
     border-radius: var(--radius-small);
     padding: 0px calc(var(--btn-small-h) / 2);
 
@@ -259,7 +259,7 @@
 
   &.middle {
     height: var(--btn-h);
-    font-size: var(--text-size);
+    font-size: var(--text-size-md);
     padding: 0px calc(var(--btn-h) / 2);
 
     &.circle {
@@ -270,7 +270,7 @@
 
   &.large {
     height: var(--btn-large-h);
-    font-size: var(--text-size-large);
+    font-size: var(--text-size-lg);
     border-radius: var(--radius-large);
     padding: 0px calc(var(--btn-large-h) / 2);
 
@@ -282,7 +282,7 @@
 
   &.huge {
     height: var(--btn-huge-h);
-    font-size: var(--text-size-huge);
+    font-size: var(--text-size-hg);
     border-radius: var(--radius-huge);
     padding: 0px calc(var(--btn-huge-h) / 2);
 

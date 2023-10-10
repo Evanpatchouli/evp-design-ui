@@ -1,15 +1,15 @@
 .evp {
-  --text-size: 14px;
-  --text-size-mini: 10px;
-  --text-size-small: 12px;
-  --text-size-large: 16px;
-  --text-size-huge: 18px;
+  --text-size-md: 14px;
+  --text-size-mn: 10px;
+  --text-size-sm: 12px;
+  --text-size-lg: 16px;
+  --text-size-hg: 18px;
 
-  --title-text-size: 24px;
-  --title-text-mini: 20px;
-  --title-text-small: 22px;
-  --title-text-large: 26px;
-  --title-text-huge: 28px;
+  --title-text-md: 24px;
+  --title-text-mn: 20px;
+  --title-text-sm: 22px;
+  --title-text-lg: 26px;
+  --title-text-hg: 28px;
 
   --nav-text-size: 18px;
   --nav-text-small: 16px;

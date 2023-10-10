@@ -12,7 +12,7 @@
 
 .evp-steps-header-title {
   font-weight: 500;
-  font-size: var(--title-text-size);
+  font-size: var(--title-text-md);
 }
 
 .evp-steps-header-desc {

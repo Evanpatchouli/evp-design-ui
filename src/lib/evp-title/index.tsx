@@ -1,22 +1,38 @@
 import classNames from "classnames";
 import React from "react";
 import valParser from "../utils/val.parser";
+import { Hintable } from "../utils";
+import { parseSize } from "./parser";
 
 export type EvpTitleProps = {
   stressed?: boolean;
   stressLineColor?: string;
+  size?: Hintable<"mn" | "sm" | "md" | "lg" | "hg"> | number;
+  weight?: string | number;
   fontSize?: string | number;
+  underline?: boolean | string;
 } & React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 
-const EvpTitle: React.FC<EvpTitleProps> = ({ className, id, stressed, stressLineColor, fontSize, style, ...props }) => {
-  const _fontSize = fontSize ?? style?.fontSize;
+const EvpTitle: React.FC<EvpTitleProps> = ({
+  className,
+  id,
+  stressed,
+  stressLineColor,
+  size,
+  weight,
+  fontSize,
+  underline,
+  style,
+  ...props
+}) => {
+  const _fontSize = style?.fontSize ?? fontSize;
   return (
     <div
       className={classNames("evp", "evp-title", className)}
       id={id}
       style={{
         // @ts-ignore
-        "--fontSize": valParser(_fontSize),
+        "--fontSize": valParser<string | undefined>(_fontSize ?? parseSize(size)),
       }}
     >
       {stressed ? (
@@ -32,7 +48,11 @@ const EvpTitle: React.FC<EvpTitleProps> = ({ className, id, stressed, stressLine
         className="evp-title__main"
         style={(() => {
           const { fontSize, ...rest } = style ?? {};
-          return rest;
+          return {
+            textDecorationLine: underline === true ? "underline" : underline || "none",
+            fontWeight: weight ?? "bold",
+            ...rest,
+          };
         })()}
         {...props}
       ></div>

@@ -24,7 +24,7 @@ export type ArrayLengthed<T, N extends number> = T[]
 /** This Array must have 4 items */
 export type ArrayStrictLengthed<T, N extends number> = [T, ...T[]] & { length: N }
 
-export type Hintable<T> = T | (string & {})
+export type Hintable<T> = T | (string & {});
 
 export type Indexable<T, E extends unknown> = T & { [x:string]: E }
 

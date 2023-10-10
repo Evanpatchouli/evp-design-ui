@@ -62,3 +62,25 @@ export function hexAlpha(color: string, alpha: number | string) {
   }
   return color;
 }
+
+export class Var {
+  constructor(public name: string, public value: string | undefined = void 0) {}
+  json() {
+    return {
+      [this.name]: this.value,
+    };
+  }
+  stringify() {
+    return JSON.stringify(this.json());
+  }
+  static fromString(str: string) {
+    const [name, value] = str.split(":");
+    return new Var(name.trim(), value.trim());
+  }
+  static fromObject(obj: {name: string, value?: string}) {
+    return new Var(obj.name, obj.value);
+  }
+  toString() {
+    return `var(${this.name})`;
+  }
+}

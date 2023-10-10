@@ -3,13 +3,13 @@
   flex-direction: row;
   vertical-align: bottom;
   width: fit-content;
-  height: 100px;
+  height: fit-content;
   justify-content: flex-start;
   align-items: flex-end;
 }
 
 .evp-title__left-stresses-line {
-  font-size: var(--fontSize, var(--title-text-size));
+  font-size: var(--fontSize, var(--title-text-md));
   background-color: var(--bgColor, #6664ff);
   width: 4px;
   height: 1.2em;
@@ -17,6 +17,6 @@
 }
 
 .evp-title__main {
-  font-size: var(--fontSize, var(--title-text-size));
+  font-size: var(--fontSize, var(--title-text-md));
   height: fit-content;
 }
