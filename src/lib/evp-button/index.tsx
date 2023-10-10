@@ -59,10 +59,10 @@ const EvpButton: React.FC<EvpButtonProps> = (props: EvpButtonProps) => {
         [size]: true,
         [plain]: true,
         [shape]: true,
-        [$class]: true,
         "evp-btn-fade": props.fade ?? true,
         ripple: props.ripple ?? false,
         "evp-disabled": props.loading ?? false,
+        [$class]: true,
       })}
       id={$props.id}
       onClick={clickHandler}
