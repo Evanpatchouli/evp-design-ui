@@ -8,7 +8,7 @@ import babel from "@rollup/plugin-babel";
 import ployfills from "rollup-plugin-node-polyfills";
 
 // 入口文件
-const entry = "./index.ts";
+const entry = "./index.tsx";
 
 // babel配置
 const babelOptions = {
@@ -44,5 +44,6 @@ export default {
     "react",
     "react-router",
     "react-router-dom",
+    "moment",
   ],
 };
