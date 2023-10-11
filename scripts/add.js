@@ -84,7 +84,7 @@ try {
 }
 
 // Export the component in the lib module entry file
-const libModuleEntryPath = path.join(__dirname, "..", "src", "lib", "index.ts");
+const libModuleEntryPath = path.join(__dirname, "..", "src", "lib", "index.tsx");
 const textToAppend = `
 
 export {
