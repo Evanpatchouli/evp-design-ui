@@ -2,7 +2,7 @@
 
 import EvpStyleProps from "../props/evp.style.prop";
 import { EvpCursorRule, Hintable, Option } from "../typings";
-import { PropsParserFunc } from "./props.parser";
+import { PropsParserFunc } from "./typing";
 
 type preservedProp = 'pointer' |
 'not-allowed' |

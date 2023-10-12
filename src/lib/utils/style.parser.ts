@@ -1,7 +1,9 @@
 import { shift } from ".";
 import EvpStyleProps from "../props/evp.style.prop";
-import { propsParser } from "./props.parser";
 import { EvpCursorRule, EvpPosition } from "../typings";
+import cursorParser from "./cursor.parser";
+import { marginParser } from "./margin.parser";
+import { paddingParser } from "./padding.parser";
 
 export default function StylePropsParser(props: EvpStyleProps): React.CSSProperties {
   const keys: string[] = Object.keys(props);
@@ -13,24 +15,24 @@ export default function StylePropsParser(props: EvpStyleProps): React.CSSPropert
   let marginComputed: number[] = [0,0,0,0];
 
   if (props.mg) {
-    margin = propsParser.get('mg')?.<string>(props.mg)
+    margin = marginParser<string>(props.mg)
   } else {
     keys.forEach(key=>{
       // if props.pd not exist, parse quick props
       handleMargin(key);
     });
-    margin = propsParser.get('mg')?.(
+    margin = marginParser(
       isValidMgPdArray(marginComputed)? marginComputed : [null,null,null,null]
     );
   }
   if (props.pd) {
-    padding = propsParser.get('pd')?.<string>(props.pd)
+    padding = paddingParser<string>(props.pd)
   } else {
     keys.forEach(key=>{
       // if props.mg not exist, parse quick props
       handlePadding(key);
     });
-    padding = propsParser.get('pd')?.(
+    padding = paddingParser(
       isValidMgPdArray(paddingComputed)? paddingComputed : [null,null,null,null]
     );
   }
@@ -40,7 +42,7 @@ export default function StylePropsParser(props: EvpStyleProps): React.CSSPropert
     weight: props.fontWeight
   };
 
-  const cursor = propsParser.get('cursor')?.<EvpCursorRule>(props);
+  const cursor = cursorParser<EvpCursorRule>(props);
   return {
     cursor: cursor,
     color: props.color,

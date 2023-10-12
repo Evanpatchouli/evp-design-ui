@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import Context from "./context";
-import { Col, Color, Icon } from "..";
+import Col from '../evp-col';
+import Icon from '../evp-icon';
+import { Color } from "../constant";
 
 export type EvpRadioRule = {
   /** default color is "red" */

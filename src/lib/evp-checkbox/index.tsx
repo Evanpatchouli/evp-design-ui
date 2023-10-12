@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import EvpRow from "../evp-row";
 import EvpCol from "../evp-col";
-import { Icon } from "..";
+import Icon from "../evp-icon";
 import { Color } from "../constant";
 import CheckedBox from "../evp-icon/checked-box";
 import UncheckedBox from "../evp-icon/unchecked-box";
