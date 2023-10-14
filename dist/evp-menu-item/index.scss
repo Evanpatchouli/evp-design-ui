@@ -1,0 +1,9 @@
+.evp-menu-item {
+  border-bottom: 1px solid var(--PaleGray);
+}
+
+.evp-menu-item:hover {
+  transition: background-color 0.3s ease;
+  background-color: #81D4FA25;
+
+}

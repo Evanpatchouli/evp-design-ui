@@ -1,0 +1,7 @@
+.evp-required {
+  color: #ff0000;
+  width: 14px;
+  display: inline-flex;
+  margin-top: 4px;
+  align-items: center;
+}

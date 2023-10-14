@@ -121,7 +121,7 @@ function App() {
             <MenuItem link={"/components/evp-steps"} title={"Steps"} />
             <MenuItem link={"/components/evp-required"} title={"Required"} />
             <MenuItem link={"/components/evp-waterfalls"} title={"Waterfalls"} />
-            <MenuItem link={"/components/evp-gallery"} title={"Gallery"} />
+            {/* <MenuItem link={"/components/evp-gallery"} title={"Gallery"} /> */}
             <MenuItem link={"/components/evp-slides"} title={"Slides"} />
             <MenuItem link={"/components/evp-title"} title={"Title"} />
           </Menu>

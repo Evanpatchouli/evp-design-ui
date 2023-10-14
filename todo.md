@@ -1,5 +1,9 @@
 # Todo
 
+- 2023 / 10 / 14
+  - [ ] refactor menu selection mechanism
+  - [ ] fullfill icons to at lease 100
+
 - 2023 / 10 /09
   - [ ] standardize all components' props and events.
   - [ ] remove unnecessary useEffect.
@@ -38,20 +42,24 @@
     - [x] menu
     - [ ] modal
     - [ ] msg
-    - [ ] paginator
+    - [x] paginator
     - [ ] popover
     - [ ] progress
     - [ ] radio
+    - [x] required
     - [ ] row
     - [ ] select
     - [ ] shadow
     - [x] slider
+    - [x] slides
     - [ ] steps
     - [ ] switch
     - [ ] table
-    - [ ] tags
+    - [ ] tag
+    - [x] title
     - [ ] toast
     - [x] tooltip
+    - [x] waterfalls
   - [ ] fix popover position. ( same with tooltip )
 
 - 2023 / 10 / 04

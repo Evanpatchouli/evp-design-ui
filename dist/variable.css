@@ -1,0 +1,104 @@
+.evp {
+  --text-size-md: 14px;
+  --text-size-mn: 10px;
+  --text-size-sm: 12px;
+  --text-size-lg: 16px;
+  --text-size-hg: 18px;
+
+  --title-text-md: 24px;
+  --title-text-mn: 20px;
+  --title-text-sm: 22px;
+  --title-text-lg: 26px;
+  --title-text-hg: 28px;
+
+  --nav-text-size: 18px;
+  --nav-text-small: 16px;
+  --nav-text-large: 20px;
+
+  --hint-text-size: 12px;
+  --hint-text-small: 10px;
+  --hint-text-large: 14px;
+
+  --radius: 4px;
+  --radius-mini: 2px;
+  --radius-small: 3px;
+  --radius-large: 5px;
+  --radius-huge: 6px;
+  --radius-round: 20px;
+  --radius-circle: 50%;
+
+  --len-mini: 14px;
+  --len-small: 16px;
+  --len: 18px;
+  --len-large: 20px;
+  --len-huge: 22px;
+
+  --btn-mini-h: 22px;
+  --btn-small-h: 26px;
+  --btn-h: 30px;
+  --btn-large-h: 34px;
+  --btn-huge-h: 38px;
+
+  --PaleRed: #ff7256;
+  --ShallowRed: #ff6347;
+  --LightRed: #ff4500;
+  --Red: #ff0000;
+  --HeavyRed: #ee0000;
+  --DeepRed: #cd0000;
+  --DarkRed: #8b0000;
+
+  --ReallyPaleBlue: #d7f2ff;
+  --PaleBlue: #81d4fa;
+  --ShallowBlue: #00bfff;
+  --LightBlue: #1e90ff;
+  --Blue: #0000ff;
+  --HeavyBlue: #0000cd;
+  --DeepBlue: #0000ac;
+  --DarkBlue: #00008b;
+
+  --PaleYellow: #ffffe0;
+  --ShallowYellow: #fff68f;
+  --LightYellow: #fff68f;
+  --Yellow: #ffff00;
+  --HeavyYellow: #eeee00;
+  --DeepYellow: #eec900;
+  --DarkYellow: #cdcd00;
+
+  --PaleGreen: #9aff9a;
+  --ShallowGreen: #00ff7f;
+  --LightGreen: #7fff00;
+  --Green: #00ff00;
+  --HeavyGreen: #66cd00;
+  --DeepGreen: #2e8b57;
+  --DarkGreen: #006400;
+
+  --ReallyPaleGray: #ebeef5;
+  --PaleGray: #e8e8e8;
+  --ShallowGray: #cfcfcf;
+  --LightGray: #b5b5b5;
+  --Gray: #9c9c9c;
+  --HeavyGray: #828282;
+  --DeepGray: #4f4f4f;
+  --DarkGray: #363636;
+
+  --Dark: #1c1c1c;
+  --Black: #000000;
+
+  --Orange: #ffa500;
+
+  --Azure: #f0ffff;
+
+  --Gold: #ffd700;
+
+  --Pink: #ffc0cb;
+
+  --White: #ffffff;
+  /** 米黄色 */
+  --Beige: #f7eed6;
+
+  /** 花卉白 */
+  --FloralWhite: #fffaf0;
+
+  --base-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
+  --pale-shadow: 0px 2px 5px 1px #0000001e;
+}

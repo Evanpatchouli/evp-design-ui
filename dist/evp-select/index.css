@@ -1,0 +1,65 @@
+.evp-select {
+  position: relative;
+  width: fit-content;
+}
+
+.evp.input.input-box.evp-select-input {
+  height: 30px;
+  cursor: pointer;
+}
+
+.evp-select-options {
+  position: absolute;
+  z-index: 9000;
+  display: block;
+  box-sizing: border-box;
+  padding: 4px;
+  
+  overflow-y: scroll;
+  overflow: auto;
+  background-color: #fff;
+  border: 1px solid #fcfcfc;
+  border-radius: var(--radius-large);
+  box-shadow: 0px 5px 10px 3px rgba(0, 0, 0, 0.1);
+  opacity: 100%;
+
+  /* &::-webkit-scrollbar {
+    display: none;
+  } */
+}
+
+.evp-select-options.evp-close {
+  animation: evp-select-options-evp-close 0.2s ease-in-out;
+  /* animation-delay: 0.3s; */
+  animation-fill-mode: forwards;
+}
+
+@keyframes evp-select-options-evp-close {
+  0% {
+    display: block;
+    opacity: 100%;
+  }
+
+  100% {
+    display: none;
+    opacity: 0%;
+  }
+}
+
+.evp-select-option {
+  height: 24px;
+  padding-right: 6px;
+  padding-left: 6px;
+  line-height: 24px;
+  border-radius: var(--radius);
+  transition: background-color 0.1s ease-in-out;
+  padding-block: 4px;
+}
+
+.evp-select-option:hover {
+  background-color: rgba(0, 0, 255, 0.03);
+}
+
+.evp-select-option.evp-select-option-selected {
+  background-color: rgba(0, 0, 255, 0.1);
+}

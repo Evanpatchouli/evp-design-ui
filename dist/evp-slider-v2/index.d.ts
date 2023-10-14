@@ -1,0 +1,38 @@
+/// <reference types="react" />
+import { ArrayLengthed } from "../utils";
+export type EvpSliderProps = {
+    name: string;
+    class?: string;
+    label?: string | JSX.Element;
+    /** **Label font-Size:** default value is 14px */
+    labelSize?: string;
+    labelWidth?: number | string;
+    labelAlign?: "left" | "center" | "right";
+    /** Default is false */
+    labelColon?: boolean | React.ReactNode;
+    /** Whether to show a required \`*\` character, this is \`only\` a character not a validation! */
+    required?: boolean;
+    value?: number;
+    setValue?: (value: number) => void;
+    /** default is 0 */
+    defaultValue?: number;
+    onChange?: (value: number) => void;
+    /** start (default 0) to end (default 100) */
+    range?: ArrayLengthed<number | undefined, 2>;
+    /** min limit, default is 0 */
+    min?: number;
+    /** max limit, default is max */
+    max?: number;
+    /** value precision, default is 0 */
+    precision?: number;
+    /** max width (number, px, em...) of slider bar */
+    width?: number | string;
+    /** whether to show etc, default is true */
+    showEtc?: boolean;
+    style?: React.CSSProperties;
+    /**
+     * @Todo unstart now
+     * @Exterminal unsupport now */
+    step?: number;
+};
+export default function EvpSliderV2(props: EvpSliderProps): import("react/jsx-runtime").JSX.Element;

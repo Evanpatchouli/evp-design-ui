@@ -11,10 +11,11 @@ const Demo: React.FC = () => {
     <h1>Slide Item 2</h1>,
     <h1>Slide Item 3</h1>,
     <h1>Slide Item 4</h1>,
+    <h1>Slide Item 5</h1>,
   ];
   return (
     <>
-      <Slides showScroll children={items} />
+      <Slides items={items} />
     </>
   );
 };
@@ -28,10 +29,11 @@ const Demo: React.FC = () => {
     <h1>Slide Item 2</h1>,
     <h1>Slide Item 3</h1>,
     <h1>Slide Item 4</h1>,
+    <h1>Slide Item 5</h1>,
   ];
   return (
     <>
-      <Slides showScroll children={items} />
+      <Slides items={items} />
     </>
   );
 };

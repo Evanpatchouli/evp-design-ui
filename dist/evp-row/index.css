@@ -1,0 +1,5 @@
+.evp.evp-row {
+  > * {
+    margin-inline: var(--row-item-gap);
+  }
+}

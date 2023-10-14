@@ -1,0 +1,22 @@
+.evp.evp-tooltip-container {
+  position: relative;
+  width: fit-content !important;
+  overflow: visible;
+}
+
+.evp-tooltip {
+  position: absolute;
+  box-sizing: border-box;
+  width: fit-content !important;
+  overflow: visible;
+  text-align: center;
+  border-radius: 5px;
+  z-index: 3000;
+}
+
+.evp-tooltip-content {
+  color: white;
+  white-space: nowrap;
+  background-color: rgba(0, 0, 0, 0.75);
+  border-radius: 5px;
+}

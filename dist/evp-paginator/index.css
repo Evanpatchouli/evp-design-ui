@@ -1,0 +1,21 @@
+.evp-paginator-tab {
+  transition: all 0.2s ease-in-out;
+  &::selection {
+    background: none !important;
+  }
+  color: var(--tabColor);
+  background-color: var(--tabBgColor);
+
+  &:hover {
+    background-color: var(--tabHoverBgColor);
+    color: var(--tabHoverColor);
+  }
+}
+.evp-paginator-tab-active {
+  transition: all 0.2s ease-in-out;
+  &::selection {
+    background: none !important;
+  }
+  background-color: var(--tabActiveBgColor);
+  color: var(--tabActiveColor);
+}

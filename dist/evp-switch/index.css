@@ -1,0 +1,137 @@
+.evp.evp-switch {
+  transition: all 0.2s ease-in-out;
+  /* border: 1px solid black; */
+  width: calc(var(--btn-h) * var(--width-factor));
+  height: var(--btn-h);
+  border-radius: 100px;
+  background-color: gainsboro;
+  position: relative;
+
+  &:hover {
+    background-color: gray;
+    cursor: pointer;
+  }
+}
+
+/* --btn-mini-h: 22px;
+--btn-small-h: 26px;
+--btn-h: 30px;
+--btn-large-h: 34px;
+--btn-huge-h: 38px; */
+
+.evp.evp-switch.mini {
+  width: calc(var(--btn-mini-h) * var(--width-factor));
+  height: var(--btn-mini-h);
+
+  .evp-switch-btn {
+    width: var(--btn-mini-h);
+    height: var(--btn-mini-h);
+    line-height: var(--btn-mini-h);
+    font-size: 10px;
+  }
+
+  .evp-switch-btn-content {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+.evp.evp-switch.small {
+  width: calc(var(--btn-small-h) * var(--width-factor));
+  height: var(--btn-small-h);
+
+  .evp-switch-btn {
+    width: var(--btn-small-h);
+    height: var(--btn-small-h);
+    line-height: var(--btn-small-h);
+    font-size: 12px;
+  }
+
+  .evp-switch-btn-content {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.evp.evp-switch.middle {
+  width: calc(var(--btn-h) * var(--width-factor));
+  height: var(--btn-h);
+
+  .evp-switch-btn {
+    width: var(--btn-h);
+    height: var(--btn-h);
+    line-height: var(--btn-h);
+    font-size: 16px;
+  }
+
+  .evp-switch-btn-content {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.evp.evp-switch.large {
+  width: calc(var(--btn-large-h) * var(--width-factor));
+  height: var(--btn-large-h);
+
+  .evp-switch-btn {
+    width: var(--btn-large-h);
+    height: var(--btn-large-h);
+    line-height: var(--btn-large-h);
+    font-size: 20px;
+  }
+
+  .evp-switch-btn-content {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+.evp.evp-switch.huge {
+  width: calc(var(--btn-huge-h) * var(--width-factor));
+  height: var(--btn-huge-h);
+
+  .evp-switch-btn {
+    width: var(--btn-huge-h);
+    height: var(--btn-huge-h);
+    line-height: var(--btn-huge-h);
+    font-size: 24px;
+  }
+
+  .evp-switch-btn-content {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+.evp.evp-switch.active {
+  background-color: #0091ff;
+
+  &:hover {
+    background-color: #28a2ff;
+  }
+}
+
+.evp-switch-btn {
+  position: absolute;
+  transition: all 0.2s ease-in-out;
+  width: var(--btn-h);
+  height: var(--btn-h);
+  line-height: var(--btn-h);
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+  z-index: 1;
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.evp-switch-btn-content {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #fff;
+}

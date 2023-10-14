@@ -1,6 +1,5 @@
 import Md from "@/components/md";
 import Tsx from "@/components/tsx";
-import { EvpCode } from "@/lib";
 import { EvpButton } from "evp-design-ui";
 import { useEffect } from "react";
 import Example from "./demos/title/example";

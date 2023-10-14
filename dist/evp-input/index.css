@@ -1,0 +1,54 @@
+.evp.input {
+  display: flex;
+  height: 30px;
+
+  margin-bottom: 4px;
+
+  padding: 0;
+
+  &[type="number"] {
+    -moz-appearance: textfield; /* Firefox */
+    -webkit-appearance: textfield;
+    appearance: textfield;
+  }
+
+  &[type="number"]::-webkit-inner-spin-button,
+  &[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none; /* Safari */
+    margin: 0;
+  }
+}
+
+.evp.input.label {
+  justify-content: left;
+  align-items: center;
+  padding-right: 8px;
+  border-radius: 5px;
+}
+
+.evp.input.input-box {
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #d1d1d1;
+  text-align: left;
+  text-indent: 0.5rem;
+  line-height: 30px;
+  height: 100%;
+
+  &:focus {
+    border: 1px solid rgb(128, 128, 255);
+  }
+}
+
+.evp-input-msg {
+  display: flex;
+  justify-content: left !important;
+  align-items: center;
+}
+
+.evp.input.icon {
+  justify-content: center;
+  align-items: center;
+  padding-right: 8px;
+  padding-left: 8px;
+}

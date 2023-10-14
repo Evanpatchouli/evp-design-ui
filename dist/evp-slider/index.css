@@ -1,0 +1,36 @@
+.evp.evp-slider {
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  box-sizing: border-box;
+  padding-right: 14px;
+}
+
+.evp-slider-bar {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.evp-slider-progress {
+  background-color: var(--PaleBlue);
+  height: 4px;
+  border-radius: 100px;
+}
+
+.evp-slider-progress-etc {
+  background-color: var(--PaleGray);
+  height: 4px;
+  border-radius: 100px;
+  flex: 1;
+}
+
+.evp-draggable {
+  cursor: no-drop !important;
+}
+
+.evp-dragging {
+  cursor: pointer !important;
+}

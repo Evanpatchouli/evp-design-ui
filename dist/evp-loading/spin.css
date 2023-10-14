@@ -1,0 +1,25 @@
+@keyframes evp-loading__spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.evp-loading > .spin {
+  box-sizing: border-box;
+  border: 3px solid hsla(185, 100%, 62%, 0.2);
+  border-top-color: var(--loading-color);
+  border-radius: 50%;
+  width: 2em;
+  height: 2em;
+  animation: evp-loading__spin 1s linear infinite;
+}
+
+.evp-loading > .spin2 {
+  box-sizing: border-box;
+  border: 3px solid hsla(185, 100%, 62%, 0);
+  border-top-color: var(--loading-color);
+  border-radius: 50%;
+  width: 2em;
+  height: 2em;
+  animation: evp-loading__spin 1s linear infinite;
+}

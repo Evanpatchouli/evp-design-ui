@@ -1,0 +1,52 @@
+.evp.evp-steps {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+.evp-steps-header {
+  display: table-cell;
+  vertical-align: bottom;
+}
+
+.evp-steps-header-title {
+  font-weight: 500;
+  font-size: var(--title-text-md);
+}
+
+.evp-steps-header-desc {
+  color: var(--LightGray);
+  margin-left: 0.5rem;
+}
+
+.evp-steps-window {
+  transition: inherit;
+  width: var(--windowWidth);
+  position: relative;
+  overflow: hidden;
+}
+
+.evp-steps-list {
+  transition: inherit;
+  position: absolute;
+  height: 100%;
+
+  > .evp-steps-item {
+    float: left;
+  }
+
+  > .evp-steps-item:last-child {
+    clear: right;
+  }
+}
+
+.evp-steps-item {
+  width: var(--windowWidth);
+  height: 100%;
+}
+
+.evp-steps-btns {
+  padding-top: 20px;
+  display: flex;
+}

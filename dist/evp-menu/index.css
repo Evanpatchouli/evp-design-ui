@@ -1,0 +1,36 @@
+.evp-menu {
+  padding-left: 0px;
+}
+
+.evp-menu.sub {
+  padding-left: 0px;
+}
+
+.evp-menu-title-content {
+  display: flex;
+  width: 100%;
+}
+
+.evp-menu-title {
+  border-bottom: 1px solid var(--PaleGray);
+  display: flex;
+  justify-content: space-between;
+}
+
+.evp-menu-title:hover {
+  transition: background-color 0.1s ease-in-out;
+  background-color: #81D4FA25;
+}
+
+.evp-menu-children-wrapper {
+  transition: all 0.2s ease-in-out;
+  max-height: 100vh;
+  will-change: height;
+}
+.evp-menu-children-wrapper.close {
+  height: 0px !important;
+}
+
+.evp-menu-children > .evp-menu-item {
+  padding-left: var(--item-indent);
+}
