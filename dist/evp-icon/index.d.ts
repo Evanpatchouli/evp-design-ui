@@ -1,7 +1,7 @@
 /// <reference types="react" />
 import { ArrayLengthed, Hintable } from "../utils";
 import { EvpCursorRule, EvpWRule, EvpHRule } from "../typings";
-export type IconType = "user" | "true_circle" | "success" | "false_circle" | "close_circle" | "error" | "close" | "lock" | "unknown" | "help" | "warn" | "info" | "user" | "all" | "waterfalls_h" | "waterfalls_v" | "up" | "down" | "left" | "right" | "unchecked_box" | "checked_box" | "male" | "female" | "component" | "github" | "gitee" | "evp";
+export type IconType = "user" | "true_circle" | "success" | "false_circle" | "close_circle" | "error" | "close" | "lock" | "unknown" | "help" | "warn" | "info" | "user" | "all" | "waterfalls_h" | "waterfalls_v" | "up" | "down" | "left" | "right" | "unchecked_box" | "checked_box" | "male" | "female" | "component" | "github" | "gitee" | "evp" | "star";
 export type EvpIconProps = EvpIconPropsType & {
     [x: string]: any;
 };
@@ -35,6 +35,7 @@ export interface EvpIconPropsType {
     github?: boolean;
     gitee?: boolean;
     evp?: boolean;
+    start?: boolean;
     passwords?: boolean;
     $click?: React.MouseEventHandler<HTMLDivElement>;
     class?: string;

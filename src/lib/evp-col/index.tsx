@@ -1,9 +1,11 @@
+import valParser from "../utils/val.parser";
 import EvpBaseProps from "../props";
 import { shift } from "../utils";
 import AllParser from "../utils/props.parser";
 
 export interface EvpColProps extends EvpBaseProps {
   flexDirection?: "column" | "column-reverse";
+  gap?: string | number;
 }
 
 export default function EvpCol(props: EvpColProps) {
@@ -22,7 +24,10 @@ export default function EvpCol(props: EvpColProps) {
     <div
       className={`evp col ${props.class??''}`.trim()}
       id={props.id}
-      style={style}
+      style={{
+        gap: valParser(props.gap) ?? "6px",
+        ...style
+      }}
       onMouseEnter={event.onMouseEnter}
       onMouseOver={event.onMouseOver}
       onFocus={event.onFocus}

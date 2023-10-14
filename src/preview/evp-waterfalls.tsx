@@ -1,13 +1,12 @@
 import Md from "@/components/md";
 import Tsx from "@/components/tsx";
-import { EvpCode } from "@/lib";
 import { EvpButton } from "evp-design-ui";
 import { useEffect } from "react";
 import Example from "./demos/waterfalls/example";
 import WaterFallsApi from "./apis/waterfalls.api";
 
 export default function WaterfallsView() {
-  const next = { route: "", name: "" };
+  const next = { route: "evp-slides", name: "Slides" };
   useEffect(() => {
     window.scrollTo({
       top: 0,

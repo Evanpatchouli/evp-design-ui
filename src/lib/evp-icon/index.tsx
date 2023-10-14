@@ -31,7 +31,8 @@ export type IconType =
   | "component"
   | "github"
   | "gitee"
-  | "evp";
+  | "evp"
+  | "star";
 
 export type EvpIconProps = EvpIconPropsType & { [x: string]: any };
 
@@ -65,6 +66,7 @@ export interface EvpIconPropsType {
   github?: boolean;
   gitee?: boolean;
   evp?: boolean;
+  start?: boolean;
   passwords?: boolean;
   $click?: React.MouseEventHandler<HTMLDivElement>;
   class?: string;
@@ -124,6 +126,7 @@ const IconMap: IndexableFuzzy<SvgIconType> = {
   GITHUB: "Github",
   GITEE: "Gitee",
   EVP: "Evp",
+  STAR: "Star",
 };
 
 /** EvpIcon: not raw SVG but with a `<div><div/>` wrapper, key's value is props.name or the unique icon key

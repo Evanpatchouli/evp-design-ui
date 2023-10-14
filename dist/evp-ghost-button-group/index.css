@@ -1,0 +1,14 @@
+.evp-ghost-buttons-group {
+  box-shadow: var(--show-pre-boxshadow) !important;
+}
+
+.evp-ghost-buttons-group__items-quene {
+  position: absolute;
+  z-index: 3000;
+
+  display: flex;
+  width: fit-content;
+  height: fit-content;
+
+  transform-origin: center center !important;
+}

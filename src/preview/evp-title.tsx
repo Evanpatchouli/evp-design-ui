@@ -9,7 +9,7 @@ import Weight from "./demos/title/weight";
 import TitleApi from "./apis/title";
 
 export default function TitleView() {
-  const next = { route: "", name: "" };
+  const next = { route: "evp-rate", name: "Rate" };
   useEffect(() => {
     window.scrollTo({
       top: 0,

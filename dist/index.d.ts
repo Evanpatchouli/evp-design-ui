@@ -56,3 +56,6 @@ export { default as EvpHello, default as Hello, type EvpHelloProps, } from './ev
 export { default as EvpGallery, default as Gallery, type EvpGalleryProps, } from './evp-gallery';
 export { default as EvpSlides, default as Slides, type EvpSlidesProps, } from './evp-slides';
 export { default as EvpTitle, default as Title, type EvpTitleProps, } from './evp-title';
+export { default as EvpNiuniu, default as Niuniu, type EvpNiuniuProps, } from './evp-niuniu';
+export { default as EvpRate, default as Rate, type EvpRateProps, } from './evp-rate';
+export { default as EvpGhostButtonGroup, default as GhostButtonGroup, type EvpGhostButtonGroupProps, } from './evp-ghost-button-group';

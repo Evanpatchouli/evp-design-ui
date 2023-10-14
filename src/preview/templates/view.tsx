@@ -5,6 +5,8 @@ import { EvpButton } from "evp-design-ui";
 import { useEffect } from "react";
 import Example from "../demos/img/example";
 
+const CamelCaseName = "Img";
+
 export default function ImgView() {
   const next = { route: "", name: "" };
   useEffect(() => {
@@ -19,9 +21,9 @@ export default function ImgView() {
     <div className="preview-container">
       <Md>
         {`
-# EvpImg
+# ${CamelCaseName}
 
-Img is a component that can show image in a container with preview.
+${CamelCaseName} is a component that can show image in a container with preview.
 
 ## Basic Usage
 
@@ -30,7 +32,7 @@ Img is a component that can show image in a container with preview.
       </Md>
       <Tsx>
         {`
-import { Img } from 'evp-design-ui'
+import { ${CamelCaseName} } from 'evp-design-ui'
 `}
       </Tsx>
       <Md>
@@ -43,7 +45,7 @@ import { Img } from 'evp-design-ui'
         {`
 ## Examples
 
-Here are some examples about EvpImg.
+Here are some examples about ${CamelCaseName}.
 
 `}
       </Md>
@@ -55,7 +57,7 @@ Here are some examples about EvpImg.
 ★ based on img  
 ★ props extends EvpBaseProps
 
-**EvpCode Apis:**
+**${CamelCaseName} Apis:**
 
 `}
       </Md>

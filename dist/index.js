@@ -312,6 +312,31 @@ var paddingParser = function paddingParser(pd) {
   }
 };
 
+function RotateParser(rotate) {
+  if (!rotate) {
+    return "0deg";
+  }
+  if (typeof rotate === "string") {
+    return rotate;
+  }
+  return "".concat(rotate, "deg");
+}
+
+/**
+ * Parse number to px
+ */
+var valParser = function valParser(props) {
+  if (!props) {
+    return undefined;
+  } else {
+    if (typeof props === 'number') {
+      return "".concat(props, "px");
+    } else {
+      return props;
+    }
+  }
+};
+
 function StylePropsParser(props) {
   var keys = Object.keys(props);
   var padding = undefined;
@@ -362,19 +387,24 @@ function StylePropsParser(props) {
     width: props.w,
     height: props.h,
     padding: padding,
-    margin: margin
+    margin: margin,
+    rotate: RotateParser(props.rotate),
+    gap: valParser(props.gap),
+    transform: props.transform,
+    transition: props.transition,
+    scale: props.scale === undefined ? undefined : String(props.scale)
   }, shift(props.style));
   function isValidMgPdArray(array) {
-    return JSON.stringify(array) === '[0,0,0,0]' ? false : true;
+    return JSON.stringify(array) === "[0,0,0,0]" ? false : true;
   }
   function handleMargin(key) {
-    if (key.startsWith('mg') && props[key]) {
-      var slices = key.split('_');
+    if (key.startsWith("mg") && props[key]) {
+      var slices = key.split("_");
       if (slices.length !== 2) {
         return true;
       }
       switch (slices[0]) {
-        case 'mg':
+        case "mg":
           {
             marginComputed[0] += Number(slices[1]);
             marginComputed[1] += Number(slices[1]);
@@ -382,22 +412,22 @@ function StylePropsParser(props) {
             marginComputed[3] += Number(slices[1]);
             break;
           }
-        case 'mgt':
+        case "mgt":
           {
             marginComputed[0] += Number(slices[1]);
             break;
           }
-        case 'mgr':
+        case "mgr":
           {
             marginComputed[1] += Number(slices[1]);
             break;
           }
-        case 'mgb':
+        case "mgb":
           {
             marginComputed[2] += Number(slices[1]);
             break;
           }
-        case 'mgl':
+        case "mgl":
           {
             marginComputed[3] += Number(slices[1]);
             break;
@@ -408,13 +438,13 @@ function StylePropsParser(props) {
     return false;
   }
   function handlePadding(key) {
-    if (key.startsWith('pd') && props[key]) {
-      var slices = key.split('_');
+    if (key.startsWith("pd") && props[key]) {
+      var slices = key.split("_");
       if (slices.length !== 2) {
         return true;
       }
       switch (slices[0]) {
-        case 'pd':
+        case "pd":
           {
             paddingComputed[0] += Number(slices[1]);
             paddingComputed[1] += Number(slices[1]);
@@ -422,22 +452,22 @@ function StylePropsParser(props) {
             paddingComputed[3] += Number(slices[1]);
             break;
           }
-        case 'pdt':
+        case "pdt":
           {
             paddingComputed[0] += Number(slices[1]);
             break;
           }
-        case 'pdr':
+        case "pdr":
           {
             paddingComputed[1] += Number(slices[1]);
             break;
           }
-        case 'pdb':
+        case "pdb":
           {
             paddingComputed[2] += Number(slices[1]);
             break;
           }
-        case 'pdl':
+        case "pdl":
           {
             paddingComputed[3] += Number(slices[1]);
             break;
@@ -22364,7 +22394,7 @@ var SquareSuperset = "⊐";
 var SquareSupersetEqual = "⊒";
 var SquareUnion = "⊔";
 var Sscr = "𝒮";
-var Star = "⋆";
+var Star$2 = "⋆";
 var Sub = "⋐";
 var Subset = "⋐";
 var SubsetEqual = "⊆";
@@ -24586,7 +24616,7 @@ var require$$0 = {
 	SquareSupersetEqual: SquareSupersetEqual,
 	SquareUnion: SquareUnion,
 	Sscr: Sscr,
-	Star: Star,
+	Star: Star$2,
 	Sub: Sub,
 	Subset: Subset,
 	SubsetEqual: SubsetEqual,
@@ -40868,51 +40898,42 @@ function magma(Prism) {
   };
 }
 
-var makefile_1;
-var hasRequiredMakefile;
-
-function requireMakefile () {
-	if (hasRequiredMakefile) return makefile_1;
-	hasRequiredMakefile = 1;
-
-	makefile_1 = makefile;
-	makefile.displayName = 'makefile';
-	makefile.aliases = [];
-	function makefile(Prism) {
-	  Prism.languages.makefile = {
-	    comment: {
-	      pattern: /(^|[^\\])#(?:\\(?:\r\n|[\s\S])|[^\\\r\n])*/,
-	      lookbehind: true
-	    },
-	    string: {
-	      pattern: /(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
-	      greedy: true
-	    },
-	    'builtin-target': {
-	      pattern: /\.[A-Z][^:#=\s]+(?=\s*:(?!=))/,
-	      alias: 'builtin'
-	    },
-	    target: {
-	      pattern: /^(?:[^:=\s]|[ \t]+(?![\s:]))+(?=\s*:(?!=))/m,
-	      alias: 'symbol',
-	      inside: {
-	        variable: /\$+(?:(?!\$)[^(){}:#=\s]+|(?=[({]))/
-	      }
-	    },
-	    variable: /\$+(?:(?!\$)[^(){}:#=\s]+|\([@*%<^+?][DF]\)|(?=[({]))/,
-	    // Directives
-	    keyword:
-	      /-include\b|\b(?:define|else|endef|endif|export|ifn?def|ifn?eq|include|override|private|sinclude|undefine|unexport|vpath)\b/,
-	    function: {
-	      pattern:
-	        /(\()(?:abspath|addsuffix|and|basename|call|dir|error|eval|file|filter(?:-out)?|findstring|firstword|flavor|foreach|guile|if|info|join|lastword|load|notdir|or|origin|patsubst|realpath|shell|sort|strip|subst|suffix|value|warning|wildcard|word(?:list|s)?)(?=[ \t])/,
-	      lookbehind: true
-	    },
-	    operator: /(?:::|[?:+!])?=|[|@]/,
-	    punctuation: /[:;(){}]/
-	  };
-	}
-	return makefile_1;
+var makefile_1 = makefile;
+makefile.displayName = 'makefile';
+makefile.aliases = [];
+function makefile(Prism) {
+  Prism.languages.makefile = {
+    comment: {
+      pattern: /(^|[^\\])#(?:\\(?:\r\n|[\s\S])|[^\\\r\n])*/,
+      lookbehind: true
+    },
+    string: {
+      pattern: /(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
+      greedy: true
+    },
+    'builtin-target': {
+      pattern: /\.[A-Z][^:#=\s]+(?=\s*:(?!=))/,
+      alias: 'builtin'
+    },
+    target: {
+      pattern: /^(?:[^:=\s]|[ \t]+(?![\s:]))+(?=\s*:(?!=))/m,
+      alias: 'symbol',
+      inside: {
+        variable: /\$+(?:(?!\$)[^(){}:#=\s]+|(?=[({]))/
+      }
+    },
+    variable: /\$+(?:(?!\$)[^(){}:#=\s]+|\([@*%<^+?][DF]\)|(?=[({]))/,
+    // Directives
+    keyword:
+      /-include\b|\b(?:define|else|endef|endif|export|ifn?def|ifn?eq|include|override|private|sinclude|undefine|unexport|vpath)\b/,
+    function: {
+      pattern:
+        /(\()(?:abspath|addsuffix|and|basename|call|dir|error|eval|file|filter(?:-out)?|findstring|firstword|flavor|foreach|guile|if|info|join|lastword|load|notdir|or|origin|patsubst|realpath|shell|sort|strip|subst|suffix|value|warning|wildcard|word(?:list|s)?)(?=[ \t])/,
+      lookbehind: true
+    },
+    operator: /(?:::|[?:+!])?=|[|@]/,
+    punctuation: /[:;(){}]/
+  };
 }
 
 var markdown_1 = markdown;
@@ -41344,33 +41365,24 @@ function markdown(Prism) {
   })(Prism);
 }
 
-var matlab_1;
-var hasRequiredMatlab;
-
-function requireMatlab () {
-	if (hasRequiredMatlab) return matlab_1;
-	hasRequiredMatlab = 1;
-
-	matlab_1 = matlab;
-	matlab.displayName = 'matlab';
-	matlab.aliases = [];
-	function matlab(Prism) {
-	  Prism.languages.matlab = {
-	    comment: [/%\{[\s\S]*?\}%/, /%.+/],
-	    string: {
-	      pattern: /\B'(?:''|[^'\r\n])*'/,
-	      greedy: true
-	    },
-	    // FIXME We could handle imaginary numbers as a whole
-	    number: /(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:[eE][+-]?\d+)?(?:[ij])?|\b[ij]\b/,
-	    keyword:
-	      /\b(?:NaN|break|case|catch|continue|else|elseif|end|for|function|if|inf|otherwise|parfor|pause|pi|return|switch|try|while)\b/,
-	    function: /\b(?!\d)\w+(?=\s*\()/,
-	    operator: /\.?[*^\/\\']|[+\-:@]|[<>=~]=?|&&?|\|\|?/,
-	    punctuation: /\.{3}|[.,;\[\](){}!]/
-	  };
-	}
-	return matlab_1;
+var matlab_1 = matlab;
+matlab.displayName = 'matlab';
+matlab.aliases = [];
+function matlab(Prism) {
+  Prism.languages.matlab = {
+    comment: [/%\{[\s\S]*?\}%/, /%.+/],
+    string: {
+      pattern: /\B'(?:''|[^'\r\n])*'/,
+      greedy: true
+    },
+    // FIXME We could handle imaginary numbers as a whole
+    number: /(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:[eE][+-]?\d+)?(?:[ij])?|\b[ij]\b/,
+    keyword:
+      /\b(?:NaN|break|case|catch|continue|else|elseif|end|for|function|if|inf|otherwise|parfor|pause|pi|return|switch|try|while)\b/,
+    function: /\b(?!\d)\w+(?=\s*\()/,
+    operator: /\.?[*^\/\\']|[+\-:@]|[<>=~]=?|&&?|\|\|?/,
+    punctuation: /\.{3}|[.,;\[\](){}!]/
+  };
 }
 
 var maxscript_1 = maxscript;
@@ -41461,53 +41473,62 @@ function maxscript(Prism) {
   })(Prism);
 }
 
-var mel_1 = mel;
-mel.displayName = 'mel';
-mel.aliases = [];
-function mel(Prism) {
-  Prism.languages.mel = {
-    comment: /\/\/.*/,
-    code: {
-      pattern: /`(?:\\.|[^\\`\r\n])*`/,
-      greedy: true,
-      alias: 'italic',
-      inside: {
-        delimiter: {
-          pattern: /^`|`$/,
-          alias: 'punctuation'
-        } // See rest below
-      }
-    },
-    string: {
-      pattern: /"(?:\\.|[^\\"\r\n])*"/,
-      greedy: true
-    },
-    variable: /\$\w+/,
-    number: /\b0x[\da-fA-F]+\b|\b\d+(?:\.\d*)?|\B\.\d+/,
-    flag: {
-      pattern: /-[^\d\W]\w*/,
-      alias: 'operator'
-    },
-    keyword:
-      /\b(?:break|case|continue|default|do|else|float|for|global|if|in|int|matrix|proc|return|string|switch|vector|while)\b/,
-    function:
-      /\b\w+(?=\()|\b(?:CBG|HfAddAttractorToAS|HfAssignAS|HfBuildEqualMap|HfBuildFurFiles|HfBuildFurImages|HfCancelAFR|HfConnectASToHF|HfCreateAttractor|HfDeleteAS|HfEditAS|HfPerformCreateAS|HfRemoveAttractorFromAS|HfSelectAttached|HfSelectAttractors|HfUnAssignAS|Mayatomr|about|abs|addAttr|addAttributeEditorNodeHelp|addDynamic|addNewShelfTab|addPP|addPanelCategory|addPrefixToName|advanceToNextDrivenKey|affectedNet|affects|aimConstraint|air|alias|aliasAttr|align|alignCtx|alignCurve|alignSurface|allViewFit|ambientLight|angle|angleBetween|animCone|animCurveEditor|animDisplay|animView|annotate|appendStringArray|applicationName|applyAttrPreset|applyTake|arcLenDimContext|arcLengthDimension|arclen|arrayMapper|art3dPaintCtx|artAttrCtx|artAttrPaintVertexCtx|artAttrSkinPaintCtx|artAttrTool|artBuildPaintMenu|artFluidAttrCtx|artPuttyCtx|artSelectCtx|artSetPaintCtx|artUserPaintCtx|assignCommand|assignInputDevice|assignViewportFactories|attachCurve|attachDeviceAttr|attachSurface|attrColorSliderGrp|attrCompatibility|attrControlGrp|attrEnumOptionMenu|attrEnumOptionMenuGrp|attrFieldGrp|attrFieldSliderGrp|attrNavigationControlGrp|attrPresetEditWin|attributeExists|attributeInfo|attributeMenu|attributeQuery|autoKeyframe|autoPlace|bakeClip|bakeFluidShading|bakePartialHistory|bakeResults|bakeSimulation|basename|basenameEx|batchRender|bessel|bevel|bevelPlus|binMembership|bindSkin|blend2|blendShape|blendShapeEditor|blendShapePanel|blendTwoAttr|blindDataType|boneLattice|boundary|boxDollyCtx|boxZoomCtx|bufferCurve|buildBookmarkMenu|buildKeyframeMenu|button|buttonManip|cacheFile|cacheFileCombine|cacheFileMerge|cacheFileTrack|camera|cameraView|canCreateManip|canvas|capitalizeString|catch|catchQuiet|ceil|changeSubdivComponentDisplayLevel|changeSubdivRegion|channelBox|character|characterMap|characterOutlineEditor|characterize|chdir|checkBox|checkBoxGrp|checkDefaultRenderGlobals|choice|circle|circularFillet|clamp|clear|clearCache|clip|clipEditor|clipEditorCurrentTimeCtx|clipSchedule|clipSchedulerOutliner|clipTrimBefore|closeCurve|closeSurface|cluster|cmdFileOutput|cmdScrollFieldExecuter|cmdScrollFieldReporter|cmdShell|coarsenSubdivSelectionList|collision|color|colorAtPoint|colorEditor|colorIndex|colorIndexSliderGrp|colorSliderButtonGrp|colorSliderGrp|columnLayout|commandEcho|commandLine|commandPort|compactHairSystem|componentEditor|compositingInterop|computePolysetVolume|condition|cone|confirmDialog|connectAttr|connectControl|connectDynamic|connectJoint|connectionInfo|constrain|constrainValue|constructionHistory|container|containsMultibyte|contextInfo|control|convertFromOldLayers|convertIffToPsd|convertLightmap|convertSolidTx|convertTessellation|convertUnit|copyArray|copyFlexor|copyKey|copySkinWeights|cos|cpButton|cpCache|cpClothSet|cpCollision|cpConstraint|cpConvClothToMesh|cpForces|cpGetSolverAttr|cpPanel|cpProperty|cpRigidCollisionFilter|cpSeam|cpSetEdit|cpSetSolverAttr|cpSolver|cpSolverTypes|cpTool|cpUpdateClothUVs|createDisplayLayer|createDrawCtx|createEditor|createLayeredPsdFile|createMotionField|createNewShelf|createNode|createRenderLayer|createSubdivRegion|cross|crossProduct|ctxAbort|ctxCompletion|ctxEditMode|ctxTraverse|currentCtx|currentTime|currentTimeCtx|currentUnit|curve|curveAddPtCtx|curveCVCtx|curveEPCtx|curveEditorCtx|curveIntersect|curveMoveEPCtx|curveOnSurface|curveSketchCtx|cutKey|cycleCheck|cylinder|dagPose|date|defaultLightListCheckBox|defaultNavigation|defineDataServer|defineVirtualDevice|deformer|deg_to_rad|delete|deleteAttr|deleteShadingGroupsAndMaterials|deleteShelfTab|deleteUI|deleteUnusedBrushes|delrandstr|detachCurve|detachDeviceAttr|detachSurface|deviceEditor|devicePanel|dgInfo|dgdirty|dgeval|dgtimer|dimWhen|directKeyCtx|directionalLight|dirmap|dirname|disable|disconnectAttr|disconnectJoint|diskCache|displacementToPoly|displayAffected|displayColor|displayCull|displayLevelOfDetail|displayPref|displayRGBColor|displaySmoothness|displayStats|displayString|displaySurface|distanceDimContext|distanceDimension|doBlur|dolly|dollyCtx|dopeSheetEditor|dot|dotProduct|doubleProfileBirailSurface|drag|dragAttrContext|draggerContext|dropoffLocator|duplicate|duplicateCurve|duplicateSurface|dynCache|dynControl|dynExport|dynExpression|dynGlobals|dynPaintEditor|dynParticleCtx|dynPref|dynRelEdPanel|dynRelEditor|dynamicLoad|editAttrLimits|editDisplayLayerGlobals|editDisplayLayerMembers|editRenderLayerAdjustment|editRenderLayerGlobals|editRenderLayerMembers|editor|editorTemplate|effector|emit|emitter|enableDevice|encodeString|endString|endsWith|env|equivalent|equivalentTol|erf|error|eval|evalDeferred|evalEcho|event|exactWorldBoundingBox|exclusiveLightCheckBox|exec|executeForEachObject|exists|exp|expression|expressionEditorListen|extendCurve|extendSurface|extrude|fcheck|fclose|feof|fflush|fgetline|fgetword|file|fileBrowserDialog|fileDialog|fileExtension|fileInfo|filetest|filletCurve|filter|filterCurve|filterExpand|filterStudioImport|findAllIntersections|findAnimCurves|findKeyframe|findMenuItem|findRelatedSkinCluster|finder|firstParentOf|fitBspline|flexor|floatEq|floatField|floatFieldGrp|floatScrollBar|floatSlider|floatSlider2|floatSliderButtonGrp|floatSliderGrp|floor|flow|fluidCacheInfo|fluidEmitter|fluidVoxelInfo|flushUndo|fmod|fontDialog|fopen|formLayout|format|fprint|frameLayout|fread|freeFormFillet|frewind|fromNativePath|fwrite|gamma|gauss|geometryConstraint|getApplicationVersionAsFloat|getAttr|getClassification|getDefaultBrush|getFileList|getFluidAttr|getInputDeviceRange|getMayaPanelTypes|getModifiers|getPanel|getParticleAttr|getPluginResource|getenv|getpid|glRender|glRenderEditor|globalStitch|gmatch|goal|gotoBindPose|grabColor|gradientControl|gradientControlNoAttr|graphDollyCtx|graphSelectContext|graphTrackCtx|gravity|grid|gridLayout|group|groupObjectsByName|hardenPointCurve|hardware|hardwareRenderPanel|headsUpDisplay|headsUpMessage|help|helpLine|hermite|hide|hilite|hitTest|hotBox|hotkey|hotkeyCheck|hsv_to_rgb|hudButton|hudSlider|hudSliderButton|hwReflectionMap|hwRender|hwRenderLoad|hyperGraph|hyperPanel|hyperShade|hypot|iconTextButton|iconTextCheckBox|iconTextRadioButton|iconTextRadioCollection|iconTextScrollList|iconTextStaticLabel|ikHandle|ikHandleCtx|ikHandleDisplayScale|ikSolver|ikSplineHandleCtx|ikSystem|ikSystemInfo|ikfkDisplayMethod|illustratorCurves|image|imfPlugins|inheritTransform|insertJoint|insertJointCtx|insertKeyCtx|insertKnotCurve|insertKnotSurface|instance|instanceable|instancer|intField|intFieldGrp|intScrollBar|intSlider|intSliderGrp|interToUI|internalVar|intersect|iprEngine|isAnimCurve|isConnected|isDirty|isParentOf|isSameObject|isTrue|isValidObjectName|isValidString|isValidUiName|isolateSelect|itemFilter|itemFilterAttr|itemFilterRender|itemFilterType|joint|jointCluster|jointCtx|jointDisplayScale|jointLattice|keyTangent|keyframe|keyframeOutliner|keyframeRegionCurrentTimeCtx|keyframeRegionDirectKeyCtx|keyframeRegionDollyCtx|keyframeRegionInsertKeyCtx|keyframeRegionMoveKeyCtx|keyframeRegionScaleKeyCtx|keyframeRegionSelectKeyCtx|keyframeRegionSetKeyCtx|keyframeRegionTrackCtx|keyframeStats|lassoContext|lattice|latticeDeformKeyCtx|launch|launchImageEditor|layerButton|layeredShaderPort|layeredTexturePort|layout|layoutDialog|lightList|lightListEditor|lightListPanel|lightlink|lineIntersection|linearPrecision|linstep|listAnimatable|listAttr|listCameras|listConnections|listDeviceAttachments|listHistory|listInputDeviceAxes|listInputDeviceButtons|listInputDevices|listMenuAnnotation|listNodeTypes|listPanelCategories|listRelatives|listSets|listTransforms|listUnselected|listerEditor|loadFluid|loadNewShelf|loadPlugin|loadPluginLanguageResources|loadPrefObjects|localizedPanelLabel|lockNode|loft|log|longNameOf|lookThru|ls|lsThroughFilter|lsType|lsUI|mag|makeIdentity|makeLive|makePaintable|makeRoll|makeSingleSurface|makeTubeOn|makebot|manipMoveContext|manipMoveLimitsCtx|manipOptions|manipRotateContext|manipRotateLimitsCtx|manipScaleContext|manipScaleLimitsCtx|marker|match|max|memory|menu|menuBarLayout|menuEditor|menuItem|menuItemToShelf|menuSet|menuSetPref|messageLine|min|minimizeApp|mirrorJoint|modelCurrentTimeCtx|modelEditor|modelPanel|mouse|movIn|movOut|move|moveIKtoFK|moveKeyCtx|moveVertexAlongDirection|multiProfileBirailSurface|mute|nParticle|nameCommand|nameField|namespace|namespaceInfo|newPanelItems|newton|nodeCast|nodeIconButton|nodeOutliner|nodePreset|nodeType|noise|nonLinear|normalConstraint|normalize|nurbsBoolean|nurbsCopyUVSet|nurbsCube|nurbsEditUV|nurbsPlane|nurbsSelect|nurbsSquare|nurbsToPoly|nurbsToPolygonsPref|nurbsToSubdiv|nurbsToSubdivPref|nurbsUVSet|nurbsViewDirectionVector|objExists|objectCenter|objectLayer|objectType|objectTypeUI|obsoleteProc|oceanNurbsPreviewPlane|offsetCurve|offsetCurveOnSurface|offsetSurface|openGLExtension|openMayaPref|optionMenu|optionMenuGrp|optionVar|orbit|orbitCtx|orientConstraint|outlinerEditor|outlinerPanel|overrideModifier|paintEffectsDisplay|pairBlend|palettePort|paneLayout|panel|panelConfiguration|panelHistory|paramDimContext|paramDimension|paramLocator|parent|parentConstraint|particle|particleExists|particleInstancer|particleRenderInfo|partition|pasteKey|pathAnimation|pause|pclose|percent|performanceOptions|pfxstrokes|pickWalk|picture|pixelMove|planarSrf|plane|play|playbackOptions|playblast|plugAttr|plugNode|pluginInfo|pluginResourceUtil|pointConstraint|pointCurveConstraint|pointLight|pointMatrixMult|pointOnCurve|pointOnSurface|pointPosition|poleVectorConstraint|polyAppend|polyAppendFacetCtx|polyAppendVertex|polyAutoProjection|polyAverageNormal|polyAverageVertex|polyBevel|polyBlendColor|polyBlindData|polyBoolOp|polyBridgeEdge|polyCacheMonitor|polyCheck|polyChipOff|polyClipboard|polyCloseBorder|polyCollapseEdge|polyCollapseFacet|polyColorBlindData|polyColorDel|polyColorPerVertex|polyColorSet|polyCompare|polyCone|polyCopyUV|polyCrease|polyCreaseCtx|polyCreateFacet|polyCreateFacetCtx|polyCube|polyCut|polyCutCtx|polyCylinder|polyCylindricalProjection|polyDelEdge|polyDelFacet|polyDelVertex|polyDuplicateAndConnect|polyDuplicateEdge|polyEditUV|polyEditUVShell|polyEvaluate|polyExtrudeEdge|polyExtrudeFacet|polyExtrudeVertex|polyFlipEdge|polyFlipUV|polyForceUV|polyGeoSampler|polyHelix|polyInfo|polyInstallAction|polyLayoutUV|polyListComponentConversion|polyMapCut|polyMapDel|polyMapSew|polyMapSewMove|polyMergeEdge|polyMergeEdgeCtx|polyMergeFacet|polyMergeFacetCtx|polyMergeUV|polyMergeVertex|polyMirrorFace|polyMoveEdge|polyMoveFacet|polyMoveFacetUV|polyMoveUV|polyMoveVertex|polyNormal|polyNormalPerVertex|polyNormalizeUV|polyOptUvs|polyOptions|polyOutput|polyPipe|polyPlanarProjection|polyPlane|polyPlatonicSolid|polyPoke|polyPrimitive|polyPrism|polyProjection|polyPyramid|polyQuad|polyQueryBlindData|polyReduce|polySelect|polySelectConstraint|polySelectConstraintMonitor|polySelectCtx|polySelectEditCtx|polySeparate|polySetToFaceNormal|polySewEdge|polyShortestPathCtx|polySmooth|polySoftEdge|polySphere|polySphericalProjection|polySplit|polySplitCtx|polySplitEdge|polySplitRing|polySplitVertex|polyStraightenUVBorder|polySubdivideEdge|polySubdivideFacet|polyToSubdiv|polyTorus|polyTransfer|polyTriangulate|polyUVSet|polyUnite|polyWedgeFace|popen|popupMenu|pose|pow|preloadRefEd|print|progressBar|progressWindow|projFileViewer|projectCurve|projectTangent|projectionContext|projectionManip|promptDialog|propModCtx|propMove|psdChannelOutliner|psdEditTextureFile|psdExport|psdTextureFile|putenv|pwd|python|querySubdiv|quit|rad_to_deg|radial|radioButton|radioButtonGrp|radioCollection|radioMenuItemCollection|rampColorPort|rand|randomizeFollicles|randstate|rangeControl|readTake|rebuildCurve|rebuildSurface|recordAttr|recordDevice|redo|reference|referenceEdit|referenceQuery|refineSubdivSelectionList|refresh|refreshAE|registerPluginResource|rehash|reloadImage|removeJoint|removeMultiInstance|removePanelCategory|rename|renameAttr|renameSelectionList|renameUI|render|renderGlobalsNode|renderInfo|renderLayerButton|renderLayerParent|renderLayerPostProcess|renderLayerUnparent|renderManip|renderPartition|renderQualityNode|renderSettings|renderThumbnailUpdate|renderWindowEditor|renderWindowSelectContext|renderer|reorder|reorderDeformers|requires|reroot|resampleFluid|resetAE|resetPfxToPolyCamera|resetTool|resolutionNode|retarget|reverseCurve|reverseSurface|revolve|rgb_to_hsv|rigidBody|rigidSolver|roll|rollCtx|rootOf|rot|rotate|rotationInterpolation|roundConstantRadius|rowColumnLayout|rowLayout|runTimeCommand|runup|sampleImage|saveAllShelves|saveAttrPreset|saveFluid|saveImage|saveInitialState|saveMenu|savePrefObjects|savePrefs|saveShelf|saveToolSettings|scale|scaleBrushBrightness|scaleComponents|scaleConstraint|scaleKey|scaleKeyCtx|sceneEditor|sceneUIReplacement|scmh|scriptCtx|scriptEditorInfo|scriptJob|scriptNode|scriptTable|scriptToShelf|scriptedPanel|scriptedPanelType|scrollField|scrollLayout|sculpt|searchPathArray|seed|selLoadSettings|select|selectContext|selectCurveCV|selectKey|selectKeyCtx|selectKeyframeRegionCtx|selectMode|selectPref|selectPriority|selectType|selectedNodes|selectionConnection|separator|setAttr|setAttrEnumResource|setAttrMapping|setAttrNiceNameResource|setConstraintRestPosition|setDefaultShadingGroup|setDrivenKeyframe|setDynamic|setEditCtx|setEditor|setFluidAttr|setFocus|setInfinity|setInputDeviceMapping|setKeyCtx|setKeyPath|setKeyframe|setKeyframeBlendshapeTargetWts|setMenuMode|setNodeNiceNameResource|setNodeTypeFlag|setParent|setParticleAttr|setPfxToPolyCamera|setPluginResource|setProject|setStampDensity|setStartupMessage|setState|setToolTo|setUITemplate|setXformManip|sets|shadingConnection|shadingGeometryRelCtx|shadingLightRelCtx|shadingNetworkCompare|shadingNode|shapeCompare|shelfButton|shelfLayout|shelfTabLayout|shellField|shortNameOf|showHelp|showHidden|showManipCtx|showSelectionInTitle|showShadingGroupAttrEditor|showWindow|sign|simplify|sin|singleProfileBirailSurface|size|sizeBytes|skinCluster|skinPercent|smoothCurve|smoothTangentSurface|smoothstep|snap2to2|snapKey|snapMode|snapTogetherCtx|snapshot|soft|softMod|softModCtx|sort|sound|soundControl|source|spaceLocator|sphere|sphrand|spotLight|spotLightPreviewPort|spreadSheetEditor|spring|sqrt|squareSurface|srtContext|stackTrace|startString|startsWith|stitchAndExplodeShell|stitchSurface|stitchSurfacePoints|strcmp|stringArrayCatenate|stringArrayContains|stringArrayCount|stringArrayInsertAtIndex|stringArrayIntersector|stringArrayRemove|stringArrayRemoveAtIndex|stringArrayRemoveDuplicates|stringArrayRemoveExact|stringArrayToString|stringToStringArray|strip|stripPrefixFromName|stroke|subdAutoProjection|subdCleanTopology|subdCollapse|subdDuplicateAndConnect|subdEditUV|subdListComponentConversion|subdMapCut|subdMapSewMove|subdMatchTopology|subdMirror|subdToBlind|subdToPoly|subdTransferUVsToCache|subdiv|subdivCrease|subdivDisplaySmoothness|substitute|substituteAllString|substituteGeometry|substring|surface|surfaceSampler|surfaceShaderList|swatchDisplayPort|switchTable|symbolButton|symbolCheckBox|sysFile|system|tabLayout|tan|tangentConstraint|texLatticeDeformContext|texManipContext|texMoveContext|texMoveUVShellContext|texRotateContext|texScaleContext|texSelectContext|texSelectShortestPathCtx|texSmudgeUVContext|texWinToolCtx|text|textCurves|textField|textFieldButtonGrp|textFieldGrp|textManip|textScrollList|textToShelf|textureDisplacePlane|textureHairColor|texturePlacementContext|textureWindow|threadCount|threePointArcCtx|timeControl|timePort|timerX|toNativePath|toggle|toggleAxis|toggleWindowVisibility|tokenize|tokenizeList|tolerance|tolower|toolButton|toolCollection|toolDropped|toolHasOptions|toolPropertyWindow|torus|toupper|trace|track|trackCtx|transferAttributes|transformCompare|transformLimits|translator|trim|trunc|truncateFluidCache|truncateHairCache|tumble|tumbleCtx|turbulence|twoPointArcCtx|uiRes|uiTemplate|unassignInputDevice|undo|undoInfo|ungroup|uniform|unit|unloadPlugin|untangleUV|untitledFileName|untrim|upAxis|updateAE|userCtx|uvLink|uvSnapshot|validateShelfName|vectorize|view2dToolCtx|viewCamera|viewClipPlane|viewFit|viewHeadOn|viewLookAt|viewManip|viewPlace|viewSet|visor|volumeAxis|vortex|waitCursor|warning|webBrowser|webBrowserPrefs|whatIs|window|windowPref|wire|wireContext|workspace|wrinkle|wrinkleContext|writeTake|xbmLangPathList|xform)\b/,
-    operator: [
-      /\+[+=]?|-[-=]?|&&|\|\||[<>]=|[*\/!=]=?|[%^]/,
-      {
-        // We don't want to match <<
-        pattern: /(^|[^<])<(?!<)/,
-        lookbehind: true
-      },
-      {
-        // We don't want to match >>
-        pattern: /(^|[^>])>(?!>)/,
-        lookbehind: true
-      }
-    ],
-    punctuation: /<<|>>|[.,:;?\[\](){}]/
-  };
-  Prism.languages.mel['code'].inside.rest = Prism.languages.mel;
+var mel_1;
+var hasRequiredMel;
+
+function requireMel () {
+	if (hasRequiredMel) return mel_1;
+	hasRequiredMel = 1;
+
+	mel_1 = mel;
+	mel.displayName = 'mel';
+	mel.aliases = [];
+	function mel(Prism) {
+	  Prism.languages.mel = {
+	    comment: /\/\/.*/,
+	    code: {
+	      pattern: /`(?:\\.|[^\\`\r\n])*`/,
+	      greedy: true,
+	      alias: 'italic',
+	      inside: {
+	        delimiter: {
+	          pattern: /^`|`$/,
+	          alias: 'punctuation'
+	        } // See rest below
+	      }
+	    },
+	    string: {
+	      pattern: /"(?:\\.|[^\\"\r\n])*"/,
+	      greedy: true
+	    },
+	    variable: /\$\w+/,
+	    number: /\b0x[\da-fA-F]+\b|\b\d+(?:\.\d*)?|\B\.\d+/,
+	    flag: {
+	      pattern: /-[^\d\W]\w*/,
+	      alias: 'operator'
+	    },
+	    keyword:
+	      /\b(?:break|case|continue|default|do|else|float|for|global|if|in|int|matrix|proc|return|string|switch|vector|while)\b/,
+	    function:
+	      /\b\w+(?=\()|\b(?:CBG|HfAddAttractorToAS|HfAssignAS|HfBuildEqualMap|HfBuildFurFiles|HfBuildFurImages|HfCancelAFR|HfConnectASToHF|HfCreateAttractor|HfDeleteAS|HfEditAS|HfPerformCreateAS|HfRemoveAttractorFromAS|HfSelectAttached|HfSelectAttractors|HfUnAssignAS|Mayatomr|about|abs|addAttr|addAttributeEditorNodeHelp|addDynamic|addNewShelfTab|addPP|addPanelCategory|addPrefixToName|advanceToNextDrivenKey|affectedNet|affects|aimConstraint|air|alias|aliasAttr|align|alignCtx|alignCurve|alignSurface|allViewFit|ambientLight|angle|angleBetween|animCone|animCurveEditor|animDisplay|animView|annotate|appendStringArray|applicationName|applyAttrPreset|applyTake|arcLenDimContext|arcLengthDimension|arclen|arrayMapper|art3dPaintCtx|artAttrCtx|artAttrPaintVertexCtx|artAttrSkinPaintCtx|artAttrTool|artBuildPaintMenu|artFluidAttrCtx|artPuttyCtx|artSelectCtx|artSetPaintCtx|artUserPaintCtx|assignCommand|assignInputDevice|assignViewportFactories|attachCurve|attachDeviceAttr|attachSurface|attrColorSliderGrp|attrCompatibility|attrControlGrp|attrEnumOptionMenu|attrEnumOptionMenuGrp|attrFieldGrp|attrFieldSliderGrp|attrNavigationControlGrp|attrPresetEditWin|attributeExists|attributeInfo|attributeMenu|attributeQuery|autoKeyframe|autoPlace|bakeClip|bakeFluidShading|bakePartialHistory|bakeResults|bakeSimulation|basename|basenameEx|batchRender|bessel|bevel|bevelPlus|binMembership|bindSkin|blend2|blendShape|blendShapeEditor|blendShapePanel|blendTwoAttr|blindDataType|boneLattice|boundary|boxDollyCtx|boxZoomCtx|bufferCurve|buildBookmarkMenu|buildKeyframeMenu|button|buttonManip|cacheFile|cacheFileCombine|cacheFileMerge|cacheFileTrack|camera|cameraView|canCreateManip|canvas|capitalizeString|catch|catchQuiet|ceil|changeSubdivComponentDisplayLevel|changeSubdivRegion|channelBox|character|characterMap|characterOutlineEditor|characterize|chdir|checkBox|checkBoxGrp|checkDefaultRenderGlobals|choice|circle|circularFillet|clamp|clear|clearCache|clip|clipEditor|clipEditorCurrentTimeCtx|clipSchedule|clipSchedulerOutliner|clipTrimBefore|closeCurve|closeSurface|cluster|cmdFileOutput|cmdScrollFieldExecuter|cmdScrollFieldReporter|cmdShell|coarsenSubdivSelectionList|collision|color|colorAtPoint|colorEditor|colorIndex|colorIndexSliderGrp|colorSliderButtonGrp|colorSliderGrp|columnLayout|commandEcho|commandLine|commandPort|compactHairSystem|componentEditor|compositingInterop|computePolysetVolume|condition|cone|confirmDialog|connectAttr|connectControl|connectDynamic|connectJoint|connectionInfo|constrain|constrainValue|constructionHistory|container|containsMultibyte|contextInfo|control|convertFromOldLayers|convertIffToPsd|convertLightmap|convertSolidTx|convertTessellation|convertUnit|copyArray|copyFlexor|copyKey|copySkinWeights|cos|cpButton|cpCache|cpClothSet|cpCollision|cpConstraint|cpConvClothToMesh|cpForces|cpGetSolverAttr|cpPanel|cpProperty|cpRigidCollisionFilter|cpSeam|cpSetEdit|cpSetSolverAttr|cpSolver|cpSolverTypes|cpTool|cpUpdateClothUVs|createDisplayLayer|createDrawCtx|createEditor|createLayeredPsdFile|createMotionField|createNewShelf|createNode|createRenderLayer|createSubdivRegion|cross|crossProduct|ctxAbort|ctxCompletion|ctxEditMode|ctxTraverse|currentCtx|currentTime|currentTimeCtx|currentUnit|curve|curveAddPtCtx|curveCVCtx|curveEPCtx|curveEditorCtx|curveIntersect|curveMoveEPCtx|curveOnSurface|curveSketchCtx|cutKey|cycleCheck|cylinder|dagPose|date|defaultLightListCheckBox|defaultNavigation|defineDataServer|defineVirtualDevice|deformer|deg_to_rad|delete|deleteAttr|deleteShadingGroupsAndMaterials|deleteShelfTab|deleteUI|deleteUnusedBrushes|delrandstr|detachCurve|detachDeviceAttr|detachSurface|deviceEditor|devicePanel|dgInfo|dgdirty|dgeval|dgtimer|dimWhen|directKeyCtx|directionalLight|dirmap|dirname|disable|disconnectAttr|disconnectJoint|diskCache|displacementToPoly|displayAffected|displayColor|displayCull|displayLevelOfDetail|displayPref|displayRGBColor|displaySmoothness|displayStats|displayString|displaySurface|distanceDimContext|distanceDimension|doBlur|dolly|dollyCtx|dopeSheetEditor|dot|dotProduct|doubleProfileBirailSurface|drag|dragAttrContext|draggerContext|dropoffLocator|duplicate|duplicateCurve|duplicateSurface|dynCache|dynControl|dynExport|dynExpression|dynGlobals|dynPaintEditor|dynParticleCtx|dynPref|dynRelEdPanel|dynRelEditor|dynamicLoad|editAttrLimits|editDisplayLayerGlobals|editDisplayLayerMembers|editRenderLayerAdjustment|editRenderLayerGlobals|editRenderLayerMembers|editor|editorTemplate|effector|emit|emitter|enableDevice|encodeString|endString|endsWith|env|equivalent|equivalentTol|erf|error|eval|evalDeferred|evalEcho|event|exactWorldBoundingBox|exclusiveLightCheckBox|exec|executeForEachObject|exists|exp|expression|expressionEditorListen|extendCurve|extendSurface|extrude|fcheck|fclose|feof|fflush|fgetline|fgetword|file|fileBrowserDialog|fileDialog|fileExtension|fileInfo|filetest|filletCurve|filter|filterCurve|filterExpand|filterStudioImport|findAllIntersections|findAnimCurves|findKeyframe|findMenuItem|findRelatedSkinCluster|finder|firstParentOf|fitBspline|flexor|floatEq|floatField|floatFieldGrp|floatScrollBar|floatSlider|floatSlider2|floatSliderButtonGrp|floatSliderGrp|floor|flow|fluidCacheInfo|fluidEmitter|fluidVoxelInfo|flushUndo|fmod|fontDialog|fopen|formLayout|format|fprint|frameLayout|fread|freeFormFillet|frewind|fromNativePath|fwrite|gamma|gauss|geometryConstraint|getApplicationVersionAsFloat|getAttr|getClassification|getDefaultBrush|getFileList|getFluidAttr|getInputDeviceRange|getMayaPanelTypes|getModifiers|getPanel|getParticleAttr|getPluginResource|getenv|getpid|glRender|glRenderEditor|globalStitch|gmatch|goal|gotoBindPose|grabColor|gradientControl|gradientControlNoAttr|graphDollyCtx|graphSelectContext|graphTrackCtx|gravity|grid|gridLayout|group|groupObjectsByName|hardenPointCurve|hardware|hardwareRenderPanel|headsUpDisplay|headsUpMessage|help|helpLine|hermite|hide|hilite|hitTest|hotBox|hotkey|hotkeyCheck|hsv_to_rgb|hudButton|hudSlider|hudSliderButton|hwReflectionMap|hwRender|hwRenderLoad|hyperGraph|hyperPanel|hyperShade|hypot|iconTextButton|iconTextCheckBox|iconTextRadioButton|iconTextRadioCollection|iconTextScrollList|iconTextStaticLabel|ikHandle|ikHandleCtx|ikHandleDisplayScale|ikSolver|ikSplineHandleCtx|ikSystem|ikSystemInfo|ikfkDisplayMethod|illustratorCurves|image|imfPlugins|inheritTransform|insertJoint|insertJointCtx|insertKeyCtx|insertKnotCurve|insertKnotSurface|instance|instanceable|instancer|intField|intFieldGrp|intScrollBar|intSlider|intSliderGrp|interToUI|internalVar|intersect|iprEngine|isAnimCurve|isConnected|isDirty|isParentOf|isSameObject|isTrue|isValidObjectName|isValidString|isValidUiName|isolateSelect|itemFilter|itemFilterAttr|itemFilterRender|itemFilterType|joint|jointCluster|jointCtx|jointDisplayScale|jointLattice|keyTangent|keyframe|keyframeOutliner|keyframeRegionCurrentTimeCtx|keyframeRegionDirectKeyCtx|keyframeRegionDollyCtx|keyframeRegionInsertKeyCtx|keyframeRegionMoveKeyCtx|keyframeRegionScaleKeyCtx|keyframeRegionSelectKeyCtx|keyframeRegionSetKeyCtx|keyframeRegionTrackCtx|keyframeStats|lassoContext|lattice|latticeDeformKeyCtx|launch|launchImageEditor|layerButton|layeredShaderPort|layeredTexturePort|layout|layoutDialog|lightList|lightListEditor|lightListPanel|lightlink|lineIntersection|linearPrecision|linstep|listAnimatable|listAttr|listCameras|listConnections|listDeviceAttachments|listHistory|listInputDeviceAxes|listInputDeviceButtons|listInputDevices|listMenuAnnotation|listNodeTypes|listPanelCategories|listRelatives|listSets|listTransforms|listUnselected|listerEditor|loadFluid|loadNewShelf|loadPlugin|loadPluginLanguageResources|loadPrefObjects|localizedPanelLabel|lockNode|loft|log|longNameOf|lookThru|ls|lsThroughFilter|lsType|lsUI|mag|makeIdentity|makeLive|makePaintable|makeRoll|makeSingleSurface|makeTubeOn|makebot|manipMoveContext|manipMoveLimitsCtx|manipOptions|manipRotateContext|manipRotateLimitsCtx|manipScaleContext|manipScaleLimitsCtx|marker|match|max|memory|menu|menuBarLayout|menuEditor|menuItem|menuItemToShelf|menuSet|menuSetPref|messageLine|min|minimizeApp|mirrorJoint|modelCurrentTimeCtx|modelEditor|modelPanel|mouse|movIn|movOut|move|moveIKtoFK|moveKeyCtx|moveVertexAlongDirection|multiProfileBirailSurface|mute|nParticle|nameCommand|nameField|namespace|namespaceInfo|newPanelItems|newton|nodeCast|nodeIconButton|nodeOutliner|nodePreset|nodeType|noise|nonLinear|normalConstraint|normalize|nurbsBoolean|nurbsCopyUVSet|nurbsCube|nurbsEditUV|nurbsPlane|nurbsSelect|nurbsSquare|nurbsToPoly|nurbsToPolygonsPref|nurbsToSubdiv|nurbsToSubdivPref|nurbsUVSet|nurbsViewDirectionVector|objExists|objectCenter|objectLayer|objectType|objectTypeUI|obsoleteProc|oceanNurbsPreviewPlane|offsetCurve|offsetCurveOnSurface|offsetSurface|openGLExtension|openMayaPref|optionMenu|optionMenuGrp|optionVar|orbit|orbitCtx|orientConstraint|outlinerEditor|outlinerPanel|overrideModifier|paintEffectsDisplay|pairBlend|palettePort|paneLayout|panel|panelConfiguration|panelHistory|paramDimContext|paramDimension|paramLocator|parent|parentConstraint|particle|particleExists|particleInstancer|particleRenderInfo|partition|pasteKey|pathAnimation|pause|pclose|percent|performanceOptions|pfxstrokes|pickWalk|picture|pixelMove|planarSrf|plane|play|playbackOptions|playblast|plugAttr|plugNode|pluginInfo|pluginResourceUtil|pointConstraint|pointCurveConstraint|pointLight|pointMatrixMult|pointOnCurve|pointOnSurface|pointPosition|poleVectorConstraint|polyAppend|polyAppendFacetCtx|polyAppendVertex|polyAutoProjection|polyAverageNormal|polyAverageVertex|polyBevel|polyBlendColor|polyBlindData|polyBoolOp|polyBridgeEdge|polyCacheMonitor|polyCheck|polyChipOff|polyClipboard|polyCloseBorder|polyCollapseEdge|polyCollapseFacet|polyColorBlindData|polyColorDel|polyColorPerVertex|polyColorSet|polyCompare|polyCone|polyCopyUV|polyCrease|polyCreaseCtx|polyCreateFacet|polyCreateFacetCtx|polyCube|polyCut|polyCutCtx|polyCylinder|polyCylindricalProjection|polyDelEdge|polyDelFacet|polyDelVertex|polyDuplicateAndConnect|polyDuplicateEdge|polyEditUV|polyEditUVShell|polyEvaluate|polyExtrudeEdge|polyExtrudeFacet|polyExtrudeVertex|polyFlipEdge|polyFlipUV|polyForceUV|polyGeoSampler|polyHelix|polyInfo|polyInstallAction|polyLayoutUV|polyListComponentConversion|polyMapCut|polyMapDel|polyMapSew|polyMapSewMove|polyMergeEdge|polyMergeEdgeCtx|polyMergeFacet|polyMergeFacetCtx|polyMergeUV|polyMergeVertex|polyMirrorFace|polyMoveEdge|polyMoveFacet|polyMoveFacetUV|polyMoveUV|polyMoveVertex|polyNormal|polyNormalPerVertex|polyNormalizeUV|polyOptUvs|polyOptions|polyOutput|polyPipe|polyPlanarProjection|polyPlane|polyPlatonicSolid|polyPoke|polyPrimitive|polyPrism|polyProjection|polyPyramid|polyQuad|polyQueryBlindData|polyReduce|polySelect|polySelectConstraint|polySelectConstraintMonitor|polySelectCtx|polySelectEditCtx|polySeparate|polySetToFaceNormal|polySewEdge|polyShortestPathCtx|polySmooth|polySoftEdge|polySphere|polySphericalProjection|polySplit|polySplitCtx|polySplitEdge|polySplitRing|polySplitVertex|polyStraightenUVBorder|polySubdivideEdge|polySubdivideFacet|polyToSubdiv|polyTorus|polyTransfer|polyTriangulate|polyUVSet|polyUnite|polyWedgeFace|popen|popupMenu|pose|pow|preloadRefEd|print|progressBar|progressWindow|projFileViewer|projectCurve|projectTangent|projectionContext|projectionManip|promptDialog|propModCtx|propMove|psdChannelOutliner|psdEditTextureFile|psdExport|psdTextureFile|putenv|pwd|python|querySubdiv|quit|rad_to_deg|radial|radioButton|radioButtonGrp|radioCollection|radioMenuItemCollection|rampColorPort|rand|randomizeFollicles|randstate|rangeControl|readTake|rebuildCurve|rebuildSurface|recordAttr|recordDevice|redo|reference|referenceEdit|referenceQuery|refineSubdivSelectionList|refresh|refreshAE|registerPluginResource|rehash|reloadImage|removeJoint|removeMultiInstance|removePanelCategory|rename|renameAttr|renameSelectionList|renameUI|render|renderGlobalsNode|renderInfo|renderLayerButton|renderLayerParent|renderLayerPostProcess|renderLayerUnparent|renderManip|renderPartition|renderQualityNode|renderSettings|renderThumbnailUpdate|renderWindowEditor|renderWindowSelectContext|renderer|reorder|reorderDeformers|requires|reroot|resampleFluid|resetAE|resetPfxToPolyCamera|resetTool|resolutionNode|retarget|reverseCurve|reverseSurface|revolve|rgb_to_hsv|rigidBody|rigidSolver|roll|rollCtx|rootOf|rot|rotate|rotationInterpolation|roundConstantRadius|rowColumnLayout|rowLayout|runTimeCommand|runup|sampleImage|saveAllShelves|saveAttrPreset|saveFluid|saveImage|saveInitialState|saveMenu|savePrefObjects|savePrefs|saveShelf|saveToolSettings|scale|scaleBrushBrightness|scaleComponents|scaleConstraint|scaleKey|scaleKeyCtx|sceneEditor|sceneUIReplacement|scmh|scriptCtx|scriptEditorInfo|scriptJob|scriptNode|scriptTable|scriptToShelf|scriptedPanel|scriptedPanelType|scrollField|scrollLayout|sculpt|searchPathArray|seed|selLoadSettings|select|selectContext|selectCurveCV|selectKey|selectKeyCtx|selectKeyframeRegionCtx|selectMode|selectPref|selectPriority|selectType|selectedNodes|selectionConnection|separator|setAttr|setAttrEnumResource|setAttrMapping|setAttrNiceNameResource|setConstraintRestPosition|setDefaultShadingGroup|setDrivenKeyframe|setDynamic|setEditCtx|setEditor|setFluidAttr|setFocus|setInfinity|setInputDeviceMapping|setKeyCtx|setKeyPath|setKeyframe|setKeyframeBlendshapeTargetWts|setMenuMode|setNodeNiceNameResource|setNodeTypeFlag|setParent|setParticleAttr|setPfxToPolyCamera|setPluginResource|setProject|setStampDensity|setStartupMessage|setState|setToolTo|setUITemplate|setXformManip|sets|shadingConnection|shadingGeometryRelCtx|shadingLightRelCtx|shadingNetworkCompare|shadingNode|shapeCompare|shelfButton|shelfLayout|shelfTabLayout|shellField|shortNameOf|showHelp|showHidden|showManipCtx|showSelectionInTitle|showShadingGroupAttrEditor|showWindow|sign|simplify|sin|singleProfileBirailSurface|size|sizeBytes|skinCluster|skinPercent|smoothCurve|smoothTangentSurface|smoothstep|snap2to2|snapKey|snapMode|snapTogetherCtx|snapshot|soft|softMod|softModCtx|sort|sound|soundControl|source|spaceLocator|sphere|sphrand|spotLight|spotLightPreviewPort|spreadSheetEditor|spring|sqrt|squareSurface|srtContext|stackTrace|startString|startsWith|stitchAndExplodeShell|stitchSurface|stitchSurfacePoints|strcmp|stringArrayCatenate|stringArrayContains|stringArrayCount|stringArrayInsertAtIndex|stringArrayIntersector|stringArrayRemove|stringArrayRemoveAtIndex|stringArrayRemoveDuplicates|stringArrayRemoveExact|stringArrayToString|stringToStringArray|strip|stripPrefixFromName|stroke|subdAutoProjection|subdCleanTopology|subdCollapse|subdDuplicateAndConnect|subdEditUV|subdListComponentConversion|subdMapCut|subdMapSewMove|subdMatchTopology|subdMirror|subdToBlind|subdToPoly|subdTransferUVsToCache|subdiv|subdivCrease|subdivDisplaySmoothness|substitute|substituteAllString|substituteGeometry|substring|surface|surfaceSampler|surfaceShaderList|swatchDisplayPort|switchTable|symbolButton|symbolCheckBox|sysFile|system|tabLayout|tan|tangentConstraint|texLatticeDeformContext|texManipContext|texMoveContext|texMoveUVShellContext|texRotateContext|texScaleContext|texSelectContext|texSelectShortestPathCtx|texSmudgeUVContext|texWinToolCtx|text|textCurves|textField|textFieldButtonGrp|textFieldGrp|textManip|textScrollList|textToShelf|textureDisplacePlane|textureHairColor|texturePlacementContext|textureWindow|threadCount|threePointArcCtx|timeControl|timePort|timerX|toNativePath|toggle|toggleAxis|toggleWindowVisibility|tokenize|tokenizeList|tolerance|tolower|toolButton|toolCollection|toolDropped|toolHasOptions|toolPropertyWindow|torus|toupper|trace|track|trackCtx|transferAttributes|transformCompare|transformLimits|translator|trim|trunc|truncateFluidCache|truncateHairCache|tumble|tumbleCtx|turbulence|twoPointArcCtx|uiRes|uiTemplate|unassignInputDevice|undo|undoInfo|ungroup|uniform|unit|unloadPlugin|untangleUV|untitledFileName|untrim|upAxis|updateAE|userCtx|uvLink|uvSnapshot|validateShelfName|vectorize|view2dToolCtx|viewCamera|viewClipPlane|viewFit|viewHeadOn|viewLookAt|viewManip|viewPlace|viewSet|visor|volumeAxis|vortex|waitCursor|warning|webBrowser|webBrowserPrefs|whatIs|window|windowPref|wire|wireContext|workspace|wrinkle|wrinkleContext|writeTake|xbmLangPathList|xform)\b/,
+	    operator: [
+	      /\+[+=]?|-[-=]?|&&|\|\||[<>]=|[*\/!=]=?|[%^]/,
+	      {
+	        // We don't want to match <<
+	        pattern: /(^|[^<])<(?!<)/,
+	        lookbehind: true
+	      },
+	      {
+	        // We don't want to match >>
+	        pattern: /(^|[^>])>(?!>)/,
+	        lookbehind: true
+	      }
+	    ],
+	    punctuation: /<<|>>|[.,:;?\[\](){}]/
+	  };
+	  Prism.languages.mel['code'].inside.rest = Prism.languages.mel;
+	}
+	return mel_1;
 }
 
 var mermaid_1 = mermaid;
@@ -41647,301 +41668,310 @@ function mizar(Prism) {
   };
 }
 
-var mongodb_1 = mongodb;
-mongodb.displayName = 'mongodb';
-mongodb.aliases = [];
-function mongodb(Prism) {
+var mongodb_1;
+var hasRequiredMongodb;
+
+function requireMongodb () {
+	if (hasRequiredMongodb) return mongodb_1;
+	hasRequiredMongodb = 1;
+
+	mongodb_1 = mongodb;
+	mongodb.displayName = 'mongodb';
+	mongodb.aliases = [];
+	function mongodb(Prism) {
 (function (Prism) {
-    var operators = [
-      // query and projection
-      '$eq',
-      '$gt',
-      '$gte',
-      '$in',
-      '$lt',
-      '$lte',
-      '$ne',
-      '$nin',
-      '$and',
-      '$not',
-      '$nor',
-      '$or',
-      '$exists',
-      '$type',
-      '$expr',
-      '$jsonSchema',
-      '$mod',
-      '$regex',
-      '$text',
-      '$where',
-      '$geoIntersects',
-      '$geoWithin',
-      '$near',
-      '$nearSphere',
-      '$all',
-      '$elemMatch',
-      '$size',
-      '$bitsAllClear',
-      '$bitsAllSet',
-      '$bitsAnyClear',
-      '$bitsAnySet',
-      '$comment',
-      '$elemMatch',
-      '$meta',
-      '$slice', // update
-      '$currentDate',
-      '$inc',
-      '$min',
-      '$max',
-      '$mul',
-      '$rename',
-      '$set',
-      '$setOnInsert',
-      '$unset',
-      '$addToSet',
-      '$pop',
-      '$pull',
-      '$push',
-      '$pullAll',
-      '$each',
-      '$position',
-      '$slice',
-      '$sort',
-      '$bit', // aggregation pipeline stages
-      '$addFields',
-      '$bucket',
-      '$bucketAuto',
-      '$collStats',
-      '$count',
-      '$currentOp',
-      '$facet',
-      '$geoNear',
-      '$graphLookup',
-      '$group',
-      '$indexStats',
-      '$limit',
-      '$listLocalSessions',
-      '$listSessions',
-      '$lookup',
-      '$match',
-      '$merge',
-      '$out',
-      '$planCacheStats',
-      '$project',
-      '$redact',
-      '$replaceRoot',
-      '$replaceWith',
-      '$sample',
-      '$set',
-      '$skip',
-      '$sort',
-      '$sortByCount',
-      '$unionWith',
-      '$unset',
-      '$unwind',
-      '$setWindowFields', // aggregation pipeline operators
-      '$abs',
-      '$accumulator',
-      '$acos',
-      '$acosh',
-      '$add',
-      '$addToSet',
-      '$allElementsTrue',
-      '$and',
-      '$anyElementTrue',
-      '$arrayElemAt',
-      '$arrayToObject',
-      '$asin',
-      '$asinh',
-      '$atan',
-      '$atan2',
-      '$atanh',
-      '$avg',
-      '$binarySize',
-      '$bsonSize',
-      '$ceil',
-      '$cmp',
-      '$concat',
-      '$concatArrays',
-      '$cond',
-      '$convert',
-      '$cos',
-      '$dateFromParts',
-      '$dateToParts',
-      '$dateFromString',
-      '$dateToString',
-      '$dayOfMonth',
-      '$dayOfWeek',
-      '$dayOfYear',
-      '$degreesToRadians',
-      '$divide',
-      '$eq',
-      '$exp',
-      '$filter',
-      '$first',
-      '$floor',
-      '$function',
-      '$gt',
-      '$gte',
-      '$hour',
-      '$ifNull',
-      '$in',
-      '$indexOfArray',
-      '$indexOfBytes',
-      '$indexOfCP',
-      '$isArray',
-      '$isNumber',
-      '$isoDayOfWeek',
-      '$isoWeek',
-      '$isoWeekYear',
-      '$last',
-      '$last',
-      '$let',
-      '$literal',
-      '$ln',
-      '$log',
-      '$log10',
-      '$lt',
-      '$lte',
-      '$ltrim',
-      '$map',
-      '$max',
-      '$mergeObjects',
-      '$meta',
-      '$min',
-      '$millisecond',
-      '$minute',
-      '$mod',
-      '$month',
-      '$multiply',
-      '$ne',
-      '$not',
-      '$objectToArray',
-      '$or',
-      '$pow',
-      '$push',
-      '$radiansToDegrees',
-      '$range',
-      '$reduce',
-      '$regexFind',
-      '$regexFindAll',
-      '$regexMatch',
-      '$replaceOne',
-      '$replaceAll',
-      '$reverseArray',
-      '$round',
-      '$rtrim',
-      '$second',
-      '$setDifference',
-      '$setEquals',
-      '$setIntersection',
-      '$setIsSubset',
-      '$setUnion',
-      '$size',
-      '$sin',
-      '$slice',
-      '$split',
-      '$sqrt',
-      '$stdDevPop',
-      '$stdDevSamp',
-      '$strcasecmp',
-      '$strLenBytes',
-      '$strLenCP',
-      '$substr',
-      '$substrBytes',
-      '$substrCP',
-      '$subtract',
-      '$sum',
-      '$switch',
-      '$tan',
-      '$toBool',
-      '$toDate',
-      '$toDecimal',
-      '$toDouble',
-      '$toInt',
-      '$toLong',
-      '$toObjectId',
-      '$toString',
-      '$toLower',
-      '$toUpper',
-      '$trim',
-      '$trunc',
-      '$type',
-      '$week',
-      '$year',
-      '$zip',
-      '$count',
-      '$dateAdd',
-      '$dateDiff',
-      '$dateSubtract',
-      '$dateTrunc',
-      '$getField',
-      '$rand',
-      '$sampleRate',
-      '$setField',
-      '$unsetField', // aggregation pipeline query modifiers
-      '$comment',
-      '$explain',
-      '$hint',
-      '$max',
-      '$maxTimeMS',
-      '$min',
-      '$orderby',
-      '$query',
-      '$returnKey',
-      '$showDiskLoc',
-      '$natural'
-    ];
-    var builtinFunctions = [
-      'ObjectId',
-      'Code',
-      'BinData',
-      'DBRef',
-      'Timestamp',
-      'NumberLong',
-      'NumberDecimal',
-      'MaxKey',
-      'MinKey',
-      'RegExp',
-      'ISODate',
-      'UUID'
-    ];
-    operators = operators.map(function (operator) {
-      return operator.replace('$', '\\$')
-    });
-    var operatorsSource = '(?:' + operators.join('|') + ')\\b';
-    Prism.languages.mongodb = Prism.languages.extend('javascript', {});
-    Prism.languages.insertBefore('mongodb', 'string', {
-      property: {
-        pattern:
-          /(?:(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1|(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*)(?=\s*:)/,
-        greedy: true,
-        inside: {
-          keyword: RegExp('^([\'"])?' + operatorsSource + '(?:\\1)?$')
-        }
-      }
-    });
-    Prism.languages.mongodb.string.inside = {
-      url: {
-        // url pattern
-        pattern:
-          /https?:\/\/[-\w@:%.+~#=]{1,256}\.[a-z0-9()]{1,6}\b[-\w()@:%+.~#?&/=]*/i,
-        greedy: true
-      },
-      entity: {
-        // ipv4
-        pattern:
-          /\b(?:(?:[01]?\d\d?|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d\d?|2[0-4]\d|25[0-5])\b/,
-        greedy: true
-      }
-    };
-    Prism.languages.insertBefore('mongodb', 'constant', {
-      builtin: {
-        pattern: RegExp('\\b(?:' + builtinFunctions.join('|') + ')\\b'),
-        alias: 'keyword'
-      }
-    });
-  })(Prism);
+	    var operators = [
+	      // query and projection
+	      '$eq',
+	      '$gt',
+	      '$gte',
+	      '$in',
+	      '$lt',
+	      '$lte',
+	      '$ne',
+	      '$nin',
+	      '$and',
+	      '$not',
+	      '$nor',
+	      '$or',
+	      '$exists',
+	      '$type',
+	      '$expr',
+	      '$jsonSchema',
+	      '$mod',
+	      '$regex',
+	      '$text',
+	      '$where',
+	      '$geoIntersects',
+	      '$geoWithin',
+	      '$near',
+	      '$nearSphere',
+	      '$all',
+	      '$elemMatch',
+	      '$size',
+	      '$bitsAllClear',
+	      '$bitsAllSet',
+	      '$bitsAnyClear',
+	      '$bitsAnySet',
+	      '$comment',
+	      '$elemMatch',
+	      '$meta',
+	      '$slice', // update
+	      '$currentDate',
+	      '$inc',
+	      '$min',
+	      '$max',
+	      '$mul',
+	      '$rename',
+	      '$set',
+	      '$setOnInsert',
+	      '$unset',
+	      '$addToSet',
+	      '$pop',
+	      '$pull',
+	      '$push',
+	      '$pullAll',
+	      '$each',
+	      '$position',
+	      '$slice',
+	      '$sort',
+	      '$bit', // aggregation pipeline stages
+	      '$addFields',
+	      '$bucket',
+	      '$bucketAuto',
+	      '$collStats',
+	      '$count',
+	      '$currentOp',
+	      '$facet',
+	      '$geoNear',
+	      '$graphLookup',
+	      '$group',
+	      '$indexStats',
+	      '$limit',
+	      '$listLocalSessions',
+	      '$listSessions',
+	      '$lookup',
+	      '$match',
+	      '$merge',
+	      '$out',
+	      '$planCacheStats',
+	      '$project',
+	      '$redact',
+	      '$replaceRoot',
+	      '$replaceWith',
+	      '$sample',
+	      '$set',
+	      '$skip',
+	      '$sort',
+	      '$sortByCount',
+	      '$unionWith',
+	      '$unset',
+	      '$unwind',
+	      '$setWindowFields', // aggregation pipeline operators
+	      '$abs',
+	      '$accumulator',
+	      '$acos',
+	      '$acosh',
+	      '$add',
+	      '$addToSet',
+	      '$allElementsTrue',
+	      '$and',
+	      '$anyElementTrue',
+	      '$arrayElemAt',
+	      '$arrayToObject',
+	      '$asin',
+	      '$asinh',
+	      '$atan',
+	      '$atan2',
+	      '$atanh',
+	      '$avg',
+	      '$binarySize',
+	      '$bsonSize',
+	      '$ceil',
+	      '$cmp',
+	      '$concat',
+	      '$concatArrays',
+	      '$cond',
+	      '$convert',
+	      '$cos',
+	      '$dateFromParts',
+	      '$dateToParts',
+	      '$dateFromString',
+	      '$dateToString',
+	      '$dayOfMonth',
+	      '$dayOfWeek',
+	      '$dayOfYear',
+	      '$degreesToRadians',
+	      '$divide',
+	      '$eq',
+	      '$exp',
+	      '$filter',
+	      '$first',
+	      '$floor',
+	      '$function',
+	      '$gt',
+	      '$gte',
+	      '$hour',
+	      '$ifNull',
+	      '$in',
+	      '$indexOfArray',
+	      '$indexOfBytes',
+	      '$indexOfCP',
+	      '$isArray',
+	      '$isNumber',
+	      '$isoDayOfWeek',
+	      '$isoWeek',
+	      '$isoWeekYear',
+	      '$last',
+	      '$last',
+	      '$let',
+	      '$literal',
+	      '$ln',
+	      '$log',
+	      '$log10',
+	      '$lt',
+	      '$lte',
+	      '$ltrim',
+	      '$map',
+	      '$max',
+	      '$mergeObjects',
+	      '$meta',
+	      '$min',
+	      '$millisecond',
+	      '$minute',
+	      '$mod',
+	      '$month',
+	      '$multiply',
+	      '$ne',
+	      '$not',
+	      '$objectToArray',
+	      '$or',
+	      '$pow',
+	      '$push',
+	      '$radiansToDegrees',
+	      '$range',
+	      '$reduce',
+	      '$regexFind',
+	      '$regexFindAll',
+	      '$regexMatch',
+	      '$replaceOne',
+	      '$replaceAll',
+	      '$reverseArray',
+	      '$round',
+	      '$rtrim',
+	      '$second',
+	      '$setDifference',
+	      '$setEquals',
+	      '$setIntersection',
+	      '$setIsSubset',
+	      '$setUnion',
+	      '$size',
+	      '$sin',
+	      '$slice',
+	      '$split',
+	      '$sqrt',
+	      '$stdDevPop',
+	      '$stdDevSamp',
+	      '$strcasecmp',
+	      '$strLenBytes',
+	      '$strLenCP',
+	      '$substr',
+	      '$substrBytes',
+	      '$substrCP',
+	      '$subtract',
+	      '$sum',
+	      '$switch',
+	      '$tan',
+	      '$toBool',
+	      '$toDate',
+	      '$toDecimal',
+	      '$toDouble',
+	      '$toInt',
+	      '$toLong',
+	      '$toObjectId',
+	      '$toString',
+	      '$toLower',
+	      '$toUpper',
+	      '$trim',
+	      '$trunc',
+	      '$type',
+	      '$week',
+	      '$year',
+	      '$zip',
+	      '$count',
+	      '$dateAdd',
+	      '$dateDiff',
+	      '$dateSubtract',
+	      '$dateTrunc',
+	      '$getField',
+	      '$rand',
+	      '$sampleRate',
+	      '$setField',
+	      '$unsetField', // aggregation pipeline query modifiers
+	      '$comment',
+	      '$explain',
+	      '$hint',
+	      '$max',
+	      '$maxTimeMS',
+	      '$min',
+	      '$orderby',
+	      '$query',
+	      '$returnKey',
+	      '$showDiskLoc',
+	      '$natural'
+	    ];
+	    var builtinFunctions = [
+	      'ObjectId',
+	      'Code',
+	      'BinData',
+	      'DBRef',
+	      'Timestamp',
+	      'NumberLong',
+	      'NumberDecimal',
+	      'MaxKey',
+	      'MinKey',
+	      'RegExp',
+	      'ISODate',
+	      'UUID'
+	    ];
+	    operators = operators.map(function (operator) {
+	      return operator.replace('$', '\\$')
+	    });
+	    var operatorsSource = '(?:' + operators.join('|') + ')\\b';
+	    Prism.languages.mongodb = Prism.languages.extend('javascript', {});
+	    Prism.languages.insertBefore('mongodb', 'string', {
+	      property: {
+	        pattern:
+	          /(?:(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1|(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*)(?=\s*:)/,
+	        greedy: true,
+	        inside: {
+	          keyword: RegExp('^([\'"])?' + operatorsSource + '(?:\\1)?$')
+	        }
+	      }
+	    });
+	    Prism.languages.mongodb.string.inside = {
+	      url: {
+	        // url pattern
+	        pattern:
+	          /https?:\/\/[-\w@:%.+~#=]{1,256}\.[a-z0-9()]{1,6}\b[-\w()@:%+.~#?&/=]*/i,
+	        greedy: true
+	      },
+	      entity: {
+	        // ipv4
+	        pattern:
+	          /\b(?:(?:[01]?\d\d?|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d\d?|2[0-4]\d|25[0-5])\b/,
+	        greedy: true
+	      }
+	    };
+	    Prism.languages.insertBefore('mongodb', 'constant', {
+	      builtin: {
+	        pattern: RegExp('\\b(?:' + builtinFunctions.join('|') + ')\\b'),
+	        alias: 'keyword'
+	      }
+	    });
+	  })(Prism);
+	}
+	return mongodb_1;
 }
 
 var monkey_1 = monkey;
@@ -41981,109 +42011,109 @@ function monkey(Prism) {
   };
 }
 
-var moonscript_1 = moonscript;
-moonscript.displayName = 'moonscript';
-moonscript.aliases = ['moon'];
-function moonscript(Prism) {
-  Prism.languages.moonscript = {
-    comment: /--.*/,
-    string: [
-      {
-        pattern: /'[^']*'|\[(=*)\[[\s\S]*?\]\1\]/,
-        greedy: true
-      },
-      {
-        pattern: /"[^"]*"/,
-        greedy: true,
-        inside: {
-          interpolation: {
-            pattern: /#\{[^{}]*\}/,
-            inside: {
-              moonscript: {
-                pattern: /(^#\{)[\s\S]+(?=\})/,
-                lookbehind: true,
-                inside: null // see beow
-              },
-              'interpolation-punctuation': {
-                pattern: /#\{|\}/,
-                alias: 'punctuation'
-              }
-            }
-          }
-        }
-      }
-    ],
-    'class-name': [
-      {
-        pattern: /(\b(?:class|extends)[ \t]+)\w+/,
-        lookbehind: true
-      }, // class-like names start with a capital letter
-      /\b[A-Z]\w*/
-    ],
-    keyword:
-      /\b(?:class|continue|do|else|elseif|export|extends|for|from|if|import|in|local|nil|return|self|super|switch|then|unless|using|when|while|with)\b/,
-    variable: /@@?\w*/,
-    property: {
-      pattern: /\b(?!\d)\w+(?=:)|(:)(?!\d)\w+/,
-      lookbehind: true
-    },
-    function: {
-      pattern:
-        /\b(?:_G|_VERSION|assert|collectgarbage|coroutine\.(?:create|resume|running|status|wrap|yield)|debug\.(?:debug|getfenv|gethook|getinfo|getlocal|getmetatable|getregistry|getupvalue|setfenv|sethook|setlocal|setmetatable|setupvalue|traceback)|dofile|error|getfenv|getmetatable|io\.(?:close|flush|input|lines|open|output|popen|read|stderr|stdin|stdout|tmpfile|type|write)|ipairs|load|loadfile|loadstring|math\.(?:abs|acos|asin|atan|atan2|ceil|cos|cosh|deg|exp|floor|fmod|frexp|ldexp|log|log10|max|min|modf|pi|pow|rad|random|randomseed|sin|sinh|sqrt|tan|tanh)|module|next|os\.(?:clock|date|difftime|execute|exit|getenv|remove|rename|setlocale|time|tmpname)|package\.(?:cpath|loaded|loadlib|path|preload|seeall)|pairs|pcall|print|rawequal|rawget|rawset|require|select|setfenv|setmetatable|string\.(?:byte|char|dump|find|format|gmatch|gsub|len|lower|match|rep|reverse|sub|upper)|table\.(?:concat|insert|maxn|remove|sort)|tonumber|tostring|type|unpack|xpcall)\b/,
-      inside: {
-        punctuation: /\./
-      }
-    },
-    boolean: /\b(?:false|true)\b/,
-    number:
-      /(?:\B\.\d+|\b\d+\.\d+|\b\d+(?=[eE]))(?:[eE][-+]?\d+)?\b|\b(?:0x[a-fA-F\d]+|\d+)(?:U?LL)?\b/,
-    operator:
-      /\.{3}|[-=]>|~=|(?:[-+*/%<>!=]|\.\.)=?|[:#^]|\b(?:and|or)\b=?|\b(?:not)\b/,
-    punctuation: /[.,()[\]{}\\]/
-  };
-  Prism.languages.moonscript.string[1].inside.interpolation.inside.moonscript.inside =
-    Prism.languages.moonscript;
-  Prism.languages.moon = Prism.languages.moonscript;
+var moonscript_1;
+var hasRequiredMoonscript;
+
+function requireMoonscript () {
+	if (hasRequiredMoonscript) return moonscript_1;
+	hasRequiredMoonscript = 1;
+
+	moonscript_1 = moonscript;
+	moonscript.displayName = 'moonscript';
+	moonscript.aliases = ['moon'];
+	function moonscript(Prism) {
+	  Prism.languages.moonscript = {
+	    comment: /--.*/,
+	    string: [
+	      {
+	        pattern: /'[^']*'|\[(=*)\[[\s\S]*?\]\1\]/,
+	        greedy: true
+	      },
+	      {
+	        pattern: /"[^"]*"/,
+	        greedy: true,
+	        inside: {
+	          interpolation: {
+	            pattern: /#\{[^{}]*\}/,
+	            inside: {
+	              moonscript: {
+	                pattern: /(^#\{)[\s\S]+(?=\})/,
+	                lookbehind: true,
+	                inside: null // see beow
+	              },
+	              'interpolation-punctuation': {
+	                pattern: /#\{|\}/,
+	                alias: 'punctuation'
+	              }
+	            }
+	          }
+	        }
+	      }
+	    ],
+	    'class-name': [
+	      {
+	        pattern: /(\b(?:class|extends)[ \t]+)\w+/,
+	        lookbehind: true
+	      }, // class-like names start with a capital letter
+	      /\b[A-Z]\w*/
+	    ],
+	    keyword:
+	      /\b(?:class|continue|do|else|elseif|export|extends|for|from|if|import|in|local|nil|return|self|super|switch|then|unless|using|when|while|with)\b/,
+	    variable: /@@?\w*/,
+	    property: {
+	      pattern: /\b(?!\d)\w+(?=:)|(:)(?!\d)\w+/,
+	      lookbehind: true
+	    },
+	    function: {
+	      pattern:
+	        /\b(?:_G|_VERSION|assert|collectgarbage|coroutine\.(?:create|resume|running|status|wrap|yield)|debug\.(?:debug|getfenv|gethook|getinfo|getlocal|getmetatable|getregistry|getupvalue|setfenv|sethook|setlocal|setmetatable|setupvalue|traceback)|dofile|error|getfenv|getmetatable|io\.(?:close|flush|input|lines|open|output|popen|read|stderr|stdin|stdout|tmpfile|type|write)|ipairs|load|loadfile|loadstring|math\.(?:abs|acos|asin|atan|atan2|ceil|cos|cosh|deg|exp|floor|fmod|frexp|ldexp|log|log10|max|min|modf|pi|pow|rad|random|randomseed|sin|sinh|sqrt|tan|tanh)|module|next|os\.(?:clock|date|difftime|execute|exit|getenv|remove|rename|setlocale|time|tmpname)|package\.(?:cpath|loaded|loadlib|path|preload|seeall)|pairs|pcall|print|rawequal|rawget|rawset|require|select|setfenv|setmetatable|string\.(?:byte|char|dump|find|format|gmatch|gsub|len|lower|match|rep|reverse|sub|upper)|table\.(?:concat|insert|maxn|remove|sort)|tonumber|tostring|type|unpack|xpcall)\b/,
+	      inside: {
+	        punctuation: /\./
+	      }
+	    },
+	    boolean: /\b(?:false|true)\b/,
+	    number:
+	      /(?:\B\.\d+|\b\d+\.\d+|\b\d+(?=[eE]))(?:[eE][-+]?\d+)?\b|\b(?:0x[a-fA-F\d]+|\d+)(?:U?LL)?\b/,
+	    operator:
+	      /\.{3}|[-=]>|~=|(?:[-+*/%<>!=]|\.\.)=?|[:#^]|\b(?:and|or)\b=?|\b(?:not)\b/,
+	    punctuation: /[.,()[\]{}\\]/
+	  };
+	  Prism.languages.moonscript.string[1].inside.interpolation.inside.moonscript.inside =
+	    Prism.languages.moonscript;
+	  Prism.languages.moon = Prism.languages.moonscript;
+	}
+	return moonscript_1;
 }
 
-var n1ql_1;
-var hasRequiredN1ql;
-
-function requireN1ql () {
-	if (hasRequiredN1ql) return n1ql_1;
-	hasRequiredN1ql = 1;
-
-	n1ql_1 = n1ql;
-	n1ql.displayName = 'n1ql';
-	n1ql.aliases = [];
-	function n1ql(Prism) {
-	  // https://docs.couchbase.com/server/current/n1ql/n1ql-language-reference/index.html
-	  Prism.languages.n1ql = {
-	    comment: {
-	      pattern: /\/\*[\s\S]*?(?:$|\*\/)|--.*/,
-	      greedy: true
-	    },
-	    string: {
-	      pattern: /(["'])(?:\\[\s\S]|(?!\1)[^\\]|\1\1)*\1/,
-	      greedy: true
-	    },
-	    identifier: {
-	      pattern: /`(?:\\[\s\S]|[^\\`]|``)*`/,
-	      greedy: true
-	    },
-	    parameter: /\$[\w.]+/,
-	    // https://docs.couchbase.com/server/current/n1ql/n1ql-language-reference/reservedwords.html#n1ql-reserved-words
-	    keyword:
-	      /\b(?:ADVISE|ALL|ALTER|ANALYZE|AS|ASC|AT|BEGIN|BINARY|BOOLEAN|BREAK|BUCKET|BUILD|BY|CALL|CAST|CLUSTER|COLLATE|COLLECTION|COMMIT|COMMITTED|CONNECT|CONTINUE|CORRELATE|CORRELATED|COVER|CREATE|CURRENT|DATABASE|DATASET|DATASTORE|DECLARE|DECREMENT|DELETE|DERIVED|DESC|DESCRIBE|DISTINCT|DO|DROP|EACH|ELEMENT|EXCEPT|EXCLUDE|EXECUTE|EXPLAIN|FETCH|FILTER|FLATTEN|FLUSH|FOLLOWING|FOR|FORCE|FROM|FTS|FUNCTION|GOLANG|GRANT|GROUP|GROUPS|GSI|HASH|HAVING|IF|IGNORE|ILIKE|INCLUDE|INCREMENT|INDEX|INFER|INLINE|INNER|INSERT|INTERSECT|INTO|IS|ISOLATION|JAVASCRIPT|JOIN|KEY|KEYS|KEYSPACE|KNOWN|LANGUAGE|LAST|LEFT|LET|LETTING|LEVEL|LIMIT|LSM|MAP|MAPPING|MATCHED|MATERIALIZED|MERGE|MINUS|MISSING|NAMESPACE|NEST|NL|NO|NTH_VALUE|NULL|NULLS|NUMBER|OBJECT|OFFSET|ON|OPTION|OPTIONS|ORDER|OTHERS|OUTER|OVER|PARSE|PARTITION|PASSWORD|PATH|POOL|PRECEDING|PREPARE|PRIMARY|PRIVATE|PRIVILEGE|PROBE|PROCEDURE|PUBLIC|RANGE|RAW|REALM|REDUCE|RENAME|RESPECT|RETURN|RETURNING|REVOKE|RIGHT|ROLE|ROLLBACK|ROW|ROWS|SATISFIES|SAVEPOINT|SCHEMA|SCOPE|SELECT|SELF|SEMI|SET|SHOW|SOME|START|STATISTICS|STRING|SYSTEM|TIES|TO|TRAN|TRANSACTION|TRIGGER|TRUNCATE|UNBOUNDED|UNDER|UNION|UNIQUE|UNKNOWN|UNNEST|UNSET|UPDATE|UPSERT|USE|USER|USING|VALIDATE|VALUE|VALUES|VIA|VIEW|WHERE|WHILE|WINDOW|WITH|WORK|XOR)\b/i,
-	    function: /\b[a-z_]\w*(?=\s*\()/i,
-	    boolean: /\b(?:FALSE|TRUE)\b/i,
-	    number: /(?:\b\d+\.|\B\.)\d+e[+\-]?\d+\b|\b\d+(?:\.\d*)?|\B\.\d+\b/i,
-	    operator:
-	      /[-+*\/%]|!=|==?|\|\||<[>=]?|>=?|\b(?:AND|ANY|ARRAY|BETWEEN|CASE|ELSE|END|EVERY|EXISTS|FIRST|IN|LIKE|NOT|OR|THEN|VALUED|WHEN|WITHIN)\b/i,
-	    punctuation: /[;[\](),.{}:]/
-	  };
-	}
-	return n1ql_1;
+var n1ql_1 = n1ql;
+n1ql.displayName = 'n1ql';
+n1ql.aliases = [];
+function n1ql(Prism) {
+  // https://docs.couchbase.com/server/current/n1ql/n1ql-language-reference/index.html
+  Prism.languages.n1ql = {
+    comment: {
+      pattern: /\/\*[\s\S]*?(?:$|\*\/)|--.*/,
+      greedy: true
+    },
+    string: {
+      pattern: /(["'])(?:\\[\s\S]|(?!\1)[^\\]|\1\1)*\1/,
+      greedy: true
+    },
+    identifier: {
+      pattern: /`(?:\\[\s\S]|[^\\`]|``)*`/,
+      greedy: true
+    },
+    parameter: /\$[\w.]+/,
+    // https://docs.couchbase.com/server/current/n1ql/n1ql-language-reference/reservedwords.html#n1ql-reserved-words
+    keyword:
+      /\b(?:ADVISE|ALL|ALTER|ANALYZE|AS|ASC|AT|BEGIN|BINARY|BOOLEAN|BREAK|BUCKET|BUILD|BY|CALL|CAST|CLUSTER|COLLATE|COLLECTION|COMMIT|COMMITTED|CONNECT|CONTINUE|CORRELATE|CORRELATED|COVER|CREATE|CURRENT|DATABASE|DATASET|DATASTORE|DECLARE|DECREMENT|DELETE|DERIVED|DESC|DESCRIBE|DISTINCT|DO|DROP|EACH|ELEMENT|EXCEPT|EXCLUDE|EXECUTE|EXPLAIN|FETCH|FILTER|FLATTEN|FLUSH|FOLLOWING|FOR|FORCE|FROM|FTS|FUNCTION|GOLANG|GRANT|GROUP|GROUPS|GSI|HASH|HAVING|IF|IGNORE|ILIKE|INCLUDE|INCREMENT|INDEX|INFER|INLINE|INNER|INSERT|INTERSECT|INTO|IS|ISOLATION|JAVASCRIPT|JOIN|KEY|KEYS|KEYSPACE|KNOWN|LANGUAGE|LAST|LEFT|LET|LETTING|LEVEL|LIMIT|LSM|MAP|MAPPING|MATCHED|MATERIALIZED|MERGE|MINUS|MISSING|NAMESPACE|NEST|NL|NO|NTH_VALUE|NULL|NULLS|NUMBER|OBJECT|OFFSET|ON|OPTION|OPTIONS|ORDER|OTHERS|OUTER|OVER|PARSE|PARTITION|PASSWORD|PATH|POOL|PRECEDING|PREPARE|PRIMARY|PRIVATE|PRIVILEGE|PROBE|PROCEDURE|PUBLIC|RANGE|RAW|REALM|REDUCE|RENAME|RESPECT|RETURN|RETURNING|REVOKE|RIGHT|ROLE|ROLLBACK|ROW|ROWS|SATISFIES|SAVEPOINT|SCHEMA|SCOPE|SELECT|SELF|SEMI|SET|SHOW|SOME|START|STATISTICS|STRING|SYSTEM|TIES|TO|TRAN|TRANSACTION|TRIGGER|TRUNCATE|UNBOUNDED|UNDER|UNION|UNIQUE|UNKNOWN|UNNEST|UNSET|UPDATE|UPSERT|USE|USER|USING|VALIDATE|VALUE|VALUES|VIA|VIEW|WHERE|WHILE|WINDOW|WITH|WORK|XOR)\b/i,
+    function: /\b[a-z_]\w*(?=\s*\()/i,
+    boolean: /\b(?:FALSE|TRUE)\b/i,
+    number: /(?:\b\d+\.|\B\.)\d+e[+\-]?\d+\b|\b\d+(?:\.\d*)?|\B\.\d+\b/i,
+    operator:
+      /[-+*\/%]|!=|==?|\|\||<[>=]?|>=?|\b(?:AND|ANY|ARRAY|BETWEEN|CASE|ELSE|END|EVERY|EXISTS|FIRST|IN|LIKE|NOT|OR|THEN|VALUED|WHEN|WITHIN)\b/i,
+    punctuation: /[;[\](),.{}:]/
+  };
 }
 
 var n4js_1 = n4js;
@@ -42105,19 +42135,28 @@ function n4js(Prism) {
   Prism.languages.n4jsd = Prism.languages.n4js;
 }
 
-var nand2tetrisHdl_1 = nand2tetrisHdl;
-nand2tetrisHdl.displayName = 'nand2tetrisHdl';
-nand2tetrisHdl.aliases = [];
-function nand2tetrisHdl(Prism) {
-  Prism.languages['nand2tetris-hdl'] = {
-    comment: /\/\/.*|\/\*[\s\S]*?(?:\*\/|$)/,
-    keyword: /\b(?:BUILTIN|CHIP|CLOCKED|IN|OUT|PARTS)\b/,
-    boolean: /\b(?:false|true)\b/,
-    function: /\b[A-Za-z][A-Za-z0-9]*(?=\()/,
-    number: /\b\d+\b/,
-    operator: /=|\.\./,
-    punctuation: /[{}[\];(),:]/
-  };
+var nand2tetrisHdl_1;
+var hasRequiredNand2tetrisHdl;
+
+function requireNand2tetrisHdl () {
+	if (hasRequiredNand2tetrisHdl) return nand2tetrisHdl_1;
+	hasRequiredNand2tetrisHdl = 1;
+
+	nand2tetrisHdl_1 = nand2tetrisHdl;
+	nand2tetrisHdl.displayName = 'nand2tetrisHdl';
+	nand2tetrisHdl.aliases = [];
+	function nand2tetrisHdl(Prism) {
+	  Prism.languages['nand2tetris-hdl'] = {
+	    comment: /\/\/.*|\/\*[\s\S]*?(?:\*\/|$)/,
+	    keyword: /\b(?:BUILTIN|CHIP|CLOCKED|IN|OUT|PARTS)\b/,
+	    boolean: /\b(?:false|true)\b/,
+	    function: /\b[A-Za-z][A-Za-z0-9]*(?=\()/,
+	    number: /\b\d+\b/,
+	    operator: /=|\.\./,
+	    punctuation: /[{}[\];(),:]/
+	  };
+	}
+	return nand2tetrisHdl_1;
 }
 
 var naniscript_1 = naniscript;
@@ -42599,66 +42638,57 @@ function requireNginx () {
 	return nginx_1;
 }
 
-var nim_1;
-var hasRequiredNim;
-
-function requireNim () {
-	if (hasRequiredNim) return nim_1;
-	hasRequiredNim = 1;
-
-	nim_1 = nim;
-	nim.displayName = 'nim';
-	nim.aliases = [];
-	function nim(Prism) {
-	  Prism.languages.nim = {
-	    comment: {
-	      pattern: /#.*/,
-	      greedy: true
-	    },
-	    string: {
-	      // Double-quoted strings can be prefixed by an identifier (Generalized raw string literals)
-	      pattern:
-	        /(?:\b(?!\d)(?:\w|\\x[89a-fA-F][0-9a-fA-F])+)?(?:"""[\s\S]*?"""(?!")|"(?:\\[\s\S]|""|[^"\\])*")/,
-	      greedy: true
-	    },
-	    char: {
-	      // Character literals are handled specifically to prevent issues with numeric type suffixes
-	      pattern: /'(?:\\(?:\d+|x[\da-fA-F]{0,2}|.)|[^'])'/,
-	      greedy: true
-	    },
-	    function: {
-	      pattern:
-	        /(?:(?!\d)(?:\w|\\x[89a-fA-F][0-9a-fA-F])+|`[^`\r\n]+`)\*?(?:\[[^\]]+\])?(?=\s*\()/,
-	      greedy: true,
-	      inside: {
-	        operator: /\*$/
-	      }
-	    },
-	    // We don't want to highlight operators (and anything really) inside backticks
-	    identifier: {
-	      pattern: /`[^`\r\n]+`/,
-	      greedy: true,
-	      inside: {
-	        punctuation: /`/
-	      }
-	    },
-	    // The negative look ahead prevents wrong highlighting of the .. operator
-	    number:
-	      /\b(?:0[xXoObB][\da-fA-F_]+|\d[\d_]*(?:(?!\.\.)\.[\d_]*)?(?:[eE][+-]?\d[\d_]*)?)(?:'?[iuf]\d*)?/,
-	    keyword:
-	      /\b(?:addr|as|asm|atomic|bind|block|break|case|cast|concept|const|continue|converter|defer|discard|distinct|do|elif|else|end|enum|except|export|finally|for|from|func|generic|if|import|include|interface|iterator|let|macro|method|mixin|nil|object|out|proc|ptr|raise|ref|return|static|template|try|tuple|type|using|var|when|while|with|without|yield)\b/,
-	    operator: {
-	      // Look behind and look ahead prevent wrong highlighting of punctuations [. .] {. .} (. .)
-	      // but allow the slice operator .. to take precedence over them
-	      // One can define his own operators in Nim so all combination of operators might be an operator.
-	      pattern:
-	        /(^|[({\[](?=\.\.)|(?![({\[]\.).)(?:(?:[=+\-*\/<>@$~&%|!?^:\\]|\.\.|\.(?![)}\]]))+|\b(?:and|div|in|is|isnot|mod|not|notin|of|or|shl|shr|xor)\b)/m,
-	      lookbehind: true
-	    },
-	    punctuation: /[({\[]\.|\.[)}\]]|[`(){}\[\],:]/
-	  };
-	}
-	return nim_1;
+var nim_1 = nim;
+nim.displayName = 'nim';
+nim.aliases = [];
+function nim(Prism) {
+  Prism.languages.nim = {
+    comment: {
+      pattern: /#.*/,
+      greedy: true
+    },
+    string: {
+      // Double-quoted strings can be prefixed by an identifier (Generalized raw string literals)
+      pattern:
+        /(?:\b(?!\d)(?:\w|\\x[89a-fA-F][0-9a-fA-F])+)?(?:"""[\s\S]*?"""(?!")|"(?:\\[\s\S]|""|[^"\\])*")/,
+      greedy: true
+    },
+    char: {
+      // Character literals are handled specifically to prevent issues with numeric type suffixes
+      pattern: /'(?:\\(?:\d+|x[\da-fA-F]{0,2}|.)|[^'])'/,
+      greedy: true
+    },
+    function: {
+      pattern:
+        /(?:(?!\d)(?:\w|\\x[89a-fA-F][0-9a-fA-F])+|`[^`\r\n]+`)\*?(?:\[[^\]]+\])?(?=\s*\()/,
+      greedy: true,
+      inside: {
+        operator: /\*$/
+      }
+    },
+    // We don't want to highlight operators (and anything really) inside backticks
+    identifier: {
+      pattern: /`[^`\r\n]+`/,
+      greedy: true,
+      inside: {
+        punctuation: /`/
+      }
+    },
+    // The negative look ahead prevents wrong highlighting of the .. operator
+    number:
+      /\b(?:0[xXoObB][\da-fA-F_]+|\d[\d_]*(?:(?!\.\.)\.[\d_]*)?(?:[eE][+-]?\d[\d_]*)?)(?:'?[iuf]\d*)?/,
+    keyword:
+      /\b(?:addr|as|asm|atomic|bind|block|break|case|cast|concept|const|continue|converter|defer|discard|distinct|do|elif|else|end|enum|except|export|finally|for|from|func|generic|if|import|include|interface|iterator|let|macro|method|mixin|nil|object|out|proc|ptr|raise|ref|return|static|template|try|tuple|type|using|var|when|while|with|without|yield)\b/,
+    operator: {
+      // Look behind and look ahead prevent wrong highlighting of punctuations [. .] {. .} (. .)
+      // but allow the slice operator .. to take precedence over them
+      // One can define his own operators in Nim so all combination of operators might be an operator.
+      pattern:
+        /(^|[({\[](?=\.\.)|(?![({\[]\.).)(?:(?:[=+\-*\/<>@$~&%|!?^:\\]|\.\.|\.(?![)}\]]))+|\b(?:and|div|in|is|isnot|mod|not|notin|of|or|shl|shr|xor)\b)/m,
+      lookbehind: true
+    },
+    punctuation: /[({\[]\.|\.[)}\]]|[`(){}\[\],:]/
+  };
 }
 
 var nix_1;
@@ -42714,43 +42744,52 @@ function requireNix () {
 	return nix_1;
 }
 
-var nsis_1 = nsis;
-nsis.displayName = 'nsis';
-nsis.aliases = [];
-function nsis(Prism) {
-  /**
-   * Original by Jan T. Sott (http://github.com/idleberg)
-   *
-   * Includes all commands and plug-ins shipped with NSIS 3.08
-   */
-  Prism.languages.nsis = {
-    comment: {
-      pattern: /(^|[^\\])(?:\/\*[\s\S]*?\*\/|[#;].*)/,
-      lookbehind: true,
-      greedy: true
-    },
-    string: {
-      pattern: /("|')(?:\\.|(?!\1)[^\\\r\n])*\1/,
-      greedy: true
-    },
-    keyword: {
-      pattern:
-        /(^[\t ]*)(?:Abort|Add(?:BrandingImage|Size)|AdvSplash|Allow(?:RootDirInstall|SkipFiles)|AutoCloseWindow|BG(?:Font|Gradient|Image)|Banner|BrandingText|BringToFront|CRCCheck|Call(?:InstDLL)?|Caption|ChangeUI|CheckBitmap|ClearErrors|CompletedText|ComponentText|CopyFiles|Create(?:Directory|Font|ShortCut)|Delete(?:INISec|INIStr|RegKey|RegValue)?|Detail(?:Print|sButtonText)|Dialer|Dir(?:Text|Var|Verify)|EnableWindow|Enum(?:RegKey|RegValue)|Exch|Exec(?:Shell(?:Wait)?|Wait)?|ExpandEnvStrings|File(?:BufSize|Close|ErrorText|Open|Read|ReadByte|ReadUTF16LE|ReadWord|Seek|Write|WriteByte|WriteUTF16LE|WriteWord)?|Find(?:Close|First|Next|Window)|FlushINI|Get(?:CurInstType|CurrentAddress|DLLVersion(?:Local)?|DlgItem|ErrorLevel|FileTime(?:Local)?|FullPathName|Function(?:Address|End)?|InstDirError|LabelAddress|TempFileName)|Goto|HideWindow|Icon|If(?:Abort|Errors|FileExists|RebootFlag|Silent)|InitPluginsDir|InstProgressFlags|Inst(?:Type(?:GetText|SetText)?)|Install(?:ButtonText|Colors|Dir(?:RegKey)?)|Int(?:64|Ptr)?CmpU?|Int(?:64)?Fmt|Int(?:Ptr)?Op|IsWindow|Lang(?:DLL|String)|License(?:BkColor|Data|ForceSelection|LangString|Text)|LoadLanguageFile|LockWindow|Log(?:Set|Text)|Manifest(?:DPIAware|SupportedOS)|Math|MessageBox|MiscButtonText|NSISdl|Name|Nop|OutFile|PE(?:DllCharacteristics|SubsysVer)|Page(?:Callbacks)?|Pop|Push|Quit|RMDir|Read(?:EnvStr|INIStr|RegDWORD|RegStr)|Reboot|RegDLL|Rename|RequestExecutionLevel|ReserveFile|Return|SearchPath|Section(?:End|GetFlags|GetInstTypes|GetSize|GetText|Group|In|SetFlags|SetInstTypes|SetSize|SetText)?|SendMessage|Set(?:AutoClose|BrandingImage|Compress|Compressor(?:DictSize)?|CtlColors|CurInstType|DatablockOptimize|DateSave|Details(?:Print|View)|ErrorLevel|Errors|FileAttributes|Font|OutPath|Overwrite|PluginUnload|RebootFlag|RegView|ShellVarContext|Silent)|Show(?:InstDetails|UninstDetails|Window)|Silent(?:Install|UnInstall)|Sleep|SpaceTexts|Splash|StartMenu|Str(?:CmpS?|Cpy|Len)|SubCaption|System|UnRegDLL|Unicode|UninstPage|Uninstall(?:ButtonText|Caption|Icon|SubCaption|Text)|UserInfo|VI(?:AddVersionKey|FileVersion|ProductVersion)|VPatch|Var|WindowIcon|Write(?:INIStr|Reg(?:Bin|DWORD|ExpandStr|MultiStr|None|Str)|Uninstaller)|XPStyle|ns(?:Dialogs|Exec))\b/m,
-      lookbehind: true
-    },
-    property:
-      /\b(?:ARCHIVE|FILE_(?:ATTRIBUTE_ARCHIVE|ATTRIBUTE_NORMAL|ATTRIBUTE_OFFLINE|ATTRIBUTE_READONLY|ATTRIBUTE_SYSTEM|ATTRIBUTE_TEMPORARY)|HK(?:(?:CR|CU|LM)(?:32|64)?|DD|PD|U)|HKEY_(?:CLASSES_ROOT|CURRENT_CONFIG|CURRENT_USER|DYN_DATA|LOCAL_MACHINE|PERFORMANCE_DATA|USERS)|ID(?:ABORT|CANCEL|IGNORE|NO|OK|RETRY|YES)|MB_(?:ABORTRETRYIGNORE|DEFBUTTON1|DEFBUTTON2|DEFBUTTON3|DEFBUTTON4|ICONEXCLAMATION|ICONINFORMATION|ICONQUESTION|ICONSTOP|OK|OKCANCEL|RETRYCANCEL|RIGHT|RTLREADING|SETFOREGROUND|TOPMOST|USERICON|YESNO)|NORMAL|OFFLINE|READONLY|SHCTX|SHELL_CONTEXT|SYSTEM|TEMPORARY|admin|all|auto|both|colored|false|force|hide|highest|lastused|leave|listonly|none|normal|notset|off|on|open|print|show|silent|silentlog|smooth|textonly|true|user)\b/,
-    constant: /\$\{[!\w\.:\^-]+\}|\$\([!\w\.:\^-]+\)/,
-    variable: /\$\w[\w\.]*/,
-    number: /\b0x[\dA-Fa-f]+\b|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:[Ee]-?\d+)?/,
-    operator: /--?|\+\+?|<=?|>=?|==?=?|&&?|\|\|?|[?*\/~^%]/,
-    punctuation: /[{}[\];(),.:]/,
-    important: {
-      pattern:
-        /(^[\t ]*)!(?:addincludedir|addplugindir|appendfile|cd|define|delfile|echo|else|endif|error|execute|finalize|getdllversion|gettlbversion|if|ifdef|ifmacrodef|ifmacrondef|ifndef|include|insertmacro|macro|macroend|makensis|packhdr|pragma|searchparse|searchreplace|system|tempfile|undef|verbose|warning)\b/im,
-      lookbehind: true
-    }
-  };
+var nsis_1;
+var hasRequiredNsis;
+
+function requireNsis () {
+	if (hasRequiredNsis) return nsis_1;
+	hasRequiredNsis = 1;
+
+	nsis_1 = nsis;
+	nsis.displayName = 'nsis';
+	nsis.aliases = [];
+	function nsis(Prism) {
+	  /**
+	   * Original by Jan T. Sott (http://github.com/idleberg)
+	   *
+	   * Includes all commands and plug-ins shipped with NSIS 3.08
+	   */
+	  Prism.languages.nsis = {
+	    comment: {
+	      pattern: /(^|[^\\])(?:\/\*[\s\S]*?\*\/|[#;].*)/,
+	      lookbehind: true,
+	      greedy: true
+	    },
+	    string: {
+	      pattern: /("|')(?:\\.|(?!\1)[^\\\r\n])*\1/,
+	      greedy: true
+	    },
+	    keyword: {
+	      pattern:
+	        /(^[\t ]*)(?:Abort|Add(?:BrandingImage|Size)|AdvSplash|Allow(?:RootDirInstall|SkipFiles)|AutoCloseWindow|BG(?:Font|Gradient|Image)|Banner|BrandingText|BringToFront|CRCCheck|Call(?:InstDLL)?|Caption|ChangeUI|CheckBitmap|ClearErrors|CompletedText|ComponentText|CopyFiles|Create(?:Directory|Font|ShortCut)|Delete(?:INISec|INIStr|RegKey|RegValue)?|Detail(?:Print|sButtonText)|Dialer|Dir(?:Text|Var|Verify)|EnableWindow|Enum(?:RegKey|RegValue)|Exch|Exec(?:Shell(?:Wait)?|Wait)?|ExpandEnvStrings|File(?:BufSize|Close|ErrorText|Open|Read|ReadByte|ReadUTF16LE|ReadWord|Seek|Write|WriteByte|WriteUTF16LE|WriteWord)?|Find(?:Close|First|Next|Window)|FlushINI|Get(?:CurInstType|CurrentAddress|DLLVersion(?:Local)?|DlgItem|ErrorLevel|FileTime(?:Local)?|FullPathName|Function(?:Address|End)?|InstDirError|LabelAddress|TempFileName)|Goto|HideWindow|Icon|If(?:Abort|Errors|FileExists|RebootFlag|Silent)|InitPluginsDir|InstProgressFlags|Inst(?:Type(?:GetText|SetText)?)|Install(?:ButtonText|Colors|Dir(?:RegKey)?)|Int(?:64|Ptr)?CmpU?|Int(?:64)?Fmt|Int(?:Ptr)?Op|IsWindow|Lang(?:DLL|String)|License(?:BkColor|Data|ForceSelection|LangString|Text)|LoadLanguageFile|LockWindow|Log(?:Set|Text)|Manifest(?:DPIAware|SupportedOS)|Math|MessageBox|MiscButtonText|NSISdl|Name|Nop|OutFile|PE(?:DllCharacteristics|SubsysVer)|Page(?:Callbacks)?|Pop|Push|Quit|RMDir|Read(?:EnvStr|INIStr|RegDWORD|RegStr)|Reboot|RegDLL|Rename|RequestExecutionLevel|ReserveFile|Return|SearchPath|Section(?:End|GetFlags|GetInstTypes|GetSize|GetText|Group|In|SetFlags|SetInstTypes|SetSize|SetText)?|SendMessage|Set(?:AutoClose|BrandingImage|Compress|Compressor(?:DictSize)?|CtlColors|CurInstType|DatablockOptimize|DateSave|Details(?:Print|View)|ErrorLevel|Errors|FileAttributes|Font|OutPath|Overwrite|PluginUnload|RebootFlag|RegView|ShellVarContext|Silent)|Show(?:InstDetails|UninstDetails|Window)|Silent(?:Install|UnInstall)|Sleep|SpaceTexts|Splash|StartMenu|Str(?:CmpS?|Cpy|Len)|SubCaption|System|UnRegDLL|Unicode|UninstPage|Uninstall(?:ButtonText|Caption|Icon|SubCaption|Text)|UserInfo|VI(?:AddVersionKey|FileVersion|ProductVersion)|VPatch|Var|WindowIcon|Write(?:INIStr|Reg(?:Bin|DWORD|ExpandStr|MultiStr|None|Str)|Uninstaller)|XPStyle|ns(?:Dialogs|Exec))\b/m,
+	      lookbehind: true
+	    },
+	    property:
+	      /\b(?:ARCHIVE|FILE_(?:ATTRIBUTE_ARCHIVE|ATTRIBUTE_NORMAL|ATTRIBUTE_OFFLINE|ATTRIBUTE_READONLY|ATTRIBUTE_SYSTEM|ATTRIBUTE_TEMPORARY)|HK(?:(?:CR|CU|LM)(?:32|64)?|DD|PD|U)|HKEY_(?:CLASSES_ROOT|CURRENT_CONFIG|CURRENT_USER|DYN_DATA|LOCAL_MACHINE|PERFORMANCE_DATA|USERS)|ID(?:ABORT|CANCEL|IGNORE|NO|OK|RETRY|YES)|MB_(?:ABORTRETRYIGNORE|DEFBUTTON1|DEFBUTTON2|DEFBUTTON3|DEFBUTTON4|ICONEXCLAMATION|ICONINFORMATION|ICONQUESTION|ICONSTOP|OK|OKCANCEL|RETRYCANCEL|RIGHT|RTLREADING|SETFOREGROUND|TOPMOST|USERICON|YESNO)|NORMAL|OFFLINE|READONLY|SHCTX|SHELL_CONTEXT|SYSTEM|TEMPORARY|admin|all|auto|both|colored|false|force|hide|highest|lastused|leave|listonly|none|normal|notset|off|on|open|print|show|silent|silentlog|smooth|textonly|true|user)\b/,
+	    constant: /\$\{[!\w\.:\^-]+\}|\$\([!\w\.:\^-]+\)/,
+	    variable: /\$\w[\w\.]*/,
+	    number: /\b0x[\dA-Fa-f]+\b|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:[Ee]-?\d+)?/,
+	    operator: /--?|\+\+?|<=?|>=?|==?=?|&&?|\|\|?|[?*\/~^%]/,
+	    punctuation: /[{}[\];(),.:]/,
+	    important: {
+	      pattern:
+	        /(^[\t ]*)!(?:addincludedir|addplugindir|appendfile|cd|define|delfile|echo|else|endif|error|execute|finalize|getdllversion|gettlbversion|if|ifdef|ifmacrodef|ifmacrondef|ifndef|include|insertmacro|macro|macroend|makensis|packhdr|pragma|searchparse|searchreplace|system|tempfile|undef|verbose|warning)\b/im,
+	      lookbehind: true
+	    }
+	  };
+	}
+	return nsis_1;
 }
 
 var objectivec_1;
@@ -43013,63 +43052,72 @@ function requireOz () {
 	return oz_1;
 }
 
-var parigp_1 = parigp;
-parigp.displayName = 'parigp';
-parigp.aliases = [];
-function parigp(Prism) {
-  Prism.languages.parigp = {
-    comment: /\/\*[\s\S]*?\*\/|\\\\.*/,
-    string: {
-      pattern: /"(?:[^"\\\r\n]|\\.)*"/,
-      greedy: true
-    },
-    // PARI/GP does not care about white spaces at all
-    // so let's process the keywords to build an appropriate regexp
-    // (e.g. "b *r *e *a *k", etc.)
-    keyword: (function () {
-      var keywords = [
-        'breakpoint',
-        'break',
-        'dbg_down',
-        'dbg_err',
-        'dbg_up',
-        'dbg_x',
-        'forcomposite',
-        'fordiv',
-        'forell',
-        'forpart',
-        'forprime',
-        'forstep',
-        'forsubgroup',
-        'forvec',
-        'for',
-        'iferr',
-        'if',
-        'local',
-        'my',
-        'next',
-        'return',
-        'until',
-        'while'
-      ];
-      keywords = keywords
-        .map(function (keyword) {
-          return keyword.split('').join(' *')
-        })
-        .join('|');
-      return RegExp('\\b(?:' + keywords + ')\\b')
-    })(),
-    function: /\b\w(?:[\w ]*\w)?(?= *\()/,
-    number: {
-      // The lookbehind and the negative lookahead prevent from breaking the .. operator
-      pattern:
-        /((?:\. *\. *)?)(?:\b\d(?: *\d)*(?: *(?!\. *\.)\.(?: *\d)*)?|\. *\d(?: *\d)*)(?: *e *(?:[+-] *)?\d(?: *\d)*)?/i,
-      lookbehind: true
-    },
-    operator:
-      /\. *\.|[*\/!](?: *=)?|%(?: *=|(?: *#)?(?: *')*)?|\+(?: *[+=])?|-(?: *[-=>])?|<(?: *>|(?: *<)?(?: *=)?)?|>(?: *>)?(?: *=)?|=(?: *=){0,2}|\\(?: *\/)?(?: *=)?|&(?: *&)?|\| *\||['#~^]/,
-    punctuation: /[\[\]{}().,:;|]/
-  };
+var parigp_1;
+var hasRequiredParigp;
+
+function requireParigp () {
+	if (hasRequiredParigp) return parigp_1;
+	hasRequiredParigp = 1;
+
+	parigp_1 = parigp;
+	parigp.displayName = 'parigp';
+	parigp.aliases = [];
+	function parigp(Prism) {
+	  Prism.languages.parigp = {
+	    comment: /\/\*[\s\S]*?\*\/|\\\\.*/,
+	    string: {
+	      pattern: /"(?:[^"\\\r\n]|\\.)*"/,
+	      greedy: true
+	    },
+	    // PARI/GP does not care about white spaces at all
+	    // so let's process the keywords to build an appropriate regexp
+	    // (e.g. "b *r *e *a *k", etc.)
+	    keyword: (function () {
+	      var keywords = [
+	        'breakpoint',
+	        'break',
+	        'dbg_down',
+	        'dbg_err',
+	        'dbg_up',
+	        'dbg_x',
+	        'forcomposite',
+	        'fordiv',
+	        'forell',
+	        'forpart',
+	        'forprime',
+	        'forstep',
+	        'forsubgroup',
+	        'forvec',
+	        'for',
+	        'iferr',
+	        'if',
+	        'local',
+	        'my',
+	        'next',
+	        'return',
+	        'until',
+	        'while'
+	      ];
+	      keywords = keywords
+	        .map(function (keyword) {
+	          return keyword.split('').join(' *')
+	        })
+	        .join('|');
+	      return RegExp('\\b(?:' + keywords + ')\\b')
+	    })(),
+	    function: /\b\w(?:[\w ]*\w)?(?= *\()/,
+	    number: {
+	      // The lookbehind and the negative lookahead prevent from breaking the .. operator
+	      pattern:
+	        /((?:\. *\. *)?)(?:\b\d(?: *\d)*(?: *(?!\. *\.)\.(?: *\d)*)?|\. *\d(?: *\d)*)(?: *e *(?:[+-] *)?\d(?: *\d)*)?/i,
+	      lookbehind: true
+	    },
+	    operator:
+	      /\. *\.|[*\/!](?: *=)?|%(?: *=|(?: *#)?(?: *')*)?|\+(?: *[+=])?|-(?: *[-=>])?|<(?: *>|(?: *<)?(?: *=)?)?|>(?: *>)?(?: *=)?|=(?: *=){0,2}|\\(?: *\/)?(?: *=)?|&(?: *&)?|\| *\||['#~^]/,
+	    punctuation: /[\[\]{}().,:;|]/
+	  };
+	}
+	return parigp_1;
 }
 
 var parser_1;
@@ -51050,34 +51098,34 @@ refractor.register(log_1);
 refractor.register(lolcode_1);
 refractor.register(lua_1);
 refractor.register(magma_1);
-refractor.register(requireMakefile());
+refractor.register(makefile_1);
 refractor.register(markdown_1);
 refractor.register(markupTemplating_1);
-refractor.register(requireMatlab());
+refractor.register(matlab_1);
 refractor.register(maxscript_1);
-refractor.register(mel_1);
+refractor.register(requireMel());
 refractor.register(mermaid_1);
 refractor.register(mizar_1);
-refractor.register(mongodb_1);
+refractor.register(requireMongodb());
 refractor.register(monkey_1);
-refractor.register(moonscript_1);
-refractor.register(requireN1ql());
+refractor.register(requireMoonscript());
+refractor.register(n1ql_1);
 refractor.register(n4js_1);
-refractor.register(nand2tetrisHdl_1);
+refractor.register(requireNand2tetrisHdl());
 refractor.register(naniscript_1);
 refractor.register(requireNasm());
 refractor.register(requireNeon());
 refractor.register(requireNevod());
 refractor.register(requireNginx());
-refractor.register(requireNim());
+refractor.register(nim_1);
 refractor.register(requireNix());
-refractor.register(nsis_1);
+refractor.register(requireNsis());
 refractor.register(requireObjectivec());
 refractor.register(requireOcaml());
 refractor.register(requireOpencl());
 refractor.register(requireOpenqasm());
 refractor.register(requireOz());
-refractor.register(parigp_1);
+refractor.register(requireParigp());
 refractor.register(requireParser());
 refractor.register(requirePascal());
 refractor.register(requirePascaligo());
@@ -60392,7 +60440,7 @@ function EvpCode(props) {
 }
 
 function EvpCol(props) {
-  var _a, _b, _c, _d, _e;
+  var _a, _b, _c, _d, _e, _f;
   var $props = AllParser(props);
   var event = $props.event;
   var style = __assign$f({
@@ -60406,7 +60454,9 @@ function EvpCol(props) {
   return jsxRuntimeExports.jsx("div", __assign$f({
     className: "evp col ".concat((_e = props.class) !== null && _e !== void 0 ? _e : '').trim(),
     id: props.id,
-    style: style,
+    style: __assign$f({
+      gap: (_f = valParser(props.gap)) !== null && _f !== void 0 ? _f : "6px"
+    }, style),
     onMouseEnter: event.onMouseEnter,
     onMouseOver: event.onMouseOver,
     onFocus: event.onFocus,
@@ -60441,7 +60491,7 @@ function EvpRow(props) {
     id: props.id,
     style: __assign$f({
       // @ts-ignore
-      "--row-item-gap": "".concat((_g = props.gap) !== null && _g !== void 0 ? _g : 0, "px")
+      "gap": (_g = valParser(props.gap)) !== null && _g !== void 0 ? _g : "6px"
     }, style),
     onMouseEnter: event.onMouseEnter,
     onMouseOver: event.onMouseOver,
@@ -61867,6 +61917,39 @@ var Gitee$1 = function Gitee(props) {
   }));
 };
 
+var Star$1 = function Star(props) {
+  var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m;
+  return jsxRuntimeExports.jsx("div", __assign$f({
+    className: "evp icon ".concat((_a = props.class) !== null && _a !== void 0 ? _a : "").trim(),
+    onClick: props.onClick,
+    style: __assign$f({
+      visibility: ((_b = props.$visibleSync) !== null && _b !== void 0 ? _b : true) ? "visible" : "hidden",
+      display: ((_c = props.$displaySync) !== null && _c !== void 0 ? _c : true) ? "flex" : "none",
+      strokeWidth: (_d = props.strokeWidth) !== null && _d !== void 0 ? _d : 4,
+      stroke: (_e = props.color) !== null && _e !== void 0 ? _e : "#333",
+      fill: (_f = props.fill) !== null && _f !== void 0 ? _f : "#333",
+      cursor: (_g = props.cursor) !== null && _g !== void 0 ? _g : props.pointer ? "pointer" : "unset",
+      width: props.w,
+      height: props.h,
+      padding: (_h = propsParser.get("pd")) === null || _h === void 0 ? void 0 : _h(props.pd),
+      margin: (_j = propsParser.get("mg")) === null || _j === void 0 ? void 0 : _j(props.mg),
+      border: props.border
+    }, props.style)
+  }, {
+    children: jsxRuntimeExports.jsx("svg", __assign$f({
+      viewBox: "0 0 1024 1024",
+      xmlns: "http://www.w3.org/2000/svg",
+      width: (_k = props.radius) !== null && _k !== void 0 ? _k : 24,
+      height: (_l = props.radius) !== null && _l !== void 0 ? _l : 24
+    }, {
+      children: jsxRuntimeExports.jsx("path", {
+        d: "M957.111079 403.480424c-3.927449-11.669784-14.447037-19.86442-26.723641-20.816095L647.68068 360.749204 540.183388 84.126003c-4.586458-11.803837-15.951297-19.579941-28.614711-19.579941s-24.02723 7.776104-28.614711 19.579941L375.458719 360.749204l-282.708803 21.915126c-12.276604 0.951675-22.796192 9.146311-26.723641 20.816095-3.927449 11.669784-0.50142 24.557302 8.701173 32.737612l217.547735 193.358823-67.980277 291.298436c-2.848884 12.20702 2.009773 24.919553 12.273535 32.114418 10.264784 7.195889 23.87271 7.42818 34.375925 0.586354l240.624313-156.709111 240.625336 156.709111c5.099135 3.320629 10.92891 4.974291 16.752546 4.974291 6.173606 0 12.342096-1.858324 17.623379-5.561669 10.263761-7.194866 15.122419-19.907399 12.273535-32.114418l-67.980277-291.299459L948.409906 436.218036C957.613522 428.037726 961.037505 415.150208 957.111079 403.480424z",
+        fill: (_m = props.fill) !== null && _m !== void 0 ? _m : "#333"
+      })
+    }))
+  }));
+};
+
 var User = User$1;
 var TrueCircle = TrueCircle$1;
 var Success = TrueCircle$1;
@@ -61894,6 +61977,7 @@ var Component = Close$1;
 var Github = Github$1;
 var Gitee = Gitee$1;
 var Evp = Lock$1;
+var Star = Star$1;
 var SvgIcons = {
   "": undefined,
   User: User,
@@ -61922,7 +62006,8 @@ var SvgIcons = {
   Component: Component,
   Github: Github,
   Gitee: Gitee,
-  Evp: Evp
+  Evp: Evp,
+  Star: Star
 };
 
 var IconMap = {
@@ -61954,7 +62039,8 @@ var IconMap = {
   COMPONENT: "Component",
   GITHUB: "Github",
   GITEE: "Gitee",
-  EVP: "Evp"
+  EVP: "Evp",
+  STAR: "Star"
 };
 /** EvpIcon: not raw SVG but with a `<div><div/>` wrapper, key's value is props.name or the unique icon key
  * @param props.name this can override the icon key
@@ -95424,21 +95510,6 @@ var NumUtils = {
   range: range
 };
 
-/**
- * Parse number to px
- */
-var valParser = function valParser(props) {
-  if (!props) {
-    return undefined;
-  } else {
-    if (typeof props === 'number') {
-      return "".concat(props, "px");
-    } else {
-      return props;
-    }
-  }
-};
-
 function EvpSliderV2(props) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1, _2;
   var groupContext = useContext(Context);
@@ -101821,4 +101892,178 @@ var EvpTitle = function EvpTitle(_a) {
   }));
 };
 
-export { AllParser, EvpAnchor as Anchor, EvpBadge as Badge, EvpBreadCrumb as BreadCrume, EvpButton as Button, Calendar, EvpCardV2 as Card, EvpCheckBox as CheckBox, EvpCheckBoxGroup as CheckBoxGroup, EvpCode as Code, EvpCol as Col, Color, EvpCounter as Counter, EvpDateTimePicker as DateTimePicker, EvpDialog as Dialog, EvpDivider as Divider, EvpDom as Dom, EvpDrawer as Drawer, EvpAnchor, EvpBadge, EvpBreadCrumb, EvpButton, Calendar as EvpCalendar, EvpCardV2 as EvpCard, EvpCheckBox, EvpCheckBoxGroup, EvpCode, EvpCol, Color as EvpColor, EvpCounter, EvpDateTimePicker, EvpDialog, EvpDivider, EvpDom, EvpDrawer, EvpFlexbar, EvpForm, EvpGallery, EvpHeader, EvpHello, EvpIcon, EvpImg, EvpInput, EvpLabel, EvpLoading, EvpMenu, EvpMenuItem, EvpModal, EvpMsg, EvpPaginator, EvpPopover, EvpProgress, EvpRadio, EvpRadioGroup, EvpRequired, EvpRow, EvpSelect, index as EvpShadow, EvpSliderV2 as EvpSlider, EvpSliderV2, EvpSlider as EvpSlider_V1, EvpSlides, EvpSteps, SvgIcons as EvpSvgIcon, EvpSwitch, EvpTable, EvpTag, EvpTitle, EvpToast, EvpToolTip, EvpWaterfalls, EvpFlexbar as Flexbar, EvpForm as Form, EvpGallery as Gallery, EvpHeader as Header, EvpHello as Hello, EvpIcon as Icon, EvpImg as Img, EvpInput as Input, EvpLabel as Label, EvpLoading as Loading, EvpMenu as Menu, EvpMenuItem as MenuItem, EvpModal as Modal, EvpMsg as Msg, EvpPaginator as Paginator, EvpPopover as Popover, EvpProgress as Progress, EvpRadio as Radio, EvpRadioGroup as RadioGroup, EvpRequired as Required, EvpRow as Row, EvpSelect as Select, EvpSliderV2 as Slider, EvpSliderV2 as SliderV2, EvpSlider as Slider_V1, EvpSlides as Slides, EvpSteps as Steps, SvgIcons as SvgIcon, EvpSwitch as Switch, EvpTable as Table, EvpTag as Tag, EvpTitle as Title, EvpToast as Toast, EvpToolTip as ToolTip, EvpWaterfalls as Waterfalls, EvpCard as _Card, EvpCard as _EvpCard, shift, useForm };
+var EvpNiuniu = function EvpNiuniu(props) {
+  return jsxRuntimeExports.jsx("div", {
+    children: jsxRuntimeExports.jsx("h1", {
+      children: "EvpNiuniu"
+    })
+  });
+};
+
+function adjustValue(value, count) {
+  if (value < 0) {
+    return 0;
+  } else if (value > count) {
+    return count;
+  } else {
+    return value;
+  }
+}
+var EvpRate = function EvpRate(_a) {
+  var className = _a.class,
+    count = _a.count,
+    value = _a.value,
+    setValue = _a.setValue,
+    defaultValue = _a.defaultValue,
+    onStarClick = _a.onStarClick,
+    onChange = _a.onChange,
+    starColor = _a.starColor,
+    props = __rest$b(_a, ["class", "count", "value", "setValue", "defaultValue", "onStarClick", "onChange", "starColor"]);
+  if (count !== undefined && count < 1) {
+    throw new Error("EvpStar count must be greater than 0 !");
+  }
+  var _b = useState(defaultValue !== null && defaultValue !== void 0 ? defaultValue : 0),
+    val = _b[0],
+    setVal = _b[1];
+  var _c = useState(val),
+    last = _c[0],
+    setLast = _c[1];
+  var realVal = value !== undefined ? adjustValue(value, count !== null && count !== void 0 ? count : 5) : val;
+  useEffect(function () {
+    onChange === null || onChange === void 0 ? void 0 : onChange(realVal);
+  }, [realVal]);
+  return jsxRuntimeExports.jsx(EvpDom, __assign$f({
+    class: classNames("evp-rate", className !== null && className !== void 0 ? className : "")
+  }, props, {
+    children: range(1, count !== null && count !== void 0 ? count : 5).map(function (i) {
+      var _a, _b, _c, _d;
+      return jsxRuntimeExports.jsx(Star$1, {
+        class: "evp-rate__star",
+        style: {
+          transition: "all 0.2s ease-in-out",
+          opacity: i <= realVal && realVal !== last ? "".concat((_a = starColor === null || starColor === void 0 ? void 0 : starColor.selectedOpacity) !== null && _a !== void 0 ? _a : 1) : "".concat((_b = starColor === null || starColor === void 0 ? void 0 : starColor.unselectedOpacity) !== null && _b !== void 0 ? _b : 0.3)
+        },
+        pointer: true,
+        fill: i <= realVal && realVal !== last ? (_c = starColor === null || starColor === void 0 ? void 0 : starColor.selected) !== null && _c !== void 0 ? _c : Color.DeepYellow : (_d = starColor === null || starColor === void 0 ? void 0 : starColor.unselected) !== null && _d !== void 0 ? _d : Color.Gray,
+        onClick: function onClick(e) {
+          if (onStarClick) {
+            onStarClick(e);
+          } else {
+            setLast(realVal);
+            setVal(i);
+            setValue === null || setValue === void 0 ? void 0 : setValue(i);
+            if (realVal === last) {
+              // clean last
+              setLast(-1);
+            }
+          }
+        }
+      }, i);
+    })
+  }));
+};
+
+var EvpGhostButtonGroup = function EvpGhostButtonGroup(_a) {
+  var _b;
+  _a.class;
+    var items = _a.items,
+    children = _a.children,
+    direction = _a.direction,
+    gap = _a.gap,
+    style = _a.style,
+    groupRotate = _a.groupRotate,
+    reverse = _a.reverse,
+    shadow = _a.shadow,
+    boxShadow = _a.boxShadow,
+    open = _a.open,
+    setOpen = _a.setOpen,
+    props = __rest$b(_a, ["class", "items", "children", "direction", "gap", "style", "groupRotate", "reverse", "shadow", "boxShadow", "open", "setOpen"]);
+  var _c = React.useState(false),
+    opened = _c[0],
+    openSet = _c[1];
+  var realOpen = open !== undefined ? open : opened;
+  var queneAdapter = function queneAdapter(direction) {
+    var _a, _b, _c, _d;
+    switch (direction) {
+      case "up":
+        return {
+          flexDirection: reverse ? "column" : "column-reverse",
+          top: "-".concat((_a = valParser(gap)) !== null && _a !== void 0 ? _a : "12px"),
+          left: "50%",
+          transform: "translateY(-100%) translateX(-50%) rotate(".concat(RotateParser(groupRotate), ")")
+        };
+      case "down":
+        return {
+          flexDirection: reverse ? "column-reverse" : "column",
+          top: "calc(100% + ".concat((_b = valParser(gap)) !== null && _b !== void 0 ? _b : "12px", ")"),
+          left: "50%",
+          transform: "translateX(-50%) rotate(".concat(RotateParser(groupRotate))
+        };
+      case "left":
+        return {
+          left: "-".concat((_c = valParser(gap)) !== null && _c !== void 0 ? _c : "12px"),
+          flexDirection: reverse ? "row" : "row-reverse",
+          top: "50%",
+          transform: "translateY(-50%) translateX(-100%) rotate(".concat(RotateParser(groupRotate))
+        };
+      case "right":
+        return {
+          left: "calc(100% + ".concat((_d = valParser(gap)) !== null && _d !== void 0 ? _d : "12px", ")"),
+          flexDirection: reverse ? "row-reverse" : "row",
+          top: "50%",
+          transform: "translateY(-50%) rotate(".concat(RotateParser(groupRotate))
+        };
+      default:
+        return {
+          flexDirection: "column"
+        };
+    }
+  };
+  return jsxRuntimeExports.jsxs(EvpButton, __assign$f({
+    theme: "white",
+    shape: "circle",
+    position: "relative",
+    style: __assign$f({
+      overflow: "visible",
+      // @ts-ignore
+      "--show-pre-boxshadow": shadow !== false ? boxShadow !== null && boxShadow !== void 0 ? boxShadow : "8px 10px 25px 0px rgba(0, 0, 0, 0.17)" : "none"
+    }, style),
+    class: classNames({
+      "evp-ghost-buttons-group": true,
+      "evp-ghost-buttons-group--opened": realOpen,
+      className: true
+    })
+  }, props, {
+    "$click": function $click() {
+      openSet(!realOpen);
+      setOpen && setOpen(!realOpen);
+    }
+  }, {
+    children: [jsxRuntimeExports.jsx("div", __assign$f({
+      className: "evp-ghost-buttons-group__items-quene",
+      style: __assign$f(__assign$f({}, queneAdapter(direction)), {
+        pointerEvents: realOpen ? "all" : "none",
+        gap: (_b = valParser(gap)) !== null && _b !== void 0 ? _b : "12px"
+      })
+    }, {
+      children: items === null || items === void 0 ? void 0 : items.map(function (_a, index) {
+        var className = _a.class,
+          item = __rest$b(_a, ["class"]);
+        return jsxRuntimeExports.jsx(EvpButton, __assign$f({
+          class: classNames("evp-ghost-buttons-group__items-quene__item", className),
+          theme: "white",
+          shape: "circle"
+        }, item, {
+          style: {
+            // position: "absolute",
+            opacity: realOpen ? "1" : "0",
+            scale: realOpen ? "1" : "0",
+            transition: "all 0.2s ease, scale 0.2s ease-in-out"
+          }
+        }));
+      })
+    })), children]
+  }));
+};
+
+export { AllParser, EvpAnchor as Anchor, EvpBadge as Badge, EvpBreadCrumb as BreadCrume, EvpButton as Button, Calendar, EvpCardV2 as Card, EvpCheckBox as CheckBox, EvpCheckBoxGroup as CheckBoxGroup, EvpCode as Code, EvpCol as Col, Color, EvpCounter as Counter, EvpDateTimePicker as DateTimePicker, EvpDialog as Dialog, EvpDivider as Divider, EvpDom as Dom, EvpDrawer as Drawer, EvpAnchor, EvpBadge, EvpBreadCrumb, EvpButton, Calendar as EvpCalendar, EvpCardV2 as EvpCard, EvpCheckBox, EvpCheckBoxGroup, EvpCode, EvpCol, Color as EvpColor, EvpCounter, EvpDateTimePicker, EvpDialog, EvpDivider, EvpDom, EvpDrawer, EvpFlexbar, EvpForm, EvpGallery, EvpGhostButtonGroup, EvpHeader, EvpHello, EvpIcon, EvpImg, EvpInput, EvpLabel, EvpLoading, EvpMenu, EvpMenuItem, EvpModal, EvpMsg, EvpNiuniu, EvpPaginator, EvpPopover, EvpProgress, EvpRadio, EvpRadioGroup, EvpRate, EvpRequired, EvpRow, EvpSelect, index as EvpShadow, EvpSliderV2 as EvpSlider, EvpSliderV2, EvpSlider as EvpSlider_V1, EvpSlides, EvpSteps, SvgIcons as EvpSvgIcon, EvpSwitch, EvpTable, EvpTag, EvpTitle, EvpToast, EvpToolTip, EvpWaterfalls, EvpFlexbar as Flexbar, EvpForm as Form, EvpGallery as Gallery, EvpGhostButtonGroup as GhostButtonGroup, EvpHeader as Header, EvpHello as Hello, EvpIcon as Icon, EvpImg as Img, EvpInput as Input, EvpLabel as Label, EvpLoading as Loading, EvpMenu as Menu, EvpMenuItem as MenuItem, EvpModal as Modal, EvpMsg as Msg, EvpNiuniu as Niuniu, EvpPaginator as Paginator, EvpPopover as Popover, EvpProgress as Progress, EvpRadio as Radio, EvpRadioGroup as RadioGroup, EvpRate as Rate, EvpRequired as Required, EvpRow as Row, EvpSelect as Select, EvpSliderV2 as Slider, EvpSliderV2 as SliderV2, EvpSlider as Slider_V1, EvpSlides as Slides, EvpSteps as Steps, SvgIcons as SvgIcon, EvpSwitch as Switch, EvpTable as Table, EvpTag as Tag, EvpTitle as Title, EvpToast as Toast, EvpToolTip as ToolTip, EvpWaterfalls as Waterfalls, EvpCard as _Card, EvpCard as _EvpCard, shift, useForm };

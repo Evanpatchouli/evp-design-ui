@@ -30,10 +30,15 @@ export interface EvpStyle {
     right?: number | string;
     bottom?: number | string;
     left?: number | string;
+    rotate?: number | string;
     display?: EvpDisplayRule;
     flexDirection?: EvpFlexDirectionRule;
     justifyContent?: EvpJustifyContentRule;
     alignItems?: EvpAlignItemsRule;
+    gap?: string | number;
+    transform?: string;
+    transition?: string;
+    scale?: string | number;
     /** The unit is number when assigned with a number*/
     w?: EvpWRule;
     /** The unit is number when assigned with a number*/

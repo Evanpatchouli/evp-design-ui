@@ -26,6 +26,7 @@ import $Female from "./female";
 import $Component from "./component";
 import $Github from "./github";
 import $Gitee from "./gitee";
+import $Star from "./star";
 
 export type SvgIconProps = Indexable<SvgIconPropsType, any>;
 
@@ -89,6 +90,7 @@ export const Component = $Component;
 export const Github = $Github;
 export const Gitee = $Gitee;
 export const Evp = $Evp;
+export const Star = $Star;
 
 export type SvgIconType =
   | ""
@@ -118,7 +120,8 @@ export type SvgIconType =
   | "Component"
   | "Github"
   | "Gitee"
-  | "Evp";
+  | "Evp"
+  | "Star";
 
 const SvgIcons = {
   "": undefined,
@@ -149,6 +152,7 @@ const SvgIcons = {
   Github: Github,
   Gitee: Gitee,
   Evp: Evp,
+  Star: Star,
 };
 
 export default SvgIcons;

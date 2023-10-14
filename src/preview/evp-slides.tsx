@@ -1,6 +1,5 @@
 import Md from "@/components/md";
 import Tsx from "@/components/tsx";
-import { EvpCode } from "@/lib";
 import { EvpButton } from "evp-design-ui";
 import { useEffect } from "react";
 import Example from "./demos/slides/example";
@@ -12,7 +11,7 @@ import SlidesApi from "./apis/slides";
 import AdjacentTabScaled from "./demos/slides/adjacentTabScaled";
 
 export default function SlidesView() {
-  const next = { route: "", name: "" };
+  const next = { route: "evp-title", name: "Title" };
   useEffect(() => {
     window.scrollTo({
       top: 0,

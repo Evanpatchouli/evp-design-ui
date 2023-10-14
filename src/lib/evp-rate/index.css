@@ -1,0 +1,5 @@
+.evp-rate {
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+}

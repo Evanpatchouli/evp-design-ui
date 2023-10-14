@@ -50,3 +50,7 @@
   border-inline: none !important;
   border-top: none !important;
 } */
+
+td.evp-table-td {
+  text-wrap: wrap;
+}

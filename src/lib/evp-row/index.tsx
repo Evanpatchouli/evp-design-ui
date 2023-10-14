@@ -1,10 +1,11 @@
 import AllParser from "../utils/props.parser";
 import EvpBaseProps from "../props";
 import { shift } from "../utils";
+import valParser from "../utils/val.parser";
 
 export interface EvpRowProps extends EvpBaseProps {
   flexDirection?: "row" | "row-reverse";
-  gap?: number;
+  gap?: number | string;
 }
 
 export default function EvpRow(props: EvpRowProps) {
@@ -25,7 +26,7 @@ export default function EvpRow(props: EvpRowProps) {
       id={props.id}
       style={{
         // @ts-ignore
-        "--row-item-gap": `${props.gap ?? 0}px`,
+        "gap": valParser(props.gap) ?? "6px",
         ...style,
       }}
       onMouseEnter={event.onMouseEnter}

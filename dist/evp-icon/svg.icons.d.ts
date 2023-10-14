@@ -60,7 +60,8 @@ export declare const Component: SvgIcon;
 export declare const Github: SvgIcon;
 export declare const Gitee: SvgIcon;
 export declare const Evp: SvgIcon;
-export type SvgIconType = "" | "User" | "TrueCircle" | "Success" | "FalseCircle" | "CloseCircle" | "Error" | "Close" | "Lock" | "Unknown" | "Help" | "Warn" | "Info" | "All" | "WaterfallsH" | "WaterfallsV" | "Up" | "Down" | "Left" | "Right" | "UncheckedBox" | "CheckedBox" | "Male" | "Female" | "Component" | "Github" | "Gitee" | "Evp";
+export declare const Star: SvgIcon;
+export type SvgIconType = "" | "User" | "TrueCircle" | "Success" | "FalseCircle" | "CloseCircle" | "Error" | "Close" | "Lock" | "Unknown" | "Help" | "Warn" | "Info" | "All" | "WaterfallsH" | "WaterfallsV" | "Up" | "Down" | "Left" | "Right" | "UncheckedBox" | "CheckedBox" | "Male" | "Female" | "Component" | "Github" | "Gitee" | "Evp" | "Star";
 declare const SvgIcons: {
     "": undefined;
     User: SvgIcon;
@@ -90,5 +91,6 @@ declare const SvgIcons: {
     Github: SvgIcon;
     Gitee: SvgIcon;
     Evp: SvgIcon;
+    Star: SvgIcon;
 };
 export default SvgIcons;

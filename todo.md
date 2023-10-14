@@ -3,6 +3,7 @@
 - 2023 / 10 / 14
   - [ ] refactor menu selection mechanism
   - [ ] fullfill icons to at lease 100
+  - [x] fullfill the developing scripts
 
 - 2023 / 10 /09
   - [ ] standardize all components' props and events.

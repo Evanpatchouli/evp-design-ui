@@ -74,8 +74,8 @@ You can put them into flexed-row.
         bottom={0}
         plain
         shadow={false}
-        link={`/${props.next?.route ? "components/" + props.next?.route : ""}`}
-        text={`★ Next Doc Evp${props.next?.name ?? ""} >`}
+        link={`/${props.next?.route ? "components/" + props.next?.route : "components/evp-waterfalls"}`}
+        text={`★ Next Doc Evp${props.next?.name ?? "Waterfalls"} >`}
       />
     </div>
   );

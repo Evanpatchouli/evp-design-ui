@@ -18,10 +18,10 @@ let packageJson = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "u
 // Set the package version
 packageJson.version = `${version}`;
 fs.writeFileSync(path.join(root, "package.json"), JSON.stringify(packageJson, null, 2), "utf8");
-console.log(chalk.default.green(`Set repo's package.json version to ${version} success`));
+console.log(chalk.default.green(`Repo's package.json is set to version ${version} success`));
 
 // Set the lib package version
 let libJson = JSON.parse(fs.readFileSync(path.join(lib, "package.json"), "utf8"));
 libJson.version = `${version}`;
 fs.writeFileSync(path.join(lib, "package.json"), JSON.stringify(libJson, null, 2), "utf8");
-console.log(chalk.default.green(`Set lib's package.json version to ${version} success`));
+console.log(chalk.default.green(`Lib's package.json is set to version ${version} success`));
