@@ -58,4 +58,5 @@ export const routes: Array<RouteProps & { key: string }> = [
   { path: "/evp-animation/Twinkle", key: "animation/Twinkle", element: <Pre.AnimationView.TwinkleView /> },
   { path: "/evp-animation/Flip", key: "animation/Flip", element: <Pre.AnimationView.FlipView /> },
   { path: "/evp-animation/Shake", key: "animation/Shake", element: <Pre.AnimationView.ShakeView /> },
+  { path: "/evp-reactive", key: "reactive", element: <Pre.ReactiveView /> },
 ];

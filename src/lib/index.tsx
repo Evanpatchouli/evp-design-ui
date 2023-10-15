@@ -382,3 +382,10 @@ export {
   default as Animation,
   type EvpAnimationProps,
 } from './evp-animation';
+
+
+export {
+  default as EvpReactive,
+  default as Reactive,
+  type EvpReactiveProps,
+} from './evp-reactive';
