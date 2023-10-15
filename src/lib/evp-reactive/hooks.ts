@@ -33,10 +33,12 @@ export class ReactiveObservor<T = any> {
 }
 
 export function listen<T = any>(target: ReactiveObservor<T>) {
-  return (...fns: ((state: T) => any)[]) => {
-    const fn = (state: T) => fns.forEach((f) => f(state));
-    const dispose = target.subscribe(fn);
-    return dispose;
+  return {
+    then: (...fns: ((state: T) => any)[]) => {
+      const fn = (state: T) => fns.forEach((f) => f(state));
+      const dispose = target.subscribe(fn);
+      return dispose;
+    },
   };
 }
 
@@ -65,21 +67,22 @@ export const useStore = <T = any>(initialState: T): Store<T> => {
 type Callback<State> = (newState: State) => any;
 
 export const useSync = <State>(store: Store<State>) => {
-  
   const useSyncEffect = (callbacks: Callback<typeof store.state>[]) => {
     React.useEffect(() => {
       const dispose = store.setState;
-  
+
       store.setState = (newState: State) => {
         dispose(newState);
         callbacks.forEach((callback) => callback(newState));
       };
-  
+
       return () => {
         store.setState = dispose;
       };
     }, [store, callbacks]);
-  }
+  };
 
-  return useSyncEffect;
+  return {
+    then: useSyncEffect,
+  };
 };

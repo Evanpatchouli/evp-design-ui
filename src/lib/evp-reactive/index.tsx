@@ -16,7 +16,7 @@ const EvpReactive: React.FC<EvpReactiveProps> = (props) => {
     count: 1,
   });
 
-  listen(store)(
+  listen(store).then(
     ($state) => {
       Toast($state.count);
     },
