@@ -2,13 +2,12 @@ import Md from "@/components/md";
 import Tsx from "@/components/tsx";
 import { EvpButton } from "evp-design-ui";
 import { useEffect } from "react";
-import Example from "./demos/ghost-button-group/example";
-import GhostButtonGroupApi from "./apis/ghost-button-group.api";
-import Cosy from "./demos/ghost-button-group/cosy";
-import Gap from "./demos/ghost-button-group/gap";
+import Example from "../demos/animation/bounce/example";
+import AnimationApi from "../apis/animation.api";
+import Trigger from "../demos/animation/bounce/trigger";
 
-export default function GhostButtonGroupView() {
-  const next = { route: "evp-animation/Bounce", name: "Bounce" };
+export default function AnimationView() {
+  const next = { route: "evp-animation/Twinkle", name: "Twinkle" };
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -21,9 +20,9 @@ export default function GhostButtonGroupView() {
     <div className="preview-container">
       <Md>
         {`
-# GhostButtonGroup
+# Animation.Bounce
 
-GhostButtonGroup is a button component that can expand a quene of other buttons.
+Bounce is an effect that makes a element bounce vertically when clicked or hovered.
 
 ## Basic Usage
 
@@ -32,7 +31,7 @@ GhostButtonGroup is a button component that can expand a quene of other buttons.
       </Md>
       <Tsx>
         {`
-import { GhostButtonGroup } from 'evp-design-ui'
+import { Animation } from 'evp-design-ui'
 `}
       </Tsx>
       <Md>
@@ -45,32 +44,30 @@ import { GhostButtonGroup } from 'evp-design-ui'
         {`
 ## Examples
 
-Here are some examples about GhostButtonGroup.
+Here are some examples about Animation.Bounce
 
-Besides the additional props, it is nothing different from the common Button.
 `}
       </Md>
-      <Cosy />
       <Md>
-{`
-### gap
+        {`
+### Trigger
 
-You can set gap to controll the distance between the buttons grouped.
+You can choose trigger between "click" and "hover" events
 `}
       </Md>
-      <Gap />
+      <Trigger />
       <Md>
         {`
 ## Api
 
-★ based on Button  
-★ props extends EvpButtonProps
+★ based on div  
+★ props extends Div
 
-**GhostButtonGroup Apis:**
+**Animation Apis:**
 
 `}
       </Md>
-      <GhostButtonGroupApi />
+      <AnimationApi />
       <EvpButton
         position="absolute"
         right={40}

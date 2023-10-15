@@ -23,6 +23,8 @@ export function shift(obj?: Indexable<{}, any>) {
 
 export type Option<T extends unknown> = T | undefined;
 
+export type Nullable<T extends unknown> = T | null | undefined;
+
 export type Hintable<T> = T | (string & {});
 
 export type Indexable<T, E extends unknown> = T & { [x: string]: E };
@@ -77,10 +79,23 @@ export class Var {
     const [name, value] = str.split(":");
     return new Var(name.trim(), value.trim());
   }
-  static fromObject(obj: {name: string, value?: string}) {
+  static fromObject(obj: { name: string; value?: string }) {
     return new Var(obj.name, obj.value);
   }
   toString() {
     return `var(${this.name})`;
   }
 }
+
+/**
+ * Bing variables from `source Object` to `target Function`
+ * @returns
+ */
+export const bindFC = <T, S>(source: Partial<S> = {}, target: T): T & {} & S => {
+  Object.keys(source).forEach((key) => {
+    // @ts-ignore
+    target[key] = source[key];
+  });
+  // @ts-ignore
+  return target;
+};

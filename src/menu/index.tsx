@@ -52,6 +52,17 @@ export default function DocsMenu() {
       <MenuItem link={"/components/evp-title"} title={"Title"} />
       <MenuItem link={"/components/evp-rate"} title={"Rate"} />
       <MenuItem link={"/components/evp-ghost-button-group"} title={"GhostButtonGroup"} />
+      {/* <MenuItem link={"/components/evp-css"} title={"Css"} />
+      <MenuItem link={"/components/evp-template"} title={"Template"} /> */}
+      <Menu submenu itemIndent title={"Animation"}>
+        <MenuItem link={"/components/evp-animation/Bounce"} title={"Bounce"} />
+        <MenuItem link={"/components/evp-animation/Twinkle"} title={"Twinkle"} />
+        <MenuItem link={"/components/evp-animation/Flip"} title={"Flip"} />
+        <MenuItem link={"/components/evp-animation/Shake"} title={"Shake"} />
+        {/* <MenuItem link={"/components/evp-row"} title={"Row"} />
+        <MenuItem link={"/components/evp-dom"} title={"Dom"} />
+        <MenuItem link={"/components/evp-divider"} title={"Divider"} /> */}
+      </Menu>
     </Menu>
   );
 }

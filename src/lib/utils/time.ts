@@ -1,3 +1,13 @@
+export function parseDuration(time: number | string = "0s") {
+  if (time === undefined || time == null) {
+    return "0s";
+  }
+  if (typeof time === "number") {
+    return `${time}s`;
+  }
+  return time;
+}
+
 export function parseDate(date: string): Date {
   return new Date(date);
 }
@@ -25,7 +35,6 @@ export function parseDateToLocaleTimeWithSecondsAndMilliseconds(date: string): s
     fractionalSecondDigits: 3,
   });
 }
-
 
 const TimeUtils = {
   parseDate,

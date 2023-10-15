@@ -50,4 +50,12 @@ export const routes: Array<RouteProps & { key: string }> = [
   { path: "/evp-title", key: "title", element: <Pre.TitleView /> },
   { path: "/evp-rate", key: "rate", element: <Pre.RateView /> },
   { path: "/evp-ghost-button-group", key: "ghost-button-group", element: <Pre.GhostButtonGroupView /> },
-];
+  { path: "/evp-css", key: "css", element: <Pre.CssView /> },
+  { path: "/evp-template", key: "template", element: <Pre.TemplateView /> },
+  { path: "/evp-snake", key: "snake", element: <Pre.SnakeView /> },
+  { path: "/evp-alert", key: "alert", element: <Pre.AlertView /> },
+  { path: "/evp-animation/Bounce", key: "animation/Bounce", element: <Pre.AnimationView.BounceView /> },
+  { path: "/evp-animation/Twinkle", key: "animation/Twinkle", element: <Pre.AnimationView.TwinkleView /> },
+  { path: "/evp-animation/Flip", key: "animation/Flip", element: <Pre.AnimationView.FlipView /> },
+  { path: "/evp-animation/Shake", key: "animation/Shake", element: <Pre.AnimationView.ShakeView /> },
+];

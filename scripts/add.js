@@ -412,10 +412,10 @@ fs.readFile(routerPath, "utf8", (err, data) => {
   const routes = data.split("\n").slice(0, -1);
 
   // 在倒数第二行之前插入新的路由配置
-  routes.splice(-1, 0, `  ${newRoute},`);
+  routes.splice(0, 0, `  ${newRoute},`);
 
   // 将更新后的数组写回到路由文件中
-  const updatedContent = `${routes.join("\n")}`;
+  const updatedContent = `${routes.join("\n")}\n];\n`;
   fs.writeFile(routerPath, updatedContent, (err) => {
     if (err) {
       console.error(err);

@@ -29,13 +29,14 @@ export type EvpDialogProps = {
    * **This is applied to content rather than the whole card**
    */
   loading?: boolean;
+  blur?: boolean | number | string;
 } & EvpCardProps;
 
 export default function EvpDialog(props: EvpDialogProps) {
-  const { open, setOpen, onClose, onOpen, class: className, ...rest } = props;
+  const { open, setOpen, onClose, onOpen, class: className, blur, ...rest } = props;
 
   return (
-    <EvpModal open={props.open !== undefined ? props.open : open} onClose={onClose} onOpen={onOpen}>
+    <EvpModal open={props.open !== undefined ? props.open : open} onClose={onClose} onOpen={onOpen} blur={blur}>
       <EvpCard
         class={classNames(`evp`, `evp-dialog`, className)}
         w={400}
