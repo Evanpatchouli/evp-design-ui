@@ -38,6 +38,24 @@ export type EvpModalProps = {
   scrollable?: boolean;
   onClose?: () => void;
   onOpen?: () => void;
+  blur?: boolean | number | string;
+};
+
+const blurParser = (blur?: boolean | number | string) => {
+  if (blur === undefined || blur === null) {
+    return void 0;
+  }
+  if (typeof blur === "boolean") {
+    if (blur) {
+      return "blur(5px)";
+    } else {
+      return void 0;
+    }
+  } else if (typeof blur === "number") {
+    return `blur(${blur}px)`;
+  } else {
+    return `blur(${blur})`;
+  }
 };
 
 export default function EvpModal(props: EvpModalProps) {
@@ -55,14 +73,16 @@ export default function EvpModal(props: EvpModalProps) {
       didMountRef.current = true;
     }
   }, [open]);
-  
+
   return (
     <div
       className={classNames(`evp`, `evp-modal`, props.modalClass)}
       hidden={!props.open}
       style={{
         backgroundColor: `rgba(0, 0, 0, ${props.alpha ?? "0.5"})`,
-        ...props.modalStyle
+        backdropFilter: blurParser(props.blur),
+        WebkitBackdropFilter: blurParser(props.blur),
+        ...props.modalStyle,
       }}
       onTouchStart={(e) => {
         if (!props.scrollable) {

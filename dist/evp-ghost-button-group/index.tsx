@@ -91,10 +91,6 @@ const EvpGhostButtonGroup: React.FC<EvpGhostButtonGroupProps> = ({
         className: true,
       })}
       {...props}
-      $click={() => {
-        openSet(!realOpen);
-        setOpen && setOpen(!realOpen);
-      }}
     >
       {/* ghost button group */}
       <div
@@ -103,6 +99,7 @@ const EvpGhostButtonGroup: React.FC<EvpGhostButtonGroupProps> = ({
           ...queneAdapter(direction),
           pointerEvents: realOpen ? "all" : "none",
           gap: valParser(gap) ?? "12px",
+          visibility: realOpen ? "visible" : "hidden",
         }}
       >
         {items?.map(({ class: className, ...item }, index) => (
@@ -120,7 +117,20 @@ const EvpGhostButtonGroup: React.FC<EvpGhostButtonGroupProps> = ({
           />
         ))}
       </div>
-      {children}
+      <div
+        className="evp-ghost-buttons-group__main-wrapper"
+        style={{
+          width: "fit-content",
+          height: "fit-content",
+          boxSizing: "content-box",
+        }}
+        onPointerDown={() => {
+          openSet(!realOpen);
+          setOpen && setOpen(!realOpen);
+        }}
+      >
+        {children}
+      </div>
     </Button>
   );
 };

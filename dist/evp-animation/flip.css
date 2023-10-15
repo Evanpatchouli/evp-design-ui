@@ -1,0 +1,56 @@
+@keyframes evp-animation__Flip {
+  0% {
+    opacity: 0;
+    transform: rotateY(180deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateY(0deg);
+  }
+}
+
+.evp-animation__Flip {
+  cursor: pointer;
+  animation-name: evp-animation__Flip;
+  animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation-duration: 0.5s;
+  animation-fill-mode: none;
+  animation-iteration-count: 0.5;
+}
+
+@keyframes evp-animation__Shake {
+  from {
+    transform: rotate(0deg);
+  }
+  4% {
+    transform: rotate(5deg);
+  }
+  12.5% {
+    transform: rotate(-5deg);
+  }
+  21% {
+    transform: rotate(5deg);
+  }
+  29% {
+    transform: rotate(-5deg);
+  }
+  37.5% {
+    transform: rotate(5deg);
+  }
+  46% {
+    transform: rotate(-5deg);
+  }
+  50%,
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.evp-animation__Shake {
+  cursor: pointer;
+  animation-name: evp-animation__Shake;
+  animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation-duration: 1s;
+  animation-fill-mode: none;
+  animation-iteration-count: 1;
+}

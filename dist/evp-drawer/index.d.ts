@@ -11,5 +11,6 @@ export type EvpDrawerProps = {
     position?: "left" | "right" | "top" | "bottom";
     header?: React.ReactNode;
     headerProps?: EvpDomProps;
+    blur?: string | number | boolean;
 } & EvpCardProps;
 export default function EvpDrawer(props: EvpDrawerProps): import("react/jsx-runtime").JSX.Element;

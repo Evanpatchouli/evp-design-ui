@@ -9,6 +9,7 @@ export declare function shift(obj?: Indexable<{}, any>): {
     [x: string]: any;
 } | undefined;
 export type Option<T extends unknown> = T | undefined;
+export type Nullable<T extends unknown> = T | null | undefined;
 export type Hintable<T> = T | (string & {});
 export type Indexable<T, E extends unknown> = T & {
     [x: string]: E;
@@ -49,3 +50,8 @@ export declare class Var {
     }): Var;
     toString(): string;
 }
+/**
+ * Bing variables from `source Object` to `target Function`
+ * @returns
+ */
+export declare const bindFC: <T, S>(source: Partial<S> | undefined, target: T) => T & {} & S;

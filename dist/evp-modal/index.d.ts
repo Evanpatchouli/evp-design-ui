@@ -36,5 +36,6 @@ export type EvpModalProps = {
     scrollable?: boolean;
     onClose?: () => void;
     onOpen?: () => void;
+    blur?: boolean | number | string;
 };
 export default function EvpModal(props: EvpModalProps): import("react/jsx-runtime").JSX.Element;

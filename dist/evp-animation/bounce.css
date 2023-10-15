@@ -1,0 +1,43 @@
+@keyframes evp-animation__BounceIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-1000vh);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-200%);
+  }
+  65% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+  75% {
+    opacity: 1;
+    transform: translateY(-30%);
+  }
+  85% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+  95% {
+    opacity: 1;
+    transform: translateY(-10%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+.evp-animation__BounceIn {
+  cursor: pointer;
+  animation-name: evp-animation__BounceIn;
+  animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+  animation-duration: 1s;
+  animation-fill-mode: none;
+  animation-iteration-count: 1;
+}

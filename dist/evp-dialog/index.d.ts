@@ -17,6 +17,7 @@ export type EvpDialogProps = {
      * **This is applied to content rather than the whole card**
      */
     loading?: boolean;
+    blur?: boolean | number | string;
 } & EvpCardProps;
 export default function EvpDialog(props: EvpDialogProps): import("react/jsx-runtime").JSX.Element;
 export {};

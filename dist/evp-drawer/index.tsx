@@ -15,10 +15,11 @@ export type EvpDrawerProps = {
   position?: "left" | "right" | "top" | "bottom";
   header?: React.ReactNode;
   headerProps?: EvpDomProps;
+  blur?: string | number | boolean;
 } & EvpCardProps;
 
 function cardProps(params: EvpDrawerProps) {
-  const { open, setOpen, onClose, onOpen, modal, position, header, headerProps, ...rest } = params;
+  const { open, setOpen, onClose, onOpen, modal, position, header, headerProps, blur, ...rest } = params;
   return rest;
 }
 
@@ -43,6 +44,7 @@ export default function EvpDrawer(props: EvpDrawerProps) {
       open={true}
       modalClass={classNames(`evp-drawer-modal`, props.modal === false ? "without" : "", open ? "open" : "close")}
       contentClass={classNames(`evp-drawer-container`, props.position ?? "left", open ? "open" : "close")}
+      blur={props.blur}
     >
       <EvpCard
         h={"100%"}

@@ -3,8 +3,8 @@ export type EvpBaseWidth = "auto" | "fit-content" | "10px" | "20px" | "30px" | "
 export type EvpBaseHeight = "auto" | "fit-content" | "10px" | "20px" | "30px" | "40px" | "50px" | "60px" | "70px" | "80px" | "90px" | "100px" | "200px" | "300px" | "400px" | "500px";
 export type EvpWRule = Hintable<EvpBaseWidth | number>;
 export type EvpHRule = Hintable<EvpBaseHeight | number>;
-export type EvpFontSize = '12px' | '14px' | '16px' | '24px' | '32px' | '1rem' | '1.2rem' | '2rem';
-export type EvpFontWeight = 'small' | 'normal' | 'bold' | 'bolder' | '300' | '400' | '500' | '600' | '700' | '800';
+export type EvpFontSize = "12px" | "14px" | "16px" | "24px" | "32px" | "1rem" | "1.2rem" | "2rem";
+export type EvpFontWeight = "small" | "normal" | "bold" | "bolder" | "300" | "400" | "500" | "600" | "700" | "800";
 export type Option<T extends unknown> = T | undefined;
 /** This Array should have 4 items */
 export type ArrayLengthed<T, N extends number> = T[];
@@ -41,7 +41,7 @@ export type EvpPositionRule = Hintable<EvpPosition>;
   `"inline flex"` | `"block grid"` | `"inline grid"` | `"block flow-root"` | `"table"` | `"table-row"` |
   `"list-item"` | `"inherit"` | `"initial"` | `"revert"` | `"revert-layer"` | `"unset"`
  */
-export type EvpDisplay = "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" | "inline-grid" | "flow-root" | "none" | "contents" | "block flow" | "inline flow" | "inline flow-root" | "block flex" | "inline flex" | "block grid" | "inline grid" | "block flow-root" | "table" | "table-row" | /* all table elements have an equivalent CSS display value */ "list-item" | "inherit" | "initial" | "revert" | "revert-layer" | "unset";
+export type EvpDisplay = "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" | "inline-grid" | "flow-root" | "none" | "contents" | "block flow" | "inline flow" | "inline flow-root" | "block flex" | "inline flex" | "block grid" | "inline grid" | "block flow-root" | "table" | "table-row" | "list-item" | "inherit" | "initial" | "revert" | "revert-layer" | "unset";
 /**
  * `"block"` | `"inline"` | `"inline-block"` | `"flex"` | `"inline-flex"` | `"grid"` | `"inline-grid"` |
   `"flow-root"` | `"none"` | `"contents"` | `"block flow"` | `"inline flow"` | `"inline flow-root"` | `"block flex"` |
@@ -54,13 +54,13 @@ export type EvpFlexRule = string | number;
  *`'row'` |  `'column'` |  `'row-reverse'` |  `'column-reverse'` |  `'inherit'` |
   `'initial'` | `'-moz-initial'` | `'revert'` | `'revert-layer'` | `'unset'`
  */
-export type EvpFlexDirectionRule = 'row' | 'column' | 'row-reverse' | 'column-reverse' | 'inherit' | '-moz-initial' | 'initial' | 'revert' | 'revert-layer' | 'unset';
+export type EvpFlexDirectionRule = "row" | "column" | "row-reverse" | "column-reverse" | "inherit" | "-moz-initial" | "initial" | "revert" | "revert-layer" | "unset";
 /**
   * `'center'` | `'left'` | `'right'` | `'start'`
   | `'end'` | `'flex-start'` | `'flex-end'` | `'inherit'` | `'initial'` | `'normal'`
   | `'revert'` | `'revert-layer'` | `'space-around'` | `'space-between'` | `'space-evenly'` | `'stretch'` | `'unset'`
  */
-export type EvpJustifyContent = 'center' | 'left' | 'right' | 'start' | 'end' | 'flex-start' | 'flex-end' | 'inherit' | 'initial' | 'normal' | 'revert' | 'revert-layer' | 'space-around' | 'space-between' | 'space-evenly' | 'stretch' | 'unset';
+export type EvpJustifyContent = "center" | "left" | "right" | "start" | "end" | "flex-start" | "flex-end" | "inherit" | "initial" | "normal" | "revert" | "revert-layer" | "space-around" | "space-between" | "space-evenly" | "stretch" | "unset";
 /**
   * `'center'` | `'left'` | `'right'` | `'start'`
   | `'end'` | `'flex-start'` | `'flex-end'` | `'inherit'` | `'initial'` | `'normal'`
@@ -73,3 +73,13 @@ export type EvpJustifyContentRule = Hintable<EvpJustifyContent>;
     `"self-start"` | `"start"` | `"stretch"` | `"unset"`
  */
 export type EvpAlignItemsRule = "-moz-initial" | "baseline" | "center" | "end" | "flex-end" | "flex-start" | "inherit" | "initial" | "normal" | "revert" | "revert-layer" | "self-end" | "self-start" | "start" | "stretch" | "unset" | (string & {});
+/**
+ * `"left"` | `"right"` | `"center"` | `"start"` | `"end"`
+ */
+export type EvpTextAlign = "left" | "right" | "center" | "start" | "end";
+/**
+ * `"normal"` |`"alternate"` | `"reverse"` | `"intitial"` | `"alternate-reverse"` | `"inherit"` | `"unset"`
+ */
+export type EvpAnimationDirection = Hintable<"normal" | "alternate" | "reverse" | "intitial" | "alternate-reverse" | "inherit" | "unset" | "revert" | "revert-layer">;
+export type EvpAnimationFillMode = Hintable<"forwards" | "backwards" | "both" | "none" | "unset" | "inherit" | "initial">;
+export type EvpAnimationTimeFunction = Hintable<"ease" | "ease-in" | "ease-out" | "ease-in-out" | "linear" | "step-start" | "step-end" | "steps(x, jump-start)" | "steps(x, jump-end)" | "steps(x, jump-none)" | "steps(x, jump-both)" | "steps(x, start)" | "steps(x, end)" | "cubic-bezier(x,y,z,w)" | "inherit" | "initial" | "unset">;
