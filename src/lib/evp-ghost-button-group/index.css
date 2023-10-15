@@ -1,5 +1,10 @@
 .evp-ghost-buttons-group {
+  z-index: 3000;
   box-shadow: var(--show-pre-boxshadow) !important;
+}
+
+.evp-ghost-buttons-group__main-wrapper {
+  z-index: 3000;
 }
 
 .evp-ghost-buttons-group__items-quene {
