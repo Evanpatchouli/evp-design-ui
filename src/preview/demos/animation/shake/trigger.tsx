@@ -15,7 +15,14 @@ const Demo: React.FC = () => {
         <Button>Hover Me</Button>
       </Animation.Shake>
       <Animation.Shake trigger="click">
-        <Button>Click Me</Button>
+        <Button
+          theme="danger"
+          $click={() => {
+            Toast.warn("Oops! Something went wrong");
+          }}
+        >
+          Click Me
+        </Button>
       </Animation.Shake>
       <Animation.Shake trigger={["click", "hover"]}>
         <Button>Click or Hover Me</Button>

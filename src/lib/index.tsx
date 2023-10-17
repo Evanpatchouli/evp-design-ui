@@ -384,5 +384,17 @@ export {
 } from './evp-animation';
 
 
-export * from './utils';
 export * as utils from './utils'
+
+export {
+  reactive,
+  listen,
+  Reactify,
+  ReactifyMemo,
+  ReactiveCtx,
+  useReactive,
+  useReactiveRef,
+  useReativeContext,
+  createReactiveContext,
+  type ReactiveCtxModel
+} from './utils/reactive';

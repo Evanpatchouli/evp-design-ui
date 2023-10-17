@@ -1,12 +1,14 @@
 import Tsx from "@/components/tsx";
-import { Card, Row } from "@/lib";
+import { Card, ReactiveCtx, Row } from "@/lib";
 import React from "react";
 import { Button, Toast } from "evp-design-ui";
+import { utils, useReactive, listen } from "evp-design-ui";
+import Kid from "./kid";
 
-import { reactive, listen, useCatch } from "evp-design-ui";
+const { useCatch } = utils;
 
 const Demo: React.FC = () => {
-  let state = reactive(0);
+  let state = useReactive(0);
   const num = state.value;
   const throwErr = useCatch(
     () => {
@@ -30,6 +32,9 @@ const Demo: React.FC = () => {
       >
         {num}
       </Button>
+      <ReactiveCtx.Provider value={state}>
+        <Kid />
+      </ReactiveCtx.Provider>
     </>
   );
 };
