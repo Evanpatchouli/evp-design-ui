@@ -18,6 +18,11 @@ export interface EvpMenuItemProps extends EvpBaseProps {
   link?: string | { path?: string; hash?: boolean };
   hash?: boolean;
   keyId?: any;
+  unselectOnReClick?: boolean;
+  /** Dependent extra onSelectHandler */
+  onSelect?: <R = any>(key: string) => R;
+  /** Dependent extra onUnselectHandler */
+  onUnselect?: <R = any>(key: string) => R;
 }
 
 export default function EvpMenuItem(props: EvpMenuItemProps) {
@@ -51,24 +56,15 @@ export default function EvpMenuItem(props: EvpMenuItemProps) {
         console.log(menuCtx);
         if (selected) {
           // Going to unselect
-          setSelected(false);
-          menuCtx.setSelectedKeys?.(
-            (menuCtx.selectedKeys ?? []).filter((key) => key !== (props.keyId ?? didMounted.current))
-          );
+          if (props.unselectOnReClick) {
+            setSelected(false);
+            menuCtx._handleUnselectOne?.(props.keyId ?? didMounted.current);
+            props.onUnselect?.(props.keyId ?? didMounted.current);
+          }
         } else {
           setSelected(true); // Going to select
-          if (menuCtx.multiSelected) {
-            menuCtx.setSelectedKeys?.([...(menuCtx.selectedKeys ?? []), props.keyId ?? didMounted.current]);
-          } else {
-            // Single selected mode
-            menuCtx.setSelectedKeys?.([props.keyId ?? didMounted.current]);
-            // Going to unselected other menu items
-            (menuCtx?._setSelectedMap ?? new Map()).forEach((value, key) => {
-              if (key !== (props.keyId ?? didMounted.current)) {
-                value(false);
-              }
-            });
-          }
+          menuCtx._handleSelectOne?.(props.keyId ?? didMounted.current);
+          props.onSelect?.(props.keyId ?? didMounted.current);
         }
         $event.onMouseDown?.(e);
         if (props.link) {

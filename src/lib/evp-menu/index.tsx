@@ -30,6 +30,7 @@ export interface EvpMenuProps extends EvpBaseProps {
   /** Unique key of menu */
   keyId?: any;
   multiSelected?: boolean;
+  multiOpened?: boolean;
   itemColor?: {
     unselected?: {
       bg?: string;
@@ -52,6 +53,14 @@ export interface EvpMenuProps extends EvpBaseProps {
       text?: string;
     };
   };
+  /** Dependent extra onOpenHandler */
+  onOpen?: <R = any>(key: string) => R;
+  /** Dependent extra onCloseHandler */
+  onClose?: <R = any>(key: string) => R;
+  globalOnOpen?: <R = any>(keys: string[]) => R;
+  globalOnClose?: <R = any>(keys: string[]) => R;
+  globalOnSelect?: <R = any>(keys: string[]) => R;
+  globalOnUnselect?: <R = any>(keys: string[]) => R;
 }
 
 function flatItemColor(itemColor?: EvpMenuProps["itemColor"]) {
@@ -76,7 +85,14 @@ export default function EvpMenu(props: EvpMenuProps) {
       didMounted.current = `menu_${nanoid()}`;
     }
   }, []);
-  const menuCtx = useMenuRef(props.multiSelected);
+  const menuCtx = useMenuRef({
+    multiSelected: props.multiSelected ?? false,
+    multiOpened: props.multiOpened ?? false,
+    onOpen: props.globalOnOpen,
+    onClose: props.globalOnClose,
+    onSelect: props.globalOnSelect,
+    onUnselect: props.globalOnUnselect,
+  });
 
   const { icon } = props;
   let $props = AllParser(props);
@@ -91,18 +107,14 @@ export default function EvpMenu(props: EvpMenuProps) {
       if (!expand) {
         // going to open
         if (props.submenu) {
-          if (menuCtx.current.multiSelected) {
-            menuCtx?.current.setOpenKeys?.([...(menuCtx.current.openKeys ?? []), props.keyId ?? didMounted.current]);
-          } else {
-            menuCtx?.current.setOpenKeys?.([props.keyId ?? didMounted.current]);
-          }
+          menuCtx.current._handleOpenOne?.(props.keyId ?? didMounted.current);
+          props.onOpen?.(props.keyId ?? didMounted.current);
         }
       } else {
         // going to close
         if (props.submenu) {
-          menuCtx?.current.setOpenKeys?.(
-            (menuCtx.current.openKeys ?? []).filter((key: any) => key !== (props.keyId ?? didMounted.current))
-          );
+          menuCtx?.current._handleCloseOne?.(props.keyId ?? didMounted.current);
+          props.onClose?.(props.keyId ?? didMounted.current);
         }
       }
       deExpand();
