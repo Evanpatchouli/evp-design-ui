@@ -1,15 +1,35 @@
-
 import Tsx from "@/components/tsx";
 import { Card, Row } from "@/lib";
 import React from "react";
 import { Button, Toast } from "evp-design-ui";
 
-import { Reactive } from "evp-design-ui";
+import { reactive, listen, useCatch } from "evp-design-ui";
 
 const Demo: React.FC = () => {
+  let state = reactive(0);
+  const num = state.value;
+  const throwErr = useCatch(
+    () => {
+      throw new Error(`error_t${new Date().valueOf()}`);
+    },
+    (err: Error) => {
+      Toast.error(err.message);
+    }
+  );
+  listen(state).then((newVal) => {
+    Toast(`newVal: ${newVal}`);
+    throwErr();
+  });
+
   return (
     <>
-      <Reactive />
+      <Button
+        $click={() => {
+          state.value = state.value + 1;
+        }}
+      >
+        {num}
+      </Button>
     </>
   );
 };
@@ -79,4 +99,3 @@ export default class Example extends React.Component {
     );
   }
 }
-

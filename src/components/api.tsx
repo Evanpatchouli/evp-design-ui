@@ -15,14 +15,14 @@ const typeRender = (val: any, required: boolean = false) => {
     }
     case "number": {
       return (
-        <Tag plain theme="white">
+        <Tag plain={true} theme="white">
           {val}
         </Tag>
       );
     }
     case "boolean": {
       return (
-        <Tag plain theme="primary">
+        <Tag plain={true} theme="primary">
           {val}
         </Tag>
       );

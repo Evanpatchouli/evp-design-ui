@@ -99,3 +99,5 @@ export const bindFC = <T, S>(source: Partial<S> = {}, target: T): T & {} & S => 
   // @ts-ignore
   return target;
 };
+
+export * from "./hook";

@@ -384,8 +384,5 @@ export {
 } from './evp-animation';
 
 
-export {
-  default as EvpReactive,
-  default as Reactive,
-  type EvpReactiveProps,
-} from './evp-reactive';
+export * from './utils';
+export * as utils from './utils'
