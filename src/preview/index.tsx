@@ -53,4 +53,7 @@ export { default as CssView } from "./evp-css";
 export { default as TemplateView } from "./evp-template";
 export { default as SnakeView } from "./evp-snake";
 export { default as AlertView } from "./evp-alert";
-export * as AnimationView from "./evp-animation";export { default as ReactiveView } from "./evp-reactive";
+export * as AnimationView from "./evp-animation";
+export { default as ReactiveView } from "./evp-reactive";
+export { default as ListView } from "./evp-list";
+export { default as UtilsView } from "./evp-utils";

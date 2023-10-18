@@ -17,8 +17,8 @@ export function listen<T = any>(target: Omit<Reactive<T>, "_state" | "_setState"
   };
 }
 
-export const Reactify = <T = any>(initialValue: T): Reactive<Readonly<T>> => {
-  const [state, setState] = React.useState<Readonly<T>>(initialValue);
+export const Reactify = <T = any>(initialValue: T): Reactive<T> => {
+  const [state, setState] = React.useState<T>(initialValue);
   const observer = new Reactive(state, setState);
   return observer;
 };

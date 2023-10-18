@@ -12,10 +12,25 @@ import DocsMenu from "./menu";
 import "./App.css";
 import "./preview/index.css";
 import "./lib/global.css";
-
+import { useEffect, useRef } from "react";
+import { getRouteStore, updateRouteCurrent, linkTo } from "./router/store";
 function App() {
   const location = useLocation();
   const now = new Date().toLocaleDateString();
+  const didMount = useRef(false);
+  useEffect(() => {
+    if (!didMount.current) {
+      didMount.current = true;
+      const routeStore = getRouteStore();
+      if (routeStore.history.length > 0 && location.pathname !== routeStore.history[routeStore.history.length - 1]) {
+        linkTo(routeStore.history[routeStore.history.length - 1], true);
+      }
+      return;
+    } else {
+      updateRouteCurrent(location.pathname);
+    }
+  }, [location.pathname]);
+
   return (
     <div className="App">
       <Header />

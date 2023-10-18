@@ -63,7 +63,7 @@ export const reactiveMemo = ReactifyMemo;
 
 // Version: 2 useStore
 
-type Store<State = any> = {
+export type Store<State = any> = {
   state: State;
   setState: (newState: State) => void;
 };
@@ -77,7 +77,7 @@ export const useStore = <T = any>(initialState: T): Store<T> => {
   };
 };
 
-type Callback<State> = (newState: State) => any;
+export type Callback<State> = (newState: State) => any;
 
 export const useSync = <State>(store: Store<State>) => {
   const useSyncEffect = (callbacks: Callback<typeof store.state>[]) => {

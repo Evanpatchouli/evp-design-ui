@@ -7,7 +7,7 @@ import EvpBaseProps from "../props";
 import AllParser from "../utils/props.parser";
 import { EvpWRule, EvpHRule } from "../typings";
 import { linkTo } from "../utils/route";
-import MenuCtx from "./context";
+import MenuCtx, { type MenuCtx as IMenuCtx } from "./context";
 import { nanoid } from "nanoid";
 import { useMenuRef } from "./hooks";
 
@@ -31,6 +31,7 @@ export interface EvpMenuProps extends EvpBaseProps {
   keyId?: any;
   multiSelected?: boolean;
   multiOpened?: boolean;
+  menuRef?: React.MutableRefObject<IMenuCtx>;
   itemColor?: {
     unselected?: {
       bg?: string;
@@ -85,6 +86,7 @@ export default function EvpMenu(props: EvpMenuProps) {
       didMounted.current = `menu_${nanoid()}`;
     }
   }, []);
+  const propedMenuRef = props.menuRef;
   const menuCtx = useMenuRef({
     multiSelected: props.multiSelected ?? false,
     multiOpened: props.multiOpened ?? false,
@@ -107,13 +109,13 @@ export default function EvpMenu(props: EvpMenuProps) {
       if (!expand) {
         // going to open
         if (props.submenu) {
-          menuCtx.current._handleOpenOne?.(props.keyId ?? didMounted.current);
+          (propedMenuRef?.current ?? menuCtx.current)?._handleOpenOne?.(props.keyId ?? didMounted.current);
           props.onOpen?.(props.keyId ?? didMounted.current);
         }
       } else {
         // going to close
         if (props.submenu) {
-          menuCtx?.current._handleCloseOne?.(props.keyId ?? didMounted.current);
+          (propedMenuRef?.current ?? menuCtx.current)?._handleCloseOne?.(props.keyId ?? didMounted.current);
           props.onClose?.(props.keyId ?? didMounted.current);
         }
       }
@@ -176,7 +178,7 @@ export default function EvpMenu(props: EvpMenuProps) {
           <EvpIcon strokeWidth={2} radius={18} pd={[0, 16, 0, 0]} name={expand ? "down" : "left"} />
         ) : null}
       </EvpRow>
-      <MenuCtx.Provider value={menuCtx.current}>
+      <MenuCtx.Provider value={propedMenuRef?.current ?? menuCtx.current}>
         <div
           className={`${childrenWrapperClass}`}
           style={{

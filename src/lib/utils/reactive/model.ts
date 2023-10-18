@@ -1,5 +1,4 @@
 import { ReactiveCtxModel } from "./context";
-import * as React from "react";
 
 export type Listener<T> = (state: T) => any;
 

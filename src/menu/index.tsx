@@ -1,15 +1,26 @@
 import { Menu, MenuItem } from "@/lib";
+import { useMenuRef } from "@/lib/evp-menu/hooks";
+import { getRouteStore, linkTo, updateRouteCurrent } from "@/router/store";
+import { useRef, useEffect } from "react";
+import { useLocation } from "react-router";
 
 export default function DocsMenu() {
+  const menu = useMenuRef();
+  const location = useLocation();
+  useEffect(() => {
+    // console.log("location.pathname", location.pathname);
+    // console.log("menu", menu);
+    menu.current?.setSelectedKeys?.([location.pathname], "select");
+  }, [location.pathname, menu]);
   return (
-    <Menu border="none" link={"/general"} title={"General"}>
+    <Menu menuRef={menu} border="none" link={"/general"} keyId={"/general"} title={"General"}>
       <Menu submenu itemIndent title={"Layout"}>
         <MenuItem link={"/components/evp-col"} title={"Col"} />
         <MenuItem link={"/components/evp-row"} title={"Row"} />
         <MenuItem link={"/components/evp-dom"} title={"Dom"} />
         <MenuItem link={"/components/evp-divider"} title={"Divider"} />
       </Menu>
-      <MenuItem link={"/components/evp-shadow"} title={"Shadow"} />
+      <MenuItem link={"/components/evp-shadow"} keyId={"/components/evp-shadow"} title={"Shadow"} />
       <MenuItem link={"/components/evp-button"} title={"Button"} />
       <MenuItem link={"/components/evp-input"} title={"Input"} />
       <MenuItem link={"/components/evp-color"} title={"Color"} />
@@ -62,6 +73,9 @@ export default function DocsMenu() {
         {/* <MenuItem link={"/components/evp-row"} title={"Row"} />
         <MenuItem link={"/components/evp-dom"} title={"Dom"} />
         <MenuItem link={"/components/evp-divider"} title={"Divider"} /> */}
+      </Menu>
+      <Menu submenu itemIndent title={"utils (unstable)"}>
+        <MenuItem link={"/components/evp-utils"} title={"Utils"} />
       </Menu>
     </Menu>
   );

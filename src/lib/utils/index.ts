@@ -100,4 +100,7 @@ export const bindFC = <T, S>(source: Partial<S> = {}, target: T): T & {} & S => 
   return target;
 };
 
-export * from "./hook";
+export { useStore, useSync, type Store, type Callback, type Protected } from "./hook";
+
+export * from "./reactive";
+export * from "./useCatch";
