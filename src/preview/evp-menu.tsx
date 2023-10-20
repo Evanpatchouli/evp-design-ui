@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { EvpButton } from "evp-design-ui";
 import MenuApi from "./apis/menu.api";
 import ItemColor from "./demos/menu/item-color";
+import MenuRef from "./demos/menu/menuRef";
 
 export default function MenuView() {
   useEffect(() => {
@@ -246,6 +247,12 @@ You can customize menuitem colors at different states by setting \`itemColor\` p
 `}
       </Md>
       <ItemColor />
+      <Md>
+        {`
+### MenuRef
+`}
+      </Md>
+      <MenuRef />
       <Md>
         {`
 ## Api

@@ -39,7 +39,7 @@ export default function EvpMenuItem(props: EvpMenuItemProps) {
       } else if (typeof props.link === "object") {
         linkUrl = props.link.path?.trim() ?? "";
       }
-      const uniqueKey = props.keyId ?? linkUrl ?? `menu-item_${nanoid()}`;
+      const uniqueKey = props.keyId ?? (linkUrl ? linkUrl : `menu-item_${nanoid()}`);
       didMounted.current = uniqueKey;
       menuCtx?._add_setSelectedMap?.(uniqueKey, setSelected);
     }

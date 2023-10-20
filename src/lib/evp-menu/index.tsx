@@ -115,7 +115,10 @@ export default function EvpMenu(props: EvpMenuProps) {
       if (!expand) {
         // going to open
         if (props.submenu) {
-          (propedMenuRef?.current ?? menuCtx.current)?._handleOpenOne?.(props.keyId ?? didMounted.current);
+          if (propedMenuRef?.current ?? menuCtx.current) {
+            const ctx = propedMenuRef ?? (menuCtx as React.MutableRefObject<IMenuCtx>);
+            ctx.current._handleOpenOne?.(props.keyId ?? didMounted.current);
+          }
           props.onOpen?.(props.keyId ?? didMounted.current);
         }
       } else {

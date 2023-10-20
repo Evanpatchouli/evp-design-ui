@@ -3,7 +3,7 @@
 }
 
 body {
-  --scrollbar-width: 10px;
+  --scrollbar-width: 8px;
 
   /* width */
   &::-webkit-scrollbar {
@@ -18,7 +18,7 @@ body {
   /* Handle */
   &::-webkit-scrollbar-thumb {
     border: 2px solid #eee;
-    border-radius: calc(var(--scrollbar-width) / 2);
+    border-radius: calc(var(--scrollbar-width));
     background: #eee;
   }
 
@@ -33,7 +33,6 @@ body {
     border: 2px solid #eee;
     background: #333;
   }
-
 }
 
 .App-logo {
@@ -84,7 +83,7 @@ body {
   height: calc(100vh - 80px);
   overflow-y: auto;
 
-  --scrollbar-width: 10px;
+  --scrollbar-width: 8px;
 
   /* width */
   &::-webkit-scrollbar {
@@ -98,7 +97,7 @@ body {
 
   /* Handle */
   &::-webkit-scrollbar-thumb {
-    border-radius: calc(var(--scrollbar-width) / 2);
+    border-radius: calc(var(--scrollbar-width));
     background: #eee;
   }
 
@@ -111,6 +110,8 @@ body {
   &::-webkit-scrollbar-thumb:active {
     background: #333;
   }
+
+  cursor: pointer;
 }
 
 .Content {

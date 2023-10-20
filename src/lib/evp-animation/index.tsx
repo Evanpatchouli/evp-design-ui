@@ -108,7 +108,7 @@ const AnimationDomFC = ({
       activeState?.setState?.(activeState.inactiveValue);
       onInactive?.();
     }
-  }, [activeState, animated, onActive, onInactive]);
+  }, [animated]);
 
   const dispatchAnimation = () => {
     setTimeout(() => {

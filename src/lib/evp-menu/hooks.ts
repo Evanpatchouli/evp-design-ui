@@ -2,7 +2,7 @@ import { useContext, useRef } from "react";
 import MenuContext, { MenuCtx } from "./context";
 
 export class MenuCtxInstance implements MenuCtx {
-  openKeys?: string[];
+  openKeys?: string[] = [];
   setOpenKeys = (keys: string[], type: "open" | "close") => {
     this.openKeys = keys;
     switch (type) {
@@ -23,7 +23,7 @@ export class MenuCtxInstance implements MenuCtx {
   setMultiSelected = (multiSelected: boolean) => {
     this.multiSelected = multiSelected;
   };
-  selectedKeys?: string[];
+  selectedKeys?: string[] = [];
   setSelectedKeys = (keys: string[] = [], type: "select" | "unselect") => {
     // console.log("Going to set");
     // console.log("keys", keys);
@@ -71,16 +71,44 @@ export class MenuCtxInstance implements MenuCtx {
     );
   };
 
-  _handleSelectOne = (key: string) => {
-    if (!this.multiSelected) {
-      (this._setSelectedMap ?? new Map()).forEach((setThisSelected, k) => {
-        if (k !== key) {
-          setThisSelected(false);
-        }
-      });
+  selectOne = (key: string) => {
+    this._handleSelectOne(key);
+  };
+  unselectOne = (key: string) => {
+    this._handleSelectOne(key);
+  };
+
+  openOne = (key: string) => {
+    this._handleOpenOne(key);
+  };
+
+  closeOne = (key: string) => {
+    this._handleCloseOne(key);
+  };
+
+  selectMany = (key: string[]) => {
+    this.setSelectedKeys?.([...key], "select");
+  }
+
+  _handleToggleOne = (key: string) => {
+    if (this.openKeys?.includes(key)) {
+      this._handleCloseOne(key);
     } else {
-      this.setSelectedKeys?.([key], "select");
+      this._handleOpenOne(key);
     }
+  };
+
+  _handleSelectOne = (key: string) => {
+    this.setSelectedKeys?.([key], "select");
+    // if (!this.multiSelected) {
+    //   (this._setSelectedMap ?? new Map()).forEach((setThisSelected, k) => {
+    //     if (k !== key) {
+    //       setThisSelected(false);
+    //     }
+    //   });
+    // } else {
+    //   this.setSelectedKeys?.([key], "select");
+    // }
   };
 
   _handleUnselectOne = (key: string) => {
