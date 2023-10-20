@@ -27,57 +27,24 @@ const Demo: React.FC = () => {
 };
 
 const codes = `
-import { Menu, MenuItem, Row, Label } from "evp-design-ui";
+import { Menu, MenuItem, useMenuRef } from "evp-design-ui";
 
 const Demo: React.FC = () => {
-  const [itemColor, setItemColor] = React.useState<any>({
-    unselected: {
-      bg: "#3e8",
-      text: "#fff",
-    },
-  });
+  const menu = useMenuRef();
+  const debug = () => {
+    console.log(menu.current);
+  };
+  const select = () => {
+    menu.current?.setSelectedKeys?.(["menuitem-1"], "select");
+  };
   return (
     <div>
-      <Menu title="Customize item colors" itemColor={itemColor}>
-        <MenuItem>Menu Item 1</MenuItem>
+      <Menu title="Use MenuRef to controll Menu" menuRef={menu}>
+        <MenuItem keyId={"menuitem-1"}>Menu Item 1</MenuItem>
         <MenuItem>Menu Item 2</MenuItem>
       </Menu>
-      <p>Try to input colors you like such as "#000" and "#fff"</p>
-      <Row>
-        <Label label={"unselected"} labelColon />
-        <Label label={"bg"}>
-          <input
-            defaultValue={"#3e8"}
-            onChange={(e) => {
-              setItemColor((prev: any) => ({
-                ...prev,
-                unselected: {
-                  ...prev.unselected,
-                  bg: e.target.value,
-                },
-              }));
-            }}
-          />
-        </Label>
-        <Label label={"text"} style={{ marginLeft: 8 }}>
-          <input
-            defaultValue={"#fff"}
-            onChange={(e) => {
-              setItemColor((prev: any) => ({
-                ...prev,
-                unselected: {
-                  ...prev.unselected,
-                  text: e.target.value,
-                },
-              }));
-            }}
-          />
-        </Label>
-      </Row>
-      <p>
-        The others of itemColor is similar to the above. So we do not show them here. You can get more about them from
-        the API section.
-      </p>
+      <Button $click={debug}>Debug</Button>
+      <Button $click={select}>Select One</Button>
     </div>
   );
 };
