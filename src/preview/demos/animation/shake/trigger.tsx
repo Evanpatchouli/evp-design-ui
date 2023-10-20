@@ -6,6 +6,8 @@ import { Button, Toast } from "evp-design-ui";
 import { Animation } from "evp-design-ui";
 
 const Demo: React.FC = () => {
+  const [theme, setTheme] = React.useState<"primary" | "danger">("primary");
+  const [timer, setTimer] = React.useState<NodeJS.Timeout | null>(null);
   return (
     <Row gap={8}>
       <Animation.Shake>
@@ -16,9 +18,14 @@ const Demo: React.FC = () => {
       </Animation.Shake>
       <Animation.Shake trigger="click">
         <Button
-          theme="danger"
+          theme={theme}
           $click={() => {
+            if (timer) {
+              clearTimeout(timer);
+            }
+            setTimer(setTimeout(() => setTheme("primary"), 500 + 200));
             Toast.warn("Oops! Something went wrong");
+            setTheme("danger");
           }}
         >
           Click Me

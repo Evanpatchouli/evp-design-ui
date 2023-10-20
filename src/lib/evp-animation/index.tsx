@@ -13,26 +13,6 @@ const EvpAnimation = (props: EvpAnimationProps) => {
   return <div>{props.children}</div>;
 };
 
-const Trigger = (trigger: EvpAnimationProps["trigger"], animationName: string = "none") => {
-  switch (trigger) {
-    case "click":
-      return {
-        "--hover-animation-name": "none",
-        "--click-animation-name": animationName,
-      };
-    case "hover":
-      return {
-        "--hover-animation-name": animationName,
-        "--click-animation-name": "none",
-      };
-    default:
-      return {
-        "--hover-animation-name": animationName,
-        "--click-animation-name": "none",
-      };
-  }
-};
-
 export type EvpAnimationFCProps = EvpAnimationProps & { animationName: string; cancelOnLeave?: boolean };
 
 const AnimationDomFC = ({
@@ -78,28 +58,18 @@ const AnimationDomFC = ({
     }
   })(trigger);
 
-  React.useEffect(() => {
-    if (animated) {
-      timer.current = setTimeout(() => {
-        setAnimated("");
-        setTimer({
-          current: null,
-        });
-      }, Number(animation.animationDuration));
-    } else {
-      if (timer.current) {
-        clearTimeout(timer.current);
-        setTimer({
-          current: null,
-        });
-      }
-    }
-  }, [animated]);
-
   const dispatchAnimation = () => {
     setTimeout(() => {
+      if (timer.current) {
+        clearTimeout(timer.current);
+      }
       setAnimated("");
-      setAnimated(animation.animationName);
+      setTimeout(() => {
+        setAnimated(animation.animationName);
+      }, 50); // to make the css animation stateful for a gap of 20ms
+      setTimer({
+        current: setTimeout(() => setAnimated(""), Number(animation.animationDuration)),
+      });
     }, Number(animation.animationDelay));
   };
 
@@ -114,7 +84,13 @@ const AnimationDomFC = ({
       }}
       onMouseLeave={() => {
         if (cancelOnLeave) {
+          if (timer.current) {
+            clearTimeout(timer.current);
+          }
           setAnimated("");
+          setTimer({
+            current: null,
+          });
         }
       }}
       onClick={() => {

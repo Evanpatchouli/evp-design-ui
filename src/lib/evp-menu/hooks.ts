@@ -3,7 +3,7 @@ import MenuContext, { MenuCtx } from "./context";
 
 export class MenuCtxInstance implements MenuCtx {
   openKeys?: string[];
-  setOpenKeys(keys: string[], type: "open" | "close") {
+  setOpenKeys = (keys: string[], type: "open" | "close") => {
     this.openKeys = keys;
     switch (type) {
       case "open":
@@ -15,16 +15,18 @@ export class MenuCtxInstance implements MenuCtx {
       default:
         break;
     }
-  }
+  };
   onOpen?: <R = any>(keys: string[]) => R;
   onClose?: <R = any>(keys: string[]) => R;
   multiOpened?: boolean = false;
   multiSelected?: boolean;
-  setMultiSelected(multiSelected: boolean) {
+  setMultiSelected = (multiSelected: boolean) => {
     this.multiSelected = multiSelected;
-  }
+  };
   selectedKeys?: string[];
-  setSelectedKeys(keys: string[] = [], type: "select" | "unselect") {
+  setSelectedKeys = (keys: string[] = [], type: "select" | "unselect") => {
+    // console.log("Going to set");
+    // console.log("keys", keys);
     this.selectedKeys = keys;
     switch (type) {
       case "select":
@@ -36,31 +38,40 @@ export class MenuCtxInstance implements MenuCtx {
       default:
         break;
     }
-  }
+    (this._setSelectedMap ?? new Map()).forEach((setThisSelected, k) => {
+      if (keys.includes(k)) {
+        // console.log(`set ${k} to selected`);
+        setThisSelected(true);
+      } else {
+        // console.log(`set ${k} to unselected`);
+        setThisSelected(false);
+      }
+    });
+  };
   onSelect?: <R = any>(keys: string[]) => R;
   onUnselect?: <R = any>(keys: string[]) => R;
 
   _setSelectedMap? = new Map();
-  _add_setSelectedMap?(key: string, fc: any) {
+  _add_setSelectedMap? = (key: string, fc: any) => {
     this._setSelectedMap?.set(key, fc);
-  }
+  };
 
-  _handleOpenOne(key: string) {
+  _handleOpenOne = (key: string) => {
     if (this.multiOpened) {
       this.setOpenKeys?.([key], "open");
     } else {
       this.setOpenKeys?.([key], "open");
     }
-  }
+  };
 
-  _handleCloseOne(key: string) {
+  _handleCloseOne = (key: string) => {
     this.setOpenKeys?.(
       (this.openKeys ?? []).filter((k) => key !== k),
       "close"
     );
-  }
+  };
 
-  _handleSelectOne(key: string) {
+  _handleSelectOne = (key: string) => {
     if (!this.multiSelected) {
       (this._setSelectedMap ?? new Map()).forEach((setThisSelected, k) => {
         if (k !== key) {
@@ -70,14 +81,14 @@ export class MenuCtxInstance implements MenuCtx {
     } else {
       this.setSelectedKeys?.([key], "select");
     }
-  }
+  };
 
-  _handleUnselectOne(key: string) {
+  _handleUnselectOne = (key: string) => {
     this.setSelectedKeys?.(
       (this.selectedKeys ?? []).filter((k) => key !== k),
       "unselect"
     );
-  }
+  };
 
   constructor(options: {
     multiOpened?: boolean;

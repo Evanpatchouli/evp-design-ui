@@ -83,9 +83,15 @@ export default function EvpMenu(props: EvpMenuProps) {
   const didMounted = React.useRef<any>(null);
   useEffect(() => {
     if (!didMounted.current) {
-      didMounted.current = `menu_${nanoid()}`;
+      let linkUrl = "";
+      if (typeof props.link === "string") {
+        linkUrl = props.link.trim();
+      } else if (typeof props.link === "object") {
+        linkUrl = props.link.path?.trim() ?? "";
+      }
+      didMounted.current = props.keyId ?? linkUrl ?? `menu_${nanoid()}`;
     }
-  }, []);
+  }, [props.keyId, props.link]);
   const propedMenuRef = props.menuRef;
   const menuCtx = useMenuRef({
     multiSelected: props.multiSelected ?? false,

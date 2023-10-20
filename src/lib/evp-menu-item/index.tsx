@@ -17,6 +17,7 @@ export interface EvpMenuItemProps extends EvpBaseProps {
   /** route-link to where */
   link?: string | { path?: string; hash?: boolean };
   hash?: boolean;
+  /** Default will set linkUrl as uniqueKey if exists, if not nether the keyId, will generate a nanoid */
   keyId?: any;
   unselectOnReClick?: boolean;
   /** Dependent extra onSelectHandler */
@@ -32,11 +33,17 @@ export default function EvpMenuItem(props: EvpMenuItemProps) {
 
   React.useEffect(() => {
     if (!didMounted.current) {
-      const uniqueKey = `menu-item_${nanoid()}`;
+      let linkUrl = "";
+      if (typeof props.link === "string") {
+        linkUrl = props.link.trim();
+      } else if (typeof props.link === "object") {
+        linkUrl = props.link.path?.trim() ?? "";
+      }
+      const uniqueKey = props.keyId ?? linkUrl ?? `menu-item_${nanoid()}`;
       didMounted.current = uniqueKey;
       menuCtx?._add_setSelectedMap?.(uniqueKey, setSelected);
     }
-  }, [menuCtx]);
+  }, [menuCtx, props.keyId, props.link]);
 
   // useEffect(() => {
   //   console.log(menuCtx.multiSelected, menuCtx.selectedKeys, props.keyId ?? didMounted.current);
@@ -53,7 +60,6 @@ export default function EvpMenuItem(props: EvpMenuItemProps) {
   const $click = props["not-allowed"]
     ? undefined
     : (e: React.MouseEvent) => {
-        console.log(menuCtx);
         if (selected) {
           // Going to unselect
           if (props.unselectOnReClick) {

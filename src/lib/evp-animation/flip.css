@@ -15,7 +15,7 @@
   animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
   animation-duration: 0.5s;
   animation-fill-mode: none;
-  animation-iteration-count: 0.5;
+  animation-iteration-count: 1;
 }
 
 @keyframes evp-animation__Shake {
