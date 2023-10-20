@@ -27,12 +27,25 @@ const Demo: React.FC = () => {
 };
 
 const codes = `
-import { Utils } from "evp-design-ui";
+import { reactive, listen, Button } from "evp-design-ui";
 
 const Demo: React.FC = () => {
+  let state = reactive({
+    count: 0,
+  });
+  let { count } = state.value;
+  const handleClick = () => {
+    state.value = {
+      ...state.value,
+      count: ++count,
+    };
+  };
+  listen(state).then((newState) => {
+    Toast.info(JSON.stringify(newState));
+  });
   return (
     <>
-      Utils
+      <Button $click={handleClick}>{count}</Button>
     </>
   );
 };

@@ -65,6 +65,9 @@ const BounceFC = (
   };
 };
 
+/**
+ * ~@deprecated Bounce Component~
+ */
 const Bounce = bindFC(
   {
     className: Bounce_default.animationName,

@@ -64,35 +64,53 @@ export default function AnimationApi() {
           default: "false",
           desc: "When mouse leaves element, cancel animation right now or not",
         },
-        //         {
-        //           property: "SOME COMPLEX PROPERTY",
-        //           type: (
-        //             <>
-        //               <Popover
-        //                 position="upperRightCorner"
-        //                 contentStyle={{
-        //                   paddingInline: "8px",
-        //                 }}
-        //                 content={
-        //                   <Code lang="ts" theme="oneLight">
-        //                     {`
-        // {
-        //   default?: string;
-        //   hover?: string;
-        //   click?: string;
-        //   active?: string;
-        // };
-        // `}
-        //                   </Code>
-        //                 }
-        //               >
-        //                 <span style={{ textDecoration: "underline", color: "blue", cursor: "pointer" }}>TabSpotColor</span>
-        //               </Popover>
-        //             </>
-        //           ),
-        //           default: "undefined",
-        //           desc: "Desc of this property",
-        //         },
+        {
+          property: "activeGap",
+          type: "number",
+          default: "50",
+          desc: "The time gap before animation is set to applied (not delay! It means the behavour of setting animation to applied)",
+        },
+        {
+          property: "onActive",
+          type: "() => void",
+          default: "undefined",
+          desc: "Callback when animation is active",
+        },
+        {
+          property: "onInactive",
+          type: "() => void",
+          default: "undefined",
+          desc: "Callback when animation is inactive",
+        },
+        {
+          property: "activeState",
+          type: (
+            <>
+              <Popover
+                position="upperRightCorner"
+                contentStyle={{
+                  paddingInline: "8px",
+                }}
+                content={
+                  <Code lang="ts" theme="oneLight">
+                    {`
+{
+  state?: T | undefined;
+  setState?: React.Dispatch<React.SetStateAction<T | undefined>>;
+  activeValue?: T | undefined;
+  inactiveValue?: T | undefined;
+};
+        `}
+                  </Code>
+                }
+              >
+                <span style={{ textDecoration: "underline", color: "blue", cursor: "pointer" }}>ActiveStateWithAnimation</span>
+              </Popover>
+            </>
+          ),
+          default: "undefined",
+          desc: "You can specify a state synchronous with the status of animation",
+        },
       ]}
     />
   );

@@ -16,16 +16,25 @@ const Demo: React.FC = () => {
       <Animation.Shake trigger="hover">
         <Button>Hover Me</Button>
       </Animation.Shake>
-      <Animation.Shake trigger="click">
+      <Animation.Shake
+        trigger="click"
+        onActive={() => Toast.warn("Oops! Something went wrong")}
+        activeState={{
+          state: theme,
+          setState: setTheme,
+          activeValue: "danger",
+          inactiveValue: "primary",
+        }}
+      >
         <Button
           theme={theme}
           $click={() => {
-            if (timer) {
-              clearTimeout(timer);
-            }
-            setTimer(setTimeout(() => setTheme("primary"), 500 + 200));
-            Toast.warn("Oops! Something went wrong");
-            setTheme("danger");
+            // if (timer) {
+            //   clearTimeout(timer);
+            // }
+            // setTimer(setTimeout(() => setTheme("primary"), 500 + 200));
+            // setTheme("danger");
+            // Toast.warn("Oops! Something went wrong");
           }}
         >
           Click Me
