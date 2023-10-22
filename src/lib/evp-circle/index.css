@@ -1,0 +1,70 @@
+.evp-circle {
+  --_w: var(--evp-circle-width, 500px);
+  --_r: calc((var(--_w) - var(--_sz)) / 2);
+  --_sz: var(--evp-circle-item-size, 60px);
+  width: var(--_w);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  list-style-type: none;
+  inline-size: var(--_w);
+  padding: unset;
+  position: relative;
+}
+.evp-circle__item {
+  --_x: calc(var(--_r) + (var(--_r) * sin(var(--_d))));
+  --_y: calc(var(--_r) + (var(--_r) * -1 * cos(var(--_d))));
+  border-radius: 50%;
+  display: grid;
+  height: var(--_sz);
+  left: var(--_x);
+  place-content: center;
+  position: absolute;
+  top: var(--_y);
+  transition: transform 0.2s ease-in;
+  width: var(--_sz);
+  border: 1px solid dodgerblue;
+}
+.evp-circle .evp-circle__item {
+  --_d: calc(var(--i) * var(--_angle));
+}
+/* .evp-circle .evp-circle__item:nth-child(2) { --_d: 300deg; }
+.evp-circle .evp-circle__item:nth-child(3) { --_d: 330deg; }
+.evp-circle .evp-circle__item:nth-child(4) { --_d: 0deg; }
+.evp-circle .evp-circle__item:nth-child(5) { --_d: 30deg; }
+.evp-circle .evp-circle__item:nth-child(6) { --_d: 60deg; }
+.evp-circle .evp-circle__item:nth-child(7) { --_d: 90deg; }
+.evp-circle .evp-circle__item:nth-child(8) { --_d: 120deg; }
+.evp-circle .evp-circle__item:nth-child(9) { --_d: 150deg; }
+.evp-circle .evp-circle__item:nth-child(10) { --_d: 180deg; }
+.evp-circle .evp-circle__item:nth-child(11) { --_d: 210deg; }
+.evp-circle .evp-circle__item:nth-child(12) { --_d: 240deg; } */
+
+/* html {
+  display: grid;
+  height: 100%;
+}
+body {
+  background: hsl(0, 15%, 75%);
+  display: grid;
+  place-content: center;
+}
+p {
+  display: none;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+} */
+@supports (left: calc(1px * cos(45deg))) {
+  .evp-circle__item:hover {
+    transform: scale(1.4);
+  }
+}
+
+@supports not (left: calc(1px * cos(45deg))) {
+  p {
+    display: block;
+  }
+  .evp-circle__item {
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) rotate(var(--_d)) translate(var(--_r)) rotate(calc(-1 * var(--_d)));
+  }
+}

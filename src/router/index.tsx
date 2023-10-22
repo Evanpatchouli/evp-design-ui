@@ -63,5 +63,5 @@ export const routes: Array<RouteProps & { key: string }> = [
   { path: "/evp-list", key: "list", element: <Pre.ListView /> },
   { path: "/evp-utils", key: "utils", element: <Pre.UtilsView /> },
   { path: "/evp-frosted-glass", key: "frosted-glass", element: <Pre.FrostedGlassView /> },
+  { path: "/evp-circle", key: "circle", element: <Pre.CircleView /> },
 ];
-

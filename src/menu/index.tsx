@@ -74,6 +74,7 @@ export default function DocsMenu() {
       {/* <MenuItem link={"/components/evp-css"} title={"Css"} />
       <MenuItem link={"/components/evp-template"} title={"Template"} /> */}
       <MenuItem link={"/components/evp-frosted-glass"} title={"FrostedGlass"} />
+      <MenuItem link={"/components/evp-circle"} title={"Circle"} />
       <Menu submenu itemIndent title={"Animation"}>
         <MenuItem link={"/components/evp-animation"} title={"Animation"} />
         <MenuItem link={"/components/evp-animation/Bounce"} title={"Bounce"} />
