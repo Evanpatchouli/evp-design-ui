@@ -1,4 +1,3 @@
-
 import Md from "@/components/md";
 import Tsx from "@/components/tsx";
 import { EvpButton } from "evp-design-ui";
@@ -7,7 +6,7 @@ import Example from "./demos/list/example";
 import ListApi from "./apis/list.api";
 
 export default function ListView() {
-  const next = { route: "", name: "" };
+  const next = { route: "evp-img", name: "Img" };
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -46,15 +45,17 @@ import { List } from 'evp-design-ui'
 
 Here are some examples about List.
 
+List is simiar to Table but more flexible. Therefore it is more suitable for rendering complex data.
+Nothing else needs to be said, just use it like mapped.
+
 `}
       </Md>
-      <Example />
       <Md>
         {`
 ## Api
 
 ★ based on div  
-★ props extends EvpBaseProps
+★ props extends DomAttribus<HTMLDivElement>
 
 **List Apis:**
 
@@ -73,4 +74,3 @@ Here are some examples about List.
     </div>
   );
 }
-

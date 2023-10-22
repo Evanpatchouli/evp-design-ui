@@ -9,7 +9,7 @@ import MyColor from "./demos/paginator/mycolor";
 import PaginatorApi from "./apis/paginator.api";
 
 export default function PaginatorView(props: { next?: { route: string; name: string } }) {
-  const next = { route: props.next?.route ?? "", name: props.next?.name ?? "" };
+  const next = { route: props.next?.route ?? "evp-list", name: props.next?.name ?? "List" };
   useEffect(() => {
     window.scrollTo({
       top: 0,
