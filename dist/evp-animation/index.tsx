@@ -1,40 +1,64 @@
 import React, { useState } from "react";
-import { BounceOptions } from "./bounce";
+import {
+  EvpAnimationDirection as AnimationDirection,
+  EvpAnimationFillMode as AnimationFillMode,
+  EvpAnimationDirection,
+  EvpAnimationTimeFunction as TimeFunction,
+} from "./../typings";
 import classNames from "classnames";
-import { Nullable } from "../utils";
+import { Nullable, Pretify } from "../utils";
 import { Animation } from "../utils/animation";
+
+export type AnimationConfig = {
+  duration?: AnimationDirection;
+  timingFunction?: TimeFunction;
+  delay?: string;
+  iterationCount?: number;
+  direction?: EvpAnimationDirection;
+  fillMode?: AnimationFillMode;
+};
 
 export type EvpAnimationProps = {
   trigger?: "click" | "hover" | Array<"click" | "hover">;
 } & React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> &
-  BounceOptions;
+  AnimationConfig;
 
-const EvpAnimation = (props: EvpAnimationProps) => {
-  return <div>{props.children}</div>;
+export type ActiveStateWithAnimation<T = any> = Pretify<{
+  state?: T | undefined;
+  setState?: React.Dispatch<React.SetStateAction<T | undefined>>;
+  activeValue?: T | undefined;
+  inactiveValue?: T | undefined;
+}>;
+
+const EvpAnimation = ({
+  duration,
+  delay,
+  name,
+  ...props
+}: EvpAnimationProps & {
+  name?: string;
+}) => {
+  console.log("animationName", name);
+  return <AnimationDomFC duration={duration ?? "1000"} delay={delay ?? "0"} animationName={name ?? ""} {...props} />;
 };
 
-const Trigger = (trigger: EvpAnimationProps["trigger"], animationName: string = "none") => {
-  switch (trigger) {
-    case "click":
-      return {
-        "--hover-animation-name": "none",
-        "--click-animation-name": animationName,
-      };
-    case "hover":
-      return {
-        "--hover-animation-name": animationName,
-        "--click-animation-name": "none",
-      };
-    default:
-      return {
-        "--hover-animation-name": animationName,
-        "--click-animation-name": "none",
-      };
-  }
+export type EvpAnimationFCProps<T = any> = EvpAnimationProps & {
+  animationName: string;
+  cancelOnLeave?: boolean;
+  /** `${num}ms, default is 50ms` */
+  activeGap?: number;
+  activeState?: ActiveStateWithAnimation<T>;
+  onActive?: () => void;
+  onInactive?: () => void;
 };
 
-export type EvpAnimationFCProps = EvpAnimationProps & { animationName: string; cancelOnLeave?: boolean };
-
+/**
+ *
+ * `@version 0.0.1`
+ * - default 50ms animation delay to make it reactive
+ * - whether to play animation decides on the animationName not className
+ * @returns
+ */
 const AnimationDomFC = ({
   animationName,
   duration,
@@ -47,6 +71,10 @@ const AnimationDomFC = ({
   style,
   trigger,
   cancelOnLeave,
+  activeGap,
+  activeState,
+  onActive,
+  onInactive,
   ...props
 }: EvpAnimationFCProps) => {
   const animation = Animation.fromObject({
@@ -79,34 +107,39 @@ const AnimationDomFC = ({
   })(trigger);
 
   React.useEffect(() => {
-    if (animated) {
-      timer.current = setTimeout(() => {
-        setAnimated("");
-        setTimer({
-          current: null,
-        });
-      }, Number(animation.animationDuration));
+    if (animated !== "") {
+      activeState?.setState?.(activeState.activeValue);
+      // active
+      onActive?.();
     } else {
-      if (timer.current) {
-        clearTimeout(timer.current);
-        setTimer({
-          current: null,
-        });
-      }
+      // inactive
+      activeState?.setState?.(activeState.inactiveValue);
+      onInactive?.();
     }
   }, [animated]);
 
   const dispatchAnimation = () => {
     setTimeout(() => {
+      if (timer.current) {
+        clearTimeout(timer.current);
+      }
       setAnimated("");
-      setAnimated(animation.animationName);
+      setTimeout(
+        () => {
+          setAnimated(animation.animationName);
+        },
+        typeof activeGap === "number" ? activeGap : 50
+      ); // to make the css animation stateful for a gap of 50ms
+      setTimer({
+        current: setTimeout(() => setAnimated(""), Number(animation.animationDuration)),
+      });
     }, Number(animation.animationDelay));
   };
 
   return (
     <div
       tabIndex={-1}
-      className={classNames(animated, className)}
+      className={classNames(animation.animationName, className)}
       onMouseEnter={() => {
         if ($trigger.includes("hover")) {
           dispatchAnimation();
@@ -114,7 +147,13 @@ const AnimationDomFC = ({
       }}
       onMouseLeave={() => {
         if (cancelOnLeave) {
+          if (timer.current) {
+            clearTimeout(timer.current);
+          }
           setAnimated("");
+          setTimer({
+            current: null,
+          });
         }
       }}
       onClick={() => {
@@ -126,6 +165,7 @@ const AnimationDomFC = ({
         // ...bounce.style,
         width: "fit-content",
         height: "fit-content",
+        animationName: animated ? animated : "none",
         ...style,
       }}
       {...props}

@@ -1,4 +1,3 @@
-
 import Tsx from "@/components/tsx";
 import { Card, Row } from "@/lib";
 import React from "react";
@@ -8,9 +7,20 @@ import { Template } from "evp-design-ui";
 
 const Demo: React.FC = () => {
   return (
-    <>
-      <Template />
-    </>
+    <div
+      style={{
+        backgroundImage: "url(https://pic35.photophoto.cn/20150511/0034034892281415_b.jpg)",
+      }}
+    >
+      <Template.FrostedGlass
+        style={{
+          width: "100%",
+          height: "300px",
+        }}
+      >
+        Hello, World !
+      </Template.FrostedGlass>
+    </div>
   );
 };
 
@@ -79,4 +89,3 @@ export default class Example extends React.Component {
     );
   }
 }
-

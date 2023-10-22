@@ -30,8 +30,16 @@ export type ActiveStateWithAnimation<T = any> = Pretify<{
   inactiveValue?: T | undefined;
 }>;
 
-const EvpAnimation = (props: EvpAnimationProps) => {
-  return <div>{props.children}</div>;
+const EvpAnimation = ({
+  duration,
+  delay,
+  name,
+  ...props
+}: EvpAnimationProps & {
+  name?: string;
+}) => {
+  console.log("animationName", name);
+  return <AnimationDomFC duration={duration ?? "1000"} delay={delay ?? "0"} animationName={name ?? ""} {...props} />;
 };
 
 export type EvpAnimationFCProps<T = any> = EvpAnimationProps & {

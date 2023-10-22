@@ -99,3 +99,8 @@ export const bindFC = <T, S>(source: Partial<S> = {}, target: T): T & {} & S => 
   // @ts-ignore
   return target;
 };
+
+export { useStore, useSync, type Store, type Callback, type Protected } from "./hook";
+
+export * from "./reactive";
+export * from "./useCatch";

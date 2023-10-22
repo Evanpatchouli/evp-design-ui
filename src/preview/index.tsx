@@ -57,3 +57,4 @@ export * as AnimationView from "./evp-animation";
 export { default as ReactiveView } from "./evp-reactive";
 export { default as ListView } from "./evp-list";
 export { default as UtilsView } from "./evp-utils";
+export { default as FrostedGlassView } from "./evp-frosted-glass";

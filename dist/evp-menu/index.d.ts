@@ -2,6 +2,7 @@ import React from "react";
 import { IconType } from "../evp-icon";
 import EvpBaseProps from "../props";
 import { EvpWRule, EvpHRule } from "../typings";
+import { type MenuCtx as IMenuCtx } from "./context";
 export interface EvpMenuProps extends EvpBaseProps {
     /** The following contents of this menu, usually to be of `EvpMenuItem` */
     children?: React.ReactNode;
@@ -24,6 +25,8 @@ export interface EvpMenuProps extends EvpBaseProps {
     /** Unique key of menu */
     keyId?: any;
     multiSelected?: boolean;
+    multiOpened?: boolean;
+    menuRef?: React.MutableRefObject<IMenuCtx>;
     itemColor?: {
         unselected?: {
             bg?: string;
@@ -46,5 +49,13 @@ export interface EvpMenuProps extends EvpBaseProps {
             text?: string;
         };
     };
+    /** Dependent extra onOpenHandler */
+    onOpen?: <R = any>(key: string) => R;
+    /** Dependent extra onCloseHandler */
+    onClose?: <R = any>(key: string) => R;
+    globalOnOpen?: <R = any>(keys: string[]) => R;
+    globalOnClose?: <R = any>(keys: string[]) => R;
+    globalOnSelect?: <R = any>(keys: string[]) => R;
+    globalOnUnselect?: <R = any>(keys: string[]) => R;
 }
 export default function EvpMenu(props: EvpMenuProps): import("react/jsx-runtime").JSX.Element;

@@ -10,8 +10,6 @@
 
 This repository is the development workspace of **evp-design-ui** , you should install evp-design-ui from npm( <font color=#1E90FF>unpublished</font> ) or from github / gitee releases assets.
 
-(Now, you can only get it from github / gitee repo. In future, it will be published to npm.)
-
 **npm:**
 ```shell
 npm install evp-design-ui --save

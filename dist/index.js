@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, createContext, useContext, Fragment, useMemo, forwardRef, useCallback, useImperativeHandle, useReducer } from 'react';
+import React, { createContext, useRef, useState, useEffect, useContext, Fragment, useMemo, forwardRef, useCallback, useImperativeHandle, useReducer } from 'react';
 import { nanoid } from 'nanoid';
 import moment from 'moment';
 
@@ -11,6 +11,217 @@ function _typeof$1(o) {
     return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;
   }, _typeof$1(o);
 }
+
+/** @class */(function () {
+  function Reactive(state, setState) {
+    this._listeners = [];
+    this._state = state;
+    this._setState = setState;
+  }
+  Object.defineProperty(Reactive.prototype, "value", {
+    get: function get() {
+      return this._state;
+    },
+    set: function set(newState) {
+      this._setState(newState);
+      this._listeners.forEach(function (listener) {
+        return listener(newState);
+      });
+    },
+    enumerable: false,
+    configurable: true
+  });
+  Reactive.prototype.subscribe = function (listener) {
+    var _this = this;
+    this._listeners.push(listener);
+    return function () {
+      _this._listeners = _this._listeners.filter(function (l) {
+        return l !== listener;
+      });
+    };
+  };
+  return Reactive;
+})();
+var useStore = function useStore(initialState) {
+  var _a = React.useState(initialState),
+    state = _a[0],
+    setState = _a[1];
+  return {
+    state: state,
+    setState: setState
+  };
+};
+var useSync = function useSync(store) {
+  var useSyncEffect = function useSyncEffect(callbacks) {
+    React.useEffect(function () {
+      var dispose = store.setState;
+      store.setState = function (newState) {
+        dispose(newState);
+        callbacks.forEach(function (callback) {
+          return callback(newState);
+        });
+      };
+      return function () {
+        store.setState = dispose;
+      };
+    }, [store, callbacks]);
+  };
+  return {
+    then: useSyncEffect
+  };
+};
+
+var Reactive = /** @class */function () {
+  function Reactive(state, setState) {
+    var _this = this;
+    this._setState = function (newState) {
+      _this._state = newState;
+    };
+    this._listeners = [];
+    this._state = state;
+    setState ? this._setState = setState : void 0;
+  }
+  Object.defineProperty(Reactive.prototype, "value", {
+    get: function get() {
+      return this._state;
+    },
+    set: function set(newState) {
+      var _a;
+      (_a = this._setState) === null || _a === void 0 ? void 0 : _a.call(this, newState);
+      this._listeners.forEach(function (listener) {
+        return listener(newState);
+      });
+    },
+    enumerable: false,
+    configurable: true
+  });
+  Reactive.prototype.subscribe = function (listener) {
+    var _this = this;
+    this._listeners.push(listener);
+    return function () {
+      _this._listeners = _this._listeners.filter(function (l) {
+        return l !== listener;
+      });
+    };
+  };
+  Reactive.isReactive = function (obj) {
+    return Reactive.prototype.isPrototypeOf(obj);
+  };
+  return Reactive;
+}();
+
+var createReactiveContext = function createReactiveContext(initialValue) {
+  var reactiveObject = new Reactive(initialValue);
+  return /*#__PURE__*/createContext(reactiveObject);
+};
+var ReactiveCtx = createReactiveContext();
+
+/**
+ * When store.state changes, call the given function.
+ * @param target listened Reactive store
+ * @returns unlistener
+ */
+function listen(target) {
+  return {
+    then: function then() {
+      var fns = [];
+      for (var _i = 0; _i < arguments.length; _i++) {
+        fns[_i] = arguments[_i];
+      }
+      var fn = function fn(value) {
+        return fns.forEach(function (f) {
+          return f(value);
+        });
+      };
+      var dispose = target.subscribe(fn);
+      return dispose;
+    }
+  };
+}
+var Reactify = function Reactify(initialValue) {
+  var _a = React.useState(initialValue),
+    state = _a[0],
+    setState = _a[1];
+  var observer = new Reactive(state, setState);
+  return observer;
+};
+var ReactifyMemo = function ReactifyMemo(initialValue) {
+  return React.useMemo(function () {
+    return Reactify(initialValue);
+  }, [initialValue]);
+};
+/**
+ * reactive is same with Reactify
+ */
+var reactive = Reactify;
+/**
+ * reactiveMemo is same with ReactifyMemo
+ */
+var reactiveMemo = ReactifyMemo;
+/**
+ * Accept a value and return a reactive object. When initalValue is valid a new reactive object will be created.
+ */
+var useReactive = function useReactive(initialValue) {
+  var _a;
+  var _b = React.useState(initialValue !== null && initialValue !== void 0 ? initialValue : undefined),
+    state = _b[0],
+    setState = _b[1];
+  var reactiveObj = new Reactive(state, setState);
+  // const context = createReactiveCtx(reactiveObj);
+  // const newReactiveCtxModel = React.useContext(context);
+  var defaultContextModel = React.useContext((_a = initialValue) !== null && _a !== void 0 ? _a : ReactiveCtx);
+  if (initialValue !== undefined && initialValue !== null) {
+    return reactiveObj;
+  }
+  // @ts-ignore
+  return defaultContextModel;
+  // return initialValue ? newReactiveCtxModel : defaultContextModel;
+};
+
+var useReativeContext = function useReativeContext(context) {
+  var reactiveCtxModel = React.useContext(context || ReactiveCtx);
+  // @ts-ignore
+  return reactiveCtxModel;
+  // return initialValue ? newReactiveCtxModel : defaultContextModel;
+};
+/**
+ * Accept a value and return a reactive object binded on a ReactRef instance.
+ */
+var useReactiveRef = function useReactiveRef(initialValue) {
+  var ctx = useReactive(initialValue);
+  var reactiveRef = React.useRef();
+  if (!reactiveRef.current) {
+    reactiveRef.current = ctx;
+  }
+  return reactiveRef;
+};
+
+/**
+ * Catch error handling for a given function.
+ * @param fn
+ * @param catchHanlder
+ * @param finallyHandler
+ */
+var useCatch = function useCatch(fn, catchHandler, finallyHandler) {
+  var fnProtected = function fnProtected() {
+    var args = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+      args[_i] = arguments[_i];
+    }
+    try {
+      fn.apply(void 0, args);
+    } catch (error) {
+      if (catchHandler) {
+        catchHandler(error);
+      } else {
+        console.error(error);
+      }
+    } finally {
+      finallyHandler === null || finallyHandler === void 0 ? void 0 : finallyHandler();
+    }
+  };
+  return fnProtected;
+};
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /** This func is to unassign undefined properties from an indexable object, especially invoked during parsing props */
@@ -91,6 +302,30 @@ var bindFC = function bindFC(source, target) {
   // @ts-ignore
   return target;
 };
+
+var index$1 = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  shift: shift,
+  boolStringfy: boolStringfy,
+  isSixBitHexColor: isSixBitHexColor,
+  hexAlpha: hexAlpha,
+  Var: Var,
+  bindFC: bindFC,
+  useStore: useStore,
+  useSync: useSync,
+  ReactiveCtx: ReactiveCtx,
+  createReactiveContext: createReactiveContext,
+  listen: listen,
+  Reactify: Reactify,
+  ReactifyMemo: ReactifyMemo,
+  reactive: reactive,
+  reactiveMemo: reactiveMemo,
+  useReactive: useReactive,
+  useReativeContext: useReativeContext,
+  useReactiveRef: useReactiveRef,
+  Reactive: Reactive,
+  useCatch: useCatch
+});
 
 // cursor: props.cursor??(props.pointer?'pointer': 'unset')
 var preservedCursors = ['pointer', 'not-allowed', 'col-resize', 'row-resize', 'all-scroll', 'wait', 'grab', 'grabbing', 'none'];
@@ -29345,58 +29580,49 @@ function apacheconf(Prism) {
   };
 }
 
-var sql_1;
-var hasRequiredSql;
-
-function requireSql () {
-	if (hasRequiredSql) return sql_1;
-	hasRequiredSql = 1;
-
-	sql_1 = sql;
-	sql.displayName = 'sql';
-	sql.aliases = [];
-	function sql(Prism) {
-	  Prism.languages.sql = {
-	    comment: {
-	      pattern: /(^|[^\\])(?:\/\*[\s\S]*?\*\/|(?:--|\/\/|#).*)/,
-	      lookbehind: true
-	    },
-	    variable: [
-	      {
-	        pattern: /@(["'`])(?:\\[\s\S]|(?!\1)[^\\])+\1/,
-	        greedy: true
-	      },
-	      /@[\w.$]+/
-	    ],
-	    string: {
-	      pattern: /(^|[^@\\])("|')(?:\\[\s\S]|(?!\2)[^\\]|\2\2)*\2/,
-	      greedy: true,
-	      lookbehind: true
-	    },
-	    identifier: {
-	      pattern: /(^|[^@\\])`(?:\\[\s\S]|[^`\\]|``)*`/,
-	      greedy: true,
-	      lookbehind: true,
-	      inside: {
-	        punctuation: /^`|`$/
-	      }
-	    },
-	    function:
-	      /\b(?:AVG|COUNT|FIRST|FORMAT|LAST|LCASE|LEN|MAX|MID|MIN|MOD|NOW|ROUND|SUM|UCASE)(?=\s*\()/i,
-	    // Should we highlight user defined functions too?
-	    keyword:
-	      /\b(?:ACTION|ADD|AFTER|ALGORITHM|ALL|ALTER|ANALYZE|ANY|APPLY|AS|ASC|AUTHORIZATION|AUTO_INCREMENT|BACKUP|BDB|BEGIN|BERKELEYDB|BIGINT|BINARY|BIT|BLOB|BOOL|BOOLEAN|BREAK|BROWSE|BTREE|BULK|BY|CALL|CASCADED?|CASE|CHAIN|CHAR(?:ACTER|SET)?|CHECK(?:POINT)?|CLOSE|CLUSTERED|COALESCE|COLLATE|COLUMNS?|COMMENT|COMMIT(?:TED)?|COMPUTE|CONNECT|CONSISTENT|CONSTRAINT|CONTAINS(?:TABLE)?|CONTINUE|CONVERT|CREATE|CROSS|CURRENT(?:_DATE|_TIME|_TIMESTAMP|_USER)?|CURSOR|CYCLE|DATA(?:BASES?)?|DATE(?:TIME)?|DAY|DBCC|DEALLOCATE|DEC|DECIMAL|DECLARE|DEFAULT|DEFINER|DELAYED|DELETE|DELIMITERS?|DENY|DESC|DESCRIBE|DETERMINISTIC|DISABLE|DISCARD|DISK|DISTINCT|DISTINCTROW|DISTRIBUTED|DO|DOUBLE|DROP|DUMMY|DUMP(?:FILE)?|DUPLICATE|ELSE(?:IF)?|ENABLE|ENCLOSED|END|ENGINE|ENUM|ERRLVL|ERRORS|ESCAPED?|EXCEPT|EXEC(?:UTE)?|EXISTS|EXIT|EXPLAIN|EXTENDED|FETCH|FIELDS|FILE|FILLFACTOR|FIRST|FIXED|FLOAT|FOLLOWING|FOR(?: EACH ROW)?|FORCE|FOREIGN|FREETEXT(?:TABLE)?|FROM|FULL|FUNCTION|GEOMETRY(?:COLLECTION)?|GLOBAL|GOTO|GRANT|GROUP|HANDLER|HASH|HAVING|HOLDLOCK|HOUR|IDENTITY(?:COL|_INSERT)?|IF|IGNORE|IMPORT|INDEX|INFILE|INNER|INNODB|INOUT|INSERT|INT|INTEGER|INTERSECT|INTERVAL|INTO|INVOKER|ISOLATION|ITERATE|JOIN|KEYS?|KILL|LANGUAGE|LAST|LEAVE|LEFT|LEVEL|LIMIT|LINENO|LINES|LINESTRING|LOAD|LOCAL|LOCK|LONG(?:BLOB|TEXT)|LOOP|MATCH(?:ED)?|MEDIUM(?:BLOB|INT|TEXT)|MERGE|MIDDLEINT|MINUTE|MODE|MODIFIES|MODIFY|MONTH|MULTI(?:LINESTRING|POINT|POLYGON)|NATIONAL|NATURAL|NCHAR|NEXT|NO|NONCLUSTERED|NULLIF|NUMERIC|OFF?|OFFSETS?|ON|OPEN(?:DATASOURCE|QUERY|ROWSET)?|OPTIMIZE|OPTION(?:ALLY)?|ORDER|OUT(?:ER|FILE)?|OVER|PARTIAL|PARTITION|PERCENT|PIVOT|PLAN|POINT|POLYGON|PRECEDING|PRECISION|PREPARE|PREV|PRIMARY|PRINT|PRIVILEGES|PROC(?:EDURE)?|PUBLIC|PURGE|QUICK|RAISERROR|READS?|REAL|RECONFIGURE|REFERENCES|RELEASE|RENAME|REPEAT(?:ABLE)?|REPLACE|REPLICATION|REQUIRE|RESIGNAL|RESTORE|RESTRICT|RETURN(?:ING|S)?|REVOKE|RIGHT|ROLLBACK|ROUTINE|ROW(?:COUNT|GUIDCOL|S)?|RTREE|RULE|SAVE(?:POINT)?|SCHEMA|SECOND|SELECT|SERIAL(?:IZABLE)?|SESSION(?:_USER)?|SET(?:USER)?|SHARE|SHOW|SHUTDOWN|SIMPLE|SMALLINT|SNAPSHOT|SOME|SONAME|SQL|START(?:ING)?|STATISTICS|STATUS|STRIPED|SYSTEM_USER|TABLES?|TABLESPACE|TEMP(?:ORARY|TABLE)?|TERMINATED|TEXT(?:SIZE)?|THEN|TIME(?:STAMP)?|TINY(?:BLOB|INT|TEXT)|TOP?|TRAN(?:SACTIONS?)?|TRIGGER|TRUNCATE|TSEQUAL|TYPES?|UNBOUNDED|UNCOMMITTED|UNDEFINED|UNION|UNIQUE|UNLOCK|UNPIVOT|UNSIGNED|UPDATE(?:TEXT)?|USAGE|USE|USER|USING|VALUES?|VAR(?:BINARY|CHAR|CHARACTER|YING)|VIEW|WAITFOR|WARNINGS|WHEN|WHERE|WHILE|WITH(?: ROLLUP|IN)?|WORK|WRITE(?:TEXT)?|YEAR)\b/i,
-	    boolean: /\b(?:FALSE|NULL|TRUE)\b/i,
-	    number: /\b0x[\da-f]+\b|\b\d+(?:\.\d*)?|\B\.\d+\b/i,
-	    operator:
-	      /[-+*\/=%^~]|&&?|\|\|?|!=?|<(?:=>?|<|>)?|>[>=]?|\b(?:AND|BETWEEN|DIV|ILIKE|IN|IS|LIKE|NOT|OR|REGEXP|RLIKE|SOUNDS LIKE|XOR)\b/i,
-	    punctuation: /[;[\]()`,.]/
-	  };
-	}
-	return sql_1;
+var sql_1 = sql;
+sql.displayName = 'sql';
+sql.aliases = [];
+function sql(Prism) {
+  Prism.languages.sql = {
+    comment: {
+      pattern: /(^|[^\\])(?:\/\*[\s\S]*?\*\/|(?:--|\/\/|#).*)/,
+      lookbehind: true
+    },
+    variable: [
+      {
+        pattern: /@(["'`])(?:\\[\s\S]|(?!\1)[^\\])+\1/,
+        greedy: true
+      },
+      /@[\w.$]+/
+    ],
+    string: {
+      pattern: /(^|[^@\\])("|')(?:\\[\s\S]|(?!\2)[^\\]|\2\2)*\2/,
+      greedy: true,
+      lookbehind: true
+    },
+    identifier: {
+      pattern: /(^|[^@\\])`(?:\\[\s\S]|[^`\\]|``)*`/,
+      greedy: true,
+      lookbehind: true,
+      inside: {
+        punctuation: /^`|`$/
+      }
+    },
+    function:
+      /\b(?:AVG|COUNT|FIRST|FORMAT|LAST|LCASE|LEN|MAX|MID|MIN|MOD|NOW|ROUND|SUM|UCASE)(?=\s*\()/i,
+    // Should we highlight user defined functions too?
+    keyword:
+      /\b(?:ACTION|ADD|AFTER|ALGORITHM|ALL|ALTER|ANALYZE|ANY|APPLY|AS|ASC|AUTHORIZATION|AUTO_INCREMENT|BACKUP|BDB|BEGIN|BERKELEYDB|BIGINT|BINARY|BIT|BLOB|BOOL|BOOLEAN|BREAK|BROWSE|BTREE|BULK|BY|CALL|CASCADED?|CASE|CHAIN|CHAR(?:ACTER|SET)?|CHECK(?:POINT)?|CLOSE|CLUSTERED|COALESCE|COLLATE|COLUMNS?|COMMENT|COMMIT(?:TED)?|COMPUTE|CONNECT|CONSISTENT|CONSTRAINT|CONTAINS(?:TABLE)?|CONTINUE|CONVERT|CREATE|CROSS|CURRENT(?:_DATE|_TIME|_TIMESTAMP|_USER)?|CURSOR|CYCLE|DATA(?:BASES?)?|DATE(?:TIME)?|DAY|DBCC|DEALLOCATE|DEC|DECIMAL|DECLARE|DEFAULT|DEFINER|DELAYED|DELETE|DELIMITERS?|DENY|DESC|DESCRIBE|DETERMINISTIC|DISABLE|DISCARD|DISK|DISTINCT|DISTINCTROW|DISTRIBUTED|DO|DOUBLE|DROP|DUMMY|DUMP(?:FILE)?|DUPLICATE|ELSE(?:IF)?|ENABLE|ENCLOSED|END|ENGINE|ENUM|ERRLVL|ERRORS|ESCAPED?|EXCEPT|EXEC(?:UTE)?|EXISTS|EXIT|EXPLAIN|EXTENDED|FETCH|FIELDS|FILE|FILLFACTOR|FIRST|FIXED|FLOAT|FOLLOWING|FOR(?: EACH ROW)?|FORCE|FOREIGN|FREETEXT(?:TABLE)?|FROM|FULL|FUNCTION|GEOMETRY(?:COLLECTION)?|GLOBAL|GOTO|GRANT|GROUP|HANDLER|HASH|HAVING|HOLDLOCK|HOUR|IDENTITY(?:COL|_INSERT)?|IF|IGNORE|IMPORT|INDEX|INFILE|INNER|INNODB|INOUT|INSERT|INT|INTEGER|INTERSECT|INTERVAL|INTO|INVOKER|ISOLATION|ITERATE|JOIN|KEYS?|KILL|LANGUAGE|LAST|LEAVE|LEFT|LEVEL|LIMIT|LINENO|LINES|LINESTRING|LOAD|LOCAL|LOCK|LONG(?:BLOB|TEXT)|LOOP|MATCH(?:ED)?|MEDIUM(?:BLOB|INT|TEXT)|MERGE|MIDDLEINT|MINUTE|MODE|MODIFIES|MODIFY|MONTH|MULTI(?:LINESTRING|POINT|POLYGON)|NATIONAL|NATURAL|NCHAR|NEXT|NO|NONCLUSTERED|NULLIF|NUMERIC|OFF?|OFFSETS?|ON|OPEN(?:DATASOURCE|QUERY|ROWSET)?|OPTIMIZE|OPTION(?:ALLY)?|ORDER|OUT(?:ER|FILE)?|OVER|PARTIAL|PARTITION|PERCENT|PIVOT|PLAN|POINT|POLYGON|PRECEDING|PRECISION|PREPARE|PREV|PRIMARY|PRINT|PRIVILEGES|PROC(?:EDURE)?|PUBLIC|PURGE|QUICK|RAISERROR|READS?|REAL|RECONFIGURE|REFERENCES|RELEASE|RENAME|REPEAT(?:ABLE)?|REPLACE|REPLICATION|REQUIRE|RESIGNAL|RESTORE|RESTRICT|RETURN(?:ING|S)?|REVOKE|RIGHT|ROLLBACK|ROUTINE|ROW(?:COUNT|GUIDCOL|S)?|RTREE|RULE|SAVE(?:POINT)?|SCHEMA|SECOND|SELECT|SERIAL(?:IZABLE)?|SESSION(?:_USER)?|SET(?:USER)?|SHARE|SHOW|SHUTDOWN|SIMPLE|SMALLINT|SNAPSHOT|SOME|SONAME|SQL|START(?:ING)?|STATISTICS|STATUS|STRIPED|SYSTEM_USER|TABLES?|TABLESPACE|TEMP(?:ORARY|TABLE)?|TERMINATED|TEXT(?:SIZE)?|THEN|TIME(?:STAMP)?|TINY(?:BLOB|INT|TEXT)|TOP?|TRAN(?:SACTIONS?)?|TRIGGER|TRUNCATE|TSEQUAL|TYPES?|UNBOUNDED|UNCOMMITTED|UNDEFINED|UNION|UNIQUE|UNLOCK|UNPIVOT|UNSIGNED|UPDATE(?:TEXT)?|USAGE|USE|USER|USING|VALUES?|VAR(?:BINARY|CHAR|CHARACTER|YING)|VIEW|WAITFOR|WARNINGS|WHEN|WHERE|WHILE|WITH(?: ROLLUP|IN)?|WORK|WRITE(?:TEXT)?|YEAR)\b/i,
+    boolean: /\b(?:FALSE|NULL|TRUE)\b/i,
+    number: /\b0x[\da-f]+\b|\b\d+(?:\.\d*)?|\B\.\d+\b/i,
+    operator:
+      /[-+*\/=%^~]|&&?|\|\|?|!=?|<(?:=>?|<|>)?|>[>=]?|\b(?:AND|BETWEEN|DIV|ILIKE|IN|IS|LIKE|NOT|OR|REGEXP|RLIKE|SOUNDS LIKE|XOR)\b/i,
+    punctuation: /[;[\]()`,.]/
+  };
 }
 
-var refractorSql = requireSql();
+var refractorSql = sql_1;
 var apex_1 = apex;
 apex.displayName = 'apex';
 apex.aliases = [];
@@ -41664,320 +41890,338 @@ function mermaid(Prism) {
   };
 }
 
-var mizar_1 = mizar;
-mizar.displayName = 'mizar';
-mizar.aliases = [];
-function mizar(Prism) {
-  Prism.languages.mizar = {
-    comment: /::.+/,
-    keyword:
-      /@proof\b|\b(?:according|aggregate|all|and|antonym|are|as|associativity|assume|asymmetry|attr|be|begin|being|by|canceled|case|cases|clusters?|coherence|commutativity|compatibility|connectedness|consider|consistency|constructors|contradiction|correctness|def|deffunc|define|definitions?|defpred|do|does|end|environ|equals|ex|exactly|existence|for|from|func|given|hence|hereby|holds|idempotence|identity|iff?|implies|involutiveness|irreflexivity|is|it|let|means|mode|non|not|notations?|now|of|or|otherwise|over|per|pred|prefix|projectivity|proof|provided|qua|reconsider|redefine|reduce|reducibility|reflexivity|registrations?|requirements|reserve|sch|schemes?|section|selector|set|sethood|st|struct|such|suppose|symmetry|synonym|take|that|the|then|theorems?|thesis|thus|to|transitivity|uniqueness|vocabular(?:ies|y)|when|where|with|wrt)\b/,
-    parameter: {
-      pattern: /\$(?:10|\d)/,
-      alias: 'variable'
-    },
-    variable: /\b\w+(?=:)/,
-    number: /(?:\b|-)\d+\b/,
-    operator: /\.\.\.|->|&|\.?=/,
-    punctuation: /\(#|#\)|[,:;\[\](){}]/
-  };
+var mizar_1;
+var hasRequiredMizar;
+
+function requireMizar () {
+	if (hasRequiredMizar) return mizar_1;
+	hasRequiredMizar = 1;
+
+	mizar_1 = mizar;
+	mizar.displayName = 'mizar';
+	mizar.aliases = [];
+	function mizar(Prism) {
+	  Prism.languages.mizar = {
+	    comment: /::.+/,
+	    keyword:
+	      /@proof\b|\b(?:according|aggregate|all|and|antonym|are|as|associativity|assume|asymmetry|attr|be|begin|being|by|canceled|case|cases|clusters?|coherence|commutativity|compatibility|connectedness|consider|consistency|constructors|contradiction|correctness|def|deffunc|define|definitions?|defpred|do|does|end|environ|equals|ex|exactly|existence|for|from|func|given|hence|hereby|holds|idempotence|identity|iff?|implies|involutiveness|irreflexivity|is|it|let|means|mode|non|not|notations?|now|of|or|otherwise|over|per|pred|prefix|projectivity|proof|provided|qua|reconsider|redefine|reduce|reducibility|reflexivity|registrations?|requirements|reserve|sch|schemes?|section|selector|set|sethood|st|struct|such|suppose|symmetry|synonym|take|that|the|then|theorems?|thesis|thus|to|transitivity|uniqueness|vocabular(?:ies|y)|when|where|with|wrt)\b/,
+	    parameter: {
+	      pattern: /\$(?:10|\d)/,
+	      alias: 'variable'
+	    },
+	    variable: /\b\w+(?=:)/,
+	    number: /(?:\b|-)\d+\b/,
+	    operator: /\.\.\.|->|&|\.?=/,
+	    punctuation: /\(#|#\)|[,:;\[\](){}]/
+	  };
+	}
+	return mizar_1;
 }
 
-var mongodb_1 = mongodb;
-mongodb.displayName = 'mongodb';
-mongodb.aliases = [];
-function mongodb(Prism) {
+var mongodb_1;
+var hasRequiredMongodb;
+
+function requireMongodb () {
+	if (hasRequiredMongodb) return mongodb_1;
+	hasRequiredMongodb = 1;
+
+	mongodb_1 = mongodb;
+	mongodb.displayName = 'mongodb';
+	mongodb.aliases = [];
+	function mongodb(Prism) {
 (function (Prism) {
-    var operators = [
-      // query and projection
-      '$eq',
-      '$gt',
-      '$gte',
-      '$in',
-      '$lt',
-      '$lte',
-      '$ne',
-      '$nin',
-      '$and',
-      '$not',
-      '$nor',
-      '$or',
-      '$exists',
-      '$type',
-      '$expr',
-      '$jsonSchema',
-      '$mod',
-      '$regex',
-      '$text',
-      '$where',
-      '$geoIntersects',
-      '$geoWithin',
-      '$near',
-      '$nearSphere',
-      '$all',
-      '$elemMatch',
-      '$size',
-      '$bitsAllClear',
-      '$bitsAllSet',
-      '$bitsAnyClear',
-      '$bitsAnySet',
-      '$comment',
-      '$elemMatch',
-      '$meta',
-      '$slice', // update
-      '$currentDate',
-      '$inc',
-      '$min',
-      '$max',
-      '$mul',
-      '$rename',
-      '$set',
-      '$setOnInsert',
-      '$unset',
-      '$addToSet',
-      '$pop',
-      '$pull',
-      '$push',
-      '$pullAll',
-      '$each',
-      '$position',
-      '$slice',
-      '$sort',
-      '$bit', // aggregation pipeline stages
-      '$addFields',
-      '$bucket',
-      '$bucketAuto',
-      '$collStats',
-      '$count',
-      '$currentOp',
-      '$facet',
-      '$geoNear',
-      '$graphLookup',
-      '$group',
-      '$indexStats',
-      '$limit',
-      '$listLocalSessions',
-      '$listSessions',
-      '$lookup',
-      '$match',
-      '$merge',
-      '$out',
-      '$planCacheStats',
-      '$project',
-      '$redact',
-      '$replaceRoot',
-      '$replaceWith',
-      '$sample',
-      '$set',
-      '$skip',
-      '$sort',
-      '$sortByCount',
-      '$unionWith',
-      '$unset',
-      '$unwind',
-      '$setWindowFields', // aggregation pipeline operators
-      '$abs',
-      '$accumulator',
-      '$acos',
-      '$acosh',
-      '$add',
-      '$addToSet',
-      '$allElementsTrue',
-      '$and',
-      '$anyElementTrue',
-      '$arrayElemAt',
-      '$arrayToObject',
-      '$asin',
-      '$asinh',
-      '$atan',
-      '$atan2',
-      '$atanh',
-      '$avg',
-      '$binarySize',
-      '$bsonSize',
-      '$ceil',
-      '$cmp',
-      '$concat',
-      '$concatArrays',
-      '$cond',
-      '$convert',
-      '$cos',
-      '$dateFromParts',
-      '$dateToParts',
-      '$dateFromString',
-      '$dateToString',
-      '$dayOfMonth',
-      '$dayOfWeek',
-      '$dayOfYear',
-      '$degreesToRadians',
-      '$divide',
-      '$eq',
-      '$exp',
-      '$filter',
-      '$first',
-      '$floor',
-      '$function',
-      '$gt',
-      '$gte',
-      '$hour',
-      '$ifNull',
-      '$in',
-      '$indexOfArray',
-      '$indexOfBytes',
-      '$indexOfCP',
-      '$isArray',
-      '$isNumber',
-      '$isoDayOfWeek',
-      '$isoWeek',
-      '$isoWeekYear',
-      '$last',
-      '$last',
-      '$let',
-      '$literal',
-      '$ln',
-      '$log',
-      '$log10',
-      '$lt',
-      '$lte',
-      '$ltrim',
-      '$map',
-      '$max',
-      '$mergeObjects',
-      '$meta',
-      '$min',
-      '$millisecond',
-      '$minute',
-      '$mod',
-      '$month',
-      '$multiply',
-      '$ne',
-      '$not',
-      '$objectToArray',
-      '$or',
-      '$pow',
-      '$push',
-      '$radiansToDegrees',
-      '$range',
-      '$reduce',
-      '$regexFind',
-      '$regexFindAll',
-      '$regexMatch',
-      '$replaceOne',
-      '$replaceAll',
-      '$reverseArray',
-      '$round',
-      '$rtrim',
-      '$second',
-      '$setDifference',
-      '$setEquals',
-      '$setIntersection',
-      '$setIsSubset',
-      '$setUnion',
-      '$size',
-      '$sin',
-      '$slice',
-      '$split',
-      '$sqrt',
-      '$stdDevPop',
-      '$stdDevSamp',
-      '$strcasecmp',
-      '$strLenBytes',
-      '$strLenCP',
-      '$substr',
-      '$substrBytes',
-      '$substrCP',
-      '$subtract',
-      '$sum',
-      '$switch',
-      '$tan',
-      '$toBool',
-      '$toDate',
-      '$toDecimal',
-      '$toDouble',
-      '$toInt',
-      '$toLong',
-      '$toObjectId',
-      '$toString',
-      '$toLower',
-      '$toUpper',
-      '$trim',
-      '$trunc',
-      '$type',
-      '$week',
-      '$year',
-      '$zip',
-      '$count',
-      '$dateAdd',
-      '$dateDiff',
-      '$dateSubtract',
-      '$dateTrunc',
-      '$getField',
-      '$rand',
-      '$sampleRate',
-      '$setField',
-      '$unsetField', // aggregation pipeline query modifiers
-      '$comment',
-      '$explain',
-      '$hint',
-      '$max',
-      '$maxTimeMS',
-      '$min',
-      '$orderby',
-      '$query',
-      '$returnKey',
-      '$showDiskLoc',
-      '$natural'
-    ];
-    var builtinFunctions = [
-      'ObjectId',
-      'Code',
-      'BinData',
-      'DBRef',
-      'Timestamp',
-      'NumberLong',
-      'NumberDecimal',
-      'MaxKey',
-      'MinKey',
-      'RegExp',
-      'ISODate',
-      'UUID'
-    ];
-    operators = operators.map(function (operator) {
-      return operator.replace('$', '\\$')
-    });
-    var operatorsSource = '(?:' + operators.join('|') + ')\\b';
-    Prism.languages.mongodb = Prism.languages.extend('javascript', {});
-    Prism.languages.insertBefore('mongodb', 'string', {
-      property: {
-        pattern:
-          /(?:(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1|(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*)(?=\s*:)/,
-        greedy: true,
-        inside: {
-          keyword: RegExp('^([\'"])?' + operatorsSource + '(?:\\1)?$')
-        }
-      }
-    });
-    Prism.languages.mongodb.string.inside = {
-      url: {
-        // url pattern
-        pattern:
-          /https?:\/\/[-\w@:%.+~#=]{1,256}\.[a-z0-9()]{1,6}\b[-\w()@:%+.~#?&/=]*/i,
-        greedy: true
-      },
-      entity: {
-        // ipv4
-        pattern:
-          /\b(?:(?:[01]?\d\d?|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d\d?|2[0-4]\d|25[0-5])\b/,
-        greedy: true
-      }
-    };
-    Prism.languages.insertBefore('mongodb', 'constant', {
-      builtin: {
-        pattern: RegExp('\\b(?:' + builtinFunctions.join('|') + ')\\b'),
-        alias: 'keyword'
-      }
-    });
-  })(Prism);
+	    var operators = [
+	      // query and projection
+	      '$eq',
+	      '$gt',
+	      '$gte',
+	      '$in',
+	      '$lt',
+	      '$lte',
+	      '$ne',
+	      '$nin',
+	      '$and',
+	      '$not',
+	      '$nor',
+	      '$or',
+	      '$exists',
+	      '$type',
+	      '$expr',
+	      '$jsonSchema',
+	      '$mod',
+	      '$regex',
+	      '$text',
+	      '$where',
+	      '$geoIntersects',
+	      '$geoWithin',
+	      '$near',
+	      '$nearSphere',
+	      '$all',
+	      '$elemMatch',
+	      '$size',
+	      '$bitsAllClear',
+	      '$bitsAllSet',
+	      '$bitsAnyClear',
+	      '$bitsAnySet',
+	      '$comment',
+	      '$elemMatch',
+	      '$meta',
+	      '$slice', // update
+	      '$currentDate',
+	      '$inc',
+	      '$min',
+	      '$max',
+	      '$mul',
+	      '$rename',
+	      '$set',
+	      '$setOnInsert',
+	      '$unset',
+	      '$addToSet',
+	      '$pop',
+	      '$pull',
+	      '$push',
+	      '$pullAll',
+	      '$each',
+	      '$position',
+	      '$slice',
+	      '$sort',
+	      '$bit', // aggregation pipeline stages
+	      '$addFields',
+	      '$bucket',
+	      '$bucketAuto',
+	      '$collStats',
+	      '$count',
+	      '$currentOp',
+	      '$facet',
+	      '$geoNear',
+	      '$graphLookup',
+	      '$group',
+	      '$indexStats',
+	      '$limit',
+	      '$listLocalSessions',
+	      '$listSessions',
+	      '$lookup',
+	      '$match',
+	      '$merge',
+	      '$out',
+	      '$planCacheStats',
+	      '$project',
+	      '$redact',
+	      '$replaceRoot',
+	      '$replaceWith',
+	      '$sample',
+	      '$set',
+	      '$skip',
+	      '$sort',
+	      '$sortByCount',
+	      '$unionWith',
+	      '$unset',
+	      '$unwind',
+	      '$setWindowFields', // aggregation pipeline operators
+	      '$abs',
+	      '$accumulator',
+	      '$acos',
+	      '$acosh',
+	      '$add',
+	      '$addToSet',
+	      '$allElementsTrue',
+	      '$and',
+	      '$anyElementTrue',
+	      '$arrayElemAt',
+	      '$arrayToObject',
+	      '$asin',
+	      '$asinh',
+	      '$atan',
+	      '$atan2',
+	      '$atanh',
+	      '$avg',
+	      '$binarySize',
+	      '$bsonSize',
+	      '$ceil',
+	      '$cmp',
+	      '$concat',
+	      '$concatArrays',
+	      '$cond',
+	      '$convert',
+	      '$cos',
+	      '$dateFromParts',
+	      '$dateToParts',
+	      '$dateFromString',
+	      '$dateToString',
+	      '$dayOfMonth',
+	      '$dayOfWeek',
+	      '$dayOfYear',
+	      '$degreesToRadians',
+	      '$divide',
+	      '$eq',
+	      '$exp',
+	      '$filter',
+	      '$first',
+	      '$floor',
+	      '$function',
+	      '$gt',
+	      '$gte',
+	      '$hour',
+	      '$ifNull',
+	      '$in',
+	      '$indexOfArray',
+	      '$indexOfBytes',
+	      '$indexOfCP',
+	      '$isArray',
+	      '$isNumber',
+	      '$isoDayOfWeek',
+	      '$isoWeek',
+	      '$isoWeekYear',
+	      '$last',
+	      '$last',
+	      '$let',
+	      '$literal',
+	      '$ln',
+	      '$log',
+	      '$log10',
+	      '$lt',
+	      '$lte',
+	      '$ltrim',
+	      '$map',
+	      '$max',
+	      '$mergeObjects',
+	      '$meta',
+	      '$min',
+	      '$millisecond',
+	      '$minute',
+	      '$mod',
+	      '$month',
+	      '$multiply',
+	      '$ne',
+	      '$not',
+	      '$objectToArray',
+	      '$or',
+	      '$pow',
+	      '$push',
+	      '$radiansToDegrees',
+	      '$range',
+	      '$reduce',
+	      '$regexFind',
+	      '$regexFindAll',
+	      '$regexMatch',
+	      '$replaceOne',
+	      '$replaceAll',
+	      '$reverseArray',
+	      '$round',
+	      '$rtrim',
+	      '$second',
+	      '$setDifference',
+	      '$setEquals',
+	      '$setIntersection',
+	      '$setIsSubset',
+	      '$setUnion',
+	      '$size',
+	      '$sin',
+	      '$slice',
+	      '$split',
+	      '$sqrt',
+	      '$stdDevPop',
+	      '$stdDevSamp',
+	      '$strcasecmp',
+	      '$strLenBytes',
+	      '$strLenCP',
+	      '$substr',
+	      '$substrBytes',
+	      '$substrCP',
+	      '$subtract',
+	      '$sum',
+	      '$switch',
+	      '$tan',
+	      '$toBool',
+	      '$toDate',
+	      '$toDecimal',
+	      '$toDouble',
+	      '$toInt',
+	      '$toLong',
+	      '$toObjectId',
+	      '$toString',
+	      '$toLower',
+	      '$toUpper',
+	      '$trim',
+	      '$trunc',
+	      '$type',
+	      '$week',
+	      '$year',
+	      '$zip',
+	      '$count',
+	      '$dateAdd',
+	      '$dateDiff',
+	      '$dateSubtract',
+	      '$dateTrunc',
+	      '$getField',
+	      '$rand',
+	      '$sampleRate',
+	      '$setField',
+	      '$unsetField', // aggregation pipeline query modifiers
+	      '$comment',
+	      '$explain',
+	      '$hint',
+	      '$max',
+	      '$maxTimeMS',
+	      '$min',
+	      '$orderby',
+	      '$query',
+	      '$returnKey',
+	      '$showDiskLoc',
+	      '$natural'
+	    ];
+	    var builtinFunctions = [
+	      'ObjectId',
+	      'Code',
+	      'BinData',
+	      'DBRef',
+	      'Timestamp',
+	      'NumberLong',
+	      'NumberDecimal',
+	      'MaxKey',
+	      'MinKey',
+	      'RegExp',
+	      'ISODate',
+	      'UUID'
+	    ];
+	    operators = operators.map(function (operator) {
+	      return operator.replace('$', '\\$')
+	    });
+	    var operatorsSource = '(?:' + operators.join('|') + ')\\b';
+	    Prism.languages.mongodb = Prism.languages.extend('javascript', {});
+	    Prism.languages.insertBefore('mongodb', 'string', {
+	      property: {
+	        pattern:
+	          /(?:(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1|(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*)(?=\s*:)/,
+	        greedy: true,
+	        inside: {
+	          keyword: RegExp('^([\'"])?' + operatorsSource + '(?:\\1)?$')
+	        }
+	      }
+	    });
+	    Prism.languages.mongodb.string.inside = {
+	      url: {
+	        // url pattern
+	        pattern:
+	          /https?:\/\/[-\w@:%.+~#=]{1,256}\.[a-z0-9()]{1,6}\b[-\w()@:%+.~#?&/=]*/i,
+	        greedy: true
+	      },
+	      entity: {
+	        // ipv4
+	        pattern:
+	          /\b(?:(?:[01]?\d\d?|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d\d?|2[0-4]\d|25[0-5])\b/,
+	        greedy: true
+	      }
+	    };
+	    Prism.languages.insertBefore('mongodb', 'constant', {
+	      builtin: {
+	        pattern: RegExp('\\b(?:' + builtinFunctions.join('|') + ')\\b'),
+	        alias: 'keyword'
+	      }
+	    });
+	  })(Prism);
+	}
+	return mongodb_1;
 }
 
 var monkey_1;
@@ -42091,87 +42335,78 @@ function moonscript(Prism) {
   Prism.languages.moon = Prism.languages.moonscript;
 }
 
-var n1ql_1;
-var hasRequiredN1ql;
-
-function requireN1ql () {
-	if (hasRequiredN1ql) return n1ql_1;
-	hasRequiredN1ql = 1;
-
-	n1ql_1 = n1ql;
-	n1ql.displayName = 'n1ql';
-	n1ql.aliases = [];
-	function n1ql(Prism) {
-	  // https://docs.couchbase.com/server/current/n1ql/n1ql-language-reference/index.html
-	  Prism.languages.n1ql = {
-	    comment: {
-	      pattern: /\/\*[\s\S]*?(?:$|\*\/)|--.*/,
-	      greedy: true
-	    },
-	    string: {
-	      pattern: /(["'])(?:\\[\s\S]|(?!\1)[^\\]|\1\1)*\1/,
-	      greedy: true
-	    },
-	    identifier: {
-	      pattern: /`(?:\\[\s\S]|[^\\`]|``)*`/,
-	      greedy: true
-	    },
-	    parameter: /\$[\w.]+/,
-	    // https://docs.couchbase.com/server/current/n1ql/n1ql-language-reference/reservedwords.html#n1ql-reserved-words
-	    keyword:
-	      /\b(?:ADVISE|ALL|ALTER|ANALYZE|AS|ASC|AT|BEGIN|BINARY|BOOLEAN|BREAK|BUCKET|BUILD|BY|CALL|CAST|CLUSTER|COLLATE|COLLECTION|COMMIT|COMMITTED|CONNECT|CONTINUE|CORRELATE|CORRELATED|COVER|CREATE|CURRENT|DATABASE|DATASET|DATASTORE|DECLARE|DECREMENT|DELETE|DERIVED|DESC|DESCRIBE|DISTINCT|DO|DROP|EACH|ELEMENT|EXCEPT|EXCLUDE|EXECUTE|EXPLAIN|FETCH|FILTER|FLATTEN|FLUSH|FOLLOWING|FOR|FORCE|FROM|FTS|FUNCTION|GOLANG|GRANT|GROUP|GROUPS|GSI|HASH|HAVING|IF|IGNORE|ILIKE|INCLUDE|INCREMENT|INDEX|INFER|INLINE|INNER|INSERT|INTERSECT|INTO|IS|ISOLATION|JAVASCRIPT|JOIN|KEY|KEYS|KEYSPACE|KNOWN|LANGUAGE|LAST|LEFT|LET|LETTING|LEVEL|LIMIT|LSM|MAP|MAPPING|MATCHED|MATERIALIZED|MERGE|MINUS|MISSING|NAMESPACE|NEST|NL|NO|NTH_VALUE|NULL|NULLS|NUMBER|OBJECT|OFFSET|ON|OPTION|OPTIONS|ORDER|OTHERS|OUTER|OVER|PARSE|PARTITION|PASSWORD|PATH|POOL|PRECEDING|PREPARE|PRIMARY|PRIVATE|PRIVILEGE|PROBE|PROCEDURE|PUBLIC|RANGE|RAW|REALM|REDUCE|RENAME|RESPECT|RETURN|RETURNING|REVOKE|RIGHT|ROLE|ROLLBACK|ROW|ROWS|SATISFIES|SAVEPOINT|SCHEMA|SCOPE|SELECT|SELF|SEMI|SET|SHOW|SOME|START|STATISTICS|STRING|SYSTEM|TIES|TO|TRAN|TRANSACTION|TRIGGER|TRUNCATE|UNBOUNDED|UNDER|UNION|UNIQUE|UNKNOWN|UNNEST|UNSET|UPDATE|UPSERT|USE|USER|USING|VALIDATE|VALUE|VALUES|VIA|VIEW|WHERE|WHILE|WINDOW|WITH|WORK|XOR)\b/i,
-	    function: /\b[a-z_]\w*(?=\s*\()/i,
-	    boolean: /\b(?:FALSE|TRUE)\b/i,
-	    number: /(?:\b\d+\.|\B\.)\d+e[+\-]?\d+\b|\b\d+(?:\.\d*)?|\B\.\d+\b/i,
-	    operator:
-	      /[-+*\/%]|!=|==?|\|\||<[>=]?|>=?|\b(?:AND|ANY|ARRAY|BETWEEN|CASE|ELSE|END|EVERY|EXISTS|FIRST|IN|LIKE|NOT|OR|THEN|VALUED|WHEN|WITHIN)\b/i,
-	    punctuation: /[;[\](),.{}:]/
-	  };
-	}
-	return n1ql_1;
-}
-
-var n4js_1 = n4js;
-n4js.displayName = 'n4js';
-n4js.aliases = ['n4jsd'];
-function n4js(Prism) {
-  Prism.languages.n4js = Prism.languages.extend('javascript', {
-    // Keywords from N4JS language spec: https://numberfour.github.io/n4js/spec/N4JSSpec.html
+var n1ql_1 = n1ql;
+n1ql.displayName = 'n1ql';
+n1ql.aliases = [];
+function n1ql(Prism) {
+  // https://docs.couchbase.com/server/current/n1ql/n1ql-language-reference/index.html
+  Prism.languages.n1ql = {
+    comment: {
+      pattern: /\/\*[\s\S]*?(?:$|\*\/)|--.*/,
+      greedy: true
+    },
+    string: {
+      pattern: /(["'])(?:\\[\s\S]|(?!\1)[^\\]|\1\1)*\1/,
+      greedy: true
+    },
+    identifier: {
+      pattern: /`(?:\\[\s\S]|[^\\`]|``)*`/,
+      greedy: true
+    },
+    parameter: /\$[\w.]+/,
+    // https://docs.couchbase.com/server/current/n1ql/n1ql-language-reference/reservedwords.html#n1ql-reserved-words
     keyword:
-      /\b(?:Array|any|boolean|break|case|catch|class|const|constructor|continue|debugger|declare|default|delete|do|else|enum|export|extends|false|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|module|new|null|number|package|private|protected|public|return|set|static|string|super|switch|this|throw|true|try|typeof|var|void|while|with|yield)\b/
-  });
-  Prism.languages.insertBefore('n4js', 'constant', {
-    // Annotations in N4JS spec: https://numberfour.github.io/n4js/spec/N4JSSpec.html#_annotations
-    annotation: {
-      pattern: /@+\w+/,
-      alias: 'operator'
-    }
-  });
-  Prism.languages.n4jsd = Prism.languages.n4js;
+      /\b(?:ADVISE|ALL|ALTER|ANALYZE|AS|ASC|AT|BEGIN|BINARY|BOOLEAN|BREAK|BUCKET|BUILD|BY|CALL|CAST|CLUSTER|COLLATE|COLLECTION|COMMIT|COMMITTED|CONNECT|CONTINUE|CORRELATE|CORRELATED|COVER|CREATE|CURRENT|DATABASE|DATASET|DATASTORE|DECLARE|DECREMENT|DELETE|DERIVED|DESC|DESCRIBE|DISTINCT|DO|DROP|EACH|ELEMENT|EXCEPT|EXCLUDE|EXECUTE|EXPLAIN|FETCH|FILTER|FLATTEN|FLUSH|FOLLOWING|FOR|FORCE|FROM|FTS|FUNCTION|GOLANG|GRANT|GROUP|GROUPS|GSI|HASH|HAVING|IF|IGNORE|ILIKE|INCLUDE|INCREMENT|INDEX|INFER|INLINE|INNER|INSERT|INTERSECT|INTO|IS|ISOLATION|JAVASCRIPT|JOIN|KEY|KEYS|KEYSPACE|KNOWN|LANGUAGE|LAST|LEFT|LET|LETTING|LEVEL|LIMIT|LSM|MAP|MAPPING|MATCHED|MATERIALIZED|MERGE|MINUS|MISSING|NAMESPACE|NEST|NL|NO|NTH_VALUE|NULL|NULLS|NUMBER|OBJECT|OFFSET|ON|OPTION|OPTIONS|ORDER|OTHERS|OUTER|OVER|PARSE|PARTITION|PASSWORD|PATH|POOL|PRECEDING|PREPARE|PRIMARY|PRIVATE|PRIVILEGE|PROBE|PROCEDURE|PUBLIC|RANGE|RAW|REALM|REDUCE|RENAME|RESPECT|RETURN|RETURNING|REVOKE|RIGHT|ROLE|ROLLBACK|ROW|ROWS|SATISFIES|SAVEPOINT|SCHEMA|SCOPE|SELECT|SELF|SEMI|SET|SHOW|SOME|START|STATISTICS|STRING|SYSTEM|TIES|TO|TRAN|TRANSACTION|TRIGGER|TRUNCATE|UNBOUNDED|UNDER|UNION|UNIQUE|UNKNOWN|UNNEST|UNSET|UPDATE|UPSERT|USE|USER|USING|VALIDATE|VALUE|VALUES|VIA|VIEW|WHERE|WHILE|WINDOW|WITH|WORK|XOR)\b/i,
+    function: /\b[a-z_]\w*(?=\s*\()/i,
+    boolean: /\b(?:FALSE|TRUE)\b/i,
+    number: /(?:\b\d+\.|\B\.)\d+e[+\-]?\d+\b|\b\d+(?:\.\d*)?|\B\.\d+\b/i,
+    operator:
+      /[-+*\/%]|!=|==?|\|\||<[>=]?|>=?|\b(?:AND|ANY|ARRAY|BETWEEN|CASE|ELSE|END|EVERY|EXISTS|FIRST|IN|LIKE|NOT|OR|THEN|VALUED|WHEN|WITHIN)\b/i,
+    punctuation: /[;[\](),.{}:]/
+  };
 }
 
-var nand2tetrisHdl_1;
-var hasRequiredNand2tetrisHdl;
+var n4js_1;
+var hasRequiredN4js;
 
-function requireNand2tetrisHdl () {
-	if (hasRequiredNand2tetrisHdl) return nand2tetrisHdl_1;
-	hasRequiredNand2tetrisHdl = 1;
+function requireN4js () {
+	if (hasRequiredN4js) return n4js_1;
+	hasRequiredN4js = 1;
 
-	nand2tetrisHdl_1 = nand2tetrisHdl;
-	nand2tetrisHdl.displayName = 'nand2tetrisHdl';
-	nand2tetrisHdl.aliases = [];
-	function nand2tetrisHdl(Prism) {
-	  Prism.languages['nand2tetris-hdl'] = {
-	    comment: /\/\/.*|\/\*[\s\S]*?(?:\*\/|$)/,
-	    keyword: /\b(?:BUILTIN|CHIP|CLOCKED|IN|OUT|PARTS)\b/,
-	    boolean: /\b(?:false|true)\b/,
-	    function: /\b[A-Za-z][A-Za-z0-9]*(?=\()/,
-	    number: /\b\d+\b/,
-	    operator: /=|\.\./,
-	    punctuation: /[{}[\];(),:]/
-	  };
+	n4js_1 = n4js;
+	n4js.displayName = 'n4js';
+	n4js.aliases = ['n4jsd'];
+	function n4js(Prism) {
+	  Prism.languages.n4js = Prism.languages.extend('javascript', {
+	    // Keywords from N4JS language spec: https://numberfour.github.io/n4js/spec/N4JSSpec.html
+	    keyword:
+	      /\b(?:Array|any|boolean|break|case|catch|class|const|constructor|continue|debugger|declare|default|delete|do|else|enum|export|extends|false|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|module|new|null|number|package|private|protected|public|return|set|static|string|super|switch|this|throw|true|try|typeof|var|void|while|with|yield)\b/
+	  });
+	  Prism.languages.insertBefore('n4js', 'constant', {
+	    // Annotations in N4JS spec: https://numberfour.github.io/n4js/spec/N4JSSpec.html#_annotations
+	    annotation: {
+	      pattern: /@+\w+/,
+	      alias: 'operator'
+	    }
+	  });
+	  Prism.languages.n4jsd = Prism.languages.n4js;
 	}
-	return nand2tetrisHdl_1;
+	return n4js_1;
+}
+
+var nand2tetrisHdl_1 = nand2tetrisHdl;
+nand2tetrisHdl.displayName = 'nand2tetrisHdl';
+nand2tetrisHdl.aliases = [];
+function nand2tetrisHdl(Prism) {
+  Prism.languages['nand2tetris-hdl'] = {
+    comment: /\/\/.*|\/\*[\s\S]*?(?:\*\/|$)/,
+    keyword: /\b(?:BUILTIN|CHIP|CLOCKED|IN|OUT|PARTS)\b/,
+    boolean: /\b(?:false|true)\b/,
+    function: /\b[A-Za-z][A-Za-z0-9]*(?=\()/,
+    number: /\b\d+\b/,
+    operator: /=|\.\./,
+    punctuation: /[{}[\];(),:]/
+  };
 }
 
 var naniscript_1 = naniscript;
@@ -42374,207 +42609,189 @@ function nasm(Prism) {
   };
 }
 
-var neon_1;
-var hasRequiredNeon;
-
-function requireNeon () {
-	if (hasRequiredNeon) return neon_1;
-	hasRequiredNeon = 1;
-
-	neon_1 = neon;
-	neon.displayName = 'neon';
-	neon.aliases = [];
-	function neon(Prism) {
-	  Prism.languages.neon = {
-	    comment: {
-	      pattern: /#.*/,
-	      greedy: true
-	    },
-	    datetime: {
-	      pattern:
-	        /(^|[[{(=:,\s])\d\d\d\d-\d\d?-\d\d?(?:(?:[Tt]| +)\d\d?:\d\d:\d\d(?:\.\d*)? *(?:Z|[-+]\d\d?(?::?\d\d)?)?)?(?=$|[\]}),\s])/,
-	      lookbehind: true,
-	      alias: 'number'
-	    },
-	    key: {
-	      pattern: /(^|[[{(,\s])[^,:=[\]{}()'"\s]+(?=\s*:(?:$|[\]}),\s])|\s*=)/,
-	      lookbehind: true,
-	      alias: 'atrule'
-	    },
-	    number: {
-	      pattern:
-	        /(^|[[{(=:,\s])[+-]?(?:0x[\da-fA-F]+|0o[0-7]+|0b[01]+|(?:\d+(?:\.\d*)?|\.?\d+)(?:[eE][+-]?\d+)?)(?=$|[\]}),:=\s])/,
-	      lookbehind: true
-	    },
-	    boolean: {
-	      pattern: /(^|[[{(=:,\s])(?:false|no|true|yes)(?=$|[\]}),:=\s])/i,
-	      lookbehind: true
-	    },
-	    null: {
-	      pattern: /(^|[[{(=:,\s])(?:null)(?=$|[\]}),:=\s])/i,
-	      lookbehind: true,
-	      alias: 'keyword'
-	    },
-	    string: {
-	      pattern:
-	        /(^|[[{(=:,\s])(?:('''|""")\r?\n(?:(?:[^\r\n]|\r?\n(?![\t ]*\2))*\r?\n)?[\t ]*\2|'[^'\r\n]*'|"(?:\\.|[^\\"\r\n])*")/,
-	      lookbehind: true,
-	      greedy: true
-	    },
-	    literal: {
-	      pattern:
-	        /(^|[[{(=:,\s])(?:[^#"',:=[\]{}()\s`-]|[:-][^"',=[\]{}()\s])(?:[^,:=\]})(\s]|:(?![\s,\]})]|$)|[ \t]+[^#,:=\]})(\s])*/,
-	      lookbehind: true,
-	      alias: 'string'
-	    },
-	    punctuation: /[,:=[\]{}()-]/
-	  };
-	}
-	return neon_1;
+var neon_1 = neon;
+neon.displayName = 'neon';
+neon.aliases = [];
+function neon(Prism) {
+  Prism.languages.neon = {
+    comment: {
+      pattern: /#.*/,
+      greedy: true
+    },
+    datetime: {
+      pattern:
+        /(^|[[{(=:,\s])\d\d\d\d-\d\d?-\d\d?(?:(?:[Tt]| +)\d\d?:\d\d:\d\d(?:\.\d*)? *(?:Z|[-+]\d\d?(?::?\d\d)?)?)?(?=$|[\]}),\s])/,
+      lookbehind: true,
+      alias: 'number'
+    },
+    key: {
+      pattern: /(^|[[{(,\s])[^,:=[\]{}()'"\s]+(?=\s*:(?:$|[\]}),\s])|\s*=)/,
+      lookbehind: true,
+      alias: 'atrule'
+    },
+    number: {
+      pattern:
+        /(^|[[{(=:,\s])[+-]?(?:0x[\da-fA-F]+|0o[0-7]+|0b[01]+|(?:\d+(?:\.\d*)?|\.?\d+)(?:[eE][+-]?\d+)?)(?=$|[\]}),:=\s])/,
+      lookbehind: true
+    },
+    boolean: {
+      pattern: /(^|[[{(=:,\s])(?:false|no|true|yes)(?=$|[\]}),:=\s])/i,
+      lookbehind: true
+    },
+    null: {
+      pattern: /(^|[[{(=:,\s])(?:null)(?=$|[\]}),:=\s])/i,
+      lookbehind: true,
+      alias: 'keyword'
+    },
+    string: {
+      pattern:
+        /(^|[[{(=:,\s])(?:('''|""")\r?\n(?:(?:[^\r\n]|\r?\n(?![\t ]*\2))*\r?\n)?[\t ]*\2|'[^'\r\n]*'|"(?:\\.|[^\\"\r\n])*")/,
+      lookbehind: true,
+      greedy: true
+    },
+    literal: {
+      pattern:
+        /(^|[[{(=:,\s])(?:[^#"',:=[\]{}()\s`-]|[:-][^"',=[\]{}()\s])(?:[^,:=\]})(\s]|:(?![\s,\]})]|$)|[ \t]+[^#,:=\]})(\s])*/,
+      lookbehind: true,
+      alias: 'string'
+    },
+    punctuation: /[,:=[\]{}()-]/
+  };
 }
 
-var nevod_1;
-var hasRequiredNevod;
-
-function requireNevod () {
-	if (hasRequiredNevod) return nevod_1;
-	hasRequiredNevod = 1;
-
-	nevod_1 = nevod;
-	nevod.displayName = 'nevod';
-	nevod.aliases = [];
-	function nevod(Prism) {
-	  Prism.languages.nevod = {
-	    comment: /\/\/.*|(?:\/\*[\s\S]*?(?:\*\/|$))/,
-	    string: {
-	      pattern: /(?:"(?:""|[^"])*"(?!")|'(?:''|[^'])*'(?!'))!?\*?/,
-	      greedy: true,
-	      inside: {
-	        'string-attrs': /!$|!\*$|\*$/
-	      }
-	    },
-	    namespace: {
-	      pattern: /(@namespace\s+)[a-zA-Z0-9\-.]+(?=\s*\{)/,
-	      lookbehind: true
-	    },
-	    pattern: {
-	      pattern:
-	        /(@pattern\s+)?#?[a-zA-Z0-9\-.]+(?:\s*\(\s*(?:~\s*)?[a-zA-Z0-9\-.]+\s*(?:,\s*(?:~\s*)?[a-zA-Z0-9\-.]*)*\))?(?=\s*=)/,
-	      lookbehind: true,
-	      inside: {
-	        'pattern-name': {
-	          pattern: /^#?[a-zA-Z0-9\-.]+/,
-	          alias: 'class-name'
-	        },
-	        fields: {
-	          pattern: /\(.*\)/,
-	          inside: {
-	            'field-name': {
-	              pattern: /[a-zA-Z0-9\-.]+/,
-	              alias: 'variable'
-	            },
-	            punctuation: /[,()]/,
-	            operator: {
-	              pattern: /~/,
-	              alias: 'field-hidden-mark'
-	            }
-	          }
-	        }
-	      }
-	    },
-	    search: {
-	      pattern: /(@search\s+|#)[a-zA-Z0-9\-.]+(?:\.\*)?(?=\s*;)/,
-	      alias: 'function',
-	      lookbehind: true
-	    },
-	    keyword:
-	      /@(?:having|inside|namespace|outside|pattern|require|search|where)\b/,
-	    'standard-pattern': {
-	      pattern:
-	        /\b(?:Alpha|AlphaNum|Any|Blank|End|LineBreak|Num|NumAlpha|Punct|Space|Start|Symbol|Word|WordBreak)\b(?:\([a-zA-Z0-9\-.,\s+]*\))?/,
-	      inside: {
-	        'standard-pattern-name': {
-	          pattern: /^[a-zA-Z0-9\-.]+/,
-	          alias: 'builtin'
-	        },
-	        quantifier: {
-	          pattern: /\b\d+(?:\s*\+|\s*-\s*\d+)?(?!\w)/,
-	          alias: 'number'
-	        },
-	        'standard-pattern-attr': {
-	          pattern: /[a-zA-Z0-9\-.]+/,
-	          alias: 'builtin'
-	        },
-	        punctuation: /[,()]/
-	      }
-	    },
-	    quantifier: {
-	      pattern: /\b\d+(?:\s*\+|\s*-\s*\d+)?(?!\w)/,
-	      alias: 'number'
-	    },
-	    operator: [
-	      {
-	        pattern: /=/,
-	        alias: 'pattern-def'
-	      },
-	      {
-	        pattern: /&/,
-	        alias: 'conjunction'
-	      },
-	      {
-	        pattern: /~/,
-	        alias: 'exception'
-	      },
-	      {
-	        pattern: /\?/,
-	        alias: 'optionality'
-	      },
-	      {
-	        pattern: /[[\]]/,
-	        alias: 'repetition'
-	      },
-	      {
-	        pattern: /[{}]/,
-	        alias: 'variation'
-	      },
-	      {
-	        pattern: /[+_]/,
-	        alias: 'sequence'
-	      },
-	      {
-	        pattern: /\.{2,3}/,
-	        alias: 'span'
-	      }
-	    ],
-	    'field-capture': [
-	      {
-	        pattern:
-	          /([a-zA-Z0-9\-.]+\s*\()\s*[a-zA-Z0-9\-.]+\s*:\s*[a-zA-Z0-9\-.]+(?:\s*,\s*[a-zA-Z0-9\-.]+\s*:\s*[a-zA-Z0-9\-.]+)*(?=\s*\))/,
-	        lookbehind: true,
-	        inside: {
-	          'field-name': {
-	            pattern: /[a-zA-Z0-9\-.]+/,
-	            alias: 'variable'
-	          },
-	          colon: /:/
-	        }
-	      },
-	      {
-	        pattern: /[a-zA-Z0-9\-.]+\s*:/,
-	        inside: {
-	          'field-name': {
-	            pattern: /[a-zA-Z0-9\-.]+/,
-	            alias: 'variable'
-	          },
-	          colon: /:/
-	        }
-	      }
-	    ],
-	    punctuation: /[:;,()]/,
-	    name: /[a-zA-Z0-9\-.]+/
-	  };
-	}
-	return nevod_1;
+var nevod_1 = nevod;
+nevod.displayName = 'nevod';
+nevod.aliases = [];
+function nevod(Prism) {
+  Prism.languages.nevod = {
+    comment: /\/\/.*|(?:\/\*[\s\S]*?(?:\*\/|$))/,
+    string: {
+      pattern: /(?:"(?:""|[^"])*"(?!")|'(?:''|[^'])*'(?!'))!?\*?/,
+      greedy: true,
+      inside: {
+        'string-attrs': /!$|!\*$|\*$/
+      }
+    },
+    namespace: {
+      pattern: /(@namespace\s+)[a-zA-Z0-9\-.]+(?=\s*\{)/,
+      lookbehind: true
+    },
+    pattern: {
+      pattern:
+        /(@pattern\s+)?#?[a-zA-Z0-9\-.]+(?:\s*\(\s*(?:~\s*)?[a-zA-Z0-9\-.]+\s*(?:,\s*(?:~\s*)?[a-zA-Z0-9\-.]*)*\))?(?=\s*=)/,
+      lookbehind: true,
+      inside: {
+        'pattern-name': {
+          pattern: /^#?[a-zA-Z0-9\-.]+/,
+          alias: 'class-name'
+        },
+        fields: {
+          pattern: /\(.*\)/,
+          inside: {
+            'field-name': {
+              pattern: /[a-zA-Z0-9\-.]+/,
+              alias: 'variable'
+            },
+            punctuation: /[,()]/,
+            operator: {
+              pattern: /~/,
+              alias: 'field-hidden-mark'
+            }
+          }
+        }
+      }
+    },
+    search: {
+      pattern: /(@search\s+|#)[a-zA-Z0-9\-.]+(?:\.\*)?(?=\s*;)/,
+      alias: 'function',
+      lookbehind: true
+    },
+    keyword:
+      /@(?:having|inside|namespace|outside|pattern|require|search|where)\b/,
+    'standard-pattern': {
+      pattern:
+        /\b(?:Alpha|AlphaNum|Any|Blank|End|LineBreak|Num|NumAlpha|Punct|Space|Start|Symbol|Word|WordBreak)\b(?:\([a-zA-Z0-9\-.,\s+]*\))?/,
+      inside: {
+        'standard-pattern-name': {
+          pattern: /^[a-zA-Z0-9\-.]+/,
+          alias: 'builtin'
+        },
+        quantifier: {
+          pattern: /\b\d+(?:\s*\+|\s*-\s*\d+)?(?!\w)/,
+          alias: 'number'
+        },
+        'standard-pattern-attr': {
+          pattern: /[a-zA-Z0-9\-.]+/,
+          alias: 'builtin'
+        },
+        punctuation: /[,()]/
+      }
+    },
+    quantifier: {
+      pattern: /\b\d+(?:\s*\+|\s*-\s*\d+)?(?!\w)/,
+      alias: 'number'
+    },
+    operator: [
+      {
+        pattern: /=/,
+        alias: 'pattern-def'
+      },
+      {
+        pattern: /&/,
+        alias: 'conjunction'
+      },
+      {
+        pattern: /~/,
+        alias: 'exception'
+      },
+      {
+        pattern: /\?/,
+        alias: 'optionality'
+      },
+      {
+        pattern: /[[\]]/,
+        alias: 'repetition'
+      },
+      {
+        pattern: /[{}]/,
+        alias: 'variation'
+      },
+      {
+        pattern: /[+_]/,
+        alias: 'sequence'
+      },
+      {
+        pattern: /\.{2,3}/,
+        alias: 'span'
+      }
+    ],
+    'field-capture': [
+      {
+        pattern:
+          /([a-zA-Z0-9\-.]+\s*\()\s*[a-zA-Z0-9\-.]+\s*:\s*[a-zA-Z0-9\-.]+(?:\s*,\s*[a-zA-Z0-9\-.]+\s*:\s*[a-zA-Z0-9\-.]+)*(?=\s*\))/,
+        lookbehind: true,
+        inside: {
+          'field-name': {
+            pattern: /[a-zA-Z0-9\-.]+/,
+            alias: 'variable'
+          },
+          colon: /:/
+        }
+      },
+      {
+        pattern: /[a-zA-Z0-9\-.]+\s*:/,
+        inside: {
+          'field-name': {
+            pattern: /[a-zA-Z0-9\-.]+/,
+            alias: 'variable'
+          },
+          colon: /:/
+        }
+      }
+    ],
+    punctuation: /[:;,()]/,
+    name: /[a-zA-Z0-9\-.]+/
+  };
 }
 
 var nginx_1;
@@ -43762,7 +43979,7 @@ var hasRequiredPlsql;
 function requirePlsql () {
 	if (hasRequiredPlsql) return plsql_1;
 	hasRequiredPlsql = 1;
-	var refractorSql = requireSql();
+	var refractorSql = sql_1;
 	plsql_1 = plsql;
 	plsql.displayName = 'plsql';
 	plsql.aliases = [];
@@ -51111,17 +51328,17 @@ refractor.register(matlab_1);
 refractor.register(maxscript_1);
 refractor.register(mel_1);
 refractor.register(mermaid_1);
-refractor.register(mizar_1);
-refractor.register(mongodb_1);
+refractor.register(requireMizar());
+refractor.register(requireMongodb());
 refractor.register(requireMonkey());
 refractor.register(moonscript_1);
-refractor.register(requireN1ql());
-refractor.register(n4js_1);
-refractor.register(requireNand2tetrisHdl());
+refractor.register(n1ql_1);
+refractor.register(requireN4js());
+refractor.register(nand2tetrisHdl_1);
 refractor.register(naniscript_1);
 refractor.register(nasm_1);
-refractor.register(requireNeon());
-refractor.register(requireNevod());
+refractor.register(neon_1);
+refractor.register(nevod_1);
 refractor.register(requireNginx());
 refractor.register(nim_1);
 refractor.register(requireNix());
@@ -51188,7 +51405,7 @@ refractor.register(requireSoy());
 refractor.register(requireSparql());
 refractor.register(requireSplunkSpl());
 refractor.register(requireSqf());
-refractor.register(requireSql());
+refractor.register(sql_1);
 refractor.register(requireSquirrel());
 refractor.register(requireStan());
 refractor.register(requireStylus());
@@ -61588,7 +61805,7 @@ var Lock$1 = function Lock(props) {
       display: ((_c = props.$displaySync) !== null && _c !== void 0 ? _c : true) ? "flex" : "none",
       strokeWidth: (_d = props.strokeWidth) !== null && _d !== void 0 ? _d : 4,
       stroke: (_e = props.color) !== null && _e !== void 0 ? _e : "#333",
-      fill: (_f = props.fill) !== null && _f !== void 0 ? _f : "none",
+      fill: (_f = props.fill) !== null && _f !== void 0 ? _f : "#008BFF",
       cursor: (_g = props.cursor) !== null && _g !== void 0 ? _g : props.pointer ? "pointer" : "unset",
       width: props.w,
       height: props.h,
@@ -61596,38 +61813,18 @@ var Lock$1 = function Lock(props) {
       margin: (_j = propsParser.get("mg")) === null || _j === void 0 ? void 0 : _j(props.mg)
     }, props.style)
   }, {
-    children: jsxRuntimeExports.jsxs("svg", __assign$f({
+    children: jsxRuntimeExports.jsx("svg", __assign$f({
+      viewBox: "0 0 1024 1024",
+      version: "1.1",
+      xmlns: "http://www.w3.org/2000/svg",
       width: (_k = props.radius) !== null && _k !== void 0 ? _k : 24,
-      height: (_l = props.radius) !== null && _l !== void 0 ? _l : 24,
-      viewBox: "0 0 48 48",
-      fill: "none",
-      xmlns: "http://www.w3.org/2000/svg"
+      height: (_l = props.radius) !== null && _l !== void 0 ? _l : 24
     }, {
-      children: [jsxRuntimeExports.jsx("path", {
-        d: "M4 6C4 6 15.5878 14 24 14C32.4122 14 44 6 44 6",
-        stroke: "#333",
-        strokeWidth: "3",
-        strokeLinecap: "round",
-        strokeLinejoin: "round"
-      }), jsxRuntimeExports.jsx("path", {
-        d: "M4 42C4 42 15.5878 34 24 34C32.4122 34 44 42 44 42",
-        stroke: "#333",
-        strokeWidth: "3",
-        strokeLinecap: "round",
-        strokeLinejoin: "round"
-      }), jsxRuntimeExports.jsx("path", {
-        d: "M15 12V36",
-        stroke: "#333",
-        strokeWidth: "3",
-        strokeLinecap: "round",
-        strokeLinejoin: "round"
-      }), jsxRuntimeExports.jsx("path", {
-        d: "M33 12V36",
-        stroke: "#333",
-        strokeWidth: "3",
-        strokeLinecap: "round",
-        strokeLinejoin: "round"
-      })]
+      children: jsxRuntimeExports.jsx("path", {
+        d: "M143.36 817.152a948.48 948.48 0 0 1 126.976-29.696v-424.96A948.48 948.48 0 0 1 143.36 332.8V173.056c62.08 18.432 122.368 31.744 180.736 39.936 58.368 8.192 120.32 12.288 185.856 12.288 69.632 0 135.36-4.608 197.12-13.824a1225.728 1225.728 0 0 0 192-45.568v159.744c-23.232 7.488-46.272 14.144-69.12 19.968-22.848 5.76-46.272 11.072-70.144 15.872v427.008c23.872 4.8 47.296 10.048 70.144 15.872 22.848 5.76 45.888 12.48 69.12 19.968v159.744a1225.728 1225.728 0 0 0-192-45.568 1336.768 1336.768 0 0 0-197.12-13.824c-65.536 0-127.488 4.096-185.856 12.288-58.368 8.192-118.592 21.504-180.736 39.936v-159.744z m366.592-50.176c8.896 0 20.48 0.192 34.816 0.512 14.336 0.32 25.6 0.512 33.792 0.512V381.952h-128V768c7.488 0 17.6-0.192 30.208-0.512 12.608-0.32 22.4-0.512 29.184-0.512z",
+        fill: "#008BFF",
+        "p-id": "4227"
+      })
     }))
   }));
 };
@@ -62335,26 +62532,122 @@ function EvpInput(props) {
 var EvpMenuContext = /*#__PURE__*/createContext(undefined);
 
 var MenuCtxInstance = /** @class */function () {
-  function MenuCtxInstance(multiSelected) {
-    if (multiSelected === void 0) {
-      multiSelected = false;
-    }
+  function MenuCtxInstance(options) {
+    var _this = this;
+    this.openKeys = [];
+    this.setOpenKeys = function (keys, type) {
+      var _a, _b;
+      _this.openKeys = keys;
+      switch (type) {
+        case "open":
+          (_a = _this.onOpen) === null || _a === void 0 ? void 0 : _a.call(_this, keys);
+          break;
+        case "close":
+          (_b = _this.onClose) === null || _b === void 0 ? void 0 : _b.call(_this, keys);
+          break;
+      }
+    };
+    this.multiOpened = false;
+    this.setMultiSelected = function (multiSelected) {
+      _this.multiSelected = multiSelected;
+    };
+    this.selectedKeys = [];
+    this.setSelectedKeys = function (keys, type) {
+      var _a, _b, _c;
+      if (keys === void 0) {
+        keys = [];
+      }
+      // console.log("Going to set");
+      // console.log("keys", keys);
+      _this.selectedKeys = keys;
+      switch (type) {
+        case "select":
+          (_a = _this.onSelect) === null || _a === void 0 ? void 0 : _a.call(_this, __spreadArray$4([], keys, true));
+          break;
+        case "unselect":
+          (_b = _this.onUnselect) === null || _b === void 0 ? void 0 : _b.call(_this, __spreadArray$4([], keys, true));
+          break;
+      }
+      ((_c = _this._setSelectedMap) !== null && _c !== void 0 ? _c : new Map()).forEach(function (setThisSelected, k) {
+        if (keys.includes(k)) {
+          // console.log(`set ${k} to selected`);
+          setThisSelected(true);
+        } else {
+          // console.log(`set ${k} to unselected`);
+          setThisSelected(false);
+        }
+      });
+    };
     this._setSelectedMap = new Map();
-    this.multiSelected = multiSelected;
+    this._add_setSelectedMap = function (key, fc) {
+      var _a;
+      (_a = _this._setSelectedMap) === null || _a === void 0 ? void 0 : _a.set(key, fc);
+    };
+    this._handleOpenOne = function (key) {
+      var _a, _b;
+      if (_this.multiOpened) {
+        (_a = _this.setOpenKeys) === null || _a === void 0 ? void 0 : _a.call(_this, [key], "open");
+      } else {
+        (_b = _this.setOpenKeys) === null || _b === void 0 ? void 0 : _b.call(_this, [key], "open");
+      }
+    };
+    this._handleCloseOne = function (key) {
+      var _a, _b;
+      (_a = _this.setOpenKeys) === null || _a === void 0 ? void 0 : _a.call(_this, ((_b = _this.openKeys) !== null && _b !== void 0 ? _b : []).filter(function (k) {
+        return key !== k;
+      }), "close");
+    };
+    this.selectOne = function (key) {
+      _this._handleSelectOne(key);
+    };
+    this.unselectOne = function (key) {
+      _this._handleSelectOne(key);
+    };
+    this.openOne = function (key) {
+      _this._handleOpenOne(key);
+    };
+    this.closeOne = function (key) {
+      _this._handleCloseOne(key);
+    };
+    this.selectMany = function (key) {
+      var _a;
+      (_a = _this.setSelectedKeys) === null || _a === void 0 ? void 0 : _a.call(_this, __spreadArray$4([], key, true), "select");
+    };
+    this._handleToggleOne = function (key) {
+      var _a;
+      if ((_a = _this.openKeys) === null || _a === void 0 ? void 0 : _a.includes(key)) {
+        _this._handleCloseOne(key);
+      } else {
+        _this._handleOpenOne(key);
+      }
+    };
+    this._handleSelectOne = function (key) {
+      var _a;
+      (_a = _this.setSelectedKeys) === null || _a === void 0 ? void 0 : _a.call(_this, [key], "select");
+      // if (!this.multiSelected) {
+      //   (this._setSelectedMap ?? new Map()).forEach((setThisSelected, k) => {
+      //     if (k !== key) {
+      //       setThisSelected(false);
+      //     }
+      //   });
+      // } else {
+      //   this.setSelectedKeys?.([key], "select");
+      // }
+    };
+
+    this._handleUnselectOne = function (key) {
+      var _a, _b;
+      (_a = _this.setSelectedKeys) === null || _a === void 0 ? void 0 : _a.call(_this, ((_b = _this.selectedKeys) !== null && _b !== void 0 ? _b : []).filter(function (k) {
+        return key !== k;
+      }), "unselect");
+    };
+    this.multiSelected = options.multiSelected;
+    this.multiOpened = options.multiOpened;
+    this.onOpen = options.onOpen;
+    this.onClose = options.onClose;
+    this.onSelect = options.onSelect;
+    this.onUnselect = options.onUnselect;
   }
-  MenuCtxInstance.prototype.setOpenKeys = function (keys) {
-    this.openKeys = keys;
-  };
-  MenuCtxInstance.prototype.setSelectedKeys = function (keys) {
-    this.selectedKeys = keys;
-  };
-  MenuCtxInstance.prototype.setMultiSelected = function (multiSelected) {
-    this.multiSelected = multiSelected;
-  };
-  MenuCtxInstance.prototype._add_setSelectedMap = function (key, fc) {
-    var _a;
-    (_a = this._setSelectedMap) === null || _a === void 0 ? void 0 : _a.set(key, fc);
-  };
   return MenuCtxInstance;
 }();
 // @ts-ignore
@@ -62370,22 +62663,28 @@ var MenuCtxInstance = /** @class */function () {
 //     setSelectedKeys,
 //   } as any;
 // }
-function useMenuRef(multiSelected) {
-  if (multiSelected === void 0) {
-    multiSelected = false;
+function useMenuRef(options) {
+  if (options === void 0) {
+    options = {
+      multiSelected: false,
+      multiOpened: false
+    };
   }
-  var ctx = useMenu(multiSelected);
+  var ctx = useMenu(options);
   var menuRef = useRef();
   if (!menuRef.current) {
     menuRef.current = ctx;
   }
   return menuRef;
 }
-function useMenu(multiSelected) {
-  if (multiSelected === void 0) {
-    multiSelected = false;
+function useMenu(options) {
+  if (options === void 0) {
+    options = {
+      multiSelected: false,
+      multiOpened: false
+    };
   }
-  return useContext(EvpMenuContext) || new MenuCtxInstance(multiSelected);
+  return useContext(EvpMenuContext) || new MenuCtxInstance(options);
 }
 // export default function useMenu(multiSelected: boolean = false) {
 //   const newCtx = useCreateDispatchedMenuCtx(multiSelected);
@@ -62408,55 +62707,68 @@ function flatItemColor(itemColor) {
   };
 }
 function EvpMenu(props) {
-  var _a, _b, _c;
+  var _a, _b, _c, _d, _e, _f;
   var didMounted = React.useRef(null);
   useEffect(function () {
+    var _a, _b, _c, _d;
     if (!didMounted.current) {
-      didMounted.current = "menu_".concat(nanoid());
+      var linkUrl = "";
+      if (typeof props.link === "string") {
+        linkUrl = props.link.trim();
+      } else if (_typeof$1(props.link) === "object") {
+        linkUrl = (_b = (_a = props.link.path) === null || _a === void 0 ? void 0 : _a.trim()) !== null && _b !== void 0 ? _b : "";
+      }
+      didMounted.current = (_d = (_c = props.keyId) !== null && _c !== void 0 ? _c : linkUrl) !== null && _d !== void 0 ? _d : "menu_".concat(nanoid());
     }
-  }, []);
-  var menuCtx = useMenuRef(props.multiSelected);
+  }, [props.keyId, props.link]);
+  var propedMenuRef = props.menuRef;
+  var menuCtx = useMenuRef({
+    multiSelected: (_a = props.multiSelected) !== null && _a !== void 0 ? _a : false,
+    multiOpened: (_b = props.multiOpened) !== null && _b !== void 0 ? _b : false,
+    onOpen: props.globalOnOpen,
+    onClose: props.globalOnClose,
+    onSelect: props.globalOnSelect,
+    onUnselect: props.globalOnUnselect
+  });
   var icon = props.icon;
   var $props = AllParser(props);
   var $event = $props.event;
-  var _d = useState(false),
-    expand = _d[0],
-    setExpand = _d[1];
+  var _g = useState(false),
+    expand = _g[0],
+    setExpand = _g[1];
   function deExpand() {
     setExpand(!expand);
   }
   function $click(e) {
-    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o;
     if (!props["not-allowed"]) {
       if (!expand) {
         // going to open
         if (props.submenu) {
-          if (menuCtx.current.multiSelected) {
-            (_b = menuCtx === null || menuCtx === void 0 ? void 0 : (_a = menuCtx.current).setOpenKeys) === null || _b === void 0 ? void 0 : _b.call(_a, __spreadArray$4(__spreadArray$4([], (_c = menuCtx.current.openKeys) !== null && _c !== void 0 ? _c : [], true), [(_d = props.keyId) !== null && _d !== void 0 ? _d : didMounted.current], false));
-          } else {
-            (_f = menuCtx === null || menuCtx === void 0 ? void 0 : (_e = menuCtx.current).setOpenKeys) === null || _f === void 0 ? void 0 : _f.call(_e, [(_g = props.keyId) !== null && _g !== void 0 ? _g : didMounted.current]);
+          if ((_a = propedMenuRef === null || propedMenuRef === void 0 ? void 0 : propedMenuRef.current) !== null && _a !== void 0 ? _a : menuCtx.current) {
+            var ctx = propedMenuRef !== null && propedMenuRef !== void 0 ? propedMenuRef : menuCtx;
+            (_c = (_b = ctx.current)._handleOpenOne) === null || _c === void 0 ? void 0 : _c.call(_b, (_d = props.keyId) !== null && _d !== void 0 ? _d : didMounted.current);
           }
+          (_e = props.onOpen) === null || _e === void 0 ? void 0 : _e.call(props, (_f = props.keyId) !== null && _f !== void 0 ? _f : didMounted.current);
         }
       } else {
         // going to close
         if (props.submenu) {
-          (_j = menuCtx === null || menuCtx === void 0 ? void 0 : (_h = menuCtx.current).setOpenKeys) === null || _j === void 0 ? void 0 : _j.call(_h, ((_k = menuCtx.current.openKeys) !== null && _k !== void 0 ? _k : []).filter(function (key) {
-            var _a;
-            return key !== ((_a = props.keyId) !== null && _a !== void 0 ? _a : didMounted.current);
-          }));
+          (_j = (_h = (_g = propedMenuRef === null || propedMenuRef === void 0 ? void 0 : propedMenuRef.current) !== null && _g !== void 0 ? _g : menuCtx.current) === null || _h === void 0 ? void 0 : _h._handleCloseOne) === null || _j === void 0 ? void 0 : _j.call(_h, (_k = props.keyId) !== null && _k !== void 0 ? _k : didMounted.current);
+          (_l = props.onClose) === null || _l === void 0 ? void 0 : _l.call(props, (_m = props.keyId) !== null && _m !== void 0 ? _m : didMounted.current);
         }
       }
       deExpand();
-      (_l = $event.onMouseDown) === null || _l === void 0 ? void 0 : _l.call($event, e);
+      (_o = $event.onMouseDown) === null || _o === void 0 ? void 0 : _o.call($event, e);
       if (props.link) {
         linkTo(props.link, props.hash);
       }
     }
   }
   var ref = useRef(null);
-  var _e = useState(0),
-    height = _e[0],
-    setHeight = _e[1];
+  var _h = useState(0),
+    height = _h[0],
+    setHeight = _h[1];
   useEffect(function () {
     var _a;
     if (expand) {
@@ -62474,10 +62786,10 @@ function EvpMenu(props) {
   var disabled = props["not-allowed"] ? "evp-disabled" : "";
   return jsxRuntimeExports.jsxs(EvpCol, __assign$f({
     alignItems: "left",
-    class: "evp-menu ".concat(props.submenu ? "sub" : "", " ").concat(disabled, " ").concat((_a = props.class) !== null && _a !== void 0 ? _a : "").trim(),
+    class: "evp-menu ".concat(props.submenu ? "sub" : "", " ").concat(disabled, " ").concat((_c = props.class) !== null && _c !== void 0 ? _c : "").trim(),
     pd: props.pd,
     mg: props.mg,
-    w: (_b = props.w) !== null && _b !== void 0 ? _b : "260px",
+    w: (_d = props.w) !== null && _d !== void 0 ? _d : "260px",
     style: __assign$f(__assign$f({
       overflow: "hidden",
       border: props.submenu ? "unset" : "1px solid ".concat(Color.PaleGray)
@@ -62487,7 +62799,7 @@ function EvpMenu(props) {
       alignItems: "space-between",
       class: "evp-menu-title",
       "$click": $click,
-      cursor: (_c = props.cursor) !== null && _c !== void 0 ? _c : "pointer"
+      cursor: (_e = props.cursor) !== null && _e !== void 0 ? _e : "pointer"
     }, {
       children: [jsxRuntimeExports.jsx(EvpRow, __assign$f({
         h: 50,
@@ -62509,7 +62821,7 @@ function EvpMenu(props) {
         name: expand ? "down" : "left"
       }) : null]
     })), jsxRuntimeExports.jsx(EvpMenuContext.Provider, __assign$f({
-      value: menuCtx.current
+      value: (_f = propedMenuRef === null || propedMenuRef === void 0 ? void 0 : propedMenuRef.current) !== null && _f !== void 0 ? _f : menuCtx.current
     }, {
       children: jsxRuntimeExports.jsx("div", __assign$f({
         className: "".concat(childrenWrapperClass),
@@ -62540,13 +62852,19 @@ function EvpMenuItem(props) {
     selected = _d[0],
     setSelected = _d[1];
   React.useEffect(function () {
-    var _a;
+    var _a, _b, _c, _d;
     if (!didMounted.current) {
-      var uniqueKey = "menu-item_".concat(nanoid());
+      var linkUrl = "";
+      if (typeof props.link === "string") {
+        linkUrl = props.link.trim();
+      } else if (_typeof$1(props.link) === "object") {
+        linkUrl = (_b = (_a = props.link.path) === null || _a === void 0 ? void 0 : _a.trim()) !== null && _b !== void 0 ? _b : "";
+      }
+      var uniqueKey = (_c = props.keyId) !== null && _c !== void 0 ? _c : linkUrl ? linkUrl : "menu-item_".concat(nanoid());
       didMounted.current = uniqueKey;
-      (_a = menuCtx === null || menuCtx === void 0 ? void 0 : menuCtx._add_setSelectedMap) === null || _a === void 0 ? void 0 : _a.call(menuCtx, uniqueKey, setSelected);
+      (_d = menuCtx === null || menuCtx === void 0 ? void 0 : menuCtx._add_setSelectedMap) === null || _d === void 0 ? void 0 : _d.call(menuCtx, uniqueKey, setSelected);
     }
-  }, [menuCtx]);
+  }, [menuCtx, props.keyId, props.link]);
   // useEffect(() => {
   //   console.log(menuCtx.multiSelected, menuCtx.selectedKeys, props.keyId ?? didMounted.current);
   //   if (menuCtx.multiSelected !== true) {
@@ -62560,29 +62878,17 @@ function EvpMenuItem(props) {
   var $event = $props.event;
   var $click = props["not-allowed"] ? undefined : function (e) {
     var _a, _b, _c, _d, _e, _f, _g, _h, _j;
-    console.log(menuCtx);
     if (selected) {
       // Going to unselect
-      setSelected(false);
-      (_a = menuCtx.setSelectedKeys) === null || _a === void 0 ? void 0 : _a.call(menuCtx, ((_b = menuCtx.selectedKeys) !== null && _b !== void 0 ? _b : []).filter(function (key) {
-        var _a;
-        return key !== ((_a = props.keyId) !== null && _a !== void 0 ? _a : didMounted.current);
-      }));
+      if (props.unselectOnReClick) {
+        setSelected(false);
+        (_a = menuCtx._handleUnselectOne) === null || _a === void 0 ? void 0 : _a.call(menuCtx, (_b = props.keyId) !== null && _b !== void 0 ? _b : didMounted.current);
+        (_c = props.onUnselect) === null || _c === void 0 ? void 0 : _c.call(props, (_d = props.keyId) !== null && _d !== void 0 ? _d : didMounted.current);
+      }
     } else {
       setSelected(true); // Going to select
-      if (menuCtx.multiSelected) {
-        (_c = menuCtx.setSelectedKeys) === null || _c === void 0 ? void 0 : _c.call(menuCtx, __spreadArray$4(__spreadArray$4([], (_d = menuCtx.selectedKeys) !== null && _d !== void 0 ? _d : [], true), [(_e = props.keyId) !== null && _e !== void 0 ? _e : didMounted.current], false));
-      } else {
-        // Single selected mode
-        (_f = menuCtx.setSelectedKeys) === null || _f === void 0 ? void 0 : _f.call(menuCtx, [(_g = props.keyId) !== null && _g !== void 0 ? _g : didMounted.current]);
-        // Going to unselected other menu items
-        ((_h = menuCtx === null || menuCtx === void 0 ? void 0 : menuCtx._setSelectedMap) !== null && _h !== void 0 ? _h : new Map()).forEach(function (value, key) {
-          var _a;
-          if (key !== ((_a = props.keyId) !== null && _a !== void 0 ? _a : didMounted.current)) {
-            value(false);
-          }
-        });
-      }
+      (_e = menuCtx._handleSelectOne) === null || _e === void 0 ? void 0 : _e.call(menuCtx, (_f = props.keyId) !== null && _f !== void 0 ? _f : didMounted.current);
+      (_g = props.onSelect) === null || _g === void 0 ? void 0 : _g.call(props, (_h = props.keyId) !== null && _h !== void 0 ? _h : didMounted.current);
     }
     (_j = $event.onMouseDown) === null || _j === void 0 ? void 0 : _j.call($event, e);
     if (props.link) {
@@ -93824,7 +94130,7 @@ var createToast = function createToast(key, type, text, keep, delay, firstRender
  * @param delay how long to delay the toast, default is 0
  */
 var toastInfo = function toastInfo(text, keep, delay) {
-  addToast("info", text, keep, delay);
+  addToast("info", "".concat(text), keep, delay);
 };
 /**
  * Render a global warn toast
@@ -93833,7 +94139,7 @@ var toastInfo = function toastInfo(text, keep, delay) {
  * @param delay how long to delay the toast, default is 0
  */
 var toastWarn = function toastWarn(text, keep, delay) {
-  addToast("warn", text, keep, delay);
+  addToast("warn", "".concat(text), keep, delay);
 };
 /**
  * Render a global error message
@@ -93842,7 +94148,7 @@ var toastWarn = function toastWarn(text, keep, delay) {
  * @param delay how long to delay the toast, default is 0
  */
 var toastError = function toastError(text, keep, delay) {
-  addToast("error", text, keep, delay);
+  addToast("error", "".concat(text), keep, delay);
 };
 /**
  * Render a global success message
@@ -93851,7 +94157,7 @@ var toastError = function toastError(text, keep, delay) {
  * @param delay how long to delay the toast, default is 0
  */
 var toastSuccess = function toastSuccess(text, keep, delay) {
-  addToast("success", text, keep, delay);
+  addToast("success", "".concat(text), keep, delay);
 };
 function setReverse(reverse) {
   var $reverse = reverse !== null && reverse !== void 0 ? reverse : "true";
@@ -93865,15 +94171,15 @@ function setReverse(reverse) {
 var context = function context() {
   return JSON.parse(JSON.stringify(store.toasts));
 };
-var EvpToast = {
-  info: toastInfo,
-  warn: toastWarn,
-  error: toastError,
-  success: toastSuccess,
-  context: context,
-  /** setReverse : set the toasts sequence direction reversely, default is true */
-  setReverse: setReverse
+var EvpToast = function EvpToast(text, keep, delay) {
+  addToast("info", "".concat(text), keep, delay);
 };
+EvpToast.info = toastInfo;
+EvpToast.warn = toastWarn;
+EvpToast.error = toastError;
+EvpToast.success = toastSuccess;
+EvpToast.context = context;
+EvpToast.setReverse = setReverse;
 
 function EvpPopover(props) {
   var _a, _b, _c;
@@ -101977,9 +102283,11 @@ var EvpRate = function EvpRate(_a) {
           if (onStarClick) {
             onStarClick(e);
           } else {
-            setLast(realVal);
-            setVal(i);
+            if (!(value !== undefined && value !== null && !setValue)) {
+              setLast(realVal);
+            }
             setValue === null || setValue === void 0 ? void 0 : setValue(i);
+            setVal(i);
             if (realVal === last) {
               // clean last
               setLast(-1);
@@ -102314,11 +102622,25 @@ var Animation = /** @class */function () {
   return Animation;
 }();
 
-var EvpAnimation = function EvpAnimation(props) {
-  return jsxRuntimeExports.jsx("div", {
-    children: props.children
-  });
+var EvpAnimation = function EvpAnimation(_a) {
+  var duration = _a.duration,
+    delay = _a.delay,
+    name = _a.name,
+    props = __rest$b(_a, ["duration", "delay", "name"]);
+  console.log("animationName", name);
+  return jsxRuntimeExports.jsx(AnimationDomFC, __assign$f({
+    duration: duration !== null && duration !== void 0 ? duration : "1000",
+    delay: delay !== null && delay !== void 0 ? delay : "0",
+    animationName: name !== null && name !== void 0 ? name : ""
+  }, props));
 };
+/**
+ *
+ * `@version 0.0.1`
+ * - default 50ms animation delay to make it reactive
+ * - whether to play animation decides on the animationName not className
+ * @returns
+ */
 var AnimationDomFC = function AnimationDomFC(_a) {
   var animationName = _a.animationName,
     duration = _a.duration,
@@ -102331,7 +102653,11 @@ var AnimationDomFC = function AnimationDomFC(_a) {
     style = _a.style,
     trigger = _a.trigger,
     cancelOnLeave = _a.cancelOnLeave,
-    props = __rest$b(_a, ["animationName", "duration", "delay", "timingFunction", "fillMode", "direction", "iterationCount", "className", "style", "trigger", "cancelOnLeave"]);
+    activeGap = _a.activeGap,
+    activeState = _a.activeState,
+    onActive = _a.onActive,
+    onInactive = _a.onInactive,
+    props = __rest$b(_a, ["animationName", "duration", "delay", "timingFunction", "fillMode", "direction", "iterationCount", "className", "style", "trigger", "cancelOnLeave", "activeGap", "activeState", "onActive", "onInactive"]);
   var animation = Animation.fromObject({
     name: animationName,
     duration: duration,
@@ -102361,31 +102687,36 @@ var AnimationDomFC = function AnimationDomFC(_a) {
     }
   }(trigger);
   React.useEffect(function () {
-    if (animated) {
-      timer.current = setTimeout(function () {
-        setAnimated("");
-        setTimer({
-          current: null
-        });
-      }, Number(animation.animationDuration));
+    var _a, _b;
+    if (animated !== "") {
+      (_a = activeState === null || activeState === void 0 ? void 0 : activeState.setState) === null || _a === void 0 ? void 0 : _a.call(activeState, activeState.activeValue);
+      // active
+      onActive === null || onActive === void 0 ? void 0 : onActive();
     } else {
-      if (timer.current) {
-        clearTimeout(timer.current);
-        setTimer({
-          current: null
-        });
-      }
+      // inactive
+      (_b = activeState === null || activeState === void 0 ? void 0 : activeState.setState) === null || _b === void 0 ? void 0 : _b.call(activeState, activeState.inactiveValue);
+      onInactive === null || onInactive === void 0 ? void 0 : onInactive();
     }
   }, [animated]);
   var dispatchAnimation = function dispatchAnimation() {
     setTimeout(function () {
+      if (timer.current) {
+        clearTimeout(timer.current);
+      }
       setAnimated("");
-      setAnimated(animation.animationName);
+      setTimeout(function () {
+        setAnimated(animation.animationName);
+      }, typeof activeGap === "number" ? activeGap : 50); // to make the css animation stateful for a gap of 50ms
+      setTimer({
+        current: setTimeout(function () {
+          return setAnimated("");
+        }, Number(animation.animationDuration))
+      });
     }, Number(animation.animationDelay));
   };
   return jsxRuntimeExports.jsx("div", __assign$f({
     tabIndex: -1,
-    className: classNames(animated, className),
+    className: classNames(animation.animationName, className),
     onMouseEnter: function onMouseEnter() {
       if ($trigger.includes("hover")) {
         dispatchAnimation();
@@ -102393,7 +102724,13 @@ var AnimationDomFC = function AnimationDomFC(_a) {
     },
     onMouseLeave: function onMouseLeave() {
       if (cancelOnLeave) {
+        if (timer.current) {
+          clearTimeout(timer.current);
+        }
         setAnimated("");
+        setTimer({
+          current: null
+        });
       }
     },
     onClick: function onClick() {
@@ -102404,7 +102741,8 @@ var AnimationDomFC = function AnimationDomFC(_a) {
     style: __assign$f({
       // ...bounce.style,
       width: "fit-content",
-      height: "fit-content"
+      height: "fit-content",
+      animationName: animated ? animated : "none"
     }, style)
   }, props, {
     children: props.children
@@ -102461,4 +102799,54 @@ EvpAnimation.Shake = function (_a) {
   }, props));
 };
 
-export { EvpAlert as Alert, AllParser, EvpAnchor as Anchor, EvpAnimation as Animation, EvpBadge as Badge, EvpBreadCrumb as BreadCrume, EvpButton as Button, Calendar, EvpCardV2 as Card, EvpCheckBox as CheckBox, EvpCheckBoxGroup as CheckBoxGroup, EvpCode as Code, EvpCol as Col, Color, EvpCounter as Counter, CSS as Css, EvpDateTimePicker as DateTimePicker, EvpDialog as Dialog, EvpDivider as Divider, EvpDom as Dom, EvpDrawer as Drawer, EvpAlert, EvpAnchor, EvpAnimation, EvpBadge, EvpBreadCrumb, EvpButton, Calendar as EvpCalendar, EvpCardV2 as EvpCard, EvpCheckBox, EvpCheckBoxGroup, EvpCode, EvpCol, Color as EvpColor, EvpCounter, CSS as EvpCss, EvpDateTimePicker, EvpDialog, EvpDivider, EvpDom, EvpDrawer, EvpFlexbar, EvpForm, EvpGallery, EvpGhostButtonGroup, EvpHeader, EvpHello, EvpIcon, EvpImg, EvpInput, EvpLabel, EvpLoading, EvpMenu, EvpMenuItem, EvpModal, EvpMsg, EvpNiuniu, EvpPaginator, EvpPopover, EvpProgress, EvpRadio, EvpRadioGroup, EvpRate, EvpRequired, EvpRow, EvpSelect, index as EvpShadow, EvpSliderV2 as EvpSlider, EvpSliderV2, EvpSlider as EvpSlider_V1, EvpSlides, EvpSnake, EvpSteps, SvgIcons as EvpSvgIcon, EvpSwitch, EvpTable, EvpTag, Template as EvpTemplate, EvpTitle, EvpToast, EvpToolTip, EvpWaterfalls, EvpFlexbar as Flexbar, EvpForm as Form, EvpGallery as Gallery, EvpGhostButtonGroup as GhostButtonGroup, EvpHeader as Header, EvpHello as Hello, EvpIcon as Icon, EvpImg as Img, EvpInput as Input, EvpLabel as Label, EvpLoading as Loading, EvpMenu as Menu, EvpMenuItem as MenuItem, EvpModal as Modal, EvpMsg as Msg, EvpNiuniu as Niuniu, EvpPaginator as Paginator, EvpPopover as Popover, EvpProgress as Progress, EvpRadio as Radio, EvpRadioGroup as RadioGroup, EvpRate as Rate, EvpRequired as Required, EvpRow as Row, EvpSelect as Select, EvpSliderV2 as Slider, EvpSliderV2 as SliderV2, EvpSlider as Slider_V1, EvpSlides as Slides, EvpSnake as Snake, EvpSteps as Steps, SvgIcons as SvgIcon, EvpSwitch as Switch, EvpTable as Table, EvpTag as Tag, Template, EvpTitle as Title, EvpToast as Toast, EvpToolTip as ToolTip, EvpWaterfalls as Waterfalls, EvpCard as _Card, EvpCard as _EvpCard, shift, useForm };
+var EvpList = function EvpList(props) {
+  return jsxRuntimeExports.jsx("div", {
+    children: jsxRuntimeExports.jsx("h1", {
+      children: "EvpList"
+    })
+  });
+};
+
+var EvpFrostedGlass = function EvpFrostedGlass(props) {
+  var className = props.class,
+    radius = props.radius,
+    border = props.border,
+    borderWidth = props.borderWidth,
+    borderStyle = props.borderStyle,
+    borderColor = props.borderColor,
+    background = props.background,
+    filterAlpha = props.filterAlpha,
+    filterBackGround = props.filterBackGround,
+    filterBlur = props.filterBlur,
+    style = props.style,
+    children = props.children,
+    rest = __rest$b(props, ["class", "radius", "border", "borderWidth", "borderStyle", "borderColor", "background", "filterAlpha", "filterBackGround", "filterBlur", "style", "children"]);
+  return jsxRuntimeExports.jsxs(EvpDom, __assign$f({
+    className: classNames("evp", "evp-frosted-glass__background", className),
+    style: __assign$f({
+      background: background,
+      position: "relative"
+    }, style)
+  }, rest, {
+    children: [children, jsxRuntimeExports.jsx("div", {
+      style: {
+        background: filterBackGround !== null && filterBackGround !== void 0 ? filterBackGround : "rgba(255, 255, 255, ".concat(filterAlpha !== null && filterAlpha !== void 0 ? filterAlpha : "0.1", ")"),
+        backdropFilter: "blur(".concat(filterBlur !== null && filterBlur !== void 0 ? filterBlur : 10, "px)"),
+        WebkitBackdropFilter: "blur(".concat(radius !== null && radius !== void 0 ? radius : 0, "px)"),
+        borderRadius: "".concat(radius !== null && radius !== void 0 ? radius : 0, "px"),
+        border: border !== null && border !== void 0 ? border : "1px solid rgba(255, 255, 255, 0.2)",
+        borderStyle: borderStyle !== null && borderStyle !== void 0 ? borderStyle : "solid",
+        borderWidth: borderWidth !== null && borderWidth !== void 0 ? borderWidth : 1,
+        borderColor: borderColor !== null && borderColor !== void 0 ? borderColor : "rgba(255, 255, 255, 0.2)",
+        position: "absolute",
+        left: "0",
+        top: "0",
+        right: "0",
+        bottom: "0",
+        zIndex: "-1"
+      }
+    })]
+  }));
+};
+
+export { EvpAlert as Alert, AllParser, EvpAnchor as Anchor, EvpAnimation as Animation, EvpBadge as Badge, EvpBreadCrumb as BreadCrume, EvpButton as Button, Calendar, EvpCardV2 as Card, EvpCheckBox as CheckBox, EvpCheckBoxGroup as CheckBoxGroup, EvpCode as Code, EvpCol as Col, Color, EvpCounter as Counter, CSS as Css, EvpDateTimePicker as DateTimePicker, EvpDialog as Dialog, EvpDivider as Divider, EvpDom as Dom, EvpDrawer as Drawer, EvpAlert, EvpAnchor, EvpAnimation, EvpBadge, EvpBreadCrumb, EvpButton, Calendar as EvpCalendar, EvpCardV2 as EvpCard, EvpCheckBox, EvpCheckBoxGroup, EvpCode, EvpCol, Color as EvpColor, EvpCounter, CSS as EvpCss, EvpDateTimePicker, EvpDialog, EvpDivider, EvpDom, EvpDrawer, EvpFlexbar, EvpForm, EvpFrostedGlass, EvpGallery, EvpGhostButtonGroup, EvpHeader, EvpHello, EvpIcon, EvpImg, EvpInput, EvpLabel, EvpList, EvpLoading, EvpMenu, EvpMenuItem, EvpModal, EvpMsg, EvpNiuniu, EvpPaginator, EvpPopover, EvpProgress, EvpRadio, EvpRadioGroup, EvpRate, EvpRequired, EvpRow, EvpSelect, index as EvpShadow, EvpSliderV2 as EvpSlider, EvpSliderV2, EvpSlider as EvpSlider_V1, EvpSlides, EvpSnake, EvpSteps, SvgIcons as EvpSvgIcon, EvpSwitch, EvpTable, EvpTag, Template as EvpTemplate, EvpTitle, EvpToast, EvpToolTip, EvpWaterfalls, EvpFlexbar as Flexbar, EvpForm as Form, EvpFrostedGlass as FrostedGlass, EvpGallery as Gallery, EvpGhostButtonGroup as GhostButtonGroup, EvpHeader as Header, EvpHello as Hello, EvpIcon as Icon, EvpImg as Img, EvpInput as Input, EvpLabel as Label, EvpList as List, EvpLoading as Loading, EvpMenu as Menu, EvpMenuItem as MenuItem, EvpModal as Modal, EvpMsg as Msg, EvpNiuniu as Niuniu, EvpPaginator as Paginator, EvpPopover as Popover, EvpProgress as Progress, EvpRadio as Radio, EvpRadioGroup as RadioGroup, EvpRate as Rate, Reactify, ReactifyMemo, ReactiveCtx, EvpRequired as Required, EvpRow as Row, EvpSelect as Select, EvpSliderV2 as Slider, EvpSliderV2 as SliderV2, EvpSlider as Slider_V1, EvpSlides as Slides, EvpSnake as Snake, EvpSteps as Steps, SvgIcons as SvgIcon, EvpSwitch as Switch, EvpTable as Table, EvpTag as Tag, Template, EvpTitle as Title, EvpToast as Toast, EvpToolTip as ToolTip, EvpWaterfalls as Waterfalls, EvpCard as _Card, EvpCard as _EvpCard, createReactiveContext, listen, reactive, shift, useForm, useReactive, useReactiveRef, useReativeContext, index$1 as utils };

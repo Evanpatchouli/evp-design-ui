@@ -79,9 +79,11 @@ const EvpRate: React.FC<EvpRateProps> = ({
             if (onStarClick) {
               onStarClick(e);
             } else {
-              setLast(realVal);
-              setVal(i);
+              if (!(value !== undefined && value !== null && !setValue)) {
+                setLast(realVal);
+              }
               setValue?.(i);
+              setVal(i);
               if (realVal === last) {
                 // clean last
                 setLast(-1);

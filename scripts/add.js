@@ -385,7 +385,7 @@ const preIndexPath = path.join(__dirname, "..", "src", "preview", "index.tsx");
 const exportView = `export { default as ${componentNameCamelCaseWithoutEvp}View } from "./${componentName}";`;
 console.log(`\nStep 10: Exporting view to @/preview/index.tsx...`);
 try {
-  fs.appendFile(preIndexPath, exportView, (err) => {
+  fs.appendFile(preIndexPath, "\n".concat(exportView), (err) => {
     if (err) throw err;
     console.log(chalk.default.green(`View Export is appended to ${preIndexPath}`));
   });

@@ -50,7 +50,7 @@ export const useReactive = <T = any>(initialValue?: T): Reactive<T> => {
     return reactiveObj as Reactive<T>;
   }
   // @ts-ignore
-  return defaultContextModel;
+  return defaultContextModel as Reactive<T>;
   // return initialValue ? newReactiveCtxModel : defaultContextModel;
 };
 

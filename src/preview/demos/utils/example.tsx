@@ -6,15 +6,10 @@ import { Button, Toast } from "evp-design-ui";
 import { reactive, listen } from "evp-design-ui";
 
 const Demo: React.FC = () => {
-  let state = reactive({
-    count: 0,
-  });
-  let { count } = state.value;
+  let state = reactive(0);
+  let count = state.value;
   const handleClick = () => {
-    state.value = {
-      ...state.value,
-      count: ++count,
-    };
+    state.value++;
   };
   listen(state).then((newState) => {
     Toast.info(JSON.stringify(newState));
@@ -30,15 +25,10 @@ const codes = `
 import { reactive, listen, Button } from "evp-design-ui";
 
 const Demo: React.FC = () => {
-  let state = reactive({
-    count: 0,
-  });
-  let { count } = state.value;
+  let state = reactive(0);
+  let count = state.value;
   const handleClick = () => {
-    state.value = {
-      ...state.value,
-      count: ++count,
-    };
+    state.value++;
   };
   listen(state).then((newState) => {
     Toast.info(JSON.stringify(newState));

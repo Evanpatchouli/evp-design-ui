@@ -94,8 +94,8 @@ const createToast: EvpToastCreate = (
  * @param keep how long to keep the toast, default is 3000ms (3s) because toast's content is usually s little short
  * @param delay how long to delay the toast, default is 0
  */
-export const toastInfo: EvpToastAdd = (text?: string, keep?: number, delay?: number) => {
-  addToast("info", text, keep, delay);
+export const toastInfo: EvpToastAdd = (text?: any, keep?: number, delay?: number) => {
+  addToast("info", `${text}`, keep, delay);
 };
 
 /**
@@ -104,8 +104,8 @@ export const toastInfo: EvpToastAdd = (text?: string, keep?: number, delay?: num
  * @param keep how long to keep the toast, default is 3000ms (3s) because toast's content is usually s little short
  * @param delay how long to delay the toast, default is 0
  */
-export const toastWarn: EvpToastAdd = (text?: string, keep?: number, delay?: number) => {
-  addToast("warn", text, keep, delay);
+export const toastWarn: EvpToastAdd = (text?: any, keep?: number, delay?: number) => {
+  addToast("warn", `${text}`, keep, delay);
 };
 
 /**
@@ -114,8 +114,8 @@ export const toastWarn: EvpToastAdd = (text?: string, keep?: number, delay?: num
  * @param keep how long to keep the toast, default is 3000ms (3s) because toast's content is usually s little short
  * @param delay how long to delay the toast, default is 0
  */
-export const toastError: EvpToastAdd = (text?: string, keep?: number, delay?: number) => {
-  addToast("error", text, keep, delay);
+export const toastError: EvpToastAdd = (text?: any, keep?: number, delay?: number) => {
+  addToast("error", `${text}`, keep, delay);
 };
 
 /**
@@ -124,8 +124,8 @@ export const toastError: EvpToastAdd = (text?: string, keep?: number, delay?: nu
  * @param keep how long to keep the toast, default is 3000ms (3s) because toast's content is usually s little short
  * @param delay how long to delay the toast, default is 0
  */
-export const toastSuccess: EvpToastAdd = (text?: string, keep?: number, delay?: number) => {
-  addToast("success", text, keep, delay);
+export const toastSuccess: EvpToastAdd = (text?: any, keep?: number, delay?: number) => {
+  addToast("success", `${text}`, keep, delay);
 };
 
 function setReverse(reverse?: "true" | "false" | true | false) {
@@ -140,14 +140,15 @@ function setReverse(reverse?: "true" | "false" | true | false) {
 /** @todo */
 export const context: () => readonly (JSX.Element | React.ReactNode)[] = () => JSON.parse(JSON.stringify(store.toasts));
 
-const EvpToast = {
-  info: toastInfo,
-  warn: toastWarn,
-  error: toastError,
-  success: toastSuccess,
-  context: context,
-  /** setReverse : set the toasts sequence direction reversely, default is true */
-  setReverse: setReverse,
+const EvpToast = (text?: any, keep?: number, delay?: number) => {
+  addToast("info", `${text}`, keep, delay);
 };
+
+EvpToast.info = toastInfo;
+EvpToast.warn = toastWarn;
+EvpToast.error = toastError;
+EvpToast.success = toastSuccess;
+EvpToast.context = context;
+EvpToast.setReverse = setReverse;
 
 export default EvpToast;

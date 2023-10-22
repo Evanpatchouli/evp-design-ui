@@ -11,6 +11,12 @@ export interface EvpMenuItemProps extends EvpBaseProps {
         hash?: boolean;
     };
     hash?: boolean;
+    /** Default will set linkUrl as uniqueKey if exists, if not nether the keyId, will generate a nanoid */
     keyId?: any;
+    unselectOnReClick?: boolean;
+    /** Dependent extra onSelectHandler */
+    onSelect?: <R = any>(key: string) => R;
+    /** Dependent extra onUnselectHandler */
+    onUnselect?: <R = any>(key: string) => R;
 }
 export default function EvpMenuItem(props: EvpMenuItemProps): import("react/jsx-runtime").JSX.Element;

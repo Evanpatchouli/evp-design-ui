@@ -54,6 +54,7 @@ export const routes: Array<RouteProps & { key: string }> = [
   { path: "/evp-template", key: "template", element: <Pre.TemplateView /> },
   { path: "/evp-snake", key: "snake", element: <Pre.SnakeView /> },
   { path: "/evp-alert", key: "alert", element: <Pre.AlertView /> },
+  { path: "/evp-animation", key: "animation/Default", element: <Pre.AnimationView.DefaultView /> },
   { path: "/evp-animation/Bounce", key: "animation/Bounce", element: <Pre.AnimationView.BounceView /> },
   { path: "/evp-animation/Twinkle", key: "animation/Twinkle", element: <Pre.AnimationView.TwinkleView /> },
   { path: "/evp-animation/Flip", key: "animation/Flip", element: <Pre.AnimationView.FlipView /> },
@@ -61,4 +62,6 @@ export const routes: Array<RouteProps & { key: string }> = [
   { path: "/evp-reactive", key: "reactive", element: <Pre.ReactiveView /> },
   { path: "/evp-list", key: "list", element: <Pre.ListView /> },
   { path: "/evp-utils", key: "utils", element: <Pre.UtilsView /> },
+  { path: "/evp-frosted-glass", key: "frosted-glass", element: <Pre.FrostedGlassView /> },
 ];
+

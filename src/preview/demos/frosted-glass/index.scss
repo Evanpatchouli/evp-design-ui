@@ -1,0 +1,81 @@
+.droplet {
+  width: 100px;
+  height: 100px;
+  margin: 100px 50px;
+  /* border: 1px solid black; */
+  border-radius: 61% 39% 57% 43% / 46% 67% 33% 54%;
+  box-shadow: inset 10px 20px 30px rgba(0, 0, 0, 0.5), 10px 10px 20px rgba(0, 0, 0, 0.3),
+    15px 15px 30px rgba(0, 0, 0, 0.05), inset -10px -20px 30px rgba(255, 255, 255, 0.8);
+  position: relative;
+  animation: droplet-a 10s cubic-bezier(0.42, 0, 0.58, 1) infinite alternate;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  &:hover {
+    cursor: pointer;
+    scale: 1.1;
+  }
+
+  &:active {
+    box-shadow: inset 10px 20px 30px rgba(0, 0, 0, 0.5), 10px 10px 20px rgba(0, 0, 0, 0.3),
+      15px 15px 30px rgba(0, 0, 0, 0.05), inset -10px -20px 30px rgba(255, 255, 255, 0.8);
+    transition: all 0.1s ease;
+    scale: 1;
+  }
+
+  &::selection {
+    background: none !important;
+  }
+}
+.droplet::before {
+  content: "";
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 46% 54% 36% 64% / 46% 43% 57% 54%;
+  animation: droplet-b 2s cubic-bezier(0.39, 0.575, 0.565, 1) infinite alternate;
+}
+.droplet::after {
+  content: "";
+  position: absolute;
+  top: 25%;
+  left: 30%;
+  width: 6px;
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 46% 54% 36% 64% / 46% 43% 57% 54%;
+}
+@keyframes droplet-a {
+  25% {
+    border-radius: 58% 42% 59% 41% / 52% 56% 54% 48%;
+  }
+  50% {
+    border-radius: 46% 54% 40% 60% / 52% 33% 67% 48%;
+  }
+  75% {
+    border-radius: 60% 40% 43% 57% / 45% 51% 49% 55%;
+  }
+  100% {
+    border-radius: 65% 35% 71% 29% / 31% 60% 40% 69%;
+  }
+}
+@keyframes droplet-b {
+  25% {
+    top: 30%;
+    left: 50%;
+  }
+  50% {
+    top: 25%;
+    left: 50%;
+  }
+  100% {
+    top: 30%;
+    left: 50%;
+  }
+}

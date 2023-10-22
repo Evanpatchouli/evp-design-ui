@@ -405,3 +405,8 @@ export {
   type EvpListProps,
 } from './evp-list';
 
+export {
+  default as EvpFrostedGlass,
+  default as FrostedGlass,
+  type EvpFrostedGlassProps,
+} from './evp-frosted-glass';

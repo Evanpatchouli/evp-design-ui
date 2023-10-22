@@ -55,3 +55,6 @@ export declare class Var {
  * @returns
  */
 export declare const bindFC: <T, S>(source: Partial<S> | undefined, target: T) => T & {} & S;
+export { useStore, useSync, type Store, type Callback, type Protected } from "./hook";
+export * from "./reactive";
+export * from "./useCatch";

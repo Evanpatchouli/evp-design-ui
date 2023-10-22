@@ -34,12 +34,12 @@ declare function setReverse(reverse?: "true" | "false" | true | false): void;
 /** @todo */
 export declare const context: () => readonly (JSX.Element | React.ReactNode)[];
 declare const EvpToast: {
+    (text?: any, keep?: number, delay?: number): void;
     info: EvpToastAdd;
     warn: EvpToastAdd;
     error: EvpToastAdd;
     success: EvpToastAdd;
     context: () => readonly (JSX.Element | React.ReactNode)[];
-    /** setReverse : set the toasts sequence direction reversely, default is true */
     setReverse: typeof setReverse;
 };
 export default EvpToast;

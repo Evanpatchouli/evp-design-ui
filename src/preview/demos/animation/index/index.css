@@ -1,0 +1,15 @@
+.animation__bigger {
+  animation: animation__bigger 0.5s forwards;
+}
+
+@keyframes animation__bigger {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

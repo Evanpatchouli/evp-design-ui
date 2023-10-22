@@ -17,7 +17,13 @@ export interface EvpMenuItemProps extends EvpBaseProps {
   /** route-link to where */
   link?: string | { path?: string; hash?: boolean };
   hash?: boolean;
+  /** Default will set linkUrl as uniqueKey if exists, if not nether the keyId, will generate a nanoid */
   keyId?: any;
+  unselectOnReClick?: boolean;
+  /** Dependent extra onSelectHandler */
+  onSelect?: <R = any>(key: string) => R;
+  /** Dependent extra onUnselectHandler */
+  onUnselect?: <R = any>(key: string) => R;
 }
 
 export default function EvpMenuItem(props: EvpMenuItemProps) {
@@ -27,11 +33,17 @@ export default function EvpMenuItem(props: EvpMenuItemProps) {
 
   React.useEffect(() => {
     if (!didMounted.current) {
-      const uniqueKey = `menu-item_${nanoid()}`;
+      let linkUrl = "";
+      if (typeof props.link === "string") {
+        linkUrl = props.link.trim();
+      } else if (typeof props.link === "object") {
+        linkUrl = props.link.path?.trim() ?? "";
+      }
+      const uniqueKey = props.keyId ?? (linkUrl ? linkUrl : `menu-item_${nanoid()}`);
       didMounted.current = uniqueKey;
       menuCtx?._add_setSelectedMap?.(uniqueKey, setSelected);
     }
-  }, [menuCtx]);
+  }, [menuCtx, props.keyId, props.link]);
 
   // useEffect(() => {
   //   console.log(menuCtx.multiSelected, menuCtx.selectedKeys, props.keyId ?? didMounted.current);
@@ -48,27 +60,17 @@ export default function EvpMenuItem(props: EvpMenuItemProps) {
   const $click = props["not-allowed"]
     ? undefined
     : (e: React.MouseEvent) => {
-        console.log(menuCtx);
         if (selected) {
           // Going to unselect
-          setSelected(false);
-          menuCtx.setSelectedKeys?.(
-            (menuCtx.selectedKeys ?? []).filter((key) => key !== (props.keyId ?? didMounted.current))
-          );
+          if (props.unselectOnReClick) {
+            setSelected(false);
+            menuCtx._handleUnselectOne?.(props.keyId ?? didMounted.current);
+            props.onUnselect?.(props.keyId ?? didMounted.current);
+          }
         } else {
           setSelected(true); // Going to select
-          if (menuCtx.multiSelected) {
-            menuCtx.setSelectedKeys?.([...(menuCtx.selectedKeys ?? []), props.keyId ?? didMounted.current]);
-          } else {
-            // Single selected mode
-            menuCtx.setSelectedKeys?.([props.keyId ?? didMounted.current]);
-            // Going to unselected other menu items
-            (menuCtx?._setSelectedMap ?? new Map()).forEach((value, key) => {
-              if (key !== (props.keyId ?? didMounted.current)) {
-                value(false);
-              }
-            });
-          }
+          menuCtx._handleSelectOne?.(props.keyId ?? didMounted.current);
+          props.onSelect?.(props.keyId ?? didMounted.current);
         }
         $event.onMouseDown?.(e);
         if (props.link) {

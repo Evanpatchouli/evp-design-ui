@@ -1,5 +1,5 @@
 import { Menu, MenuItem } from "@/lib";
-import { useMenuRef } from "@/lib/evp-menu/hooks"
+import { useMenuRef } from "@/lib/evp-menu/hooks";
 import { useEffect } from "react";
 import { useLocation } from "react-router";
 
@@ -72,7 +72,9 @@ export default function DocsMenu() {
       <MenuItem link={"/components/evp-ghost-button-group"} title={"GhostButtonGroup"} />
       {/* <MenuItem link={"/components/evp-css"} title={"Css"} />
       <MenuItem link={"/components/evp-template"} title={"Template"} /> */}
+      <MenuItem link={"/components/evp-frosted-glass"} title={"FrostedGlass"} />
       <Menu submenu itemIndent title={"Animation"}>
+        <MenuItem link={"/components/evp-animation"} title={"Animation"} />
         <MenuItem link={"/components/evp-animation/Bounce"} title={"Bounce"} />
         <MenuItem link={"/components/evp-animation/Twinkle"} title={"Twinkle"} />
         <MenuItem link={"/components/evp-animation/Flip"} title={"Flip"} />

@@ -382,3 +382,31 @@ export {
   default as Animation,
   type EvpAnimationProps,
 } from './evp-animation';
+
+
+export * as utils from './utils'
+
+export {
+  reactive,
+  listen,
+  Reactify,
+  ReactifyMemo,
+  ReactiveCtx,
+  useReactive,
+  useReactiveRef,
+  useReativeContext,
+  createReactiveContext,
+  type ReactiveCtxModel
+} from './utils/reactive';
+
+export {
+  default as EvpList,
+  default as List,
+  type EvpListProps,
+} from './evp-list';
+
+export {
+  default as EvpFrostedGlass,
+  default as FrostedGlass,
+  type EvpFrostedGlassProps,
+} from './evp-frosted-glass';

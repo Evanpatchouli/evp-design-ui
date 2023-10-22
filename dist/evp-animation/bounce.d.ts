@@ -8,6 +8,9 @@ export type BounceOptions = {
     direction?: EvpAnimationDirection;
     fillMode?: AnimationFillMode;
 };
+/**
+ * ~@deprecated Bounce Component~
+ */
 declare const Bounce: ((options?: BounceOptions) => Omit<CommonCSS, "id">) & {
     className: string;
     style: {
