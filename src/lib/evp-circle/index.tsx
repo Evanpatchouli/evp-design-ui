@@ -1,100 +1,70 @@
 import React from "react";
 import valParser from "../utils/val.parser";
+import NumUtils from "../utils/num.util";
 
-export type EvpCircleProps = {
-  items?: any[];
+export type EvpCircleProps<T = any> = {
+  class?: string;
+  children?: React.ReactNode;
+  items?: T[];
   schema?: {
-    render?: (item: any, idx: number, items: any[]) => React.ReactNode;
-    onClick?: (item: any, idx: number, items: any[]) => void;
-    onMouseEnter?: (item: any, idx: number, items: any[]) => void;
-    onMouseLeave?: (item: any, idx: number, items: any[]) => void;
-    onContextMenu?: (item: any, idx: number, items: any[]) => void;
-    onDoubleClick?: (item: any, idx: number, items: any[]) => void;
-    onKeyDown?: (item: any, idx: number, items: any[]) => void;
-    onKeyUp?: (item: any, idx: number, items: any[]) => void;
-    onKeyPress?: (item: any, idx: number, items: any[]) => void;
-    onFocus?: (item: any, idx: number, items: any[]) => void;
-    onBlur?: (item: any, idx: number, items: any[]) => void;
-    onDragStart?: (item: any, idx: number, items: any[]) => void;
-    onDragEnd?: (item: any, idx: number, items: any[]) => void;
-    onDragEnter?: (item: any, idx: number, items: any[]) => void;
-    onDragOver?: (item: any, idx: number, items: any[]) => void;
-    onDragLeave?: (item: any, idx: number, items: any[]) => void;
-    onDrop?: (item: any, idx: number, items: any[]) => void;
-    onMouseDown?: (item: any, idx: number, items: any[]) => void;
-    onMouseUp?: (item: any, idx: number, items: any[]) => void;
-    onMouseMove?: (item: any, idx: number, items: any[]) => void;
-    onMouseOut?: (item: any, idx: number, items: any[]) => void;
-    onMouseOver?: (item: any, idx: number, items: any[]) => void;
-    onPointerDown?: (item: any, idx: number, items: any[]) => void;
-    onPointerUp?: (item: any, idx: number, items: any[]) => void;
-    onPointerMove?: (item: any, idx: number, items: any[]) => void;
-    onPointerCancel?: (item: any, idx: number, items: any[]) => void;
-    onPointerEnter?: (item: any, idx: number, items: any[]) => void;
-    onPointerLeave?: (item: any, idx: number, items: any[]) => void;
-    onPointerOver?: (item: any, idx: number, items: any[]) => void;
-    onPointerOut?: (item: any, idx: number, items: any[]) => void;
-    onTouchStart?: (item: any, idx: number, items: any[]) => void;
-    onTouchEnd?: (item: any, idx: number, items: any[]) => void;
-    onTouchMove?: (item: any, idx: number, items: any[]) => void;
-    onTouchCancel?: (item: any, idx: number, items: any[]) => void;
-    onContextMenuCapture?: (item: any, idx: number, items: any[]) => void;
-    onDoubleClickCapture?: (item: any, idx: number, items: any[]) => void;
-    onDrag?: (item: any, idx: number, items: any[]) => void;
-    onDragEndCapture?: (item: any, idx: number, items: any[]) => void;
-    onDragEnterCapture?: (item: any, idx: number, items: any[]) => void;
-    onDragExit?: (item: any, idx: number, items: any[]) => void;
-    onDragExitCapture?: (item: any, idx: number, items: any[]) => void;
-    onDragLeaveCapture?: (item: any, idx: number, items: any[]) => void;
-    onDragOverCapture?: (item: any, idx: number, items: any[]) => void;
-    onDragStartCapture?: (item: any, idx: number, items: any[]) => void;
-    onDropCapture?: (item: any, idx: number, items: any[]) => void;
-    onMouseDownCapture?: (item: any, idx: number, items: any[]) => void;
-    onMouseEnterCapture?: (item: any, idx: number, items: any[]) => void;
-    onMouseLeaveCapture?: (item: any, idx: number, items: any[]) => void;
-    onMouseMoveCapture?: (item: any, idx: number, items: any[]) => void;
+    render?: (item: T, idx: number, items: T[]) => React.ReactNode;
+    $hover?: (e: React.MouseEvent<HTMLDivElement>, item: T, idx: number, items: T[]) => void;
+    $leave?: (e: React.MouseEvent<HTMLDivElement>, item: T, idx: number, items: T[]) => void;
+    $in?: (e: React.MouseEvent<HTMLDivElement>, item: T, idx: number, items: T[]) => void;
+    /** Applied to `onMouseOver` Event */
+    $on?: (e: React.MouseEvent<HTMLDivElement>, item: T, idx: number, items: T[]) => void;
+    /** Applied to `onFocus` Event */
+    $focus?: (e: React.MouseEvent<HTMLDivElement>, item: T, idx: number, items: T[]) => void;
+    /** Applied to `onMouseDown` Event */
+    $click?: (e: React.MouseEvent<HTMLDivElement>, item: T, idx: number, items: T[]) => void;
+    /** Applied to `onDoubleClick` Event */
+    $doubleClick?: (e: React.MouseEvent<HTMLDivElement>, item: T, idx: number, items: T[]) => void;
+    /** Applied to `onContextMenu` Event */
+    $context?: (e: React.MouseEvent<HTMLDivElement>, item: T, idx: number, items: T[]) => void;
+    /** Applied to `onMouseUp` Event */
+    $loose?: (e: React.MouseEvent<HTMLDivElement>, item: T, idx: number, items: T[]) => void;
+    /** Applied to `onMouseMove` Event */
+    $move?: (e: React.MouseEvent<HTMLDivElement>, item: T, idx: number, items: T[]) => void;
+    /** Applied to `onScroll` Event */
+    $scroll?: boolean | React.UIEventHandler;
+    /** Applied to `onMouseOut` Event */
+    $off?: (e: React.MouseEvent<HTMLDivElement>, item: T, idx: number, items: T[]) => void;
+    /** Applied to `onMouseLeave` Event */
+    $out?: (e: React.MouseEvent<HTMLDivElement>, item: T, idx: number, items: T[]) => void;
 
-    onMouseOutCapture?: (item: any, idx: number, items: any[]) => void;
-    onMouseOverCapture?: (item: any, idx: number, items: any[]) => void;
-    onMouseUpCapture?: (item: any, idx: number, items: any[]) => void;
-    onPointerDownCapture?: (item: any, idx: number, items: any[]) => void;
-    onPointerMoveCapture?: (item: any, idx: number, items: any[]) => void;
-    onPointerUpCapture?: (item: any, idx: number, items: any[]) => void;
-    onPointerCancelCapture?: (item: any, idx: number, items: any[]) => void;
-    onPointerEnterCapture?: (item: any, idx: number, items: any[]) => void;
-    onPointerLeaveCapture?: (item: any, idx: number, items: any[]) => void;
-    onPointerOverCapture?: (item: any, idx: number, items: any[]) => void;
-    onPointerOutCapture?: (item: any, idx: number, items: any[]) => void;
-    onTouchCancelCapture?: (item: any, idx: number, items: any[]) => void;
-    onTouchEndCapture?: (item: any, idx: number, items: any[]) => void;
-    onTouchMoveCapture?: (item: any, idx: number, items: any[]) => void;
-    onTouchStartCapture?: (item: any, idx: number, items: any[]) => void;
-    onScrollCapture?: (item: any, idx: number, items: any[]) => void;
-    onWheelCapture?: (item: any, idx: number, items: any[]) => void;
-    onScroll?: (item: any, idx: number, items: any[]) => void;
-    onWheel?: (item: any, idx: number, items: any[]) => void;
-    onCompositionEnd?: (item: any, idx: number, items: any[]) => void;
-    onCompositionStart?: (item: any, idx: number, items: any[]) => void;
-    onCompositionUpdate?: (item: any, idx: number, items: any[]) => void;
-    onCompositionEndCapture?: (item: any, idx: number, items: any[]) => void;
-    onCompositionStartCapture?: (item: any, idx: number, items: any[]) => void;
-    onCompositionUpdateCapture?: (item: any, idx: number, items: any[]) => void;
-    onKeyDownCapture?: (item: any, idx: number, items: any[]) => void;
-    onKeyUpCapture?: (item: any, idx: number, items: any[]) => void;
-    onKeyPressCapture?: (item: any, idx: number, items: any[]) => void;
-    onFocusCapture?: (item: any, idx: number, items: any[]) => void;
-    onBlurCapture?: (item: any, idx: number, items: any[]) => void;
-    onBeforeInput?: (item: any, idx: number, items: any[]) => void;
-    onInput?: (item: any, idx: number, items: any[]) => void;
-    onChange?: (item: any, idx: number, items: any[]) => void;
-    onClickCapture?: (item: any, idx: number, items: any[]) => void;
+    /** Applied to `onKeyDown` `Esc` and `BackSpace` Event */
+    $esc?: (e: React.MouseEvent<HTMLDivElement>, item: T, idx: number, items: T[]) => void;
+    /** Applied to `onKeyDown` `Del` and `BackSpace` Event */
+    $del?: (e: React.MouseEvent<HTMLDivElement>, item: T, idx: number, items: T[]) => void;
+    /** Applied to `onKeyDown` `Enter` Event */
+    $enter?: (e: React.MouseEvent<HTMLDivElement>, item: T, idx: number, items: T[]) => void;
+    /** Applied to `onKeyDown` `Space` Event */
+    $space?: (e: React.MouseEvent<HTMLDivElement>, item: T, idx: number, items: T[]) => void;
+    class?: string;
+    style?: React.CSSProperties;
+    id?: string;
   };
   width?: number | string;
   itemSize?: number | string;
+  style?: React.CSSProperties;
+  mainProps?: React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 };
+
+function calculateRadius(d: number, x: number): number {
+  const r = (d / 2) * (1 - Math.cos((2 * Math.PI) / x));
+  return r;
+}
 
 const EvpCircle: React.FC<EvpCircleProps> = (props) => {
   const items = props.items ?? [].map((i, idx) => props.schema?.render?.(i, idx, props.items ?? []));
+  const mainProps = (() => {
+    const { className, ...rest } =
+      props.mainProps || ({} as React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>);
+    return {
+      class: props.mainProps?.className,
+      rest: rest,
+    };
+  })();
   return (
     <div
       className="evp-circle"
@@ -104,22 +74,33 @@ const EvpCircle: React.FC<EvpCircleProps> = (props) => {
         "--_angle": `${360 / items.length}deg`,
         "--_length": `${items.length}`,
         "--evp-circle-item-size": `${
-          props.itemSize ? valParser(props.itemSize) : "calc(var(--evp-circle-width) / 2 * 3.14)"
+          props.itemSize
+            ? valParser(props.itemSize)
+            : `${
+                calculateRadius(NumUtils.pickNum(props.width).value, items.length) + NumUtils.pickNum(props.width).unit
+              })`
         }`,
       }}
     >
       {items.map((i, idx) => (
         <div
           key={i}
-          className={`evp-circle__item evp-circle__item--${i}`}
+          className={`evp-circle__item ${props.schema?.class ? props.schema?.class + " " : ""}evp-circle__item--${i}`}
           style={{
             // @ts-ignore
             "--i": idx,
+            ...props.schema?.style,
           }}
         >
-          <div className="evp-circle__item__inner">{i}</div>
+          {props.schema?.render ? props.schema?.render?.(i, idx, props.items ?? []) : i}
+          {/* <div className="evp-circle__item__inner">{i}</div> */}
         </div>
       ))}
+      {
+        <div className={`evp-circle__main ${mainProps.class ?? ""}`} {...mainProps.rest}>
+          {props.children}
+        </div>
+      }
     </div>
   );
 };

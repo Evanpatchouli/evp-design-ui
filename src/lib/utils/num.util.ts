@@ -44,9 +44,36 @@ export function range(start: number, end: number, options: RangeOptions = {}) {
   return result;
 }
 
+const pickNum = (value?: string | number) => {
+  if (!value) {
+    return {
+      value: 0,
+      unit: "px",
+    };
+  }
+  if (typeof value === "number") {
+    return {
+      value,
+      unit: "px",
+    };
+  }
+  const match = value.match(/-?\d+(\.\d+)?/);
+  if (match) {
+    return {
+      value: parseFloat(match[0]),
+      unit: value.replace(match[0], ""),
+    };
+  }
+  return {
+    value: 0,
+    unit: "px",
+  };
+};
+
 const NumUtils = {
   toFixedStrictly,
   range,
+  pickNum,
 };
 
 export default NumUtils;

@@ -22,7 +22,6 @@
   top: var(--_y);
   transition: transform 0.2s ease-in;
   width: var(--_sz);
-  border: 1px solid dodgerblue;
 }
 .evp-circle .evp-circle__item {
   --_d: calc(var(--i) * var(--_angle));
@@ -67,4 +66,11 @@ p {
     top: 50% !important;
     transform: translate(-50%, -50%) rotate(var(--_d)) translate(var(--_r)) rotate(calc(-1 * var(--_d)));
   }
+}
+
+.evp-circle__main {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }

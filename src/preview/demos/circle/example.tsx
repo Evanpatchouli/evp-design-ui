@@ -9,7 +9,9 @@ import { range } from "@/lib/utils/num.util";
 const Demo: React.FC = () => {
   return (
     <>
-      <Circle items={range(1, 12)} width={300} />
+      <Circle items={range(1, 12)} width={300}>
+        12 Items
+      </Circle>
     </>
   );
 };
