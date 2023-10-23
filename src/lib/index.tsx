@@ -417,3 +417,10 @@ export {
   default as Circle,
   type EvpCircleProps,
 } from './evp-circle';
+
+
+export {
+  default as EvpDroplet,
+  default as Droplet,
+  type EvpDropletProps,
+} from './evp-droplet';

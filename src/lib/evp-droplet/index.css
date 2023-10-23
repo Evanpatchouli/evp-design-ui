@@ -1,0 +1,113 @@
+.evp-droplet {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+  /* border: 1px solid black; */
+  box-shadow: inset 10px 20px 30px rgba(0, 0, 0, 0.5), 10px 10px 20px rgba(0, 0, 0, 0.3),
+    15px 15px 30px rgba(0, 0, 0, 0.05), inset -10px -20px 30px rgba(255, 255, 255, 0.8);
+
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  animation: evp-animation__droplet-wave 10s cubic-bezier(0.42, 0, 0.58, 1) infinite alternate;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &::selection {
+    background: none !important;
+  }
+}
+
+@keyframes evp-animation__droplet-wave {
+  0% {
+    border-radius: var(--border-radius);
+  }
+  25% {
+    border-radius: 88% 62% 89% 71% / 72% 86% 84% 88%;
+  }
+  50% {
+    border-radius: 38% 42% 39% 41% / 42% 56% 34% 48%;
+  }
+  75% {
+    border-radius: 88% 82% 79% 71% / 72% 86% 84% 78%;
+  }
+  100% {
+    border-radius: var(--border-radius);
+  }
+}
+
+/* .evp-droplet::before {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 46% 54% 36% 64% / 46% 43% 57% 54%;
+  animation: evp-animation__droplet-highlight 2s ease-in infinite alternate;
+  content: "";
+}
+
+.evp-droplet::after {
+  position: absolute;
+  top: 25%;
+  left: 30%;
+  width: 6px;
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 46% 54% 36% 64% / 46% 43% 57% 54%;
+  content: "";
+} */
+
+@keyframes evp-animation__droplet-highlight {
+  25% {
+    border-radius: 58% 42% 59% 41% / 52% 56% 54% 48%;
+  }
+  50% {
+    border-radius: 46% 54% 40% 60% / 52% 33% 67% 48%;
+  }
+  75% {
+    border-radius: 60% 40% 43% 57% / 45% 51% 49% 55%;
+  }
+  100% {
+    border-radius: 65% 35% 71% 29% / 31% 60% 40% 69%;
+  }
+}
+
+@keyframes flicker {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.333;
+  }
+}
+
+.light-spot {
+  position: absolute;
+  aspect-ratio: 1;
+}
+
+.light-spot::before,
+.light-spot::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  animation: flicker 2s infinite alternate;
+  content: "";
+}
+
+.light-spot::before {
+  animation-duration: rand(0.1, 3) s;
+}
+
+.light-spot::after {
+  animation-duration: rand(0.1, 3) s;
+}

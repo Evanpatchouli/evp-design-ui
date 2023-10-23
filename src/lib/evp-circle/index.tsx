@@ -103,7 +103,9 @@ const EvpCircle: React.FC<EvpCircleProps> = (props) => {
         "--evp-circle-width": valParser(props.width),
         "--_angle": `${360 / items.length}deg`,
         "--_length": `${items.length}`,
-        "--evp-circle-item-size": `${valParser(props.itemSize ?? 200 / items.length + "%")}`,
+        "--evp-circle-item-size": `${
+          props.itemSize ? valParser(props.itemSize) : "calc(var(--evp-circle-width) / 2 * 3.14)"
+        }`,
       }}
     >
       {items.map((i, idx) => (
