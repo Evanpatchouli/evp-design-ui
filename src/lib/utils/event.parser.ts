@@ -1,23 +1,23 @@
-import React, { SyntheticEvent } from "react";
+import React, { DOMAttributes, SyntheticEvent } from "react";
 import EvpEventProps from "../props/evp.event.prop";
 import { PropsParserFunc } from "./typing";
 import { Indexable } from "../typings";
 
-// type preservedProp = 
+// type preservedProp =
 //   '$in' |
-//   '$on'| 
-//   '$focus'| 
-//   '$click'| 
-//   '$doubleClick'| 
-//   '$context'| 
-//   '$loose'| 
-//   '$scroll'| 
-//   '$off'| 
-//   '$out'| 
-//   '$esc'| 
-//   '$del'| 
-//   '$enter'| 
-//   '$space'| 
+//   '$on'|
+//   '$focus'|
+//   '$click'|
+//   '$doubleClick'|
+//   '$context'|
+//   '$loose'|
+//   '$scroll'|
+//   '$off'|
+//   '$out'|
+//   '$esc'|
+//   '$del'|
+//   '$enter'|
+//   '$space'|
 //   (string & {});
 
 // const preservedCursors: preservedProp[] = [
@@ -35,111 +35,112 @@ import { Indexable } from "../typings";
 
 export type EventMap = {
   /** Applied to `onMouseEnter` Event */
-  onMouseEnter?: React.MouseEventHandler,
+  onMouseEnter?: React.MouseEventHandler;
   /** Applied to `onMouseOver` Event */
-  onMouseOver?: React.MouseEventHandler,
+  onMouseOver?: React.MouseEventHandler;
   /** Applied to `onFocus` Event */
-  onFocus?: React.FocusEventHandler,
+  onFocus?: React.FocusEventHandler;
   /** Applied to `onMouseDown` Event */
-  onMouseDown?: React.MouseEventHandler,
+  onMouseDown?: React.MouseEventHandler;
   /** Applied to `onDoubleClick` Event */
-  onDoubleClick?: React.MouseEventHandler,
+  onDoubleClick?: React.MouseEventHandler;
   /** Applied to `onContextMenu` Event */
-  onContextMenu?: React.MouseEventHandler,
+  onContextMenu?: React.MouseEventHandler;
   /** Applied to `onMouseUp` Event */
-  onMouseUp?: React.MouseEventHandler,
+  onMouseUp?: React.MouseEventHandler;
   /** Applied to `onMouseMove` Event */
-  onMouseMove?: React.MouseEventHandler,
+  onMouseMove?: React.MouseEventHandler;
   /** Applied to `onScroll` Event */
-  onScroll?: React.UIEventHandler,
+  onScroll?: React.UIEventHandler;
   /** Applied to `onMouseOut` Event */
-  onMouseOut?: React.MouseEventHandler,
+  onMouseOut?: React.MouseEventHandler;
   /** Applied to `onMouseLeave` Event */
-  onMouseLeave?: React.MouseEventHandler,
+  onMouseLeave?: React.MouseEventHandler;
   /** Applied to `onKeyDown` Event */
-  onKeyDown?: React.KeyboardEventHandler
-}
+  onKeyDown?: React.KeyboardEventHandler;
+};
 
-export type EvpEventMap = Indexable<EventMap, Function|undefined>;
+export type EvpEventMap = Indexable<EventMap, Function | undefined>;
 
-const eventParser: PropsParserFunc = (props?: EvpEventProps):EvpEventMap => {
+const eventParser: PropsParserFunc = (props?: EvpEventProps): DOMAttributes<HTMLDivElement> => {
   if (!props) {
     return {};
   }
   const onKeyDown: React.KeyboardEventHandler = (e: React.KeyboardEvent) => {
     switch (e.key.toLowerCase()) {
-      case 'esc': {
-        if (props.$esc && typeof props.$esc === 'function') {
+      case "esc": {
+        if (props.$esc && typeof props.$esc === "function") {
           props.$esc(e);
         }
         break;
       }
-      case 'del': {
-        if (props.$del && typeof props.$del === 'function') {
+      case "del": {
+        if (props.$del && typeof props.$del === "function") {
           props.$del(e);
         }
         break;
       }
-      case 'backspace': {
-        if (props.$del && typeof props.$del === 'function') {
+      case "backspace": {
+        if (props.$del && typeof props.$del === "function") {
           props.$del(e);
         }
         break;
       }
-      case 'enter': {
-        if (props.$enter && typeof props.$enter === 'function') {
+      case "enter": {
+        if (props.$enter && typeof props.$enter === "function") {
           props.$enter(e);
         }
         break;
       }
-      case 'space': {
-        if (props.$space && typeof props.$space === 'function') {
+      case "space": {
+        if (props.$space && typeof props.$space === "function") {
           props.$space(e);
         }
         break;
       }
-      default: break;
+      default:
+        break;
     }
-  }
+  };
 
   function convert<T extends SyntheticEvent<any, Event>>(e?: React.EventHandler<T> | boolean) {
     if (!e) {
       return undefined;
     }
-    if (typeof e === 'boolean') {
+    if (typeof e === "boolean") {
       return undefined;
     }
-    if (typeof e === 'function') {
+    if (typeof e === "function") {
       return e;
     }
   }
 
   return {
-  /** Applied to `onMouseEnter` Event */
-  onMouseEnter: convert(props.$in),
-  /** Applied to `onMouseOver` Event */
-  onMouseOver: convert(props.$on),
-  /** Applied to `onFocus` Event */
-  onFocus: convert(props.$focus),
-  /** Applied to `onMouseDown` Event */
-  onMouseDown: convert(props.$click),
-  /** Applied to `onDoubleClick` Event */
-  onDoubleClick: convert(props.$doubleClick),
-  /** Applied to `onContextMenu` Event */
-  onContextMenu: convert(props.$context),
-  /** Applied to `onMouseUp` Event */
-  onMouseUp: convert(props.$loose),
-  /** Applied to `onMouseMove` Event */
-  onMouseMove: convert(props.$move),
-  /** Applied to `onScroll` Event */
-  onScroll: convert(props.$scroll),
-  /** Applied to `onMouseOut` Event */
-  onMouseOut: convert(props.$off),
-  /** Applied to `onMouseLeave` Event */
-  onMouseLeave: convert(props.$out),
-  /** Applied to `onKeyDown` Event */
-  onKeyDown: onKeyDown
-  }
-}
+    /** Applied to `onMouseEnter` Event */
+    onMouseEnter: convert(props.$in),
+    /** Applied to `onMouseOver` Event */
+    onMouseOver: convert(props.$on),
+    /** Applied to `onFocus` Event */
+    onFocus: convert(props.$focus),
+    /** Applied to `onMouseDown` Event */
+    onMouseDown: convert(props.$click),
+    /** Applied to `onDoubleClick` Event */
+    onDoubleClick: convert(props.$doubleClick),
+    /** Applied to `onContextMenu` Event */
+    onContextMenu: convert(props.$context),
+    /** Applied to `onMouseUp` Event */
+    onMouseUp: convert(props.$loose),
+    /** Applied to `onMouseMove` Event */
+    onMouseMove: convert(props.$move),
+    /** Applied to `onScroll` Event */
+    onScroll: convert(props.$scroll),
+    /** Applied to `onMouseOut` Event */
+    onMouseOut: convert(props.$off),
+    /** Applied to `onMouseLeave` Event */
+    onMouseLeave: convert(props.$out),
+    /** Applied to `onKeyDown` Event */
+    onKeyDown: onKeyDown,
+  };
+};
 
 export default eventParser;

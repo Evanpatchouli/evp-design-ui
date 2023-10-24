@@ -45,5 +45,6 @@ export default {
     "react-router",
     "react-router-dom",
     "moment",
+    "react-calendar",
   ],
 };

@@ -13,5 +13,9 @@ export declare function range(start: number, end: number, options?: RangeOptions
 declare const NumUtils: {
     toFixedStrictly: (num: number, precision?: number) => string;
     range: typeof range;
+    pickNum: (value?: string | number) => {
+        value: number;
+        unit: string;
+    };
 };
 export default NumUtils;

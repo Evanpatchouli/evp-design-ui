@@ -1,10 +1,11 @@
-
 import Md from "@/components/md";
 import Tsx from "@/components/tsx";
 import { EvpButton } from "evp-design-ui";
 import { useEffect } from "react";
 import Example from "./demos/circle/example";
 import CircleApi from "./apis/circle.api";
+import Schema from "./demos/circle/schema";
+import Main from "./demos/circle/main";
 
 export default function CircleView() {
   const next = { route: "", name: "" };
@@ -46,9 +47,20 @@ import { Circle } from 'evp-design-ui'
 
 Here are some examples about Circle.
 
+### schema
+
+Default, Circle will directly render your items. By configuring schema, you can customize it more.
 `}
       </Md>
-      <Example />
+      <Schema />
+      <Md>
+        {`
+### mainProps
+
+By configuring mainProps, you can customize the main element of Circle.
+`}
+      </Md>
+      <Main />
       <Md>
         {`
 ## Api
@@ -73,4 +85,3 @@ Here are some examples about Circle.
     </div>
   );
 }
-

@@ -68,3 +68,5 @@ export * as utils from './utils';
 export { reactive, listen, Reactify, ReactifyMemo, ReactiveCtx, useReactive, useReactiveRef, useReativeContext, createReactiveContext, type ReactiveCtxModel } from './utils/reactive';
 export { default as EvpList, default as List, type EvpListProps, } from './evp-list';
 export { default as EvpFrostedGlass, default as FrostedGlass, type EvpFrostedGlassProps, } from './evp-frosted-glass';
+export { default as EvpCircle, default as Circle, type EvpCircleProps, } from './evp-circle';
+export { default as EvpDroplet, default as Droplet, type EvpDropletProps, } from './evp-droplet';

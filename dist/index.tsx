@@ -410,3 +410,17 @@ export {
   default as FrostedGlass,
   type EvpFrostedGlassProps,
 } from './evp-frosted-glass';
+
+
+export {
+  default as EvpCircle,
+  default as Circle,
+  type EvpCircleProps,
+} from './evp-circle';
+
+
+export {
+  default as EvpDroplet,
+  default as Droplet,
+  type EvpDropletProps,
+} from './evp-droplet';

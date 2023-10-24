@@ -1,5 +1,6 @@
-import React, { createContext, useRef, useState, useEffect, useContext, Fragment, useMemo, forwardRef, useCallback, useImperativeHandle, useReducer } from 'react';
+import React, { createContext, useRef, useState, useEffect, useContext, Fragment, useReducer } from 'react';
 import { nanoid } from 'nanoid';
+import CalendarDate from 'react-calendar';
 import moment from 'moment';
 
 function _typeof$1(o) {
@@ -359,37 +360,37 @@ var eventParser$1 = function eventParser(props) {
   }
   var onKeyDown = function onKeyDown(e) {
     switch (e.key.toLowerCase()) {
-      case 'esc':
+      case "esc":
         {
-          if (props.$esc && typeof props.$esc === 'function') {
+          if (props.$esc && typeof props.$esc === "function") {
             props.$esc(e);
           }
           break;
         }
-      case 'del':
+      case "del":
         {
-          if (props.$del && typeof props.$del === 'function') {
+          if (props.$del && typeof props.$del === "function") {
             props.$del(e);
           }
           break;
         }
-      case 'backspace':
+      case "backspace":
         {
-          if (props.$del && typeof props.$del === 'function') {
+          if (props.$del && typeof props.$del === "function") {
             props.$del(e);
           }
           break;
         }
-      case 'enter':
+      case "enter":
         {
-          if (props.$enter && typeof props.$enter === 'function') {
+          if (props.$enter && typeof props.$enter === "function") {
             props.$enter(e);
           }
           break;
         }
-      case 'space':
+      case "space":
         {
-          if (props.$space && typeof props.$space === 'function') {
+          if (props.$space && typeof props.$space === "function") {
             props.$space(e);
           }
           break;
@@ -400,10 +401,10 @@ var eventParser$1 = function eventParser(props) {
     if (!e) {
       return undefined;
     }
-    if (typeof e === 'boolean') {
+    if (typeof e === "boolean") {
       return undefined;
     }
-    if (typeof e === 'function') {
+    if (typeof e === "function") {
       return e;
     }
   }
@@ -450,18 +451,18 @@ OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.
 ***************************************************************************** */
 
-var __assign$f = function() {
-    __assign$f = Object.assign || function __assign(t) {
+var __assign = function() {
+    __assign = Object.assign || function __assign(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
             s = arguments[i];
             for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
         }
         return t;
     };
-    return __assign$f.apply(this, arguments);
+    return __assign.apply(this, arguments);
 };
 
-function __rest$b(s, e) {
+function __rest(s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
         t[p] = s[p];
@@ -511,7 +512,7 @@ function __generator(thisArg, body) {
     }
 }
 
-function __spreadArray$4(to, from, pack) {
+function __spreadArray(to, from, pack) {
     if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
         if (ar || !(i in from)) {
             if (!ar) ar = Array.prototype.slice.call(from, 0, i);
@@ -616,7 +617,7 @@ function StylePropsParser(props) {
     weight: props.fontWeight
   };
   var cursor = cursorParser$1(props);
-  return __assign$f({
+  return __assign({
     cursor: cursor,
     color: props.color,
     backgroundColor: props.bgColor,
@@ -19592,7 +19593,7 @@ lodash.exports;
 
 var lodashExports = lodash.exports;
 
-function purifyProps$3(props) {
+function purifyProps$4(props) {
   var $props = lodashExports.cloneDeep(props);
   // @ts-ignore
   delete $props.id;
@@ -19621,14 +19622,14 @@ function EvpAnchor(props) {
       inline: (_d = props.inline) !== null && _d !== void 0 ? _d : "nearest"
     });
   };
-  var $props = purifyProps$3(props);
+  var $props = purifyProps$4(props);
   return jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, {
-    children: props.hash === true ? jsxRuntimeExports.jsx("a", __assign$f({
+    children: props.hash === true ? jsxRuntimeExports.jsx("a", __assign({
       href: "#".concat(props.id),
       className: "evp-anchor-a ".concat((_a = props.class) !== null && _a !== void 0 ? _a : "").trim()
     }, $props, {
       children: props.children
-    })) : jsxRuntimeExports.jsx("div", __assign$f({
+    })) : jsxRuntimeExports.jsx("div", __assign({
       className: "evp-anchor-div ".concat((_b = props.class) !== null && _b !== void 0 ? _b : "").trim(),
       onClick: function onClick(e) {
         var _a;
@@ -19728,16 +19729,16 @@ function WaveLoading(props) {
     color = props.color,
     style = props.style,
     size = props.size,
-    rest = __rest$b(props, ["className", "color", "style", "size"]);
-  return jsxRuntimeExports.jsx("div", __assign$f({
+    rest = __rest(props, ["className", "color", "style", "size"]);
+  return jsxRuntimeExports.jsx("div", __assign({
     className: classNames("evp-loading", className),
-    style: __assign$f(__assign$f({}, style), {
+    style: __assign(__assign({}, style), {
       fontSize: size ? typeof size === "number" ? "".concat(size, "px") : size : undefined,
       // @ts-ignore
       "--loading-color": color !== null && color !== void 0 ? color : "#3cefff"
     })
   }, rest, {
-    children: jsxRuntimeExports.jsxs("div", __assign$f({
+    children: jsxRuntimeExports.jsxs("div", __assign({
       className: "wave"
     }, {
       children: [jsxRuntimeExports.jsx("span", {}), jsxRuntimeExports.jsx("span", {}), jsxRuntimeExports.jsx("span", {}), jsxRuntimeExports.jsx("span", {})]
@@ -19749,10 +19750,10 @@ function BreatheSpin(props) {
     color = props.color,
     style = props.style,
     size = props.size,
-    rest = __rest$b(props, ["className", "color", "style", "size"]);
-  return jsxRuntimeExports.jsx("div", __assign$f({
+    rest = __rest(props, ["className", "color", "style", "size"]);
+  return jsxRuntimeExports.jsx("div", __assign({
     className: classNames("evp-loading", className),
-    style: __assign$f(__assign$f({}, style), {
+    style: __assign(__assign({}, style), {
       fontSize: size ? typeof size === "number" ? "".concat(size, "px") : size : undefined,
       // @ts-ignore
       "--loading-color": color !== null && color !== void 0 ? color : "#3cefff"
@@ -19768,16 +19769,16 @@ function Grid(props) {
     color = props.color,
     style = props.style,
     size = props.size,
-    rest = __rest$b(props, ["className", "color", "style", "size"]);
-  return jsxRuntimeExports.jsx("div", __assign$f({
+    rest = __rest(props, ["className", "color", "style", "size"]);
+  return jsxRuntimeExports.jsx("div", __assign({
     className: classNames("evp-loading", className),
-    style: __assign$f(__assign$f({}, style), {
+    style: __assign(__assign({}, style), {
       fontSize: size ? typeof size === "number" ? "".concat(size, "px") : size : undefined,
       // @ts-ignore
       "--loading-color": color !== null && color !== void 0 ? color : "#3cefff"
     })
   }, rest, {
-    children: jsxRuntimeExports.jsxs("div", __assign$f({
+    children: jsxRuntimeExports.jsxs("div", __assign({
       className: "grid"
     }, {
       children: [jsxRuntimeExports.jsx("div", {}), jsxRuntimeExports.jsx("div", {}), jsxRuntimeExports.jsx("div", {}), jsxRuntimeExports.jsx("div", {}), jsxRuntimeExports.jsx("div", {}), jsxRuntimeExports.jsx("div", {}), jsxRuntimeExports.jsx("div", {}), jsxRuntimeExports.jsx("div", {}), jsxRuntimeExports.jsx("div", {})]
@@ -19789,10 +19790,10 @@ function Spin(props) {
     color = props.color,
     style = props.style,
     size = props.size,
-    rest = __rest$b(props, ["className", "color", "style", "size"]);
-  return jsxRuntimeExports.jsx("div", __assign$f({
+    rest = __rest(props, ["className", "color", "style", "size"]);
+  return jsxRuntimeExports.jsx("div", __assign({
     className: classNames("evp-loading", className),
-    style: __assign$f(__assign$f({}, style), {
+    style: __assign(__assign({}, style), {
       fontSize: size ? typeof size === "number" ? "".concat(size, "px") : size : undefined,
       // @ts-ignore
       "--loading-color": color !== null && color !== void 0 ? color : "#3cefff"
@@ -19808,10 +19809,10 @@ function Spin2(props) {
     color = props.color,
     style = props.style,
     size = props.size,
-    rest = __rest$b(props, ["className", "color", "style", "size"]);
-  return jsxRuntimeExports.jsx("div", __assign$f({
+    rest = __rest(props, ["className", "color", "style", "size"]);
+  return jsxRuntimeExports.jsx("div", __assign({
     className: classNames("evp-loading", className),
-    style: __assign$f(__assign$f({}, style), {
+    style: __assign(__assign({}, style), {
       fontSize: size ? typeof size === "number" ? "".concat(size, "px") : size : undefined,
       // @ts-ignore
       "--loading-color": color !== null && color !== void 0 ? color : "#3cefff"
@@ -19827,16 +19828,16 @@ function SpinDot(props) {
     color = props.color,
     style = props.style,
     size = props.size,
-    rest = __rest$b(props, ["className", "color", "style", "size"]);
-  return jsxRuntimeExports.jsx("div", __assign$f({
+    rest = __rest(props, ["className", "color", "style", "size"]);
+  return jsxRuntimeExports.jsx("div", __assign({
     className: classNames("evp-loading", className),
-    style: __assign$f(__assign$f({}, style), {
+    style: __assign(__assign({}, style), {
       fontSize: size ? typeof size === "number" ? "".concat(size, "px") : size : undefined,
       // @ts-ignore
       "--loading-color": color !== null && color !== void 0 ? color : "#3cefff"
     })
   }, rest, {
-    children: jsxRuntimeExports.jsxs("div", __assign$f({
+    children: jsxRuntimeExports.jsxs("div", __assign({
       className: "spin-dot"
     }, {
       children: [jsxRuntimeExports.jsx("div", {
@@ -19872,16 +19873,16 @@ function Chase(props) {
     color = props.color,
     style = props.style,
     size = props.size,
-    rest = __rest$b(props, ["className", "color", "style", "size"]);
-  return jsxRuntimeExports.jsx("div", __assign$f({
+    rest = __rest(props, ["className", "color", "style", "size"]);
+  return jsxRuntimeExports.jsx("div", __assign({
     className: classNames("evp-loading", className),
-    style: __assign$f(__assign$f({}, style), {
+    style: __assign(__assign({}, style), {
       fontSize: size ? typeof size === "number" ? "".concat(size, "px") : size : undefined,
       // @ts-ignore
       "--loading-color": color !== null && color !== void 0 ? color : "#3cefff"
     })
   }, rest, {
-    children: jsxRuntimeExports.jsxs("div", __assign$f({
+    children: jsxRuntimeExports.jsxs("div", __assign({
       className: "sk-chase"
     }, {
       children: [jsxRuntimeExports.jsx("div", {
@@ -19906,10 +19907,10 @@ function Text(props) {
     color = props.color,
     style = props.style,
     size = props.size,
-    rest = __rest$b(props, ["weight", "className", "color", "style", "size"]);
-  return jsxRuntimeExports.jsx("div", __assign$f({
+    rest = __rest(props, ["weight", "className", "color", "style", "size"]);
+  return jsxRuntimeExports.jsx("div", __assign({
     className: classNames("evp-loading", className),
-    style: __assign$f(__assign$f({}, style), {
+    style: __assign(__assign({}, style), {
       fontSize: size ? typeof size === "number" ? "".concat(size, "px") : size : undefined,
       // @ts-ignore
       "--loading-color": color !== null && color !== void 0 ? color : "#3cefff"
@@ -19951,7 +19952,7 @@ var EvpButton = function EvpButton(props) {
   var _s = React.useState({}),
     rippleMaskConfig = _s[0],
     setRippleMaskConfig = _s[1];
-  return jsxRuntimeExports.jsx("button", __assign$f({
+  return jsxRuntimeExports.jsx("button", __assign({
     // `evp evp-button ${theme} ${shadow} ${size} ${plain} ${shape} ${$class} ${
     //   props.loading ? "evp-disabled" : ""
     // }`.trim()
@@ -19972,7 +19973,7 @@ var EvpButton = function EvpButton(props) {
         setRippleMaskConfig(newRippleMaskConfig);
       }
     },
-    style: __assign$f(__assign$f({}, $props.style), {
+    style: __assign(__assign({}, $props.style), {
       // @ts-ignore
       "--ripple-x": "".concat((_j = rippleMaskConfig.offsetX) !== null && _j !== void 0 ? _j : 0, "px"),
       "--ripple-y": "".concat((_k = rippleMaskConfig.offsetY) !== null && _k !== void 0 ? _k : 0, "px"),
@@ -19981,7 +19982,7 @@ var EvpButton = function EvpButton(props) {
     }),
     type: (_o = props.type) !== null && _o !== void 0 ? _o : "button"
   }, {
-    children: jsxRuntimeExports.jsxs("div", __assign$f({
+    children: jsxRuntimeExports.jsxs("div", __assign({
       className: "evp-button-content"
     }, {
       children: [jsxRuntimeExports.jsx(EvpLoading.Text, {
@@ -19999,11 +20000,11 @@ function EvpDom($props) {
   var props = AllParser($props);
   // console.log('EvpDom.props after parsed:', props);
   var event = props.event;
-  return jsxRuntimeExports.jsxs("div", __assign$f({
+  return jsxRuntimeExports.jsxs("div", __assign({
     id: props.id,
     className: props.class,
     hidden: props.hidden,
-    style: __assign$f({
+    style: __assign({
       position: "relative"
     }, props.style),
     onMouseEnter: event.onMouseEnter,
@@ -20019,18 +20020,18 @@ function EvpDom($props) {
     onMouseLeave: event.onMouseLeave,
     onKeyDown: event.onKeyDown
   }, {
-    children: [$props.children, jsxRuntimeExports.jsx("div", __assign$f({
+    children: [$props.children, jsxRuntimeExports.jsx("div", __assign({
       className: "dom-loading__modal",
       hidden: !$props.loading === true
     }, {
       children: jsxRuntimeExports.jsx(EvpLoading.SpinDot, {
         className: "dom-loading__elem"
       })
-    })), jsxRuntimeExports.jsx("div", __assign$f({
+    })), jsxRuntimeExports.jsx("div", __assign({
       className: "dom__modal",
       hidden: !$props.modal === true
     }, {
-      children: jsxRuntimeExports.jsx("div", __assign$f({
+      children: jsxRuntimeExports.jsx("div", __assign({
         className: "dom__modal__content"
       }, {
         children: $props.modalContent
@@ -20054,7 +20055,7 @@ function EvpCard(props) {
     left: "column",
     right: "column"
   };
-  return jsxRuntimeExports.jsxs(EvpDom, __assign$f({}, __assign$f(__assign$f({
+  return jsxRuntimeExports.jsxs(EvpDom, __assign({}, __assign(__assign({
     style: {
       flexDirection: flexDirectionMap[toolBarPosition]
     },
@@ -20062,14 +20063,14 @@ function EvpCard(props) {
   }, props), {
     class: "evp evp-card evp-base-shadow ".concat(props.class, " ?? \"\"").trim()
   }), {
-    children: [jsxRuntimeExports.jsx("div", __assign$f({
+    children: [jsxRuntimeExports.jsx("div", __assign({
       className: "evp-card-content ".concat(props.contentClass).trim(),
-      style: __assign$f({}, props.contentStyle)
+      style: __assign({}, props.contentStyle)
     }, {
       children: props.children
-    })), jsxRuntimeExports.jsx("div", __assign$f({
+    })), jsxRuntimeExports.jsx("div", __assign({
       className: "evp-card-toolbar ".concat(props.toolBarClass).trim(),
-      style: __assign$f({
+      style: __assign({
         borderTop: props.toolBar ? toolBarPosition === "bottom" ? "1px solid rgba(0,0,0,0.05)" : void 0 : void 0,
         borderBottom: props.toolBar ? toolBarPosition === "top" ? "1px solid rgba(0,0,0,0.05)" : void 0 : void 0,
         borderLeft: props.toolBar ? toolBarPosition === "right" ? "1px solid rgba(0,0,0,0.05)" : void 0 : void 0,
@@ -20099,9 +20100,9 @@ function EvpCardV2(props) {
       props.footerProps;
       props.loading;
       var cardLoading = props.cardLoading,
-      rest = __rest$b(props, ["class", "children", "style", "contentStyle", "contentClass", "lefter", "lefterProps", "righter", "righterProps", "header", "headerProps", "footer", "footerProps", "loading", "cardLoading"]);
-    return __assign$f(__assign$f({
-      style: __assign$f({
+      rest = __rest(props, ["class", "children", "style", "contentStyle", "contentClass", "lefter", "lefterProps", "righter", "righterProps", "header", "headerProps", "footer", "footerProps", "loading", "cardLoading"]);
+    return __assign(__assign({
+      style: __assign({
         flexDirection: "row"
       }, style),
       loading: cardLoading
@@ -20111,46 +20112,46 @@ function EvpCardV2(props) {
   };
   var lefterProps = function lefterProps() {
     var _a, _b;
-    return __assign$f(__assign$f({}, (_a = props.lefterProps) !== null && _a !== void 0 ? _a : {}), {
+    return __assign(__assign({}, (_a = props.lefterProps) !== null && _a !== void 0 ? _a : {}), {
       class: classNames("evp-card-lefter", (_b = props.lefterProps) === null || _b === void 0 ? void 0 : _b.class)
     });
   };
   var righterProps = function righterProps() {
     var _a, _b;
-    return __assign$f(__assign$f({}, (_a = props.righterProps) !== null && _a !== void 0 ? _a : {}), {
+    return __assign(__assign({}, (_a = props.righterProps) !== null && _a !== void 0 ? _a : {}), {
       class: classNames("evp-card-righter", (_b = props.righterProps) === null || _b === void 0 ? void 0 : _b.class)
     });
   };
   var headerProps = function headerProps() {
     var _a, _b;
-    return __assign$f(__assign$f({}, (_a = props.headerProps) !== null && _a !== void 0 ? _a : {}), {
+    return __assign(__assign({}, (_a = props.headerProps) !== null && _a !== void 0 ? _a : {}), {
       class: classNames("evp-card-header", (_b = props.headerProps) === null || _b === void 0 ? void 0 : _b.class)
     });
   };
   var footerProps = function footerProps() {
     var _a, _b;
-    return __assign$f(__assign$f({}, (_a = props.footerProps) !== null && _a !== void 0 ? _a : {}), {
+    return __assign(__assign({}, (_a = props.footerProps) !== null && _a !== void 0 ? _a : {}), {
       class: classNames("evp-card-footer", (_b = props.footerProps) === null || _b === void 0 ? void 0 : _b.class)
     });
   };
-  return jsxRuntimeExports.jsxs(EvpDom, __assign$f({}, containerProps(), {
-    children: [props.lefter !== undefined ? jsxRuntimeExports.jsx(EvpDom, __assign$f({}, lefterProps(), {
+  return jsxRuntimeExports.jsxs(EvpDom, __assign({}, containerProps(), {
+    children: [props.lefter !== undefined ? jsxRuntimeExports.jsx(EvpDom, __assign({}, lefterProps(), {
       children: props.lefter
-    })) : void 0, jsxRuntimeExports.jsxs("div", __assign$f({
+    })) : void 0, jsxRuntimeExports.jsxs("div", __assign({
       className: "evp-card-main"
     }, {
-      children: [props.header !== undefined ? jsxRuntimeExports.jsx(EvpDom, __assign$f({}, headerProps(), {
+      children: [props.header !== undefined ? jsxRuntimeExports.jsx(EvpDom, __assign({}, headerProps(), {
         children: props.header
-      })) : void 0, jsxRuntimeExports.jsx(EvpDom, __assign$f({
+      })) : void 0, jsxRuntimeExports.jsx(EvpDom, __assign({
         class: "evp-card-content ".concat(props.contentClass).trim(),
-        style: __assign$f({}, props.contentStyle),
+        style: __assign({}, props.contentStyle),
         loading: props.loading
       }, {
         children: props.children
-      })), props.footer !== undefined ? jsxRuntimeExports.jsx(EvpDom, __assign$f({}, footerProps(), {
+      })), props.footer !== undefined ? jsxRuntimeExports.jsx(EvpDom, __assign({}, footerProps(), {
         children: props.footer
       })) : void 0]
-    })), props.righter !== undefined ? jsxRuntimeExports.jsx(EvpDom, __assign$f({}, righterProps(), {
+    })), props.righter !== undefined ? jsxRuntimeExports.jsx(EvpDom, __assign({}, righterProps(), {
       children: props.righter
     })) : void 0]
   }));
@@ -20812,7 +20813,7 @@ var supportedLanguages = ['abap', 'abnf', 'actionscript', 'ada', 'agda', 'al', '
 
 var immutable = extend;
 
-var hasOwnProperty$1 = Object.prototype.hasOwnProperty;
+var hasOwnProperty = Object.prototype.hasOwnProperty;
 
 function extend() {
     var target = {};
@@ -20821,7 +20822,7 @@ function extend() {
         var source = arguments[i];
 
         for (var key in source) {
-            if (hasOwnProperty$1.call(source, key)) {
+            if (hasOwnProperty.call(source, key)) {
                 target[key] = source[key];
             }
         }
@@ -22858,7 +22859,7 @@ var bepsi = "϶";
 var bernou = "ℬ";
 var beta = "β";
 var beth = "ℶ";
-var between$1 = "≬";
+var between = "≬";
 var bfr = "𝔟";
 var bigcap = "⋂";
 var bigcirc = "◯";
@@ -25080,7 +25081,7 @@ var require$$0 = {
 	bernou: bernou,
 	beta: beta,
 	beth: beth,
-	between: between$1,
+	between: between,
 	bfr: bfr,
 	bigcap: bigcap,
 	bigcirc: bigcirc,
@@ -30987,172 +30988,181 @@ function autoit(Prism) {
   };
 }
 
-var avisynth_1 = avisynth;
-avisynth.displayName = 'avisynth';
-avisynth.aliases = ['avs'];
-function avisynth(Prism) {
+var avisynth_1;
+var hasRequiredAvisynth;
+
+function requireAvisynth () {
+	if (hasRequiredAvisynth) return avisynth_1;
+	hasRequiredAvisynth = 1;
+
+	avisynth_1 = avisynth;
+	avisynth.displayName = 'avisynth';
+	avisynth.aliases = ['avs'];
+	function avisynth(Prism) {
 (function (Prism) {
-    function replace(pattern, replacements) {
-      return pattern.replace(/<<(\d+)>>/g, function (m, index) {
-        return replacements[+index]
-      })
-    }
-    function re(pattern, replacements, flags) {
-      return RegExp(replace(pattern, replacements), flags || '')
-    }
-    var types = /bool|clip|float|int|string|val/.source;
-    var internals = [
-      // bools
-      /is(?:bool|clip|float|int|string)|defined|(?:(?:internal)?function|var)?exists?/
-        .source, // control
-      /apply|assert|default|eval|import|nop|select|undefined/.source, // global
-      /opt_(?:allowfloataudio|avipadscanlines|dwchannelmask|enable_(?:b64a|planartopackedrgb|v210|y3_10_10|y3_10_16)|usewaveextensible|vdubplanarhack)|set(?:cachemode|maxcpu|memorymax|planarlegacyalignment|workingdir)/
-        .source, // conv
-      /hex(?:value)?|value/.source, // numeric
-      /abs|ceil|continued(?:denominator|numerator)?|exp|floor|fmod|frac|log(?:10)?|max|min|muldiv|pi|pow|rand|round|sign|spline|sqrt/
-        .source, // trig
-      /a?sinh?|a?cosh?|a?tan[2h]?/.source, // bit
-      /(?:bit(?:and|not|x?or|[lr]?shift[aslu]?|sh[lr]|sa[lr]|[lr]rotatel?|ro[rl]|te?st|set(?:count)?|cl(?:ea)?r|ch(?:an)?ge?))/
-        .source, // runtime
-      /average(?:[bgr]|chroma[uv]|luma)|(?:[rgb]|chroma[uv]|luma|rgb|[yuv](?=difference(?:fromprevious|tonext)))difference(?:fromprevious|tonext)?|[yuvrgb]plane(?:median|min|max|minmaxdifference)/
-        .source, // script
-      /getprocessinfo|logmsg|script(?:dir(?:utf8)?|file(?:utf8)?|name(?:utf8)?)|setlogparams/
-        .source, // string
-      /chr|(?:fill|find|left|mid|replace|rev|right)str|format|[lu]case|ord|str(?:cmpi?|fromutf8|len|toutf8)|time|trim(?:all|left|right)/
-        .source, // version
-      /isversionorgreater|version(?:number|string)/.source, // helper
-      /buildpixeltype|colorspacenametopixeltype/.source, // avsplus
-      /addautoloaddir|on(?:cpu|cuda)|prefetch|setfiltermtmode/.source
-    ].join('|');
-    var properties = [
-      // content
-      /has(?:audio|video)/.source, // resolution
-      /height|width/.source, // framerate
-      /frame(?:count|rate)|framerate(?:denominator|numerator)/.source, // interlacing
-      /getparity|is(?:field|frame)based/.source, // color format
-      /bitspercomponent|componentsize|hasalpha|is(?:planar(?:rgba?)?|interleaved|rgb(?:24|32|48|64)?|y(?:8|u(?:va?|y2))?|yv(?:12|16|24|411)|420|422|444|packedrgb)|numcomponents|pixeltype/
-        .source, // audio
-      /audio(?:bits|channels|duration|length(?:[fs]|hi|lo)?|rate)|isaudio(?:float|int)/
-        .source
-    ].join('|');
-    var filters = [
-      // source
-      /avi(?:file)?source|directshowsource|image(?:reader|source|sourceanim)|opendmlsource|segmented(?:avisource|directshowsource)|wavsource/
-        .source, // color
-      /coloryuv|convertbacktoyuy2|convertto(?:RGB(?:24|32|48|64)|(?:planar)?RGBA?|Y8?|YV(?:12|16|24|411)|YUVA?(?:411|420|422|444)|YUY2)|fixluminance|gr[ae]yscale|invert|levels|limiter|mergea?rgb|merge(?:chroma|luma)|rgbadjust|show(?:alpha|blue|green|red)|swapuv|tweak|[uv]toy8?|ytouv/
-        .source, // overlay
-      /(?:colorkey|reset)mask|layer|mask(?:hs)?|merge|overlay|subtract/.source, // geometry
-      /addborders|(?:bicubic|bilinear|blackman|gauss|lanczos4|lanczos|point|sinc|spline(?:16|36|64))resize|crop(?:bottom)?|flip(?:horizontal|vertical)|(?:horizontal|vertical)?reduceby2|letterbox|skewrows|turn(?:180|left|right)/
-        .source, // pixel
-      /blur|fixbrokenchromaupsampling|generalconvolution|(?:spatial|temporal)soften|sharpen/
-        .source, // timeline
-      /trim|(?:un)?alignedsplice|(?:assume|assumescaled|change|convert)FPS|(?:delete|duplicate)frame|dissolve|fade(?:in|io|out)[02]?|freezeframe|interleave|loop|reverse|select(?:even|odd|(?:range)?every)/
-        .source, // interlace
-      /assume[bt]ff|assume(?:field|frame)based|bob|complementparity|doubleweave|peculiarblend|pulldown|separate(?:columns|fields|rows)|swapfields|weave(?:columns|rows)?/
-        .source, // audio
-      /amplify(?:db)?|assumesamplerate|audiodub(?:ex)?|audiotrim|convertaudioto(?:(?:8|16|24|32)bit|float)|converttomono|delayaudio|ensurevbrmp3sync|get(?:left|right)?channel|kill(?:audio|video)|mergechannels|mixaudio|monotostereo|normalize|resampleaudio|ssrc|supereq|timestretch/
-        .source, // conditional
-      /animate|applyrange|conditional(?:filter|reader|select)|frameevaluate|scriptclip|tcp(?:server|source)|writefile(?:end|if|start)?/
-        .source, // export
-      /imagewriter/.source, // debug
-      /blackness|blankclip|colorbars(?:hd)?|compare|dumpfiltergraph|echo|histogram|info|messageclip|preroll|setgraphanalysis|show(?:framenumber|smpte|time)|showfiveversions|stack(?:horizontal|vertical)|subtitle|tone|version/
-        .source
-    ].join('|');
-    var allinternals = [internals, properties, filters].join('|');
-    Prism.languages.avisynth = {
-      comment: [
-        {
-          // Matches [* *] nestable block comments, but only supports 1 level of nested comments
-          // /\[\*(?:[^\[*]|\[(?!\*)|\*(?!\])|<self>)*\*\]/
-          pattern:
-            /(^|[^\\])\[\*(?:[^\[*]|\[(?!\*)|\*(?!\])|\[\*(?:[^\[*]|\[(?!\*)|\*(?!\]))*\*\])*\*\]/,
-          lookbehind: true,
-          greedy: true
-        },
-        {
-          // Matches /* */ block comments
-          pattern: /(^|[^\\])\/\*[\s\S]*?(?:\*\/|$)/,
-          lookbehind: true,
-          greedy: true
-        },
-        {
-          // Matches # comments
-          pattern: /(^|[^\\$])#.*/,
-          lookbehind: true,
-          greedy: true
-        }
-      ],
-      // Handle before strings because optional arguments are surrounded by double quotes
-      argument: {
-        pattern: re(/\b(?:<<0>>)\s+("?)\w+\1/.source, [types], 'i'),
-        inside: {
-          keyword: /^\w+/
-        }
-      },
-      // Optional argument assignment
-      'argument-label': {
-        pattern: /([,(][\s\\]*)\w+\s*=(?!=)/,
-        lookbehind: true,
-        inside: {
-          'argument-name': {
-            pattern: /^\w+/,
-            alias: 'punctuation'
-          },
-          punctuation: /=$/
-        }
-      },
-      string: [
-        {
-          // triple double-quoted
-          pattern: /"""[\s\S]*?"""/,
-          greedy: true
-        },
-        {
-          // single double-quoted
-          pattern: /"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"/,
-          greedy: true,
-          inside: {
-            constant: {
-              // These *are* case-sensitive!
-              pattern:
-                /\b(?:DEFAULT_MT_MODE|(?:MAINSCRIPT|PROGRAM|SCRIPT)DIR|(?:MACHINE|USER)_(?:CLASSIC|PLUS)_PLUGINS)\b/
-            }
-          }
-        }
-      ],
-      // The special "last" variable that takes the value of the last implicitly returned clip
-      variable: /\b(?:last)\b/i,
-      boolean: /\b(?:false|no|true|yes)\b/i,
-      keyword:
-        /\b(?:catch|else|for|function|global|if|return|try|while|__END__)\b/i,
-      constant: /\bMT_(?:MULTI_INSTANCE|NICE_FILTER|SERIALIZED|SPECIAL_MT)\b/,
-      // AviSynth's internal functions, filters, and properties
-      'builtin-function': {
-        pattern: re(/\b(?:<<0>>)\b/.source, [allinternals], 'i'),
-        alias: 'function'
-      },
-      'type-cast': {
-        pattern: re(/\b(?:<<0>>)(?=\s*\()/.source, [types], 'i'),
-        alias: 'keyword'
-      },
-      // External/user-defined filters
-      function: {
-        pattern: /\b[a-z_]\w*(?=\s*\()|(\.)[a-z_]\w*\b/i,
-        lookbehind: true
-      },
-      // Matches a \ as the first or last character on a line
-      'line-continuation': {
-        pattern: /(^[ \t]*)\\|\\(?=[ \t]*$)/m,
-        lookbehind: true,
-        alias: 'punctuation'
-      },
-      number:
-        /\B\$(?:[\da-f]{6}|[\da-f]{8})\b|(?:(?:\b|\B-)\d+(?:\.\d*)?\b|\B\.\d+\b)/i,
-      operator: /\+\+?|[!=<>]=?|&&|\|\||[?:*/%-]/,
-      punctuation: /[{}\[\]();,.]/
-    };
-    Prism.languages.avs = Prism.languages.avisynth;
-  })(Prism);
+	    function replace(pattern, replacements) {
+	      return pattern.replace(/<<(\d+)>>/g, function (m, index) {
+	        return replacements[+index]
+	      })
+	    }
+	    function re(pattern, replacements, flags) {
+	      return RegExp(replace(pattern, replacements), flags || '')
+	    }
+	    var types = /bool|clip|float|int|string|val/.source;
+	    var internals = [
+	      // bools
+	      /is(?:bool|clip|float|int|string)|defined|(?:(?:internal)?function|var)?exists?/
+	        .source, // control
+	      /apply|assert|default|eval|import|nop|select|undefined/.source, // global
+	      /opt_(?:allowfloataudio|avipadscanlines|dwchannelmask|enable_(?:b64a|planartopackedrgb|v210|y3_10_10|y3_10_16)|usewaveextensible|vdubplanarhack)|set(?:cachemode|maxcpu|memorymax|planarlegacyalignment|workingdir)/
+	        .source, // conv
+	      /hex(?:value)?|value/.source, // numeric
+	      /abs|ceil|continued(?:denominator|numerator)?|exp|floor|fmod|frac|log(?:10)?|max|min|muldiv|pi|pow|rand|round|sign|spline|sqrt/
+	        .source, // trig
+	      /a?sinh?|a?cosh?|a?tan[2h]?/.source, // bit
+	      /(?:bit(?:and|not|x?or|[lr]?shift[aslu]?|sh[lr]|sa[lr]|[lr]rotatel?|ro[rl]|te?st|set(?:count)?|cl(?:ea)?r|ch(?:an)?ge?))/
+	        .source, // runtime
+	      /average(?:[bgr]|chroma[uv]|luma)|(?:[rgb]|chroma[uv]|luma|rgb|[yuv](?=difference(?:fromprevious|tonext)))difference(?:fromprevious|tonext)?|[yuvrgb]plane(?:median|min|max|minmaxdifference)/
+	        .source, // script
+	      /getprocessinfo|logmsg|script(?:dir(?:utf8)?|file(?:utf8)?|name(?:utf8)?)|setlogparams/
+	        .source, // string
+	      /chr|(?:fill|find|left|mid|replace|rev|right)str|format|[lu]case|ord|str(?:cmpi?|fromutf8|len|toutf8)|time|trim(?:all|left|right)/
+	        .source, // version
+	      /isversionorgreater|version(?:number|string)/.source, // helper
+	      /buildpixeltype|colorspacenametopixeltype/.source, // avsplus
+	      /addautoloaddir|on(?:cpu|cuda)|prefetch|setfiltermtmode/.source
+	    ].join('|');
+	    var properties = [
+	      // content
+	      /has(?:audio|video)/.source, // resolution
+	      /height|width/.source, // framerate
+	      /frame(?:count|rate)|framerate(?:denominator|numerator)/.source, // interlacing
+	      /getparity|is(?:field|frame)based/.source, // color format
+	      /bitspercomponent|componentsize|hasalpha|is(?:planar(?:rgba?)?|interleaved|rgb(?:24|32|48|64)?|y(?:8|u(?:va?|y2))?|yv(?:12|16|24|411)|420|422|444|packedrgb)|numcomponents|pixeltype/
+	        .source, // audio
+	      /audio(?:bits|channels|duration|length(?:[fs]|hi|lo)?|rate)|isaudio(?:float|int)/
+	        .source
+	    ].join('|');
+	    var filters = [
+	      // source
+	      /avi(?:file)?source|directshowsource|image(?:reader|source|sourceanim)|opendmlsource|segmented(?:avisource|directshowsource)|wavsource/
+	        .source, // color
+	      /coloryuv|convertbacktoyuy2|convertto(?:RGB(?:24|32|48|64)|(?:planar)?RGBA?|Y8?|YV(?:12|16|24|411)|YUVA?(?:411|420|422|444)|YUY2)|fixluminance|gr[ae]yscale|invert|levels|limiter|mergea?rgb|merge(?:chroma|luma)|rgbadjust|show(?:alpha|blue|green|red)|swapuv|tweak|[uv]toy8?|ytouv/
+	        .source, // overlay
+	      /(?:colorkey|reset)mask|layer|mask(?:hs)?|merge|overlay|subtract/.source, // geometry
+	      /addborders|(?:bicubic|bilinear|blackman|gauss|lanczos4|lanczos|point|sinc|spline(?:16|36|64))resize|crop(?:bottom)?|flip(?:horizontal|vertical)|(?:horizontal|vertical)?reduceby2|letterbox|skewrows|turn(?:180|left|right)/
+	        .source, // pixel
+	      /blur|fixbrokenchromaupsampling|generalconvolution|(?:spatial|temporal)soften|sharpen/
+	        .source, // timeline
+	      /trim|(?:un)?alignedsplice|(?:assume|assumescaled|change|convert)FPS|(?:delete|duplicate)frame|dissolve|fade(?:in|io|out)[02]?|freezeframe|interleave|loop|reverse|select(?:even|odd|(?:range)?every)/
+	        .source, // interlace
+	      /assume[bt]ff|assume(?:field|frame)based|bob|complementparity|doubleweave|peculiarblend|pulldown|separate(?:columns|fields|rows)|swapfields|weave(?:columns|rows)?/
+	        .source, // audio
+	      /amplify(?:db)?|assumesamplerate|audiodub(?:ex)?|audiotrim|convertaudioto(?:(?:8|16|24|32)bit|float)|converttomono|delayaudio|ensurevbrmp3sync|get(?:left|right)?channel|kill(?:audio|video)|mergechannels|mixaudio|monotostereo|normalize|resampleaudio|ssrc|supereq|timestretch/
+	        .source, // conditional
+	      /animate|applyrange|conditional(?:filter|reader|select)|frameevaluate|scriptclip|tcp(?:server|source)|writefile(?:end|if|start)?/
+	        .source, // export
+	      /imagewriter/.source, // debug
+	      /blackness|blankclip|colorbars(?:hd)?|compare|dumpfiltergraph|echo|histogram|info|messageclip|preroll|setgraphanalysis|show(?:framenumber|smpte|time)|showfiveversions|stack(?:horizontal|vertical)|subtitle|tone|version/
+	        .source
+	    ].join('|');
+	    var allinternals = [internals, properties, filters].join('|');
+	    Prism.languages.avisynth = {
+	      comment: [
+	        {
+	          // Matches [* *] nestable block comments, but only supports 1 level of nested comments
+	          // /\[\*(?:[^\[*]|\[(?!\*)|\*(?!\])|<self>)*\*\]/
+	          pattern:
+	            /(^|[^\\])\[\*(?:[^\[*]|\[(?!\*)|\*(?!\])|\[\*(?:[^\[*]|\[(?!\*)|\*(?!\]))*\*\])*\*\]/,
+	          lookbehind: true,
+	          greedy: true
+	        },
+	        {
+	          // Matches /* */ block comments
+	          pattern: /(^|[^\\])\/\*[\s\S]*?(?:\*\/|$)/,
+	          lookbehind: true,
+	          greedy: true
+	        },
+	        {
+	          // Matches # comments
+	          pattern: /(^|[^\\$])#.*/,
+	          lookbehind: true,
+	          greedy: true
+	        }
+	      ],
+	      // Handle before strings because optional arguments are surrounded by double quotes
+	      argument: {
+	        pattern: re(/\b(?:<<0>>)\s+("?)\w+\1/.source, [types], 'i'),
+	        inside: {
+	          keyword: /^\w+/
+	        }
+	      },
+	      // Optional argument assignment
+	      'argument-label': {
+	        pattern: /([,(][\s\\]*)\w+\s*=(?!=)/,
+	        lookbehind: true,
+	        inside: {
+	          'argument-name': {
+	            pattern: /^\w+/,
+	            alias: 'punctuation'
+	          },
+	          punctuation: /=$/
+	        }
+	      },
+	      string: [
+	        {
+	          // triple double-quoted
+	          pattern: /"""[\s\S]*?"""/,
+	          greedy: true
+	        },
+	        {
+	          // single double-quoted
+	          pattern: /"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"/,
+	          greedy: true,
+	          inside: {
+	            constant: {
+	              // These *are* case-sensitive!
+	              pattern:
+	                /\b(?:DEFAULT_MT_MODE|(?:MAINSCRIPT|PROGRAM|SCRIPT)DIR|(?:MACHINE|USER)_(?:CLASSIC|PLUS)_PLUGINS)\b/
+	            }
+	          }
+	        }
+	      ],
+	      // The special "last" variable that takes the value of the last implicitly returned clip
+	      variable: /\b(?:last)\b/i,
+	      boolean: /\b(?:false|no|true|yes)\b/i,
+	      keyword:
+	        /\b(?:catch|else|for|function|global|if|return|try|while|__END__)\b/i,
+	      constant: /\bMT_(?:MULTI_INSTANCE|NICE_FILTER|SERIALIZED|SPECIAL_MT)\b/,
+	      // AviSynth's internal functions, filters, and properties
+	      'builtin-function': {
+	        pattern: re(/\b(?:<<0>>)\b/.source, [allinternals], 'i'),
+	        alias: 'function'
+	      },
+	      'type-cast': {
+	        pattern: re(/\b(?:<<0>>)(?=\s*\()/.source, [types], 'i'),
+	        alias: 'keyword'
+	      },
+	      // External/user-defined filters
+	      function: {
+	        pattern: /\b[a-z_]\w*(?=\s*\()|(\.)[a-z_]\w*\b/i,
+	        lookbehind: true
+	      },
+	      // Matches a \ as the first or last character on a line
+	      'line-continuation': {
+	        pattern: /(^[ \t]*)\\|\\(?=[ \t]*$)/m,
+	        lookbehind: true,
+	        alias: 'punctuation'
+	      },
+	      number:
+	        /\B\$(?:[\da-f]{6}|[\da-f]{8})\b|(?:(?:\b|\B-)\d+(?:\.\d*)?\b|\B\.\d+\b)/i,
+	      operator: /\+\+?|[!=<>]=?|&&|\|\||[?:*/%-]/,
+	      punctuation: /[{}\[\]();,.]/
+	    };
+	    Prism.languages.avs = Prism.languages.avisynth;
+	  })(Prism);
+	}
+	return avisynth_1;
 }
 
 var avroIdl_1 = avroIdl;
@@ -33722,12 +33732,12 @@ function markupTemplating(Prism) {
   })(Prism);
 }
 
-var refractorMarkupTemplating$7 = markupTemplating_1;
+var refractorMarkupTemplating$6 = markupTemplating_1;
 var django_1 = django;
 django.displayName = 'django';
 django.aliases = ['jinja2'];
 function django(Prism) {
-  Prism.register(refractorMarkupTemplating$7)
+  Prism.register(refractorMarkupTemplating$6)
   // Django/Jinja2 syntax definition for Prism.js <http://prismjs.com> syntax highlighter.
   // Mostly it works OK but can paint code incorrectly on complex html/template tag combinations.
   ;(function (Prism) {
@@ -34124,12 +34134,12 @@ function eiffel(Prism) {
   };
 }
 
-var refractorMarkupTemplating$6 = markupTemplating_1;
+var refractorMarkupTemplating$5 = markupTemplating_1;
 var ejs_1 = ejs;
 ejs.displayName = 'ejs';
 ejs.aliases = ['eta'];
 function ejs(Prism) {
-  Prism.register(refractorMarkupTemplating$6)
+  Prism.register(refractorMarkupTemplating$5)
   ;(function (Prism) {
     Prism.languages.ejs = {
       delimiter: {
@@ -34320,13 +34330,13 @@ function elm(Prism) {
 }
 
 var refractorRuby$1 = requireRuby();
-var refractorMarkupTemplating$5 = markupTemplating_1;
+var refractorMarkupTemplating$4 = markupTemplating_1;
 var erb_1 = erb;
 erb.displayName = 'erb';
 erb.aliases = [];
 function erb(Prism) {
   Prism.register(refractorRuby$1);
-  Prism.register(refractorMarkupTemplating$5)
+  Prism.register(refractorMarkupTemplating$4)
   ;(function (Prism) {
     Prism.languages.erb = {
       delimiter: {
@@ -34404,43 +34414,52 @@ function erlang(Prism) {
   };
 }
 
-var lua_1 = lua;
-lua.displayName = 'lua';
-lua.aliases = [];
-function lua(Prism) {
-  Prism.languages.lua = {
-    comment: /^#!.+|--(?:\[(=*)\[[\s\S]*?\]\1\]|.*)/m,
-    // \z may be used to skip the following space
-    string: {
-      pattern:
-        /(["'])(?:(?!\1)[^\\\r\n]|\\z(?:\r\n|\s)|\\(?:\r\n|[^z]))*\1|\[(=*)\[[\s\S]*?\]\2\]/,
-      greedy: true
-    },
-    number:
-      /\b0x[a-f\d]+(?:\.[a-f\d]*)?(?:p[+-]?\d+)?\b|\b\d+(?:\.\B|(?:\.\d*)?(?:e[+-]?\d+)?\b)|\B\.\d+(?:e[+-]?\d+)?\b/i,
-    keyword:
-      /\b(?:and|break|do|else|elseif|end|false|for|function|goto|if|in|local|nil|not|or|repeat|return|then|true|until|while)\b/,
-    function: /(?!\d)\w+(?=\s*(?:[({]))/,
-    operator: [
-      /[-+*%^&|#]|\/\/?|<[<=]?|>[>=]?|[=~]=?/,
-      {
-        // Match ".." but don't break "..."
-        pattern: /(^|[^.])\.\.(?!\.)/,
-        lookbehind: true
-      }
-    ],
-    punctuation: /[\[\](){},;]|\.+|:+/
-  };
+var lua_1;
+var hasRequiredLua;
+
+function requireLua () {
+	if (hasRequiredLua) return lua_1;
+	hasRequiredLua = 1;
+
+	lua_1 = lua;
+	lua.displayName = 'lua';
+	lua.aliases = [];
+	function lua(Prism) {
+	  Prism.languages.lua = {
+	    comment: /^#!.+|--(?:\[(=*)\[[\s\S]*?\]\1\]|.*)/m,
+	    // \z may be used to skip the following space
+	    string: {
+	      pattern:
+	        /(["'])(?:(?!\1)[^\\\r\n]|\\z(?:\r\n|\s)|\\(?:\r\n|[^z]))*\1|\[(=*)\[[\s\S]*?\]\2\]/,
+	      greedy: true
+	    },
+	    number:
+	      /\b0x[a-f\d]+(?:\.[a-f\d]*)?(?:p[+-]?\d+)?\b|\b\d+(?:\.\B|(?:\.\d*)?(?:e[+-]?\d+)?\b)|\B\.\d+(?:e[+-]?\d+)?\b/i,
+	    keyword:
+	      /\b(?:and|break|do|else|elseif|end|false|for|function|goto|if|in|local|nil|not|or|repeat|return|then|true|until|while)\b/,
+	    function: /(?!\d)\w+(?=\s*(?:[({]))/,
+	    operator: [
+	      /[-+*%^&|#]|\/\/?|<[<=]?|>[>=]?|[=~]=?/,
+	      {
+	        // Match ".." but don't break "..."
+	        pattern: /(^|[^.])\.\.(?!\.)/,
+	        lookbehind: true
+	      }
+	    ],
+	    punctuation: /[\[\](){},;]|\.+|:+/
+	  };
+	}
+	return lua_1;
 }
 
-var refractorLua = lua_1;
-var refractorMarkupTemplating$4 = markupTemplating_1;
+var refractorLua = requireLua();
+var refractorMarkupTemplating$3 = markupTemplating_1;
 var etlua_1 = etlua;
 etlua.displayName = 'etlua';
 etlua.aliases = [];
 function etlua(Prism) {
   Prism.register(refractorLua);
-  Prism.register(refractorMarkupTemplating$4)
+  Prism.register(refractorMarkupTemplating$3)
   ;(function (Prism) {
     Prism.languages.etlua = {
       delimiter: {
@@ -35714,12 +35733,12 @@ function fsharp(Prism) {
   });
 }
 
-var refractorMarkupTemplating$3 = markupTemplating_1;
+var refractorMarkupTemplating$2 = markupTemplating_1;
 var ftl_1 = ftl;
 ftl.displayName = 'ftl';
 ftl.aliases = [];
 function ftl(Prism) {
-  Prism.register(refractorMarkupTemplating$3)
+  Prism.register(refractorMarkupTemplating$2)
   ;(function (Prism) {
     // https://freemarker.apache.org/docs/dgui_template_exp.html
     // FTL expression with 4 levels of nesting supported
@@ -36510,74 +36529,83 @@ function graphql(Prism) {
   });
 }
 
-var groovy_1 = groovy;
-groovy.displayName = 'groovy';
-groovy.aliases = [];
-function groovy(Prism) {
-  Prism.languages.groovy = Prism.languages.extend('clike', {
-    string: [
-      {
-        // https://groovy-lang.org/syntax.html#_dollar_slashy_string
-        pattern:
-          /("""|''')(?:[^\\]|\\[\s\S])*?\1|\$\/(?:[^/$]|\$(?:[/$]|(?![/$]))|\/(?!\$))*\/\$/,
-        greedy: true
-      },
-      {
-        // TODO: Slash strings (e.g. /foo/) can contain line breaks but this will cause a lot of trouble with
-        // simple division (see JS regex), so find a fix maybe?
-        pattern: /(["'/])(?:\\.|(?!\1)[^\\\r\n])*\1/,
-        greedy: true
-      }
-    ],
-    keyword:
-      /\b(?:abstract|as|assert|boolean|break|byte|case|catch|char|class|const|continue|def|default|do|double|else|enum|extends|final|finally|float|for|goto|if|implements|import|in|instanceof|int|interface|long|native|new|package|private|protected|public|return|short|static|strictfp|super|switch|synchronized|this|throw|throws|trait|transient|try|void|volatile|while)\b/,
-    number:
-      /\b(?:0b[01_]+|0x[\da-f_]+(?:\.[\da-f_p\-]+)?|[\d_]+(?:\.[\d_]+)?(?:e[+-]?\d+)?)[glidf]?\b/i,
-    operator: {
-      pattern:
-        /(^|[^.])(?:~|==?~?|\?[.:]?|\*(?:[.=]|\*=?)?|\.[@&]|\.\.<|\.\.(?!\.)|-[-=>]?|\+[+=]?|!=?|<(?:<=?|=>?)?|>(?:>>?=?|=)?|&[&=]?|\|[|=]?|\/=?|\^=?|%=?)/,
-      lookbehind: true
-    },
-    punctuation: /\.+|[{}[\];(),:$]/
-  });
-  Prism.languages.insertBefore('groovy', 'string', {
-    shebang: {
-      pattern: /#!.+/,
-      alias: 'comment'
-    }
-  });
-  Prism.languages.insertBefore('groovy', 'punctuation', {
-    'spock-block': /\b(?:and|cleanup|expect|given|setup|then|when|where):/
-  });
-  Prism.languages.insertBefore('groovy', 'function', {
-    annotation: {
-      pattern: /(^|[^.])@\w+/,
-      lookbehind: true,
-      alias: 'punctuation'
-    }
-  }); // Handle string interpolation
-  Prism.hooks.add('wrap', function (env) {
-    if (env.language === 'groovy' && env.type === 'string') {
-      var delimiter = env.content.value[0];
-      if (delimiter != "'") {
-        var pattern = /([^\\])(?:\$(?:\{.*?\}|[\w.]+))/;
-        if (delimiter === '$') {
-          pattern = /([^\$])(?:\$(?:\{.*?\}|[\w.]+))/;
-        } // To prevent double HTML-encoding we have to decode env.content first
-        env.content.value = env.content.value
-          .replace(/&lt;/g, '<')
-          .replace(/&amp;/g, '&');
-        env.content = Prism.highlight(env.content.value, {
-          expression: {
-            pattern: pattern,
-            lookbehind: true,
-            inside: Prism.languages.groovy
-          }
-        });
-        env.classes.push(delimiter === '/' ? 'regex' : 'gstring');
-      }
-    }
-  });
+var groovy_1;
+var hasRequiredGroovy;
+
+function requireGroovy () {
+	if (hasRequiredGroovy) return groovy_1;
+	hasRequiredGroovy = 1;
+
+	groovy_1 = groovy;
+	groovy.displayName = 'groovy';
+	groovy.aliases = [];
+	function groovy(Prism) {
+	  Prism.languages.groovy = Prism.languages.extend('clike', {
+	    string: [
+	      {
+	        // https://groovy-lang.org/syntax.html#_dollar_slashy_string
+	        pattern:
+	          /("""|''')(?:[^\\]|\\[\s\S])*?\1|\$\/(?:[^/$]|\$(?:[/$]|(?![/$]))|\/(?!\$))*\/\$/,
+	        greedy: true
+	      },
+	      {
+	        // TODO: Slash strings (e.g. /foo/) can contain line breaks but this will cause a lot of trouble with
+	        // simple division (see JS regex), so find a fix maybe?
+	        pattern: /(["'/])(?:\\.|(?!\1)[^\\\r\n])*\1/,
+	        greedy: true
+	      }
+	    ],
+	    keyword:
+	      /\b(?:abstract|as|assert|boolean|break|byte|case|catch|char|class|const|continue|def|default|do|double|else|enum|extends|final|finally|float|for|goto|if|implements|import|in|instanceof|int|interface|long|native|new|package|private|protected|public|return|short|static|strictfp|super|switch|synchronized|this|throw|throws|trait|transient|try|void|volatile|while)\b/,
+	    number:
+	      /\b(?:0b[01_]+|0x[\da-f_]+(?:\.[\da-f_p\-]+)?|[\d_]+(?:\.[\d_]+)?(?:e[+-]?\d+)?)[glidf]?\b/i,
+	    operator: {
+	      pattern:
+	        /(^|[^.])(?:~|==?~?|\?[.:]?|\*(?:[.=]|\*=?)?|\.[@&]|\.\.<|\.\.(?!\.)|-[-=>]?|\+[+=]?|!=?|<(?:<=?|=>?)?|>(?:>>?=?|=)?|&[&=]?|\|[|=]?|\/=?|\^=?|%=?)/,
+	      lookbehind: true
+	    },
+	    punctuation: /\.+|[{}[\];(),:$]/
+	  });
+	  Prism.languages.insertBefore('groovy', 'string', {
+	    shebang: {
+	      pattern: /#!.+/,
+	      alias: 'comment'
+	    }
+	  });
+	  Prism.languages.insertBefore('groovy', 'punctuation', {
+	    'spock-block': /\b(?:and|cleanup|expect|given|setup|then|when|where):/
+	  });
+	  Prism.languages.insertBefore('groovy', 'function', {
+	    annotation: {
+	      pattern: /(^|[^.])@\w+/,
+	      lookbehind: true,
+	      alias: 'punctuation'
+	    }
+	  }); // Handle string interpolation
+	  Prism.hooks.add('wrap', function (env) {
+	    if (env.language === 'groovy' && env.type === 'string') {
+	      var delimiter = env.content.value[0];
+	      if (delimiter != "'") {
+	        var pattern = /([^\\])(?:\$(?:\{.*?\}|[\w.]+))/;
+	        if (delimiter === '$') {
+	          pattern = /([^\$])(?:\$(?:\{.*?\}|[\w.]+))/;
+	        } // To prevent double HTML-encoding we have to decode env.content first
+	        env.content.value = env.content.value
+	          .replace(/&lt;/g, '<')
+	          .replace(/&amp;/g, '&');
+	        env.content = Prism.highlight(env.content.value, {
+	          expression: {
+	            pattern: pattern,
+	            lookbehind: true,
+	            inside: Prism.languages.groovy
+	          }
+	        });
+	        env.classes.push(delimiter === '/' ? 'regex' : 'gstring');
+	      }
+	    }
+	  });
+	}
+	return groovy_1;
 }
 
 var refractorRuby = requireRuby();
@@ -36745,12 +36773,12 @@ code |
   })(Prism);
 }
 
-var refractorMarkupTemplating$2 = markupTemplating_1;
+var refractorMarkupTemplating$1 = markupTemplating_1;
 var handlebars_1 = handlebars;
 handlebars.displayName = 'handlebars';
 handlebars.aliases = ['hbs'];
 function handlebars(Prism) {
-  Prism.register(refractorMarkupTemplating$2)
+  Prism.register(refractorMarkupTemplating$1)
   ;(function (Prism) {
     Prism.languages.handlebars = {
       comment: /\{\{![\s\S]*?\}\}/,
@@ -39101,181 +39129,190 @@ function jsstacktrace(Prism) {
   };
 }
 
-var jsx_1 = jsx;
-jsx.displayName = 'jsx';
-jsx.aliases = [];
-function jsx(Prism) {
+var jsx_1;
+var hasRequiredJsx;
+
+function requireJsx () {
+	if (hasRequiredJsx) return jsx_1;
+	hasRequiredJsx = 1;
+
+	jsx_1 = jsx;
+	jsx.displayName = 'jsx';
+	jsx.aliases = [];
+	function jsx(Prism) {
 (function (Prism) {
-    var javascript = Prism.util.clone(Prism.languages.javascript);
-    var space = /(?:\s|\/\/.*(?!.)|\/\*(?:[^*]|\*(?!\/))\*\/)/.source;
-    var braces = /(?:\{(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])*\})/.source;
-    var spread = /(?:\{<S>*\.{3}(?:[^{}]|<BRACES>)*\})/.source;
-    /**
-     * @param {string} source
-     * @param {string} [flags]
-     */
-    function re(source, flags) {
-      source = source
-        .replace(/<S>/g, function () {
-          return space
-        })
-        .replace(/<BRACES>/g, function () {
-          return braces
-        })
-        .replace(/<SPREAD>/g, function () {
-          return spread
-        });
-      return RegExp(source, flags)
-    }
-    spread = re(spread).source;
-    Prism.languages.jsx = Prism.languages.extend('markup', javascript);
-    Prism.languages.jsx.tag.pattern = re(
-      /<\/?(?:[\w.:-]+(?:<S>+(?:[\w.:$-]+(?:=(?:"(?:\\[\s\S]|[^\\"])*"|'(?:\\[\s\S]|[^\\'])*'|[^\s{'"/>=]+|<BRACES>))?|<SPREAD>))*<S>*\/?)?>/
-        .source
-    );
-    Prism.languages.jsx.tag.inside['tag'].pattern = /^<\/?[^\s>\/]*/;
-    Prism.languages.jsx.tag.inside['attr-value'].pattern =
-      /=(?!\{)(?:"(?:\\[\s\S]|[^\\"])*"|'(?:\\[\s\S]|[^\\'])*'|[^\s'">]+)/;
-    Prism.languages.jsx.tag.inside['tag'].inside['class-name'] =
-      /^[A-Z]\w*(?:\.[A-Z]\w*)*$/;
-    Prism.languages.jsx.tag.inside['comment'] = javascript['comment'];
-    Prism.languages.insertBefore(
-      'inside',
-      'attr-name',
-      {
-        spread: {
-          pattern: re(/<SPREAD>/.source),
-          inside: Prism.languages.jsx
-        }
-      },
-      Prism.languages.jsx.tag
-    );
-    Prism.languages.insertBefore(
-      'inside',
-      'special-attr',
-      {
-        script: {
-          // Allow for two levels of nesting
-          pattern: re(/=<BRACES>/.source),
-          alias: 'language-javascript',
-          inside: {
-            'script-punctuation': {
-              pattern: /^=(?=\{)/,
-              alias: 'punctuation'
-            },
-            rest: Prism.languages.jsx
-          }
-        }
-      },
-      Prism.languages.jsx.tag
-    ); // The following will handle plain text inside tags
-    var stringifyToken = function (token) {
-      if (!token) {
-        return ''
-      }
-      if (typeof token === 'string') {
-        return token
-      }
-      if (typeof token.content === 'string') {
-        return token.content
-      }
-      return token.content.map(stringifyToken).join('')
-    };
-    var walkTokens = function (tokens) {
-      var openedTags = [];
-      for (var i = 0; i < tokens.length; i++) {
-        var token = tokens[i];
-        var notTagNorBrace = false;
-        if (typeof token !== 'string') {
-          if (
-            token.type === 'tag' &&
-            token.content[0] &&
-            token.content[0].type === 'tag'
-          ) {
-            // We found a tag, now find its kind
-            if (token.content[0].content[0].content === '</') {
-              // Closing tag
-              if (
-                openedTags.length > 0 &&
-                openedTags[openedTags.length - 1].tagName ===
-                  stringifyToken(token.content[0].content[1])
-              ) {
-                // Pop matching opening tag
-                openedTags.pop();
-              }
-            } else {
-              if (token.content[token.content.length - 1].content === '/>') ; else {
-                // Opening tag
-                openedTags.push({
-                  tagName: stringifyToken(token.content[0].content[1]),
-                  openedBraces: 0
-                });
-              }
-            }
-          } else if (
-            openedTags.length > 0 &&
-            token.type === 'punctuation' &&
-            token.content === '{'
-          ) {
-            // Here we might have entered a JSX context inside a tag
-            openedTags[openedTags.length - 1].openedBraces++;
-          } else if (
-            openedTags.length > 0 &&
-            openedTags[openedTags.length - 1].openedBraces > 0 &&
-            token.type === 'punctuation' &&
-            token.content === '}'
-          ) {
-            // Here we might have left a JSX context inside a tag
-            openedTags[openedTags.length - 1].openedBraces--;
-          } else {
-            notTagNorBrace = true;
-          }
-        }
-        if (notTagNorBrace || typeof token === 'string') {
-          if (
-            openedTags.length > 0 &&
-            openedTags[openedTags.length - 1].openedBraces === 0
-          ) {
-            // Here we are inside a tag, and not inside a JSX context.
-            // That's plain text: drop any tokens matched.
-            var plainText = stringifyToken(token); // And merge text with adjacent text
-            if (
-              i < tokens.length - 1 &&
-              (typeof tokens[i + 1] === 'string' ||
-                tokens[i + 1].type === 'plain-text')
-            ) {
-              plainText += stringifyToken(tokens[i + 1]);
-              tokens.splice(i + 1, 1);
-            }
-            if (
-              i > 0 &&
-              (typeof tokens[i - 1] === 'string' ||
-                tokens[i - 1].type === 'plain-text')
-            ) {
-              plainText = stringifyToken(tokens[i - 1]) + plainText;
-              tokens.splice(i - 1, 1);
-              i--;
-            }
-            tokens[i] = new Prism.Token(
-              'plain-text',
-              plainText,
-              null,
-              plainText
-            );
-          }
-        }
-        if (token.content && typeof token.content !== 'string') {
-          walkTokens(token.content);
-        }
-      }
-    };
-    Prism.hooks.add('after-tokenize', function (env) {
-      if (env.language !== 'jsx' && env.language !== 'tsx') {
-        return
-      }
-      walkTokens(env.tokens);
-    });
-  })(Prism);
+	    var javascript = Prism.util.clone(Prism.languages.javascript);
+	    var space = /(?:\s|\/\/.*(?!.)|\/\*(?:[^*]|\*(?!\/))\*\/)/.source;
+	    var braces = /(?:\{(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])*\})/.source;
+	    var spread = /(?:\{<S>*\.{3}(?:[^{}]|<BRACES>)*\})/.source;
+	    /**
+	     * @param {string} source
+	     * @param {string} [flags]
+	     */
+	    function re(source, flags) {
+	      source = source
+	        .replace(/<S>/g, function () {
+	          return space
+	        })
+	        .replace(/<BRACES>/g, function () {
+	          return braces
+	        })
+	        .replace(/<SPREAD>/g, function () {
+	          return spread
+	        });
+	      return RegExp(source, flags)
+	    }
+	    spread = re(spread).source;
+	    Prism.languages.jsx = Prism.languages.extend('markup', javascript);
+	    Prism.languages.jsx.tag.pattern = re(
+	      /<\/?(?:[\w.:-]+(?:<S>+(?:[\w.:$-]+(?:=(?:"(?:\\[\s\S]|[^\\"])*"|'(?:\\[\s\S]|[^\\'])*'|[^\s{'"/>=]+|<BRACES>))?|<SPREAD>))*<S>*\/?)?>/
+	        .source
+	    );
+	    Prism.languages.jsx.tag.inside['tag'].pattern = /^<\/?[^\s>\/]*/;
+	    Prism.languages.jsx.tag.inside['attr-value'].pattern =
+	      /=(?!\{)(?:"(?:\\[\s\S]|[^\\"])*"|'(?:\\[\s\S]|[^\\'])*'|[^\s'">]+)/;
+	    Prism.languages.jsx.tag.inside['tag'].inside['class-name'] =
+	      /^[A-Z]\w*(?:\.[A-Z]\w*)*$/;
+	    Prism.languages.jsx.tag.inside['comment'] = javascript['comment'];
+	    Prism.languages.insertBefore(
+	      'inside',
+	      'attr-name',
+	      {
+	        spread: {
+	          pattern: re(/<SPREAD>/.source),
+	          inside: Prism.languages.jsx
+	        }
+	      },
+	      Prism.languages.jsx.tag
+	    );
+	    Prism.languages.insertBefore(
+	      'inside',
+	      'special-attr',
+	      {
+	        script: {
+	          // Allow for two levels of nesting
+	          pattern: re(/=<BRACES>/.source),
+	          alias: 'language-javascript',
+	          inside: {
+	            'script-punctuation': {
+	              pattern: /^=(?=\{)/,
+	              alias: 'punctuation'
+	            },
+	            rest: Prism.languages.jsx
+	          }
+	        }
+	      },
+	      Prism.languages.jsx.tag
+	    ); // The following will handle plain text inside tags
+	    var stringifyToken = function (token) {
+	      if (!token) {
+	        return ''
+	      }
+	      if (typeof token === 'string') {
+	        return token
+	      }
+	      if (typeof token.content === 'string') {
+	        return token.content
+	      }
+	      return token.content.map(stringifyToken).join('')
+	    };
+	    var walkTokens = function (tokens) {
+	      var openedTags = [];
+	      for (var i = 0; i < tokens.length; i++) {
+	        var token = tokens[i];
+	        var notTagNorBrace = false;
+	        if (typeof token !== 'string') {
+	          if (
+	            token.type === 'tag' &&
+	            token.content[0] &&
+	            token.content[0].type === 'tag'
+	          ) {
+	            // We found a tag, now find its kind
+	            if (token.content[0].content[0].content === '</') {
+	              // Closing tag
+	              if (
+	                openedTags.length > 0 &&
+	                openedTags[openedTags.length - 1].tagName ===
+	                  stringifyToken(token.content[0].content[1])
+	              ) {
+	                // Pop matching opening tag
+	                openedTags.pop();
+	              }
+	            } else {
+	              if (token.content[token.content.length - 1].content === '/>') ; else {
+	                // Opening tag
+	                openedTags.push({
+	                  tagName: stringifyToken(token.content[0].content[1]),
+	                  openedBraces: 0
+	                });
+	              }
+	            }
+	          } else if (
+	            openedTags.length > 0 &&
+	            token.type === 'punctuation' &&
+	            token.content === '{'
+	          ) {
+	            // Here we might have entered a JSX context inside a tag
+	            openedTags[openedTags.length - 1].openedBraces++;
+	          } else if (
+	            openedTags.length > 0 &&
+	            openedTags[openedTags.length - 1].openedBraces > 0 &&
+	            token.type === 'punctuation' &&
+	            token.content === '}'
+	          ) {
+	            // Here we might have left a JSX context inside a tag
+	            openedTags[openedTags.length - 1].openedBraces--;
+	          } else {
+	            notTagNorBrace = true;
+	          }
+	        }
+	        if (notTagNorBrace || typeof token === 'string') {
+	          if (
+	            openedTags.length > 0 &&
+	            openedTags[openedTags.length - 1].openedBraces === 0
+	          ) {
+	            // Here we are inside a tag, and not inside a JSX context.
+	            // That's plain text: drop any tokens matched.
+	            var plainText = stringifyToken(token); // And merge text with adjacent text
+	            if (
+	              i < tokens.length - 1 &&
+	              (typeof tokens[i + 1] === 'string' ||
+	                tokens[i + 1].type === 'plain-text')
+	            ) {
+	              plainText += stringifyToken(tokens[i + 1]);
+	              tokens.splice(i + 1, 1);
+	            }
+	            if (
+	              i > 0 &&
+	              (typeof tokens[i - 1] === 'string' ||
+	                tokens[i - 1].type === 'plain-text')
+	            ) {
+	              plainText = stringifyToken(tokens[i - 1]) + plainText;
+	              tokens.splice(i - 1, 1);
+	              i--;
+	            }
+	            tokens[i] = new Prism.Token(
+	              'plain-text',
+	              plainText,
+	              null,
+	              plainText
+	            );
+	          }
+	        }
+	        if (token.content && typeof token.content !== 'string') {
+	          walkTokens(token.content);
+	        }
+	      }
+	    };
+	    Prism.hooks.add('after-tokenize', function (env) {
+	      if (env.language !== 'jsx' && env.language !== 'tsx') {
+	        return
+	      }
+	      walkTokens(env.tokens);
+	    });
+	  })(Prism);
+	}
+	return jsx_1;
 }
 
 var julia_1 = julia;
@@ -40119,13 +40156,13 @@ function requirePhp () {
 	return php_1;
 }
 
-var refractorMarkupTemplating$1 = markupTemplating_1;
+var refractorMarkupTemplating = markupTemplating_1;
 var refractorPhp = requirePhp();
 var latte_1 = latte;
 latte.displayName = 'latte';
 latte.aliases = [];
 function latte(Prism) {
-  Prism.register(refractorMarkupTemplating$1);
+  Prism.register(refractorMarkupTemplating);
   Prism.register(refractorPhp)
   ;(function (Prism) {
     Prism.languages.latte = {
@@ -40401,379 +40438,404 @@ function requireScheme () {
 	return scheme_1;
 }
 
-var refractorScheme = requireScheme();
-var lilypond_1 = lilypond;
-lilypond.displayName = 'lilypond';
-lilypond.aliases = [];
-function lilypond(Prism) {
-  Prism.register(refractorScheme)
-  ;(function (Prism) {
-    var schemeExpression =
-      /\((?:[^();"#\\]|\\[\s\S]|;.*(?!.)|"(?:[^"\\]|\\.)*"|#(?:\{(?:(?!#\})[\s\S])*#\}|[^{])|<expr>)*\)/
-        .source; // allow for up to pow(2, recursivenessLog2) many levels of recursive brace expressions
-    // For some reason, this can't be 4
-    var recursivenessLog2 = 5;
-    for (var i = 0; i < recursivenessLog2; i++) {
-      schemeExpression = schemeExpression.replace(/<expr>/g, function () {
-        return schemeExpression
-      });
-    }
-    schemeExpression = schemeExpression.replace(/<expr>/g, /[^\s\S]/.source);
-    var lilypond = (Prism.languages.lilypond = {
-      comment: /%(?:(?!\{).*|\{[\s\S]*?%\})/,
-      'embedded-scheme': {
-        pattern: RegExp(
-          /(^|[=\s])#(?:"(?:[^"\\]|\\.)*"|[^\s()"]*(?:[^\s()]|<expr>))/.source.replace(
-            /<expr>/g,
-            function () {
-              return schemeExpression
-            }
-          ),
-          'm'
-        ),
-        lookbehind: true,
-        greedy: true,
-        inside: {
-          scheme: {
-            pattern: /^(#)[\s\S]+$/,
-            lookbehind: true,
-            alias: 'language-scheme',
-            inside: {
-              'embedded-lilypond': {
-                pattern: /#\{[\s\S]*?#\}/,
-                greedy: true,
-                inside: {
-                  punctuation: /^#\{|#\}$/,
-                  lilypond: {
-                    pattern: /[\s\S]+/,
-                    alias: 'language-lilypond',
-                    inside: null // see below
-                  }
-                }
-              },
-              rest: Prism.languages.scheme
-            }
-          },
-          punctuation: /#/
-        }
-      },
-      string: {
-        pattern: /"(?:[^"\\]|\\.)*"/,
-        greedy: true
-      },
-      'class-name': {
-        pattern: /(\\new\s+)[\w-]+/,
-        lookbehind: true
-      },
-      keyword: {
-        pattern: /\\[a-z][-\w]*/i,
-        inside: {
-          punctuation: /^\\/
-        }
-      },
-      operator: /[=|]|<<|>>/,
-      punctuation: {
-        pattern:
-          /(^|[a-z\d])(?:'+|,+|[_^]?-[_^]?(?:[-+^!>._]|(?=\d))|[_^]\.?|[.!])|[{}()[\]<>^~]|\\[()[\]<>\\!]|--|__/,
-        lookbehind: true
-      },
-      number: /\b\d+(?:\/\d+)?\b/
-    });
-    lilypond['embedded-scheme'].inside['scheme'].inside[
-      'embedded-lilypond'
-    ].inside['lilypond'].inside = lilypond;
-    Prism.languages.ly = lilypond;
-  })(Prism);
+var lilypond_1;
+var hasRequiredLilypond;
+
+function requireLilypond () {
+	if (hasRequiredLilypond) return lilypond_1;
+	hasRequiredLilypond = 1;
+	var refractorScheme = requireScheme();
+	lilypond_1 = lilypond;
+	lilypond.displayName = 'lilypond';
+	lilypond.aliases = [];
+	function lilypond(Prism) {
+	  Prism.register(refractorScheme)
+	  ;(function (Prism) {
+	    var schemeExpression =
+	      /\((?:[^();"#\\]|\\[\s\S]|;.*(?!.)|"(?:[^"\\]|\\.)*"|#(?:\{(?:(?!#\})[\s\S])*#\}|[^{])|<expr>)*\)/
+	        .source; // allow for up to pow(2, recursivenessLog2) many levels of recursive brace expressions
+	    // For some reason, this can't be 4
+	    var recursivenessLog2 = 5;
+	    for (var i = 0; i < recursivenessLog2; i++) {
+	      schemeExpression = schemeExpression.replace(/<expr>/g, function () {
+	        return schemeExpression
+	      });
+	    }
+	    schemeExpression = schemeExpression.replace(/<expr>/g, /[^\s\S]/.source);
+	    var lilypond = (Prism.languages.lilypond = {
+	      comment: /%(?:(?!\{).*|\{[\s\S]*?%\})/,
+	      'embedded-scheme': {
+	        pattern: RegExp(
+	          /(^|[=\s])#(?:"(?:[^"\\]|\\.)*"|[^\s()"]*(?:[^\s()]|<expr>))/.source.replace(
+	            /<expr>/g,
+	            function () {
+	              return schemeExpression
+	            }
+	          ),
+	          'm'
+	        ),
+	        lookbehind: true,
+	        greedy: true,
+	        inside: {
+	          scheme: {
+	            pattern: /^(#)[\s\S]+$/,
+	            lookbehind: true,
+	            alias: 'language-scheme',
+	            inside: {
+	              'embedded-lilypond': {
+	                pattern: /#\{[\s\S]*?#\}/,
+	                greedy: true,
+	                inside: {
+	                  punctuation: /^#\{|#\}$/,
+	                  lilypond: {
+	                    pattern: /[\s\S]+/,
+	                    alias: 'language-lilypond',
+	                    inside: null // see below
+	                  }
+	                }
+	              },
+	              rest: Prism.languages.scheme
+	            }
+	          },
+	          punctuation: /#/
+	        }
+	      },
+	      string: {
+	        pattern: /"(?:[^"\\]|\\.)*"/,
+	        greedy: true
+	      },
+	      'class-name': {
+	        pattern: /(\\new\s+)[\w-]+/,
+	        lookbehind: true
+	      },
+	      keyword: {
+	        pattern: /\\[a-z][-\w]*/i,
+	        inside: {
+	          punctuation: /^\\/
+	        }
+	      },
+	      operator: /[=|]|<<|>>/,
+	      punctuation: {
+	        pattern:
+	          /(^|[a-z\d])(?:'+|,+|[_^]?-[_^]?(?:[-+^!>._]|(?=\d))|[_^]\.?|[.!])|[{}()[\]<>^~]|\\[()[\]<>\\!]|--|__/,
+	        lookbehind: true
+	      },
+	      number: /\b\d+(?:\/\d+)?\b/
+	    });
+	    lilypond['embedded-scheme'].inside['scheme'].inside[
+	      'embedded-lilypond'
+	    ].inside['lilypond'].inside = lilypond;
+	    Prism.languages.ly = lilypond;
+	  })(Prism);
+	}
+	return lilypond_1;
 }
 
-var refractorMarkupTemplating = markupTemplating_1;
-var liquid_1 = liquid;
-liquid.displayName = 'liquid';
-liquid.aliases = [];
-function liquid(Prism) {
-  Prism.register(refractorMarkupTemplating);
-  Prism.languages.liquid = {
-    comment: {
-      pattern: /(^\{%\s*comment\s*%\})[\s\S]+(?=\{%\s*endcomment\s*%\}$)/,
-      lookbehind: true
-    },
-    delimiter: {
-      pattern: /^\{(?:\{\{|[%\{])-?|-?(?:\}\}|[%\}])\}$/,
-      alias: 'punctuation'
-    },
-    string: {
-      pattern: /"[^"]*"|'[^']*'/,
-      greedy: true
-    },
-    keyword:
-      /\b(?:as|assign|break|(?:end)?(?:capture|case|comment|for|form|if|paginate|raw|style|tablerow|unless)|continue|cycle|decrement|echo|else|elsif|in|include|increment|limit|liquid|offset|range|render|reversed|section|when|with)\b/,
-    object:
-      /\b(?:address|all_country_option_tags|article|block|blog|cart|checkout|collection|color|country|country_option_tags|currency|current_page|current_tags|customer|customer_address|date|discount_allocation|discount_application|external_video|filter|filter_value|font|forloop|fulfillment|generic_file|gift_card|group|handle|image|line_item|link|linklist|localization|location|measurement|media|metafield|model|model_source|order|page|page_description|page_image|page_title|part|policy|product|product_option|recommendations|request|robots|routes|rule|script|search|selling_plan|selling_plan_allocation|selling_plan_group|shipping_method|shop|shop_locale|sitemap|store_availability|tax_line|template|theme|transaction|unit_price_measurement|user_agent|variant|video|video_source)\b/,
-    function: [
-      {
-        pattern: /(\|\s*)\w+/,
-        lookbehind: true,
-        alias: 'filter'
-      },
-      {
-        // array functions
-        pattern: /(\.\s*)(?:first|last|size)/,
-        lookbehind: true
-      }
-    ],
-    boolean: /\b(?:false|nil|true)\b/,
-    range: {
-      pattern: /\.\./,
-      alias: 'operator'
-    },
-    // https://github.com/Shopify/liquid/blob/698f5e0d967423e013f6169d9111bd969bd78337/lib/liquid/lexer.rb#L21
-    number: /\b\d+(?:\.\d+)?\b/,
-    operator: /[!=]=|<>|[<>]=?|[|?:=-]|\b(?:and|contains(?=\s)|or)\b/,
-    punctuation: /[.,\[\]()]/,
-    empty: {
-      pattern: /\bempty\b/,
-      alias: 'keyword'
-    }
-  };
-  Prism.hooks.add('before-tokenize', function (env) {
-    var liquidPattern =
-      /\{%\s*comment\s*%\}[\s\S]*?\{%\s*endcomment\s*%\}|\{(?:%[\s\S]*?%|\{\{[\s\S]*?\}\}|\{[\s\S]*?\})\}/g;
-    var insideRaw = false;
-    Prism.languages['markup-templating'].buildPlaceholders(
-      env,
-      'liquid',
-      liquidPattern,
-      function (match) {
-        var tagMatch = /^\{%-?\s*(\w+)/.exec(match);
-        if (tagMatch) {
-          var tag = tagMatch[1];
-          if (tag === 'raw' && !insideRaw) {
-            insideRaw = true;
-            return true
-          } else if (tag === 'endraw') {
-            insideRaw = false;
-            return true
-          }
-        }
-        return !insideRaw
-      }
-    );
-  });
-  Prism.hooks.add('after-tokenize', function (env) {
-    Prism.languages['markup-templating'].tokenizePlaceholders(env, 'liquid');
-  });
+var liquid_1;
+var hasRequiredLiquid;
+
+function requireLiquid () {
+	if (hasRequiredLiquid) return liquid_1;
+	hasRequiredLiquid = 1;
+	var refractorMarkupTemplating = markupTemplating_1;
+	liquid_1 = liquid;
+	liquid.displayName = 'liquid';
+	liquid.aliases = [];
+	function liquid(Prism) {
+	  Prism.register(refractorMarkupTemplating);
+	  Prism.languages.liquid = {
+	    comment: {
+	      pattern: /(^\{%\s*comment\s*%\})[\s\S]+(?=\{%\s*endcomment\s*%\}$)/,
+	      lookbehind: true
+	    },
+	    delimiter: {
+	      pattern: /^\{(?:\{\{|[%\{])-?|-?(?:\}\}|[%\}])\}$/,
+	      alias: 'punctuation'
+	    },
+	    string: {
+	      pattern: /"[^"]*"|'[^']*'/,
+	      greedy: true
+	    },
+	    keyword:
+	      /\b(?:as|assign|break|(?:end)?(?:capture|case|comment|for|form|if|paginate|raw|style|tablerow|unless)|continue|cycle|decrement|echo|else|elsif|in|include|increment|limit|liquid|offset|range|render|reversed|section|when|with)\b/,
+	    object:
+	      /\b(?:address|all_country_option_tags|article|block|blog|cart|checkout|collection|color|country|country_option_tags|currency|current_page|current_tags|customer|customer_address|date|discount_allocation|discount_application|external_video|filter|filter_value|font|forloop|fulfillment|generic_file|gift_card|group|handle|image|line_item|link|linklist|localization|location|measurement|media|metafield|model|model_source|order|page|page_description|page_image|page_title|part|policy|product|product_option|recommendations|request|robots|routes|rule|script|search|selling_plan|selling_plan_allocation|selling_plan_group|shipping_method|shop|shop_locale|sitemap|store_availability|tax_line|template|theme|transaction|unit_price_measurement|user_agent|variant|video|video_source)\b/,
+	    function: [
+	      {
+	        pattern: /(\|\s*)\w+/,
+	        lookbehind: true,
+	        alias: 'filter'
+	      },
+	      {
+	        // array functions
+	        pattern: /(\.\s*)(?:first|last|size)/,
+	        lookbehind: true
+	      }
+	    ],
+	    boolean: /\b(?:false|nil|true)\b/,
+	    range: {
+	      pattern: /\.\./,
+	      alias: 'operator'
+	    },
+	    // https://github.com/Shopify/liquid/blob/698f5e0d967423e013f6169d9111bd969bd78337/lib/liquid/lexer.rb#L21
+	    number: /\b\d+(?:\.\d+)?\b/,
+	    operator: /[!=]=|<>|[<>]=?|[|?:=-]|\b(?:and|contains(?=\s)|or)\b/,
+	    punctuation: /[.,\[\]()]/,
+	    empty: {
+	      pattern: /\bempty\b/,
+	      alias: 'keyword'
+	    }
+	  };
+	  Prism.hooks.add('before-tokenize', function (env) {
+	    var liquidPattern =
+	      /\{%\s*comment\s*%\}[\s\S]*?\{%\s*endcomment\s*%\}|\{(?:%[\s\S]*?%|\{\{[\s\S]*?\}\}|\{[\s\S]*?\})\}/g;
+	    var insideRaw = false;
+	    Prism.languages['markup-templating'].buildPlaceholders(
+	      env,
+	      'liquid',
+	      liquidPattern,
+	      function (match) {
+	        var tagMatch = /^\{%-?\s*(\w+)/.exec(match);
+	        if (tagMatch) {
+	          var tag = tagMatch[1];
+	          if (tag === 'raw' && !insideRaw) {
+	            insideRaw = true;
+	            return true
+	          } else if (tag === 'endraw') {
+	            insideRaw = false;
+	            return true
+	          }
+	        }
+	        return !insideRaw
+	      }
+	    );
+	  });
+	  Prism.hooks.add('after-tokenize', function (env) {
+	    Prism.languages['markup-templating'].tokenizePlaceholders(env, 'liquid');
+	  });
+	}
+	return liquid_1;
 }
 
-var lisp_1 = lisp;
-lisp.displayName = 'lisp';
-lisp.aliases = [];
-function lisp(Prism) {
+var lisp_1;
+var hasRequiredLisp;
+
+function requireLisp () {
+	if (hasRequiredLisp) return lisp_1;
+	hasRequiredLisp = 1;
+
+	lisp_1 = lisp;
+	lisp.displayName = 'lisp';
+	lisp.aliases = [];
+	function lisp(Prism) {
 (function (Prism) {
-    /**
-     * Functions to construct regular expressions
-     * e.g. (interactive ... or (interactive)
-     *
-     * @param {string} name
-     * @returns {RegExp}
-     */
-    function simple_form(name) {
-      return RegExp(/(\()/.source + '(?:' + name + ')' + /(?=[\s\)])/.source)
-    }
-    /**
-     * booleans and numbers
-     *
-     * @param {string} pattern
-     * @returns {RegExp}
-     */
-    function primitive(pattern) {
-      return RegExp(
-        /([\s([])/.source + '(?:' + pattern + ')' + /(?=[\s)])/.source
-      )
-    } // Patterns in regular expressions
-    // Symbol name. See https://www.gnu.org/software/emacs/manual/html_node/elisp/Symbol-Type.html
-    // & and : are excluded as they are usually used for special purposes
-    var symbol = /(?!\d)[-+*/~!@$%^=<>{}\w]+/.source; // symbol starting with & used in function arguments
-    var marker = '&' + symbol; // Open parenthesis for look-behind
-    var par = '(\\()';
-    var endpar = '(?=\\))'; // End the pattern with look-ahead space
-    var space = '(?=\\s)';
-    var nestedPar =
-      /(?:[^()]|\((?:[^()]|\((?:[^()]|\((?:[^()]|\((?:[^()]|\([^()]*\))*\))*\))*\))*\))*/
-        .source;
-    var language = {
-      // Three or four semicolons are considered a heading.
-      // See https://www.gnu.org/software/emacs/manual/html_node/elisp/Comment-Tips.html
-      heading: {
-        pattern: /;;;.*/,
-        alias: ['comment', 'title']
-      },
-      comment: /;.*/,
-      string: {
-        pattern: /"(?:[^"\\]|\\.)*"/,
-        greedy: true,
-        inside: {
-          argument: /[-A-Z]+(?=[.,\s])/,
-          symbol: RegExp('`' + symbol + "'")
-        }
-      },
-      'quoted-symbol': {
-        pattern: RegExp("#?'" + symbol),
-        alias: ['variable', 'symbol']
-      },
-      'lisp-property': {
-        pattern: RegExp(':' + symbol),
-        alias: 'property'
-      },
-      splice: {
-        pattern: RegExp(',@?' + symbol),
-        alias: ['symbol', 'variable']
-      },
-      keyword: [
-        {
-          pattern: RegExp(
-            par +
-              '(?:and|(?:cl-)?letf|cl-loop|cond|cons|error|if|(?:lexical-)?let\\*?|message|not|null|or|provide|require|setq|unless|use-package|when|while)' +
-              space
-          ),
-          lookbehind: true
-        },
-        {
-          pattern: RegExp(
-            par +
-              '(?:append|by|collect|concat|do|finally|for|in|return)' +
-              space
-          ),
-          lookbehind: true
-        }
-      ],
-      declare: {
-        pattern: simple_form(/declare/.source),
-        lookbehind: true,
-        alias: 'keyword'
-      },
-      interactive: {
-        pattern: simple_form(/interactive/.source),
-        lookbehind: true,
-        alias: 'keyword'
-      },
-      boolean: {
-        pattern: primitive(/nil|t/.source),
-        lookbehind: true
-      },
-      number: {
-        pattern: primitive(/[-+]?\d+(?:\.\d*)?/.source),
-        lookbehind: true
-      },
-      defvar: {
-        pattern: RegExp(par + 'def(?:const|custom|group|var)\\s+' + symbol),
-        lookbehind: true,
-        inside: {
-          keyword: /^def[a-z]+/,
-          variable: RegExp(symbol)
-        }
-      },
-      defun: {
-        pattern: RegExp(
-          par +
-            /(?:cl-)?(?:defmacro|defun\*?)\s+/.source +
-            symbol +
-            /\s+\(/.source +
-            nestedPar +
-            /\)/.source
-        ),
-        lookbehind: true,
-        greedy: true,
-        inside: {
-          keyword: /^(?:cl-)?def\S+/,
-          // See below, this property needs to be defined later so that it can
-          // reference the language object.
-          arguments: null,
-          function: {
-            pattern: RegExp('(^\\s)' + symbol),
-            lookbehind: true
-          },
-          punctuation: /[()]/
-        }
-      },
-      lambda: {
-        pattern: RegExp(
-          par +
-            'lambda\\s+\\(\\s*(?:&?' +
-            symbol +
-            '(?:\\s+&?' +
-            symbol +
-            ')*\\s*)?\\)'
-        ),
-        lookbehind: true,
-        greedy: true,
-        inside: {
-          keyword: /^lambda/,
-          // See below, this property needs to be defined later so that it can
-          // reference the language object.
-          arguments: null,
-          punctuation: /[()]/
-        }
-      },
-      car: {
-        pattern: RegExp(par + symbol),
-        lookbehind: true
-      },
-      punctuation: [
-        // open paren, brackets, and close paren
-        /(?:['`,]?\(|[)\[\]])/, // cons
-        {
-          pattern: /(\s)\.(?=\s)/,
-          lookbehind: true
-        }
-      ]
-    };
-    var arg = {
-      'lisp-marker': RegExp(marker),
-      varform: {
-        pattern: RegExp(
-          /\(/.source + symbol + /\s+(?=\S)/.source + nestedPar + /\)/.source
-        ),
-        inside: language
-      },
-      argument: {
-        pattern: RegExp(/(^|[\s(])/.source + symbol),
-        lookbehind: true,
-        alias: 'variable'
-      },
-      rest: language
-    };
-    var forms = '\\S+(?:\\s+\\S+)*';
-    var arglist = {
-      pattern: RegExp(par + nestedPar + endpar),
-      lookbehind: true,
-      inside: {
-        'rest-vars': {
-          pattern: RegExp('&(?:body|rest)\\s+' + forms),
-          inside: arg
-        },
-        'other-marker-vars': {
-          pattern: RegExp('&(?:aux|optional)\\s+' + forms),
-          inside: arg
-        },
-        keys: {
-          pattern: RegExp('&key\\s+' + forms + '(?:\\s+&allow-other-keys)?'),
-          inside: arg
-        },
-        argument: {
-          pattern: RegExp(symbol),
-          alias: 'variable'
-        },
-        punctuation: /[()]/
-      }
-    };
-    language['lambda'].inside.arguments = arglist;
-    language['defun'].inside.arguments = Prism.util.clone(arglist);
-    language['defun'].inside.arguments.inside.sublist = arglist;
-    Prism.languages.lisp = language;
-    Prism.languages.elisp = language;
-    Prism.languages.emacs = language;
-    Prism.languages['emacs-lisp'] = language;
-  })(Prism);
+	    /**
+	     * Functions to construct regular expressions
+	     * e.g. (interactive ... or (interactive)
+	     *
+	     * @param {string} name
+	     * @returns {RegExp}
+	     */
+	    function simple_form(name) {
+	      return RegExp(/(\()/.source + '(?:' + name + ')' + /(?=[\s\)])/.source)
+	    }
+	    /**
+	     * booleans and numbers
+	     *
+	     * @param {string} pattern
+	     * @returns {RegExp}
+	     */
+	    function primitive(pattern) {
+	      return RegExp(
+	        /([\s([])/.source + '(?:' + pattern + ')' + /(?=[\s)])/.source
+	      )
+	    } // Patterns in regular expressions
+	    // Symbol name. See https://www.gnu.org/software/emacs/manual/html_node/elisp/Symbol-Type.html
+	    // & and : are excluded as they are usually used for special purposes
+	    var symbol = /(?!\d)[-+*/~!@$%^=<>{}\w]+/.source; // symbol starting with & used in function arguments
+	    var marker = '&' + symbol; // Open parenthesis for look-behind
+	    var par = '(\\()';
+	    var endpar = '(?=\\))'; // End the pattern with look-ahead space
+	    var space = '(?=\\s)';
+	    var nestedPar =
+	      /(?:[^()]|\((?:[^()]|\((?:[^()]|\((?:[^()]|\((?:[^()]|\([^()]*\))*\))*\))*\))*\))*/
+	        .source;
+	    var language = {
+	      // Three or four semicolons are considered a heading.
+	      // See https://www.gnu.org/software/emacs/manual/html_node/elisp/Comment-Tips.html
+	      heading: {
+	        pattern: /;;;.*/,
+	        alias: ['comment', 'title']
+	      },
+	      comment: /;.*/,
+	      string: {
+	        pattern: /"(?:[^"\\]|\\.)*"/,
+	        greedy: true,
+	        inside: {
+	          argument: /[-A-Z]+(?=[.,\s])/,
+	          symbol: RegExp('`' + symbol + "'")
+	        }
+	      },
+	      'quoted-symbol': {
+	        pattern: RegExp("#?'" + symbol),
+	        alias: ['variable', 'symbol']
+	      },
+	      'lisp-property': {
+	        pattern: RegExp(':' + symbol),
+	        alias: 'property'
+	      },
+	      splice: {
+	        pattern: RegExp(',@?' + symbol),
+	        alias: ['symbol', 'variable']
+	      },
+	      keyword: [
+	        {
+	          pattern: RegExp(
+	            par +
+	              '(?:and|(?:cl-)?letf|cl-loop|cond|cons|error|if|(?:lexical-)?let\\*?|message|not|null|or|provide|require|setq|unless|use-package|when|while)' +
+	              space
+	          ),
+	          lookbehind: true
+	        },
+	        {
+	          pattern: RegExp(
+	            par +
+	              '(?:append|by|collect|concat|do|finally|for|in|return)' +
+	              space
+	          ),
+	          lookbehind: true
+	        }
+	      ],
+	      declare: {
+	        pattern: simple_form(/declare/.source),
+	        lookbehind: true,
+	        alias: 'keyword'
+	      },
+	      interactive: {
+	        pattern: simple_form(/interactive/.source),
+	        lookbehind: true,
+	        alias: 'keyword'
+	      },
+	      boolean: {
+	        pattern: primitive(/nil|t/.source),
+	        lookbehind: true
+	      },
+	      number: {
+	        pattern: primitive(/[-+]?\d+(?:\.\d*)?/.source),
+	        lookbehind: true
+	      },
+	      defvar: {
+	        pattern: RegExp(par + 'def(?:const|custom|group|var)\\s+' + symbol),
+	        lookbehind: true,
+	        inside: {
+	          keyword: /^def[a-z]+/,
+	          variable: RegExp(symbol)
+	        }
+	      },
+	      defun: {
+	        pattern: RegExp(
+	          par +
+	            /(?:cl-)?(?:defmacro|defun\*?)\s+/.source +
+	            symbol +
+	            /\s+\(/.source +
+	            nestedPar +
+	            /\)/.source
+	        ),
+	        lookbehind: true,
+	        greedy: true,
+	        inside: {
+	          keyword: /^(?:cl-)?def\S+/,
+	          // See below, this property needs to be defined later so that it can
+	          // reference the language object.
+	          arguments: null,
+	          function: {
+	            pattern: RegExp('(^\\s)' + symbol),
+	            lookbehind: true
+	          },
+	          punctuation: /[()]/
+	        }
+	      },
+	      lambda: {
+	        pattern: RegExp(
+	          par +
+	            'lambda\\s+\\(\\s*(?:&?' +
+	            symbol +
+	            '(?:\\s+&?' +
+	            symbol +
+	            ')*\\s*)?\\)'
+	        ),
+	        lookbehind: true,
+	        greedy: true,
+	        inside: {
+	          keyword: /^lambda/,
+	          // See below, this property needs to be defined later so that it can
+	          // reference the language object.
+	          arguments: null,
+	          punctuation: /[()]/
+	        }
+	      },
+	      car: {
+	        pattern: RegExp(par + symbol),
+	        lookbehind: true
+	      },
+	      punctuation: [
+	        // open paren, brackets, and close paren
+	        /(?:['`,]?\(|[)\[\]])/, // cons
+	        {
+	          pattern: /(\s)\.(?=\s)/,
+	          lookbehind: true
+	        }
+	      ]
+	    };
+	    var arg = {
+	      'lisp-marker': RegExp(marker),
+	      varform: {
+	        pattern: RegExp(
+	          /\(/.source + symbol + /\s+(?=\S)/.source + nestedPar + /\)/.source
+	        ),
+	        inside: language
+	      },
+	      argument: {
+	        pattern: RegExp(/(^|[\s(])/.source + symbol),
+	        lookbehind: true,
+	        alias: 'variable'
+	      },
+	      rest: language
+	    };
+	    var forms = '\\S+(?:\\s+\\S+)*';
+	    var arglist = {
+	      pattern: RegExp(par + nestedPar + endpar),
+	      lookbehind: true,
+	      inside: {
+	        'rest-vars': {
+	          pattern: RegExp('&(?:body|rest)\\s+' + forms),
+	          inside: arg
+	        },
+	        'other-marker-vars': {
+	          pattern: RegExp('&(?:aux|optional)\\s+' + forms),
+	          inside: arg
+	        },
+	        keys: {
+	          pattern: RegExp('&key\\s+' + forms + '(?:\\s+&allow-other-keys)?'),
+	          inside: arg
+	        },
+	        argument: {
+	          pattern: RegExp(symbol),
+	          alias: 'variable'
+	        },
+	        punctuation: /[()]/
+	      }
+	    };
+	    language['lambda'].inside.arguments = arglist;
+	    language['defun'].inside.arguments = Prism.util.clone(arglist);
+	    language['defun'].inside.arguments.inside.sublist = arglist;
+	    Prism.languages.lisp = language;
+	    Prism.languages.elisp = language;
+	    Prism.languages.emacs = language;
+	    Prism.languages['emacs-lisp'] = language;
+	  })(Prism);
+	}
+	return lisp_1;
 }
 
 var livescript_1 = livescript;
@@ -40902,250 +40964,286 @@ function livescript(Prism) {
   ].inside.rest = Prism.languages.livescript;
 }
 
-var llvm_1 = llvm;
-llvm.displayName = 'llvm';
-llvm.aliases = [];
-function llvm(Prism) {
+var llvm_1;
+var hasRequiredLlvm;
+
+function requireLlvm () {
+	if (hasRequiredLlvm) return llvm_1;
+	hasRequiredLlvm = 1;
+
+	llvm_1 = llvm;
+	llvm.displayName = 'llvm';
+	llvm.aliases = [];
+	function llvm(Prism) {
 (function (Prism) {
-    Prism.languages.llvm = {
-      comment: /;.*/,
-      string: {
-        pattern: /"[^"]*"/,
-        greedy: true
-      },
-      boolean: /\b(?:false|true)\b/,
-      variable: /[%@!#](?:(?!\d)(?:[-$.\w]|\\[a-f\d]{2})+|\d+)/i,
-      label: /(?!\d)(?:[-$.\w]|\\[a-f\d]{2})+:/i,
-      type: {
-        pattern:
-          /\b(?:double|float|fp128|half|i[1-9]\d*|label|metadata|ppc_fp128|token|void|x86_fp80|x86_mmx)\b/,
-        alias: 'class-name'
-      },
-      keyword: /\b[a-z_][a-z_0-9]*\b/,
-      number:
-        /[+-]?\b\d+(?:\.\d+)?(?:[eE][+-]?\d+)?\b|\b0x[\dA-Fa-f]+\b|\b0xK[\dA-Fa-f]{20}\b|\b0x[ML][\dA-Fa-f]{32}\b|\b0xH[\dA-Fa-f]{4}\b/,
-      punctuation: /[{}[\];(),.!*=<>]/
-    };
-  })(Prism);
+	    Prism.languages.llvm = {
+	      comment: /;.*/,
+	      string: {
+	        pattern: /"[^"]*"/,
+	        greedy: true
+	      },
+	      boolean: /\b(?:false|true)\b/,
+	      variable: /[%@!#](?:(?!\d)(?:[-$.\w]|\\[a-f\d]{2})+|\d+)/i,
+	      label: /(?!\d)(?:[-$.\w]|\\[a-f\d]{2})+:/i,
+	      type: {
+	        pattern:
+	          /\b(?:double|float|fp128|half|i[1-9]\d*|label|metadata|ppc_fp128|token|void|x86_fp80|x86_mmx)\b/,
+	        alias: 'class-name'
+	      },
+	      keyword: /\b[a-z_][a-z_0-9]*\b/,
+	      number:
+	        /[+-]?\b\d+(?:\.\d+)?(?:[eE][+-]?\d+)?\b|\b0x[\dA-Fa-f]+\b|\b0xK[\dA-Fa-f]{20}\b|\b0x[ML][\dA-Fa-f]{32}\b|\b0xH[\dA-Fa-f]{4}\b/,
+	      punctuation: /[{}[\];(),.!*=<>]/
+	    };
+	  })(Prism);
+	}
+	return llvm_1;
 }
 
-var log_1 = log;
-log.displayName = 'log';
-log.aliases = [];
-function log(Prism) {
-  // This is a language definition for generic log files.
-  // Since there is no one log format, this language definition has to support all formats to some degree.
-  //
-  // Based on https://github.com/MTDL9/vim-log-highlighting
-  Prism.languages.log = {
-    string: {
-      // Single-quoted strings must not be confused with plain text. E.g. Can't isn't Susan's Chris' toy
-      pattern: /"(?:[^"\\\r\n]|\\.)*"|'(?![st] | \w)(?:[^'\\\r\n]|\\.)*'/,
-      greedy: true
-    },
-    exception: {
-      pattern:
-        /(^|[^\w.])[a-z][\w.]*(?:Error|Exception):.*(?:(?:\r\n?|\n)[ \t]*(?:at[ \t].+|\.{3}.*|Caused by:.*))+(?:(?:\r\n?|\n)[ \t]*\.\.\. .*)?/,
-      lookbehind: true,
-      greedy: true,
-      alias: ['javastacktrace', 'language-javastacktrace'],
-      inside: Prism.languages['javastacktrace'] || {
-        keyword: /\bat\b/,
-        function: /[a-z_][\w$]*(?=\()/,
-        punctuation: /[.:()]/
-      }
-    },
-    level: [
-      {
-        pattern:
-          /\b(?:ALERT|CRIT|CRITICAL|EMERG|EMERGENCY|ERR|ERROR|FAILURE|FATAL|SEVERE)\b/,
-        alias: ['error', 'important']
-      },
-      {
-        pattern: /\b(?:WARN|WARNING|WRN)\b/,
-        alias: ['warning', 'important']
-      },
-      {
-        pattern: /\b(?:DISPLAY|INF|INFO|NOTICE|STATUS)\b/,
-        alias: ['info', 'keyword']
-      },
-      {
-        pattern: /\b(?:DBG|DEBUG|FINE)\b/,
-        alias: ['debug', 'keyword']
-      },
-      {
-        pattern: /\b(?:FINER|FINEST|TRACE|TRC|VERBOSE|VRB)\b/,
-        alias: ['trace', 'comment']
-      }
-    ],
-    property: {
-      pattern:
-        /((?:^|[\]|])[ \t]*)[a-z_](?:[\w-]|\b\/\b)*(?:[. ]\(?\w(?:[\w-]|\b\/\b)*\)?)*:(?=\s)/im,
-      lookbehind: true
-    },
-    separator: {
-      pattern: /(^|[^-+])-{3,}|={3,}|\*{3,}|- - /m,
-      lookbehind: true,
-      alias: 'comment'
-    },
-    url: /\b(?:file|ftp|https?):\/\/[^\s|,;'"]*[^\s|,;'">.]/,
-    email: {
-      pattern: /(^|\s)[-\w+.]+@[a-z][a-z0-9-]*(?:\.[a-z][a-z0-9-]*)+(?=\s)/,
-      lookbehind: true,
-      alias: 'url'
-    },
-    'ip-address': {
-      pattern: /\b(?:\d{1,3}(?:\.\d{1,3}){3})\b/,
-      alias: 'constant'
-    },
-    'mac-address': {
-      pattern: /\b[a-f0-9]{2}(?::[a-f0-9]{2}){5}\b/i,
-      alias: 'constant'
-    },
-    domain: {
-      pattern:
-        /(^|\s)[a-z][a-z0-9-]*(?:\.[a-z][a-z0-9-]*)*\.[a-z][a-z0-9-]+(?=\s)/,
-      lookbehind: true,
-      alias: 'constant'
-    },
-    uuid: {
-      pattern:
-        /\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b/i,
-      alias: 'constant'
-    },
-    hash: {
-      pattern: /\b(?:[a-f0-9]{32}){1,2}\b/i,
-      alias: 'constant'
-    },
-    'file-path': {
-      pattern:
-        /\b[a-z]:[\\/][^\s|,;:(){}\[\]"']+|(^|[\s:\[\](>|])\.{0,2}\/\w[^\s|,;:(){}\[\]"']*/i,
-      lookbehind: true,
-      greedy: true,
-      alias: 'string'
-    },
-    date: {
-      pattern: RegExp(
-        /\b\d{4}[-/]\d{2}[-/]\d{2}(?:T(?=\d{1,2}:)|(?=\s\d{1,2}:))/.source +
-          '|' +
-          /\b\d{1,4}[-/ ](?:\d{1,2}|Apr|Aug|Dec|Feb|Jan|Jul|Jun|Mar|May|Nov|Oct|Sep)[-/ ]\d{2,4}T?\b/
-            .source +
-          '|' +
-          /\b(?:(?:Fri|Mon|Sat|Sun|Thu|Tue|Wed)(?:\s{1,2}(?:Apr|Aug|Dec|Feb|Jan|Jul|Jun|Mar|May|Nov|Oct|Sep))?|Apr|Aug|Dec|Feb|Jan|Jul|Jun|Mar|May|Nov|Oct|Sep)\s{1,2}\d{1,2}\b/
-            .source,
-        'i'
-      ),
-      alias: 'number'
-    },
-    time: {
-      pattern:
-        /\b\d{1,2}:\d{1,2}:\d{1,2}(?:[.,:]\d+)?(?:\s?[+-]\d{2}:?\d{2}|Z)?\b/,
-      alias: 'number'
-    },
-    boolean: /\b(?:false|null|true)\b/i,
-    number: {
-      pattern:
-        /(^|[^.\w])(?:0x[a-f0-9]+|0o[0-7]+|0b[01]+|v?\d[\da-f]*(?:\.\d+)*(?:e[+-]?\d+)?[a-z]{0,3}\b)\b(?!\.\w)/i,
-      lookbehind: true
-    },
-    operator: /[;:?<=>~/@!$%&+\-|^(){}*#]/,
-    punctuation: /[\[\].,]/
-  };
+var log_1;
+var hasRequiredLog;
+
+function requireLog () {
+	if (hasRequiredLog) return log_1;
+	hasRequiredLog = 1;
+
+	log_1 = log;
+	log.displayName = 'log';
+	log.aliases = [];
+	function log(Prism) {
+	  // This is a language definition for generic log files.
+	  // Since there is no one log format, this language definition has to support all formats to some degree.
+	  //
+	  // Based on https://github.com/MTDL9/vim-log-highlighting
+	  Prism.languages.log = {
+	    string: {
+	      // Single-quoted strings must not be confused with plain text. E.g. Can't isn't Susan's Chris' toy
+	      pattern: /"(?:[^"\\\r\n]|\\.)*"|'(?![st] | \w)(?:[^'\\\r\n]|\\.)*'/,
+	      greedy: true
+	    },
+	    exception: {
+	      pattern:
+	        /(^|[^\w.])[a-z][\w.]*(?:Error|Exception):.*(?:(?:\r\n?|\n)[ \t]*(?:at[ \t].+|\.{3}.*|Caused by:.*))+(?:(?:\r\n?|\n)[ \t]*\.\.\. .*)?/,
+	      lookbehind: true,
+	      greedy: true,
+	      alias: ['javastacktrace', 'language-javastacktrace'],
+	      inside: Prism.languages['javastacktrace'] || {
+	        keyword: /\bat\b/,
+	        function: /[a-z_][\w$]*(?=\()/,
+	        punctuation: /[.:()]/
+	      }
+	    },
+	    level: [
+	      {
+	        pattern:
+	          /\b(?:ALERT|CRIT|CRITICAL|EMERG|EMERGENCY|ERR|ERROR|FAILURE|FATAL|SEVERE)\b/,
+	        alias: ['error', 'important']
+	      },
+	      {
+	        pattern: /\b(?:WARN|WARNING|WRN)\b/,
+	        alias: ['warning', 'important']
+	      },
+	      {
+	        pattern: /\b(?:DISPLAY|INF|INFO|NOTICE|STATUS)\b/,
+	        alias: ['info', 'keyword']
+	      },
+	      {
+	        pattern: /\b(?:DBG|DEBUG|FINE)\b/,
+	        alias: ['debug', 'keyword']
+	      },
+	      {
+	        pattern: /\b(?:FINER|FINEST|TRACE|TRC|VERBOSE|VRB)\b/,
+	        alias: ['trace', 'comment']
+	      }
+	    ],
+	    property: {
+	      pattern:
+	        /((?:^|[\]|])[ \t]*)[a-z_](?:[\w-]|\b\/\b)*(?:[. ]\(?\w(?:[\w-]|\b\/\b)*\)?)*:(?=\s)/im,
+	      lookbehind: true
+	    },
+	    separator: {
+	      pattern: /(^|[^-+])-{3,}|={3,}|\*{3,}|- - /m,
+	      lookbehind: true,
+	      alias: 'comment'
+	    },
+	    url: /\b(?:file|ftp|https?):\/\/[^\s|,;'"]*[^\s|,;'">.]/,
+	    email: {
+	      pattern: /(^|\s)[-\w+.]+@[a-z][a-z0-9-]*(?:\.[a-z][a-z0-9-]*)+(?=\s)/,
+	      lookbehind: true,
+	      alias: 'url'
+	    },
+	    'ip-address': {
+	      pattern: /\b(?:\d{1,3}(?:\.\d{1,3}){3})\b/,
+	      alias: 'constant'
+	    },
+	    'mac-address': {
+	      pattern: /\b[a-f0-9]{2}(?::[a-f0-9]{2}){5}\b/i,
+	      alias: 'constant'
+	    },
+	    domain: {
+	      pattern:
+	        /(^|\s)[a-z][a-z0-9-]*(?:\.[a-z][a-z0-9-]*)*\.[a-z][a-z0-9-]+(?=\s)/,
+	      lookbehind: true,
+	      alias: 'constant'
+	    },
+	    uuid: {
+	      pattern:
+	        /\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b/i,
+	      alias: 'constant'
+	    },
+	    hash: {
+	      pattern: /\b(?:[a-f0-9]{32}){1,2}\b/i,
+	      alias: 'constant'
+	    },
+	    'file-path': {
+	      pattern:
+	        /\b[a-z]:[\\/][^\s|,;:(){}\[\]"']+|(^|[\s:\[\](>|])\.{0,2}\/\w[^\s|,;:(){}\[\]"']*/i,
+	      lookbehind: true,
+	      greedy: true,
+	      alias: 'string'
+	    },
+	    date: {
+	      pattern: RegExp(
+	        /\b\d{4}[-/]\d{2}[-/]\d{2}(?:T(?=\d{1,2}:)|(?=\s\d{1,2}:))/.source +
+	          '|' +
+	          /\b\d{1,4}[-/ ](?:\d{1,2}|Apr|Aug|Dec|Feb|Jan|Jul|Jun|Mar|May|Nov|Oct|Sep)[-/ ]\d{2,4}T?\b/
+	            .source +
+	          '|' +
+	          /\b(?:(?:Fri|Mon|Sat|Sun|Thu|Tue|Wed)(?:\s{1,2}(?:Apr|Aug|Dec|Feb|Jan|Jul|Jun|Mar|May|Nov|Oct|Sep))?|Apr|Aug|Dec|Feb|Jan|Jul|Jun|Mar|May|Nov|Oct|Sep)\s{1,2}\d{1,2}\b/
+	            .source,
+	        'i'
+	      ),
+	      alias: 'number'
+	    },
+	    time: {
+	      pattern:
+	        /\b\d{1,2}:\d{1,2}:\d{1,2}(?:[.,:]\d+)?(?:\s?[+-]\d{2}:?\d{2}|Z)?\b/,
+	      alias: 'number'
+	    },
+	    boolean: /\b(?:false|null|true)\b/i,
+	    number: {
+	      pattern:
+	        /(^|[^.\w])(?:0x[a-f0-9]+|0o[0-7]+|0b[01]+|v?\d[\da-f]*(?:\.\d+)*(?:e[+-]?\d+)?[a-z]{0,3}\b)\b(?!\.\w)/i,
+	      lookbehind: true
+	    },
+	    operator: /[;:?<=>~/@!$%&+\-|^(){}*#]/,
+	    punctuation: /[\[\].,]/
+	  };
+	}
+	return log_1;
 }
 
-var lolcode_1 = lolcode;
-lolcode.displayName = 'lolcode';
-lolcode.aliases = [];
-function lolcode(Prism) {
-  Prism.languages.lolcode = {
-    comment: [/\bOBTW\s[\s\S]*?\sTLDR\b/, /\bBTW.+/],
-    string: {
-      pattern: /"(?::.|[^":])*"/,
-      inside: {
-        variable: /:\{[^}]+\}/,
-        symbol: [/:\([a-f\d]+\)/i, /:\[[^\]]+\]/, /:[)>o":]/]
-      },
-      greedy: true
-    },
-    number: /(?:\B-)?(?:\b\d+(?:\.\d*)?|\B\.\d+)/,
-    symbol: {
-      pattern: /(^|\s)(?:A )?(?:BUKKIT|NOOB|NUMBAR|NUMBR|TROOF|YARN)(?=\s|,|$)/,
-      lookbehind: true,
-      inside: {
-        keyword: /A(?=\s)/
-      }
-    },
-    label: {
-      pattern: /((?:^|\s)(?:IM IN YR|IM OUTTA YR) )[a-zA-Z]\w*/,
-      lookbehind: true,
-      alias: 'string'
-    },
-    function: {
-      pattern: /((?:^|\s)(?:HOW IZ I|I IZ|IZ) )[a-zA-Z]\w*/,
-      lookbehind: true
-    },
-    keyword: [
-      {
-        pattern:
-          /(^|\s)(?:AN|FOUND YR|GIMMEH|GTFO|HAI|HAS A|HOW IZ I|I HAS A|I IZ|IF U SAY SO|IM IN YR|IM OUTTA YR|IS NOW(?: A)?|ITZ(?: A)?|IZ|KTHX|KTHXBYE|LIEK(?: A)?|MAEK|MEBBE|MKAY|NERFIN|NO WAI|O HAI IM|O RLY\?|OIC|OMG|OMGWTF|R|SMOOSH|SRS|TIL|UPPIN|VISIBLE|WILE|WTF\?|YA RLY|YR)(?=\s|,|$)/,
-        lookbehind: true
-      },
-      /'Z(?=\s|,|$)/
-    ],
-    boolean: {
-      pattern: /(^|\s)(?:FAIL|WIN)(?=\s|,|$)/,
-      lookbehind: true
-    },
-    variable: {
-      pattern: /(^|\s)IT(?=\s|,|$)/,
-      lookbehind: true
-    },
-    operator: {
-      pattern:
-        /(^|\s)(?:NOT|BOTH SAEM|DIFFRINT|(?:ALL|ANY|BIGGR|BOTH|DIFF|EITHER|MOD|PRODUKT|QUOSHUNT|SMALLR|SUM|WON) OF)(?=\s|,|$)/,
-      lookbehind: true
-    },
-    punctuation: /\.{3}|…|,|!/
-  };
+var lolcode_1;
+var hasRequiredLolcode;
+
+function requireLolcode () {
+	if (hasRequiredLolcode) return lolcode_1;
+	hasRequiredLolcode = 1;
+
+	lolcode_1 = lolcode;
+	lolcode.displayName = 'lolcode';
+	lolcode.aliases = [];
+	function lolcode(Prism) {
+	  Prism.languages.lolcode = {
+	    comment: [/\bOBTW\s[\s\S]*?\sTLDR\b/, /\bBTW.+/],
+	    string: {
+	      pattern: /"(?::.|[^":])*"/,
+	      inside: {
+	        variable: /:\{[^}]+\}/,
+	        symbol: [/:\([a-f\d]+\)/i, /:\[[^\]]+\]/, /:[)>o":]/]
+	      },
+	      greedy: true
+	    },
+	    number: /(?:\B-)?(?:\b\d+(?:\.\d*)?|\B\.\d+)/,
+	    symbol: {
+	      pattern: /(^|\s)(?:A )?(?:BUKKIT|NOOB|NUMBAR|NUMBR|TROOF|YARN)(?=\s|,|$)/,
+	      lookbehind: true,
+	      inside: {
+	        keyword: /A(?=\s)/
+	      }
+	    },
+	    label: {
+	      pattern: /((?:^|\s)(?:IM IN YR|IM OUTTA YR) )[a-zA-Z]\w*/,
+	      lookbehind: true,
+	      alias: 'string'
+	    },
+	    function: {
+	      pattern: /((?:^|\s)(?:HOW IZ I|I IZ|IZ) )[a-zA-Z]\w*/,
+	      lookbehind: true
+	    },
+	    keyword: [
+	      {
+	        pattern:
+	          /(^|\s)(?:AN|FOUND YR|GIMMEH|GTFO|HAI|HAS A|HOW IZ I|I HAS A|I IZ|IF U SAY SO|IM IN YR|IM OUTTA YR|IS NOW(?: A)?|ITZ(?: A)?|IZ|KTHX|KTHXBYE|LIEK(?: A)?|MAEK|MEBBE|MKAY|NERFIN|NO WAI|O HAI IM|O RLY\?|OIC|OMG|OMGWTF|R|SMOOSH|SRS|TIL|UPPIN|VISIBLE|WILE|WTF\?|YA RLY|YR)(?=\s|,|$)/,
+	        lookbehind: true
+	      },
+	      /'Z(?=\s|,|$)/
+	    ],
+	    boolean: {
+	      pattern: /(^|\s)(?:FAIL|WIN)(?=\s|,|$)/,
+	      lookbehind: true
+	    },
+	    variable: {
+	      pattern: /(^|\s)IT(?=\s|,|$)/,
+	      lookbehind: true
+	    },
+	    operator: {
+	      pattern:
+	        /(^|\s)(?:NOT|BOTH SAEM|DIFFRINT|(?:ALL|ANY|BIGGR|BOTH|DIFF|EITHER|MOD|PRODUKT|QUOSHUNT|SMALLR|SUM|WON) OF)(?=\s|,|$)/,
+	      lookbehind: true
+	    },
+	    punctuation: /\.{3}|…|,|!/
+	  };
+	}
+	return lolcode_1;
 }
 
-var magma_1 = magma;
-magma.displayName = 'magma';
-magma.aliases = [];
-function magma(Prism) {
-  Prism.languages.magma = {
-    output: {
-      pattern:
-        /^(>.*(?:\r(?:\n|(?!\n))|\n))(?!>)(?:.+|(?:\r(?:\n|(?!\n))|\n)(?!>).*)(?:(?:\r(?:\n|(?!\n))|\n)(?!>).*)*/m,
-      lookbehind: true,
-      greedy: true
-    },
-    comment: {
-      pattern: /\/\/.*|\/\*[\s\S]*?\*\//,
-      greedy: true
-    },
-    string: {
-      pattern: /(^|[^\\"])"(?:[^\r\n\\"]|\\.)*"/,
-      lookbehind: true,
-      greedy: true
-    },
-    // http://magma.maths.usyd.edu.au/magma/handbook/text/82
-    keyword:
-      /\b(?:_|adj|and|assert|assert2|assert3|assigned|break|by|case|cat|catch|clear|cmpeq|cmpne|continue|declare|default|delete|diff|div|do|elif|else|end|eq|error|eval|exists|exit|for|forall|forward|fprintf|freeze|function|ge|gt|if|iload|import|in|intrinsic|is|join|le|load|local|lt|meet|mod|ne|not|notadj|notin|notsubset|or|print|printf|procedure|quit|random|read|readi|repeat|require|requirege|requirerange|restore|return|save|sdiff|select|subset|then|time|to|try|until|vprint|vprintf|vtime|when|where|while|xor)\b/,
-    boolean: /\b(?:false|true)\b/,
-    generator: {
-      pattern: /\b[a-z_]\w*(?=\s*<)/i,
-      alias: 'class-name'
-    },
-    function: /\b[a-z_]\w*(?=\s*\()/i,
-    number: {
-      pattern:
-        /(^|[^\w.]|\.\.)(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?(?:_[a-z]?)?(?=$|[^\w.]|\.\.)/,
-      lookbehind: true
-    },
-    operator: /->|[-+*/^~!|#=]|:=|\.\./,
-    punctuation: /[()[\]{}<>,;.:]/
-  };
+var magma_1;
+var hasRequiredMagma;
+
+function requireMagma () {
+	if (hasRequiredMagma) return magma_1;
+	hasRequiredMagma = 1;
+
+	magma_1 = magma;
+	magma.displayName = 'magma';
+	magma.aliases = [];
+	function magma(Prism) {
+	  Prism.languages.magma = {
+	    output: {
+	      pattern:
+	        /^(>.*(?:\r(?:\n|(?!\n))|\n))(?!>)(?:.+|(?:\r(?:\n|(?!\n))|\n)(?!>).*)(?:(?:\r(?:\n|(?!\n))|\n)(?!>).*)*/m,
+	      lookbehind: true,
+	      greedy: true
+	    },
+	    comment: {
+	      pattern: /\/\/.*|\/\*[\s\S]*?\*\//,
+	      greedy: true
+	    },
+	    string: {
+	      pattern: /(^|[^\\"])"(?:[^\r\n\\"]|\\.)*"/,
+	      lookbehind: true,
+	      greedy: true
+	    },
+	    // http://magma.maths.usyd.edu.au/magma/handbook/text/82
+	    keyword:
+	      /\b(?:_|adj|and|assert|assert2|assert3|assigned|break|by|case|cat|catch|clear|cmpeq|cmpne|continue|declare|default|delete|diff|div|do|elif|else|end|eq|error|eval|exists|exit|for|forall|forward|fprintf|freeze|function|ge|gt|if|iload|import|in|intrinsic|is|join|le|load|local|lt|meet|mod|ne|not|notadj|notin|notsubset|or|print|printf|procedure|quit|random|read|readi|repeat|require|requirege|requirerange|restore|return|save|sdiff|select|subset|then|time|to|try|until|vprint|vprintf|vtime|when|where|while|xor)\b/,
+	    boolean: /\b(?:false|true)\b/,
+	    generator: {
+	      pattern: /\b[a-z_]\w*(?=\s*<)/i,
+	      alias: 'class-name'
+	    },
+	    function: /\b[a-z_]\w*(?=\s*\()/i,
+	    number: {
+	      pattern:
+	        /(^|[^\w.]|\.\.)(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?(?:_[a-z]?)?(?=$|[^\w.]|\.\.)/,
+	      lookbehind: true
+	    },
+	    operator: /->|[-+*/^~!|#=]|:=|\.\./,
+	    punctuation: /[()[\]{}<>,;.:]/
+	  };
+	}
+	return magma_1;
 }
 
 var makefile_1 = makefile;
@@ -41186,708 +41284,753 @@ function makefile(Prism) {
   };
 }
 
-var markdown_1 = markdown;
-markdown.displayName = 'markdown';
-markdown.aliases = ['md'];
-function markdown(Prism) {
+var markdown_1;
+var hasRequiredMarkdown;
+
+function requireMarkdown () {
+	if (hasRequiredMarkdown) return markdown_1;
+	hasRequiredMarkdown = 1;
+
+	markdown_1 = markdown;
+	markdown.displayName = 'markdown';
+	markdown.aliases = ['md'];
+	function markdown(Prism) {
 (function (Prism) {
-    // Allow only one line break
-    var inner = /(?:\\.|[^\\\n\r]|(?:\n|\r\n?)(?![\r\n]))/.source;
-    /**
-     * This function is intended for the creation of the bold or italic pattern.
-     *
-     * This also adds a lookbehind group to the given pattern to ensure that the pattern is not backslash-escaped.
-     *
-     * _Note:_ Keep in mind that this adds a capturing group.
-     *
-     * @param {string} pattern
-     * @returns {RegExp}
-     */
-    function createInline(pattern) {
-      pattern = pattern.replace(/<inner>/g, function () {
-        return inner
-      });
-      return RegExp(/((?:^|[^\\])(?:\\{2})*)/.source + '(?:' + pattern + ')')
-    }
-    var tableCell = /(?:\\.|``(?:[^`\r\n]|`(?!`))+``|`[^`\r\n]+`|[^\\|\r\n`])+/
-      .source;
-    var tableRow =
-      /\|?__(?:\|__)+\|?(?:(?:\n|\r\n?)|(?![\s\S]))/.source.replace(
-        /__/g,
-        function () {
-          return tableCell
-        }
-      );
-    var tableLine =
-      /\|?[ \t]*:?-{3,}:?[ \t]*(?:\|[ \t]*:?-{3,}:?[ \t]*)+\|?(?:\n|\r\n?)/
-        .source;
-    Prism.languages.markdown = Prism.languages.extend('markup', {});
-    Prism.languages.insertBefore('markdown', 'prolog', {
-      'front-matter-block': {
-        pattern: /(^(?:\s*[\r\n])?)---(?!.)[\s\S]*?[\r\n]---(?!.)/,
-        lookbehind: true,
-        greedy: true,
-        inside: {
-          punctuation: /^---|---$/,
-          'front-matter': {
-            pattern: /\S+(?:\s+\S+)*/,
-            alias: ['yaml', 'language-yaml'],
-            inside: Prism.languages.yaml
-          }
-        }
-      },
-      blockquote: {
-        // > ...
-        pattern: /^>(?:[\t ]*>)*/m,
-        alias: 'punctuation'
-      },
-      table: {
-        pattern: RegExp(
-          '^' + tableRow + tableLine + '(?:' + tableRow + ')*',
-          'm'
-        ),
-        inside: {
-          'table-data-rows': {
-            pattern: RegExp(
-              '^(' + tableRow + tableLine + ')(?:' + tableRow + ')*$'
-            ),
-            lookbehind: true,
-            inside: {
-              'table-data': {
-                pattern: RegExp(tableCell),
-                inside: Prism.languages.markdown
-              },
-              punctuation: /\|/
-            }
-          },
-          'table-line': {
-            pattern: RegExp('^(' + tableRow + ')' + tableLine + '$'),
-            lookbehind: true,
-            inside: {
-              punctuation: /\||:?-{3,}:?/
-            }
-          },
-          'table-header-row': {
-            pattern: RegExp('^' + tableRow + '$'),
-            inside: {
-              'table-header': {
-                pattern: RegExp(tableCell),
-                alias: 'important',
-                inside: Prism.languages.markdown
-              },
-              punctuation: /\|/
-            }
-          }
-        }
-      },
-      code: [
-        {
-          // Prefixed by 4 spaces or 1 tab and preceded by an empty line
-          pattern:
-            /((?:^|\n)[ \t]*\n|(?:^|\r\n?)[ \t]*\r\n?)(?: {4}|\t).+(?:(?:\n|\r\n?)(?: {4}|\t).+)*/,
-          lookbehind: true,
-          alias: 'keyword'
-        },
-        {
-          // ```optional language
-          // code block
-          // ```
-          pattern: /^```[\s\S]*?^```$/m,
-          greedy: true,
-          inside: {
-            'code-block': {
-              pattern: /^(```.*(?:\n|\r\n?))[\s\S]+?(?=(?:\n|\r\n?)^```$)/m,
-              lookbehind: true
-            },
-            'code-language': {
-              pattern: /^(```).+/,
-              lookbehind: true
-            },
-            punctuation: /```/
-          }
-        }
-      ],
-      title: [
-        {
-          // title 1
-          // =======
-          // title 2
-          // -------
-          pattern: /\S.*(?:\n|\r\n?)(?:==+|--+)(?=[ \t]*$)/m,
-          alias: 'important',
-          inside: {
-            punctuation: /==+$|--+$/
-          }
-        },
-        {
-          // # title 1
-          // ###### title 6
-          pattern: /(^\s*)#.+/m,
-          lookbehind: true,
-          alias: 'important',
-          inside: {
-            punctuation: /^#+|#+$/
-          }
-        }
-      ],
-      hr: {
-        // ***
-        // ---
-        // * * *
-        // -----------
-        pattern: /(^\s*)([*-])(?:[\t ]*\2){2,}(?=\s*$)/m,
-        lookbehind: true,
-        alias: 'punctuation'
-      },
-      list: {
-        // * item
-        // + item
-        // - item
-        // 1. item
-        pattern: /(^\s*)(?:[*+-]|\d+\.)(?=[\t ].)/m,
-        lookbehind: true,
-        alias: 'punctuation'
-      },
-      'url-reference': {
-        // [id]: http://example.com "Optional title"
-        // [id]: http://example.com 'Optional title'
-        // [id]: http://example.com (Optional title)
-        // [id]: <http://example.com> "Optional title"
-        pattern:
-          /!?\[[^\]]+\]:[\t ]+(?:\S+|<(?:\\.|[^>\\])+>)(?:[\t ]+(?:"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\((?:\\.|[^)\\])*\)))?/,
-        inside: {
-          variable: {
-            pattern: /^(!?\[)[^\]]+/,
-            lookbehind: true
-          },
-          string:
-            /(?:"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\((?:\\.|[^)\\])*\))$/,
-          punctuation: /^[\[\]!:]|[<>]/
-        },
-        alias: 'url'
-      },
-      bold: {
-        // **strong**
-        // __strong__
-        // allow one nested instance of italic text using the same delimiter
-        pattern: createInline(
-          /\b__(?:(?!_)<inner>|_(?:(?!_)<inner>)+_)+__\b|\*\*(?:(?!\*)<inner>|\*(?:(?!\*)<inner>)+\*)+\*\*/
-            .source
-        ),
-        lookbehind: true,
-        greedy: true,
-        inside: {
-          content: {
-            pattern: /(^..)[\s\S]+(?=..$)/,
-            lookbehind: true,
-            inside: {} // see below
-          },
-          punctuation: /\*\*|__/
-        }
-      },
-      italic: {
-        // *em*
-        // _em_
-        // allow one nested instance of bold text using the same delimiter
-        pattern: createInline(
-          /\b_(?:(?!_)<inner>|__(?:(?!_)<inner>)+__)+_\b|\*(?:(?!\*)<inner>|\*\*(?:(?!\*)<inner>)+\*\*)+\*/
-            .source
-        ),
-        lookbehind: true,
-        greedy: true,
-        inside: {
-          content: {
-            pattern: /(^.)[\s\S]+(?=.$)/,
-            lookbehind: true,
-            inside: {} // see below
-          },
-          punctuation: /[*_]/
-        }
-      },
-      strike: {
-        // ~~strike through~~
-        // ~strike~
-        // eslint-disable-next-line regexp/strict
-        pattern: createInline(/(~~?)(?:(?!~)<inner>)+\2/.source),
-        lookbehind: true,
-        greedy: true,
-        inside: {
-          content: {
-            pattern: /(^~~?)[\s\S]+(?=\1$)/,
-            lookbehind: true,
-            inside: {} // see below
-          },
-          punctuation: /~~?/
-        }
-      },
-      'code-snippet': {
-        // `code`
-        // ``code``
-        pattern:
-          /(^|[^\\`])(?:``[^`\r\n]+(?:`[^`\r\n]+)*``(?!`)|`[^`\r\n]+`(?!`))/,
-        lookbehind: true,
-        greedy: true,
-        alias: ['code', 'keyword']
-      },
-      url: {
-        // [example](http://example.com "Optional title")
-        // [example][id]
-        // [example] [id]
-        pattern: createInline(
-          /!?\[(?:(?!\])<inner>)+\](?:\([^\s)]+(?:[\t ]+"(?:\\.|[^"\\])*")?\)|[ \t]?\[(?:(?!\])<inner>)+\])/
-            .source
-        ),
-        lookbehind: true,
-        greedy: true,
-        inside: {
-          operator: /^!/,
-          content: {
-            pattern: /(^\[)[^\]]+(?=\])/,
-            lookbehind: true,
-            inside: {} // see below
-          },
-          variable: {
-            pattern: /(^\][ \t]?\[)[^\]]+(?=\]$)/,
-            lookbehind: true
-          },
-          url: {
-            pattern: /(^\]\()[^\s)]+/,
-            lookbehind: true
-          },
-          string: {
-            pattern: /(^[ \t]+)"(?:\\.|[^"\\])*"(?=\)$)/,
-            lookbehind: true
-          }
-        }
-      }
-    })
-    ;['url', 'bold', 'italic', 'strike'].forEach(function (token) {
+	    // Allow only one line break
+	    var inner = /(?:\\.|[^\\\n\r]|(?:\n|\r\n?)(?![\r\n]))/.source;
+	    /**
+	     * This function is intended for the creation of the bold or italic pattern.
+	     *
+	     * This also adds a lookbehind group to the given pattern to ensure that the pattern is not backslash-escaped.
+	     *
+	     * _Note:_ Keep in mind that this adds a capturing group.
+	     *
+	     * @param {string} pattern
+	     * @returns {RegExp}
+	     */
+	    function createInline(pattern) {
+	      pattern = pattern.replace(/<inner>/g, function () {
+	        return inner
+	      });
+	      return RegExp(/((?:^|[^\\])(?:\\{2})*)/.source + '(?:' + pattern + ')')
+	    }
+	    var tableCell = /(?:\\.|``(?:[^`\r\n]|`(?!`))+``|`[^`\r\n]+`|[^\\|\r\n`])+/
+	      .source;
+	    var tableRow =
+	      /\|?__(?:\|__)+\|?(?:(?:\n|\r\n?)|(?![\s\S]))/.source.replace(
+	        /__/g,
+	        function () {
+	          return tableCell
+	        }
+	      );
+	    var tableLine =
+	      /\|?[ \t]*:?-{3,}:?[ \t]*(?:\|[ \t]*:?-{3,}:?[ \t]*)+\|?(?:\n|\r\n?)/
+	        .source;
+	    Prism.languages.markdown = Prism.languages.extend('markup', {});
+	    Prism.languages.insertBefore('markdown', 'prolog', {
+	      'front-matter-block': {
+	        pattern: /(^(?:\s*[\r\n])?)---(?!.)[\s\S]*?[\r\n]---(?!.)/,
+	        lookbehind: true,
+	        greedy: true,
+	        inside: {
+	          punctuation: /^---|---$/,
+	          'front-matter': {
+	            pattern: /\S+(?:\s+\S+)*/,
+	            alias: ['yaml', 'language-yaml'],
+	            inside: Prism.languages.yaml
+	          }
+	        }
+	      },
+	      blockquote: {
+	        // > ...
+	        pattern: /^>(?:[\t ]*>)*/m,
+	        alias: 'punctuation'
+	      },
+	      table: {
+	        pattern: RegExp(
+	          '^' + tableRow + tableLine + '(?:' + tableRow + ')*',
+	          'm'
+	        ),
+	        inside: {
+	          'table-data-rows': {
+	            pattern: RegExp(
+	              '^(' + tableRow + tableLine + ')(?:' + tableRow + ')*$'
+	            ),
+	            lookbehind: true,
+	            inside: {
+	              'table-data': {
+	                pattern: RegExp(tableCell),
+	                inside: Prism.languages.markdown
+	              },
+	              punctuation: /\|/
+	            }
+	          },
+	          'table-line': {
+	            pattern: RegExp('^(' + tableRow + ')' + tableLine + '$'),
+	            lookbehind: true,
+	            inside: {
+	              punctuation: /\||:?-{3,}:?/
+	            }
+	          },
+	          'table-header-row': {
+	            pattern: RegExp('^' + tableRow + '$'),
+	            inside: {
+	              'table-header': {
+	                pattern: RegExp(tableCell),
+	                alias: 'important',
+	                inside: Prism.languages.markdown
+	              },
+	              punctuation: /\|/
+	            }
+	          }
+	        }
+	      },
+	      code: [
+	        {
+	          // Prefixed by 4 spaces or 1 tab and preceded by an empty line
+	          pattern:
+	            /((?:^|\n)[ \t]*\n|(?:^|\r\n?)[ \t]*\r\n?)(?: {4}|\t).+(?:(?:\n|\r\n?)(?: {4}|\t).+)*/,
+	          lookbehind: true,
+	          alias: 'keyword'
+	        },
+	        {
+	          // ```optional language
+	          // code block
+	          // ```
+	          pattern: /^```[\s\S]*?^```$/m,
+	          greedy: true,
+	          inside: {
+	            'code-block': {
+	              pattern: /^(```.*(?:\n|\r\n?))[\s\S]+?(?=(?:\n|\r\n?)^```$)/m,
+	              lookbehind: true
+	            },
+	            'code-language': {
+	              pattern: /^(```).+/,
+	              lookbehind: true
+	            },
+	            punctuation: /```/
+	          }
+	        }
+	      ],
+	      title: [
+	        {
+	          // title 1
+	          // =======
+	          // title 2
+	          // -------
+	          pattern: /\S.*(?:\n|\r\n?)(?:==+|--+)(?=[ \t]*$)/m,
+	          alias: 'important',
+	          inside: {
+	            punctuation: /==+$|--+$/
+	          }
+	        },
+	        {
+	          // # title 1
+	          // ###### title 6
+	          pattern: /(^\s*)#.+/m,
+	          lookbehind: true,
+	          alias: 'important',
+	          inside: {
+	            punctuation: /^#+|#+$/
+	          }
+	        }
+	      ],
+	      hr: {
+	        // ***
+	        // ---
+	        // * * *
+	        // -----------
+	        pattern: /(^\s*)([*-])(?:[\t ]*\2){2,}(?=\s*$)/m,
+	        lookbehind: true,
+	        alias: 'punctuation'
+	      },
+	      list: {
+	        // * item
+	        // + item
+	        // - item
+	        // 1. item
+	        pattern: /(^\s*)(?:[*+-]|\d+\.)(?=[\t ].)/m,
+	        lookbehind: true,
+	        alias: 'punctuation'
+	      },
+	      'url-reference': {
+	        // [id]: http://example.com "Optional title"
+	        // [id]: http://example.com 'Optional title'
+	        // [id]: http://example.com (Optional title)
+	        // [id]: <http://example.com> "Optional title"
+	        pattern:
+	          /!?\[[^\]]+\]:[\t ]+(?:\S+|<(?:\\.|[^>\\])+>)(?:[\t ]+(?:"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\((?:\\.|[^)\\])*\)))?/,
+	        inside: {
+	          variable: {
+	            pattern: /^(!?\[)[^\]]+/,
+	            lookbehind: true
+	          },
+	          string:
+	            /(?:"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\((?:\\.|[^)\\])*\))$/,
+	          punctuation: /^[\[\]!:]|[<>]/
+	        },
+	        alias: 'url'
+	      },
+	      bold: {
+	        // **strong**
+	        // __strong__
+	        // allow one nested instance of italic text using the same delimiter
+	        pattern: createInline(
+	          /\b__(?:(?!_)<inner>|_(?:(?!_)<inner>)+_)+__\b|\*\*(?:(?!\*)<inner>|\*(?:(?!\*)<inner>)+\*)+\*\*/
+	            .source
+	        ),
+	        lookbehind: true,
+	        greedy: true,
+	        inside: {
+	          content: {
+	            pattern: /(^..)[\s\S]+(?=..$)/,
+	            lookbehind: true,
+	            inside: {} // see below
+	          },
+	          punctuation: /\*\*|__/
+	        }
+	      },
+	      italic: {
+	        // *em*
+	        // _em_
+	        // allow one nested instance of bold text using the same delimiter
+	        pattern: createInline(
+	          /\b_(?:(?!_)<inner>|__(?:(?!_)<inner>)+__)+_\b|\*(?:(?!\*)<inner>|\*\*(?:(?!\*)<inner>)+\*\*)+\*/
+	            .source
+	        ),
+	        lookbehind: true,
+	        greedy: true,
+	        inside: {
+	          content: {
+	            pattern: /(^.)[\s\S]+(?=.$)/,
+	            lookbehind: true,
+	            inside: {} // see below
+	          },
+	          punctuation: /[*_]/
+	        }
+	      },
+	      strike: {
+	        // ~~strike through~~
+	        // ~strike~
+	        // eslint-disable-next-line regexp/strict
+	        pattern: createInline(/(~~?)(?:(?!~)<inner>)+\2/.source),
+	        lookbehind: true,
+	        greedy: true,
+	        inside: {
+	          content: {
+	            pattern: /(^~~?)[\s\S]+(?=\1$)/,
+	            lookbehind: true,
+	            inside: {} // see below
+	          },
+	          punctuation: /~~?/
+	        }
+	      },
+	      'code-snippet': {
+	        // `code`
+	        // ``code``
+	        pattern:
+	          /(^|[^\\`])(?:``[^`\r\n]+(?:`[^`\r\n]+)*``(?!`)|`[^`\r\n]+`(?!`))/,
+	        lookbehind: true,
+	        greedy: true,
+	        alias: ['code', 'keyword']
+	      },
+	      url: {
+	        // [example](http://example.com "Optional title")
+	        // [example][id]
+	        // [example] [id]
+	        pattern: createInline(
+	          /!?\[(?:(?!\])<inner>)+\](?:\([^\s)]+(?:[\t ]+"(?:\\.|[^"\\])*")?\)|[ \t]?\[(?:(?!\])<inner>)+\])/
+	            .source
+	        ),
+	        lookbehind: true,
+	        greedy: true,
+	        inside: {
+	          operator: /^!/,
+	          content: {
+	            pattern: /(^\[)[^\]]+(?=\])/,
+	            lookbehind: true,
+	            inside: {} // see below
+	          },
+	          variable: {
+	            pattern: /(^\][ \t]?\[)[^\]]+(?=\]$)/,
+	            lookbehind: true
+	          },
+	          url: {
+	            pattern: /(^\]\()[^\s)]+/,
+	            lookbehind: true
+	          },
+	          string: {
+	            pattern: /(^[ \t]+)"(?:\\.|[^"\\])*"(?=\)$)/,
+	            lookbehind: true
+	          }
+	        }
+	      }
+	    })
+	    ;['url', 'bold', 'italic', 'strike'].forEach(function (token) {
 ['url', 'bold', 'italic', 'strike', 'code-snippet'].forEach(function (
-        inside
-      ) {
-        if (token !== inside) {
-          Prism.languages.markdown[token].inside.content.inside[inside] =
-            Prism.languages.markdown[inside];
-        }
-      });
-    });
-    Prism.hooks.add('after-tokenize', function (env) {
-      if (env.language !== 'markdown' && env.language !== 'md') {
-        return
-      }
-      function walkTokens(tokens) {
-        if (!tokens || typeof tokens === 'string') {
-          return
-        }
-        for (var i = 0, l = tokens.length; i < l; i++) {
-          var token = tokens[i];
-          if (token.type !== 'code') {
-            walkTokens(token.content);
-            continue
-          }
-          /*
-           * Add the correct `language-xxxx` class to this code block. Keep in mind that the `code-language` token
-           * is optional. But the grammar is defined so that there is only one case we have to handle:
-           *
-           * token.content = [
-           *     <span class="punctuation">```</span>,
-           *     <span class="code-language">xxxx</span>,
-           *     '\n', // exactly one new lines (\r or \n or \r\n)
-           *     <span class="code-block">...</span>,
-           *     '\n', // exactly one new lines again
-           *     <span class="punctuation">```</span>
-           * ];
-           */
-          var codeLang = token.content[1];
-          var codeBlock = token.content[3];
-          if (
-            codeLang &&
-            codeBlock &&
-            codeLang.type === 'code-language' &&
-            codeBlock.type === 'code-block' &&
-            typeof codeLang.content === 'string'
-          ) {
-            // this might be a language that Prism does not support
-            // do some replacements to support C++, C#, and F#
-            var lang = codeLang.content
-              .replace(/\b#/g, 'sharp')
-              .replace(/\b\+\+/g, 'pp'); // only use the first word
-            lang = (/[a-z][\w-]*/i.exec(lang) || [''])[0].toLowerCase();
-            var alias = 'language-' + lang; // add alias
-            if (!codeBlock.alias) {
-              codeBlock.alias = [alias];
-            } else if (typeof codeBlock.alias === 'string') {
-              codeBlock.alias = [codeBlock.alias, alias];
-            } else {
-              codeBlock.alias.push(alias);
-            }
-          }
-        }
-      }
-      walkTokens(env.tokens);
-    });
-    Prism.hooks.add('wrap', function (env) {
-      if (env.type !== 'code-block') {
-        return
-      }
-      var codeLang = '';
-      for (var i = 0, l = env.classes.length; i < l; i++) {
-        var cls = env.classes[i];
-        var match = /language-(.+)/.exec(cls);
-        if (match) {
-          codeLang = match[1];
-          break
-        }
-      }
-      var grammar = Prism.languages[codeLang];
-      if (!grammar) {
-        if (codeLang && codeLang !== 'none' && Prism.plugins.autoloader) {
-          var id =
-            'md-' +
-            new Date().valueOf() +
-            '-' +
-            Math.floor(Math.random() * 1e16);
-          env.attributes['id'] = id;
-          Prism.plugins.autoloader.loadLanguages(codeLang, function () {
-            var ele = document.getElementById(id);
-            if (ele) {
-              ele.innerHTML = Prism.highlight(
-                ele.textContent,
-                Prism.languages[codeLang],
-                codeLang
-              );
-            }
-          });
-        }
-      } else {
-        env.content = Prism.highlight(
-          textContent(env.content.value),
-          grammar,
-          codeLang
-        );
-      }
-    });
-    var tagPattern = RegExp(Prism.languages.markup.tag.pattern.source, 'gi');
-    /**
-     * A list of known entity names.
-     *
-     * This will always be incomplete to save space. The current list is the one used by lowdash's unescape function.
-     *
-     * @see {@link https://github.com/lodash/lodash/blob/2da024c3b4f9947a48517639de7560457cd4ec6c/unescape.js#L2}
-     */
-    var KNOWN_ENTITY_NAMES = {
-      amp: '&',
-      lt: '<',
-      gt: '>',
-      quot: '"'
-    }; // IE 11 doesn't support `String.fromCodePoint`
-    var fromCodePoint = String.fromCodePoint || String.fromCharCode;
-    /**
-     * Returns the text content of a given HTML source code string.
-     *
-     * @param {string} html
-     * @returns {string}
-     */
-    function textContent(html) {
-      // remove all tags
-      var text = html.replace(tagPattern, ''); // decode known entities
-      text = text.replace(/&(\w{1,8}|#x?[\da-f]{1,8});/gi, function (m, code) {
-        code = code.toLowerCase();
-        if (code[0] === '#') {
-          var value;
-          if (code[1] === 'x') {
-            value = parseInt(code.slice(2), 16);
-          } else {
-            value = Number(code.slice(1));
-          }
-          return fromCodePoint(value)
-        } else {
-          var known = KNOWN_ENTITY_NAMES[code];
-          if (known) {
-            return known
-          } // unable to decode
-          return m
-        }
-      });
-      return text
-    }
-    Prism.languages.md = Prism.languages.markdown;
-  })(Prism);
+	        inside
+	      ) {
+	        if (token !== inside) {
+	          Prism.languages.markdown[token].inside.content.inside[inside] =
+	            Prism.languages.markdown[inside];
+	        }
+	      });
+	    });
+	    Prism.hooks.add('after-tokenize', function (env) {
+	      if (env.language !== 'markdown' && env.language !== 'md') {
+	        return
+	      }
+	      function walkTokens(tokens) {
+	        if (!tokens || typeof tokens === 'string') {
+	          return
+	        }
+	        for (var i = 0, l = tokens.length; i < l; i++) {
+	          var token = tokens[i];
+	          if (token.type !== 'code') {
+	            walkTokens(token.content);
+	            continue
+	          }
+	          /*
+	           * Add the correct `language-xxxx` class to this code block. Keep in mind that the `code-language` token
+	           * is optional. But the grammar is defined so that there is only one case we have to handle:
+	           *
+	           * token.content = [
+	           *     <span class="punctuation">```</span>,
+	           *     <span class="code-language">xxxx</span>,
+	           *     '\n', // exactly one new lines (\r or \n or \r\n)
+	           *     <span class="code-block">...</span>,
+	           *     '\n', // exactly one new lines again
+	           *     <span class="punctuation">```</span>
+	           * ];
+	           */
+	          var codeLang = token.content[1];
+	          var codeBlock = token.content[3];
+	          if (
+	            codeLang &&
+	            codeBlock &&
+	            codeLang.type === 'code-language' &&
+	            codeBlock.type === 'code-block' &&
+	            typeof codeLang.content === 'string'
+	          ) {
+	            // this might be a language that Prism does not support
+	            // do some replacements to support C++, C#, and F#
+	            var lang = codeLang.content
+	              .replace(/\b#/g, 'sharp')
+	              .replace(/\b\+\+/g, 'pp'); // only use the first word
+	            lang = (/[a-z][\w-]*/i.exec(lang) || [''])[0].toLowerCase();
+	            var alias = 'language-' + lang; // add alias
+	            if (!codeBlock.alias) {
+	              codeBlock.alias = [alias];
+	            } else if (typeof codeBlock.alias === 'string') {
+	              codeBlock.alias = [codeBlock.alias, alias];
+	            } else {
+	              codeBlock.alias.push(alias);
+	            }
+	          }
+	        }
+	      }
+	      walkTokens(env.tokens);
+	    });
+	    Prism.hooks.add('wrap', function (env) {
+	      if (env.type !== 'code-block') {
+	        return
+	      }
+	      var codeLang = '';
+	      for (var i = 0, l = env.classes.length; i < l; i++) {
+	        var cls = env.classes[i];
+	        var match = /language-(.+)/.exec(cls);
+	        if (match) {
+	          codeLang = match[1];
+	          break
+	        }
+	      }
+	      var grammar = Prism.languages[codeLang];
+	      if (!grammar) {
+	        if (codeLang && codeLang !== 'none' && Prism.plugins.autoloader) {
+	          var id =
+	            'md-' +
+	            new Date().valueOf() +
+	            '-' +
+	            Math.floor(Math.random() * 1e16);
+	          env.attributes['id'] = id;
+	          Prism.plugins.autoloader.loadLanguages(codeLang, function () {
+	            var ele = document.getElementById(id);
+	            if (ele) {
+	              ele.innerHTML = Prism.highlight(
+	                ele.textContent,
+	                Prism.languages[codeLang],
+	                codeLang
+	              );
+	            }
+	          });
+	        }
+	      } else {
+	        env.content = Prism.highlight(
+	          textContent(env.content.value),
+	          grammar,
+	          codeLang
+	        );
+	      }
+	    });
+	    var tagPattern = RegExp(Prism.languages.markup.tag.pattern.source, 'gi');
+	    /**
+	     * A list of known entity names.
+	     *
+	     * This will always be incomplete to save space. The current list is the one used by lowdash's unescape function.
+	     *
+	     * @see {@link https://github.com/lodash/lodash/blob/2da024c3b4f9947a48517639de7560457cd4ec6c/unescape.js#L2}
+	     */
+	    var KNOWN_ENTITY_NAMES = {
+	      amp: '&',
+	      lt: '<',
+	      gt: '>',
+	      quot: '"'
+	    }; // IE 11 doesn't support `String.fromCodePoint`
+	    var fromCodePoint = String.fromCodePoint || String.fromCharCode;
+	    /**
+	     * Returns the text content of a given HTML source code string.
+	     *
+	     * @param {string} html
+	     * @returns {string}
+	     */
+	    function textContent(html) {
+	      // remove all tags
+	      var text = html.replace(tagPattern, ''); // decode known entities
+	      text = text.replace(/&(\w{1,8}|#x?[\da-f]{1,8});/gi, function (m, code) {
+	        code = code.toLowerCase();
+	        if (code[0] === '#') {
+	          var value;
+	          if (code[1] === 'x') {
+	            value = parseInt(code.slice(2), 16);
+	          } else {
+	            value = Number(code.slice(1));
+	          }
+	          return fromCodePoint(value)
+	        } else {
+	          var known = KNOWN_ENTITY_NAMES[code];
+	          if (known) {
+	            return known
+	          } // unable to decode
+	          return m
+	        }
+	      });
+	      return text
+	    }
+	    Prism.languages.md = Prism.languages.markdown;
+	  })(Prism);
+	}
+	return markdown_1;
 }
 
-var matlab_1 = matlab;
-matlab.displayName = 'matlab';
-matlab.aliases = [];
-function matlab(Prism) {
-  Prism.languages.matlab = {
-    comment: [/%\{[\s\S]*?\}%/, /%.+/],
-    string: {
-      pattern: /\B'(?:''|[^'\r\n])*'/,
-      greedy: true
-    },
-    // FIXME We could handle imaginary numbers as a whole
-    number: /(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:[eE][+-]?\d+)?(?:[ij])?|\b[ij]\b/,
-    keyword:
-      /\b(?:NaN|break|case|catch|continue|else|elseif|end|for|function|if|inf|otherwise|parfor|pause|pi|return|switch|try|while)\b/,
-    function: /\b(?!\d)\w+(?=\s*\()/,
-    operator: /\.?[*^\/\\']|[+\-:@]|[<>=~]=?|&&?|\|\|?/,
-    punctuation: /\.{3}|[.,;\[\](){}!]/
-  };
+var matlab_1;
+var hasRequiredMatlab;
+
+function requireMatlab () {
+	if (hasRequiredMatlab) return matlab_1;
+	hasRequiredMatlab = 1;
+
+	matlab_1 = matlab;
+	matlab.displayName = 'matlab';
+	matlab.aliases = [];
+	function matlab(Prism) {
+	  Prism.languages.matlab = {
+	    comment: [/%\{[\s\S]*?\}%/, /%.+/],
+	    string: {
+	      pattern: /\B'(?:''|[^'\r\n])*'/,
+	      greedy: true
+	    },
+	    // FIXME We could handle imaginary numbers as a whole
+	    number: /(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:[eE][+-]?\d+)?(?:[ij])?|\b[ij]\b/,
+	    keyword:
+	      /\b(?:NaN|break|case|catch|continue|else|elseif|end|for|function|if|inf|otherwise|parfor|pause|pi|return|switch|try|while)\b/,
+	    function: /\b(?!\d)\w+(?=\s*\()/,
+	    operator: /\.?[*^\/\\']|[+\-:@]|[<>=~]=?|&&?|\|\|?/,
+	    punctuation: /\.{3}|[.,;\[\](){}!]/
+	  };
+	}
+	return matlab_1;
 }
 
-var maxscript_1 = maxscript;
-maxscript.displayName = 'maxscript';
-maxscript.aliases = [];
-function maxscript(Prism) {
+var maxscript_1;
+var hasRequiredMaxscript;
+
+function requireMaxscript () {
+	if (hasRequiredMaxscript) return maxscript_1;
+	hasRequiredMaxscript = 1;
+
+	maxscript_1 = maxscript;
+	maxscript.displayName = 'maxscript';
+	maxscript.aliases = [];
+	function maxscript(Prism) {
 (function (Prism) {
-    var keywords =
-      /\b(?:about|and|animate|as|at|attributes|by|case|catch|collect|continue|coordsys|do|else|exit|fn|for|from|function|global|if|in|local|macroscript|mapped|max|not|of|off|on|or|parameters|persistent|plugin|rcmenu|return|rollout|set|struct|then|throw|to|tool|try|undo|utility|when|where|while|with)\b/i;
-    Prism.languages.maxscript = {
-      comment: {
-        pattern: /\/\*[\s\S]*?(?:\*\/|$)|--.*/,
-        greedy: true
-      },
-      string: {
-        pattern: /(^|[^"\\@])(?:"(?:[^"\\]|\\[\s\S])*"|@"[^"]*")/,
-        lookbehind: true,
-        greedy: true
-      },
-      path: {
-        pattern: /\$(?:[\w/\\.*?]|'[^']*')*/,
-        greedy: true,
-        alias: 'string'
-      },
-      'function-call': {
-        pattern: RegExp(
-          '((?:' + // start of line
-            (/^/.source +
-              '|' + // operators and other language constructs
-              /[;=<>+\-*/^({\[]/.source +
-              '|' + // keywords as part of statements
-              /\b(?:and|by|case|catch|collect|do|else|if|in|not|or|return|then|to|try|where|while|with)\b/
-                .source) +
-            ')[ \t]*)' +
-            '(?!' +
-            keywords.source +
-            ')' +
-            /[a-z_]\w*\b/.source +
-            '(?=[ \t]*(?:' + // variable
-            ('(?!' +
-              keywords.source +
-              ')' +
-              /[a-z_]/.source +
-              '|' + // number
-              /\d|-\.?\d/.source +
-              '|' + // other expressions or literals
-              /[({'"$@#?]/.source) +
-            '))',
-          'im'
-        ),
-        lookbehind: true,
-        greedy: true,
-        alias: 'function'
-      },
-      'function-definition': {
-        pattern: /(\b(?:fn|function)\s+)\w+\b/i,
-        lookbehind: true,
-        alias: 'function'
-      },
-      argument: {
-        pattern: /\b[a-z_]\w*(?=:)/i,
-        alias: 'attr-name'
-      },
-      keyword: keywords,
-      boolean: /\b(?:false|true)\b/,
-      time: {
-        pattern:
-          /(^|[^\w.])(?:(?:(?:\d+(?:\.\d*)?|\.\d+)(?:[eEdD][+-]\d+|[LP])?[msft])+|\d+:\d+(?:\.\d*)?)(?![\w.:])/,
-        lookbehind: true,
-        alias: 'number'
-      },
-      number: [
-        {
-          pattern:
-            /(^|[^\w.])(?:(?:\d+(?:\.\d*)?|\.\d+)(?:[eEdD][+-]\d+|[LP])?|0x[a-fA-F0-9]+)(?![\w.:])/,
-          lookbehind: true
-        },
-        /\b(?:e|pi)\b/
-      ],
-      constant: /\b(?:dontcollect|ok|silentValue|undefined|unsupplied)\b/,
-      color: {
-        pattern: /\b(?:black|blue|brown|gray|green|orange|red|white|yellow)\b/i,
-        alias: 'constant'
-      },
-      operator: /[-+*/<>=!]=?|[&^?]|#(?!\()/,
-      punctuation: /[()\[\]{}.:,;]|#(?=\()|\\$/m
-    };
-  })(Prism);
+	    var keywords =
+	      /\b(?:about|and|animate|as|at|attributes|by|case|catch|collect|continue|coordsys|do|else|exit|fn|for|from|function|global|if|in|local|macroscript|mapped|max|not|of|off|on|or|parameters|persistent|plugin|rcmenu|return|rollout|set|struct|then|throw|to|tool|try|undo|utility|when|where|while|with)\b/i;
+	    Prism.languages.maxscript = {
+	      comment: {
+	        pattern: /\/\*[\s\S]*?(?:\*\/|$)|--.*/,
+	        greedy: true
+	      },
+	      string: {
+	        pattern: /(^|[^"\\@])(?:"(?:[^"\\]|\\[\s\S])*"|@"[^"]*")/,
+	        lookbehind: true,
+	        greedy: true
+	      },
+	      path: {
+	        pattern: /\$(?:[\w/\\.*?]|'[^']*')*/,
+	        greedy: true,
+	        alias: 'string'
+	      },
+	      'function-call': {
+	        pattern: RegExp(
+	          '((?:' + // start of line
+	            (/^/.source +
+	              '|' + // operators and other language constructs
+	              /[;=<>+\-*/^({\[]/.source +
+	              '|' + // keywords as part of statements
+	              /\b(?:and|by|case|catch|collect|do|else|if|in|not|or|return|then|to|try|where|while|with)\b/
+	                .source) +
+	            ')[ \t]*)' +
+	            '(?!' +
+	            keywords.source +
+	            ')' +
+	            /[a-z_]\w*\b/.source +
+	            '(?=[ \t]*(?:' + // variable
+	            ('(?!' +
+	              keywords.source +
+	              ')' +
+	              /[a-z_]/.source +
+	              '|' + // number
+	              /\d|-\.?\d/.source +
+	              '|' + // other expressions or literals
+	              /[({'"$@#?]/.source) +
+	            '))',
+	          'im'
+	        ),
+	        lookbehind: true,
+	        greedy: true,
+	        alias: 'function'
+	      },
+	      'function-definition': {
+	        pattern: /(\b(?:fn|function)\s+)\w+\b/i,
+	        lookbehind: true,
+	        alias: 'function'
+	      },
+	      argument: {
+	        pattern: /\b[a-z_]\w*(?=:)/i,
+	        alias: 'attr-name'
+	      },
+	      keyword: keywords,
+	      boolean: /\b(?:false|true)\b/,
+	      time: {
+	        pattern:
+	          /(^|[^\w.])(?:(?:(?:\d+(?:\.\d*)?|\.\d+)(?:[eEdD][+-]\d+|[LP])?[msft])+|\d+:\d+(?:\.\d*)?)(?![\w.:])/,
+	        lookbehind: true,
+	        alias: 'number'
+	      },
+	      number: [
+	        {
+	          pattern:
+	            /(^|[^\w.])(?:(?:\d+(?:\.\d*)?|\.\d+)(?:[eEdD][+-]\d+|[LP])?|0x[a-fA-F0-9]+)(?![\w.:])/,
+	          lookbehind: true
+	        },
+	        /\b(?:e|pi)\b/
+	      ],
+	      constant: /\b(?:dontcollect|ok|silentValue|undefined|unsupplied)\b/,
+	      color: {
+	        pattern: /\b(?:black|blue|brown|gray|green|orange|red|white|yellow)\b/i,
+	        alias: 'constant'
+	      },
+	      operator: /[-+*/<>=!]=?|[&^?]|#(?!\()/,
+	      punctuation: /[()\[\]{}.:,;]|#(?=\()|\\$/m
+	    };
+	  })(Prism);
+	}
+	return maxscript_1;
 }
 
-var mel_1 = mel;
-mel.displayName = 'mel';
-mel.aliases = [];
-function mel(Prism) {
-  Prism.languages.mel = {
-    comment: /\/\/.*/,
-    code: {
-      pattern: /`(?:\\.|[^\\`\r\n])*`/,
-      greedy: true,
-      alias: 'italic',
-      inside: {
-        delimiter: {
-          pattern: /^`|`$/,
-          alias: 'punctuation'
-        } // See rest below
-      }
-    },
-    string: {
-      pattern: /"(?:\\.|[^\\"\r\n])*"/,
-      greedy: true
-    },
-    variable: /\$\w+/,
-    number: /\b0x[\da-fA-F]+\b|\b\d+(?:\.\d*)?|\B\.\d+/,
-    flag: {
-      pattern: /-[^\d\W]\w*/,
-      alias: 'operator'
-    },
-    keyword:
-      /\b(?:break|case|continue|default|do|else|float|for|global|if|in|int|matrix|proc|return|string|switch|vector|while)\b/,
-    function:
-      /\b\w+(?=\()|\b(?:CBG|HfAddAttractorToAS|HfAssignAS|HfBuildEqualMap|HfBuildFurFiles|HfBuildFurImages|HfCancelAFR|HfConnectASToHF|HfCreateAttractor|HfDeleteAS|HfEditAS|HfPerformCreateAS|HfRemoveAttractorFromAS|HfSelectAttached|HfSelectAttractors|HfUnAssignAS|Mayatomr|about|abs|addAttr|addAttributeEditorNodeHelp|addDynamic|addNewShelfTab|addPP|addPanelCategory|addPrefixToName|advanceToNextDrivenKey|affectedNet|affects|aimConstraint|air|alias|aliasAttr|align|alignCtx|alignCurve|alignSurface|allViewFit|ambientLight|angle|angleBetween|animCone|animCurveEditor|animDisplay|animView|annotate|appendStringArray|applicationName|applyAttrPreset|applyTake|arcLenDimContext|arcLengthDimension|arclen|arrayMapper|art3dPaintCtx|artAttrCtx|artAttrPaintVertexCtx|artAttrSkinPaintCtx|artAttrTool|artBuildPaintMenu|artFluidAttrCtx|artPuttyCtx|artSelectCtx|artSetPaintCtx|artUserPaintCtx|assignCommand|assignInputDevice|assignViewportFactories|attachCurve|attachDeviceAttr|attachSurface|attrColorSliderGrp|attrCompatibility|attrControlGrp|attrEnumOptionMenu|attrEnumOptionMenuGrp|attrFieldGrp|attrFieldSliderGrp|attrNavigationControlGrp|attrPresetEditWin|attributeExists|attributeInfo|attributeMenu|attributeQuery|autoKeyframe|autoPlace|bakeClip|bakeFluidShading|bakePartialHistory|bakeResults|bakeSimulation|basename|basenameEx|batchRender|bessel|bevel|bevelPlus|binMembership|bindSkin|blend2|blendShape|blendShapeEditor|blendShapePanel|blendTwoAttr|blindDataType|boneLattice|boundary|boxDollyCtx|boxZoomCtx|bufferCurve|buildBookmarkMenu|buildKeyframeMenu|button|buttonManip|cacheFile|cacheFileCombine|cacheFileMerge|cacheFileTrack|camera|cameraView|canCreateManip|canvas|capitalizeString|catch|catchQuiet|ceil|changeSubdivComponentDisplayLevel|changeSubdivRegion|channelBox|character|characterMap|characterOutlineEditor|characterize|chdir|checkBox|checkBoxGrp|checkDefaultRenderGlobals|choice|circle|circularFillet|clamp|clear|clearCache|clip|clipEditor|clipEditorCurrentTimeCtx|clipSchedule|clipSchedulerOutliner|clipTrimBefore|closeCurve|closeSurface|cluster|cmdFileOutput|cmdScrollFieldExecuter|cmdScrollFieldReporter|cmdShell|coarsenSubdivSelectionList|collision|color|colorAtPoint|colorEditor|colorIndex|colorIndexSliderGrp|colorSliderButtonGrp|colorSliderGrp|columnLayout|commandEcho|commandLine|commandPort|compactHairSystem|componentEditor|compositingInterop|computePolysetVolume|condition|cone|confirmDialog|connectAttr|connectControl|connectDynamic|connectJoint|connectionInfo|constrain|constrainValue|constructionHistory|container|containsMultibyte|contextInfo|control|convertFromOldLayers|convertIffToPsd|convertLightmap|convertSolidTx|convertTessellation|convertUnit|copyArray|copyFlexor|copyKey|copySkinWeights|cos|cpButton|cpCache|cpClothSet|cpCollision|cpConstraint|cpConvClothToMesh|cpForces|cpGetSolverAttr|cpPanel|cpProperty|cpRigidCollisionFilter|cpSeam|cpSetEdit|cpSetSolverAttr|cpSolver|cpSolverTypes|cpTool|cpUpdateClothUVs|createDisplayLayer|createDrawCtx|createEditor|createLayeredPsdFile|createMotionField|createNewShelf|createNode|createRenderLayer|createSubdivRegion|cross|crossProduct|ctxAbort|ctxCompletion|ctxEditMode|ctxTraverse|currentCtx|currentTime|currentTimeCtx|currentUnit|curve|curveAddPtCtx|curveCVCtx|curveEPCtx|curveEditorCtx|curveIntersect|curveMoveEPCtx|curveOnSurface|curveSketchCtx|cutKey|cycleCheck|cylinder|dagPose|date|defaultLightListCheckBox|defaultNavigation|defineDataServer|defineVirtualDevice|deformer|deg_to_rad|delete|deleteAttr|deleteShadingGroupsAndMaterials|deleteShelfTab|deleteUI|deleteUnusedBrushes|delrandstr|detachCurve|detachDeviceAttr|detachSurface|deviceEditor|devicePanel|dgInfo|dgdirty|dgeval|dgtimer|dimWhen|directKeyCtx|directionalLight|dirmap|dirname|disable|disconnectAttr|disconnectJoint|diskCache|displacementToPoly|displayAffected|displayColor|displayCull|displayLevelOfDetail|displayPref|displayRGBColor|displaySmoothness|displayStats|displayString|displaySurface|distanceDimContext|distanceDimension|doBlur|dolly|dollyCtx|dopeSheetEditor|dot|dotProduct|doubleProfileBirailSurface|drag|dragAttrContext|draggerContext|dropoffLocator|duplicate|duplicateCurve|duplicateSurface|dynCache|dynControl|dynExport|dynExpression|dynGlobals|dynPaintEditor|dynParticleCtx|dynPref|dynRelEdPanel|dynRelEditor|dynamicLoad|editAttrLimits|editDisplayLayerGlobals|editDisplayLayerMembers|editRenderLayerAdjustment|editRenderLayerGlobals|editRenderLayerMembers|editor|editorTemplate|effector|emit|emitter|enableDevice|encodeString|endString|endsWith|env|equivalent|equivalentTol|erf|error|eval|evalDeferred|evalEcho|event|exactWorldBoundingBox|exclusiveLightCheckBox|exec|executeForEachObject|exists|exp|expression|expressionEditorListen|extendCurve|extendSurface|extrude|fcheck|fclose|feof|fflush|fgetline|fgetword|file|fileBrowserDialog|fileDialog|fileExtension|fileInfo|filetest|filletCurve|filter|filterCurve|filterExpand|filterStudioImport|findAllIntersections|findAnimCurves|findKeyframe|findMenuItem|findRelatedSkinCluster|finder|firstParentOf|fitBspline|flexor|floatEq|floatField|floatFieldGrp|floatScrollBar|floatSlider|floatSlider2|floatSliderButtonGrp|floatSliderGrp|floor|flow|fluidCacheInfo|fluidEmitter|fluidVoxelInfo|flushUndo|fmod|fontDialog|fopen|formLayout|format|fprint|frameLayout|fread|freeFormFillet|frewind|fromNativePath|fwrite|gamma|gauss|geometryConstraint|getApplicationVersionAsFloat|getAttr|getClassification|getDefaultBrush|getFileList|getFluidAttr|getInputDeviceRange|getMayaPanelTypes|getModifiers|getPanel|getParticleAttr|getPluginResource|getenv|getpid|glRender|glRenderEditor|globalStitch|gmatch|goal|gotoBindPose|grabColor|gradientControl|gradientControlNoAttr|graphDollyCtx|graphSelectContext|graphTrackCtx|gravity|grid|gridLayout|group|groupObjectsByName|hardenPointCurve|hardware|hardwareRenderPanel|headsUpDisplay|headsUpMessage|help|helpLine|hermite|hide|hilite|hitTest|hotBox|hotkey|hotkeyCheck|hsv_to_rgb|hudButton|hudSlider|hudSliderButton|hwReflectionMap|hwRender|hwRenderLoad|hyperGraph|hyperPanel|hyperShade|hypot|iconTextButton|iconTextCheckBox|iconTextRadioButton|iconTextRadioCollection|iconTextScrollList|iconTextStaticLabel|ikHandle|ikHandleCtx|ikHandleDisplayScale|ikSolver|ikSplineHandleCtx|ikSystem|ikSystemInfo|ikfkDisplayMethod|illustratorCurves|image|imfPlugins|inheritTransform|insertJoint|insertJointCtx|insertKeyCtx|insertKnotCurve|insertKnotSurface|instance|instanceable|instancer|intField|intFieldGrp|intScrollBar|intSlider|intSliderGrp|interToUI|internalVar|intersect|iprEngine|isAnimCurve|isConnected|isDirty|isParentOf|isSameObject|isTrue|isValidObjectName|isValidString|isValidUiName|isolateSelect|itemFilter|itemFilterAttr|itemFilterRender|itemFilterType|joint|jointCluster|jointCtx|jointDisplayScale|jointLattice|keyTangent|keyframe|keyframeOutliner|keyframeRegionCurrentTimeCtx|keyframeRegionDirectKeyCtx|keyframeRegionDollyCtx|keyframeRegionInsertKeyCtx|keyframeRegionMoveKeyCtx|keyframeRegionScaleKeyCtx|keyframeRegionSelectKeyCtx|keyframeRegionSetKeyCtx|keyframeRegionTrackCtx|keyframeStats|lassoContext|lattice|latticeDeformKeyCtx|launch|launchImageEditor|layerButton|layeredShaderPort|layeredTexturePort|layout|layoutDialog|lightList|lightListEditor|lightListPanel|lightlink|lineIntersection|linearPrecision|linstep|listAnimatable|listAttr|listCameras|listConnections|listDeviceAttachments|listHistory|listInputDeviceAxes|listInputDeviceButtons|listInputDevices|listMenuAnnotation|listNodeTypes|listPanelCategories|listRelatives|listSets|listTransforms|listUnselected|listerEditor|loadFluid|loadNewShelf|loadPlugin|loadPluginLanguageResources|loadPrefObjects|localizedPanelLabel|lockNode|loft|log|longNameOf|lookThru|ls|lsThroughFilter|lsType|lsUI|mag|makeIdentity|makeLive|makePaintable|makeRoll|makeSingleSurface|makeTubeOn|makebot|manipMoveContext|manipMoveLimitsCtx|manipOptions|manipRotateContext|manipRotateLimitsCtx|manipScaleContext|manipScaleLimitsCtx|marker|match|max|memory|menu|menuBarLayout|menuEditor|menuItem|menuItemToShelf|menuSet|menuSetPref|messageLine|min|minimizeApp|mirrorJoint|modelCurrentTimeCtx|modelEditor|modelPanel|mouse|movIn|movOut|move|moveIKtoFK|moveKeyCtx|moveVertexAlongDirection|multiProfileBirailSurface|mute|nParticle|nameCommand|nameField|namespace|namespaceInfo|newPanelItems|newton|nodeCast|nodeIconButton|nodeOutliner|nodePreset|nodeType|noise|nonLinear|normalConstraint|normalize|nurbsBoolean|nurbsCopyUVSet|nurbsCube|nurbsEditUV|nurbsPlane|nurbsSelect|nurbsSquare|nurbsToPoly|nurbsToPolygonsPref|nurbsToSubdiv|nurbsToSubdivPref|nurbsUVSet|nurbsViewDirectionVector|objExists|objectCenter|objectLayer|objectType|objectTypeUI|obsoleteProc|oceanNurbsPreviewPlane|offsetCurve|offsetCurveOnSurface|offsetSurface|openGLExtension|openMayaPref|optionMenu|optionMenuGrp|optionVar|orbit|orbitCtx|orientConstraint|outlinerEditor|outlinerPanel|overrideModifier|paintEffectsDisplay|pairBlend|palettePort|paneLayout|panel|panelConfiguration|panelHistory|paramDimContext|paramDimension|paramLocator|parent|parentConstraint|particle|particleExists|particleInstancer|particleRenderInfo|partition|pasteKey|pathAnimation|pause|pclose|percent|performanceOptions|pfxstrokes|pickWalk|picture|pixelMove|planarSrf|plane|play|playbackOptions|playblast|plugAttr|plugNode|pluginInfo|pluginResourceUtil|pointConstraint|pointCurveConstraint|pointLight|pointMatrixMult|pointOnCurve|pointOnSurface|pointPosition|poleVectorConstraint|polyAppend|polyAppendFacetCtx|polyAppendVertex|polyAutoProjection|polyAverageNormal|polyAverageVertex|polyBevel|polyBlendColor|polyBlindData|polyBoolOp|polyBridgeEdge|polyCacheMonitor|polyCheck|polyChipOff|polyClipboard|polyCloseBorder|polyCollapseEdge|polyCollapseFacet|polyColorBlindData|polyColorDel|polyColorPerVertex|polyColorSet|polyCompare|polyCone|polyCopyUV|polyCrease|polyCreaseCtx|polyCreateFacet|polyCreateFacetCtx|polyCube|polyCut|polyCutCtx|polyCylinder|polyCylindricalProjection|polyDelEdge|polyDelFacet|polyDelVertex|polyDuplicateAndConnect|polyDuplicateEdge|polyEditUV|polyEditUVShell|polyEvaluate|polyExtrudeEdge|polyExtrudeFacet|polyExtrudeVertex|polyFlipEdge|polyFlipUV|polyForceUV|polyGeoSampler|polyHelix|polyInfo|polyInstallAction|polyLayoutUV|polyListComponentConversion|polyMapCut|polyMapDel|polyMapSew|polyMapSewMove|polyMergeEdge|polyMergeEdgeCtx|polyMergeFacet|polyMergeFacetCtx|polyMergeUV|polyMergeVertex|polyMirrorFace|polyMoveEdge|polyMoveFacet|polyMoveFacetUV|polyMoveUV|polyMoveVertex|polyNormal|polyNormalPerVertex|polyNormalizeUV|polyOptUvs|polyOptions|polyOutput|polyPipe|polyPlanarProjection|polyPlane|polyPlatonicSolid|polyPoke|polyPrimitive|polyPrism|polyProjection|polyPyramid|polyQuad|polyQueryBlindData|polyReduce|polySelect|polySelectConstraint|polySelectConstraintMonitor|polySelectCtx|polySelectEditCtx|polySeparate|polySetToFaceNormal|polySewEdge|polyShortestPathCtx|polySmooth|polySoftEdge|polySphere|polySphericalProjection|polySplit|polySplitCtx|polySplitEdge|polySplitRing|polySplitVertex|polyStraightenUVBorder|polySubdivideEdge|polySubdivideFacet|polyToSubdiv|polyTorus|polyTransfer|polyTriangulate|polyUVSet|polyUnite|polyWedgeFace|popen|popupMenu|pose|pow|preloadRefEd|print|progressBar|progressWindow|projFileViewer|projectCurve|projectTangent|projectionContext|projectionManip|promptDialog|propModCtx|propMove|psdChannelOutliner|psdEditTextureFile|psdExport|psdTextureFile|putenv|pwd|python|querySubdiv|quit|rad_to_deg|radial|radioButton|radioButtonGrp|radioCollection|radioMenuItemCollection|rampColorPort|rand|randomizeFollicles|randstate|rangeControl|readTake|rebuildCurve|rebuildSurface|recordAttr|recordDevice|redo|reference|referenceEdit|referenceQuery|refineSubdivSelectionList|refresh|refreshAE|registerPluginResource|rehash|reloadImage|removeJoint|removeMultiInstance|removePanelCategory|rename|renameAttr|renameSelectionList|renameUI|render|renderGlobalsNode|renderInfo|renderLayerButton|renderLayerParent|renderLayerPostProcess|renderLayerUnparent|renderManip|renderPartition|renderQualityNode|renderSettings|renderThumbnailUpdate|renderWindowEditor|renderWindowSelectContext|renderer|reorder|reorderDeformers|requires|reroot|resampleFluid|resetAE|resetPfxToPolyCamera|resetTool|resolutionNode|retarget|reverseCurve|reverseSurface|revolve|rgb_to_hsv|rigidBody|rigidSolver|roll|rollCtx|rootOf|rot|rotate|rotationInterpolation|roundConstantRadius|rowColumnLayout|rowLayout|runTimeCommand|runup|sampleImage|saveAllShelves|saveAttrPreset|saveFluid|saveImage|saveInitialState|saveMenu|savePrefObjects|savePrefs|saveShelf|saveToolSettings|scale|scaleBrushBrightness|scaleComponents|scaleConstraint|scaleKey|scaleKeyCtx|sceneEditor|sceneUIReplacement|scmh|scriptCtx|scriptEditorInfo|scriptJob|scriptNode|scriptTable|scriptToShelf|scriptedPanel|scriptedPanelType|scrollField|scrollLayout|sculpt|searchPathArray|seed|selLoadSettings|select|selectContext|selectCurveCV|selectKey|selectKeyCtx|selectKeyframeRegionCtx|selectMode|selectPref|selectPriority|selectType|selectedNodes|selectionConnection|separator|setAttr|setAttrEnumResource|setAttrMapping|setAttrNiceNameResource|setConstraintRestPosition|setDefaultShadingGroup|setDrivenKeyframe|setDynamic|setEditCtx|setEditor|setFluidAttr|setFocus|setInfinity|setInputDeviceMapping|setKeyCtx|setKeyPath|setKeyframe|setKeyframeBlendshapeTargetWts|setMenuMode|setNodeNiceNameResource|setNodeTypeFlag|setParent|setParticleAttr|setPfxToPolyCamera|setPluginResource|setProject|setStampDensity|setStartupMessage|setState|setToolTo|setUITemplate|setXformManip|sets|shadingConnection|shadingGeometryRelCtx|shadingLightRelCtx|shadingNetworkCompare|shadingNode|shapeCompare|shelfButton|shelfLayout|shelfTabLayout|shellField|shortNameOf|showHelp|showHidden|showManipCtx|showSelectionInTitle|showShadingGroupAttrEditor|showWindow|sign|simplify|sin|singleProfileBirailSurface|size|sizeBytes|skinCluster|skinPercent|smoothCurve|smoothTangentSurface|smoothstep|snap2to2|snapKey|snapMode|snapTogetherCtx|snapshot|soft|softMod|softModCtx|sort|sound|soundControl|source|spaceLocator|sphere|sphrand|spotLight|spotLightPreviewPort|spreadSheetEditor|spring|sqrt|squareSurface|srtContext|stackTrace|startString|startsWith|stitchAndExplodeShell|stitchSurface|stitchSurfacePoints|strcmp|stringArrayCatenate|stringArrayContains|stringArrayCount|stringArrayInsertAtIndex|stringArrayIntersector|stringArrayRemove|stringArrayRemoveAtIndex|stringArrayRemoveDuplicates|stringArrayRemoveExact|stringArrayToString|stringToStringArray|strip|stripPrefixFromName|stroke|subdAutoProjection|subdCleanTopology|subdCollapse|subdDuplicateAndConnect|subdEditUV|subdListComponentConversion|subdMapCut|subdMapSewMove|subdMatchTopology|subdMirror|subdToBlind|subdToPoly|subdTransferUVsToCache|subdiv|subdivCrease|subdivDisplaySmoothness|substitute|substituteAllString|substituteGeometry|substring|surface|surfaceSampler|surfaceShaderList|swatchDisplayPort|switchTable|symbolButton|symbolCheckBox|sysFile|system|tabLayout|tan|tangentConstraint|texLatticeDeformContext|texManipContext|texMoveContext|texMoveUVShellContext|texRotateContext|texScaleContext|texSelectContext|texSelectShortestPathCtx|texSmudgeUVContext|texWinToolCtx|text|textCurves|textField|textFieldButtonGrp|textFieldGrp|textManip|textScrollList|textToShelf|textureDisplacePlane|textureHairColor|texturePlacementContext|textureWindow|threadCount|threePointArcCtx|timeControl|timePort|timerX|toNativePath|toggle|toggleAxis|toggleWindowVisibility|tokenize|tokenizeList|tolerance|tolower|toolButton|toolCollection|toolDropped|toolHasOptions|toolPropertyWindow|torus|toupper|trace|track|trackCtx|transferAttributes|transformCompare|transformLimits|translator|trim|trunc|truncateFluidCache|truncateHairCache|tumble|tumbleCtx|turbulence|twoPointArcCtx|uiRes|uiTemplate|unassignInputDevice|undo|undoInfo|ungroup|uniform|unit|unloadPlugin|untangleUV|untitledFileName|untrim|upAxis|updateAE|userCtx|uvLink|uvSnapshot|validateShelfName|vectorize|view2dToolCtx|viewCamera|viewClipPlane|viewFit|viewHeadOn|viewLookAt|viewManip|viewPlace|viewSet|visor|volumeAxis|vortex|waitCursor|warning|webBrowser|webBrowserPrefs|whatIs|window|windowPref|wire|wireContext|workspace|wrinkle|wrinkleContext|writeTake|xbmLangPathList|xform)\b/,
-    operator: [
-      /\+[+=]?|-[-=]?|&&|\|\||[<>]=|[*\/!=]=?|[%^]/,
-      {
-        // We don't want to match <<
-        pattern: /(^|[^<])<(?!<)/,
-        lookbehind: true
-      },
-      {
-        // We don't want to match >>
-        pattern: /(^|[^>])>(?!>)/,
-        lookbehind: true
-      }
-    ],
-    punctuation: /<<|>>|[.,:;?\[\](){}]/
-  };
-  Prism.languages.mel['code'].inside.rest = Prism.languages.mel;
+var mel_1;
+var hasRequiredMel;
+
+function requireMel () {
+	if (hasRequiredMel) return mel_1;
+	hasRequiredMel = 1;
+
+	mel_1 = mel;
+	mel.displayName = 'mel';
+	mel.aliases = [];
+	function mel(Prism) {
+	  Prism.languages.mel = {
+	    comment: /\/\/.*/,
+	    code: {
+	      pattern: /`(?:\\.|[^\\`\r\n])*`/,
+	      greedy: true,
+	      alias: 'italic',
+	      inside: {
+	        delimiter: {
+	          pattern: /^`|`$/,
+	          alias: 'punctuation'
+	        } // See rest below
+	      }
+	    },
+	    string: {
+	      pattern: /"(?:\\.|[^\\"\r\n])*"/,
+	      greedy: true
+	    },
+	    variable: /\$\w+/,
+	    number: /\b0x[\da-fA-F]+\b|\b\d+(?:\.\d*)?|\B\.\d+/,
+	    flag: {
+	      pattern: /-[^\d\W]\w*/,
+	      alias: 'operator'
+	    },
+	    keyword:
+	      /\b(?:break|case|continue|default|do|else|float|for|global|if|in|int|matrix|proc|return|string|switch|vector|while)\b/,
+	    function:
+	      /\b\w+(?=\()|\b(?:CBG|HfAddAttractorToAS|HfAssignAS|HfBuildEqualMap|HfBuildFurFiles|HfBuildFurImages|HfCancelAFR|HfConnectASToHF|HfCreateAttractor|HfDeleteAS|HfEditAS|HfPerformCreateAS|HfRemoveAttractorFromAS|HfSelectAttached|HfSelectAttractors|HfUnAssignAS|Mayatomr|about|abs|addAttr|addAttributeEditorNodeHelp|addDynamic|addNewShelfTab|addPP|addPanelCategory|addPrefixToName|advanceToNextDrivenKey|affectedNet|affects|aimConstraint|air|alias|aliasAttr|align|alignCtx|alignCurve|alignSurface|allViewFit|ambientLight|angle|angleBetween|animCone|animCurveEditor|animDisplay|animView|annotate|appendStringArray|applicationName|applyAttrPreset|applyTake|arcLenDimContext|arcLengthDimension|arclen|arrayMapper|art3dPaintCtx|artAttrCtx|artAttrPaintVertexCtx|artAttrSkinPaintCtx|artAttrTool|artBuildPaintMenu|artFluidAttrCtx|artPuttyCtx|artSelectCtx|artSetPaintCtx|artUserPaintCtx|assignCommand|assignInputDevice|assignViewportFactories|attachCurve|attachDeviceAttr|attachSurface|attrColorSliderGrp|attrCompatibility|attrControlGrp|attrEnumOptionMenu|attrEnumOptionMenuGrp|attrFieldGrp|attrFieldSliderGrp|attrNavigationControlGrp|attrPresetEditWin|attributeExists|attributeInfo|attributeMenu|attributeQuery|autoKeyframe|autoPlace|bakeClip|bakeFluidShading|bakePartialHistory|bakeResults|bakeSimulation|basename|basenameEx|batchRender|bessel|bevel|bevelPlus|binMembership|bindSkin|blend2|blendShape|blendShapeEditor|blendShapePanel|blendTwoAttr|blindDataType|boneLattice|boundary|boxDollyCtx|boxZoomCtx|bufferCurve|buildBookmarkMenu|buildKeyframeMenu|button|buttonManip|cacheFile|cacheFileCombine|cacheFileMerge|cacheFileTrack|camera|cameraView|canCreateManip|canvas|capitalizeString|catch|catchQuiet|ceil|changeSubdivComponentDisplayLevel|changeSubdivRegion|channelBox|character|characterMap|characterOutlineEditor|characterize|chdir|checkBox|checkBoxGrp|checkDefaultRenderGlobals|choice|circle|circularFillet|clamp|clear|clearCache|clip|clipEditor|clipEditorCurrentTimeCtx|clipSchedule|clipSchedulerOutliner|clipTrimBefore|closeCurve|closeSurface|cluster|cmdFileOutput|cmdScrollFieldExecuter|cmdScrollFieldReporter|cmdShell|coarsenSubdivSelectionList|collision|color|colorAtPoint|colorEditor|colorIndex|colorIndexSliderGrp|colorSliderButtonGrp|colorSliderGrp|columnLayout|commandEcho|commandLine|commandPort|compactHairSystem|componentEditor|compositingInterop|computePolysetVolume|condition|cone|confirmDialog|connectAttr|connectControl|connectDynamic|connectJoint|connectionInfo|constrain|constrainValue|constructionHistory|container|containsMultibyte|contextInfo|control|convertFromOldLayers|convertIffToPsd|convertLightmap|convertSolidTx|convertTessellation|convertUnit|copyArray|copyFlexor|copyKey|copySkinWeights|cos|cpButton|cpCache|cpClothSet|cpCollision|cpConstraint|cpConvClothToMesh|cpForces|cpGetSolverAttr|cpPanel|cpProperty|cpRigidCollisionFilter|cpSeam|cpSetEdit|cpSetSolverAttr|cpSolver|cpSolverTypes|cpTool|cpUpdateClothUVs|createDisplayLayer|createDrawCtx|createEditor|createLayeredPsdFile|createMotionField|createNewShelf|createNode|createRenderLayer|createSubdivRegion|cross|crossProduct|ctxAbort|ctxCompletion|ctxEditMode|ctxTraverse|currentCtx|currentTime|currentTimeCtx|currentUnit|curve|curveAddPtCtx|curveCVCtx|curveEPCtx|curveEditorCtx|curveIntersect|curveMoveEPCtx|curveOnSurface|curveSketchCtx|cutKey|cycleCheck|cylinder|dagPose|date|defaultLightListCheckBox|defaultNavigation|defineDataServer|defineVirtualDevice|deformer|deg_to_rad|delete|deleteAttr|deleteShadingGroupsAndMaterials|deleteShelfTab|deleteUI|deleteUnusedBrushes|delrandstr|detachCurve|detachDeviceAttr|detachSurface|deviceEditor|devicePanel|dgInfo|dgdirty|dgeval|dgtimer|dimWhen|directKeyCtx|directionalLight|dirmap|dirname|disable|disconnectAttr|disconnectJoint|diskCache|displacementToPoly|displayAffected|displayColor|displayCull|displayLevelOfDetail|displayPref|displayRGBColor|displaySmoothness|displayStats|displayString|displaySurface|distanceDimContext|distanceDimension|doBlur|dolly|dollyCtx|dopeSheetEditor|dot|dotProduct|doubleProfileBirailSurface|drag|dragAttrContext|draggerContext|dropoffLocator|duplicate|duplicateCurve|duplicateSurface|dynCache|dynControl|dynExport|dynExpression|dynGlobals|dynPaintEditor|dynParticleCtx|dynPref|dynRelEdPanel|dynRelEditor|dynamicLoad|editAttrLimits|editDisplayLayerGlobals|editDisplayLayerMembers|editRenderLayerAdjustment|editRenderLayerGlobals|editRenderLayerMembers|editor|editorTemplate|effector|emit|emitter|enableDevice|encodeString|endString|endsWith|env|equivalent|equivalentTol|erf|error|eval|evalDeferred|evalEcho|event|exactWorldBoundingBox|exclusiveLightCheckBox|exec|executeForEachObject|exists|exp|expression|expressionEditorListen|extendCurve|extendSurface|extrude|fcheck|fclose|feof|fflush|fgetline|fgetword|file|fileBrowserDialog|fileDialog|fileExtension|fileInfo|filetest|filletCurve|filter|filterCurve|filterExpand|filterStudioImport|findAllIntersections|findAnimCurves|findKeyframe|findMenuItem|findRelatedSkinCluster|finder|firstParentOf|fitBspline|flexor|floatEq|floatField|floatFieldGrp|floatScrollBar|floatSlider|floatSlider2|floatSliderButtonGrp|floatSliderGrp|floor|flow|fluidCacheInfo|fluidEmitter|fluidVoxelInfo|flushUndo|fmod|fontDialog|fopen|formLayout|format|fprint|frameLayout|fread|freeFormFillet|frewind|fromNativePath|fwrite|gamma|gauss|geometryConstraint|getApplicationVersionAsFloat|getAttr|getClassification|getDefaultBrush|getFileList|getFluidAttr|getInputDeviceRange|getMayaPanelTypes|getModifiers|getPanel|getParticleAttr|getPluginResource|getenv|getpid|glRender|glRenderEditor|globalStitch|gmatch|goal|gotoBindPose|grabColor|gradientControl|gradientControlNoAttr|graphDollyCtx|graphSelectContext|graphTrackCtx|gravity|grid|gridLayout|group|groupObjectsByName|hardenPointCurve|hardware|hardwareRenderPanel|headsUpDisplay|headsUpMessage|help|helpLine|hermite|hide|hilite|hitTest|hotBox|hotkey|hotkeyCheck|hsv_to_rgb|hudButton|hudSlider|hudSliderButton|hwReflectionMap|hwRender|hwRenderLoad|hyperGraph|hyperPanel|hyperShade|hypot|iconTextButton|iconTextCheckBox|iconTextRadioButton|iconTextRadioCollection|iconTextScrollList|iconTextStaticLabel|ikHandle|ikHandleCtx|ikHandleDisplayScale|ikSolver|ikSplineHandleCtx|ikSystem|ikSystemInfo|ikfkDisplayMethod|illustratorCurves|image|imfPlugins|inheritTransform|insertJoint|insertJointCtx|insertKeyCtx|insertKnotCurve|insertKnotSurface|instance|instanceable|instancer|intField|intFieldGrp|intScrollBar|intSlider|intSliderGrp|interToUI|internalVar|intersect|iprEngine|isAnimCurve|isConnected|isDirty|isParentOf|isSameObject|isTrue|isValidObjectName|isValidString|isValidUiName|isolateSelect|itemFilter|itemFilterAttr|itemFilterRender|itemFilterType|joint|jointCluster|jointCtx|jointDisplayScale|jointLattice|keyTangent|keyframe|keyframeOutliner|keyframeRegionCurrentTimeCtx|keyframeRegionDirectKeyCtx|keyframeRegionDollyCtx|keyframeRegionInsertKeyCtx|keyframeRegionMoveKeyCtx|keyframeRegionScaleKeyCtx|keyframeRegionSelectKeyCtx|keyframeRegionSetKeyCtx|keyframeRegionTrackCtx|keyframeStats|lassoContext|lattice|latticeDeformKeyCtx|launch|launchImageEditor|layerButton|layeredShaderPort|layeredTexturePort|layout|layoutDialog|lightList|lightListEditor|lightListPanel|lightlink|lineIntersection|linearPrecision|linstep|listAnimatable|listAttr|listCameras|listConnections|listDeviceAttachments|listHistory|listInputDeviceAxes|listInputDeviceButtons|listInputDevices|listMenuAnnotation|listNodeTypes|listPanelCategories|listRelatives|listSets|listTransforms|listUnselected|listerEditor|loadFluid|loadNewShelf|loadPlugin|loadPluginLanguageResources|loadPrefObjects|localizedPanelLabel|lockNode|loft|log|longNameOf|lookThru|ls|lsThroughFilter|lsType|lsUI|mag|makeIdentity|makeLive|makePaintable|makeRoll|makeSingleSurface|makeTubeOn|makebot|manipMoveContext|manipMoveLimitsCtx|manipOptions|manipRotateContext|manipRotateLimitsCtx|manipScaleContext|manipScaleLimitsCtx|marker|match|max|memory|menu|menuBarLayout|menuEditor|menuItem|menuItemToShelf|menuSet|menuSetPref|messageLine|min|minimizeApp|mirrorJoint|modelCurrentTimeCtx|modelEditor|modelPanel|mouse|movIn|movOut|move|moveIKtoFK|moveKeyCtx|moveVertexAlongDirection|multiProfileBirailSurface|mute|nParticle|nameCommand|nameField|namespace|namespaceInfo|newPanelItems|newton|nodeCast|nodeIconButton|nodeOutliner|nodePreset|nodeType|noise|nonLinear|normalConstraint|normalize|nurbsBoolean|nurbsCopyUVSet|nurbsCube|nurbsEditUV|nurbsPlane|nurbsSelect|nurbsSquare|nurbsToPoly|nurbsToPolygonsPref|nurbsToSubdiv|nurbsToSubdivPref|nurbsUVSet|nurbsViewDirectionVector|objExists|objectCenter|objectLayer|objectType|objectTypeUI|obsoleteProc|oceanNurbsPreviewPlane|offsetCurve|offsetCurveOnSurface|offsetSurface|openGLExtension|openMayaPref|optionMenu|optionMenuGrp|optionVar|orbit|orbitCtx|orientConstraint|outlinerEditor|outlinerPanel|overrideModifier|paintEffectsDisplay|pairBlend|palettePort|paneLayout|panel|panelConfiguration|panelHistory|paramDimContext|paramDimension|paramLocator|parent|parentConstraint|particle|particleExists|particleInstancer|particleRenderInfo|partition|pasteKey|pathAnimation|pause|pclose|percent|performanceOptions|pfxstrokes|pickWalk|picture|pixelMove|planarSrf|plane|play|playbackOptions|playblast|plugAttr|plugNode|pluginInfo|pluginResourceUtil|pointConstraint|pointCurveConstraint|pointLight|pointMatrixMult|pointOnCurve|pointOnSurface|pointPosition|poleVectorConstraint|polyAppend|polyAppendFacetCtx|polyAppendVertex|polyAutoProjection|polyAverageNormal|polyAverageVertex|polyBevel|polyBlendColor|polyBlindData|polyBoolOp|polyBridgeEdge|polyCacheMonitor|polyCheck|polyChipOff|polyClipboard|polyCloseBorder|polyCollapseEdge|polyCollapseFacet|polyColorBlindData|polyColorDel|polyColorPerVertex|polyColorSet|polyCompare|polyCone|polyCopyUV|polyCrease|polyCreaseCtx|polyCreateFacet|polyCreateFacetCtx|polyCube|polyCut|polyCutCtx|polyCylinder|polyCylindricalProjection|polyDelEdge|polyDelFacet|polyDelVertex|polyDuplicateAndConnect|polyDuplicateEdge|polyEditUV|polyEditUVShell|polyEvaluate|polyExtrudeEdge|polyExtrudeFacet|polyExtrudeVertex|polyFlipEdge|polyFlipUV|polyForceUV|polyGeoSampler|polyHelix|polyInfo|polyInstallAction|polyLayoutUV|polyListComponentConversion|polyMapCut|polyMapDel|polyMapSew|polyMapSewMove|polyMergeEdge|polyMergeEdgeCtx|polyMergeFacet|polyMergeFacetCtx|polyMergeUV|polyMergeVertex|polyMirrorFace|polyMoveEdge|polyMoveFacet|polyMoveFacetUV|polyMoveUV|polyMoveVertex|polyNormal|polyNormalPerVertex|polyNormalizeUV|polyOptUvs|polyOptions|polyOutput|polyPipe|polyPlanarProjection|polyPlane|polyPlatonicSolid|polyPoke|polyPrimitive|polyPrism|polyProjection|polyPyramid|polyQuad|polyQueryBlindData|polyReduce|polySelect|polySelectConstraint|polySelectConstraintMonitor|polySelectCtx|polySelectEditCtx|polySeparate|polySetToFaceNormal|polySewEdge|polyShortestPathCtx|polySmooth|polySoftEdge|polySphere|polySphericalProjection|polySplit|polySplitCtx|polySplitEdge|polySplitRing|polySplitVertex|polyStraightenUVBorder|polySubdivideEdge|polySubdivideFacet|polyToSubdiv|polyTorus|polyTransfer|polyTriangulate|polyUVSet|polyUnite|polyWedgeFace|popen|popupMenu|pose|pow|preloadRefEd|print|progressBar|progressWindow|projFileViewer|projectCurve|projectTangent|projectionContext|projectionManip|promptDialog|propModCtx|propMove|psdChannelOutliner|psdEditTextureFile|psdExport|psdTextureFile|putenv|pwd|python|querySubdiv|quit|rad_to_deg|radial|radioButton|radioButtonGrp|radioCollection|radioMenuItemCollection|rampColorPort|rand|randomizeFollicles|randstate|rangeControl|readTake|rebuildCurve|rebuildSurface|recordAttr|recordDevice|redo|reference|referenceEdit|referenceQuery|refineSubdivSelectionList|refresh|refreshAE|registerPluginResource|rehash|reloadImage|removeJoint|removeMultiInstance|removePanelCategory|rename|renameAttr|renameSelectionList|renameUI|render|renderGlobalsNode|renderInfo|renderLayerButton|renderLayerParent|renderLayerPostProcess|renderLayerUnparent|renderManip|renderPartition|renderQualityNode|renderSettings|renderThumbnailUpdate|renderWindowEditor|renderWindowSelectContext|renderer|reorder|reorderDeformers|requires|reroot|resampleFluid|resetAE|resetPfxToPolyCamera|resetTool|resolutionNode|retarget|reverseCurve|reverseSurface|revolve|rgb_to_hsv|rigidBody|rigidSolver|roll|rollCtx|rootOf|rot|rotate|rotationInterpolation|roundConstantRadius|rowColumnLayout|rowLayout|runTimeCommand|runup|sampleImage|saveAllShelves|saveAttrPreset|saveFluid|saveImage|saveInitialState|saveMenu|savePrefObjects|savePrefs|saveShelf|saveToolSettings|scale|scaleBrushBrightness|scaleComponents|scaleConstraint|scaleKey|scaleKeyCtx|sceneEditor|sceneUIReplacement|scmh|scriptCtx|scriptEditorInfo|scriptJob|scriptNode|scriptTable|scriptToShelf|scriptedPanel|scriptedPanelType|scrollField|scrollLayout|sculpt|searchPathArray|seed|selLoadSettings|select|selectContext|selectCurveCV|selectKey|selectKeyCtx|selectKeyframeRegionCtx|selectMode|selectPref|selectPriority|selectType|selectedNodes|selectionConnection|separator|setAttr|setAttrEnumResource|setAttrMapping|setAttrNiceNameResource|setConstraintRestPosition|setDefaultShadingGroup|setDrivenKeyframe|setDynamic|setEditCtx|setEditor|setFluidAttr|setFocus|setInfinity|setInputDeviceMapping|setKeyCtx|setKeyPath|setKeyframe|setKeyframeBlendshapeTargetWts|setMenuMode|setNodeNiceNameResource|setNodeTypeFlag|setParent|setParticleAttr|setPfxToPolyCamera|setPluginResource|setProject|setStampDensity|setStartupMessage|setState|setToolTo|setUITemplate|setXformManip|sets|shadingConnection|shadingGeometryRelCtx|shadingLightRelCtx|shadingNetworkCompare|shadingNode|shapeCompare|shelfButton|shelfLayout|shelfTabLayout|shellField|shortNameOf|showHelp|showHidden|showManipCtx|showSelectionInTitle|showShadingGroupAttrEditor|showWindow|sign|simplify|sin|singleProfileBirailSurface|size|sizeBytes|skinCluster|skinPercent|smoothCurve|smoothTangentSurface|smoothstep|snap2to2|snapKey|snapMode|snapTogetherCtx|snapshot|soft|softMod|softModCtx|sort|sound|soundControl|source|spaceLocator|sphere|sphrand|spotLight|spotLightPreviewPort|spreadSheetEditor|spring|sqrt|squareSurface|srtContext|stackTrace|startString|startsWith|stitchAndExplodeShell|stitchSurface|stitchSurfacePoints|strcmp|stringArrayCatenate|stringArrayContains|stringArrayCount|stringArrayInsertAtIndex|stringArrayIntersector|stringArrayRemove|stringArrayRemoveAtIndex|stringArrayRemoveDuplicates|stringArrayRemoveExact|stringArrayToString|stringToStringArray|strip|stripPrefixFromName|stroke|subdAutoProjection|subdCleanTopology|subdCollapse|subdDuplicateAndConnect|subdEditUV|subdListComponentConversion|subdMapCut|subdMapSewMove|subdMatchTopology|subdMirror|subdToBlind|subdToPoly|subdTransferUVsToCache|subdiv|subdivCrease|subdivDisplaySmoothness|substitute|substituteAllString|substituteGeometry|substring|surface|surfaceSampler|surfaceShaderList|swatchDisplayPort|switchTable|symbolButton|symbolCheckBox|sysFile|system|tabLayout|tan|tangentConstraint|texLatticeDeformContext|texManipContext|texMoveContext|texMoveUVShellContext|texRotateContext|texScaleContext|texSelectContext|texSelectShortestPathCtx|texSmudgeUVContext|texWinToolCtx|text|textCurves|textField|textFieldButtonGrp|textFieldGrp|textManip|textScrollList|textToShelf|textureDisplacePlane|textureHairColor|texturePlacementContext|textureWindow|threadCount|threePointArcCtx|timeControl|timePort|timerX|toNativePath|toggle|toggleAxis|toggleWindowVisibility|tokenize|tokenizeList|tolerance|tolower|toolButton|toolCollection|toolDropped|toolHasOptions|toolPropertyWindow|torus|toupper|trace|track|trackCtx|transferAttributes|transformCompare|transformLimits|translator|trim|trunc|truncateFluidCache|truncateHairCache|tumble|tumbleCtx|turbulence|twoPointArcCtx|uiRes|uiTemplate|unassignInputDevice|undo|undoInfo|ungroup|uniform|unit|unloadPlugin|untangleUV|untitledFileName|untrim|upAxis|updateAE|userCtx|uvLink|uvSnapshot|validateShelfName|vectorize|view2dToolCtx|viewCamera|viewClipPlane|viewFit|viewHeadOn|viewLookAt|viewManip|viewPlace|viewSet|visor|volumeAxis|vortex|waitCursor|warning|webBrowser|webBrowserPrefs|whatIs|window|windowPref|wire|wireContext|workspace|wrinkle|wrinkleContext|writeTake|xbmLangPathList|xform)\b/,
+	    operator: [
+	      /\+[+=]?|-[-=]?|&&|\|\||[<>]=|[*\/!=]=?|[%^]/,
+	      {
+	        // We don't want to match <<
+	        pattern: /(^|[^<])<(?!<)/,
+	        lookbehind: true
+	      },
+	      {
+	        // We don't want to match >>
+	        pattern: /(^|[^>])>(?!>)/,
+	        lookbehind: true
+	      }
+	    ],
+	    punctuation: /<<|>>|[.,:;?\[\](){}]/
+	  };
+	  Prism.languages.mel['code'].inside.rest = Prism.languages.mel;
+	}
+	return mel_1;
 }
 
-var mermaid_1 = mermaid;
-mermaid.displayName = 'mermaid';
-mermaid.aliases = [];
-function mermaid(Prism) {
-  Prism.languages.mermaid = {
-    comment: {
-      pattern: /%%.*/,
-      greedy: true
-    },
-    style: {
-      pattern:
-        /^([ \t]*(?:classDef|linkStyle|style)[ \t]+[\w$-]+[ \t]+)\w.*[^\s;]/m,
-      lookbehind: true,
-      inside: {
-        property: /\b\w[\w-]*(?=[ \t]*:)/,
-        operator: /:/,
-        punctuation: /,/
-      }
-    },
-    'inter-arrow-label': {
-      pattern:
-        /([^<>ox.=-])(?:-[-.]|==)(?![<>ox.=-])[ \t]*(?:"[^"\r\n]*"|[^\s".=-](?:[^\r\n.=-]*[^\s.=-])?)[ \t]*(?:\.+->?|--+[->]|==+[=>])(?![<>ox.=-])/,
-      lookbehind: true,
-      greedy: true,
-      inside: {
-        arrow: {
-          pattern: /(?:\.+->?|--+[->]|==+[=>])$/,
-          alias: 'operator'
-        },
-        label: {
-          pattern: /^([\s\S]{2}[ \t]*)\S(?:[\s\S]*\S)?/,
-          lookbehind: true,
-          alias: 'property'
-        },
-        'arrow-head': {
-          pattern: /^\S+/,
-          alias: ['arrow', 'operator']
-        }
-      }
-    },
-    arrow: [
-      // This might look complex but it really isn't.
-      // There are many possible arrows (see tests) and it's impossible to fit all of them into one pattern. The
-      // problem is that we only have one lookbehind per pattern. However, we cannot disallow too many arrow
-      // characters in the one lookbehind because that would create too many false negatives. So we have to split the
-      // arrows into different patterns.
-      {
-        // ER diagram
-        pattern: /(^|[^{}|o.-])[|}][|o](?:--|\.\.)[|o][|{](?![{}|o.-])/,
-        lookbehind: true,
-        alias: 'operator'
-      },
-      {
-        // flow chart
-        // (?:==+|--+|-\.*-)
-        pattern:
-          /(^|[^<>ox.=-])(?:[<ox](?:==+|--+|-\.*-)[>ox]?|(?:==+|--+|-\.*-)[>ox]|===+|---+|-\.+-)(?![<>ox.=-])/,
-        lookbehind: true,
-        alias: 'operator'
-      },
-      {
-        // sequence diagram
-        pattern:
-          /(^|[^<>()x-])(?:--?(?:>>|[x>)])(?![<>()x])|(?:<<|[x<(])--?(?!-))/,
-        lookbehind: true,
-        alias: 'operator'
-      },
-      {
-        // class diagram
-        pattern:
-          /(^|[^<>|*o.-])(?:[*o]--|--[*o]|<\|?(?:--|\.\.)|(?:--|\.\.)\|?>|--|\.\.)(?![<>|*o.-])/,
-        lookbehind: true,
-        alias: 'operator'
-      }
-    ],
-    label: {
-      pattern: /(^|[^|<])\|(?:[^\r\n"|]|"[^"\r\n]*")+\|/,
-      lookbehind: true,
-      greedy: true,
-      alias: 'property'
-    },
-    text: {
-      pattern: /(?:[(\[{]+|\b>)(?:[^\r\n"()\[\]{}]|"[^"\r\n]*")+(?:[)\]}]+|>)/,
-      alias: 'string'
-    },
-    string: {
-      pattern: /"[^"\r\n]*"/,
-      greedy: true
-    },
-    annotation: {
-      pattern:
-        /<<(?:abstract|choice|enumeration|fork|interface|join|service)>>|\[\[(?:choice|fork|join)\]\]/i,
-      alias: 'important'
-    },
-    keyword: [
-      // This language has both case-sensitive and case-insensitive keywords
-      {
-        pattern:
-          /(^[ \t]*)(?:action|callback|class|classDef|classDiagram|click|direction|erDiagram|flowchart|gantt|gitGraph|graph|journey|link|linkStyle|pie|requirementDiagram|sequenceDiagram|stateDiagram|stateDiagram-v2|style|subgraph)(?![\w$-])/m,
-        lookbehind: true,
-        greedy: true
-      },
-      {
-        pattern:
-          /(^[ \t]*)(?:activate|alt|and|as|autonumber|deactivate|else|end(?:[ \t]+note)?|loop|opt|par|participant|rect|state|note[ \t]+(?:over|(?:left|right)[ \t]+of))(?![\w$-])/im,
-        lookbehind: true,
-        greedy: true
-      }
-    ],
-    entity: /#[a-z0-9]+;/,
-    operator: {
-      pattern: /(\w[ \t]*)&(?=[ \t]*\w)|:::|:/,
-      lookbehind: true
-    },
-    punctuation: /[(){};]/
-  };
+var mermaid_1;
+var hasRequiredMermaid;
+
+function requireMermaid () {
+	if (hasRequiredMermaid) return mermaid_1;
+	hasRequiredMermaid = 1;
+
+	mermaid_1 = mermaid;
+	mermaid.displayName = 'mermaid';
+	mermaid.aliases = [];
+	function mermaid(Prism) {
+	  Prism.languages.mermaid = {
+	    comment: {
+	      pattern: /%%.*/,
+	      greedy: true
+	    },
+	    style: {
+	      pattern:
+	        /^([ \t]*(?:classDef|linkStyle|style)[ \t]+[\w$-]+[ \t]+)\w.*[^\s;]/m,
+	      lookbehind: true,
+	      inside: {
+	        property: /\b\w[\w-]*(?=[ \t]*:)/,
+	        operator: /:/,
+	        punctuation: /,/
+	      }
+	    },
+	    'inter-arrow-label': {
+	      pattern:
+	        /([^<>ox.=-])(?:-[-.]|==)(?![<>ox.=-])[ \t]*(?:"[^"\r\n]*"|[^\s".=-](?:[^\r\n.=-]*[^\s.=-])?)[ \t]*(?:\.+->?|--+[->]|==+[=>])(?![<>ox.=-])/,
+	      lookbehind: true,
+	      greedy: true,
+	      inside: {
+	        arrow: {
+	          pattern: /(?:\.+->?|--+[->]|==+[=>])$/,
+	          alias: 'operator'
+	        },
+	        label: {
+	          pattern: /^([\s\S]{2}[ \t]*)\S(?:[\s\S]*\S)?/,
+	          lookbehind: true,
+	          alias: 'property'
+	        },
+	        'arrow-head': {
+	          pattern: /^\S+/,
+	          alias: ['arrow', 'operator']
+	        }
+	      }
+	    },
+	    arrow: [
+	      // This might look complex but it really isn't.
+	      // There are many possible arrows (see tests) and it's impossible to fit all of them into one pattern. The
+	      // problem is that we only have one lookbehind per pattern. However, we cannot disallow too many arrow
+	      // characters in the one lookbehind because that would create too many false negatives. So we have to split the
+	      // arrows into different patterns.
+	      {
+	        // ER diagram
+	        pattern: /(^|[^{}|o.-])[|}][|o](?:--|\.\.)[|o][|{](?![{}|o.-])/,
+	        lookbehind: true,
+	        alias: 'operator'
+	      },
+	      {
+	        // flow chart
+	        // (?:==+|--+|-\.*-)
+	        pattern:
+	          /(^|[^<>ox.=-])(?:[<ox](?:==+|--+|-\.*-)[>ox]?|(?:==+|--+|-\.*-)[>ox]|===+|---+|-\.+-)(?![<>ox.=-])/,
+	        lookbehind: true,
+	        alias: 'operator'
+	      },
+	      {
+	        // sequence diagram
+	        pattern:
+	          /(^|[^<>()x-])(?:--?(?:>>|[x>)])(?![<>()x])|(?:<<|[x<(])--?(?!-))/,
+	        lookbehind: true,
+	        alias: 'operator'
+	      },
+	      {
+	        // class diagram
+	        pattern:
+	          /(^|[^<>|*o.-])(?:[*o]--|--[*o]|<\|?(?:--|\.\.)|(?:--|\.\.)\|?>|--|\.\.)(?![<>|*o.-])/,
+	        lookbehind: true,
+	        alias: 'operator'
+	      }
+	    ],
+	    label: {
+	      pattern: /(^|[^|<])\|(?:[^\r\n"|]|"[^"\r\n]*")+\|/,
+	      lookbehind: true,
+	      greedy: true,
+	      alias: 'property'
+	    },
+	    text: {
+	      pattern: /(?:[(\[{]+|\b>)(?:[^\r\n"()\[\]{}]|"[^"\r\n]*")+(?:[)\]}]+|>)/,
+	      alias: 'string'
+	    },
+	    string: {
+	      pattern: /"[^"\r\n]*"/,
+	      greedy: true
+	    },
+	    annotation: {
+	      pattern:
+	        /<<(?:abstract|choice|enumeration|fork|interface|join|service)>>|\[\[(?:choice|fork|join)\]\]/i,
+	      alias: 'important'
+	    },
+	    keyword: [
+	      // This language has both case-sensitive and case-insensitive keywords
+	      {
+	        pattern:
+	          /(^[ \t]*)(?:action|callback|class|classDef|classDiagram|click|direction|erDiagram|flowchart|gantt|gitGraph|graph|journey|link|linkStyle|pie|requirementDiagram|sequenceDiagram|stateDiagram|stateDiagram-v2|style|subgraph)(?![\w$-])/m,
+	        lookbehind: true,
+	        greedy: true
+	      },
+	      {
+	        pattern:
+	          /(^[ \t]*)(?:activate|alt|and|as|autonumber|deactivate|else|end(?:[ \t]+note)?|loop|opt|par|participant|rect|state|note[ \t]+(?:over|(?:left|right)[ \t]+of))(?![\w$-])/im,
+	        lookbehind: true,
+	        greedy: true
+	      }
+	    ],
+	    entity: /#[a-z0-9]+;/,
+	    operator: {
+	      pattern: /(\w[ \t]*)&(?=[ \t]*\w)|:::|:/,
+	      lookbehind: true
+	    },
+	    punctuation: /[(){};]/
+	  };
+	}
+	return mermaid_1;
 }
 
 var mizar_1;
@@ -42270,100 +42413,118 @@ function requireMonkey () {
 	return monkey_1;
 }
 
-var moonscript_1 = moonscript;
-moonscript.displayName = 'moonscript';
-moonscript.aliases = ['moon'];
-function moonscript(Prism) {
-  Prism.languages.moonscript = {
-    comment: /--.*/,
-    string: [
-      {
-        pattern: /'[^']*'|\[(=*)\[[\s\S]*?\]\1\]/,
-        greedy: true
-      },
-      {
-        pattern: /"[^"]*"/,
-        greedy: true,
-        inside: {
-          interpolation: {
-            pattern: /#\{[^{}]*\}/,
-            inside: {
-              moonscript: {
-                pattern: /(^#\{)[\s\S]+(?=\})/,
-                lookbehind: true,
-                inside: null // see beow
-              },
-              'interpolation-punctuation': {
-                pattern: /#\{|\}/,
-                alias: 'punctuation'
-              }
-            }
-          }
-        }
-      }
-    ],
-    'class-name': [
-      {
-        pattern: /(\b(?:class|extends)[ \t]+)\w+/,
-        lookbehind: true
-      }, // class-like names start with a capital letter
-      /\b[A-Z]\w*/
-    ],
-    keyword:
-      /\b(?:class|continue|do|else|elseif|export|extends|for|from|if|import|in|local|nil|return|self|super|switch|then|unless|using|when|while|with)\b/,
-    variable: /@@?\w*/,
-    property: {
-      pattern: /\b(?!\d)\w+(?=:)|(:)(?!\d)\w+/,
-      lookbehind: true
-    },
-    function: {
-      pattern:
-        /\b(?:_G|_VERSION|assert|collectgarbage|coroutine\.(?:create|resume|running|status|wrap|yield)|debug\.(?:debug|getfenv|gethook|getinfo|getlocal|getmetatable|getregistry|getupvalue|setfenv|sethook|setlocal|setmetatable|setupvalue|traceback)|dofile|error|getfenv|getmetatable|io\.(?:close|flush|input|lines|open|output|popen|read|stderr|stdin|stdout|tmpfile|type|write)|ipairs|load|loadfile|loadstring|math\.(?:abs|acos|asin|atan|atan2|ceil|cos|cosh|deg|exp|floor|fmod|frexp|ldexp|log|log10|max|min|modf|pi|pow|rad|random|randomseed|sin|sinh|sqrt|tan|tanh)|module|next|os\.(?:clock|date|difftime|execute|exit|getenv|remove|rename|setlocale|time|tmpname)|package\.(?:cpath|loaded|loadlib|path|preload|seeall)|pairs|pcall|print|rawequal|rawget|rawset|require|select|setfenv|setmetatable|string\.(?:byte|char|dump|find|format|gmatch|gsub|len|lower|match|rep|reverse|sub|upper)|table\.(?:concat|insert|maxn|remove|sort)|tonumber|tostring|type|unpack|xpcall)\b/,
-      inside: {
-        punctuation: /\./
-      }
-    },
-    boolean: /\b(?:false|true)\b/,
-    number:
-      /(?:\B\.\d+|\b\d+\.\d+|\b\d+(?=[eE]))(?:[eE][-+]?\d+)?\b|\b(?:0x[a-fA-F\d]+|\d+)(?:U?LL)?\b/,
-    operator:
-      /\.{3}|[-=]>|~=|(?:[-+*/%<>!=]|\.\.)=?|[:#^]|\b(?:and|or)\b=?|\b(?:not)\b/,
-    punctuation: /[.,()[\]{}\\]/
-  };
-  Prism.languages.moonscript.string[1].inside.interpolation.inside.moonscript.inside =
-    Prism.languages.moonscript;
-  Prism.languages.moon = Prism.languages.moonscript;
+var moonscript_1;
+var hasRequiredMoonscript;
+
+function requireMoonscript () {
+	if (hasRequiredMoonscript) return moonscript_1;
+	hasRequiredMoonscript = 1;
+
+	moonscript_1 = moonscript;
+	moonscript.displayName = 'moonscript';
+	moonscript.aliases = ['moon'];
+	function moonscript(Prism) {
+	  Prism.languages.moonscript = {
+	    comment: /--.*/,
+	    string: [
+	      {
+	        pattern: /'[^']*'|\[(=*)\[[\s\S]*?\]\1\]/,
+	        greedy: true
+	      },
+	      {
+	        pattern: /"[^"]*"/,
+	        greedy: true,
+	        inside: {
+	          interpolation: {
+	            pattern: /#\{[^{}]*\}/,
+	            inside: {
+	              moonscript: {
+	                pattern: /(^#\{)[\s\S]+(?=\})/,
+	                lookbehind: true,
+	                inside: null // see beow
+	              },
+	              'interpolation-punctuation': {
+	                pattern: /#\{|\}/,
+	                alias: 'punctuation'
+	              }
+	            }
+	          }
+	        }
+	      }
+	    ],
+	    'class-name': [
+	      {
+	        pattern: /(\b(?:class|extends)[ \t]+)\w+/,
+	        lookbehind: true
+	      }, // class-like names start with a capital letter
+	      /\b[A-Z]\w*/
+	    ],
+	    keyword:
+	      /\b(?:class|continue|do|else|elseif|export|extends|for|from|if|import|in|local|nil|return|self|super|switch|then|unless|using|when|while|with)\b/,
+	    variable: /@@?\w*/,
+	    property: {
+	      pattern: /\b(?!\d)\w+(?=:)|(:)(?!\d)\w+/,
+	      lookbehind: true
+	    },
+	    function: {
+	      pattern:
+	        /\b(?:_G|_VERSION|assert|collectgarbage|coroutine\.(?:create|resume|running|status|wrap|yield)|debug\.(?:debug|getfenv|gethook|getinfo|getlocal|getmetatable|getregistry|getupvalue|setfenv|sethook|setlocal|setmetatable|setupvalue|traceback)|dofile|error|getfenv|getmetatable|io\.(?:close|flush|input|lines|open|output|popen|read|stderr|stdin|stdout|tmpfile|type|write)|ipairs|load|loadfile|loadstring|math\.(?:abs|acos|asin|atan|atan2|ceil|cos|cosh|deg|exp|floor|fmod|frexp|ldexp|log|log10|max|min|modf|pi|pow|rad|random|randomseed|sin|sinh|sqrt|tan|tanh)|module|next|os\.(?:clock|date|difftime|execute|exit|getenv|remove|rename|setlocale|time|tmpname)|package\.(?:cpath|loaded|loadlib|path|preload|seeall)|pairs|pcall|print|rawequal|rawget|rawset|require|select|setfenv|setmetatable|string\.(?:byte|char|dump|find|format|gmatch|gsub|len|lower|match|rep|reverse|sub|upper)|table\.(?:concat|insert|maxn|remove|sort)|tonumber|tostring|type|unpack|xpcall)\b/,
+	      inside: {
+	        punctuation: /\./
+	      }
+	    },
+	    boolean: /\b(?:false|true)\b/,
+	    number:
+	      /(?:\B\.\d+|\b\d+\.\d+|\b\d+(?=[eE]))(?:[eE][-+]?\d+)?\b|\b(?:0x[a-fA-F\d]+|\d+)(?:U?LL)?\b/,
+	    operator:
+	      /\.{3}|[-=]>|~=|(?:[-+*/%<>!=]|\.\.)=?|[:#^]|\b(?:and|or)\b=?|\b(?:not)\b/,
+	    punctuation: /[.,()[\]{}\\]/
+	  };
+	  Prism.languages.moonscript.string[1].inside.interpolation.inside.moonscript.inside =
+	    Prism.languages.moonscript;
+	  Prism.languages.moon = Prism.languages.moonscript;
+	}
+	return moonscript_1;
 }
 
-var n1ql_1 = n1ql;
-n1ql.displayName = 'n1ql';
-n1ql.aliases = [];
-function n1ql(Prism) {
-  // https://docs.couchbase.com/server/current/n1ql/n1ql-language-reference/index.html
-  Prism.languages.n1ql = {
-    comment: {
-      pattern: /\/\*[\s\S]*?(?:$|\*\/)|--.*/,
-      greedy: true
-    },
-    string: {
-      pattern: /(["'])(?:\\[\s\S]|(?!\1)[^\\]|\1\1)*\1/,
-      greedy: true
-    },
-    identifier: {
-      pattern: /`(?:\\[\s\S]|[^\\`]|``)*`/,
-      greedy: true
-    },
-    parameter: /\$[\w.]+/,
-    // https://docs.couchbase.com/server/current/n1ql/n1ql-language-reference/reservedwords.html#n1ql-reserved-words
-    keyword:
-      /\b(?:ADVISE|ALL|ALTER|ANALYZE|AS|ASC|AT|BEGIN|BINARY|BOOLEAN|BREAK|BUCKET|BUILD|BY|CALL|CAST|CLUSTER|COLLATE|COLLECTION|COMMIT|COMMITTED|CONNECT|CONTINUE|CORRELATE|CORRELATED|COVER|CREATE|CURRENT|DATABASE|DATASET|DATASTORE|DECLARE|DECREMENT|DELETE|DERIVED|DESC|DESCRIBE|DISTINCT|DO|DROP|EACH|ELEMENT|EXCEPT|EXCLUDE|EXECUTE|EXPLAIN|FETCH|FILTER|FLATTEN|FLUSH|FOLLOWING|FOR|FORCE|FROM|FTS|FUNCTION|GOLANG|GRANT|GROUP|GROUPS|GSI|HASH|HAVING|IF|IGNORE|ILIKE|INCLUDE|INCREMENT|INDEX|INFER|INLINE|INNER|INSERT|INTERSECT|INTO|IS|ISOLATION|JAVASCRIPT|JOIN|KEY|KEYS|KEYSPACE|KNOWN|LANGUAGE|LAST|LEFT|LET|LETTING|LEVEL|LIMIT|LSM|MAP|MAPPING|MATCHED|MATERIALIZED|MERGE|MINUS|MISSING|NAMESPACE|NEST|NL|NO|NTH_VALUE|NULL|NULLS|NUMBER|OBJECT|OFFSET|ON|OPTION|OPTIONS|ORDER|OTHERS|OUTER|OVER|PARSE|PARTITION|PASSWORD|PATH|POOL|PRECEDING|PREPARE|PRIMARY|PRIVATE|PRIVILEGE|PROBE|PROCEDURE|PUBLIC|RANGE|RAW|REALM|REDUCE|RENAME|RESPECT|RETURN|RETURNING|REVOKE|RIGHT|ROLE|ROLLBACK|ROW|ROWS|SATISFIES|SAVEPOINT|SCHEMA|SCOPE|SELECT|SELF|SEMI|SET|SHOW|SOME|START|STATISTICS|STRING|SYSTEM|TIES|TO|TRAN|TRANSACTION|TRIGGER|TRUNCATE|UNBOUNDED|UNDER|UNION|UNIQUE|UNKNOWN|UNNEST|UNSET|UPDATE|UPSERT|USE|USER|USING|VALIDATE|VALUE|VALUES|VIA|VIEW|WHERE|WHILE|WINDOW|WITH|WORK|XOR)\b/i,
-    function: /\b[a-z_]\w*(?=\s*\()/i,
-    boolean: /\b(?:FALSE|TRUE)\b/i,
-    number: /(?:\b\d+\.|\B\.)\d+e[+\-]?\d+\b|\b\d+(?:\.\d*)?|\B\.\d+\b/i,
-    operator:
-      /[-+*\/%]|!=|==?|\|\||<[>=]?|>=?|\b(?:AND|ANY|ARRAY|BETWEEN|CASE|ELSE|END|EVERY|EXISTS|FIRST|IN|LIKE|NOT|OR|THEN|VALUED|WHEN|WITHIN)\b/i,
-    punctuation: /[;[\](),.{}:]/
-  };
+var n1ql_1;
+var hasRequiredN1ql;
+
+function requireN1ql () {
+	if (hasRequiredN1ql) return n1ql_1;
+	hasRequiredN1ql = 1;
+
+	n1ql_1 = n1ql;
+	n1ql.displayName = 'n1ql';
+	n1ql.aliases = [];
+	function n1ql(Prism) {
+	  // https://docs.couchbase.com/server/current/n1ql/n1ql-language-reference/index.html
+	  Prism.languages.n1ql = {
+	    comment: {
+	      pattern: /\/\*[\s\S]*?(?:$|\*\/)|--.*/,
+	      greedy: true
+	    },
+	    string: {
+	      pattern: /(["'])(?:\\[\s\S]|(?!\1)[^\\]|\1\1)*\1/,
+	      greedy: true
+	    },
+	    identifier: {
+	      pattern: /`(?:\\[\s\S]|[^\\`]|``)*`/,
+	      greedy: true
+	    },
+	    parameter: /\$[\w.]+/,
+	    // https://docs.couchbase.com/server/current/n1ql/n1ql-language-reference/reservedwords.html#n1ql-reserved-words
+	    keyword:
+	      /\b(?:ADVISE|ALL|ALTER|ANALYZE|AS|ASC|AT|BEGIN|BINARY|BOOLEAN|BREAK|BUCKET|BUILD|BY|CALL|CAST|CLUSTER|COLLATE|COLLECTION|COMMIT|COMMITTED|CONNECT|CONTINUE|CORRELATE|CORRELATED|COVER|CREATE|CURRENT|DATABASE|DATASET|DATASTORE|DECLARE|DECREMENT|DELETE|DERIVED|DESC|DESCRIBE|DISTINCT|DO|DROP|EACH|ELEMENT|EXCEPT|EXCLUDE|EXECUTE|EXPLAIN|FETCH|FILTER|FLATTEN|FLUSH|FOLLOWING|FOR|FORCE|FROM|FTS|FUNCTION|GOLANG|GRANT|GROUP|GROUPS|GSI|HASH|HAVING|IF|IGNORE|ILIKE|INCLUDE|INCREMENT|INDEX|INFER|INLINE|INNER|INSERT|INTERSECT|INTO|IS|ISOLATION|JAVASCRIPT|JOIN|KEY|KEYS|KEYSPACE|KNOWN|LANGUAGE|LAST|LEFT|LET|LETTING|LEVEL|LIMIT|LSM|MAP|MAPPING|MATCHED|MATERIALIZED|MERGE|MINUS|MISSING|NAMESPACE|NEST|NL|NO|NTH_VALUE|NULL|NULLS|NUMBER|OBJECT|OFFSET|ON|OPTION|OPTIONS|ORDER|OTHERS|OUTER|OVER|PARSE|PARTITION|PASSWORD|PATH|POOL|PRECEDING|PREPARE|PRIMARY|PRIVATE|PRIVILEGE|PROBE|PROCEDURE|PUBLIC|RANGE|RAW|REALM|REDUCE|RENAME|RESPECT|RETURN|RETURNING|REVOKE|RIGHT|ROLE|ROLLBACK|ROW|ROWS|SATISFIES|SAVEPOINT|SCHEMA|SCOPE|SELECT|SELF|SEMI|SET|SHOW|SOME|START|STATISTICS|STRING|SYSTEM|TIES|TO|TRAN|TRANSACTION|TRIGGER|TRUNCATE|UNBOUNDED|UNDER|UNION|UNIQUE|UNKNOWN|UNNEST|UNSET|UPDATE|UPSERT|USE|USER|USING|VALIDATE|VALUE|VALUES|VIA|VIEW|WHERE|WHILE|WINDOW|WITH|WORK|XOR)\b/i,
+	    function: /\b[a-z_]\w*(?=\s*\()/i,
+	    boolean: /\b(?:FALSE|TRUE)\b/i,
+	    number: /(?:\b\d+\.|\B\.)\d+e[+\-]?\d+\b|\b\d+(?:\.\d*)?|\B\.\d+\b/i,
+	    operator:
+	      /[-+*\/%]|!=|==?|\|\||<[>=]?|>=?|\b(?:AND|ANY|ARRAY|BETWEEN|CASE|ELSE|END|EVERY|EXISTS|FIRST|IN|LIKE|NOT|OR|THEN|VALUED|WHEN|WITHIN)\b/i,
+	    punctuation: /[;[\](),.{}:]/
+	  };
+	}
+	return n1ql_1;
 }
 
 var n4js_1;
@@ -42394,404 +42555,449 @@ function requireN4js () {
 	return n4js_1;
 }
 
-var nand2tetrisHdl_1 = nand2tetrisHdl;
-nand2tetrisHdl.displayName = 'nand2tetrisHdl';
-nand2tetrisHdl.aliases = [];
-function nand2tetrisHdl(Prism) {
-  Prism.languages['nand2tetris-hdl'] = {
-    comment: /\/\/.*|\/\*[\s\S]*?(?:\*\/|$)/,
-    keyword: /\b(?:BUILTIN|CHIP|CLOCKED|IN|OUT|PARTS)\b/,
-    boolean: /\b(?:false|true)\b/,
-    function: /\b[A-Za-z][A-Za-z0-9]*(?=\()/,
-    number: /\b\d+\b/,
-    operator: /=|\.\./,
-    punctuation: /[{}[\];(),:]/
-  };
+var nand2tetrisHdl_1;
+var hasRequiredNand2tetrisHdl;
+
+function requireNand2tetrisHdl () {
+	if (hasRequiredNand2tetrisHdl) return nand2tetrisHdl_1;
+	hasRequiredNand2tetrisHdl = 1;
+
+	nand2tetrisHdl_1 = nand2tetrisHdl;
+	nand2tetrisHdl.displayName = 'nand2tetrisHdl';
+	nand2tetrisHdl.aliases = [];
+	function nand2tetrisHdl(Prism) {
+	  Prism.languages['nand2tetris-hdl'] = {
+	    comment: /\/\/.*|\/\*[\s\S]*?(?:\*\/|$)/,
+	    keyword: /\b(?:BUILTIN|CHIP|CLOCKED|IN|OUT|PARTS)\b/,
+	    boolean: /\b(?:false|true)\b/,
+	    function: /\b[A-Za-z][A-Za-z0-9]*(?=\()/,
+	    number: /\b\d+\b/,
+	    operator: /=|\.\./,
+	    punctuation: /[{}[\];(),:]/
+	  };
+	}
+	return nand2tetrisHdl_1;
 }
 
-var naniscript_1 = naniscript;
-naniscript.displayName = 'naniscript';
-naniscript.aliases = [];
-function naniscript(Prism) {
+var naniscript_1;
+var hasRequiredNaniscript;
+
+function requireNaniscript () {
+	if (hasRequiredNaniscript) return naniscript_1;
+	hasRequiredNaniscript = 1;
+
+	naniscript_1 = naniscript;
+	naniscript.displayName = 'naniscript';
+	naniscript.aliases = [];
+	function naniscript(Prism) {
 (function (Prism) {
-    var expressionDef = /\{[^\r\n\[\]{}]*\}/;
-    var params = {
-      'quoted-string': {
-        pattern: /"(?:[^"\\]|\\.)*"/,
-        alias: 'operator'
-      },
-      'command-param-id': {
-        pattern: /(\s)\w+:/,
-        lookbehind: true,
-        alias: 'property'
-      },
-      'command-param-value': [
-        {
-          pattern: expressionDef,
-          alias: 'selector'
-        },
-        {
-          pattern: /([\t ])\S+/,
-          lookbehind: true,
-          greedy: true,
-          alias: 'operator'
-        },
-        {
-          pattern: /\S(?:.*\S)?/,
-          alias: 'operator'
-        }
-      ]
-    };
-    Prism.languages.naniscript = {
-      // ; ...
-      comment: {
-        pattern: /^([\t ]*);.*/m,
-        lookbehind: true
-      },
-      // > ...
-      // Define is a control line starting with '>' followed by a word, a space and a text.
-      define: {
-        pattern: /^>.+/m,
-        alias: 'tag',
-        inside: {
-          value: {
-            pattern: /(^>\w+[\t ]+)(?!\s)[^{}\r\n]+/,
-            lookbehind: true,
-            alias: 'operator'
-          },
-          key: {
-            pattern: /(^>)\w+/,
-            lookbehind: true
-          }
-        }
-      },
-      // # ...
-      label: {
-        pattern: /^([\t ]*)#[\t ]*\w+[\t ]*$/m,
-        lookbehind: true,
-        alias: 'regex'
-      },
-      command: {
-        pattern: /^([\t ]*)@\w+(?=[\t ]|$).*/m,
-        lookbehind: true,
-        alias: 'function',
-        inside: {
-          'command-name': /^@\w+/,
-          expression: {
-            pattern: expressionDef,
-            greedy: true,
-            alias: 'selector'
-          },
-          'command-params': {
-            pattern: /\s*\S[\s\S]*/,
-            inside: params
-          }
-        }
-      },
-      // Generic is any line that doesn't start with operators: ;>#@
-      'generic-text': {
-        pattern: /(^[ \t]*)[^#@>;\s].*/m,
-        lookbehind: true,
-        alias: 'punctuation',
-        inside: {
-          // \{ ... \} ... \[ ... \] ... \"
-          'escaped-char': /\\[{}\[\]"]/,
-          expression: {
-            pattern: expressionDef,
-            greedy: true,
-            alias: 'selector'
-          },
-          'inline-command': {
-            pattern: /\[[\t ]*\w[^\r\n\[\]]*\]/,
-            greedy: true,
-            alias: 'function',
-            inside: {
-              'command-params': {
-                pattern: /(^\[[\t ]*\w+\b)[\s\S]+(?=\]$)/,
-                lookbehind: true,
-                inside: params
-              },
-              'command-param-name': {
-                pattern: /^(\[[\t ]*)\w+/,
-                lookbehind: true,
-                alias: 'name'
-              },
-              'start-stop-char': /[\[\]]/
-            }
-          }
-        }
-      }
-    };
-    Prism.languages.nani = Prism.languages['naniscript'];
-    /** @typedef {InstanceType<import("./prism-core")["Token"]>} Token */
-    /**
-     * This hook is used to validate generic-text tokens for balanced brackets.
-     * Mark token as bad-line when contains not balanced brackets: {},[]
-     */
-    Prism.hooks.add('after-tokenize', function (env) {
-      /** @type {(Token | string)[]} */
-      var tokens = env.tokens;
-      tokens.forEach(function (token) {
-        if (typeof token !== 'string' && token.type === 'generic-text') {
-          var content = getTextContent(token);
-          if (!isBracketsBalanced(content)) {
-            token.type = 'bad-line';
-            token.content = content;
-          }
-        }
-      });
-    });
-    /**
-     * @param {string} input
-     * @returns {boolean}
-     */
-    function isBracketsBalanced(input) {
-      var brackets = '[]{}';
-      var stack = [];
-      for (var i = 0; i < input.length; i++) {
-        var bracket = input[i];
-        var bracketsIndex = brackets.indexOf(bracket);
-        if (bracketsIndex !== -1) {
-          if (bracketsIndex % 2 === 0) {
-            stack.push(bracketsIndex + 1);
-          } else if (stack.pop() !== bracketsIndex) {
-            return false
-          }
-        }
-      }
-      return stack.length === 0
-    }
-    /**
-     * @param {string | Token | (string | Token)[]} token
-     * @returns {string}
-     */
-    function getTextContent(token) {
-      if (typeof token === 'string') {
-        return token
-      } else if (Array.isArray(token)) {
-        return token.map(getTextContent).join('')
-      } else {
-        return getTextContent(token.content)
-      }
-    }
-  })(Prism);
+	    var expressionDef = /\{[^\r\n\[\]{}]*\}/;
+	    var params = {
+	      'quoted-string': {
+	        pattern: /"(?:[^"\\]|\\.)*"/,
+	        alias: 'operator'
+	      },
+	      'command-param-id': {
+	        pattern: /(\s)\w+:/,
+	        lookbehind: true,
+	        alias: 'property'
+	      },
+	      'command-param-value': [
+	        {
+	          pattern: expressionDef,
+	          alias: 'selector'
+	        },
+	        {
+	          pattern: /([\t ])\S+/,
+	          lookbehind: true,
+	          greedy: true,
+	          alias: 'operator'
+	        },
+	        {
+	          pattern: /\S(?:.*\S)?/,
+	          alias: 'operator'
+	        }
+	      ]
+	    };
+	    Prism.languages.naniscript = {
+	      // ; ...
+	      comment: {
+	        pattern: /^([\t ]*);.*/m,
+	        lookbehind: true
+	      },
+	      // > ...
+	      // Define is a control line starting with '>' followed by a word, a space and a text.
+	      define: {
+	        pattern: /^>.+/m,
+	        alias: 'tag',
+	        inside: {
+	          value: {
+	            pattern: /(^>\w+[\t ]+)(?!\s)[^{}\r\n]+/,
+	            lookbehind: true,
+	            alias: 'operator'
+	          },
+	          key: {
+	            pattern: /(^>)\w+/,
+	            lookbehind: true
+	          }
+	        }
+	      },
+	      // # ...
+	      label: {
+	        pattern: /^([\t ]*)#[\t ]*\w+[\t ]*$/m,
+	        lookbehind: true,
+	        alias: 'regex'
+	      },
+	      command: {
+	        pattern: /^([\t ]*)@\w+(?=[\t ]|$).*/m,
+	        lookbehind: true,
+	        alias: 'function',
+	        inside: {
+	          'command-name': /^@\w+/,
+	          expression: {
+	            pattern: expressionDef,
+	            greedy: true,
+	            alias: 'selector'
+	          },
+	          'command-params': {
+	            pattern: /\s*\S[\s\S]*/,
+	            inside: params
+	          }
+	        }
+	      },
+	      // Generic is any line that doesn't start with operators: ;>#@
+	      'generic-text': {
+	        pattern: /(^[ \t]*)[^#@>;\s].*/m,
+	        lookbehind: true,
+	        alias: 'punctuation',
+	        inside: {
+	          // \{ ... \} ... \[ ... \] ... \"
+	          'escaped-char': /\\[{}\[\]"]/,
+	          expression: {
+	            pattern: expressionDef,
+	            greedy: true,
+	            alias: 'selector'
+	          },
+	          'inline-command': {
+	            pattern: /\[[\t ]*\w[^\r\n\[\]]*\]/,
+	            greedy: true,
+	            alias: 'function',
+	            inside: {
+	              'command-params': {
+	                pattern: /(^\[[\t ]*\w+\b)[\s\S]+(?=\]$)/,
+	                lookbehind: true,
+	                inside: params
+	              },
+	              'command-param-name': {
+	                pattern: /^(\[[\t ]*)\w+/,
+	                lookbehind: true,
+	                alias: 'name'
+	              },
+	              'start-stop-char': /[\[\]]/
+	            }
+	          }
+	        }
+	      }
+	    };
+	    Prism.languages.nani = Prism.languages['naniscript'];
+	    /** @typedef {InstanceType<import("./prism-core")["Token"]>} Token */
+	    /**
+	     * This hook is used to validate generic-text tokens for balanced brackets.
+	     * Mark token as bad-line when contains not balanced brackets: {},[]
+	     */
+	    Prism.hooks.add('after-tokenize', function (env) {
+	      /** @type {(Token | string)[]} */
+	      var tokens = env.tokens;
+	      tokens.forEach(function (token) {
+	        if (typeof token !== 'string' && token.type === 'generic-text') {
+	          var content = getTextContent(token);
+	          if (!isBracketsBalanced(content)) {
+	            token.type = 'bad-line';
+	            token.content = content;
+	          }
+	        }
+	      });
+	    });
+	    /**
+	     * @param {string} input
+	     * @returns {boolean}
+	     */
+	    function isBracketsBalanced(input) {
+	      var brackets = '[]{}';
+	      var stack = [];
+	      for (var i = 0; i < input.length; i++) {
+	        var bracket = input[i];
+	        var bracketsIndex = brackets.indexOf(bracket);
+	        if (bracketsIndex !== -1) {
+	          if (bracketsIndex % 2 === 0) {
+	            stack.push(bracketsIndex + 1);
+	          } else if (stack.pop() !== bracketsIndex) {
+	            return false
+	          }
+	        }
+	      }
+	      return stack.length === 0
+	    }
+	    /**
+	     * @param {string | Token | (string | Token)[]} token
+	     * @returns {string}
+	     */
+	    function getTextContent(token) {
+	      if (typeof token === 'string') {
+	        return token
+	      } else if (Array.isArray(token)) {
+	        return token.map(getTextContent).join('')
+	      } else {
+	        return getTextContent(token.content)
+	      }
+	    }
+	  })(Prism);
+	}
+	return naniscript_1;
 }
 
-var nasm_1 = nasm;
-nasm.displayName = 'nasm';
-nasm.aliases = [];
-function nasm(Prism) {
-  Prism.languages.nasm = {
-    comment: /;.*$/m,
-    string: /(["'`])(?:\\.|(?!\1)[^\\\r\n])*\1/,
-    label: {
-      pattern: /(^\s*)[A-Za-z._?$][\w.?$@~#]*:/m,
-      lookbehind: true,
-      alias: 'function'
-    },
-    keyword: [
-      /\[?BITS (?:16|32|64)\]?/,
-      {
-        pattern: /(^\s*)section\s*[a-z.]+:?/im,
-        lookbehind: true
-      },
-      /(?:extern|global)[^;\r\n]*/i,
-      /(?:CPU|DEFAULT|FLOAT).*$/m
-    ],
-    register: {
-      pattern:
-        /\b(?:st\d|[xyz]mm\d\d?|[cdt]r\d|r\d\d?[bwd]?|[er]?[abcd]x|[abcd][hl]|[er]?(?:bp|di|si|sp)|[cdefgs]s)\b/i,
-      alias: 'variable'
-    },
-    number:
-      /(?:\b|(?=\$))(?:0[hx](?:\.[\da-f]+|[\da-f]+(?:\.[\da-f]+)?)(?:p[+-]?\d+)?|\d[\da-f]+[hx]|\$\d[\da-f]*|0[oq][0-7]+|[0-7]+[oq]|0[by][01]+|[01]+[by]|0[dt]\d+|(?:\d+(?:\.\d+)?|\.\d+)(?:\.?e[+-]?\d+)?[dt]?)\b/i,
-    operator: /[\[\]*+\-\/%<>=&|$!]/
-  };
+var nasm_1;
+var hasRequiredNasm;
+
+function requireNasm () {
+	if (hasRequiredNasm) return nasm_1;
+	hasRequiredNasm = 1;
+
+	nasm_1 = nasm;
+	nasm.displayName = 'nasm';
+	nasm.aliases = [];
+	function nasm(Prism) {
+	  Prism.languages.nasm = {
+	    comment: /;.*$/m,
+	    string: /(["'`])(?:\\.|(?!\1)[^\\\r\n])*\1/,
+	    label: {
+	      pattern: /(^\s*)[A-Za-z._?$][\w.?$@~#]*:/m,
+	      lookbehind: true,
+	      alias: 'function'
+	    },
+	    keyword: [
+	      /\[?BITS (?:16|32|64)\]?/,
+	      {
+	        pattern: /(^\s*)section\s*[a-z.]+:?/im,
+	        lookbehind: true
+	      },
+	      /(?:extern|global)[^;\r\n]*/i,
+	      /(?:CPU|DEFAULT|FLOAT).*$/m
+	    ],
+	    register: {
+	      pattern:
+	        /\b(?:st\d|[xyz]mm\d\d?|[cdt]r\d|r\d\d?[bwd]?|[er]?[abcd]x|[abcd][hl]|[er]?(?:bp|di|si|sp)|[cdefgs]s)\b/i,
+	      alias: 'variable'
+	    },
+	    number:
+	      /(?:\b|(?=\$))(?:0[hx](?:\.[\da-f]+|[\da-f]+(?:\.[\da-f]+)?)(?:p[+-]?\d+)?|\d[\da-f]+[hx]|\$\d[\da-f]*|0[oq][0-7]+|[0-7]+[oq]|0[by][01]+|[01]+[by]|0[dt]\d+|(?:\d+(?:\.\d+)?|\.\d+)(?:\.?e[+-]?\d+)?[dt]?)\b/i,
+	    operator: /[\[\]*+\-\/%<>=&|$!]/
+	  };
+	}
+	return nasm_1;
 }
 
-var neon_1 = neon;
-neon.displayName = 'neon';
-neon.aliases = [];
-function neon(Prism) {
-  Prism.languages.neon = {
-    comment: {
-      pattern: /#.*/,
-      greedy: true
-    },
-    datetime: {
-      pattern:
-        /(^|[[{(=:,\s])\d\d\d\d-\d\d?-\d\d?(?:(?:[Tt]| +)\d\d?:\d\d:\d\d(?:\.\d*)? *(?:Z|[-+]\d\d?(?::?\d\d)?)?)?(?=$|[\]}),\s])/,
-      lookbehind: true,
-      alias: 'number'
-    },
-    key: {
-      pattern: /(^|[[{(,\s])[^,:=[\]{}()'"\s]+(?=\s*:(?:$|[\]}),\s])|\s*=)/,
-      lookbehind: true,
-      alias: 'atrule'
-    },
-    number: {
-      pattern:
-        /(^|[[{(=:,\s])[+-]?(?:0x[\da-fA-F]+|0o[0-7]+|0b[01]+|(?:\d+(?:\.\d*)?|\.?\d+)(?:[eE][+-]?\d+)?)(?=$|[\]}),:=\s])/,
-      lookbehind: true
-    },
-    boolean: {
-      pattern: /(^|[[{(=:,\s])(?:false|no|true|yes)(?=$|[\]}),:=\s])/i,
-      lookbehind: true
-    },
-    null: {
-      pattern: /(^|[[{(=:,\s])(?:null)(?=$|[\]}),:=\s])/i,
-      lookbehind: true,
-      alias: 'keyword'
-    },
-    string: {
-      pattern:
-        /(^|[[{(=:,\s])(?:('''|""")\r?\n(?:(?:[^\r\n]|\r?\n(?![\t ]*\2))*\r?\n)?[\t ]*\2|'[^'\r\n]*'|"(?:\\.|[^\\"\r\n])*")/,
-      lookbehind: true,
-      greedy: true
-    },
-    literal: {
-      pattern:
-        /(^|[[{(=:,\s])(?:[^#"',:=[\]{}()\s`-]|[:-][^"',=[\]{}()\s])(?:[^,:=\]})(\s]|:(?![\s,\]})]|$)|[ \t]+[^#,:=\]})(\s])*/,
-      lookbehind: true,
-      alias: 'string'
-    },
-    punctuation: /[,:=[\]{}()-]/
-  };
+var neon_1;
+var hasRequiredNeon;
+
+function requireNeon () {
+	if (hasRequiredNeon) return neon_1;
+	hasRequiredNeon = 1;
+
+	neon_1 = neon;
+	neon.displayName = 'neon';
+	neon.aliases = [];
+	function neon(Prism) {
+	  Prism.languages.neon = {
+	    comment: {
+	      pattern: /#.*/,
+	      greedy: true
+	    },
+	    datetime: {
+	      pattern:
+	        /(^|[[{(=:,\s])\d\d\d\d-\d\d?-\d\d?(?:(?:[Tt]| +)\d\d?:\d\d:\d\d(?:\.\d*)? *(?:Z|[-+]\d\d?(?::?\d\d)?)?)?(?=$|[\]}),\s])/,
+	      lookbehind: true,
+	      alias: 'number'
+	    },
+	    key: {
+	      pattern: /(^|[[{(,\s])[^,:=[\]{}()'"\s]+(?=\s*:(?:$|[\]}),\s])|\s*=)/,
+	      lookbehind: true,
+	      alias: 'atrule'
+	    },
+	    number: {
+	      pattern:
+	        /(^|[[{(=:,\s])[+-]?(?:0x[\da-fA-F]+|0o[0-7]+|0b[01]+|(?:\d+(?:\.\d*)?|\.?\d+)(?:[eE][+-]?\d+)?)(?=$|[\]}),:=\s])/,
+	      lookbehind: true
+	    },
+	    boolean: {
+	      pattern: /(^|[[{(=:,\s])(?:false|no|true|yes)(?=$|[\]}),:=\s])/i,
+	      lookbehind: true
+	    },
+	    null: {
+	      pattern: /(^|[[{(=:,\s])(?:null)(?=$|[\]}),:=\s])/i,
+	      lookbehind: true,
+	      alias: 'keyword'
+	    },
+	    string: {
+	      pattern:
+	        /(^|[[{(=:,\s])(?:('''|""")\r?\n(?:(?:[^\r\n]|\r?\n(?![\t ]*\2))*\r?\n)?[\t ]*\2|'[^'\r\n]*'|"(?:\\.|[^\\"\r\n])*")/,
+	      lookbehind: true,
+	      greedy: true
+	    },
+	    literal: {
+	      pattern:
+	        /(^|[[{(=:,\s])(?:[^#"',:=[\]{}()\s`-]|[:-][^"',=[\]{}()\s])(?:[^,:=\]})(\s]|:(?![\s,\]})]|$)|[ \t]+[^#,:=\]})(\s])*/,
+	      lookbehind: true,
+	      alias: 'string'
+	    },
+	    punctuation: /[,:=[\]{}()-]/
+	  };
+	}
+	return neon_1;
 }
 
-var nevod_1 = nevod;
-nevod.displayName = 'nevod';
-nevod.aliases = [];
-function nevod(Prism) {
-  Prism.languages.nevod = {
-    comment: /\/\/.*|(?:\/\*[\s\S]*?(?:\*\/|$))/,
-    string: {
-      pattern: /(?:"(?:""|[^"])*"(?!")|'(?:''|[^'])*'(?!'))!?\*?/,
-      greedy: true,
-      inside: {
-        'string-attrs': /!$|!\*$|\*$/
-      }
-    },
-    namespace: {
-      pattern: /(@namespace\s+)[a-zA-Z0-9\-.]+(?=\s*\{)/,
-      lookbehind: true
-    },
-    pattern: {
-      pattern:
-        /(@pattern\s+)?#?[a-zA-Z0-9\-.]+(?:\s*\(\s*(?:~\s*)?[a-zA-Z0-9\-.]+\s*(?:,\s*(?:~\s*)?[a-zA-Z0-9\-.]*)*\))?(?=\s*=)/,
-      lookbehind: true,
-      inside: {
-        'pattern-name': {
-          pattern: /^#?[a-zA-Z0-9\-.]+/,
-          alias: 'class-name'
-        },
-        fields: {
-          pattern: /\(.*\)/,
-          inside: {
-            'field-name': {
-              pattern: /[a-zA-Z0-9\-.]+/,
-              alias: 'variable'
-            },
-            punctuation: /[,()]/,
-            operator: {
-              pattern: /~/,
-              alias: 'field-hidden-mark'
-            }
-          }
-        }
-      }
-    },
-    search: {
-      pattern: /(@search\s+|#)[a-zA-Z0-9\-.]+(?:\.\*)?(?=\s*;)/,
-      alias: 'function',
-      lookbehind: true
-    },
-    keyword:
-      /@(?:having|inside|namespace|outside|pattern|require|search|where)\b/,
-    'standard-pattern': {
-      pattern:
-        /\b(?:Alpha|AlphaNum|Any|Blank|End|LineBreak|Num|NumAlpha|Punct|Space|Start|Symbol|Word|WordBreak)\b(?:\([a-zA-Z0-9\-.,\s+]*\))?/,
-      inside: {
-        'standard-pattern-name': {
-          pattern: /^[a-zA-Z0-9\-.]+/,
-          alias: 'builtin'
-        },
-        quantifier: {
-          pattern: /\b\d+(?:\s*\+|\s*-\s*\d+)?(?!\w)/,
-          alias: 'number'
-        },
-        'standard-pattern-attr': {
-          pattern: /[a-zA-Z0-9\-.]+/,
-          alias: 'builtin'
-        },
-        punctuation: /[,()]/
-      }
-    },
-    quantifier: {
-      pattern: /\b\d+(?:\s*\+|\s*-\s*\d+)?(?!\w)/,
-      alias: 'number'
-    },
-    operator: [
-      {
-        pattern: /=/,
-        alias: 'pattern-def'
-      },
-      {
-        pattern: /&/,
-        alias: 'conjunction'
-      },
-      {
-        pattern: /~/,
-        alias: 'exception'
-      },
-      {
-        pattern: /\?/,
-        alias: 'optionality'
-      },
-      {
-        pattern: /[[\]]/,
-        alias: 'repetition'
-      },
-      {
-        pattern: /[{}]/,
-        alias: 'variation'
-      },
-      {
-        pattern: /[+_]/,
-        alias: 'sequence'
-      },
-      {
-        pattern: /\.{2,3}/,
-        alias: 'span'
-      }
-    ],
-    'field-capture': [
-      {
-        pattern:
-          /([a-zA-Z0-9\-.]+\s*\()\s*[a-zA-Z0-9\-.]+\s*:\s*[a-zA-Z0-9\-.]+(?:\s*,\s*[a-zA-Z0-9\-.]+\s*:\s*[a-zA-Z0-9\-.]+)*(?=\s*\))/,
-        lookbehind: true,
-        inside: {
-          'field-name': {
-            pattern: /[a-zA-Z0-9\-.]+/,
-            alias: 'variable'
-          },
-          colon: /:/
-        }
-      },
-      {
-        pattern: /[a-zA-Z0-9\-.]+\s*:/,
-        inside: {
-          'field-name': {
-            pattern: /[a-zA-Z0-9\-.]+/,
-            alias: 'variable'
-          },
-          colon: /:/
-        }
-      }
-    ],
-    punctuation: /[:;,()]/,
-    name: /[a-zA-Z0-9\-.]+/
-  };
+var nevod_1;
+var hasRequiredNevod;
+
+function requireNevod () {
+	if (hasRequiredNevod) return nevod_1;
+	hasRequiredNevod = 1;
+
+	nevod_1 = nevod;
+	nevod.displayName = 'nevod';
+	nevod.aliases = [];
+	function nevod(Prism) {
+	  Prism.languages.nevod = {
+	    comment: /\/\/.*|(?:\/\*[\s\S]*?(?:\*\/|$))/,
+	    string: {
+	      pattern: /(?:"(?:""|[^"])*"(?!")|'(?:''|[^'])*'(?!'))!?\*?/,
+	      greedy: true,
+	      inside: {
+	        'string-attrs': /!$|!\*$|\*$/
+	      }
+	    },
+	    namespace: {
+	      pattern: /(@namespace\s+)[a-zA-Z0-9\-.]+(?=\s*\{)/,
+	      lookbehind: true
+	    },
+	    pattern: {
+	      pattern:
+	        /(@pattern\s+)?#?[a-zA-Z0-9\-.]+(?:\s*\(\s*(?:~\s*)?[a-zA-Z0-9\-.]+\s*(?:,\s*(?:~\s*)?[a-zA-Z0-9\-.]*)*\))?(?=\s*=)/,
+	      lookbehind: true,
+	      inside: {
+	        'pattern-name': {
+	          pattern: /^#?[a-zA-Z0-9\-.]+/,
+	          alias: 'class-name'
+	        },
+	        fields: {
+	          pattern: /\(.*\)/,
+	          inside: {
+	            'field-name': {
+	              pattern: /[a-zA-Z0-9\-.]+/,
+	              alias: 'variable'
+	            },
+	            punctuation: /[,()]/,
+	            operator: {
+	              pattern: /~/,
+	              alias: 'field-hidden-mark'
+	            }
+	          }
+	        }
+	      }
+	    },
+	    search: {
+	      pattern: /(@search\s+|#)[a-zA-Z0-9\-.]+(?:\.\*)?(?=\s*;)/,
+	      alias: 'function',
+	      lookbehind: true
+	    },
+	    keyword:
+	      /@(?:having|inside|namespace|outside|pattern|require|search|where)\b/,
+	    'standard-pattern': {
+	      pattern:
+	        /\b(?:Alpha|AlphaNum|Any|Blank|End|LineBreak|Num|NumAlpha|Punct|Space|Start|Symbol|Word|WordBreak)\b(?:\([a-zA-Z0-9\-.,\s+]*\))?/,
+	      inside: {
+	        'standard-pattern-name': {
+	          pattern: /^[a-zA-Z0-9\-.]+/,
+	          alias: 'builtin'
+	        },
+	        quantifier: {
+	          pattern: /\b\d+(?:\s*\+|\s*-\s*\d+)?(?!\w)/,
+	          alias: 'number'
+	        },
+	        'standard-pattern-attr': {
+	          pattern: /[a-zA-Z0-9\-.]+/,
+	          alias: 'builtin'
+	        },
+	        punctuation: /[,()]/
+	      }
+	    },
+	    quantifier: {
+	      pattern: /\b\d+(?:\s*\+|\s*-\s*\d+)?(?!\w)/,
+	      alias: 'number'
+	    },
+	    operator: [
+	      {
+	        pattern: /=/,
+	        alias: 'pattern-def'
+	      },
+	      {
+	        pattern: /&/,
+	        alias: 'conjunction'
+	      },
+	      {
+	        pattern: /~/,
+	        alias: 'exception'
+	      },
+	      {
+	        pattern: /\?/,
+	        alias: 'optionality'
+	      },
+	      {
+	        pattern: /[[\]]/,
+	        alias: 'repetition'
+	      },
+	      {
+	        pattern: /[{}]/,
+	        alias: 'variation'
+	      },
+	      {
+	        pattern: /[+_]/,
+	        alias: 'sequence'
+	      },
+	      {
+	        pattern: /\.{2,3}/,
+	        alias: 'span'
+	      }
+	    ],
+	    'field-capture': [
+	      {
+	        pattern:
+	          /([a-zA-Z0-9\-.]+\s*\()\s*[a-zA-Z0-9\-.]+\s*:\s*[a-zA-Z0-9\-.]+(?:\s*,\s*[a-zA-Z0-9\-.]+\s*:\s*[a-zA-Z0-9\-.]+)*(?=\s*\))/,
+	        lookbehind: true,
+	        inside: {
+	          'field-name': {
+	            pattern: /[a-zA-Z0-9\-.]+/,
+	            alias: 'variable'
+	          },
+	          colon: /:/
+	        }
+	      },
+	      {
+	        pattern: /[a-zA-Z0-9\-.]+\s*:/,
+	        inside: {
+	          'field-name': {
+	            pattern: /[a-zA-Z0-9\-.]+/,
+	            alias: 'variable'
+	          },
+	          colon: /:/
+	        }
+	      }
+	    ],
+	    punctuation: /[:;,()]/,
+	    name: /[a-zA-Z0-9\-.]+/
+	  };
+	}
+	return nevod_1;
 }
 
 var nginx_1;
@@ -42861,57 +43067,66 @@ function requireNginx () {
 	return nginx_1;
 }
 
-var nim_1 = nim;
-nim.displayName = 'nim';
-nim.aliases = [];
-function nim(Prism) {
-  Prism.languages.nim = {
-    comment: {
-      pattern: /#.*/,
-      greedy: true
-    },
-    string: {
-      // Double-quoted strings can be prefixed by an identifier (Generalized raw string literals)
-      pattern:
-        /(?:\b(?!\d)(?:\w|\\x[89a-fA-F][0-9a-fA-F])+)?(?:"""[\s\S]*?"""(?!")|"(?:\\[\s\S]|""|[^"\\])*")/,
-      greedy: true
-    },
-    char: {
-      // Character literals are handled specifically to prevent issues with numeric type suffixes
-      pattern: /'(?:\\(?:\d+|x[\da-fA-F]{0,2}|.)|[^'])'/,
-      greedy: true
-    },
-    function: {
-      pattern:
-        /(?:(?!\d)(?:\w|\\x[89a-fA-F][0-9a-fA-F])+|`[^`\r\n]+`)\*?(?:\[[^\]]+\])?(?=\s*\()/,
-      greedy: true,
-      inside: {
-        operator: /\*$/
-      }
-    },
-    // We don't want to highlight operators (and anything really) inside backticks
-    identifier: {
-      pattern: /`[^`\r\n]+`/,
-      greedy: true,
-      inside: {
-        punctuation: /`/
-      }
-    },
-    // The negative look ahead prevents wrong highlighting of the .. operator
-    number:
-      /\b(?:0[xXoObB][\da-fA-F_]+|\d[\d_]*(?:(?!\.\.)\.[\d_]*)?(?:[eE][+-]?\d[\d_]*)?)(?:'?[iuf]\d*)?/,
-    keyword:
-      /\b(?:addr|as|asm|atomic|bind|block|break|case|cast|concept|const|continue|converter|defer|discard|distinct|do|elif|else|end|enum|except|export|finally|for|from|func|generic|if|import|include|interface|iterator|let|macro|method|mixin|nil|object|out|proc|ptr|raise|ref|return|static|template|try|tuple|type|using|var|when|while|with|without|yield)\b/,
-    operator: {
-      // Look behind and look ahead prevent wrong highlighting of punctuations [. .] {. .} (. .)
-      // but allow the slice operator .. to take precedence over them
-      // One can define his own operators in Nim so all combination of operators might be an operator.
-      pattern:
-        /(^|[({\[](?=\.\.)|(?![({\[]\.).)(?:(?:[=+\-*\/<>@$~&%|!?^:\\]|\.\.|\.(?![)}\]]))+|\b(?:and|div|in|is|isnot|mod|not|notin|of|or|shl|shr|xor)\b)/m,
-      lookbehind: true
-    },
-    punctuation: /[({\[]\.|\.[)}\]]|[`(){}\[\],:]/
-  };
+var nim_1;
+var hasRequiredNim;
+
+function requireNim () {
+	if (hasRequiredNim) return nim_1;
+	hasRequiredNim = 1;
+
+	nim_1 = nim;
+	nim.displayName = 'nim';
+	nim.aliases = [];
+	function nim(Prism) {
+	  Prism.languages.nim = {
+	    comment: {
+	      pattern: /#.*/,
+	      greedy: true
+	    },
+	    string: {
+	      // Double-quoted strings can be prefixed by an identifier (Generalized raw string literals)
+	      pattern:
+	        /(?:\b(?!\d)(?:\w|\\x[89a-fA-F][0-9a-fA-F])+)?(?:"""[\s\S]*?"""(?!")|"(?:\\[\s\S]|""|[^"\\])*")/,
+	      greedy: true
+	    },
+	    char: {
+	      // Character literals are handled specifically to prevent issues with numeric type suffixes
+	      pattern: /'(?:\\(?:\d+|x[\da-fA-F]{0,2}|.)|[^'])'/,
+	      greedy: true
+	    },
+	    function: {
+	      pattern:
+	        /(?:(?!\d)(?:\w|\\x[89a-fA-F][0-9a-fA-F])+|`[^`\r\n]+`)\*?(?:\[[^\]]+\])?(?=\s*\()/,
+	      greedy: true,
+	      inside: {
+	        operator: /\*$/
+	      }
+	    },
+	    // We don't want to highlight operators (and anything really) inside backticks
+	    identifier: {
+	      pattern: /`[^`\r\n]+`/,
+	      greedy: true,
+	      inside: {
+	        punctuation: /`/
+	      }
+	    },
+	    // The negative look ahead prevents wrong highlighting of the .. operator
+	    number:
+	      /\b(?:0[xXoObB][\da-fA-F_]+|\d[\d_]*(?:(?!\.\.)\.[\d_]*)?(?:[eE][+-]?\d[\d_]*)?)(?:'?[iuf]\d*)?/,
+	    keyword:
+	      /\b(?:addr|as|asm|atomic|bind|block|break|case|cast|concept|const|continue|converter|defer|discard|distinct|do|elif|else|end|enum|except|export|finally|for|from|func|generic|if|import|include|interface|iterator|let|macro|method|mixin|nil|object|out|proc|ptr|raise|ref|return|static|template|try|tuple|type|using|var|when|while|with|without|yield)\b/,
+	    operator: {
+	      // Look behind and look ahead prevent wrong highlighting of punctuations [. .] {. .} (. .)
+	      // but allow the slice operator .. to take precedence over them
+	      // One can define his own operators in Nim so all combination of operators might be an operator.
+	      pattern:
+	        /(^|[({\[](?=\.\.)|(?![({\[]\.).)(?:(?:[=+\-*\/<>@$~&%|!?^:\\]|\.\.|\.(?![)}\]]))+|\b(?:and|div|in|is|isnot|mod|not|notin|of|or|shl|shr|xor)\b)/m,
+	      lookbehind: true
+	    },
+	    punctuation: /[({\[]\.|\.[)}\]]|[`(){}\[\],:]/
+	  };
+	}
+	return nim_1;
 }
 
 var nix_1;
@@ -49211,7 +49426,7 @@ var hasRequiredTsx;
 function requireTsx () {
 	if (hasRequiredTsx) return tsx_1;
 	hasRequiredTsx = 1;
-	var refractorJsx = jsx_1;
+	var refractorJsx = requireJsx();
 	var refractorTypescript = requireTypescript();
 	tsx_1 = tsx;
 	tsx.displayName = 'tsx';
@@ -51196,7 +51411,7 @@ refractor.register(asmatmel_1);
 refractor.register(aspnet_1);
 refractor.register(autohotkey_1);
 refractor.register(autoit_1);
-refractor.register(avisynth_1);
+refractor.register(requireAvisynth());
 refractor.register(avroIdl_1);
 refractor.register(bash_1);
 refractor.register(basic_1);
@@ -51267,7 +51482,7 @@ refractor.register(gn_1);
 refractor.register(goModule_1);
 refractor.register(go_1);
 refractor.register(graphql_1);
-refractor.register(groovy_1);
+refractor.register(requireGroovy());
 refractor.register(haml_1);
 refractor.register(handlebars_1);
 refractor.register(haskell_1);
@@ -51302,7 +51517,7 @@ refractor.register(json_1);
 refractor.register(json5_1);
 refractor.register(jsonp_1);
 refractor.register(jsstacktrace_1);
-refractor.register(jsx_1);
+refractor.register(requireJsx());
 refractor.register(julia_1);
 refractor.register(keepalived_1);
 refractor.register(keyman_1);
@@ -51312,35 +51527,35 @@ refractor.register(kusto_1);
 refractor.register(latex_1);
 refractor.register(latte_1);
 refractor.register(less_1);
-refractor.register(lilypond_1);
-refractor.register(liquid_1);
-refractor.register(lisp_1);
+refractor.register(requireLilypond());
+refractor.register(requireLiquid());
+refractor.register(requireLisp());
 refractor.register(livescript_1);
-refractor.register(llvm_1);
-refractor.register(log_1);
-refractor.register(lolcode_1);
-refractor.register(lua_1);
-refractor.register(magma_1);
+refractor.register(requireLlvm());
+refractor.register(requireLog());
+refractor.register(requireLolcode());
+refractor.register(requireLua());
+refractor.register(requireMagma());
 refractor.register(makefile_1);
-refractor.register(markdown_1);
+refractor.register(requireMarkdown());
 refractor.register(markupTemplating_1);
-refractor.register(matlab_1);
-refractor.register(maxscript_1);
-refractor.register(mel_1);
-refractor.register(mermaid_1);
+refractor.register(requireMatlab());
+refractor.register(requireMaxscript());
+refractor.register(requireMel());
+refractor.register(requireMermaid());
 refractor.register(requireMizar());
 refractor.register(requireMongodb());
 refractor.register(requireMonkey());
-refractor.register(moonscript_1);
-refractor.register(n1ql_1);
+refractor.register(requireMoonscript());
+refractor.register(requireN1ql());
 refractor.register(requireN4js());
-refractor.register(nand2tetrisHdl_1);
-refractor.register(naniscript_1);
-refractor.register(nasm_1);
-refractor.register(neon_1);
-refractor.register(nevod_1);
+refractor.register(requireNand2tetrisHdl());
+refractor.register(requireNaniscript());
+refractor.register(requireNasm());
+refractor.register(requireNeon());
+refractor.register(requireNevod());
 refractor.register(requireNginx());
-refractor.register(nim_1);
+refractor.register(requireNim());
 refractor.register(requireNix());
 refractor.register(requireNsis());
 refractor.register(requireObjectivec());
@@ -60636,14 +60851,14 @@ function EvpCode(props) {
   var theme = Theme[(_a = props.theme) !== null && _a !== void 0 ? _a : "vscDarkPlus"];
   var $show = (_b = props.show) !== null && _b !== void 0 ? _b : true;
   return jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, {
-    children: $show ? jsxRuntimeExports.jsx(Highlight, __assign$f({
+    children: $show ? jsxRuntimeExports.jsx(Highlight, __assign({
       language: (_c = props.lang) !== null && _c !== void 0 ? _c : "text",
       PreTag: (_d = props.PreTag) !== null && _d !== void 0 ? _d : "div",
       style: theme,
-      customStyle: __assign$f({
+      customStyle: __assign({
         borderRadius: 6
       }, props.style),
-      codeTagProps: __assign$f({
+      codeTagProps: __assign({
         className: props.class
       }, props.codeTagProps),
       showLineNumbers: props.showLineNumbers,
@@ -60666,7 +60881,7 @@ function EvpCol(props) {
   var _a, _b, _c, _d, _e, _f;
   var $props = AllParser(props);
   var event = $props.event;
-  var style = __assign$f({
+  var style = __assign({
     display: props.hidden ? "none" : "flex",
     flexDirection: (_a = props.flexDirection) !== null && _a !== void 0 ? _a : "column",
     justifyContent: (_b = props.justifyContent) !== null && _b !== void 0 ? _b : "flex-start",
@@ -60674,10 +60889,10 @@ function EvpCol(props) {
     width: (_d = props.w) !== null && _d !== void 0 ? _d : "100%",
     height: props.h
   }, shift($props.style));
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  return jsxRuntimeExports.jsx("div", __assign({
     className: "evp col ".concat((_e = props.class) !== null && _e !== void 0 ? _e : '').trim(),
     id: props.id,
-    style: __assign$f({
+    style: __assign({
       gap: (_f = valParser(props.gap)) !== null && _f !== void 0 ? _f : "6px"
     }, style),
     onMouseEnter: event.onMouseEnter,
@@ -60701,7 +60916,7 @@ function EvpRow(props) {
   var _a, _b, _c, _d, _e, _f, _g;
   var $props = AllParser(props);
   var event = $props.event;
-  var style = __assign$f({
+  var style = __assign({
     display: props.hidden ? "none" : "flex",
     flexDirection: (_a = props.flexDirection) !== null && _a !== void 0 ? _a : "row",
     justifyContent: (_b = props.justifyContent) !== null && _b !== void 0 ? _b : "flex-start",
@@ -60709,10 +60924,10 @@ function EvpRow(props) {
     width: (_d = props.w) !== null && _d !== void 0 ? _d : "100%",
     height: (_e = props.h) !== null && _e !== void 0 ? _e : "100%"
   }, shift($props.style));
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  return jsxRuntimeExports.jsx("div", __assign({
     className: "evp evp-row ".concat((_f = props.class) !== null && _f !== void 0 ? _f : "").trim(),
     id: props.id,
-    style: __assign$f({
+    style: __assign({
       // @ts-ignore
       "gap": (_g = valParser(props.gap)) !== null && _g !== void 0 ? _g : "6px"
     }, style),
@@ -60751,10 +60966,10 @@ function EvpDivider(props) {
     return (_a = ref.current) === null || _a === void 0 ? void 0 : _a.clientWidth;
   };
   return jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, {
-    children: !props.children ? jsxRuntimeExports.jsx("div", __assign$f({
+    children: !props.children ? jsxRuntimeExports.jsx("div", __assign({
       className: "evp evp-divider ".concat((_b = props.class) !== null && _b !== void 0 ? _b : '').trim(),
       ref: ref,
-      style: __assign$f({
+      style: __assign({
         width: width,
         paddingTop: top,
         paddingBottom: bottom
@@ -60769,9 +60984,9 @@ function EvpDivider(props) {
           marginRight: "calc(".concat(right, " + ").concat(gap, ")")
         }
       })
-    })) : jsxRuntimeExports.jsx("div", __assign$f({
+    })) : jsxRuntimeExports.jsx("div", __assign({
       className: "evp evp-divider with-text ".concat((_c = props.class) !== null && _c !== void 0 ? _c : '').trim(),
-      style: __assign$f({
+      style: __assign({
         width: "calc(".concat(width, " - ").concat(left, " - ").concat(right, " - ").concat(gap, " * 2)"),
         display: 'flex',
         alignItems: 'center',
@@ -60789,7 +61004,7 @@ function EvpDivider(props) {
         '--border-radius': radius
       }, props.style)
     }, {
-      children: jsxRuntimeExports.jsx("div", __assign$f({
+      children: jsxRuntimeExports.jsx("div", __assign({
         className: "evp-divider-content ".concat((_e = props.contentClass) !== null && _e !== void 0 ? _e : '').trim(),
         style: {
           marginInline: props.contentGap ? typeof props.contentGap === 'string' ? props.contentGap : "".concat(props.contentGap, "px") : '8px',
@@ -60879,14 +61094,14 @@ function EvpFlexbarContentfixed(props) {
   var flexMode = (_h = props.flexMode) !== null && _h !== void 0 ? _h : "ease-in-out";
   var trigger = (_j = props.trigger) !== null && _j !== void 0 ? _j : "click";
   var $hiddenOnBlur = (_k = props.hiddenOnBlur) !== null && _k !== void 0 ? _k : true;
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  return jsxRuntimeExports.jsx("div", __assign({
     className: "evp evp-flexbar-container",
-    style: __assign$f({
+    style: __assign({
       height: height,
       width: height
     }, props.style)
   }, {
-    children: jsxRuntimeExports.jsxs("div", __assign$f({
+    children: jsxRuntimeExports.jsxs("div", __assign({
       className: "evp-flexbar ".concat((_l = props.class) !== null && _l !== void 0 ? _l : "").trim(),
       onMouseLeave: function onMouseLeave() {
         trigger === "hover" ? setExpand(false) : void 0;
@@ -60903,7 +61118,7 @@ function EvpFlexbarContentfixed(props) {
         transition: "left ".concat(flexTime, " ").concat(flexMode, ", top ").concat(flexTime, " ").concat(flexMode)
       }
     }, {
-      children: [jsxRuntimeExports.jsx("div", __assign$f({
+      children: [jsxRuntimeExports.jsx("div", __assign({
         className: "evp-flexbar-content-wrapper ".concat((_m = props.contentClass) !== null && _m !== void 0 ? _m : "").trim(),
         style: {
           height: ["right", "left"].includes(labelPosition) ? height : expand ? (_o = ref.current) === null || _o === void 0 ? void 0 : _o.clientHeight : 0,
@@ -60918,7 +61133,7 @@ function EvpFlexbarContentfixed(props) {
           cursor: props.contentCurosr
         }
       }, {
-        children: jsxRuntimeExports.jsx("div", __assign$f({
+        children: jsxRuntimeExports.jsx("div", __assign({
           className: "evp-flexbar-content",
           ref: ref,
           style: {
@@ -60927,7 +61142,7 @@ function EvpFlexbarContentfixed(props) {
         }, {
           children: props.children
         }))
-      })), jsxRuntimeExports.jsx("div", __assign$f({
+      })), jsxRuntimeExports.jsx("div", __assign({
         className: "evp-flexbar-label ".concat((_q = props.labelClass) !== null && _q !== void 0 ? _q : "").trim(),
         onClick: function onClick() {
           trigger === "click" ? setExpand(!expand) : void 0;
@@ -61024,14 +61239,14 @@ function EvpFlexbarLabelfixed(props) {
   var flexMode = (_h = props.flexMode) !== null && _h !== void 0 ? _h : "ease-in-out";
   var trigger = (_j = props.trigger) !== null && _j !== void 0 ? _j : "click";
   var $hiddenOnBlur = (_k = props.hiddenOnBlur) !== null && _k !== void 0 ? _k : true;
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  return jsxRuntimeExports.jsx("div", __assign({
     className: "evp evp-flexbar-container",
-    style: __assign$f({
+    style: __assign({
       height: height,
       width: height
     }, props.style)
   }, {
-    children: jsxRuntimeExports.jsxs("div", __assign$f({
+    children: jsxRuntimeExports.jsxs("div", __assign({
       className: "evp-flexbar ".concat((_l = props.class) !== null && _l !== void 0 ? _l : "").trim(),
       onMouseLeave: function onMouseLeave() {
         trigger === "hover" ? setExpand(false) : void 0;
@@ -61048,7 +61263,7 @@ function EvpFlexbarLabelfixed(props) {
         transition: "left ".concat(flexTime, " ").concat(flexMode, ", top ").concat(flexTime, " ").concat(flexMode)
       }
     }, {
-      children: [jsxRuntimeExports.jsx("div", __assign$f({
+      children: [jsxRuntimeExports.jsx("div", __assign({
         className: "evp-flexbar-content-wrapper ".concat((_m = props.contentClass) !== null && _m !== void 0 ? _m : "").trim(),
         style: {
           height: ["right", "left"].includes(labelPosition) ? height : expand ? (_o = ref.current) === null || _o === void 0 ? void 0 : _o.clientHeight : 0,
@@ -61063,7 +61278,7 @@ function EvpFlexbarLabelfixed(props) {
           cursor: props.contentCurosr
         }
       }, {
-        children: jsxRuntimeExports.jsx("div", __assign$f({
+        children: jsxRuntimeExports.jsx("div", __assign({
           className: "evp-flexbar-content",
           ref: ref,
           style: {
@@ -61072,7 +61287,7 @@ function EvpFlexbarLabelfixed(props) {
         }, {
           children: props.children
         }))
-      })), jsxRuntimeExports.jsx("div", __assign$f({
+      })), jsxRuntimeExports.jsx("div", __assign({
         className: "evp-flexbar-label ".concat((_q = props.labelClass) !== null && _q !== void 0 ? _q : "").trim(),
         onClick: function onClick() {
           trigger === "click" ? setExpand(!expand) : void 0;
@@ -61115,7 +61330,7 @@ function EvpFlexbar(props) {
 
 function EvpHeader(props) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _j;
-  return jsxRuntimeExports.jsx(EvpRow, __assign$f({
+  return jsxRuntimeExports.jsx(EvpRow, __assign({
     position: (_a = props.position) !== null && _a !== void 0 ? _a : "fixed",
     left: 0,
     top: 0,
@@ -61129,7 +61344,7 @@ function EvpHeader(props) {
     style: props.style
   }, {
     children: props.children ? props.children : jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
-      children: [jsxRuntimeExports.jsx("div", __assign$f({
+      children: [jsxRuntimeExports.jsx("div", __assign({
         style: {
           display: "flex",
           justifyContent: "left",
@@ -61139,7 +61354,7 @@ function EvpHeader(props) {
         }
       }, {
         children: (_h = props.leftContent) !== null && _h !== void 0 ? _h : jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
-          children: [props.icon, jsxRuntimeExports.jsx("div", __assign$f({
+          children: [props.icon, jsxRuntimeExports.jsx("div", __assign({
             style: {
               fontSize: 20,
               paddingLeft: 20
@@ -61148,7 +61363,7 @@ function EvpHeader(props) {
             children: props.title
           }))]
         })
-      })), jsxRuntimeExports.jsx("div", __assign$f({
+      })), jsxRuntimeExports.jsx("div", __assign({
         style: {
           display: "flex",
           width: "100%",
@@ -61165,10 +61380,10 @@ function EvpHeader(props) {
 
 var User$1 = function User(props) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  return jsxRuntimeExports.jsx("div", __assign({
     className: "evp icon ".concat((_a = props.class) !== null && _a !== void 0 ? _a : "").trim(),
     onClick: props.onClick,
-    style: __assign$f({
+    style: __assign({
       visibility: ((_b = props.$visibleSync) !== null && _b !== void 0 ? _b : true) ? "visible" : "hidden",
       display: ((_c = props.$displaySync) !== null && _c !== void 0 ? _c : true) ? "flex" : "none",
       strokeWidth: (_d = props.strokeWidth) !== null && _d !== void 0 ? _d : 4,
@@ -61181,7 +61396,7 @@ var User$1 = function User(props) {
       margin: (_j = propsParser.get("mg")) === null || _j === void 0 ? void 0 : _j(props.mg)
     }, props.style)
   }, {
-    children: jsxRuntimeExports.jsxs("svg", __assign$f({
+    children: jsxRuntimeExports.jsxs("svg", __assign({
       width: (_k = props.radius) !== null && _k !== void 0 ? _k : 24,
       height: (_l = props.radius) !== null && _l !== void 0 ? _l : 24,
       viewBox: "0 0 48 48",
@@ -61204,10 +61419,10 @@ var User$1 = function User(props) {
 
 var TrueCircle$1 = function TrueCircle(props) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  return jsxRuntimeExports.jsx("div", __assign({
     className: "evp icon ".concat((_a = props.class) !== null && _a !== void 0 ? _a : "").trim(),
     onClick: props.onClick,
-    style: __assign$f({
+    style: __assign({
       visibility: ((_b = props.$visibleSync) !== null && _b !== void 0 ? _b : true) ? "visible" : "hidden",
       display: ((_c = props.$displaySync) !== null && _c !== void 0 ? _c : true) ? "flex" : "none",
       strokeWidth: (_d = props.strokeWidth) !== null && _d !== void 0 ? _d : 4,
@@ -61220,7 +61435,7 @@ var TrueCircle$1 = function TrueCircle(props) {
       margin: (_j = propsParser.get("mg")) === null || _j === void 0 ? void 0 : _j(props.mg)
     }, props.style)
   }, {
-    children: jsxRuntimeExports.jsxs("svg", __assign$f({
+    children: jsxRuntimeExports.jsxs("svg", __assign({
       width: (_k = props.radius) !== null && _k !== void 0 ? _k : 24,
       height: (_l = props.radius) !== null && _l !== void 0 ? _l : 24,
       viewBox: "0 0 48 48",
@@ -61240,10 +61455,10 @@ var TrueCircle$1 = function TrueCircle(props) {
 
 var FalseCircle$1 = function FalseCircle(props) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  return jsxRuntimeExports.jsx("div", __assign({
     className: "evp icon ".concat((_a = props.class) !== null && _a !== void 0 ? _a : "").trim(),
     onClick: props.onClick,
-    style: __assign$f({
+    style: __assign({
       visibility: ((_b = props.$visibleSync) !== null && _b !== void 0 ? _b : true) ? "visible" : "hidden",
       display: ((_c = props.$displaySync) !== null && _c !== void 0 ? _c : true) ? "flex" : "none",
       strokeWidth: (_d = props.strokeWidth) !== null && _d !== void 0 ? _d : 4,
@@ -61256,7 +61471,7 @@ var FalseCircle$1 = function FalseCircle(props) {
       margin: (_j = propsParser.get("mg")) === null || _j === void 0 ? void 0 : _j(props.mg)
     }, props.style)
   }, {
-    children: jsxRuntimeExports.jsxs("svg", __assign$f({
+    children: jsxRuntimeExports.jsxs("svg", __assign({
       width: (_k = props.radius) !== null && _k !== void 0 ? _k : 24,
       height: (_l = props.radius) !== null && _l !== void 0 ? _l : 24,
       viewBox: "0 0 48 48",
@@ -61280,10 +61495,10 @@ var FalseCircle$1 = function FalseCircle(props) {
 
 var CloseCircle$1 = function CloseCircle(props) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  return jsxRuntimeExports.jsx("div", __assign({
     className: "evp icon ".concat((_a = props.class) !== null && _a !== void 0 ? _a : "").trim(),
     onClick: props.onClick,
-    style: __assign$f({
+    style: __assign({
       visibility: ((_b = props.$visibleSync) !== null && _b !== void 0 ? _b : true) ? "visible" : "hidden",
       display: ((_c = props.$displaySync) !== null && _c !== void 0 ? _c : true) ? "flex" : "none",
       strokeWidth: (_d = props.strokeWidth) !== null && _d !== void 0 ? _d : 4,
@@ -61296,7 +61511,7 @@ var CloseCircle$1 = function CloseCircle(props) {
       margin: (_j = propsParser.get("mg")) === null || _j === void 0 ? void 0 : _j(props.mg)
     }, props.style)
   }, {
-    children: jsxRuntimeExports.jsxs("svg", __assign$f({
+    children: jsxRuntimeExports.jsxs("svg", __assign({
       width: (_k = props.radius) !== null && _k !== void 0 ? _k : 24,
       height: (_l = props.radius) !== null && _l !== void 0 ? _l : 24,
       viewBox: "0 0 48 48",
@@ -61322,10 +61537,10 @@ var CloseCircle$1 = function CloseCircle(props) {
 
 var Close$2 = function Close(props) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  return jsxRuntimeExports.jsx("div", __assign({
     className: "evp icon ".concat((_a = props.class) !== null && _a !== void 0 ? _a : "").trim(),
     onClick: props.onClick,
-    style: __assign$f({
+    style: __assign({
       visibility: ((_b = props.$visibleSync) !== null && _b !== void 0 ? _b : true) ? "visible" : "hidden",
       display: ((_c = props.$displaySync) !== null && _c !== void 0 ? _c : true) ? "flex" : "none",
       strokeWidth: (_d = props.strokeWidth) !== null && _d !== void 0 ? _d : 4,
@@ -61338,7 +61553,7 @@ var Close$2 = function Close(props) {
       margin: (_j = propsParser.get("mg")) === null || _j === void 0 ? void 0 : _j(props.mg)
     }, props.style)
   }, {
-    children: jsxRuntimeExports.jsxs("svg", __assign$f({
+    children: jsxRuntimeExports.jsxs("svg", __assign({
       width: (_k = props.radius) !== null && _k !== void 0 ? _k : 24,
       height: (_l = props.radius) !== null && _l !== void 0 ? _l : 24,
       viewBox: "0 0 48 48",
@@ -61360,10 +61575,10 @@ var Close$2 = function Close(props) {
 
 var Lock$2 = function Lock(props) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  return jsxRuntimeExports.jsx("div", __assign({
     className: "evp icon ".concat((_a = props.class) !== null && _a !== void 0 ? _a : "").trim(),
     onClick: props.onClick,
-    style: __assign$f({
+    style: __assign({
       visibility: ((_b = props.$visibleSync) !== null && _b !== void 0 ? _b : true) ? "visible" : "hidden",
       display: ((_c = props.$displaySync) !== null && _c !== void 0 ? _c : true) ? "flex" : "none",
       strokeWidth: (_d = props.strokeWidth) !== null && _d !== void 0 ? _d : 4,
@@ -61376,7 +61591,7 @@ var Lock$2 = function Lock(props) {
       margin: (_j = propsParser.get("mg")) === null || _j === void 0 ? void 0 : _j(props.mg)
     }, props.style)
   }, {
-    children: jsxRuntimeExports.jsxs("svg", __assign$f({
+    children: jsxRuntimeExports.jsxs("svg", __assign({
       width: (_k = props.radius) !== null && _k !== void 0 ? _k : 24,
       height: (_l = props.radius) !== null && _l !== void 0 ? _l : 24,
       viewBox: "0 0 48 48",
@@ -61404,10 +61619,10 @@ var Lock$2 = function Lock(props) {
 
 var Unknown$1 = function Unknown(props) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  return jsxRuntimeExports.jsx("div", __assign({
     className: "evp icon ".concat((_a = props.class) !== null && _a !== void 0 ? _a : "").trim(),
     onClick: props.onClick,
-    style: __assign$f({
+    style: __assign({
       visibility: ((_b = props.$visibleSync) !== null && _b !== void 0 ? _b : true) ? "visible" : "hidden",
       display: ((_c = props.$displaySync) !== null && _c !== void 0 ? _c : true) ? "flex" : "none",
       strokeWidth: (_d = props.strokeWidth) !== null && _d !== void 0 ? _d : 4,
@@ -61420,7 +61635,7 @@ var Unknown$1 = function Unknown(props) {
       margin: (_j = propsParser.get("mg")) === null || _j === void 0 ? void 0 : _j(props.mg)
     }, props.style)
   }, {
-    children: jsxRuntimeExports.jsxs("svg", __assign$f({
+    children: jsxRuntimeExports.jsxs("svg", __assign({
       width: (_k = props.radius) !== null && _k !== void 0 ? _k : 24,
       height: (_l = props.radius) !== null && _l !== void 0 ? _l : 24,
       viewBox: "0 0 48 48",
@@ -61444,10 +61659,10 @@ var Unknown$1 = function Unknown(props) {
 
 var Exclamation = function Exclamation(props) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m;
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  return jsxRuntimeExports.jsx("div", __assign({
     className: "evp icon ".concat((_a = props.class) !== null && _a !== void 0 ? _a : "").trim(),
     onClick: props.onClick,
-    style: __assign$f({
+    style: __assign({
       visibility: ((_b = props.$visibleSync) !== null && _b !== void 0 ? _b : true) ? "visible" : "hidden",
       display: ((_c = props.$displaySync) !== null && _c !== void 0 ? _c : true) ? "flex" : "none",
       strokeWidth: (_d = props.strokeWidth) !== null && _d !== void 0 ? _d : 4,
@@ -61460,7 +61675,7 @@ var Exclamation = function Exclamation(props) {
       margin: (_j = propsParser.get("mg")) === null || _j === void 0 ? void 0 : _j(props.mg)
     }, props.style)
   }, {
-    children: jsxRuntimeExports.jsxs("svg", __assign$f({
+    children: jsxRuntimeExports.jsxs("svg", __assign({
       width: (_k = props.radius) !== null && _k !== void 0 ? _k : 24,
       height: (_l = props.radius) !== null && _l !== void 0 ? _l : 24,
       viewBox: "0 0 48 48",
@@ -61487,10 +61702,10 @@ var Exclamation = function Exclamation(props) {
 
 var Info$1 = function Info(props) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m;
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  return jsxRuntimeExports.jsx("div", __assign({
     className: "evp icon ".concat((_a = props.class) !== null && _a !== void 0 ? _a : "").trim(),
     onClick: props.onClick,
-    style: __assign$f({
+    style: __assign({
       visibility: ((_b = props.$visibleSync) !== null && _b !== void 0 ? _b : true) ? "visible" : "hidden",
       display: ((_c = props.$displaySync) !== null && _c !== void 0 ? _c : true) ? "flex" : "none",
       strokeWidth: (_d = props.strokeWidth) !== null && _d !== void 0 ? _d : 4,
@@ -61503,7 +61718,7 @@ var Info$1 = function Info(props) {
       margin: (_j = propsParser.get("mg")) === null || _j === void 0 ? void 0 : _j(props.mg)
     }, props.style)
   }, {
-    children: jsxRuntimeExports.jsxs("svg", __assign$f({
+    children: jsxRuntimeExports.jsxs("svg", __assign({
       width: (_k = props.radius) !== null && _k !== void 0 ? _k : 24,
       height: (_l = props.radius) !== null && _l !== void 0 ? _l : 24,
       viewBox: "0 0 48 48",
@@ -61535,10 +61750,10 @@ var Info$1 = function Info(props) {
 
 var All$1 = function All(props) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  return jsxRuntimeExports.jsx("div", __assign({
     className: "evp icon ".concat((_a = props.class) !== null && _a !== void 0 ? _a : "").trim(),
     onClick: props.onClick,
-    style: __assign$f({
+    style: __assign({
       visibility: ((_b = props.$visibleSync) !== null && _b !== void 0 ? _b : true) ? "visible" : "hidden",
       display: ((_c = props.$displaySync) !== null && _c !== void 0 ? _c : true) ? "flex" : "none",
       strokeWidth: (_d = props.strokeWidth) !== null && _d !== void 0 ? _d : 4,
@@ -61551,7 +61766,7 @@ var All$1 = function All(props) {
       margin: (_j = propsParser.get("mg")) === null || _j === void 0 ? void 0 : _j(props.mg)
     }, props.style)
   }, {
-    children: jsxRuntimeExports.jsxs("svg", __assign$f({
+    children: jsxRuntimeExports.jsxs("svg", __assign({
       width: (_k = props.radius) !== null && _k !== void 0 ? _k : 24,
       height: (_l = props.radius) !== null && _l !== void 0 ? _l : 24,
       viewBox: "0 0 48 48",
@@ -61577,10 +61792,10 @@ var All$1 = function All(props) {
 
 var WaterFallsH = function WaterFallsH(props) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  return jsxRuntimeExports.jsx("div", __assign({
     className: "evp icon ".concat((_a = props.class) !== null && _a !== void 0 ? _a : "").trim(),
     onClick: props.onClick,
-    style: __assign$f({
+    style: __assign({
       visibility: ((_b = props.$visibleSync) !== null && _b !== void 0 ? _b : true) ? "visible" : "hidden",
       display: ((_c = props.$displaySync) !== null && _c !== void 0 ? _c : true) ? "flex" : "none",
       strokeWidth: (_d = props.strokeWidth) !== null && _d !== void 0 ? _d : 4,
@@ -61593,7 +61808,7 @@ var WaterFallsH = function WaterFallsH(props) {
       margin: (_j = propsParser.get("mg")) === null || _j === void 0 ? void 0 : _j(props.mg)
     }, props.style)
   }, {
-    children: jsxRuntimeExports.jsxs("svg", __assign$f({
+    children: jsxRuntimeExports.jsxs("svg", __assign({
       width: (_k = props.radius) !== null && _k !== void 0 ? _k : 24,
       height: (_l = props.radius) !== null && _l !== void 0 ? _l : 24,
       viewBox: "0 0 48 48",
@@ -61618,10 +61833,10 @@ var WaterFallsH = function WaterFallsH(props) {
 
 var WaterFallsV = function WaterFallsV(props) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  return jsxRuntimeExports.jsx("div", __assign({
     className: "evp icon ".concat((_a = props.class) !== null && _a !== void 0 ? _a : "").trim(),
     onClick: props.onClick,
-    style: __assign$f({
+    style: __assign({
       visibility: ((_b = props.$visibleSync) !== null && _b !== void 0 ? _b : true) ? "visible" : "hidden",
       display: ((_c = props.$displaySync) !== null && _c !== void 0 ? _c : true) ? "flex" : "none",
       strokeWidth: (_d = props.strokeWidth) !== null && _d !== void 0 ? _d : 4,
@@ -61634,7 +61849,7 @@ var WaterFallsV = function WaterFallsV(props) {
       margin: (_j = propsParser.get("mg")) === null || _j === void 0 ? void 0 : _j(props.mg)
     }, props.style)
   }, {
-    children: jsxRuntimeExports.jsxs("svg", __assign$f({
+    children: jsxRuntimeExports.jsxs("svg", __assign({
       width: (_k = props.radius) !== null && _k !== void 0 ? _k : 24,
       height: (_l = props.radius) !== null && _l !== void 0 ? _l : 24,
       viewBox: "0 0 48 48",
@@ -61659,10 +61874,10 @@ var WaterFallsV = function WaterFallsV(props) {
 
 var Up$1 = function Up(props) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  return jsxRuntimeExports.jsx("div", __assign({
     className: classNames("evp", "icon", props.class),
     onClick: props.onClick,
-    style: __assign$f({
+    style: __assign({
       visibility: ((_a = props.$visibleSync) !== null && _a !== void 0 ? _a : true) ? "visible" : "hidden",
       display: ((_b = props.$displaySync) !== null && _b !== void 0 ? _b : true) ? "flex" : "none",
       strokeWidth: (_c = props.strokeWidth) !== null && _c !== void 0 ? _c : 4,
@@ -61675,7 +61890,7 @@ var Up$1 = function Up(props) {
       margin: (_h = propsParser.get("mg")) === null || _h === void 0 ? void 0 : _h(props.mg)
     }, props.style)
   }, {
-    children: jsxRuntimeExports.jsx("svg", __assign$f({
+    children: jsxRuntimeExports.jsx("svg", __assign({
       width: (_j = props.radius) !== null && _j !== void 0 ? _j : 24,
       height: (_k = props.radius) !== null && _k !== void 0 ? _k : 24,
       viewBox: "0 0 48 48",
@@ -61693,10 +61908,10 @@ var Up$1 = function Up(props) {
 
 var Down$1 = function Down(props) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  return jsxRuntimeExports.jsx("div", __assign({
     className: "evp icon ".concat((_a = props.class) !== null && _a !== void 0 ? _a : "").trim(),
     onClick: props.onClick,
-    style: __assign$f({
+    style: __assign({
       visibility: ((_b = props.$visibleSync) !== null && _b !== void 0 ? _b : true) ? "visible" : "hidden",
       display: ((_c = props.$displaySync) !== null && _c !== void 0 ? _c : true) ? "flex" : "none",
       strokeWidth: (_d = props.strokeWidth) !== null && _d !== void 0 ? _d : 4,
@@ -61709,7 +61924,7 @@ var Down$1 = function Down(props) {
       margin: (_j = propsParser.get("mg")) === null || _j === void 0 ? void 0 : _j(props.mg)
     }, props.style)
   }, {
-    children: jsxRuntimeExports.jsx("svg", __assign$f({
+    children: jsxRuntimeExports.jsx("svg", __assign({
       width: (_k = props.radius) !== null && _k !== void 0 ? _k : 24,
       height: (_l = props.radius) !== null && _l !== void 0 ? _l : 24,
       viewBox: "0 0 48 48",
@@ -61726,10 +61941,10 @@ var Down$1 = function Down(props) {
 
 var Left$1 = function Left(props) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  return jsxRuntimeExports.jsx("div", __assign({
     className: "evp icon ".concat((_a = props.class) !== null && _a !== void 0 ? _a : "").trim(),
     onClick: props.onClick,
-    style: __assign$f({
+    style: __assign({
       visibility: ((_b = props.$visibleSync) !== null && _b !== void 0 ? _b : true) ? "visible" : "hidden",
       display: ((_c = props.$displaySync) !== null && _c !== void 0 ? _c : true) ? "flex" : "none",
       strokeWidth: (_d = props.strokeWidth) !== null && _d !== void 0 ? _d : 4,
@@ -61742,7 +61957,7 @@ var Left$1 = function Left(props) {
       margin: (_j = propsParser.get("mg")) === null || _j === void 0 ? void 0 : _j(props.mg)
     }, props.style)
   }, {
-    children: jsxRuntimeExports.jsx("svg", __assign$f({
+    children: jsxRuntimeExports.jsx("svg", __assign({
       id: "evp-svg-down",
       width: (_k = props.radius) !== null && _k !== void 0 ? _k : 24,
       height: (_l = props.radius) !== null && _l !== void 0 ? _l : 24,
@@ -61760,10 +61975,10 @@ var Left$1 = function Left(props) {
 
 var Right$1 = function Right(props) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o;
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  return jsxRuntimeExports.jsx("div", __assign({
     className: "evp icon ".concat((_a = props.class) !== null && _a !== void 0 ? _a : "").trim(),
     onClick: props.onClick,
-    style: __assign$f({
+    style: __assign({
       visibility: ((_b = props.$visibleSync) !== null && _b !== void 0 ? _b : true) ? "visible" : "hidden",
       display: ((_c = props.$displaySync) !== null && _c !== void 0 ? _c : true) ? "flex" : "none",
       strokeWidth: (_d = props.strokeWidth) !== null && _d !== void 0 ? _d : 4,
@@ -61777,7 +61992,7 @@ var Right$1 = function Right(props) {
       border: props.border
     }, props.style)
   }, {
-    children: jsxRuntimeExports.jsx("svg", __assign$f({
+    children: jsxRuntimeExports.jsx("svg", __assign({
       width: (_k = props.radius) !== null && _k !== void 0 ? _k : 24,
       height: (_l = props.radius) !== null && _l !== void 0 ? _l : 24,
       viewBox: "0 0 48 48",
@@ -61797,10 +62012,10 @@ var Right$1 = function Right(props) {
 
 var Lock$1 = function Lock(props) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  return jsxRuntimeExports.jsx("div", __assign({
     className: "evp icon ".concat((_a = props.class) !== null && _a !== void 0 ? _a : "").trim(),
     onClick: props.onClick,
-    style: __assign$f({
+    style: __assign({
       visibility: ((_b = props.$visibleSync) !== null && _b !== void 0 ? _b : true) ? "visible" : "hidden",
       display: ((_c = props.$displaySync) !== null && _c !== void 0 ? _c : true) ? "flex" : "none",
       strokeWidth: (_d = props.strokeWidth) !== null && _d !== void 0 ? _d : 4,
@@ -61813,7 +62028,7 @@ var Lock$1 = function Lock(props) {
       margin: (_j = propsParser.get("mg")) === null || _j === void 0 ? void 0 : _j(props.mg)
     }, props.style)
   }, {
-    children: jsxRuntimeExports.jsx("svg", __assign$f({
+    children: jsxRuntimeExports.jsx("svg", __assign({
       viewBox: "0 0 1024 1024",
       version: "1.1",
       xmlns: "http://www.w3.org/2000/svg",
@@ -61831,10 +62046,10 @@ var Lock$1 = function Lock(props) {
 
 var UncheckedBox$1 = function UncheckedBox(props) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o;
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  return jsxRuntimeExports.jsx("div", __assign({
     className: "evp icon ".concat((_a = props.class) !== null && _a !== void 0 ? _a : "").trim(),
     onClick: props.onClick,
-    style: __assign$f({
+    style: __assign({
       visibility: ((_b = props.$visibleSync) !== null && _b !== void 0 ? _b : true) ? "visible" : "hidden",
       display: ((_c = props.$displaySync) !== null && _c !== void 0 ? _c : true) ? "flex" : "none",
       strokeWidth: (_d = props.strokeWidth) !== null && _d !== void 0 ? _d : 4,
@@ -61848,7 +62063,7 @@ var UncheckedBox$1 = function UncheckedBox(props) {
       border: props.border
     }, props.style)
   }, {
-    children: jsxRuntimeExports.jsx("svg", __assign$f({
+    children: jsxRuntimeExports.jsx("svg", __assign({
       width: (_k = props.radius) !== null && _k !== void 0 ? _k : 24,
       height: (_l = props.radius) !== null && _l !== void 0 ? _l : 24,
       viewBox: "0 0 48 48",
@@ -61869,10 +62084,10 @@ var UncheckedBox$1 = function UncheckedBox(props) {
 
 var CheckedBox$1 = function CheckedBox(props) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  return jsxRuntimeExports.jsx("div", __assign({
     className: "evp icon ".concat((_a = props.class) !== null && _a !== void 0 ? _a : "").trim(),
     onClick: props.onClick,
-    style: __assign$f({
+    style: __assign({
       visibility: ((_b = props.$visibleSync) !== null && _b !== void 0 ? _b : true) ? "visible" : "hidden",
       display: ((_c = props.$displaySync) !== null && _c !== void 0 ? _c : true) ? "flex" : "none",
       strokeWidth: (_d = props.strokeWidth) !== null && _d !== void 0 ? _d : 4,
@@ -61886,7 +62101,7 @@ var CheckedBox$1 = function CheckedBox(props) {
       border: props.border
     }, props.style)
   }, {
-    children: jsxRuntimeExports.jsx("svg", __assign$f({
+    children: jsxRuntimeExports.jsx("svg", __assign({
       xmlns: "http://www.w3.org/2000/svg",
       width: (_k = props.radius) !== null && _k !== void 0 ? _k : 24,
       height: (_l = props.radius) !== null && _l !== void 0 ? _l : 24,
@@ -61902,10 +62117,10 @@ var CheckedBox$1 = function CheckedBox(props) {
 
 var Radio$2 = function Radio(props) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  return jsxRuntimeExports.jsx("div", __assign({
     className: "evp icon ".concat((_a = props.class) !== null && _a !== void 0 ? _a : "").trim(),
     onClick: props.onClick,
-    style: __assign$f({
+    style: __assign({
       visibility: ((_b = props.$visibleSync) !== null && _b !== void 0 ? _b : true) ? "visible" : "hidden",
       display: ((_c = props.$displaySync) !== null && _c !== void 0 ? _c : true) ? "flex" : "none",
       strokeWidth: (_d = props.strokeWidth) !== null && _d !== void 0 ? _d : 4,
@@ -61918,7 +62133,7 @@ var Radio$2 = function Radio(props) {
       margin: (_j = propsParser.get("mg")) === null || _j === void 0 ? void 0 : _j(props.mg)
     }, props.style)
   }, {
-    children: jsxRuntimeExports.jsxs("svg", __assign$f({
+    children: jsxRuntimeExports.jsxs("svg", __assign({
       width: (_k = props.radius) !== null && _k !== void 0 ? _k : 24,
       height: (_l = props.radius) !== null && _l !== void 0 ? _l : 24,
       viewBox: "0 0 48 48",
@@ -61944,10 +62159,10 @@ var Radio$2 = function Radio(props) {
 
 var Radio$1 = function Radio(props) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  return jsxRuntimeExports.jsx("div", __assign({
     className: "evp icon ".concat((_a = props.class) !== null && _a !== void 0 ? _a : "").trim(),
     onClick: props.onClick,
-    style: __assign$f({
+    style: __assign({
       visibility: ((_b = props.$visibleSync) !== null && _b !== void 0 ? _b : true) ? "visible" : "hidden",
       display: ((_c = props.$displaySync) !== null && _c !== void 0 ? _c : true) ? "flex" : "none",
       strokeWidth: (_d = props.strokeWidth) !== null && _d !== void 0 ? _d : 4,
@@ -61960,14 +62175,14 @@ var Radio$1 = function Radio(props) {
       margin: (_j = propsParser.get("mg")) === null || _j === void 0 ? void 0 : _j(props.mg)
     }, props.style)
   }, {
-    children: jsxRuntimeExports.jsxs("svg", __assign$f({
+    children: jsxRuntimeExports.jsxs("svg", __assign({
       width: (_k = props.radius) !== null && _k !== void 0 ? _k : 24,
       height: (_l = props.radius) !== null && _l !== void 0 ? _l : 24,
       viewBox: "0 0 48 48",
       fill: "none",
       xmlns: "http://www.w3.org/2000/svg"
     }, {
-      children: [jsxRuntimeExports.jsxs("g", __assign$f({
+      children: [jsxRuntimeExports.jsxs("g", __assign({
         "clip-path": "url(#icon-d15d880bccbbd09)"
       }, {
         children: [jsxRuntimeExports.jsx("path", {
@@ -61984,7 +62199,7 @@ var Radio$1 = function Radio(props) {
           strokeLinejoin: "round"
         })]
       })), jsxRuntimeExports.jsx("defs", {
-        children: jsxRuntimeExports.jsx("clipPath", __assign$f({
+        children: jsxRuntimeExports.jsx("clipPath", __assign({
           id: "icon-d15d880bccbbd09"
         }, {
           children: jsxRuntimeExports.jsx("rect", {
@@ -62000,10 +62215,10 @@ var Radio$1 = function Radio(props) {
 
 var Close$1 = function Close(props) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  return jsxRuntimeExports.jsx("div", __assign({
     className: "evp icon ".concat((_a = props.class) !== null && _a !== void 0 ? _a : "").trim(),
     onClick: props.onClick,
-    style: __assign$f({
+    style: __assign({
       visibility: ((_b = props.$visibleSync) !== null && _b !== void 0 ? _b : true) ? "visible" : "hidden",
       display: ((_c = props.$displaySync) !== null && _c !== void 0 ? _c : true) ? "flex" : "none",
       strokeWidth: (_d = props.strokeWidth) !== null && _d !== void 0 ? _d : 4,
@@ -62016,7 +62231,7 @@ var Close$1 = function Close(props) {
       margin: (_j = propsParser.get("mg")) === null || _j === void 0 ? void 0 : _j(props.mg)
     }, props.style)
   }, {
-    children: jsxRuntimeExports.jsxs("svg", __assign$f({
+    children: jsxRuntimeExports.jsxs("svg", __assign({
       width: (_k = props.radius) !== null && _k !== void 0 ? _k : 24,
       height: (_l = props.radius) !== null && _l !== void 0 ? _l : 24,
       viewBox: "0 0 48 48",
@@ -62050,10 +62265,10 @@ var Close$1 = function Close(props) {
 
 var Github$1 = function Github(props) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o;
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  return jsxRuntimeExports.jsx("div", __assign({
     className: "evp icon ".concat((_a = props.class) !== null && _a !== void 0 ? _a : "").trim(),
     onClick: props.onClick,
-    style: __assign$f({
+    style: __assign({
       visibility: ((_b = props.$visibleSync) !== null && _b !== void 0 ? _b : true) ? "visible" : "hidden",
       display: ((_c = props.$displaySync) !== null && _c !== void 0 ? _c : true) ? "flex" : "none",
       strokeWidth: (_d = props.strokeWidth) !== null && _d !== void 0 ? _d : 4,
@@ -62066,7 +62281,7 @@ var Github$1 = function Github(props) {
       margin: (_j = propsParser.get("mg")) === null || _j === void 0 ? void 0 : _j(props.mg)
     }, props.style)
   }, {
-    children: jsxRuntimeExports.jsxs("svg", __assign$f({
+    children: jsxRuntimeExports.jsxs("svg", __assign({
       width: (_k = props.radius) !== null && _k !== void 0 ? _k : 24,
       height: (_l = props.radius) !== null && _l !== void 0 ? _l : 24,
       viewBox: "0 0 48 48",
@@ -62090,10 +62305,10 @@ var Github$1 = function Github(props) {
 
 var Gitee$1 = function Gitee(props) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  return jsxRuntimeExports.jsx("div", __assign({
     className: "evp icon ".concat((_a = props.class) !== null && _a !== void 0 ? _a : "").trim(),
     onClick: props.onClick,
-    style: __assign$f({
+    style: __assign({
       visibility: ((_b = props.$visibleSync) !== null && _b !== void 0 ? _b : true) ? "visible" : "hidden",
       display: ((_c = props.$displaySync) !== null && _c !== void 0 ? _c : true) ? "flex" : "none",
       strokeWidth: (_d = props.strokeWidth) !== null && _d !== void 0 ? _d : 4,
@@ -62106,7 +62321,7 @@ var Gitee$1 = function Gitee(props) {
       margin: (_j = propsParser.get("mg")) === null || _j === void 0 ? void 0 : _j(props.mg)
     }, props.style)
   }, {
-    children: jsxRuntimeExports.jsx("svg", __assign$f({
+    children: jsxRuntimeExports.jsx("svg", __assign({
       width: (_k = props.radius) !== null && _k !== void 0 ? _k : 24,
       height: (_l = props.radius) !== null && _l !== void 0 ? _l : 24,
       viewBox: "0 0 38 38",
@@ -62122,10 +62337,10 @@ var Gitee$1 = function Gitee(props) {
 
 var Star$1 = function Star(props) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m;
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  return jsxRuntimeExports.jsx("div", __assign({
     className: "evp icon ".concat((_a = props.class) !== null && _a !== void 0 ? _a : "").trim(),
     onClick: props.onClick,
-    style: __assign$f({
+    style: __assign({
       visibility: ((_b = props.$visibleSync) !== null && _b !== void 0 ? _b : true) ? "visible" : "hidden",
       display: ((_c = props.$displaySync) !== null && _c !== void 0 ? _c : true) ? "flex" : "none",
       strokeWidth: (_d = props.strokeWidth) !== null && _d !== void 0 ? _d : 4,
@@ -62139,7 +62354,7 @@ var Star$1 = function Star(props) {
       border: props.border
     }, props.style)
   }, {
-    children: jsxRuntimeExports.jsx("svg", __assign$f({
+    children: jsxRuntimeExports.jsx("svg", __assign({
       viewBox: "0 0 1024 1024",
       xmlns: "http://www.w3.org/2000/svg",
       width: (_k = props.radius) !== null && _k !== void 0 ? _k : 24,
@@ -62285,7 +62500,7 @@ var EvpIcon = function EvpIcon(props) {
     radius: props.radius,
     pointer: props.pointer,
     cursor: props.cursor,
-    style: __assign$f({
+    style: __assign({
       width: props.w,
       height: props.h,
       padding: (_b = propsParser.get("pd")) === null || _b === void 0 ? void 0 : _b(props.pd),
@@ -62446,15 +62661,15 @@ function EvpInput(props) {
     var _a, _b;
     return "".concat((_b = (_a = labelRef.current) === null || _a === void 0 ? void 0 : _a.offsetWidth) !== null && _b !== void 0 ? _b : 0, "px");
   };
-  return jsxRuntimeExports.jsxs(EvpCol, __assign$f({
+  return jsxRuntimeExports.jsxs(EvpCol, __assign({
     mg: [4, 0, 4, 0],
     alignItems: "flex-start"
   }, {
     children: [jsxRuntimeExports.jsx(EvpRow, {
-      children: jsxRuntimeExports.jsxs("div", __assign$f({
+      children: jsxRuntimeExports.jsxs("div", __assign({
         className: "evp input"
       }, {
-        children: [props.label ? jsxRuntimeExports.jsxs("div", __assign$f({
+        children: [props.label ? jsxRuntimeExports.jsxs("div", __assign({
           ref: labelRef,
           className: "evp input label",
           style: {
@@ -62463,7 +62678,7 @@ function EvpInput(props) {
             justifyContent: labelAlign
           }
         }, {
-          children: [props.required ? jsxRuntimeExports.jsx("div", __assign$f({
+          children: [props.required ? jsxRuntimeExports.jsx("div", __assign({
             className: "evp-required"
           }, {
             children: "*"
@@ -62507,7 +62722,7 @@ function EvpInput(props) {
             }
           },
           style: props.style
-        }), showRightIcon ? jsxRuntimeExports.jsx("div", __assign$f({
+        }), showRightIcon ? jsxRuntimeExports.jsx("div", __assign({
           className: "evp input icon"
         }, {
           children: jsxRuntimeExports.jsx(EvpIcon, {
@@ -62517,7 +62732,7 @@ function EvpInput(props) {
           })
         })) : null]
       }))
-    }), jsxRuntimeExports.jsx("div", __assign$f({
+    }), jsxRuntimeExports.jsx("div", __assign({
       className: "evp-input-msg",
       style: {
         color: msgColor,
@@ -62562,10 +62777,10 @@ var MenuCtxInstance = /** @class */function () {
       _this.selectedKeys = keys;
       switch (type) {
         case "select":
-          (_a = _this.onSelect) === null || _a === void 0 ? void 0 : _a.call(_this, __spreadArray$4([], keys, true));
+          (_a = _this.onSelect) === null || _a === void 0 ? void 0 : _a.call(_this, __spreadArray([], keys, true));
           break;
         case "unselect":
-          (_b = _this.onUnselect) === null || _b === void 0 ? void 0 : _b.call(_this, __spreadArray$4([], keys, true));
+          (_b = _this.onUnselect) === null || _b === void 0 ? void 0 : _b.call(_this, __spreadArray([], keys, true));
           break;
       }
       ((_c = _this._setSelectedMap) !== null && _c !== void 0 ? _c : new Map()).forEach(function (setThisSelected, k) {
@@ -62611,7 +62826,7 @@ var MenuCtxInstance = /** @class */function () {
     };
     this.selectMany = function (key) {
       var _a;
-      (_a = _this.setSelectedKeys) === null || _a === void 0 ? void 0 : _a.call(_this, __spreadArray$4([], key, true), "select");
+      (_a = _this.setSelectedKeys) === null || _a === void 0 ? void 0 : _a.call(_this, __spreadArray([], key, true), "select");
     };
     this._handleToggleOne = function (key) {
       var _a;
@@ -62784,24 +62999,24 @@ function EvpMenu(props) {
   }, [expand]);
   var childrenWrapperClass = props.submenu ? "evp-menu-children-wrapper ".concat(expand ? "" : "close") : "";
   var disabled = props["not-allowed"] ? "evp-disabled" : "";
-  return jsxRuntimeExports.jsxs(EvpCol, __assign$f({
+  return jsxRuntimeExports.jsxs(EvpCol, __assign({
     alignItems: "left",
     class: "evp-menu ".concat(props.submenu ? "sub" : "", " ").concat(disabled, " ").concat((_c = props.class) !== null && _c !== void 0 ? _c : "").trim(),
     pd: props.pd,
     mg: props.mg,
     w: (_d = props.w) !== null && _d !== void 0 ? _d : "260px",
-    style: __assign$f(__assign$f({
+    style: __assign(__assign({
       overflow: "hidden",
       border: props.submenu ? "unset" : "1px solid ".concat(Color.PaleGray)
     }, $props.style), flatItemColor(props.itemColor))
   }, {
-    children: [jsxRuntimeExports.jsxs(EvpRow, __assign$f({
+    children: [jsxRuntimeExports.jsxs(EvpRow, __assign({
       alignItems: "space-between",
       class: "evp-menu-title",
       "$click": $click,
       cursor: (_e = props.cursor) !== null && _e !== void 0 ? _e : "pointer"
     }, {
-      children: [jsxRuntimeExports.jsx(EvpRow, __assign$f({
+      children: [jsxRuntimeExports.jsx(EvpRow, __assign({
         h: 50,
         pd: [0, 0, 0, 16]
       }, {
@@ -62820,16 +63035,16 @@ function EvpMenu(props) {
         pd: [0, 16, 0, 0],
         name: expand ? "down" : "left"
       }) : null]
-    })), jsxRuntimeExports.jsx(EvpMenuContext.Provider, __assign$f({
+    })), jsxRuntimeExports.jsx(EvpMenuContext.Provider, __assign({
       value: (_f = propedMenuRef === null || propedMenuRef === void 0 ? void 0 : propedMenuRef.current) !== null && _f !== void 0 ? _f : menuCtx.current
     }, {
-      children: jsxRuntimeExports.jsx("div", __assign$f({
+      children: jsxRuntimeExports.jsx("div", __assign({
         className: "".concat(childrenWrapperClass),
         style: {
           height: props.submenu ? height : void 0
         }
       }, {
-        children: jsxRuntimeExports.jsx("div", __assign$f({
+        children: jsxRuntimeExports.jsx("div", __assign({
           className: "evp-menu-children",
           ref: ref,
           style: {
@@ -62896,7 +63111,7 @@ function EvpMenuItem(props) {
     }
   };
   var disabled = props["not-allowed"] ? "evp-disabled" : "";
-  return jsxRuntimeExports.jsx(EvpCol, __assign$f({
+  return jsxRuntimeExports.jsx(EvpCol, __assign({
     alignItems: "space-between",
     class: classNames({
       "evp-menu-item": true,
@@ -62908,7 +63123,7 @@ function EvpMenuItem(props) {
     hidden: props.hidden,
     cursor: (_a = props.cursor) !== null && _a !== void 0 ? _a : "pointer"
   }, {
-    children: jsxRuntimeExports.jsx(EvpRow, __assign$f({
+    children: jsxRuntimeExports.jsx(EvpRow, __assign({
       class: "evp-menu-item-title",
       h: 50,
       pd: [0, 8, 0, 8]
@@ -93904,10 +94119,10 @@ function EvpMessage(props) {
     return void 0;
   }
   return jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, {
-    children: jsxRuntimeExports.jsxs("div", __assign$f({
+    children: jsxRuntimeExports.jsxs("div", __assign({
       className: "evp evp-msg"
     }, {
-      children: [jsxRuntimeExports.jsxs("div", __assign$f({
+      children: [jsxRuntimeExports.jsxs("div", __assign({
         className: 'evp-msg-content'
       }, {
         children: [jsxRuntimeExports.jsx(EvpIcon, {
@@ -94009,7 +94224,7 @@ var ToastsContainer = function ToastsContainer(props) {
       children: toast
     });
   });
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  return jsxRuntimeExports.jsx("div", __assign({
     className: "evp evp-toasts-container"
   }, {
     children: store.config.reverse ? Toasts.reverse() : Toasts
@@ -94036,7 +94251,7 @@ function Toast(props) {
     error: Color.Red,
     success: Color.Green
   };
-  return jsxRuntimeExports.jsxs("div", __assign$f({
+  return jsxRuntimeExports.jsxs("div", __assign({
     className: classNames("evp", "evp-toast", props.firstRendered ? "evp-toast-appear" : "", props.lastRendered ? "evp-toast-leave" : "")
   }, {
     children: [jsxRuntimeExports.jsx(EvpIcon, {
@@ -94050,7 +94265,7 @@ function Toast(props) {
 
 var div = document.createElement("div");
 document.body.appendChild(div);
-var root$1 = createRoot(div);
+var root = createRoot(div);
 var containerKey = nanoid();
 function rerender() {
   var toastor = store.toastor;
@@ -94058,12 +94273,12 @@ function rerender() {
     store.toastor = createToastsContainer(store.toasts.map(function (toast) {
       return toast.dom;
     }), containerKey); // new toasts container
-    root$1.render(store.toastor); // rerender toastor
+    root.render(store.toastor); // rerender toastor
   } else {
     toastor = createToastsContainer(store.toasts.map(function (toast) {
       return toast.dom;
     }), containerKey);
-    root$1.render(toastor); // rerender toastor
+    root.render(toastor); // rerender toastor
   }
   // after rerender, make all toasts tagged as not firstRendered
   if (!store.toasts) {
@@ -94236,10 +94451,10 @@ function EvpPopover(props) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [show]);
-  return jsxRuntimeExports.jsxs("div", __assign$f({
+  return jsxRuntimeExports.jsxs("div", __assign({
     className: "evp evp-popover-container"
   }, {
-    children: [jsxRuntimeExports.jsxs("div", __assign$f({
+    children: [jsxRuntimeExports.jsxs("div", __assign({
       className: "evp-popover ".concat((_c = props.class) !== null && _c !== void 0 ? _c : "", " ").concat(show ? "" : "evp-popover__hidden").trim(),
       id: props.id,
       style: {
@@ -94248,14 +94463,14 @@ function EvpPopover(props) {
         top: top()
       }
     }, {
-      children: [jsxRuntimeExports.jsx(EvpDom, __assign$f({}, {
+      children: [jsxRuntimeExports.jsx(EvpDom, __assign({}, {
         props: props,
         class: classNames("evp-popover-content", props.contentClass)
       }, {
         style: props.contentStyle
       }, {
         children: props.content
-      })), jsxRuntimeExports.jsx("svg", __assign$f({
+      })), jsxRuntimeExports.jsx("svg", __assign({
         className: "evp-popover-arrow",
         width: 16,
         height: 10,
@@ -94266,7 +94481,7 @@ function EvpPopover(props) {
           fill: "#ffffff"
         })
       }))]
-    })), jsxRuntimeExports.jsx("div", __assign$f({
+    })), jsxRuntimeExports.jsx("div", __assign({
       onClick: function onClick() {
         return $trigger === "click" ? setShow(!show) : void 0;
       },
@@ -94280,7 +94495,7 @@ function EvpPopover(props) {
         return $hiddenOnBlur === true ? setShow(false) : void 0;
       }
     }, {
-      children: jsxRuntimeExports.jsx("div", __assign$f({
+      children: jsxRuntimeExports.jsx("div", __assign({
         ref: childRef
       }, {
         children: props.children
@@ -95072,13 +95287,13 @@ function EvpCheckBox(props) {
       }
     }
   }, [checked, formCtx, name, props.value]);
-  return jsxRuntimeExports.jsxs(EvpCol, __assign$f({
+  return jsxRuntimeExports.jsxs(EvpCol, __assign({
     mg: [4, 0, 4, 0],
     alignItems: "flex-start",
     class: "".concat(props.disabled ? "evp-disabled" : "").trim()
   }, {
     children: [jsxRuntimeExports.jsx(EvpRow, {
-      children: jsxRuntimeExports.jsxs("div", __assign$f({
+      children: jsxRuntimeExports.jsxs("div", __assign({
         className: "evp input"
       }, {
         children: [checked ? jsxRuntimeExports.jsx(CheckedBox$1, {
@@ -95095,7 +95310,7 @@ function EvpCheckBox(props) {
           radius: (_o = props.radius) !== null && _o !== void 0 ? _o : 21,
           cursor: props.disabled ? 'not-allowed' : 'pointer',
           onClick: deChecked
-        }), props.label ? jsxRuntimeExports.jsxs("div", __assign$f({
+        }), props.label ? jsxRuntimeExports.jsxs("div", __assign({
           ref: labelRef,
           className: "evp input label",
           style: {
@@ -95104,7 +95319,7 @@ function EvpCheckBox(props) {
             justifyContent: labelAlign
           }
         }, {
-          children: [props.required ? jsxRuntimeExports.jsx("div", __assign$f({
+          children: [props.required ? jsxRuntimeExports.jsx("div", __assign({
             className: "evp-required"
           }, {
             children: "*"
@@ -95116,7 +95331,7 @@ function EvpCheckBox(props) {
           value: val,
           checked: checked,
           defaultChecked: props.defaultChecked
-        }), showRightIcon ? jsxRuntimeExports.jsx("div", __assign$f({
+        }), showRightIcon ? jsxRuntimeExports.jsx("div", __assign({
           className: "evp input icon"
         }, {
           children: jsxRuntimeExports.jsx(EvpIcon, {
@@ -95126,7 +95341,7 @@ function EvpCheckBox(props) {
           })
         })) : null]
       }))
-    }), jsxRuntimeExports.jsx("div", __assign$f({
+    }), jsxRuntimeExports.jsx("div", __assign({
       className: "evp-input-msg",
       style: {
         color: msgColor,
@@ -95171,14 +95386,14 @@ function EvpCheckBoxGroup(props) {
     return "".concat((_b = (_a = labelRef.current) === null || _a === void 0 ? void 0 : _a.offsetWidth) !== null && _b !== void 0 ? _b : 0, "px");
   };
   var showRightIcon = (_j = props.resultIcon) !== null && _j !== void 0 ? _j : false;
-  return jsxRuntimeExports.jsxs(EvpCol, __assign$f({
+  return jsxRuntimeExports.jsxs(EvpCol, __assign({
     mg: [4, 0, 4, 0],
     alignItems: "flex-start"
   }, {
-    children: [jsxRuntimeExports.jsxs("div", __assign$f({
+    children: [jsxRuntimeExports.jsxs("div", __assign({
       className: "evp evp-checkbox-group ".concat((_k = props.class) !== null && _k !== void 0 ? _k : "").trim()
     }, {
-      children: [props.label ? jsxRuntimeExports.jsxs("div", __assign$f({
+      children: [props.label ? jsxRuntimeExports.jsxs("div", __assign({
         ref: labelRef,
         className: "evp input label",
         style: {
@@ -95187,22 +95402,22 @@ function EvpCheckBoxGroup(props) {
           justifyContent: labelAlign
         }
       }, {
-        children: [props.required ? jsxRuntimeExports.jsx("div", __assign$f({
+        children: [props.required ? jsxRuntimeExports.jsx("div", __assign({
           className: "evp-required"
         }, {
           children: "*"
         })) : void 0, props.label, props.labelColon === true ? ":" : (_l = props.labelColon) !== null && _l !== void 0 ? _l : void 0]
-      })) : null, jsxRuntimeExports.jsx("div", __assign$f({
+      })) : null, jsxRuntimeExports.jsx("div", __assign({
         className: "evp-checkbox-group-options"
       }, {
-        children: jsxRuntimeExports.jsx(Context$1.Provider, __assign$f({
+        children: jsxRuntimeExports.jsx(Context$1.Provider, __assign({
           value: {
             name: props.name
           }
         }, {
           children: props.children
         }))
-      })), showRightIcon ? jsxRuntimeExports.jsx("div", __assign$f({
+      })), showRightIcon ? jsxRuntimeExports.jsx("div", __assign({
         className: "evp input icon"
       }, {
         children: jsxRuntimeExports.jsx(EvpIcon, {
@@ -95211,7 +95426,7 @@ function EvpCheckBoxGroup(props) {
           "$visibleSync": isValid
         })
       })) : null]
-    })), jsxRuntimeExports.jsx("div", __assign$f({
+    })), jsxRuntimeExports.jsx("div", __assign({
       className: "evp-input-msg",
       style: {
         color: msgColor,
@@ -95255,7 +95470,7 @@ function EvpRadio(props) {
       formCtx.set(name, val);
     }
   }, [formCtx, name, val]);
-  return jsxRuntimeExports.jsxs("div", __assign$f({
+  return jsxRuntimeExports.jsxs("div", __assign({
     className: "evp input evp-radio ".concat((_c = props.class) !== null && _c !== void 0 ? _c : "", " ").concat(props.disabled ? "evp-disabled" : "").trim()
   }, {
     children: [jsxRuntimeExports.jsx("input", {
@@ -95274,7 +95489,7 @@ function EvpRadio(props) {
       style: {
         cursor: props.disabled ? "not-allowed" : "pointer"
       }
-    }), props.label ? jsxRuntimeExports.jsxs("div", __assign$f({
+    }), props.label ? jsxRuntimeExports.jsxs("div", __assign({
       ref: labelRef,
       className: "evp input label",
       style: {
@@ -95283,12 +95498,12 @@ function EvpRadio(props) {
         justifyContent: labelAlign
       }
     }, {
-      children: [props.required ? jsxRuntimeExports.jsx("div", __assign$f({
+      children: [props.required ? jsxRuntimeExports.jsx("div", __assign({
         className: "evp-required"
       }, {
         children: "*"
       })) : void 0, props.label]
-    })) : jsxRuntimeExports.jsxs("div", __assign$f({
+    })) : jsxRuntimeExports.jsxs("div", __assign({
       ref: labelRef,
       className: "evp input label",
       style: {
@@ -95297,7 +95512,7 @@ function EvpRadio(props) {
         justifyContent: labelAlign
       }
     }, {
-      children: [props.required ? jsxRuntimeExports.jsx("div", __assign$f({
+      children: [props.required ? jsxRuntimeExports.jsx("div", __assign({
         className: "evp-required"
       }, {
         children: "*"
@@ -95339,14 +95554,14 @@ function EvpRadioGroup(props) {
     return "".concat((_b = (_a = labelRef.current) === null || _a === void 0 ? void 0 : _a.offsetWidth) !== null && _b !== void 0 ? _b : 0, "px");
   };
   var showRightIcon = (_j = props.resultIcon) !== null && _j !== void 0 ? _j : false;
-  return jsxRuntimeExports.jsxs(EvpCol, __assign$f({
+  return jsxRuntimeExports.jsxs(EvpCol, __assign({
     mg: [4, 0, 4, 0],
     alignItems: "flex-start"
   }, {
-    children: [jsxRuntimeExports.jsxs("div", __assign$f({
+    children: [jsxRuntimeExports.jsxs("div", __assign({
       className: "evp evp-radio-group ".concat((_k = props.class) !== null && _k !== void 0 ? _k : "").trim()
     }, {
-      children: [props.label ? jsxRuntimeExports.jsxs("div", __assign$f({
+      children: [props.label ? jsxRuntimeExports.jsxs("div", __assign({
         ref: labelRef,
         className: "evp input label",
         style: {
@@ -95355,22 +95570,22 @@ function EvpRadioGroup(props) {
           justifyContent: labelAlign
         }
       }, {
-        children: [props.required ? jsxRuntimeExports.jsx("div", __assign$f({
+        children: [props.required ? jsxRuntimeExports.jsx("div", __assign({
           className: "evp-required"
         }, {
           children: "*"
         })) : void 0, props.label, props.labelColon === true ? ":" : (_l = props.labelColon) !== null && _l !== void 0 ? _l : void 0]
-      })) : null, jsxRuntimeExports.jsx("div", __assign$f({
+      })) : null, jsxRuntimeExports.jsx("div", __assign({
         className: "evp-radio-group-options"
       }, {
-        children: jsxRuntimeExports.jsx(Context.Provider, __assign$f({
+        children: jsxRuntimeExports.jsx(Context.Provider, __assign({
           value: {
             name: props.name
           }
         }, {
           children: props.children
         }))
-      })), showRightIcon ? jsxRuntimeExports.jsx("div", __assign$f({
+      })), showRightIcon ? jsxRuntimeExports.jsx("div", __assign({
         className: "evp input icon"
       }, {
         children: jsxRuntimeExports.jsx(EvpIcon, {
@@ -95379,7 +95594,7 @@ function EvpRadioGroup(props) {
           "$visibleSync": isValid
         })
       })) : null]
-    })), jsxRuntimeExports.jsx("div", __assign$f({
+    })), jsxRuntimeExports.jsx("div", __assign({
       className: "evp-input-msg",
       style: {
         color: msgColor,
@@ -95435,12 +95650,12 @@ function EvpSelect(props) {
   var labelWidth = props.labelWidth ? typeof props.labelWidth === "number" ? "".concat(props.labelWidth, "px") : props.labelWidth : void 0;
   var labelAlign = (_b = props.labelAlign) !== null && _b !== void 0 ? _b : "left";
   var labelRef = useRef(null);
-  return jsxRuntimeExports.jsx(EvpCol, __assign$f({
+  return jsxRuntimeExports.jsx(EvpCol, __assign({
     mg: [4, 0, 4, 0],
     alignItems: "flex-start"
   }, {
     children: jsxRuntimeExports.jsxs(EvpRow, {
-      children: [props.label ? jsxRuntimeExports.jsxs("div", __assign$f({
+      children: [props.label ? jsxRuntimeExports.jsxs("div", __assign({
         ref: labelRef,
         className: "evp input label",
         style: {
@@ -95449,12 +95664,12 @@ function EvpSelect(props) {
           justifyContent: labelAlign
         }
       }, {
-        children: [props.required ? jsxRuntimeExports.jsx("div", __assign$f({
+        children: [props.required ? jsxRuntimeExports.jsx("div", __assign({
           className: "evp-required"
         }, {
           children: "*"
         })) : void 0, props.label, props.labelColon === true ? ":" : (_c = props.labelColon) !== null && _c !== void 0 ? _c : void 0]
-      })) : null, jsxRuntimeExports.jsxs("div", __assign$f({
+      })) : null, jsxRuntimeExports.jsxs("div", __assign({
         className: "evp evp-select"
       }, {
         children: [jsxRuntimeExports.jsx("input", {
@@ -95475,7 +95690,7 @@ function EvpSelect(props) {
               setExpand(false);
             }
           }
-        }), jsxRuntimeExports.jsx("div", __assign$f({
+        }), jsxRuntimeExports.jsx("div", __assign({
           className: "evp-select-options ".concat(expand ? "" : "evp-close").trim(),
           tabIndex: -1,
           ref: optionsRef,
@@ -95492,7 +95707,7 @@ function EvpSelect(props) {
           }
         }, {
           children: (_e = props.options) === null || _e === void 0 ? void 0 : _e.map(function (option) {
-            return jsxRuntimeExports.jsx("div", __assign$f({
+            return jsxRuntimeExports.jsx("div", __assign({
               className: "evp-select-option ".concat(optionSelected(option), " ").concat(option.disabled ? "evp-disabled" : "").trim(),
               onMouseUp: function onMouseUp() {
                 setCloseDelay("0.3s");
@@ -95504,12 +95719,12 @@ function EvpSelect(props) {
               children: option.label
             }), option.value);
           })
-        })), jsxRuntimeExports.jsx("select", __assign$f({
+        })), jsxRuntimeExports.jsx("select", __assign({
           name: name,
           hidden: true
         }, {
           children: (_f = props.options) === null || _f === void 0 ? void 0 : _f.map(function (option) {
-            return jsxRuntimeExports.jsx("option", __assign$f({
+            return jsxRuntimeExports.jsx("option", __assign({
               value: option.value
             }, {
               children: option.label
@@ -95602,7 +95817,7 @@ function EvpForm(props) {
     formRef = props.formRef;
   }
   formRef.current.set$Submit(props.$submit);
-  return jsxRuntimeExports.jsx("form", __assign$f({
+  return jsxRuntimeExports.jsx("form", __assign({
     onSubmit: function onSubmit(e) {
       var _a;
       e.preventDefault();
@@ -95610,7 +95825,7 @@ function EvpForm(props) {
     },
     style: props.style
   }, {
-    children: jsxRuntimeExports.jsx(EvpFormContext.Provider, __assign$f({
+    children: jsxRuntimeExports.jsx(EvpFormContext.Provider, __assign({
       value: formRef.current
     }, {
       children: props.children
@@ -95723,7 +95938,7 @@ function EvpToolTip(props) {
     setHidden = _q[1];
   var triggers = props.trigger ? typeof props.trigger === "string" ? [props.trigger] : props.trigger : ["hover"];
   var offsetMap = OffsetMap(props);
-  return jsxRuntimeExports.jsxs("div", __assign$f({
+  return jsxRuntimeExports.jsxs("div", __assign({
     className: "evp evp-tooltip-container",
     onMouseOver: function onMouseOver() {
       if (triggers.includes("hover")) {
@@ -95745,18 +95960,18 @@ function EvpToolTip(props) {
       cursor: ((_a = props.cursor) !== null && _a !== void 0 ? _a : triggers.includes("click")) ? "pointer" : void 0
     }
   }, {
-    children: [jsxRuntimeExports.jsx("div", __assign$f({
+    children: [jsxRuntimeExports.jsx("div", __assign({
       className: "evp-tooltip",
-      style: __assign$f({
+      style: __assign({
         visibility: (typeof props.hidden === "boolean" ? props.hidden : hidden) ? "hidden" : "visible",
         pointerEvents: (typeof props.hidden === "boolean" ? props.hidden : hidden) ? "none" : "auto"
-      }, typeof ((_b = props.position) !== null && _b !== void 0 ? _b : "top") === "string" ? offsetMap[(_c = props.position) !== null && _c !== void 0 ? _c : "top"] : __assign$f(__assign$f({}, props.position), {
+      }, typeof ((_b = props.position) !== null && _b !== void 0 ? _b : "top") === "string" ? offsetMap[(_c = props.position) !== null && _c !== void 0 ? _c : "top"] : __assign(__assign({}, props.position), {
         transform: "translateX(".concat((_f = transformMap.vertical[(_e = (_d = props.transform) === null || _d === void 0 ? void 0 : _d.vertical) !== null && _e !== void 0 ? _e : "center"]) !== null && _f !== void 0 ? _f : (_g = props.transform) === null || _g === void 0 ? void 0 : _g.vertical, ") translateY(").concat((_k = transformMap.horizontal[(_j = (_h = props.transform) === null || _h === void 0 ? void 0 : _h.horizontal) !== null && _j !== void 0 ? _j : "center"]) !== null && _k !== void 0 ? _k : (_l = props.transform) === null || _l === void 0 ? void 0 : _l.horizontal, ")")
       }))
     }, {
-      children: jsxRuntimeExports.jsx("div", __assign$f({
+      children: jsxRuntimeExports.jsx("div", __assign({
         className: classNames("evp-tooltip-content", props.class),
-        style: __assign$f({
+        style: __assign({
           padding: "4px 12px 4px 12px",
           color: props.plain ? "#000" : props.color,
           backgroundColor: props.plain ? "#fff" : (_m = props.bgColor) !== null && _m !== void 0 ? _m : "rgba(0, 0, 0, 0.75)",
@@ -95817,9 +96032,35 @@ function range(start, end, options) {
   }
   return result;
 }
+var pickNum = function pickNum(value) {
+  if (!value) {
+    return {
+      value: 0,
+      unit: "px"
+    };
+  }
+  if (typeof value === "number") {
+    return {
+      value: value,
+      unit: "px"
+    };
+  }
+  var match = value.match(/-?\d+(\.\d+)?/);
+  if (match) {
+    return {
+      value: parseFloat(match[0]),
+      unit: value.replace(match[0], "")
+    };
+  }
+  return {
+    value: 0,
+    unit: "px"
+  };
+};
 var NumUtils = {
   toFixedStrictly: toFixedStrictly,
-  range: range
+  range: range,
+  pickNum: pickNum
 };
 
 function EvpSliderV2(props) {
@@ -95867,12 +96108,12 @@ function EvpSliderV2(props) {
   var _4 = useState(true),
     hiddenTip = _4[0],
     setHiddenTip = _4[1];
-  return jsxRuntimeExports.jsx(EvpCol, __assign$f({
+  return jsxRuntimeExports.jsx(EvpCol, __assign({
     mg: [4, 0, 4, 0],
     alignItems: "flex-start",
     class: "evp-form-item"
   }, {
-    children: jsxRuntimeExports.jsxs("div", __assign$f({
+    children: jsxRuntimeExports.jsxs("div", __assign({
       className: "evp evp-slider ".concat((_w = props.class) !== null && _w !== void 0 ? _w : "").trim(),
       onMouseOver: function onMouseOver() {
         setHiddenTip(false);
@@ -95883,13 +96124,13 @@ function EvpSliderV2(props) {
       onMouseLeave: function onMouseLeave() {
         setHiddenTip(true);
       },
-      style: __assign$f(__assign$f({}, props.style), {
+      style: __assign(__assign({}, props.style), {
         // @ts-ignore
         "--rate": "".concat(rate * 100, "%"),
         "--etcColor": props.showEtc !== false ? "#eee" : "transparent"
       })
     }, {
-      children: [props.label ? jsxRuntimeExports.jsxs("div", __assign$f({
+      children: [props.label ? jsxRuntimeExports.jsxs("div", __assign({
         ref: labelRef,
         className: "evp input label",
         style: {
@@ -95898,12 +96139,12 @@ function EvpSliderV2(props) {
           justifyContent: labelAlign
         }
       }, {
-        children: [props.required ? jsxRuntimeExports.jsx("div", __assign$f({
+        children: [props.required ? jsxRuntimeExports.jsx("div", __assign({
           className: "evp-required"
         }, {
           children: "*"
         })) : void 0, props.label, props.labelColon === true ? ":" : (_x = props.labelColon) !== null && _x !== void 0 ? _x : void 0]
-      })) : null, jsxRuntimeExports.jsx(EvpToolTip, __assign$f({
+      })) : null, jsxRuntimeExports.jsx(EvpToolTip, __assign({
         content: tooltipText,
         hidden: hiddenTip
       }, {
@@ -95940,10 +96181,10 @@ function EvpSliderV2(props) {
 
 var Radio = function Radio(props) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  return jsxRuntimeExports.jsx("div", __assign({
     className: "evp icon ".concat((_a = props.class) !== null && _a !== void 0 ? _a : "").trim(),
     onClick: props.onClick,
-    style: __assign$f({
+    style: __assign({
       visibility: ((_b = props.$visibleSync) !== null && _b !== void 0 ? _b : true) ? "visible" : "hidden",
       display: ((_c = props.$displaySync) !== null && _c !== void 0 ? _c : true) ? "flex" : "none",
       strokeWidth: (_d = props.strokeWidth) !== null && _d !== void 0 ? _d : 4,
@@ -95956,7 +96197,7 @@ var Radio = function Radio(props) {
       margin: (_j = propsParser.get("mg")) === null || _j === void 0 ? void 0 : _j(props.mg)
     }, props.style)
   }, {
-    children: jsxRuntimeExports.jsx("svg", __assign$f({
+    children: jsxRuntimeExports.jsx("svg", __assign({
       xmlns: "http://www.w3.org/2000/svg",
       width: (_k = props.radius) !== null && _k !== void 0 ? _k : 24,
       height: (_l = props.radius) !== null && _l !== void 0 ? _l : 24,
@@ -96101,12 +96342,12 @@ function EvpSlider(props) {
   var step = function step() {
     return width / length;
   };
-  return jsxRuntimeExports.jsx(EvpCol, __assign$f({
+  return jsxRuntimeExports.jsx(EvpCol, __assign({
     mg: [4, 0, 4, 0],
     alignItems: "flex-start",
     class: "evp-form-item"
   }, {
-    children: jsxRuntimeExports.jsxs("div", __assign$f({
+    children: jsxRuntimeExports.jsxs("div", __assign({
       className: "evp evp-slider ".concat((_t = props.class) !== null && _t !== void 0 ? _t : "").trim(),
       onMouseOver: function onMouseOver() {
         setHiddenTip(false);
@@ -96130,9 +96371,9 @@ function EvpSlider(props) {
       onDragOver: function onDragOver(e) {
         e.preventDefault();
       },
-      style: __assign$f({}, props.style)
+      style: __assign({}, props.style)
     }, {
-      children: [props.label ? jsxRuntimeExports.jsxs("div", __assign$f({
+      children: [props.label ? jsxRuntimeExports.jsxs("div", __assign({
         ref: labelRef,
         className: "evp input label",
         style: {
@@ -96141,12 +96382,12 @@ function EvpSlider(props) {
           justifyContent: labelAlign
         }
       }, {
-        children: [props.required ? jsxRuntimeExports.jsx("div", __assign$f({
+        children: [props.required ? jsxRuntimeExports.jsx("div", __assign({
           className: "evp-required"
         }, {
           children: "*"
         })) : void 0, props.label, props.labelColon === true ? ":" : (_u = props.labelColon) !== null && _u !== void 0 ? _u : void 0]
-      })) : null, jsxRuntimeExports.jsxs("div", __assign$f({
+      })) : null, jsxRuntimeExports.jsxs("div", __assign({
         className: "evp-slider-bar",
         style: {
           width: "calc(".concat(width, "px + ").concat((_w = (_v = thumbRef.current) === null || _v === void 0 ? void 0 : _v.clientWidth) !== null && _w !== void 0 ? _w : "24px", " + 0px)")
@@ -96159,7 +96400,7 @@ function EvpSlider(props) {
             // width: `${calcRate()}%`,
             width: (val - ((_y = (_x = props.range) === null || _x === void 0 ? void 0 : _x[0]) !== null && _y !== void 0 ? _y : 0)) * step()
           }
-        }), jsxRuntimeExports.jsx("div", __assign$f({
+        }), jsxRuntimeExports.jsx("div", __assign({
           draggable: true,
           className: "evp-draggable",
           ref: thumbRef,
@@ -96184,11 +96425,11 @@ function EvpSlider(props) {
             }
           }
         }, {
-          children: jsxRuntimeExports.jsx(EvpToolTip, __assign$f({
+          children: jsxRuntimeExports.jsx(EvpToolTip, __assign({
             content: NumUtils.toFixedStrictly(val, (_z = props.precision) !== null && _z !== void 0 ? _z : 0),
             hidden: hiddenTip
           }, {
-            children: jsxRuntimeExports.jsx(Radio, __assign$f({
+            children: jsxRuntimeExports.jsx(Radio, __assign({
               class: "evp-slider-thumb"
             }, thumbColors, {
               cursor: "pointer"
@@ -96212,7 +96453,7 @@ var EvpTag = function EvpTag(props) {
   var children = props.children,
     text = props.text,
     className = props.class,
-    rest = __rest$b(props, ["children", "text", "class"]);
+    rest = __rest(props, ["children", "text", "class"]);
   var $type = light ? "light" : plain ? "plain" : "deep";
   var classes = classNames("evp", "evp-tag", theme !== null && theme !== void 0 ? theme : "primary", $type, className);
   var sizer = function sizer() {
@@ -96239,9 +96480,9 @@ var EvpTag = function EvpTag(props) {
   };
   var $rest = lodashExports.cloneDeep(rest);
   delete $rest.style;
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  return jsxRuntimeExports.jsx("div", __assign({
     className: classes,
-    style: __assign$f(__assign$f(__assign$f({
+    style: __assign(__assign(__assign({
       width: "fit-content",
       color: $type === "deep" ? "#fff" : void 0
     }, sizer()), {
@@ -96297,14 +96538,14 @@ var EvpBadge = function EvpBadge(props) {
         };
     }
   };
-  return jsxRuntimeExports.jsxs("div", __assign$f({
+  return jsxRuntimeExports.jsxs("div", __assign({
     className: classNames("evp evp-badge", props.class),
     id: props.id,
     style: $props.style
   }, $props.event, {
-    children: [jsxRuntimeExports.jsx("div", __assign$f({
+    children: [jsxRuntimeExports.jsx("div", __assign({
       className: classNames("evp-badge-dot", props.dotClass),
-      style: __assign$f(__assign$f(__assign$f({
+      style: __assign(__assign(__assign({
         display: function () {
           if (props.content === 0 && props.showZero !== true) {
             return "none";
@@ -96352,7 +96593,7 @@ var EvpBadge = function EvpBadge(props) {
         }
         return String(props.content);
       }()
-    })), props.contentContainer === false ? props.children : jsxRuntimeExports.jsx("div", __assign$f({
+    })), props.contentContainer === false ? props.children : jsxRuntimeExports.jsx("div", __assign({
       className: classNames("evp-badge-children", props.childrenClass),
       style: props.childrenStyle
     }, {
@@ -96361,12 +96602,12 @@ var EvpBadge = function EvpBadge(props) {
   }));
 };
 
-function purifyProps$2(props) {
+function purifyProps$3(props) {
   props.routes;
     props.onClick;
     props.fontSize;
     props.class;
-    var rest = __rest$b(props, ["routes", "onClick", "fontSize", "class"]);
+    var rest = __rest(props, ["routes", "onClick", "fontSize", "class"]);
   return AllParser(rest);
 }
 var EvpBreadCrumb = function EvpBreadCrumb(props) {
@@ -96375,18 +96616,18 @@ var EvpBreadCrumb = function EvpBreadCrumb(props) {
     var _a, _b;
     return idx !== ((_b = (_a = props.routes) === null || _a === void 0 ? void 0 : _a.length) !== null && _b !== void 0 ? _b : 0) - 1 ? "" : "last";
   };
-  var $props = purifyProps$2(props);
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  var $props = purifyProps$3(props);
+  return jsxRuntimeExports.jsx("div", __assign({
     className: classNames("evp-breadcrumb", props.class),
     id: props.id,
-    style: __assign$f({
+    style: __assign({
       fontSize: "".concat((_a = props.fontSize) !== null && _a !== void 0 ? _a : 14, "px")
     }, $props.style)
   }, $props.event, {
     children: (_b = props.routes) === null || _b === void 0 ? void 0 : _b.map(function (route, idx) {
       var _a, _b, _c, _d;
       return jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
-        children: [jsxRuntimeExports.jsx("span", __assign$f({
+        children: [jsxRuntimeExports.jsx("span", __assign({
           className: classNames("evp-breadcrumb-title", route.path ? "linked" : "", last(idx)),
           onClick: function onClick(e) {
             if (props.itemClick) {
@@ -96402,7 +96643,7 @@ var EvpBreadCrumb = function EvpBreadCrumb(props) {
           }
         }, {
           children: route.title
-        })), idx !== ((_d = (_c = props.routes) === null || _c === void 0 ? void 0 : _c.length) !== null && _d !== void 0 ? _d : 0) - 1 ? jsxRuntimeExports.jsx("span", __assign$f({
+        })), idx !== ((_d = (_c = props.routes) === null || _c === void 0 ? void 0 : _c.length) !== null && _d !== void 0 ? _d : 0) - 1 ? jsxRuntimeExports.jsx("span", __assign({
           style: {
             padding: "0 8px",
             color: "lightgray"
@@ -96418,7 +96659,7 @@ var EvpBreadCrumb = function EvpBreadCrumb(props) {
 var isNumber = function isNumber(val) {
   return typeof val === "number" && !Number.isNaN(val);
 };
-var purifyProps$1 = function purifyProps(props) {
+var purifyProps$2 = function purifyProps(props) {
   return lodashExports.cloneDeep(AllParser(props));
 };
 var EvpCounter = function EvpCounter(props) {
@@ -96454,22 +96695,22 @@ var EvpCounter = function EvpCounter(props) {
       formCtx.set(props.name, val);
     }
   }, [formCtx, props.name, val]);
-  var pureProps = purifyProps$1(props);
+  var pureProps = purifyProps$2(props);
   var labelWidth = props.labelWidth ? typeof props.labelWidth === "number" ? "".concat(props.labelWidth, "px") : props.labelWidth : void 0;
   var labelAlign = (_b = props.labelAlign) !== null && _b !== void 0 ? _b : "left";
   var labelRef = useRef(null);
   // const calcMsgLeft = () => {
   //   return `${labelRef.current?.offsetWidth ?? 0}px`;
   // };
-  return jsxRuntimeExports.jsx(EvpCol, __assign$f({
+  return jsxRuntimeExports.jsx(EvpCol, __assign({
     mg: [4, 0, 4, 0],
     alignItems: "flex-start"
   }, {
-    children: jsxRuntimeExports.jsxs("div", __assign$f({}, pureProps.event, {
+    children: jsxRuntimeExports.jsxs("div", __assign({}, pureProps.event, {
       className: classNames("evp", "evp-counter", pureProps.class),
-      style: __assign$f({}, pureProps.style)
+      style: __assign({}, pureProps.style)
     }, {
-      children: [props.label ? jsxRuntimeExports.jsxs("div", __assign$f({
+      children: [props.label ? jsxRuntimeExports.jsxs("div", __assign({
         ref: labelRef,
         className: "evp input label",
         id: "nnn",
@@ -96479,12 +96720,12 @@ var EvpCounter = function EvpCounter(props) {
           justifyContent: labelAlign
         }
       }, {
-        children: [props.required ? jsxRuntimeExports.jsx("div", __assign$f({
+        children: [props.required ? jsxRuntimeExports.jsx("div", __assign({
           className: "evp-required"
         }, {
           children: "*"
         })) : void 0, props.label, props.labelColon === true ? ":" : (_c = props.labelColon) !== null && _c !== void 0 ? _c : void 0]
-      })) : null, jsxRuntimeExports.jsxs("div", __assign$f({
+      })) : null, jsxRuntimeExports.jsxs("div", __assign({
         className: classNames("evp-counter-main")
       }, {
         children: [jsxRuntimeExports.jsx(Left$1, {
@@ -96546,19 +96787,19 @@ var EvpCounter = function EvpCounter(props) {
 
 var EvpDateTimePicker = function EvpDateTimePicker(props) {
   var _a, _b;
-  return jsxRuntimeExports.jsx(EvpCol, __assign$f({
+  return jsxRuntimeExports.jsx(EvpCol, __assign({
     mg: [4, 0, 4, 0],
     alignItems: "flex-start"
   }, {
-    children: jsxRuntimeExports.jsx("div", __assign$f({
+    children: jsxRuntimeExports.jsx("div", __assign({
       className: classNames("evp", "evp-datetime-picker", props.class)
     }, {
       children: jsxRuntimeExports.jsxs("div", {
-        children: [jsxRuntimeExports.jsx("span", __assign$f({
+        children: [jsxRuntimeExports.jsx("span", __assign({
           className: "evp-datetime-picker-input"
         }, {
           children: (_b = (_a = props.children) !== null && _a !== void 0 ? _a : props.placeholder) !== null && _b !== void 0 ? _b : props.formatter
-        })), jsxRuntimeExports.jsx("span", __assign$f({
+        })), jsxRuntimeExports.jsx("span", __assign({
           className: "evp-datetime-picker-icon"
         }, {
           children: "\uD83D\uDD50"
@@ -96600,14 +96841,14 @@ var EvpSwitch = function EvpSwitch(props) {
   var labelWidth = props.labelWidth ? typeof props.labelWidth === "number" ? "".concat(props.labelWidth, "px") : props.labelWidth : void 0;
   var labelAlign = (_b = props.labelAlign) !== null && _b !== void 0 ? _b : "left";
   var labelRef = useRef(null);
-  return jsxRuntimeExports.jsxs("div", __assign$f({
-    style: __assign$f({
+  return jsxRuntimeExports.jsxs("div", __assign({
+    style: __assign({
       display: "flex",
       alignItems: "center",
       justifyContent: "left"
     }, pureProps.style)
   }, {
-    children: [props.label ? jsxRuntimeExports.jsxs("div", __assign$f({
+    children: [props.label ? jsxRuntimeExports.jsxs("div", __assign({
       ref: labelRef,
       className: "evp input label",
       style: {
@@ -96616,12 +96857,12 @@ var EvpSwitch = function EvpSwitch(props) {
         justifyContent: labelAlign
       }
     }, {
-      children: [props.required ? jsxRuntimeExports.jsx("div", __assign$f({
+      children: [props.required ? jsxRuntimeExports.jsx("div", __assign({
         className: "evp-required"
       }, {
         children: "*"
       })) : void 0, props.label]
-    })) : null, jsxRuntimeExports.jsxs("div", __assign$f({
+    })) : null, jsxRuntimeExports.jsxs("div", __assign({
       className: classNames("evp", "evp-switch", props.size, active === true ? "active" : ""),
       onClick: function onClick() {
         setActive(!active);
@@ -96632,7 +96873,7 @@ var EvpSwitch = function EvpSwitch(props) {
         "--width-factor": (_c = props.widthFactor) !== null && _c !== void 0 ? _c : 2
       }
     }, {
-      children: [jsxRuntimeExports.jsx("div", __assign$f({
+      children: [jsxRuntimeExports.jsx("div", __assign({
         className: "evp-switch-btn",
         style: {
           left: Active() ? "100%" : "0%",
@@ -96657,9 +96898,9 @@ function EvpLabel(props) {
   var labelRef = useRef(null);
   var labelWidth = props.labelWidth ? props.labelWidth : "fit-content";
   var labelAlign = props.labelAlign ? props.labelAlign : "left";
-  return jsxRuntimeExports.jsxs("div", __assign$f({
+  return jsxRuntimeExports.jsxs("div", __assign({
     className: classNames("evp-label-container", props.containerClass),
-    style: __assign$f({
+    style: __assign({
       display: "flex",
       flexDirection: props.labelPosition === "top" ? "column" : "row",
       alignItems: props.labelPosition === "top" ? "flex-start" : "center",
@@ -96667,16 +96908,16 @@ function EvpLabel(props) {
       width: "fit-content"
     }, props.containerStyle)
   }, {
-    children: [props.label ? jsxRuntimeExports.jsxs("div", __assign$f({
+    children: [props.label ? jsxRuntimeExports.jsxs("div", __assign({
       ref: labelRef,
       className: classNames("evp", "label", props.class),
-      style: __assign$f({
+      style: __assign({
         fontSize: props.labelSize,
         width: labelWidth,
         justifyContent: labelAlign
       }, props.style)
     }, {
-      children: [props.required ? jsxRuntimeExports.jsx("div", __assign$f({
+      children: [props.required ? jsxRuntimeExports.jsx("div", __assign({
         className: "evp-required"
       }, {
         children: "*"
@@ -96718,10 +96959,10 @@ function EvpModal(props) {
       didMountRef.current = true;
     }
   }, [open]);
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  return jsxRuntimeExports.jsx("div", __assign({
     className: classNames("evp", "evp-modal", props.modalClass),
     hidden: !props.open,
-    style: __assign$f({
+    style: __assign({
       backgroundColor: "rgba(0, 0, 0, ".concat((_a = props.alpha) !== null && _a !== void 0 ? _a : "0.5", ")"),
       backdropFilter: blurParser(props.blur),
       WebkitBackdropFilter: blurParser(props.blur)
@@ -96733,9 +96974,9 @@ function EvpModal(props) {
       }
     }
   }, {
-    children: jsxRuntimeExports.jsx("div", __assign$f({
+    children: jsxRuntimeExports.jsx("div", __assign({
       className: classNames("evp-modal__content", props.contentClass),
-      style: __assign$f({
+      style: __assign({
         left: props.x,
         top: props.y,
         transform: "translate(".concat((_b = props.translateX) !== null && _b !== void 0 ? _b : "-50%", ", ").concat((_c = props.translateY) !== null && _c !== void 0 ? _c : "-50%", ")")
@@ -96761,14 +97002,14 @@ function EvpDialog(props) {
     onOpen = props.onOpen,
     className = props.class,
     blur = props.blur,
-    rest = __rest$b(props, ["open", "setOpen", "onClose", "onOpen", "class", "blur"]);
-  return jsxRuntimeExports.jsx(EvpModal, __assign$f({
+    rest = __rest(props, ["open", "setOpen", "onClose", "onOpen", "class", "blur"]);
+  return jsxRuntimeExports.jsx(EvpModal, __assign({
     open: props.open !== undefined ? props.open : open,
     onClose: onClose,
     onOpen: onOpen,
     blur: blur
   }, {
-    children: jsxRuntimeExports.jsx(EvpCardV2, __assign$f({
+    children: jsxRuntimeExports.jsx(EvpCardV2, __assign({
       class: classNames("evp", "evp-dialog", className),
       w: 400,
       h: 200,
@@ -96787,14 +97028,14 @@ function EvpDialog(props) {
         justifyContent: "flex-end"
       },
       footer: jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
-        children: [jsxRuntimeExports.jsx(EvpButton, __assign$f({
+        children: [jsxRuntimeExports.jsx(EvpButton, __assign({
           theme: "white",
           mgr_8: true,
           text: "cancel",
           "$click": function $click() {
             setOpen === null || setOpen === void 0 ? void 0 : setOpen(false);
           }
-        }, props.cancelProps)), jsxRuntimeExports.jsx(EvpButton, __assign$f({
+        }, props.cancelProps)), jsxRuntimeExports.jsx(EvpButton, __assign({
           text: "confirm",
           "$click": function $click() {
             setOpen === null || setOpen === void 0 ? void 0 : setOpen(false);
@@ -96815,7 +97056,7 @@ function cardProps(params) {
     params.header;
     params.headerProps;
     params.blur;
-    var rest = __rest$b(params, ["open", "setOpen", "onClose", "onOpen", "modal", "position", "header", "headerProps", "blur"]);
+    var rest = __rest(params, ["open", "setOpen", "onClose", "onOpen", "modal", "position", "header", "headerProps", "blur"]);
   return rest;
 }
 function EvpDrawer(props) {
@@ -96835,13 +97076,13 @@ function EvpDrawer(props) {
       didMountRef.current = true;
     }
   }, [open]);
-  return jsxRuntimeExports.jsx(EvpModal, __assign$f({
+  return jsxRuntimeExports.jsx(EvpModal, __assign({
     open: true,
     modalClass: classNames("evp-drawer-modal", props.modal === false ? "without" : "", open ? "open" : "close"),
     contentClass: classNames("evp-drawer-container", (_a = props.position) !== null && _a !== void 0 ? _a : "left", open ? "open" : "close"),
     blur: props.blur
   }, {
-    children: jsxRuntimeExports.jsx(EvpCardV2, __assign$f({
+    children: jsxRuntimeExports.jsx(EvpCardV2, __assign({
       h: "100%",
       w: "100%",
       headerProps: (_b = props.headerProps) !== null && _b !== void 0 ? _b : {
@@ -96864,10 +97105,10 @@ function EvpDrawer(props) {
 
 var ZoomIn = function ZoomIn(props) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  return jsxRuntimeExports.jsx("div", __assign({
     className: "evp icon ".concat((_a = props.class) !== null && _a !== void 0 ? _a : "").trim(),
     onClick: props.onClick,
-    style: __assign$f({
+    style: __assign({
       visibility: ((_b = props.$visibleSync) !== null && _b !== void 0 ? _b : true) ? "visible" : "hidden",
       display: ((_c = props.$displaySync) !== null && _c !== void 0 ? _c : true) ? "flex" : "none",
       strokeWidth: (_d = props.strokeWidth) !== null && _d !== void 0 ? _d : 4,
@@ -96880,7 +97121,7 @@ var ZoomIn = function ZoomIn(props) {
       margin: (_j = propsParser.get("mg")) === null || _j === void 0 ? void 0 : _j(props.mg)
     }, props.style)
   }, {
-    children: jsxRuntimeExports.jsxs("svg", __assign$f({
+    children: jsxRuntimeExports.jsxs("svg", __assign({
       width: (_k = props.radius) !== null && _k !== void 0 ? _k : 24,
       height: (_l = props.radius) !== null && _l !== void 0 ? _l : 24,
       viewBox: "0 0 48 48",
@@ -96910,10 +97151,10 @@ var ZoomIn = function ZoomIn(props) {
 
 var ZoomOut = function ZoomOut(props) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  return jsxRuntimeExports.jsx("div", __assign({
     className: "evp icon ".concat((_a = props.class) !== null && _a !== void 0 ? _a : "").trim(),
     onClick: props.onClick,
-    style: __assign$f({
+    style: __assign({
       visibility: ((_b = props.$visibleSync) !== null && _b !== void 0 ? _b : true) ? "visible" : "hidden",
       display: ((_c = props.$displaySync) !== null && _c !== void 0 ? _c : true) ? "flex" : "none",
       strokeWidth: (_d = props.strokeWidth) !== null && _d !== void 0 ? _d : 4,
@@ -96926,7 +97167,7 @@ var ZoomOut = function ZoomOut(props) {
       margin: (_j = propsParser.get("mg")) === null || _j === void 0 ? void 0 : _j(props.mg)
     }, props.style)
   }, {
-    children: jsxRuntimeExports.jsxs("svg", __assign$f({
+    children: jsxRuntimeExports.jsxs("svg", __assign({
       width: (_k = props.radius) !== null && _k !== void 0 ? _k : 24,
       height: (_l = props.radius) !== null && _l !== void 0 ? _l : 24,
       viewBox: "0 0 48 48",
@@ -96952,10 +97193,10 @@ var ZoomOut = function ZoomOut(props) {
 
 var DownImg = function DownImg(props) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  return jsxRuntimeExports.jsx("div", __assign({
     className: "evp icon ".concat((_a = props.class) !== null && _a !== void 0 ? _a : "").trim(),
     onClick: props.onClick,
-    style: __assign$f({
+    style: __assign({
       visibility: ((_b = props.$visibleSync) !== null && _b !== void 0 ? _b : true) ? "visible" : "hidden",
       display: ((_c = props.$displaySync) !== null && _c !== void 0 ? _c : true) ? "flex" : "none",
       strokeWidth: (_d = props.strokeWidth) !== null && _d !== void 0 ? _d : 4,
@@ -96968,7 +97209,7 @@ var DownImg = function DownImg(props) {
       margin: (_j = propsParser.get("mg")) === null || _j === void 0 ? void 0 : _j(props.mg)
     }, props.style)
   }, {
-    children: jsxRuntimeExports.jsxs("svg", __assign$f({
+    children: jsxRuntimeExports.jsxs("svg", __assign({
       width: (_k = props.radius) !== null && _k !== void 0 ? _k : 24,
       height: (_l = props.radius) !== null && _l !== void 0 ? _l : 24,
       viewBox: "0 0 48 48",
@@ -97001,10 +97242,10 @@ var DownImg = function DownImg(props) {
 
 var CopyLink = function CopyLink(props) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  return jsxRuntimeExports.jsx("div", __assign({
     className: "evp icon ".concat((_a = props.class) !== null && _a !== void 0 ? _a : "").trim(),
     onClick: props.onClick,
-    style: __assign$f({
+    style: __assign({
       visibility: ((_b = props.$visibleSync) !== null && _b !== void 0 ? _b : true) ? "visible" : "hidden",
       display: ((_c = props.$displaySync) !== null && _c !== void 0 ? _c : true) ? "flex" : "none",
       strokeWidth: (_d = props.strokeWidth) !== null && _d !== void 0 ? _d : 4,
@@ -97017,7 +97258,7 @@ var CopyLink = function CopyLink(props) {
       margin: (_j = propsParser.get("mg")) === null || _j === void 0 ? void 0 : _j(props.mg)
     }, props.style)
   }, {
-    children: jsxRuntimeExports.jsxs("svg", __assign$f({
+    children: jsxRuntimeExports.jsxs("svg", __assign({
       width: (_k = props.radius) !== null && _k !== void 0 ? _k : 24,
       height: (_l = props.radius) !== null && _l !== void 0 ? _l : 24,
       viewBox: "0 0 48 48",
@@ -97065,26 +97306,26 @@ var EvpImg = function EvpImg(_a) {
     setPreview = _a.setPreview,
     downLoadTooltipText = _a.downLoadTooltipText,
     copyTooltipText = _a.copyTooltipText,
-    props = __rest$b(_a, ["alt", "class", "id", "style", "preview", "setPreview", "downLoadTooltipText", "copyTooltipText"]);
+    props = __rest(_a, ["alt", "class", "id", "style", "preview", "setPreview", "downLoadTooltipText", "copyTooltipText"]);
   var $props = AllParser(props);
   var _b = $props.style,
     display = _b.display,
-    $style = __rest$b(_b, ["display"]);
+    $style = __rest(_b, ["display"]);
   var scale = useState(100);
-  return jsxRuntimeExports.jsxs("div", __assign$f({
+  return jsxRuntimeExports.jsxs("div", __assign({
     style: {
       display: display
     },
     className: "evp evp-img-wrapper"
   }, {
-    children: [jsxRuntimeExports.jsx("img", __assign$f({
+    children: [jsxRuntimeExports.jsx("img", __assign({
       alt: alt,
       hidden: $props.hidden,
       className: classNames("evp", "evp-img", className),
       id: id
     }, $props.event, {
-      style: __assign$f({}, $style)
-    }, props)), jsxRuntimeExports.jsx(EvpDialog, __assign$f({
+      style: __assign({}, $style)
+    }, props)), jsxRuntimeExports.jsx(EvpDialog, __assign({
       open: preview,
       setOpen: setPreview,
       class: "evp-img-preview-container",
@@ -97095,10 +97336,10 @@ var EvpImg = function EvpImg(_a) {
         class: "evp-img-preview-footer"
       },
       footer: jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
-        children: [jsxRuntimeExports.jsx(EvpToolTip, __assign$f({
+        children: [jsxRuntimeExports.jsx(EvpToolTip, __assign({
           content: downLoadTooltipText !== null && downLoadTooltipText !== void 0 ? downLoadTooltipText : "Download"
         }, {
-          children: jsxRuntimeExports.jsx(EvpButton, __assign$f({
+          children: jsxRuntimeExports.jsx(EvpButton, __assign({
             theme: "text",
             "$click": function $click() {
               var _a, _b;
@@ -97107,7 +97348,7 @@ var EvpImg = function EvpImg(_a) {
           }, {
             children: jsxRuntimeExports.jsx(DownImg, {})
           }))
-        })), jsxRuntimeExports.jsx(EvpButton, __assign$f({
+        })), jsxRuntimeExports.jsx(EvpButton, __assign({
           theme: "text",
           "$click": function $click() {
             scale[1](scale[0] - 5);
@@ -97116,17 +97357,17 @@ var EvpImg = function EvpImg(_a) {
           children: jsxRuntimeExports.jsx(ZoomOut, {})
         })), jsxRuntimeExports.jsxs("div", {
           children: [scale[0], " %"]
-        }), jsxRuntimeExports.jsx(EvpButton, __assign$f({
+        }), jsxRuntimeExports.jsx(EvpButton, __assign({
           theme: "text",
           "$click": function $click() {
             scale[1](scale[0] + 5);
           }
         }, {
           children: jsxRuntimeExports.jsx(ZoomIn, {})
-        })), jsxRuntimeExports.jsx(EvpToolTip, __assign$f({
+        })), jsxRuntimeExports.jsx(EvpToolTip, __assign({
           content: copyTooltipText !== null && copyTooltipText !== void 0 ? copyTooltipText : "Copy URL"
         }, {
-          children: jsxRuntimeExports.jsx(EvpButton, __assign$f({
+          children: jsxRuntimeExports.jsx(EvpButton, __assign({
             theme: "text",
             "$click": function $click() {
               var _a;
@@ -97157,15 +97398,15 @@ var EvpImg = function EvpImg(_a) {
 
 var Header = function Header(_a) {
   var className = _a.className,
-    props = __rest$b(_a, ["className"]);
-  return jsxRuntimeExports.jsx("tr", __assign$f({
+    props = __rest(_a, ["className"]);
+  return jsxRuntimeExports.jsx("tr", __assign({
     className: classNames("evp-table-column-headers-row", className)
   }, props));
 };
 var Record = function Record(_a) {
   var className = _a.className,
-    props = __rest$b(_a, ["className"]);
-  return jsxRuntimeExports.jsx("tr", __assign$f({
+    props = __rest(_a, ["className"]);
+  return jsxRuntimeExports.jsx("tr", __assign({
     className: classNames("evp-table-column-record-row", className)
   }, props));
 };
@@ -97176,16 +97417,16 @@ var Tr = {
 
 var Td = function Td(_a) {
   var className = _a.className,
-    props = __rest$b(_a, ["className"]);
-  return jsxRuntimeExports.jsx("td", __assign$f({
+    props = __rest(_a, ["className"]);
+  return jsxRuntimeExports.jsx("td", __assign({
     className: classNames("evp-table-td", className)
   }, props));
 };
 
 var Th = function Th(_a) {
   var className = _a.className,
-    props = __rest$b(_a, ["className"]);
-  return jsxRuntimeExports.jsx("th", __assign$f({
+    props = __rest(_a, ["className"]);
+  return jsxRuntimeExports.jsx("th", __assign({
     className: classNames("evp-table-th", className)
   }, props));
 };
@@ -97198,7 +97439,7 @@ var Cell = {
 var Total = function Total(_a) {
   var showTotal = _a.showTotal,
     total = _a.total;
-  return jsxRuntimeExports.jsxs(EvpDom, __assign$f({
+  return jsxRuntimeExports.jsxs(EvpDom, __assign({
     hidden: showTotal === false,
     mgr_8: true
   }, {
@@ -97208,7 +97449,7 @@ var Total = function Total(_a) {
 var Sizer = function Sizer(_a) {
   var showSizeChanger = _a.showSizeChanger,
     pageSize = _a.pageSize;
-  return jsxRuntimeExports.jsxs(EvpDom, __assign$f({
+  return jsxRuntimeExports.jsxs(EvpDom, __assign({
     hidden: !showSizeChanger,
     mgr_8: true
   }, {
@@ -97243,7 +97484,7 @@ var Taber = function Taber(_a) {
     countersWindow = _b[0],
     setCounterWindow = _b[1];
   return jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, {
-    children: showTaber !== false ? jsxRuntimeExports.jsxs("div", __assign$f({
+    children: showTaber !== false ? jsxRuntimeExports.jsxs("div", __assign({
       style: {
         display: "flex",
         alignItems: "center",
@@ -97267,7 +97508,7 @@ var Taber = function Taber(_a) {
         mg: [0, 8, 0, 0]
       }), NumUtils.range(1, pagesMax).slice(countersWindow[0], countersWindow[1]).map(function (item) {
         var _a, _b, _c, _d, _e, _f, _g, _h;
-        return jsxRuntimeExports.jsx(EvpDom, __assign$f({
+        return jsxRuntimeExports.jsx(EvpDom, __assign({
           class: classNames(currentPage === item ? "evp-paginator-tab-active" : "evp-paginator-tab"),
           mgr_8: true,
           w: 30,
@@ -97316,12 +97557,12 @@ var Jumper = function Jumper(_a) {
     onPageChange = _a.onPageChange,
     pageSize = _a.pageSize;
   return jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, {
-    children: showQuickJumper ? jsxRuntimeExports.jsxs(EvpDom, __assign$f({
+    children: showQuickJumper ? jsxRuntimeExports.jsxs(EvpDom, __assign({
       mgr_8: true,
       display: "flex",
       alignItems: "center"
     }, {
-      children: [jsxRuntimeExports.jsx(EvpDom, __assign$f({
+      children: [jsxRuntimeExports.jsx(EvpDom, __assign({
         mgr_8: true,
         style: {
           whiteSpace: "nowrap"
@@ -97364,7 +97605,7 @@ var EvpPaginator = function EvpPaginator(_a) {
     tabActiveBgColor = _a.tabActiveBgColor,
     tabHoverColor = _a.tabHoverColor,
     tabHoverBgColor = _a.tabHoverBgColor,
-    props = __rest$b(_a, ["class", "id", "children", "currentPage", "setCurrentPage", "counters", "pageSize", "total", "showTotal", "showQuickJumper", "showSizeChanger", "onChange", "onShowSizeChange", "onPageChange", "style", "quene", "tabColor", "tabBgColor", "tabActiveColor", "tabActiveBgColor", "tabHoverColor", "tabHoverBgColor"]);
+    props = __rest(_a, ["class", "id", "children", "currentPage", "setCurrentPage", "counters", "pageSize", "total", "showTotal", "showQuickJumper", "showSizeChanger", "onChange", "onShowSizeChange", "onPageChange", "style", "quene", "tabColor", "tabBgColor", "tabActiveColor", "tabActiveBgColor", "tabHoverColor", "tabHoverBgColor"]);
   var quene = _quene !== null && _quene !== void 0 ? _quene : ["total", "sizer", "taber", "jumper"];
   var Elem = {
     total: jsxRuntimeExports.jsx(Total, {
@@ -97398,8 +97639,8 @@ var EvpPaginator = function EvpPaginator(_a) {
       pageSize: pageSize
     })
   };
-  return jsxRuntimeExports.jsxs("div", __assign$f({
-    style: __assign$f({
+  return jsxRuntimeExports.jsxs("div", __assign({
+    style: __assign({
       display: "flex",
       width: "fit-content",
       justifyContent: "flex-end",
@@ -97435,13 +97676,13 @@ function EvpTable(_a) {
     caption = _a.caption,
     selection = _a.selection,
     index = _a.index,
-    events = __rest$b(_a, ["class", "id", "children", "style", "schema", "labelAlign", "labelProps", "indexLabelAlign", "indexLabelProps", "indexAlign", "indexProps", "data", "align", "cellProps", "pagination", "paginator", "zebra", "caption", "selection", "index"]);
-  return jsxRuntimeExports.jsxs("div", __assign$f({
+    events = __rest(_a, ["class", "id", "children", "style", "schema", "labelAlign", "labelProps", "indexLabelAlign", "indexLabelProps", "indexAlign", "indexProps", "data", "align", "cellProps", "pagination", "paginator", "zebra", "caption", "selection", "index"]);
+  return jsxRuntimeExports.jsxs("div", __assign({
     style: {
       width: "fit-content"
     }
   }, {
-    children: [jsxRuntimeExports.jsxs("table", __assign$f({
+    children: [jsxRuntimeExports.jsxs("table", __assign({
       className: classNames("evp", "evp-table", className),
       cellSpacing: 0,
       cellPadding: 12
@@ -97452,12 +97693,12 @@ function EvpTable(_a) {
         children: caption
       }), jsxRuntimeExports.jsx("thead", {
         children: jsxRuntimeExports.jsxs(Tr.Header, {
-          children: [jsxRuntimeExports.jsx(Cell.Th, __assign$f({
+          children: [jsxRuntimeExports.jsx(Cell.Th, __assign({
             align: "center",
             hidden: !selection
           }, {
             children: ""
-          })), jsxRuntimeExports.jsx(Cell.Th, __assign$f({
+          })), jsxRuntimeExports.jsx(Cell.Th, __assign({
             hidden: !index,
             align: indexLabelAlign !== null && indexLabelAlign !== void 0 ? indexLabelAlign : align
           }, indexLabelProps !== null && indexLabelProps !== void 0 ? indexLabelProps : labelProps, {
@@ -97466,25 +97707,25 @@ function EvpTable(_a) {
             return !item.hidden;
           }).map(function (item) {
             var _a, _b, _c;
-            return jsxRuntimeExports.jsx(Cell.Th, __assign$f({
+            return jsxRuntimeExports.jsx(Cell.Th, __assign({
               align: (_b = (_a = item.labelAlign) !== null && _a !== void 0 ? _a : labelAlign) !== null && _b !== void 0 ? _b : align
             }, (_c = item.labelProps) !== null && _c !== void 0 ? _c : labelProps, {
               children: item.label
             }));
           }) : (data === null || data === void 0 ? void 0 : data[0]) ? Object.keys(data === null || data === void 0 ? void 0 : data[0]).map(function (key) {
-            return jsxRuntimeExports.jsx(Cell.Th, __assign$f({
+            return jsxRuntimeExports.jsx(Cell.Th, __assign({
               align: labelAlign !== null && labelAlign !== void 0 ? labelAlign : align
             }, labelProps, {
               children: key
             }));
           }) : void 0]
         })
-      }), jsxRuntimeExports.jsx("tbody", __assign$f({
+      }), jsxRuntimeExports.jsx("tbody", __assign({
         className: zebra ? "zebra" : ""
       }, {
         children: data === null || data === void 0 ? void 0 : data.slice((((_b = pagination === null || pagination === void 0 ? void 0 : pagination.currentPage) !== null && _b !== void 0 ? _b : 1) - 1) * ((_c = pagination === null || pagination === void 0 ? void 0 : pagination.pageSize) !== null && _c !== void 0 ? _c : data.length), (pagination === null || pagination === void 0 ? void 0 : pagination.currentPage) && (pagination === null || pagination === void 0 ? void 0 : pagination.pageSize) ? (pagination === null || pagination === void 0 ? void 0 : pagination.currentPage) * (pagination === null || pagination === void 0 ? void 0 : pagination.pageSize) : void 0).map(function (row, idx, records) {
           return jsxRuntimeExports.jsxs(Tr.Record, {
-            children: [jsxRuntimeExports.jsx(Cell.Td, __assign$f({
+            children: [jsxRuntimeExports.jsx(Cell.Td, __assign({
               align: "center",
               hidden: !selection,
               className: "checkbox"
@@ -97495,7 +97736,7 @@ function EvpTable(_a) {
                   cursor: "pointer"
                 }
               })
-            })), jsxRuntimeExports.jsx(Cell.Td, __assign$f({
+            })), jsxRuntimeExports.jsx(Cell.Td, __assign({
               hidden: !index,
               align: indexAlign !== null && indexAlign !== void 0 ? indexAlign : align
             }, indexProps !== null && indexProps !== void 0 ? indexProps : cellProps, {
@@ -97504,13 +97745,13 @@ function EvpTable(_a) {
               children: ++idx
             })), schema ? schema === null || schema === void 0 ? void 0 : schema.map(function (col) {
               var _a, _b;
-              return jsxRuntimeExports.jsx(Cell.Td, __assign$f({
+              return jsxRuntimeExports.jsx(Cell.Td, __assign({
                 align: (_a = col.align) !== null && _a !== void 0 ? _a : align
               }, (_b = col.cellProps) !== null && _b !== void 0 ? _b : cellProps, {
                 children: col.render ? col.render(row[col.prop], row, records) : row[col.prop]
               }));
             }) : (data === null || data === void 0 ? void 0 : data[0]) ? Object.values(row).map(function (val) {
-              return jsxRuntimeExports.jsx(Cell.Td, __assign$f({
+              return jsxRuntimeExports.jsx(Cell.Td, __assign({
                 align: align
               }, cellProps, {
                 children: val
@@ -97519,4171 +97760,16 @@ function EvpTable(_a) {
           });
         })
       })), jsxRuntimeExports.jsx("tfoot", {})]
-    })), paginator ? jsxRuntimeExports.jsx(EvpRow, __assign$f({
+    })), paginator ? jsxRuntimeExports.jsx(EvpRow, __assign({
       w: "100%",
       justifyContent: "flex-end"
     }, {
-      children: jsxRuntimeExports.jsx(EvpPaginator, __assign$f({}, __assign$f(__assign$f({}, pagination), {
+      children: jsxRuntimeExports.jsx(EvpPaginator, __assign({}, __assign(__assign({}, pagination), {
         total: (_e = (_d = pagination === null || pagination === void 0 ? void 0 : pagination.total) !== null && _d !== void 0 ? _d : data === null || data === void 0 ? void 0 : data.length) !== null && _e !== void 0 ? _e : 0
       })))
     })) : void 0, children]
   }));
 }
-
-var propTypes = {exports: {}};
-
-var reactIs = {exports: {}};
-
-var reactIs_production_min = {};
-
-/** @license React v16.13.1
- * react-is.production.min.js
- *
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-var hasRequiredReactIs_production_min;
-
-function requireReactIs_production_min () {
-	if (hasRequiredReactIs_production_min) return reactIs_production_min;
-	hasRequiredReactIs_production_min = 1;
-var b="function"===typeof Symbol&&Symbol.for,c=b?Symbol.for("react.element"):60103,d=b?Symbol.for("react.portal"):60106,e=b?Symbol.for("react.fragment"):60107,f=b?Symbol.for("react.strict_mode"):60108,g=b?Symbol.for("react.profiler"):60114,h=b?Symbol.for("react.provider"):60109,k=b?Symbol.for("react.context"):60110,l=b?Symbol.for("react.async_mode"):60111,m=b?Symbol.for("react.concurrent_mode"):60111,n=b?Symbol.for("react.forward_ref"):60112,p=b?Symbol.for("react.suspense"):60113,q=b?
-	Symbol.for("react.suspense_list"):60120,r=b?Symbol.for("react.memo"):60115,t=b?Symbol.for("react.lazy"):60116,v=b?Symbol.for("react.block"):60121,w=b?Symbol.for("react.fundamental"):60117,x=b?Symbol.for("react.responder"):60118,y=b?Symbol.for("react.scope"):60119;
-	function z(a){if("object"===typeof a&&null!==a){var u=a.$$typeof;switch(u){case c:switch(a=a.type,a){case l:case m:case e:case g:case f:case p:return a;default:switch(a=a&&a.$$typeof,a){case k:case n:case t:case r:case h:return a;default:return u}}case d:return u}}}function A(a){return z(a)===m}reactIs_production_min.AsyncMode=l;reactIs_production_min.ConcurrentMode=m;reactIs_production_min.ContextConsumer=k;reactIs_production_min.ContextProvider=h;reactIs_production_min.Element=c;reactIs_production_min.ForwardRef=n;reactIs_production_min.Fragment=e;reactIs_production_min.Lazy=t;reactIs_production_min.Memo=r;reactIs_production_min.Portal=d;
-	reactIs_production_min.Profiler=g;reactIs_production_min.StrictMode=f;reactIs_production_min.Suspense=p;reactIs_production_min.isAsyncMode=function(a){return A(a)||z(a)===l};reactIs_production_min.isConcurrentMode=A;reactIs_production_min.isContextConsumer=function(a){return z(a)===k};reactIs_production_min.isContextProvider=function(a){return z(a)===h};reactIs_production_min.isElement=function(a){return "object"===typeof a&&null!==a&&a.$$typeof===c};reactIs_production_min.isForwardRef=function(a){return z(a)===n};reactIs_production_min.isFragment=function(a){return z(a)===e};reactIs_production_min.isLazy=function(a){return z(a)===t};
-	reactIs_production_min.isMemo=function(a){return z(a)===r};reactIs_production_min.isPortal=function(a){return z(a)===d};reactIs_production_min.isProfiler=function(a){return z(a)===g};reactIs_production_min.isStrictMode=function(a){return z(a)===f};reactIs_production_min.isSuspense=function(a){return z(a)===p};
-	reactIs_production_min.isValidElementType=function(a){return "string"===typeof a||"function"===typeof a||a===e||a===m||a===g||a===f||a===p||a===q||"object"===typeof a&&null!==a&&(a.$$typeof===t||a.$$typeof===r||a.$$typeof===h||a.$$typeof===k||a.$$typeof===n||a.$$typeof===w||a.$$typeof===x||a.$$typeof===y||a.$$typeof===v)};reactIs_production_min.typeOf=z;
-	return reactIs_production_min;
-}
-
-var reactIs_development = {};
-
-var hasRequiredReactIs_development;
-
-function requireReactIs_development () {
-	if (hasRequiredReactIs_development) return reactIs_development;
-	hasRequiredReactIs_development = 1;
-
-
-
-	if (process.env.NODE_ENV !== "production") {
-	  (function() {
-
-	// The Symbol used to tag the ReactElement-like types. If there is no native Symbol
-	// nor polyfill, then a plain number is used for performance.
-	var hasSymbol = typeof Symbol === 'function' && Symbol.for;
-	var REACT_ELEMENT_TYPE = hasSymbol ? Symbol.for('react.element') : 0xeac7;
-	var REACT_PORTAL_TYPE = hasSymbol ? Symbol.for('react.portal') : 0xeaca;
-	var REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for('react.fragment') : 0xeacb;
-	var REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for('react.strict_mode') : 0xeacc;
-	var REACT_PROFILER_TYPE = hasSymbol ? Symbol.for('react.profiler') : 0xead2;
-	var REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for('react.provider') : 0xeacd;
-	var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace; // TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
-	// (unstable) APIs that have been removed. Can we remove the symbols?
-
-	var REACT_ASYNC_MODE_TYPE = hasSymbol ? Symbol.for('react.async_mode') : 0xeacf;
-	var REACT_CONCURRENT_MODE_TYPE = hasSymbol ? Symbol.for('react.concurrent_mode') : 0xeacf;
-	var REACT_FORWARD_REF_TYPE = hasSymbol ? Symbol.for('react.forward_ref') : 0xead0;
-	var REACT_SUSPENSE_TYPE = hasSymbol ? Symbol.for('react.suspense') : 0xead1;
-	var REACT_SUSPENSE_LIST_TYPE = hasSymbol ? Symbol.for('react.suspense_list') : 0xead8;
-	var REACT_MEMO_TYPE = hasSymbol ? Symbol.for('react.memo') : 0xead3;
-	var REACT_LAZY_TYPE = hasSymbol ? Symbol.for('react.lazy') : 0xead4;
-	var REACT_BLOCK_TYPE = hasSymbol ? Symbol.for('react.block') : 0xead9;
-	var REACT_FUNDAMENTAL_TYPE = hasSymbol ? Symbol.for('react.fundamental') : 0xead5;
-	var REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for('react.responder') : 0xead6;
-	var REACT_SCOPE_TYPE = hasSymbol ? Symbol.for('react.scope') : 0xead7;
-
-	function isValidElementType(type) {
-	  return typeof type === 'string' || typeof type === 'function' || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
-	  type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === 'object' && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE || type.$$typeof === REACT_BLOCK_TYPE);
-	}
-
-	function typeOf(object) {
-	  if (typeof object === 'object' && object !== null) {
-	    var $$typeof = object.$$typeof;
-
-	    switch ($$typeof) {
-	      case REACT_ELEMENT_TYPE:
-	        var type = object.type;
-
-	        switch (type) {
-	          case REACT_ASYNC_MODE_TYPE:
-	          case REACT_CONCURRENT_MODE_TYPE:
-	          case REACT_FRAGMENT_TYPE:
-	          case REACT_PROFILER_TYPE:
-	          case REACT_STRICT_MODE_TYPE:
-	          case REACT_SUSPENSE_TYPE:
-	            return type;
-
-	          default:
-	            var $$typeofType = type && type.$$typeof;
-
-	            switch ($$typeofType) {
-	              case REACT_CONTEXT_TYPE:
-	              case REACT_FORWARD_REF_TYPE:
-	              case REACT_LAZY_TYPE:
-	              case REACT_MEMO_TYPE:
-	              case REACT_PROVIDER_TYPE:
-	                return $$typeofType;
-
-	              default:
-	                return $$typeof;
-	            }
-
-	        }
-
-	      case REACT_PORTAL_TYPE:
-	        return $$typeof;
-	    }
-	  }
-
-	  return undefined;
-	} // AsyncMode is deprecated along with isAsyncMode
-
-	var AsyncMode = REACT_ASYNC_MODE_TYPE;
-	var ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
-	var ContextConsumer = REACT_CONTEXT_TYPE;
-	var ContextProvider = REACT_PROVIDER_TYPE;
-	var Element = REACT_ELEMENT_TYPE;
-	var ForwardRef = REACT_FORWARD_REF_TYPE;
-	var Fragment = REACT_FRAGMENT_TYPE;
-	var Lazy = REACT_LAZY_TYPE;
-	var Memo = REACT_MEMO_TYPE;
-	var Portal = REACT_PORTAL_TYPE;
-	var Profiler = REACT_PROFILER_TYPE;
-	var StrictMode = REACT_STRICT_MODE_TYPE;
-	var Suspense = REACT_SUSPENSE_TYPE;
-	var hasWarnedAboutDeprecatedIsAsyncMode = false; // AsyncMode should be deprecated
-
-	function isAsyncMode(object) {
-	  {
-	    if (!hasWarnedAboutDeprecatedIsAsyncMode) {
-	      hasWarnedAboutDeprecatedIsAsyncMode = true; // Using console['warn'] to evade Babel and ESLint
-
-	      console['warn']('The ReactIs.isAsyncMode() alias has been deprecated, ' + 'and will be removed in React 17+. Update your code to use ' + 'ReactIs.isConcurrentMode() instead. It has the exact same API.');
-	    }
-	  }
-
-	  return isConcurrentMode(object) || typeOf(object) === REACT_ASYNC_MODE_TYPE;
-	}
-	function isConcurrentMode(object) {
-	  return typeOf(object) === REACT_CONCURRENT_MODE_TYPE;
-	}
-	function isContextConsumer(object) {
-	  return typeOf(object) === REACT_CONTEXT_TYPE;
-	}
-	function isContextProvider(object) {
-	  return typeOf(object) === REACT_PROVIDER_TYPE;
-	}
-	function isElement(object) {
-	  return typeof object === 'object' && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
-	}
-	function isForwardRef(object) {
-	  return typeOf(object) === REACT_FORWARD_REF_TYPE;
-	}
-	function isFragment(object) {
-	  return typeOf(object) === REACT_FRAGMENT_TYPE;
-	}
-	function isLazy(object) {
-	  return typeOf(object) === REACT_LAZY_TYPE;
-	}
-	function isMemo(object) {
-	  return typeOf(object) === REACT_MEMO_TYPE;
-	}
-	function isPortal(object) {
-	  return typeOf(object) === REACT_PORTAL_TYPE;
-	}
-	function isProfiler(object) {
-	  return typeOf(object) === REACT_PROFILER_TYPE;
-	}
-	function isStrictMode(object) {
-	  return typeOf(object) === REACT_STRICT_MODE_TYPE;
-	}
-	function isSuspense(object) {
-	  return typeOf(object) === REACT_SUSPENSE_TYPE;
-	}
-
-	reactIs_development.AsyncMode = AsyncMode;
-	reactIs_development.ConcurrentMode = ConcurrentMode;
-	reactIs_development.ContextConsumer = ContextConsumer;
-	reactIs_development.ContextProvider = ContextProvider;
-	reactIs_development.Element = Element;
-	reactIs_development.ForwardRef = ForwardRef;
-	reactIs_development.Fragment = Fragment;
-	reactIs_development.Lazy = Lazy;
-	reactIs_development.Memo = Memo;
-	reactIs_development.Portal = Portal;
-	reactIs_development.Profiler = Profiler;
-	reactIs_development.StrictMode = StrictMode;
-	reactIs_development.Suspense = Suspense;
-	reactIs_development.isAsyncMode = isAsyncMode;
-	reactIs_development.isConcurrentMode = isConcurrentMode;
-	reactIs_development.isContextConsumer = isContextConsumer;
-	reactIs_development.isContextProvider = isContextProvider;
-	reactIs_development.isElement = isElement;
-	reactIs_development.isForwardRef = isForwardRef;
-	reactIs_development.isFragment = isFragment;
-	reactIs_development.isLazy = isLazy;
-	reactIs_development.isMemo = isMemo;
-	reactIs_development.isPortal = isPortal;
-	reactIs_development.isProfiler = isProfiler;
-	reactIs_development.isStrictMode = isStrictMode;
-	reactIs_development.isSuspense = isSuspense;
-	reactIs_development.isValidElementType = isValidElementType;
-	reactIs_development.typeOf = typeOf;
-	  })();
-	}
-	return reactIs_development;
-}
-
-var hasRequiredReactIs;
-
-function requireReactIs () {
-	if (hasRequiredReactIs) return reactIs.exports;
-	hasRequiredReactIs = 1;
-
-	if (process.env.NODE_ENV === 'production') {
-	  reactIs.exports = requireReactIs_production_min();
-	} else {
-	  reactIs.exports = requireReactIs_development();
-	}
-	return reactIs.exports;
-}
-
-/*
-object-assign
-(c) Sindre Sorhus
-@license MIT
-*/
-
-var objectAssign;
-var hasRequiredObjectAssign;
-
-function requireObjectAssign () {
-	if (hasRequiredObjectAssign) return objectAssign;
-	hasRequiredObjectAssign = 1;
-	/* eslint-disable no-unused-vars */
-	var getOwnPropertySymbols = Object.getOwnPropertySymbols;
-	var hasOwnProperty = Object.prototype.hasOwnProperty;
-	var propIsEnumerable = Object.prototype.propertyIsEnumerable;
-
-	function toObject(val) {
-		if (val === null || val === undefined) {
-			throw new TypeError('Object.assign cannot be called with null or undefined');
-		}
-
-		return Object(val);
-	}
-
-	function shouldUseNative() {
-		try {
-			if (!Object.assign) {
-				return false;
-			}
-
-			// Detect buggy property enumeration order in older V8 versions.
-
-			// https://bugs.chromium.org/p/v8/issues/detail?id=4118
-			var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
-			test1[5] = 'de';
-			if (Object.getOwnPropertyNames(test1)[0] === '5') {
-				return false;
-			}
-
-			// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-			var test2 = {};
-			for (var i = 0; i < 10; i++) {
-				test2['_' + String.fromCharCode(i)] = i;
-			}
-			var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
-				return test2[n];
-			});
-			if (order2.join('') !== '0123456789') {
-				return false;
-			}
-
-			// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-			var test3 = {};
-			'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
-				test3[letter] = letter;
-			});
-			if (Object.keys(Object.assign({}, test3)).join('') !==
-					'abcdefghijklmnopqrst') {
-				return false;
-			}
-
-			return true;
-		} catch (err) {
-			// We don't expect any of the above to throw, but better to be safe.
-			return false;
-		}
-	}
-
-	objectAssign = shouldUseNative() ? Object.assign : function (target, source) {
-		var from;
-		var to = toObject(target);
-		var symbols;
-
-		for (var s = 1; s < arguments.length; s++) {
-			from = Object(arguments[s]);
-
-			for (var key in from) {
-				if (hasOwnProperty.call(from, key)) {
-					to[key] = from[key];
-				}
-			}
-
-			if (getOwnPropertySymbols) {
-				symbols = getOwnPropertySymbols(from);
-				for (var i = 0; i < symbols.length; i++) {
-					if (propIsEnumerable.call(from, symbols[i])) {
-						to[symbols[i]] = from[symbols[i]];
-					}
-				}
-			}
-		}
-
-		return to;
-	};
-	return objectAssign;
-}
-
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-var ReactPropTypesSecret_1;
-var hasRequiredReactPropTypesSecret;
-
-function requireReactPropTypesSecret () {
-	if (hasRequiredReactPropTypesSecret) return ReactPropTypesSecret_1;
-	hasRequiredReactPropTypesSecret = 1;
-
-	var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
-
-	ReactPropTypesSecret_1 = ReactPropTypesSecret;
-	return ReactPropTypesSecret_1;
-}
-
-var has;
-var hasRequiredHas;
-
-function requireHas () {
-	if (hasRequiredHas) return has;
-	hasRequiredHas = 1;
-	has = Function.call.bind(Object.prototype.hasOwnProperty);
-	return has;
-}
-
-var checkPropTypes_1;
-var hasRequiredCheckPropTypes;
-
-function requireCheckPropTypes () {
-	if (hasRequiredCheckPropTypes) return checkPropTypes_1;
-	hasRequiredCheckPropTypes = 1;
-
-	var printWarning = function() {};
-
-	if (process.env.NODE_ENV !== 'production') {
-	  var ReactPropTypesSecret = requireReactPropTypesSecret();
-	  var loggedTypeFailures = {};
-	  var has = requireHas();
-
-	  printWarning = function(text) {
-	    var message = 'Warning: ' + text;
-	    if (typeof console !== 'undefined') {
-	      console.error(message);
-	    }
-	    try {
-	      // --- Welcome to debugging React ---
-	      // This error was thrown as a convenience so that you can use this stack
-	      // to find the callsite that caused this warning to fire.
-	      throw new Error(message);
-	    } catch (x) { /**/ }
-	  };
-	}
-
-	/**
-	 * Assert that the values match with the type specs.
-	 * Error messages are memorized and will only be shown once.
-	 *
-	 * @param {object} typeSpecs Map of name to a ReactPropType
-	 * @param {object} values Runtime values that need to be type-checked
-	 * @param {string} location e.g. "prop", "context", "child context"
-	 * @param {string} componentName Name of the component for error messages.
-	 * @param {?Function} getStack Returns the component stack.
-	 * @private
-	 */
-	function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
-	  if (process.env.NODE_ENV !== 'production') {
-	    for (var typeSpecName in typeSpecs) {
-	      if (has(typeSpecs, typeSpecName)) {
-	        var error;
-	        // Prop type validation may throw. In case they do, we don't want to
-	        // fail the render phase where it didn't fail before. So we log it.
-	        // After these have been cleaned up, we'll let them throw.
-	        try {
-	          // This is intentionally an invariant that gets caught. It's the same
-	          // behavior as without this statement except with a better message.
-	          if (typeof typeSpecs[typeSpecName] !== 'function') {
-	            var err = Error(
-	              (componentName || 'React class') + ': ' + location + ' type `' + typeSpecName + '` is invalid; ' +
-	              'it must be a function, usually from the `prop-types` package, but received `' + typeof typeSpecs[typeSpecName] + '`.' +
-	              'This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.'
-	            );
-	            err.name = 'Invariant Violation';
-	            throw err;
-	          }
-	          error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret);
-	        } catch (ex) {
-	          error = ex;
-	        }
-	        if (error && !(error instanceof Error)) {
-	          printWarning(
-	            (componentName || 'React class') + ': type specification of ' +
-	            location + ' `' + typeSpecName + '` is invalid; the type checker ' +
-	            'function must return `null` or an `Error` but returned a ' + typeof error + '. ' +
-	            'You may have forgotten to pass an argument to the type checker ' +
-	            'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' +
-	            'shape all require an argument).'
-	          );
-	        }
-	        if (error instanceof Error && !(error.message in loggedTypeFailures)) {
-	          // Only monitor this failure once because there tends to be a lot of the
-	          // same error.
-	          loggedTypeFailures[error.message] = true;
-
-	          var stack = getStack ? getStack() : '';
-
-	          printWarning(
-	            'Failed ' + location + ' type: ' + error.message + (stack != null ? stack : '')
-	          );
-	        }
-	      }
-	    }
-	  }
-	}
-
-	/**
-	 * Resets warning cache when testing.
-	 *
-	 * @private
-	 */
-	checkPropTypes.resetWarningCache = function() {
-	  if (process.env.NODE_ENV !== 'production') {
-	    loggedTypeFailures = {};
-	  }
-	};
-
-	checkPropTypes_1 = checkPropTypes;
-	return checkPropTypes_1;
-}
-
-var factoryWithTypeCheckers;
-var hasRequiredFactoryWithTypeCheckers;
-
-function requireFactoryWithTypeCheckers () {
-	if (hasRequiredFactoryWithTypeCheckers) return factoryWithTypeCheckers;
-	hasRequiredFactoryWithTypeCheckers = 1;
-
-	var ReactIs = requireReactIs();
-	var assign = requireObjectAssign();
-
-	var ReactPropTypesSecret = requireReactPropTypesSecret();
-	var has = requireHas();
-	var checkPropTypes = requireCheckPropTypes();
-
-	var printWarning = function() {};
-
-	if (process.env.NODE_ENV !== 'production') {
-	  printWarning = function(text) {
-	    var message = 'Warning: ' + text;
-	    if (typeof console !== 'undefined') {
-	      console.error(message);
-	    }
-	    try {
-	      // --- Welcome to debugging React ---
-	      // This error was thrown as a convenience so that you can use this stack
-	      // to find the callsite that caused this warning to fire.
-	      throw new Error(message);
-	    } catch (x) {}
-	  };
-	}
-
-	function emptyFunctionThatReturnsNull() {
-	  return null;
-	}
-
-	factoryWithTypeCheckers = function(isValidElement, throwOnDirectAccess) {
-	  /* global Symbol */
-	  var ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
-	  var FAUX_ITERATOR_SYMBOL = '@@iterator'; // Before Symbol spec.
-
-	  /**
-	   * Returns the iterator method function contained on the iterable object.
-	   *
-	   * Be sure to invoke the function with the iterable as context:
-	   *
-	   *     var iteratorFn = getIteratorFn(myIterable);
-	   *     if (iteratorFn) {
-	   *       var iterator = iteratorFn.call(myIterable);
-	   *       ...
-	   *     }
-	   *
-	   * @param {?object} maybeIterable
-	   * @return {?function}
-	   */
-	  function getIteratorFn(maybeIterable) {
-	    var iteratorFn = maybeIterable && (ITERATOR_SYMBOL && maybeIterable[ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL]);
-	    if (typeof iteratorFn === 'function') {
-	      return iteratorFn;
-	    }
-	  }
-
-	  /**
-	   * Collection of methods that allow declaration and validation of props that are
-	   * supplied to React components. Example usage:
-	   *
-	   *   var Props = require('ReactPropTypes');
-	   *   var MyArticle = React.createClass({
-	   *     propTypes: {
-	   *       // An optional string prop named "description".
-	   *       description: Props.string,
-	   *
-	   *       // A required enum prop named "category".
-	   *       category: Props.oneOf(['News','Photos']).isRequired,
-	   *
-	   *       // A prop named "dialog" that requires an instance of Dialog.
-	   *       dialog: Props.instanceOf(Dialog).isRequired
-	   *     },
-	   *     render: function() { ... }
-	   *   });
-	   *
-	   * A more formal specification of how these methods are used:
-	   *
-	   *   type := array|bool|func|object|number|string|oneOf([...])|instanceOf(...)
-	   *   decl := ReactPropTypes.{type}(.isRequired)?
-	   *
-	   * Each and every declaration produces a function with the same signature. This
-	   * allows the creation of custom validation functions. For example:
-	   *
-	   *  var MyLink = React.createClass({
-	   *    propTypes: {
-	   *      // An optional string or URI prop named "href".
-	   *      href: function(props, propName, componentName) {
-	   *        var propValue = props[propName];
-	   *        if (propValue != null && typeof propValue !== 'string' &&
-	   *            !(propValue instanceof URI)) {
-	   *          return new Error(
-	   *            'Expected a string or an URI for ' + propName + ' in ' +
-	   *            componentName
-	   *          );
-	   *        }
-	   *      }
-	   *    },
-	   *    render: function() {...}
-	   *  });
-	   *
-	   * @internal
-	   */
-
-	  var ANONYMOUS = '<<anonymous>>';
-
-	  // Important!
-	  // Keep this list in sync with production version in `./factoryWithThrowingShims.js`.
-	  var ReactPropTypes = {
-	    array: createPrimitiveTypeChecker('array'),
-	    bigint: createPrimitiveTypeChecker('bigint'),
-	    bool: createPrimitiveTypeChecker('boolean'),
-	    func: createPrimitiveTypeChecker('function'),
-	    number: createPrimitiveTypeChecker('number'),
-	    object: createPrimitiveTypeChecker('object'),
-	    string: createPrimitiveTypeChecker('string'),
-	    symbol: createPrimitiveTypeChecker('symbol'),
-
-	    any: createAnyTypeChecker(),
-	    arrayOf: createArrayOfTypeChecker,
-	    element: createElementTypeChecker(),
-	    elementType: createElementTypeTypeChecker(),
-	    instanceOf: createInstanceTypeChecker,
-	    node: createNodeChecker(),
-	    objectOf: createObjectOfTypeChecker,
-	    oneOf: createEnumTypeChecker,
-	    oneOfType: createUnionTypeChecker,
-	    shape: createShapeTypeChecker,
-	    exact: createStrictShapeTypeChecker,
-	  };
-
-	  /**
-	   * inlined Object.is polyfill to avoid requiring consumers ship their own
-	   * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is
-	   */
-	  /*eslint-disable no-self-compare*/
-	  function is(x, y) {
-	    // SameValue algorithm
-	    if (x === y) {
-	      // Steps 1-5, 7-10
-	      // Steps 6.b-6.e: +0 != -0
-	      return x !== 0 || 1 / x === 1 / y;
-	    } else {
-	      // Step 6.a: NaN == NaN
-	      return x !== x && y !== y;
-	    }
-	  }
-	  /*eslint-enable no-self-compare*/
-
-	  /**
-	   * We use an Error-like object for backward compatibility as people may call
-	   * PropTypes directly and inspect their output. However, we don't use real
-	   * Errors anymore. We don't inspect their stack anyway, and creating them
-	   * is prohibitively expensive if they are created too often, such as what
-	   * happens in oneOfType() for any type before the one that matched.
-	   */
-	  function PropTypeError(message, data) {
-	    this.message = message;
-	    this.data = data && typeof data === 'object' ? data: {};
-	    this.stack = '';
-	  }
-	  // Make `instanceof Error` still work for returned errors.
-	  PropTypeError.prototype = Error.prototype;
-
-	  function createChainableTypeChecker(validate) {
-	    if (process.env.NODE_ENV !== 'production') {
-	      var manualPropTypeCallCache = {};
-	      var manualPropTypeWarningCount = 0;
-	    }
-	    function checkType(isRequired, props, propName, componentName, location, propFullName, secret) {
-	      componentName = componentName || ANONYMOUS;
-	      propFullName = propFullName || propName;
-
-	      if (secret !== ReactPropTypesSecret) {
-	        if (throwOnDirectAccess) {
-	          // New behavior only for users of `prop-types` package
-	          var err = new Error(
-	            'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
-	            'Use `PropTypes.checkPropTypes()` to call them. ' +
-	            'Read more at http://fb.me/use-check-prop-types'
-	          );
-	          err.name = 'Invariant Violation';
-	          throw err;
-	        } else if (process.env.NODE_ENV !== 'production' && typeof console !== 'undefined') {
-	          // Old behavior for people using React.PropTypes
-	          var cacheKey = componentName + ':' + propName;
-	          if (
-	            !manualPropTypeCallCache[cacheKey] &&
-	            // Avoid spamming the console because they are often not actionable except for lib authors
-	            manualPropTypeWarningCount < 3
-	          ) {
-	            printWarning(
-	              'You are manually calling a React.PropTypes validation ' +
-	              'function for the `' + propFullName + '` prop on `' + componentName + '`. This is deprecated ' +
-	              'and will throw in the standalone `prop-types` package. ' +
-	              'You may be seeing this warning due to a third-party PropTypes ' +
-	              'library. See https://fb.me/react-warning-dont-call-proptypes ' + 'for details.'
-	            );
-	            manualPropTypeCallCache[cacheKey] = true;
-	            manualPropTypeWarningCount++;
-	          }
-	        }
-	      }
-	      if (props[propName] == null) {
-	        if (isRequired) {
-	          if (props[propName] === null) {
-	            return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required ' + ('in `' + componentName + '`, but its value is `null`.'));
-	          }
-	          return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required in ' + ('`' + componentName + '`, but its value is `undefined`.'));
-	        }
-	        return null;
-	      } else {
-	        return validate(props, propName, componentName, location, propFullName);
-	      }
-	    }
-
-	    var chainedCheckType = checkType.bind(null, false);
-	    chainedCheckType.isRequired = checkType.bind(null, true);
-
-	    return chainedCheckType;
-	  }
-
-	  function createPrimitiveTypeChecker(expectedType) {
-	    function validate(props, propName, componentName, location, propFullName, secret) {
-	      var propValue = props[propName];
-	      var propType = getPropType(propValue);
-	      if (propType !== expectedType) {
-	        // `propValue` being instance of, say, date/regexp, pass the 'object'
-	        // check, but we can offer a more precise error message here rather than
-	        // 'of type `object`'.
-	        var preciseType = getPreciseType(propValue);
-
-	        return new PropTypeError(
-	          'Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + preciseType + '` supplied to `' + componentName + '`, expected ') + ('`' + expectedType + '`.'),
-	          {expectedType: expectedType}
-	        );
-	      }
-	      return null;
-	    }
-	    return createChainableTypeChecker(validate);
-	  }
-
-	  function createAnyTypeChecker() {
-	    return createChainableTypeChecker(emptyFunctionThatReturnsNull);
-	  }
-
-	  function createArrayOfTypeChecker(typeChecker) {
-	    function validate(props, propName, componentName, location, propFullName) {
-	      if (typeof typeChecker !== 'function') {
-	        return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside arrayOf.');
-	      }
-	      var propValue = props[propName];
-	      if (!Array.isArray(propValue)) {
-	        var propType = getPropType(propValue);
-	        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an array.'));
-	      }
-	      for (var i = 0; i < propValue.length; i++) {
-	        var error = typeChecker(propValue, i, componentName, location, propFullName + '[' + i + ']', ReactPropTypesSecret);
-	        if (error instanceof Error) {
-	          return error;
-	        }
-	      }
-	      return null;
-	    }
-	    return createChainableTypeChecker(validate);
-	  }
-
-	  function createElementTypeChecker() {
-	    function validate(props, propName, componentName, location, propFullName) {
-	      var propValue = props[propName];
-	      if (!isValidElement(propValue)) {
-	        var propType = getPropType(propValue);
-	        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected a single ReactElement.'));
-	      }
-	      return null;
-	    }
-	    return createChainableTypeChecker(validate);
-	  }
-
-	  function createElementTypeTypeChecker() {
-	    function validate(props, propName, componentName, location, propFullName) {
-	      var propValue = props[propName];
-	      if (!ReactIs.isValidElementType(propValue)) {
-	        var propType = getPropType(propValue);
-	        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected a single ReactElement type.'));
-	      }
-	      return null;
-	    }
-	    return createChainableTypeChecker(validate);
-	  }
-
-	  function createInstanceTypeChecker(expectedClass) {
-	    function validate(props, propName, componentName, location, propFullName) {
-	      if (!(props[propName] instanceof expectedClass)) {
-	        var expectedClassName = expectedClass.name || ANONYMOUS;
-	        var actualClassName = getClassName(props[propName]);
-	        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + actualClassName + '` supplied to `' + componentName + '`, expected ') + ('instance of `' + expectedClassName + '`.'));
-	      }
-	      return null;
-	    }
-	    return createChainableTypeChecker(validate);
-	  }
-
-	  function createEnumTypeChecker(expectedValues) {
-	    if (!Array.isArray(expectedValues)) {
-	      if (process.env.NODE_ENV !== 'production') {
-	        if (arguments.length > 1) {
-	          printWarning(
-	            'Invalid arguments supplied to oneOf, expected an array, got ' + arguments.length + ' arguments. ' +
-	            'A common mistake is to write oneOf(x, y, z) instead of oneOf([x, y, z]).'
-	          );
-	        } else {
-	          printWarning('Invalid argument supplied to oneOf, expected an array.');
-	        }
-	      }
-	      return emptyFunctionThatReturnsNull;
-	    }
-
-	    function validate(props, propName, componentName, location, propFullName) {
-	      var propValue = props[propName];
-	      for (var i = 0; i < expectedValues.length; i++) {
-	        if (is(propValue, expectedValues[i])) {
-	          return null;
-	        }
-	      }
-
-	      var valuesString = JSON.stringify(expectedValues, function replacer(key, value) {
-	        var type = getPreciseType(value);
-	        if (type === 'symbol') {
-	          return String(value);
-	        }
-	        return value;
-	      });
-	      return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of value `' + String(propValue) + '` ' + ('supplied to `' + componentName + '`, expected one of ' + valuesString + '.'));
-	    }
-	    return createChainableTypeChecker(validate);
-	  }
-
-	  function createObjectOfTypeChecker(typeChecker) {
-	    function validate(props, propName, componentName, location, propFullName) {
-	      if (typeof typeChecker !== 'function') {
-	        return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside objectOf.');
-	      }
-	      var propValue = props[propName];
-	      var propType = getPropType(propValue);
-	      if (propType !== 'object') {
-	        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an object.'));
-	      }
-	      for (var key in propValue) {
-	        if (has(propValue, key)) {
-	          var error = typeChecker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret);
-	          if (error instanceof Error) {
-	            return error;
-	          }
-	        }
-	      }
-	      return null;
-	    }
-	    return createChainableTypeChecker(validate);
-	  }
-
-	  function createUnionTypeChecker(arrayOfTypeCheckers) {
-	    if (!Array.isArray(arrayOfTypeCheckers)) {
-	      process.env.NODE_ENV !== 'production' ? printWarning('Invalid argument supplied to oneOfType, expected an instance of array.') : void 0;
-	      return emptyFunctionThatReturnsNull;
-	    }
-
-	    for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
-	      var checker = arrayOfTypeCheckers[i];
-	      if (typeof checker !== 'function') {
-	        printWarning(
-	          'Invalid argument supplied to oneOfType. Expected an array of check functions, but ' +
-	          'received ' + getPostfixForTypeWarning(checker) + ' at index ' + i + '.'
-	        );
-	        return emptyFunctionThatReturnsNull;
-	      }
-	    }
-
-	    function validate(props, propName, componentName, location, propFullName) {
-	      var expectedTypes = [];
-	      for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
-	        var checker = arrayOfTypeCheckers[i];
-	        var checkerResult = checker(props, propName, componentName, location, propFullName, ReactPropTypesSecret);
-	        if (checkerResult == null) {
-	          return null;
-	        }
-	        if (checkerResult.data && has(checkerResult.data, 'expectedType')) {
-	          expectedTypes.push(checkerResult.data.expectedType);
-	        }
-	      }
-	      var expectedTypesMessage = (expectedTypes.length > 0) ? ', expected one of type [' + expectedTypes.join(', ') + ']': '';
-	      return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`' + expectedTypesMessage + '.'));
-	    }
-	    return createChainableTypeChecker(validate);
-	  }
-
-	  function createNodeChecker() {
-	    function validate(props, propName, componentName, location, propFullName) {
-	      if (!isNode(props[propName])) {
-	        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`, expected a ReactNode.'));
-	      }
-	      return null;
-	    }
-	    return createChainableTypeChecker(validate);
-	  }
-
-	  function invalidValidatorError(componentName, location, propFullName, key, type) {
-	    return new PropTypeError(
-	      (componentName || 'React class') + ': ' + location + ' type `' + propFullName + '.' + key + '` is invalid; ' +
-	      'it must be a function, usually from the `prop-types` package, but received `' + type + '`.'
-	    );
-	  }
-
-	  function createShapeTypeChecker(shapeTypes) {
-	    function validate(props, propName, componentName, location, propFullName) {
-	      var propValue = props[propName];
-	      var propType = getPropType(propValue);
-	      if (propType !== 'object') {
-	        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
-	      }
-	      for (var key in shapeTypes) {
-	        var checker = shapeTypes[key];
-	        if (typeof checker !== 'function') {
-	          return invalidValidatorError(componentName, location, propFullName, key, getPreciseType(checker));
-	        }
-	        var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret);
-	        if (error) {
-	          return error;
-	        }
-	      }
-	      return null;
-	    }
-	    return createChainableTypeChecker(validate);
-	  }
-
-	  function createStrictShapeTypeChecker(shapeTypes) {
-	    function validate(props, propName, componentName, location, propFullName) {
-	      var propValue = props[propName];
-	      var propType = getPropType(propValue);
-	      if (propType !== 'object') {
-	        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
-	      }
-	      // We need to check all keys in case some are required but missing from props.
-	      var allKeys = assign({}, props[propName], shapeTypes);
-	      for (var key in allKeys) {
-	        var checker = shapeTypes[key];
-	        if (has(shapeTypes, key) && typeof checker !== 'function') {
-	          return invalidValidatorError(componentName, location, propFullName, key, getPreciseType(checker));
-	        }
-	        if (!checker) {
-	          return new PropTypeError(
-	            'Invalid ' + location + ' `' + propFullName + '` key `' + key + '` supplied to `' + componentName + '`.' +
-	            '\nBad object: ' + JSON.stringify(props[propName], null, '  ') +
-	            '\nValid keys: ' + JSON.stringify(Object.keys(shapeTypes), null, '  ')
-	          );
-	        }
-	        var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret);
-	        if (error) {
-	          return error;
-	        }
-	      }
-	      return null;
-	    }
-
-	    return createChainableTypeChecker(validate);
-	  }
-
-	  function isNode(propValue) {
-	    switch (typeof propValue) {
-	      case 'number':
-	      case 'string':
-	      case 'undefined':
-	        return true;
-	      case 'boolean':
-	        return !propValue;
-	      case 'object':
-	        if (Array.isArray(propValue)) {
-	          return propValue.every(isNode);
-	        }
-	        if (propValue === null || isValidElement(propValue)) {
-	          return true;
-	        }
-
-	        var iteratorFn = getIteratorFn(propValue);
-	        if (iteratorFn) {
-	          var iterator = iteratorFn.call(propValue);
-	          var step;
-	          if (iteratorFn !== propValue.entries) {
-	            while (!(step = iterator.next()).done) {
-	              if (!isNode(step.value)) {
-	                return false;
-	              }
-	            }
-	          } else {
-	            // Iterator will provide entry [k,v] tuples rather than values.
-	            while (!(step = iterator.next()).done) {
-	              var entry = step.value;
-	              if (entry) {
-	                if (!isNode(entry[1])) {
-	                  return false;
-	                }
-	              }
-	            }
-	          }
-	        } else {
-	          return false;
-	        }
-
-	        return true;
-	      default:
-	        return false;
-	    }
-	  }
-
-	  function isSymbol(propType, propValue) {
-	    // Native Symbol.
-	    if (propType === 'symbol') {
-	      return true;
-	    }
-
-	    // falsy value can't be a Symbol
-	    if (!propValue) {
-	      return false;
-	    }
-
-	    // 19.4.3.5 Symbol.prototype[@@toStringTag] === 'Symbol'
-	    if (propValue['@@toStringTag'] === 'Symbol') {
-	      return true;
-	    }
-
-	    // Fallback for non-spec compliant Symbols which are polyfilled.
-	    if (typeof Symbol === 'function' && propValue instanceof Symbol) {
-	      return true;
-	    }
-
-	    return false;
-	  }
-
-	  // Equivalent of `typeof` but with special handling for array and regexp.
-	  function getPropType(propValue) {
-	    var propType = typeof propValue;
-	    if (Array.isArray(propValue)) {
-	      return 'array';
-	    }
-	    if (propValue instanceof RegExp) {
-	      // Old webkits (at least until Android 4.0) return 'function' rather than
-	      // 'object' for typeof a RegExp. We'll normalize this here so that /bla/
-	      // passes PropTypes.object.
-	      return 'object';
-	    }
-	    if (isSymbol(propType, propValue)) {
-	      return 'symbol';
-	    }
-	    return propType;
-	  }
-
-	  // This handles more types than `getPropType`. Only used for error messages.
-	  // See `createPrimitiveTypeChecker`.
-	  function getPreciseType(propValue) {
-	    if (typeof propValue === 'undefined' || propValue === null) {
-	      return '' + propValue;
-	    }
-	    var propType = getPropType(propValue);
-	    if (propType === 'object') {
-	      if (propValue instanceof Date) {
-	        return 'date';
-	      } else if (propValue instanceof RegExp) {
-	        return 'regexp';
-	      }
-	    }
-	    return propType;
-	  }
-
-	  // Returns a string that is postfixed to a warning about an invalid type.
-	  // For example, "undefined" or "of type array"
-	  function getPostfixForTypeWarning(value) {
-	    var type = getPreciseType(value);
-	    switch (type) {
-	      case 'array':
-	      case 'object':
-	        return 'an ' + type;
-	      case 'boolean':
-	      case 'date':
-	      case 'regexp':
-	        return 'a ' + type;
-	      default:
-	        return type;
-	    }
-	  }
-
-	  // Returns class name of the object, if any.
-	  function getClassName(propValue) {
-	    if (!propValue.constructor || !propValue.constructor.name) {
-	      return ANONYMOUS;
-	    }
-	    return propValue.constructor.name;
-	  }
-
-	  ReactPropTypes.checkPropTypes = checkPropTypes;
-	  ReactPropTypes.resetWarningCache = checkPropTypes.resetWarningCache;
-	  ReactPropTypes.PropTypes = ReactPropTypes;
-
-	  return ReactPropTypes;
-	};
-	return factoryWithTypeCheckers;
-}
-
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-var factoryWithThrowingShims;
-var hasRequiredFactoryWithThrowingShims;
-
-function requireFactoryWithThrowingShims () {
-	if (hasRequiredFactoryWithThrowingShims) return factoryWithThrowingShims;
-	hasRequiredFactoryWithThrowingShims = 1;
-
-	var ReactPropTypesSecret = requireReactPropTypesSecret();
-
-	function emptyFunction() {}
-	function emptyFunctionWithReset() {}
-	emptyFunctionWithReset.resetWarningCache = emptyFunction;
-
-	factoryWithThrowingShims = function() {
-	  function shim(props, propName, componentName, location, propFullName, secret) {
-	    if (secret === ReactPropTypesSecret) {
-	      // It is still safe when called from React.
-	      return;
-	    }
-	    var err = new Error(
-	      'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
-	      'Use PropTypes.checkPropTypes() to call them. ' +
-	      'Read more at http://fb.me/use-check-prop-types'
-	    );
-	    err.name = 'Invariant Violation';
-	    throw err;
-	  }	  shim.isRequired = shim;
-	  function getShim() {
-	    return shim;
-	  }	  // Important!
-	  // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
-	  var ReactPropTypes = {
-	    array: shim,
-	    bigint: shim,
-	    bool: shim,
-	    func: shim,
-	    number: shim,
-	    object: shim,
-	    string: shim,
-	    symbol: shim,
-
-	    any: shim,
-	    arrayOf: getShim,
-	    element: shim,
-	    elementType: shim,
-	    instanceOf: getShim,
-	    node: shim,
-	    objectOf: getShim,
-	    oneOf: getShim,
-	    oneOfType: getShim,
-	    shape: getShim,
-	    exact: getShim,
-
-	    checkPropTypes: emptyFunctionWithReset,
-	    resetWarningCache: emptyFunction
-	  };
-
-	  ReactPropTypes.PropTypes = ReactPropTypes;
-
-	  return ReactPropTypes;
-	};
-	return factoryWithThrowingShims;
-}
-
-if (process.env.NODE_ENV !== 'production') {
-  var ReactIs = requireReactIs();
-
-  // By explicitly using `prop-types` you are opting into new development behavior.
-  // http://fb.me/prop-types-in-prod
-  var throwOnDirectAccess = true;
-  propTypes.exports = requireFactoryWithTypeCheckers()(ReactIs.isElement, throwOnDirectAccess);
-} else {
-  // By explicitly using `prop-types` you are opting into new production behavior.
-  // http://fb.me/prop-types-in-prod
-  propTypes.exports = requireFactoryWithThrowingShims()();
-}
-
-var propTypesExports = propTypes.exports;
-var PropTypes = /*@__PURE__*/getDefaultExportFromCjs(propTypesExports);
-
-function r(e){var t,f,n="";if("string"==typeof e||"number"==typeof e)n+=e;else if("object"==typeof e)if(Array.isArray(e))for(t=0;t<e.length;t++)e[t]&&(f=r(e[t]))&&(n&&(n+=" "),n+=f);else for(t in e)e[t]&&(n&&(n+=" "),n+=t);return n}function clsx(){for(var e,t,f=0,n="";f<arguments.length;)(e=arguments[f++])&&(t=r(e))&&(n&&(n+=" "),n+=t);return n}
-
-/**
- * lodash (Custom Build) <https://lodash.com/>
- * Build: `lodash modularize exports="npm" -o ./`
- * Copyright jQuery Foundation and other contributors <https://jquery.org/>
- * Released under MIT license <https://lodash.com/license>
- * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
- * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
- */
-
-/** Used as the `TypeError` message for "Functions" methods. */
-var FUNC_ERROR_TEXT = 'Expected a function';
-
-/** Used to stand-in for `undefined` hash values. */
-var HASH_UNDEFINED = '__lodash_hash_undefined__';
-
-/** `Object#toString` result references. */
-var funcTag = '[object Function]',
-    genTag = '[object GeneratorFunction]';
-
-/**
- * Used to match `RegExp`
- * [syntax characters](http://ecma-international.org/ecma-262/7.0/#sec-patterns).
- */
-var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
-
-/** Used to detect host constructors (Safari). */
-var reIsHostCtor = /^\[object .+?Constructor\]$/;
-
-/** Detect free variable `global` from Node.js. */
-var freeGlobal = typeof commonjsGlobal == 'object' && commonjsGlobal && commonjsGlobal.Object === Object && commonjsGlobal;
-
-/** Detect free variable `self`. */
-var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
-
-/** Used as a reference to the global object. */
-var root = freeGlobal || freeSelf || Function('return this')();
-
-/**
- * Gets the value at `key` of `object`.
- *
- * @private
- * @param {Object} [object] The object to query.
- * @param {string} key The key of the property to get.
- * @returns {*} Returns the property value.
- */
-function getValue$1(object, key) {
-  return object == null ? undefined : object[key];
-}
-
-/**
- * Checks if `value` is a host object in IE < 9.
- *
- * @private
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a host object, else `false`.
- */
-function isHostObject(value) {
-  // Many host objects are `Object` objects that can coerce to strings
-  // despite having improperly defined `toString` methods.
-  var result = false;
-  if (value != null && typeof value.toString != 'function') {
-    try {
-      result = !!(value + '');
-    } catch (e) {}
-  }
-  return result;
-}
-
-/** Used for built-in method references. */
-var arrayProto = Array.prototype,
-    funcProto = Function.prototype,
-    objectProto = Object.prototype;
-
-/** Used to detect overreaching core-js shims. */
-var coreJsData = root['__core-js_shared__'];
-
-/** Used to detect methods masquerading as native. */
-var maskSrcKey = (function() {
-  var uid = /[^.]+$/.exec(coreJsData && coreJsData.keys && coreJsData.keys.IE_PROTO || '');
-  return uid ? ('Symbol(src)_1.' + uid) : '';
-}());
-
-/** Used to resolve the decompiled source of functions. */
-var funcToString = funcProto.toString;
-
-/** Used to check objects for own properties. */
-var hasOwnProperty = objectProto.hasOwnProperty;
-
-/**
- * Used to resolve the
- * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
- * of values.
- */
-var objectToString = objectProto.toString;
-
-/** Used to detect if a method is native. */
-var reIsNative = RegExp('^' +
-  funcToString.call(hasOwnProperty).replace(reRegExpChar, '\\$&')
-  .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$'
-);
-
-/** Built-in value references. */
-var splice = arrayProto.splice;
-
-/* Built-in method references that are verified to be native. */
-var Map$1 = getNative(root, 'Map'),
-    nativeCreate = getNative(Object, 'create');
-
-/**
- * Creates a hash object.
- *
- * @private
- * @constructor
- * @param {Array} [entries] The key-value pairs to cache.
- */
-function Hash(entries) {
-  var index = -1,
-      length = entries ? entries.length : 0;
-
-  this.clear();
-  while (++index < length) {
-    var entry = entries[index];
-    this.set(entry[0], entry[1]);
-  }
-}
-
-/**
- * Removes all key-value entries from the hash.
- *
- * @private
- * @name clear
- * @memberOf Hash
- */
-function hashClear() {
-  this.__data__ = nativeCreate ? nativeCreate(null) : {};
-}
-
-/**
- * Removes `key` and its value from the hash.
- *
- * @private
- * @name delete
- * @memberOf Hash
- * @param {Object} hash The hash to modify.
- * @param {string} key The key of the value to remove.
- * @returns {boolean} Returns `true` if the entry was removed, else `false`.
- */
-function hashDelete(key) {
-  return this.has(key) && delete this.__data__[key];
-}
-
-/**
- * Gets the hash value for `key`.
- *
- * @private
- * @name get
- * @memberOf Hash
- * @param {string} key The key of the value to get.
- * @returns {*} Returns the entry value.
- */
-function hashGet(key) {
-  var data = this.__data__;
-  if (nativeCreate) {
-    var result = data[key];
-    return result === HASH_UNDEFINED ? undefined : result;
-  }
-  return hasOwnProperty.call(data, key) ? data[key] : undefined;
-}
-
-/**
- * Checks if a hash value for `key` exists.
- *
- * @private
- * @name has
- * @memberOf Hash
- * @param {string} key The key of the entry to check.
- * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
- */
-function hashHas(key) {
-  var data = this.__data__;
-  return nativeCreate ? data[key] !== undefined : hasOwnProperty.call(data, key);
-}
-
-/**
- * Sets the hash `key` to `value`.
- *
- * @private
- * @name set
- * @memberOf Hash
- * @param {string} key The key of the value to set.
- * @param {*} value The value to set.
- * @returns {Object} Returns the hash instance.
- */
-function hashSet(key, value) {
-  var data = this.__data__;
-  data[key] = (nativeCreate && value === undefined) ? HASH_UNDEFINED : value;
-  return this;
-}
-
-// Add methods to `Hash`.
-Hash.prototype.clear = hashClear;
-Hash.prototype['delete'] = hashDelete;
-Hash.prototype.get = hashGet;
-Hash.prototype.has = hashHas;
-Hash.prototype.set = hashSet;
-
-/**
- * Creates an list cache object.
- *
- * @private
- * @constructor
- * @param {Array} [entries] The key-value pairs to cache.
- */
-function ListCache(entries) {
-  var index = -1,
-      length = entries ? entries.length : 0;
-
-  this.clear();
-  while (++index < length) {
-    var entry = entries[index];
-    this.set(entry[0], entry[1]);
-  }
-}
-
-/**
- * Removes all key-value entries from the list cache.
- *
- * @private
- * @name clear
- * @memberOf ListCache
- */
-function listCacheClear() {
-  this.__data__ = [];
-}
-
-/**
- * Removes `key` and its value from the list cache.
- *
- * @private
- * @name delete
- * @memberOf ListCache
- * @param {string} key The key of the value to remove.
- * @returns {boolean} Returns `true` if the entry was removed, else `false`.
- */
-function listCacheDelete(key) {
-  var data = this.__data__,
-      index = assocIndexOf(data, key);
-
-  if (index < 0) {
-    return false;
-  }
-  var lastIndex = data.length - 1;
-  if (index == lastIndex) {
-    data.pop();
-  } else {
-    splice.call(data, index, 1);
-  }
-  return true;
-}
-
-/**
- * Gets the list cache value for `key`.
- *
- * @private
- * @name get
- * @memberOf ListCache
- * @param {string} key The key of the value to get.
- * @returns {*} Returns the entry value.
- */
-function listCacheGet(key) {
-  var data = this.__data__,
-      index = assocIndexOf(data, key);
-
-  return index < 0 ? undefined : data[index][1];
-}
-
-/**
- * Checks if a list cache value for `key` exists.
- *
- * @private
- * @name has
- * @memberOf ListCache
- * @param {string} key The key of the entry to check.
- * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
- */
-function listCacheHas(key) {
-  return assocIndexOf(this.__data__, key) > -1;
-}
-
-/**
- * Sets the list cache `key` to `value`.
- *
- * @private
- * @name set
- * @memberOf ListCache
- * @param {string} key The key of the value to set.
- * @param {*} value The value to set.
- * @returns {Object} Returns the list cache instance.
- */
-function listCacheSet(key, value) {
-  var data = this.__data__,
-      index = assocIndexOf(data, key);
-
-  if (index < 0) {
-    data.push([key, value]);
-  } else {
-    data[index][1] = value;
-  }
-  return this;
-}
-
-// Add methods to `ListCache`.
-ListCache.prototype.clear = listCacheClear;
-ListCache.prototype['delete'] = listCacheDelete;
-ListCache.prototype.get = listCacheGet;
-ListCache.prototype.has = listCacheHas;
-ListCache.prototype.set = listCacheSet;
-
-/**
- * Creates a map cache object to store key-value pairs.
- *
- * @private
- * @constructor
- * @param {Array} [entries] The key-value pairs to cache.
- */
-function MapCache(entries) {
-  var index = -1,
-      length = entries ? entries.length : 0;
-
-  this.clear();
-  while (++index < length) {
-    var entry = entries[index];
-    this.set(entry[0], entry[1]);
-  }
-}
-
-/**
- * Removes all key-value entries from the map.
- *
- * @private
- * @name clear
- * @memberOf MapCache
- */
-function mapCacheClear() {
-  this.__data__ = {
-    'hash': new Hash,
-    'map': new (Map$1 || ListCache),
-    'string': new Hash
-  };
-}
-
-/**
- * Removes `key` and its value from the map.
- *
- * @private
- * @name delete
- * @memberOf MapCache
- * @param {string} key The key of the value to remove.
- * @returns {boolean} Returns `true` if the entry was removed, else `false`.
- */
-function mapCacheDelete(key) {
-  return getMapData(this, key)['delete'](key);
-}
-
-/**
- * Gets the map value for `key`.
- *
- * @private
- * @name get
- * @memberOf MapCache
- * @param {string} key The key of the value to get.
- * @returns {*} Returns the entry value.
- */
-function mapCacheGet(key) {
-  return getMapData(this, key).get(key);
-}
-
-/**
- * Checks if a map value for `key` exists.
- *
- * @private
- * @name has
- * @memberOf MapCache
- * @param {string} key The key of the entry to check.
- * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
- */
-function mapCacheHas(key) {
-  return getMapData(this, key).has(key);
-}
-
-/**
- * Sets the map `key` to `value`.
- *
- * @private
- * @name set
- * @memberOf MapCache
- * @param {string} key The key of the value to set.
- * @param {*} value The value to set.
- * @returns {Object} Returns the map cache instance.
- */
-function mapCacheSet(key, value) {
-  getMapData(this, key).set(key, value);
-  return this;
-}
-
-// Add methods to `MapCache`.
-MapCache.prototype.clear = mapCacheClear;
-MapCache.prototype['delete'] = mapCacheDelete;
-MapCache.prototype.get = mapCacheGet;
-MapCache.prototype.has = mapCacheHas;
-MapCache.prototype.set = mapCacheSet;
-
-/**
- * Gets the index at which the `key` is found in `array` of key-value pairs.
- *
- * @private
- * @param {Array} array The array to inspect.
- * @param {*} key The key to search for.
- * @returns {number} Returns the index of the matched value, else `-1`.
- */
-function assocIndexOf(array, key) {
-  var length = array.length;
-  while (length--) {
-    if (eq(array[length][0], key)) {
-      return length;
-    }
-  }
-  return -1;
-}
-
-/**
- * The base implementation of `_.isNative` without bad shim checks.
- *
- * @private
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a native function,
- *  else `false`.
- */
-function baseIsNative(value) {
-  if (!isObject(value) || isMasked(value)) {
-    return false;
-  }
-  var pattern = (isFunction(value) || isHostObject(value)) ? reIsNative : reIsHostCtor;
-  return pattern.test(toSource(value));
-}
-
-/**
- * Gets the data for `map`.
- *
- * @private
- * @param {Object} map The map to query.
- * @param {string} key The reference key.
- * @returns {*} Returns the map data.
- */
-function getMapData(map, key) {
-  var data = map.__data__;
-  return isKeyable(key)
-    ? data[typeof key == 'string' ? 'string' : 'hash']
-    : data.map;
-}
-
-/**
- * Gets the native function at `key` of `object`.
- *
- * @private
- * @param {Object} object The object to query.
- * @param {string} key The key of the method to get.
- * @returns {*} Returns the function if it's native, else `undefined`.
- */
-function getNative(object, key) {
-  var value = getValue$1(object, key);
-  return baseIsNative(value) ? value : undefined;
-}
-
-/**
- * Checks if `value` is suitable for use as unique object key.
- *
- * @private
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is suitable, else `false`.
- */
-function isKeyable(value) {
-  var type = typeof value;
-  return (type == 'string' || type == 'number' || type == 'symbol' || type == 'boolean')
-    ? (value !== '__proto__')
-    : (value === null);
-}
-
-/**
- * Checks if `func` has its source masked.
- *
- * @private
- * @param {Function} func The function to check.
- * @returns {boolean} Returns `true` if `func` is masked, else `false`.
- */
-function isMasked(func) {
-  return !!maskSrcKey && (maskSrcKey in func);
-}
-
-/**
- * Converts `func` to its source code.
- *
- * @private
- * @param {Function} func The function to process.
- * @returns {string} Returns the source code.
- */
-function toSource(func) {
-  if (func != null) {
-    try {
-      return funcToString.call(func);
-    } catch (e) {}
-    try {
-      return (func + '');
-    } catch (e) {}
-  }
-  return '';
-}
-
-/**
- * Creates a function that memoizes the result of `func`. If `resolver` is
- * provided, it determines the cache key for storing the result based on the
- * arguments provided to the memoized function. By default, the first argument
- * provided to the memoized function is used as the map cache key. The `func`
- * is invoked with the `this` binding of the memoized function.
- *
- * **Note:** The cache is exposed as the `cache` property on the memoized
- * function. Its creation may be customized by replacing the `_.memoize.Cache`
- * constructor with one whose instances implement the
- * [`Map`](http://ecma-international.org/ecma-262/7.0/#sec-properties-of-the-map-prototype-object)
- * method interface of `delete`, `get`, `has`, and `set`.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Function
- * @param {Function} func The function to have its output memoized.
- * @param {Function} [resolver] The function to resolve the cache key.
- * @returns {Function} Returns the new memoized function.
- * @example
- *
- * var object = { 'a': 1, 'b': 2 };
- * var other = { 'c': 3, 'd': 4 };
- *
- * var values = _.memoize(_.values);
- * values(object);
- * // => [1, 2]
- *
- * values(other);
- * // => [3, 4]
- *
- * object.a = 2;
- * values(object);
- * // => [1, 2]
- *
- * // Modify the result cache.
- * values.cache.set(object, ['a', 'b']);
- * values(object);
- * // => ['a', 'b']
- *
- * // Replace `_.memoize.Cache`.
- * _.memoize.Cache = WeakMap;
- */
-function memoize(func, resolver) {
-  if (typeof func != 'function' || (resolver && typeof resolver != 'function')) {
-    throw new TypeError(FUNC_ERROR_TEXT);
-  }
-  var memoized = function() {
-    var args = arguments,
-        key = resolver ? resolver.apply(this, args) : args[0],
-        cache = memoized.cache;
-
-    if (cache.has(key)) {
-      return cache.get(key);
-    }
-    var result = func.apply(this, args);
-    memoized.cache = cache.set(key, result);
-    return result;
-  };
-  memoized.cache = new (memoize.Cache || MapCache);
-  return memoized;
-}
-
-// Assign cache to `_.memoize`.
-memoize.Cache = MapCache;
-
-/**
- * Performs a
- * [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
- * comparison between two values to determine if they are equivalent.
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Lang
- * @param {*} value The value to compare.
- * @param {*} other The other value to compare.
- * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
- * @example
- *
- * var object = { 'a': 1 };
- * var other = { 'a': 1 };
- *
- * _.eq(object, object);
- * // => true
- *
- * _.eq(object, other);
- * // => false
- *
- * _.eq('a', 'a');
- * // => true
- *
- * _.eq('a', Object('a'));
- * // => false
- *
- * _.eq(NaN, NaN);
- * // => true
- */
-function eq(value, other) {
-  return value === other || (value !== value && other !== other);
-}
-
-/**
- * Checks if `value` is classified as a `Function` object.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a function, else `false`.
- * @example
- *
- * _.isFunction(_);
- * // => true
- *
- * _.isFunction(/abc/);
- * // => false
- */
-function isFunction(value) {
-  // The use of `Object#toString` avoids issues with the `typeof` operator
-  // in Safari 8-9 which returns 'object' for typed array and other constructors.
-  var tag = isObject(value) ? objectToString.call(value) : '';
-  return tag == funcTag || tag == genTag;
-}
-
-/**
- * Checks if `value` is the
- * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
- * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is an object, else `false`.
- * @example
- *
- * _.isObject({});
- * // => true
- *
- * _.isObject([1, 2, 3]);
- * // => true
- *
- * _.isObject(_.noop);
- * // => true
- *
- * _.isObject(null);
- * // => false
- */
-function isObject(value) {
-  var type = typeof value;
-  return !!value && (type == 'object' || type == 'function');
-}
-
-var lodash_memoize = memoize;
-
-var memoize$1 = /*@__PURE__*/getDefaultExportFromCjs(lodash_memoize);
-
-function resolver(options) {
-    return JSON.stringify(options);
-}
-function isString(el) {
-    return typeof el === 'string';
-}
-function isUnique(el, index, arr) {
-    return arr.indexOf(el) === index;
-}
-function isAllLowerCase(el) {
-    return el.toLowerCase() === el;
-}
-function fixCommas(el) {
-    return el.indexOf(',') === -1 ? el : el.split(',');
-}
-function normalizeLocale(locale) {
-    if (!locale) {
-        return locale;
-    }
-    if (locale === 'C' || locale === 'posix' || locale === 'POSIX') {
-        return 'en-US';
-    }
-    // If there's a dot (.) in the locale, it's likely in the format of "en-US.UTF-8", so we only take the first part
-    if (locale.indexOf('.') !== -1) {
-        var _a = locale.split('.')[0], actualLocale = _a === void 0 ? '' : _a;
-        return normalizeLocale(actualLocale);
-    }
-    // If there's an at sign (@) in the locale, it's likely in the format of "en-US@posix", so we only take the first part
-    if (locale.indexOf('@') !== -1) {
-        var _b = locale.split('@')[0], actualLocale = _b === void 0 ? '' : _b;
-        return normalizeLocale(actualLocale);
-    }
-    // If there's a dash (-) in the locale and it's not all lower case, it's already in the format of "en-US", so we return it
-    if (locale.indexOf('-') === -1 || !isAllLowerCase(locale)) {
-        return locale;
-    }
-    var _c = locale.split('-'), splitEl1 = _c[0], _d = _c[1], splitEl2 = _d === void 0 ? '' : _d;
-    return "".concat(splitEl1, "-").concat(splitEl2.toUpperCase());
-}
-function getUserLocalesInternal(_a) {
-    var _b = _a === void 0 ? {} : _a, _c = _b.useFallbackLocale, useFallbackLocale = _c === void 0 ? true : _c, _d = _b.fallbackLocale, fallbackLocale = _d === void 0 ? 'en-US' : _d;
-    var languageList = [];
-    if (typeof navigator !== 'undefined') {
-        var rawLanguages = navigator.languages || [];
-        var languages = [];
-        for (var _i = 0, rawLanguages_1 = rawLanguages; _i < rawLanguages_1.length; _i++) {
-            var rawLanguagesItem = rawLanguages_1[_i];
-            languages = languages.concat(fixCommas(rawLanguagesItem));
-        }
-        var rawLanguage = navigator.language;
-        var language = rawLanguage ? fixCommas(rawLanguage) : rawLanguage;
-        languageList = languageList.concat(languages, language);
-    }
-    if (useFallbackLocale) {
-        languageList.push(fallbackLocale);
-    }
-    return languageList.filter(isString).map(normalizeLocale).filter(isUnique);
-}
-var getUserLocales = memoize$1(getUserLocalesInternal, resolver);
-function getUserLocaleInternal(options) {
-    return getUserLocales(options)[0] || null;
-}
-var getUserLocale = memoize$1(getUserLocaleInternal, resolver);
-
-/**
- * Utils
- */
-function makeGetEdgeOfNeighbor(getPeriod, getEdgeOfPeriod, defaultOffset) {
-    return function makeGetEdgeOfNeighborInternal(date, offset) {
-        if (offset === void 0) { offset = defaultOffset; }
-        var previousPeriod = getPeriod(date) + offset;
-        return getEdgeOfPeriod(previousPeriod);
-    };
-}
-function makeGetEnd(getBeginOfNextPeriod) {
-    return function makeGetEndInternal(date) {
-        return new Date(getBeginOfNextPeriod(date).getTime() - 1);
-    };
-}
-function makeGetRange(getStart, getEnd) {
-    return function makeGetRangeInternal(date) {
-        return [getStart(date), getEnd(date)];
-    };
-}
-/**
- * Simple getters - getting a property of a given point in time
- */
-/**
- * Gets year from a given date.
- *
- * @param {DateLike} date Date to get year from
- * @returns {number} Year
- */
-function getYear(date) {
-    if (date instanceof Date) {
-        return date.getFullYear();
-    }
-    if (typeof date === 'number') {
-        return date;
-    }
-    var year = parseInt(date, 10);
-    if (typeof date === 'string' && !isNaN(year)) {
-        return year;
-    }
-    throw new Error("Failed to get year from date: ".concat(date, "."));
-}
-/**
- * Gets month from a given date.
- *
- * @param {Date} date Date to get month from
- * @returns {number} Month
- */
-function getMonth(date) {
-    if (date instanceof Date) {
-        return date.getMonth();
-    }
-    throw new Error("Failed to get month from date: ".concat(date, "."));
-}
-/**
- * Gets day of the month from a given date.
- *
- * @param {Date} date Date to get day of the month from
- * @returns {number} Day of the month
- */
-function getDate(date) {
-    if (date instanceof Date) {
-        return date.getDate();
-    }
-    throw new Error("Failed to get year from date: ".concat(date, "."));
-}
-/**
- * Century
- */
-/**
- * Gets century start date from a given date.
- *
- * @param {DateLike} date Date to get century start from
- * @returns {Date} Century start date
- */
-function getCenturyStart(date) {
-    var year = getYear(date);
-    var centuryStartYear = year + ((-year + 1) % 100);
-    var centuryStartDate = new Date();
-    centuryStartDate.setFullYear(centuryStartYear, 0, 1);
-    centuryStartDate.setHours(0, 0, 0, 0);
-    return centuryStartDate;
-}
-/**
- * Gets previous century start date from a given date.
- *
- * @param {DateLike} date Date to get previous century start from
- * @returns {Date} Previous century start date
- */
-var getPreviousCenturyStart = makeGetEdgeOfNeighbor(getYear, getCenturyStart, -100);
-/**
- * Gets next century start date from a given date.
- *
- * @param {DateLike} date Date to get next century start from
- * @returns {Date} Next century start date
- */
-var getNextCenturyStart = makeGetEdgeOfNeighbor(getYear, getCenturyStart, 100);
-/**
- * Gets century end date from a given date.
- *
- * @param {DateLike} date Date to get century end from
- * @returns {Date} Century end date
- */
-var getCenturyEnd = makeGetEnd(getNextCenturyStart);
-/**
- * Gets previous century end date from a given date.
- *
- * @param {DateLike} date Date to get previous century end from
- * @returns {Date} Previous century end date
- */
-var getPreviousCenturyEnd = makeGetEdgeOfNeighbor(getYear, getCenturyEnd, -100);
-/**
- * Gets century start and end dates from a given date.
- *
- * @param {DateLike} date Date to get century start and end from
- * @returns {[Date, Date]} Century start and end dates
- */
-var getCenturyRange = makeGetRange(getCenturyStart, getCenturyEnd);
-/**
- * Decade
- */
-/**
- * Gets decade start date from a given date.
- *
- * @param {DateLike} date Date to get decade start from
- * @returns {Date} Decade start date
- */
-function getDecadeStart(date) {
-    var year = getYear(date);
-    var decadeStartYear = year + ((-year + 1) % 10);
-    var decadeStartDate = new Date();
-    decadeStartDate.setFullYear(decadeStartYear, 0, 1);
-    decadeStartDate.setHours(0, 0, 0, 0);
-    return decadeStartDate;
-}
-/**
- * Gets previous decade start date from a given date.
- *
- * @param {DateLike} date Date to get previous decade start from
- * @returns {Date} Previous decade start date
- */
-var getPreviousDecadeStart = makeGetEdgeOfNeighbor(getYear, getDecadeStart, -10);
-/**
- * Gets next decade start date from a given date.
- *
- * @param {DateLike} date Date to get next decade start from
- * @returns {Date} Next decade start date
- */
-var getNextDecadeStart = makeGetEdgeOfNeighbor(getYear, getDecadeStart, 10);
-/**
- * Gets decade end date from a given date.
- *
- * @param {DateLike} date Date to get decade end from
- * @returns {Date} Decade end date
- */
-var getDecadeEnd = makeGetEnd(getNextDecadeStart);
-/**
- * Gets previous decade end date from a given date.
- *
- * @param {DateLike} date Date to get previous decade end from
- * @returns {Date} Previous decade end date
- */
-var getPreviousDecadeEnd = makeGetEdgeOfNeighbor(getYear, getDecadeEnd, -10);
-/**
- * Gets decade start and end dates from a given date.
- *
- * @param {DateLike} date Date to get decade start and end from
- * @returns {[Date, Date]} Decade start and end dates
- */
-var getDecadeRange = makeGetRange(getDecadeStart, getDecadeEnd);
-/**
- * Year
- */
-/**
- * Gets year start date from a given date.
- *
- * @param {DateLike} date Date to get year start from
- * @returns {Date} Year start date
- */
-function getYearStart(date) {
-    var year = getYear(date);
-    var yearStartDate = new Date();
-    yearStartDate.setFullYear(year, 0, 1);
-    yearStartDate.setHours(0, 0, 0, 0);
-    return yearStartDate;
-}
-/**
- * Gets previous year start date from a given date.
- *
- * @param {DateLike} date Date to get previous year start from
- * @returns {Date} Previous year start date
- */
-var getPreviousYearStart = makeGetEdgeOfNeighbor(getYear, getYearStart, -1);
-/**
- * Gets next year start date from a given date.
- *
- * @param {DateLike} date Date to get next year start from
- * @returns {Date} Next year start date
- */
-var getNextYearStart = makeGetEdgeOfNeighbor(getYear, getYearStart, 1);
-/**
- * Gets year end date from a given date.
- *
- * @param {DateLike} date Date to get year end from
- * @returns {Date} Year end date
- */
-var getYearEnd = makeGetEnd(getNextYearStart);
-/**
- * Gets previous year end date from a given date.
- *
- * @param {DateLike} date Date to get previous year end from
- * @returns {Date} Previous year end date
- */
-var getPreviousYearEnd = makeGetEdgeOfNeighbor(getYear, getYearEnd, -1);
-/**
- * Gets year start and end dates from a given date.
- *
- * @param {DateLike} date Date to get year start and end from
- * @returns {[Date, Date]} Year start and end dates
- */
-var getYearRange = makeGetRange(getYearStart, getYearEnd);
-/**
- * Month
- */
-function makeGetEdgeOfNeighborMonth(getEdgeOfPeriod, defaultOffset) {
-    return function makeGetEdgeOfNeighborMonthInternal(date, offset) {
-        if (offset === void 0) { offset = defaultOffset; }
-        var year = getYear(date);
-        var month = getMonth(date) + offset;
-        var previousPeriod = new Date();
-        previousPeriod.setFullYear(year, month, 1);
-        previousPeriod.setHours(0, 0, 0, 0);
-        return getEdgeOfPeriod(previousPeriod);
-    };
-}
-/**
- * Gets month start date from a given date.
- *
- * @param {DateLike} date Date to get month start from
- * @returns {Date} Month start date
- */
-function getMonthStart(date) {
-    var year = getYear(date);
-    var month = getMonth(date);
-    var monthStartDate = new Date();
-    monthStartDate.setFullYear(year, month, 1);
-    monthStartDate.setHours(0, 0, 0, 0);
-    return monthStartDate;
-}
-/**
- * Gets previous month start date from a given date.
- *
- * @param {DateLike} date Date to get previous month start from
- * @returns {Date} Previous month start date
- */
-var getPreviousMonthStart = makeGetEdgeOfNeighborMonth(getMonthStart, -1);
-/**
- * Gets next month start date from a given date.
- *
- * @param {DateLike} date Date to get next month start from
- * @returns {Date} Next month start date
- */
-var getNextMonthStart = makeGetEdgeOfNeighborMonth(getMonthStart, 1);
-/**
- * Gets month end date from a given date.
- *
- * @param {DateLike} date Date to get month end from
- * @returns {Date} Month end date
- */
-var getMonthEnd = makeGetEnd(getNextMonthStart);
-/**
- * Gets previous month end date from a given date.
- *
- * @param {DateLike} date Date to get previous month end from
- * @returns {Date} Previous month end date
- */
-var getPreviousMonthEnd = makeGetEdgeOfNeighborMonth(getMonthEnd, -1);
-/**
- * Gets month start and end dates from a given date.
- *
- * @param {DateLike} date Date to get month start and end from
- * @returns {[Date, Date]} Month start and end dates
- */
-var getMonthRange = makeGetRange(getMonthStart, getMonthEnd);
-/**
- * Day
- */
-function makeGetEdgeOfNeighborDay(getEdgeOfPeriod, defaultOffset) {
-    return function makeGetEdgeOfNeighborDayInternal(date, offset) {
-        if (offset === void 0) { offset = defaultOffset; }
-        var year = getYear(date);
-        var month = getMonth(date);
-        var day = getDate(date) + offset;
-        var previousPeriod = new Date();
-        previousPeriod.setFullYear(year, month, day);
-        previousPeriod.setHours(0, 0, 0, 0);
-        return getEdgeOfPeriod(previousPeriod);
-    };
-}
-/**
- * Gets day start date from a given date.
- *
- * @param {DateLike} date Date to get day start from
- * @returns {Date} Day start date
- */
-function getDayStart(date) {
-    var year = getYear(date);
-    var month = getMonth(date);
-    var day = getDate(date);
-    var dayStartDate = new Date();
-    dayStartDate.setFullYear(year, month, day);
-    dayStartDate.setHours(0, 0, 0, 0);
-    return dayStartDate;
-}
-/**
- * Gets next day start date from a given date.
- *
- * @param {DateLike} date Date to get next day start from
- * @returns {Date} Next day start date
- */
-var getNextDayStart = makeGetEdgeOfNeighborDay(getDayStart, 1);
-/**
- * Gets day end date from a given date.
- *
- * @param {DateLike} date Date to get day end from
- * @returns {Date} Day end date
- */
-var getDayEnd = makeGetEnd(getNextDayStart);
-/**
- * Gets day start and end dates from a given date.
- *
- * @param {DateLike} date Date to get day start and end from
- * @returns {[Date, Date]} Day start and end dates
- */
-var getDayRange = makeGetRange(getDayStart, getDayEnd);
-/**
- * Other
- */
-/**
- * Returns a number of days in a month of a given date.
- *
- * @param {Date} date Date
- * @returns {number} Number of days in a month
- */
-function getDaysInMonth(date) {
-    return getDate(getMonthEnd(date));
-}
-
-var _a$1;
-var CALENDAR_TYPES = {
-    GREGORY: 'gregory',
-    HEBREW: 'hebrew',
-    ISLAMIC: 'islamic',
-    ISO_8601: 'iso8601',
-};
-var DEPRECATED_CALENDAR_TYPES = {
-    ARABIC: 'Arabic',
-    HEBREW: 'Hebrew',
-    ISO_8601: 'ISO 8601',
-    US: 'US',
-};
-var CALENDAR_TYPE_LOCALES = (_a$1 = {},
-    _a$1[CALENDAR_TYPES.GREGORY] = [
-        'en-CA',
-        'en-US',
-        'es-AR',
-        'es-BO',
-        'es-CL',
-        'es-CO',
-        'es-CR',
-        'es-DO',
-        'es-EC',
-        'es-GT',
-        'es-HN',
-        'es-MX',
-        'es-NI',
-        'es-PA',
-        'es-PE',
-        'es-PR',
-        'es-SV',
-        'es-VE',
-        'pt-BR',
-    ],
-    _a$1[CALENDAR_TYPES.HEBREW] = ['he', 'he-IL'],
-    _a$1[CALENDAR_TYPES.ISLAMIC] = [
-        // ar-LB, ar-MA intentionally missing
-        'ar',
-        'ar-AE',
-        'ar-BH',
-        'ar-DZ',
-        'ar-EG',
-        'ar-IQ',
-        'ar-JO',
-        'ar-KW',
-        'ar-LY',
-        'ar-OM',
-        'ar-QA',
-        'ar-SA',
-        'ar-SD',
-        'ar-SY',
-        'ar-YE',
-        'dv',
-        'dv-MV',
-        'ps',
-        'ps-AR',
-    ],
-    _a$1);
-var WEEKDAYS = [0, 1, 2, 3, 4, 5, 6];
-
-var formatterCache = new Map();
-function getFormatter(options) {
-    return function formatter(locale, date) {
-        var localeWithDefault = locale || getUserLocale();
-        if (!formatterCache.has(localeWithDefault)) {
-            formatterCache.set(localeWithDefault, new Map());
-        }
-        var formatterCacheLocale = formatterCache.get(localeWithDefault);
-        if (!formatterCacheLocale.has(options)) {
-            formatterCacheLocale.set(options, new Intl.DateTimeFormat(localeWithDefault || undefined, options).format);
-        }
-        return formatterCacheLocale.get(options)(date);
-    };
-}
-/**
- * Changes the hour in a Date to ensure right date formatting even if DST is messed up.
- * Workaround for bug in WebKit and Firefox with historical dates.
- * For more details, see:
- * https://bugs.chromium.org/p/chromium/issues/detail?id=750465
- * https://bugzilla.mozilla.org/show_bug.cgi?id=1385643
- *
- * @param {Date} date Date.
- * @returns {Date} Date with hour set to 12.
- */
-function toSafeHour(date) {
-    var safeDate = new Date(date);
-    return new Date(safeDate.setHours(12));
-}
-function getSafeFormatter(options) {
-    return function (locale, date) { return getFormatter(options)(locale, toSafeHour(date)); };
-}
-var formatDayOptions = { day: 'numeric' };
-var formatLongDateOptions = {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-};
-var formatMonthOptions = { month: 'long' };
-var formatMonthYearOptions = {
-    month: 'long',
-    year: 'numeric',
-};
-var formatShortWeekdayOptions = { weekday: 'short' };
-var formatWeekdayOptions = { weekday: 'long' };
-var formatYearOptions = { year: 'numeric' };
-var formatDay = getSafeFormatter(formatDayOptions);
-var formatLongDate = getSafeFormatter(formatLongDateOptions);
-var formatMonth = getSafeFormatter(formatMonthOptions);
-var formatMonthYear = getSafeFormatter(formatMonthYearOptions);
-var formatShortWeekday = getSafeFormatter(formatShortWeekdayOptions);
-var formatWeekday = getSafeFormatter(formatWeekdayOptions);
-var formatYear = getSafeFormatter(formatYearOptions);
-
-var SUNDAY = WEEKDAYS[0];
-var FRIDAY = WEEKDAYS[5];
-var SATURDAY = WEEKDAYS[6];
-/* Simple getters - getting a property of a given point in time */
-/**
- * Gets day of the week of a given date.
- * @param {Date} date Date.
- * @param {CalendarType} [calendarType="iso8601"] Calendar type.
- * @returns {number} Day of the week.
- */
-function getDayOfWeek(date, calendarType) {
-    if (calendarType === void 0) { calendarType = CALENDAR_TYPES.ISO_8601; }
-    var weekday = date.getDay();
-    switch (calendarType) {
-        case CALENDAR_TYPES.ISO_8601:
-            // Shifts days of the week so that Monday is 0, Sunday is 6
-            return (weekday + 6) % 7;
-        case CALENDAR_TYPES.ISLAMIC:
-            return (weekday + 1) % 7;
-        case CALENDAR_TYPES.HEBREW:
-        case CALENDAR_TYPES.GREGORY:
-            return weekday;
-        default:
-            throw new Error('Unsupported calendar type.');
-    }
-}
-/**
- * Century
- */
-/**
- * Gets the year of the beginning of a century of a given date.
- * @param {Date} date Date.
- * @returns {number} Year of the beginning of a century.
- */
-function getBeginOfCenturyYear(date) {
-    var beginOfCentury = getCenturyStart(date);
-    return getYear(beginOfCentury);
-}
-/**
- * Decade
- */
-/**
- * Gets the year of the beginning of a decade of a given date.
- * @param {Date} date Date.
- * @returns {number} Year of the beginning of a decade.
- */
-function getBeginOfDecadeYear(date) {
-    var beginOfDecade = getDecadeStart(date);
-    return getYear(beginOfDecade);
-}
-/**
- * Week
- */
-/**
- * Returns the beginning of a given week.
- *
- * @param {Date} date Date.
- * @param {CalendarType} [calendarType="iso8601"] Calendar type.
- * @returns {Date} Beginning of a given week.
- */
-function getBeginOfWeek(date, calendarType) {
-    if (calendarType === void 0) { calendarType = CALENDAR_TYPES.ISO_8601; }
-    var year = getYear(date);
-    var monthIndex = getMonth(date);
-    var day = date.getDate() - getDayOfWeek(date, calendarType);
-    return new Date(year, monthIndex, day);
-}
-/**
- * Gets week number according to ISO 8601 or US standard.
- * In ISO 8601, Arabic and Hebrew week 1 is the one with January 4.
- * In US calendar week 1 is the one with January 1.
- *
- * @param {Date} date Date.
- * @param {CalendarType} [calendarType="iso8601"] Calendar type.
- * @returns {number} Week number.
- */
-function getWeekNumber(date, calendarType) {
-    if (calendarType === void 0) { calendarType = CALENDAR_TYPES.ISO_8601; }
-    var calendarTypeForWeekNumber = calendarType === CALENDAR_TYPES.GREGORY ? CALENDAR_TYPES.GREGORY : CALENDAR_TYPES.ISO_8601;
-    var beginOfWeek = getBeginOfWeek(date, calendarType);
-    var year = getYear(date) + 1;
-    var dayInWeekOne;
-    var beginOfFirstWeek;
-    // Look for the first week one that does not come after a given date
-    do {
-        dayInWeekOne = new Date(year, 0, calendarTypeForWeekNumber === CALENDAR_TYPES.ISO_8601 ? 4 : 1);
-        beginOfFirstWeek = getBeginOfWeek(dayInWeekOne, calendarType);
-        year -= 1;
-    } while (date < beginOfFirstWeek);
-    return Math.round((beginOfWeek.getTime() - beginOfFirstWeek.getTime()) / (8.64e7 * 7)) + 1;
-}
-/**
- * Others
- */
-/**
- * Returns the beginning of a given range.
- *
- * @param {RangeType} rangeType Range type (e.g. 'day')
- * @param {Date} date Date.
- * @returns {Date} Beginning of a given range.
- */
-function getBegin(rangeType, date) {
-    switch (rangeType) {
-        case 'century':
-            return getCenturyStart(date);
-        case 'decade':
-            return getDecadeStart(date);
-        case 'year':
-            return getYearStart(date);
-        case 'month':
-            return getMonthStart(date);
-        case 'day':
-            return getDayStart(date);
-        default:
-            throw new Error("Invalid rangeType: ".concat(rangeType));
-    }
-}
-/**
- * Returns the beginning of a previous given range.
- *
- * @param {RangeType} rangeType Range type (e.g. 'day')
- * @param {Date} date Date.
- * @returns {Date} Beginning of a previous given range.
- */
-function getBeginPrevious(rangeType, date) {
-    switch (rangeType) {
-        case 'century':
-            return getPreviousCenturyStart(date);
-        case 'decade':
-            return getPreviousDecadeStart(date);
-        case 'year':
-            return getPreviousYearStart(date);
-        case 'month':
-            return getPreviousMonthStart(date);
-        default:
-            throw new Error("Invalid rangeType: ".concat(rangeType));
-    }
-}
-/**
- * Returns the beginning of a next given range.
- *
- * @param {RangeType} rangeType Range type (e.g. 'day')
- * @param {Date} date Date.
- * @returns {Date} Beginning of a next given range.
- */
-function getBeginNext(rangeType, date) {
-    switch (rangeType) {
-        case 'century':
-            return getNextCenturyStart(date);
-        case 'decade':
-            return getNextDecadeStart(date);
-        case 'year':
-            return getNextYearStart(date);
-        case 'month':
-            return getNextMonthStart(date);
-        default:
-            throw new Error("Invalid rangeType: ".concat(rangeType));
-    }
-}
-function getBeginPrevious2(rangeType, date) {
-    switch (rangeType) {
-        case 'decade':
-            return getPreviousDecadeStart(date, -100);
-        case 'year':
-            return getPreviousYearStart(date, -10);
-        case 'month':
-            return getPreviousMonthStart(date, -12);
-        default:
-            throw new Error("Invalid rangeType: ".concat(rangeType));
-    }
-}
-function getBeginNext2(rangeType, date) {
-    switch (rangeType) {
-        case 'decade':
-            return getNextDecadeStart(date, 100);
-        case 'year':
-            return getNextYearStart(date, 10);
-        case 'month':
-            return getNextMonthStart(date, 12);
-        default:
-            throw new Error("Invalid rangeType: ".concat(rangeType));
-    }
-}
-/**
- * Returns the end of a given range.
- *
- * @param {RangeType} rangeType Range type (e.g. 'day')
- * @param {Date} date Date.
- * @returns {Date} End of a given range.
- */
-function getEnd(rangeType, date) {
-    switch (rangeType) {
-        case 'century':
-            return getCenturyEnd(date);
-        case 'decade':
-            return getDecadeEnd(date);
-        case 'year':
-            return getYearEnd(date);
-        case 'month':
-            return getMonthEnd(date);
-        case 'day':
-            return getDayEnd(date);
-        default:
-            throw new Error("Invalid rangeType: ".concat(rangeType));
-    }
-}
-/**
- * Returns the end of a previous given range.
- *
- * @param {RangeType} rangeType Range type (e.g. 'day')
- * @param {Date} date Date.
- * @returns {Date} End of a previous given range.
- */
-function getEndPrevious(rangeType, date) {
-    switch (rangeType) {
-        case 'century':
-            return getPreviousCenturyEnd(date);
-        case 'decade':
-            return getPreviousDecadeEnd(date);
-        case 'year':
-            return getPreviousYearEnd(date);
-        case 'month':
-            return getPreviousMonthEnd(date);
-        default:
-            throw new Error("Invalid rangeType: ".concat(rangeType));
-    }
-}
-function getEndPrevious2(rangeType, date) {
-    switch (rangeType) {
-        case 'decade':
-            return getPreviousDecadeEnd(date, -100);
-        case 'year':
-            return getPreviousYearEnd(date, -10);
-        case 'month':
-            return getPreviousMonthEnd(date, -12);
-        default:
-            throw new Error("Invalid rangeType: ".concat(rangeType));
-    }
-}
-/**
- * Returns an array with the beginning and the end of a given range.
- *
- * @param {RangeType} rangeType Range type (e.g. 'day')
- * @param {Date} date Date.
- * @returns {Date[]} Beginning and end of a given range.
- */
-function getRange(rangeType, date) {
-    switch (rangeType) {
-        case 'century':
-            return getCenturyRange(date);
-        case 'decade':
-            return getDecadeRange(date);
-        case 'year':
-            return getYearRange(date);
-        case 'month':
-            return getMonthRange(date);
-        case 'day':
-            return getDayRange(date);
-        default:
-            throw new Error("Invalid rangeType: ".concat(rangeType));
-    }
-}
-/**
- * Creates a range out of two values, ensuring they are in order and covering entire period ranges.
- *
- * @param {RangeType} rangeType Range type (e.g. 'day')
- * @param {Date} date1 First date.
- * @param {Date} date2 Second date.
- * @returns {Date[]} Beginning and end of a given range.
- */
-function getValueRange(rangeType, date1, date2) {
-    var rawNextValue = [date1, date2].sort(function (a, b) { return a.getTime() - b.getTime(); });
-    return [getBegin(rangeType, rawNextValue[0]), getEnd(rangeType, rawNextValue[1])];
-}
-function toYearLabel(locale, formatYear$1, dates) {
-    if (formatYear$1 === void 0) { formatYear$1 = formatYear; }
-    return dates.map(function (date) { return formatYear$1(locale, date); }).join(' – ');
-}
-/**
- * @callback FormatYear
- * @param {string} locale Locale.
- * @param {Date} date Date.
- * @returns {string} Formatted year.
- */
-/**
- * Returns a string labelling a century of a given date.
- * For example, for 2017 it will return 2001-2100.
- *
- * @param {string} locale Locale.
- * @param {FormatYear} formatYear Function to format a year.
- * @param {Date|string|number} date Date or a year as a string or as a number.
- * @returns {string} String labelling a century of a given date.
- */
-function getCenturyLabel(locale, formatYear, date) {
-    return toYearLabel(locale, formatYear, getCenturyRange(date));
-}
-/**
- * Returns a string labelling a decade of a given date.
- * For example, for 2017 it will return 2011-2020.
- *
- * @param {string} locale Locale.
- * @param {FormatYear} formatYear Function to format a year.
- * @param {Date|string|number} date Date or a year as a string or as a number.
- * @returns {string} String labelling a decade of a given date.
- */
-function getDecadeLabel(locale, formatYear, date) {
-    return toYearLabel(locale, formatYear, getDecadeRange(date));
-}
-/**
- * Returns a boolean determining whether a given date is the current day of the week.
- *
- * @param {Date} date Date.
- * @returns {boolean} Whether a given date is the current day of the week.
- */
-function isCurrentDayOfWeek(date) {
-    return date.getDay() === new Date().getDay();
-}
-/**
- * Returns a boolean determining whether a given date is a weekend day.
- *
- * @param {Date} date Date.
- * @param {CalendarType} [calendarType="iso8601"] Calendar type.
- * @returns {boolean} Whether a given date is a weekend day.
- */
-function isWeekend(date, calendarType) {
-    if (calendarType === void 0) { calendarType = CALENDAR_TYPES.ISO_8601; }
-    var weekday = date.getDay();
-    switch (calendarType) {
-        case CALENDAR_TYPES.ISLAMIC:
-        case CALENDAR_TYPES.HEBREW:
-            return weekday === FRIDAY || weekday === SATURDAY;
-        case CALENDAR_TYPES.ISO_8601:
-        case CALENDAR_TYPES.GREGORY:
-            return weekday === SATURDAY || weekday === SUNDAY;
-        default:
-            throw new Error('Unsupported calendar type.');
-    }
-}
-
-var className$6 = 'react-calendar__navigation';
-function Navigation(_a) {
-    var activeStartDate = _a.activeStartDate, drillUp = _a.drillUp, _b = _a.formatMonthYear, formatMonthYear$1 = _b === void 0 ? formatMonthYear : _b, _c = _a.formatYear, formatYear$1 = _c === void 0 ? formatYear : _c, locale = _a.locale, maxDate = _a.maxDate, minDate = _a.minDate, _d = _a.navigationAriaLabel, navigationAriaLabel = _d === void 0 ? '' : _d, navigationAriaLive = _a.navigationAriaLive, navigationLabel = _a.navigationLabel, _e = _a.next2AriaLabel, next2AriaLabel = _e === void 0 ? '' : _e, _f = _a.next2Label, next2Label = _f === void 0 ? '»' : _f, _g = _a.nextAriaLabel, nextAriaLabel = _g === void 0 ? '' : _g, _h = _a.nextLabel, nextLabel = _h === void 0 ? '›' : _h, _j = _a.prev2AriaLabel, prev2AriaLabel = _j === void 0 ? '' : _j, _k = _a.prev2Label, prev2Label = _k === void 0 ? '«' : _k, _l = _a.prevAriaLabel, prevAriaLabel = _l === void 0 ? '' : _l, _m = _a.prevLabel, prevLabel = _m === void 0 ? '‹' : _m, setActiveStartDate = _a.setActiveStartDate, showDoubleView = _a.showDoubleView, view = _a.view, views = _a.views;
-    var drillUpAvailable = views.indexOf(view) > 0;
-    var shouldShowPrevNext2Buttons = view !== 'century';
-    var previousActiveStartDate = getBeginPrevious(view, activeStartDate);
-    var previousActiveStartDate2 = shouldShowPrevNext2Buttons
-        ? getBeginPrevious2(view, activeStartDate)
-        : undefined;
-    var nextActiveStartDate = getBeginNext(view, activeStartDate);
-    var nextActiveStartDate2 = shouldShowPrevNext2Buttons
-        ? getBeginNext2(view, activeStartDate)
-        : undefined;
-    var prevButtonDisabled = (function () {
-        if (previousActiveStartDate.getFullYear() < 0) {
-            return true;
-        }
-        var previousActiveEndDate = getEndPrevious(view, activeStartDate);
-        return minDate && minDate >= previousActiveEndDate;
-    })();
-    var prev2ButtonDisabled = shouldShowPrevNext2Buttons &&
-        (function () {
-            if (previousActiveStartDate2.getFullYear() < 0) {
-                return true;
-            }
-            var previousActiveEndDate = getEndPrevious2(view, activeStartDate);
-            return minDate && minDate >= previousActiveEndDate;
-        })();
-    var nextButtonDisabled = maxDate && maxDate < nextActiveStartDate;
-    var next2ButtonDisabled = shouldShowPrevNext2Buttons && maxDate && maxDate < nextActiveStartDate2;
-    function onClickPrevious() {
-        setActiveStartDate(previousActiveStartDate, 'prev');
-    }
-    function onClickPrevious2() {
-        setActiveStartDate(previousActiveStartDate2, 'prev2');
-    }
-    function onClickNext() {
-        setActiveStartDate(nextActiveStartDate, 'next');
-    }
-    function onClickNext2() {
-        setActiveStartDate(nextActiveStartDate2, 'next2');
-    }
-    function renderLabel(date) {
-        var label = (function () {
-            switch (view) {
-                case 'century':
-                    return getCenturyLabel(locale, formatYear$1, date);
-                case 'decade':
-                    return getDecadeLabel(locale, formatYear$1, date);
-                case 'year':
-                    return formatYear$1(locale, date);
-                case 'month':
-                    return formatMonthYear$1(locale, date);
-                default:
-                    throw new Error("Invalid view: ".concat(view, "."));
-            }
-        })();
-        return navigationLabel
-            ? navigationLabel({
-                date: date,
-                label: label,
-                locale: locale || getUserLocale() || undefined,
-                view: view,
-            })
-            : label;
-    }
-    function renderButton() {
-        var labelClassName = "".concat(className$6, "__label");
-        return (React.createElement("button", { "aria-label": navigationAriaLabel, "aria-live": navigationAriaLive, className: labelClassName, disabled: !drillUpAvailable, onClick: drillUp, style: { flexGrow: 1 }, type: "button" },
-            React.createElement("span", { className: "".concat(labelClassName, "__labelText ").concat(labelClassName, "__labelText--from") }, renderLabel(activeStartDate)),
-            showDoubleView ? (React.createElement(React.Fragment, null,
-                React.createElement("span", { className: "".concat(labelClassName, "__divider") }, " \u2013 "),
-                React.createElement("span", { className: "".concat(labelClassName, "__labelText ").concat(labelClassName, "__labelText--to") }, renderLabel(nextActiveStartDate)))) : null));
-    }
-    return (React.createElement("div", { className: className$6 },
-        prev2Label !== null && shouldShowPrevNext2Buttons ? (React.createElement("button", { "aria-label": prev2AriaLabel, className: "".concat(className$6, "__arrow ").concat(className$6, "__prev2-button"), disabled: prev2ButtonDisabled, onClick: onClickPrevious2, type: "button" }, prev2Label)) : null,
-        prevLabel !== null && (React.createElement("button", { "aria-label": prevAriaLabel, className: "".concat(className$6, "__arrow ").concat(className$6, "__prev-button"), disabled: prevButtonDisabled, onClick: onClickPrevious, type: "button" }, prevLabel)),
-        renderButton(),
-        nextLabel !== null && (React.createElement("button", { "aria-label": nextAriaLabel, className: "".concat(className$6, "__arrow ").concat(className$6, "__next-button"), disabled: nextButtonDisabled, onClick: onClickNext, type: "button" }, nextLabel)),
-        next2Label !== null && shouldShowPrevNext2Buttons ? (React.createElement("button", { "aria-label": next2AriaLabel, className: "".concat(className$6, "__arrow ").concat(className$6, "__next2-button"), disabled: next2ButtonDisabled, onClick: onClickNext2, type: "button" }, next2Label)) : null));
-}
-
-var __assign$e = (undefined && undefined.__assign) || function () {
-    __assign$e = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign$e.apply(this, arguments);
-};
-var __rest$a = (undefined && undefined.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
-                t[p[i]] = s[p[i]];
-        }
-    return t;
-};
-function toPercent(num) {
-    return "".concat(num, "%");
-}
-function Flex(_a) {
-    var children = _a.children, className = _a.className, count = _a.count, direction = _a.direction, offset = _a.offset, style = _a.style, wrap = _a.wrap, otherProps = __rest$a(_a, ["children", "className", "count", "direction", "offset", "style", "wrap"]);
-    return (React.createElement("div", __assign$e({ className: className, style: __assign$e({ display: 'flex', flexDirection: direction, flexWrap: wrap ? 'wrap' : 'nowrap' }, style) }, otherProps), React.Children.map(children, function (child, index) {
-        var marginInlineStart = offset && index === 0 ? toPercent((100 * offset) / count) : null;
-        return React.cloneElement(child, __assign$e(__assign$e({}, child.props), { style: {
-                flexBasis: toPercent(100 / count),
-                flexShrink: 0,
-                flexGrow: 0,
-                overflow: 'hidden',
-                marginLeft: marginInlineStart,
-                marginInlineStart: marginInlineStart,
-                marginInlineEnd: 0,
-            } }));
-    })));
-}
-
-var isProduction = process.env.NODE_ENV === 'production';
-function warning(condition, message) {
-  if (!isProduction) {
-    if (condition) {
-      return;
-    }
-
-    var text = "Warning: " + message;
-
-    if (typeof console !== 'undefined') {
-      console.warn(text);
-    }
-
-    try {
-      throw Error(text);
-    } catch (x) {}
-  }
-}
-
-var _a;
-/**
- * Returns a value no smaller than min and no larger than max.
- *
- * @param {Date} value Value to return.
- * @param {Date} min Minimum return value.
- * @param {Date} max Maximum return value.
- * @returns {Date} Value between min and max.
- */
-function between(value, min, max) {
-    if (min && min > value) {
-        return min;
-    }
-    if (max && max < value) {
-        return max;
-    }
-    return value;
-}
-function isValueWithinRange(value, range) {
-    return range[0] <= value && range[1] >= value;
-}
-function isRangeWithinRange(greaterRange, smallerRange) {
-    return greaterRange[0] <= smallerRange[0] && greaterRange[1] >= smallerRange[1];
-}
-function doRangesOverlap(range1, range2) {
-    return isValueWithinRange(range1[0], range2) || isValueWithinRange(range1[1], range2);
-}
-function getRangeClassNames(valueRange, dateRange, baseClassName) {
-    var isRange = doRangesOverlap(dateRange, valueRange);
-    var classes = [];
-    if (isRange) {
-        classes.push(baseClassName);
-        var isRangeStart = isValueWithinRange(valueRange[0], dateRange);
-        var isRangeEnd = isValueWithinRange(valueRange[1], dateRange);
-        if (isRangeStart) {
-            classes.push("".concat(baseClassName, "Start"));
-        }
-        if (isRangeEnd) {
-            classes.push("".concat(baseClassName, "End"));
-        }
-        if (isRangeStart && isRangeEnd) {
-            classes.push("".concat(baseClassName, "BothEnds"));
-        }
-    }
-    return classes;
-}
-function isCompleteValue(value) {
-    if (Array.isArray(value)) {
-        return value[0] !== null && value[1] !== null;
-    }
-    return value !== null;
-}
-function getTileClasses(args) {
-    if (!args) {
-        throw new Error('args is required');
-    }
-    var value = args.value, date = args.date, hover = args.hover;
-    var className = 'react-calendar__tile';
-    var classes = [className];
-    if (!date) {
-        return classes;
-    }
-    var now = new Date();
-    var dateRange = (function () {
-        if (Array.isArray(date)) {
-            return date;
-        }
-        var dateType = args.dateType;
-        if (!dateType) {
-            throw new Error('dateType is required when date is not an array of two dates');
-        }
-        return getRange(dateType, date);
-    })();
-    if (isValueWithinRange(now, dateRange)) {
-        classes.push("".concat(className, "--now"));
-    }
-    if (!value || !isCompleteValue(value)) {
-        return classes;
-    }
-    var valueRange = (function () {
-        if (Array.isArray(value)) {
-            return value;
-        }
-        var valueType = args.valueType;
-        if (!valueType) {
-            throw new Error('valueType is required when value is not an array of two dates');
-        }
-        return getRange(valueType, value);
-    })();
-    if (isRangeWithinRange(valueRange, dateRange)) {
-        classes.push("".concat(className, "--active"));
-    }
-    else if (doRangesOverlap(valueRange, dateRange)) {
-        classes.push("".concat(className, "--hasActive"));
-    }
-    var valueRangeClassNames = getRangeClassNames(valueRange, dateRange, "".concat(className, "--range"));
-    classes.push.apply(classes, valueRangeClassNames);
-    var valueArray = Array.isArray(value) ? value : [value];
-    if (hover && valueArray.length === 1) {
-        var hoverRange = hover > valueRange[0] ? [valueRange[0], hover] : [hover, valueRange[0]];
-        var hoverRangeClassNames = getRangeClassNames(hoverRange, dateRange, "".concat(className, "--hover"));
-        classes.push.apply(classes, hoverRangeClassNames);
-    }
-    return classes;
-}
-var calendarTypeMap = (_a = {},
-    _a[DEPRECATED_CALENDAR_TYPES.ARABIC] = CALENDAR_TYPES.ISLAMIC,
-    _a[DEPRECATED_CALENDAR_TYPES.HEBREW] = CALENDAR_TYPES.HEBREW,
-    _a[DEPRECATED_CALENDAR_TYPES.ISO_8601] = CALENDAR_TYPES.ISO_8601,
-    _a[DEPRECATED_CALENDAR_TYPES.US] = CALENDAR_TYPES.GREGORY,
-    _a);
-function isDeprecatedCalendarType(calendarType) {
-    return calendarType !== undefined && calendarType in DEPRECATED_CALENDAR_TYPES;
-}
-var warned = false;
-function mapCalendarType(calendarTypeOrDeprecatedCalendarType) {
-    if (isDeprecatedCalendarType(calendarTypeOrDeprecatedCalendarType)) {
-        var calendarType = calendarTypeMap[calendarTypeOrDeprecatedCalendarType];
-        warning(warned, "Specifying calendarType=\"".concat(calendarTypeOrDeprecatedCalendarType, "\" is deprecated. Use calendarType=\"").concat(calendarType, "\" instead."));
-        warned = true;
-        return calendarType;
-    }
-    return calendarTypeOrDeprecatedCalendarType;
-}
-
-function TileGroup(_a) {
-    var className = _a.className, _b = _a.count, count = _b === void 0 ? 3 : _b, dateTransform = _a.dateTransform, dateType = _a.dateType, end = _a.end, hover = _a.hover, offset = _a.offset, renderTile = _a.renderTile, start = _a.start, _c = _a.step, step = _c === void 0 ? 1 : _c, value = _a.value, valueType = _a.valueType;
-    var tiles = [];
-    for (var point = start; point <= end; point += step) {
-        var date = dateTransform(point);
-        tiles.push(renderTile({
-            classes: getTileClasses({
-                date: date,
-                dateType: dateType,
-                hover: hover,
-                value: value,
-                valueType: valueType,
-            }),
-            date: date,
-        }));
-    }
-    return (React.createElement(Flex, { className: className, count: count, offset: offset, wrap: true }, tiles));
-}
-
-function Tile(props) {
-    var activeStartDate = props.activeStartDate, children = props.children, classes = props.classes, date = props.date, formatAbbr = props.formatAbbr, locale = props.locale, maxDate = props.maxDate, maxDateTransform = props.maxDateTransform, minDate = props.minDate, minDateTransform = props.minDateTransform, onClick = props.onClick, onMouseOver = props.onMouseOver, style = props.style, tileClassNameProps = props.tileClassName, tileContentProps = props.tileContent, tileDisabled = props.tileDisabled, view = props.view;
-    var tileClassName = useMemo(function () {
-        var args = { activeStartDate: activeStartDate, date: date, view: view };
-        return typeof tileClassNameProps === 'function' ? tileClassNameProps(args) : tileClassNameProps;
-    }, [activeStartDate, date, tileClassNameProps, view]);
-    var tileContent = useMemo(function () {
-        var args = { activeStartDate: activeStartDate, date: date, view: view };
-        return typeof tileContentProps === 'function' ? tileContentProps(args) : tileContentProps;
-    }, [activeStartDate, date, tileContentProps, view]);
-    return (React.createElement("button", { className: clsx(classes, tileClassName), disabled: (minDate && minDateTransform(minDate) > date) ||
-            (maxDate && maxDateTransform(maxDate) < date) ||
-            (tileDisabled && tileDisabled({ activeStartDate: activeStartDate, date: date, view: view })), onClick: onClick ? function (event) { return onClick(date, event); } : undefined, onFocus: onMouseOver ? function () { return onMouseOver(date); } : undefined, onMouseOver: onMouseOver ? function () { return onMouseOver(date); } : undefined, style: style, type: "button" },
-        formatAbbr ? React.createElement("abbr", { "aria-label": formatAbbr(locale, date) }, children) : children,
-        tileContent));
-}
-
-var __assign$d = (undefined && undefined.__assign) || function () {
-    __assign$d = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign$d.apply(this, arguments);
-};
-var __rest$9 = (undefined && undefined.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
-                t[p[i]] = s[p[i]];
-        }
-    return t;
-};
-var __spreadArray$3 = (undefined && undefined.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
-};
-var className$5 = 'react-calendar__century-view__decades__decade';
-function Decade(_a) {
-    var _b = _a.classes, classes = _b === void 0 ? [] : _b, _c = _a.formatYear, formatYear$1 = _c === void 0 ? formatYear : _c, otherProps = __rest$9(_a, ["classes", "formatYear"]);
-    var date = otherProps.date, locale = otherProps.locale;
-    return (React.createElement(Tile, __assign$d({}, otherProps, { classes: __spreadArray$3(__spreadArray$3([], classes, true), [className$5], false), maxDateTransform: getDecadeEnd, minDateTransform: getDecadeStart, view: "century" }), getDecadeLabel(locale, formatYear$1, date)));
-}
-
-var __assign$c = (undefined && undefined.__assign) || function () {
-    __assign$c = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign$c.apply(this, arguments);
-};
-var __rest$8 = (undefined && undefined.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
-                t[p[i]] = s[p[i]];
-        }
-    return t;
-};
-function Decades(props) {
-    var activeStartDate = props.activeStartDate, hover = props.hover, value = props.value, valueType = props.valueType, otherProps = __rest$8(props, ["activeStartDate", "hover", "value", "valueType"]);
-    var start = getBeginOfCenturyYear(activeStartDate);
-    var end = start + 99;
-    return (React.createElement(TileGroup, { className: "react-calendar__century-view__decades", dateTransform: getDecadeStart, dateType: "decade", end: end, hover: hover, renderTile: function (_a) {
-            var date = _a.date, otherTileProps = __rest$8(_a, ["date"]);
-            return (React.createElement(Decade, __assign$c({ key: date.getTime() }, otherProps, otherTileProps, { activeStartDate: activeStartDate, date: date })));
-        }, start: start, step: 10, value: value, valueType: valueType }));
-}
-
-var __spreadArray$2 = (undefined && undefined.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
-};
-var calendarTypes = Object.values(CALENDAR_TYPES);
-var deprecatedCalendarTypes = Object.values(DEPRECATED_CALENDAR_TYPES);
-var allViews$1 = ['century', 'decade', 'year', 'month'];
-var isCalendarType = PropTypes.oneOf(__spreadArray$2(__spreadArray$2([], calendarTypes, true), deprecatedCalendarTypes, true));
-var isClassName = PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string),
-]);
-var isMinDate = function isMinDate(props, propName, componentName) {
-    var _a = props, _b = propName, minDate = _a[_b];
-    if (!minDate) {
-        return null;
-    }
-    if (!(minDate instanceof Date)) {
-        return new Error("Invalid prop `".concat(propName, "` of type `").concat(typeof minDate, "` supplied to `").concat(componentName, "`, expected instance of `Date`."));
-    }
-    var maxDate = props.maxDate;
-    if (maxDate && minDate > maxDate) {
-        return new Error("Invalid prop `".concat(propName, "` of type `").concat(typeof minDate, "` supplied to `").concat(componentName, "`, minDate cannot be larger than maxDate."));
-    }
-    return null;
-};
-var isMaxDate = function isMaxDate(props, propName, componentName) {
-    var _a = props, _b = propName, maxDate = _a[_b];
-    if (!maxDate) {
-        return null;
-    }
-    if (!(maxDate instanceof Date)) {
-        return new Error("Invalid prop `".concat(propName, "` of type `").concat(typeof maxDate, "` supplied to `").concat(componentName, "`, expected instance of `Date`."));
-    }
-    var minDate = props.minDate;
-    if (minDate && maxDate < minDate) {
-        return new Error("Invalid prop `".concat(propName, "` of type `").concat(typeof maxDate, "` supplied to `").concat(componentName, "`, maxDate cannot be smaller than minDate."));
-    }
-    return null;
-};
-var isRef = PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.exact({
-        current: PropTypes.any,
-    }),
-]);
-var isRange = PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.oneOf([null])]).isRequired);
-var isValue$1 = PropTypes.oneOfType([
-    PropTypes.instanceOf(Date),
-    PropTypes.oneOf([null]),
-    isRange,
-]);
-PropTypes.arrayOf(PropTypes.oneOf(allViews$1));
-var isView = function isView(props, propName, componentName) {
-    var _a = props, _b = propName, view = _a[_b];
-    if (view !== undefined && (typeof view !== 'string' || allViews$1.indexOf(view) === -1)) {
-        return new Error("Invalid prop `".concat(propName, "` of value `").concat(view, "` supplied to `").concat(componentName, "`, expected one of [").concat(allViews$1
-            .map(function (a) { return "\"".concat(a, "\""); })
-            .join(', '), "]."));
-    }
-    // Everything is fine
-    return null;
-};
-isView.isRequired = function isViewIsRequired(props, propName, componentName, location, propFullName) {
-    var _a = props, _b = propName, view = _a[_b];
-    if (!view) {
-        return new Error("The prop `".concat(propName, "` is marked as required in `").concat(componentName, "`, but its value is `").concat(view, "`."));
-    }
-    return isView(props, propName, componentName);
-};
-var rangeOf = function (type) {
-    return PropTypes.arrayOf(type);
-};
-var tileGroupProps = {
-    activeStartDate: PropTypes.instanceOf(Date).isRequired,
-    hover: PropTypes.instanceOf(Date),
-    locale: PropTypes.string,
-    maxDate: isMaxDate,
-    minDate: isMinDate,
-    onClick: PropTypes.func,
-    onMouseOver: PropTypes.func,
-    tileClassName: PropTypes.oneOfType([PropTypes.func, isClassName]),
-    tileContent: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
-    value: isValue$1,
-    valueType: PropTypes.oneOf(['century', 'decade', 'year', 'month', 'day']).isRequired,
-};
-({
-    activeStartDate: PropTypes.instanceOf(Date).isRequired,
-    classes: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    date: PropTypes.instanceOf(Date).isRequired,
-    locale: PropTypes.string,
-    maxDate: isMaxDate,
-    minDate: isMinDate,
-    onClick: PropTypes.func,
-    onMouseOver: PropTypes.func,
-    style: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
-    tileClassName: PropTypes.oneOfType([PropTypes.func, isClassName]),
-    tileContent: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
-    tileDisabled: PropTypes.func,
-});
-
-var __assign$b = (undefined && undefined.__assign) || function () {
-    __assign$b = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign$b.apply(this, arguments);
-};
-var CenturyView = function CenturyView(props) {
-    function renderDecades() {
-        return React.createElement(Decades, __assign$b({}, props));
-    }
-    return React.createElement("div", { className: "react-calendar__century-view" }, renderDecades());
-};
-CenturyView.propTypes = __assign$b({}, tileGroupProps);
-var CenturyView$1 = CenturyView;
-
-var __assign$a = (undefined && undefined.__assign) || function () {
-    __assign$a = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign$a.apply(this, arguments);
-};
-var __rest$7 = (undefined && undefined.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
-                t[p[i]] = s[p[i]];
-        }
-    return t;
-};
-var __spreadArray$1 = (undefined && undefined.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
-};
-var className$4 = 'react-calendar__decade-view__years__year';
-function Year(_a) {
-    var _b = _a.classes, classes = _b === void 0 ? [] : _b, _c = _a.formatYear, formatYear$1 = _c === void 0 ? formatYear : _c, otherProps = __rest$7(_a, ["classes", "formatYear"]);
-    var date = otherProps.date, locale = otherProps.locale;
-    return (React.createElement(Tile, __assign$a({}, otherProps, { classes: __spreadArray$1(__spreadArray$1([], classes, true), [className$4], false), maxDateTransform: getYearEnd, minDateTransform: getYearStart, view: "decade" }), formatYear$1(locale, date)));
-}
-
-var __assign$9 = (undefined && undefined.__assign) || function () {
-    __assign$9 = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign$9.apply(this, arguments);
-};
-var __rest$6 = (undefined && undefined.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
-                t[p[i]] = s[p[i]];
-        }
-    return t;
-};
-function Years(props) {
-    var activeStartDate = props.activeStartDate, hover = props.hover, value = props.value, valueType = props.valueType, otherProps = __rest$6(props, ["activeStartDate", "hover", "value", "valueType"]);
-    var start = getBeginOfDecadeYear(activeStartDate);
-    var end = start + 9;
-    return (React.createElement(TileGroup, { className: "react-calendar__decade-view__years", dateTransform: getYearStart, dateType: "year", end: end, hover: hover, renderTile: function (_a) {
-            var date = _a.date, otherTileProps = __rest$6(_a, ["date"]);
-            return (React.createElement(Year, __assign$9({ key: date.getTime() }, otherProps, otherTileProps, { activeStartDate: activeStartDate, date: date })));
-        }, start: start, value: value, valueType: valueType }));
-}
-
-var __assign$8 = (undefined && undefined.__assign) || function () {
-    __assign$8 = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign$8.apply(this, arguments);
-};
-var DecadeView = function DecadeView(props) {
-    function renderYears() {
-        return React.createElement(Years, __assign$8({}, props));
-    }
-    return React.createElement("div", { className: "react-calendar__decade-view" }, renderYears());
-};
-DecadeView.propTypes = __assign$8({}, tileGroupProps);
-var DecadeView$1 = DecadeView;
-
-var __assign$7 = (undefined && undefined.__assign) || function () {
-    __assign$7 = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign$7.apply(this, arguments);
-};
-var __rest$5 = (undefined && undefined.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
-                t[p[i]] = s[p[i]];
-        }
-    return t;
-};
-var __spreadArray = (undefined && undefined.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
-};
-var className$3 = 'react-calendar__year-view__months__month';
-function Month(_a) {
-    var _b = _a.classes, classes = _b === void 0 ? [] : _b, _c = _a.formatMonth, formatMonth$1 = _c === void 0 ? formatMonth : _c, _d = _a.formatMonthYear, formatMonthYear$1 = _d === void 0 ? formatMonthYear : _d, otherProps = __rest$5(_a, ["classes", "formatMonth", "formatMonthYear"]);
-    var date = otherProps.date, locale = otherProps.locale;
-    return (React.createElement(Tile, __assign$7({}, otherProps, { classes: __spreadArray(__spreadArray([], classes, true), [className$3], false), formatAbbr: formatMonthYear$1, maxDateTransform: getMonthEnd, minDateTransform: getMonthStart, view: "year" }), formatMonth$1(locale, date)));
-}
-
-var __assign$6 = (undefined && undefined.__assign) || function () {
-    __assign$6 = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign$6.apply(this, arguments);
-};
-var __rest$4 = (undefined && undefined.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
-                t[p[i]] = s[p[i]];
-        }
-    return t;
-};
-function Months(props) {
-    var activeStartDate = props.activeStartDate, hover = props.hover, value = props.value, valueType = props.valueType, otherProps = __rest$4(props, ["activeStartDate", "hover", "value", "valueType"]);
-    var start = 0;
-    var end = 11;
-    var year = getYear(activeStartDate);
-    return (React.createElement(TileGroup, { className: "react-calendar__year-view__months", dateTransform: function (monthIndex) {
-            var date = new Date();
-            date.setFullYear(year, monthIndex, 1);
-            return getMonthStart(date);
-        }, dateType: "month", end: end, hover: hover, renderTile: function (_a) {
-            var date = _a.date, otherTileProps = __rest$4(_a, ["date"]);
-            return (React.createElement(Month, __assign$6({ key: date.getTime() }, otherProps, otherTileProps, { activeStartDate: activeStartDate, date: date })));
-        }, start: start, value: value, valueType: valueType }));
-}
-
-var __assign$5 = (undefined && undefined.__assign) || function () {
-    __assign$5 = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign$5.apply(this, arguments);
-};
-var YearView = function YearView(props) {
-    function renderMonths() {
-        return React.createElement(Months, __assign$5({}, props));
-    }
-    return React.createElement("div", { className: "react-calendar__year-view" }, renderMonths());
-};
-YearView.propTypes = __assign$5({}, tileGroupProps);
-var YearView$1 = YearView;
-
-var __assign$4 = (undefined && undefined.__assign) || function () {
-    __assign$4 = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign$4.apply(this, arguments);
-};
-var __rest$3 = (undefined && undefined.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
-                t[p[i]] = s[p[i]];
-        }
-    return t;
-};
-var className$2 = 'react-calendar__month-view__days__day';
-function Day(_a) {
-    var calendarTypeOrDeprecatedCalendarType = _a.calendarType, _b = _a.classes, classes = _b === void 0 ? [] : _b, currentMonthIndex = _a.currentMonthIndex, _c = _a.formatDay, formatDay$1 = _c === void 0 ? formatDay : _c, _d = _a.formatLongDate, formatLongDate$1 = _d === void 0 ? formatLongDate : _d, otherProps = __rest$3(_a, ["calendarType", "classes", "currentMonthIndex", "formatDay", "formatLongDate"]);
-    var calendarType = mapCalendarType(calendarTypeOrDeprecatedCalendarType);
-    var date = otherProps.date, locale = otherProps.locale;
-    var classesProps = [];
-    if (classes) {
-        classesProps.push.apply(classesProps, classes);
-    }
-    if (className$2) {
-        classesProps.push(className$2);
-    }
-    if (isWeekend(date, calendarType)) {
-        classesProps.push("".concat(className$2, "--weekend"));
-    }
-    if (date.getMonth() !== currentMonthIndex) {
-        classesProps.push("".concat(className$2, "--neighboringMonth"));
-    }
-    return (React.createElement(Tile, __assign$4({}, otherProps, { classes: classesProps, formatAbbr: formatLongDate$1, maxDateTransform: getDayEnd, minDateTransform: getDayStart, view: "month" }), formatDay$1(locale, date)));
-}
-
-var __assign$3 = (undefined && undefined.__assign) || function () {
-    __assign$3 = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign$3.apply(this, arguments);
-};
-var __rest$2 = (undefined && undefined.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
-                t[p[i]] = s[p[i]];
-        }
-    return t;
-};
-function Days(props) {
-    var activeStartDate = props.activeStartDate, calendarTypeOrDeprecatedCalendarType = props.calendarType, hover = props.hover, showFixedNumberOfWeeks = props.showFixedNumberOfWeeks, showNeighboringMonth = props.showNeighboringMonth, value = props.value, valueType = props.valueType, otherProps = __rest$2(props, ["activeStartDate", "calendarType", "hover", "showFixedNumberOfWeeks", "showNeighboringMonth", "value", "valueType"]);
-    var calendarType = mapCalendarType(calendarTypeOrDeprecatedCalendarType);
-    var year = getYear(activeStartDate);
-    var monthIndex = getMonth(activeStartDate);
-    var hasFixedNumberOfWeeks = showFixedNumberOfWeeks || showNeighboringMonth;
-    var dayOfWeek = getDayOfWeek(activeStartDate, calendarType);
-    var offset = hasFixedNumberOfWeeks ? 0 : dayOfWeek;
-    /**
-     * Defines on which day of the month the grid shall start. If we simply show current
-     * month, we obviously start on day one, but if showNeighboringMonth is set to
-     * true, we need to find the beginning of the week the first day of the month is in.
-     */
-    var start = (hasFixedNumberOfWeeks ? -dayOfWeek : 0) + 1;
-    /**
-     * Defines on which day of the month the grid shall end. If we simply show current
-     * month, we need to stop on the last day of the month, but if showNeighboringMonth
-     * is set to true, we need to find the end of the week the last day of the month is in.
-     */
-    var end = (function () {
-        if (showFixedNumberOfWeeks) {
-            // Always show 6 weeks
-            return start + 6 * 7 - 1;
-        }
-        var daysInMonth = getDaysInMonth(activeStartDate);
-        if (showNeighboringMonth) {
-            var activeEndDate = new Date();
-            activeEndDate.setFullYear(year, monthIndex, daysInMonth);
-            activeEndDate.setHours(0, 0, 0, 0);
-            var daysUntilEndOfTheWeek = 7 - getDayOfWeek(activeEndDate, calendarType) - 1;
-            return daysInMonth + daysUntilEndOfTheWeek;
-        }
-        return daysInMonth;
-    })();
-    return (React.createElement(TileGroup, { className: "react-calendar__month-view__days", count: 7, dateTransform: function (day) {
-            var date = new Date();
-            date.setFullYear(year, monthIndex, day);
-            return getDayStart(date);
-        }, dateType: "day", hover: hover, end: end, renderTile: function (_a) {
-            var date = _a.date, otherTileProps = __rest$2(_a, ["date"]);
-            return (React.createElement(Day, __assign$3({ key: date.getTime() }, otherProps, otherTileProps, { activeStartDate: activeStartDate, currentMonthIndex: monthIndex, date: date })));
-        }, offset: offset, start: start, value: value, valueType: valueType }));
-}
-
-var className$1 = 'react-calendar__month-view__weekdays';
-var weekdayClassName = "".concat(className$1, "__weekday");
-function Weekdays(props) {
-    var calendarTypeOrDeprecatedCalendarType = props.calendarType, _a = props.formatShortWeekday, formatShortWeekday$1 = _a === void 0 ? formatShortWeekday : _a, _b = props.formatWeekday, formatWeekday$1 = _b === void 0 ? formatWeekday : _b, locale = props.locale, onMouseLeave = props.onMouseLeave;
-    var calendarType = mapCalendarType(calendarTypeOrDeprecatedCalendarType);
-    var anyDate = new Date();
-    var beginOfMonth = getMonthStart(anyDate);
-    var year = getYear(beginOfMonth);
-    var monthIndex = getMonth(beginOfMonth);
-    var weekdays = [];
-    for (var weekday = 1; weekday <= 7; weekday += 1) {
-        var weekdayDate = new Date(year, monthIndex, weekday - getDayOfWeek(beginOfMonth, calendarType));
-        var abbr = formatWeekday$1(locale, weekdayDate);
-        weekdays.push(React.createElement("div", { key: weekday, className: clsx(weekdayClassName, isCurrentDayOfWeek(weekdayDate) && "".concat(weekdayClassName, "--current"), isWeekend(weekdayDate, calendarType) && "".concat(weekdayClassName, "--weekend")) },
-            React.createElement("abbr", { "aria-label": abbr, title: abbr }, formatShortWeekday$1(locale, weekdayDate).replace('.', ''))));
-    }
-    return (React.createElement(Flex, { className: className$1, count: 7, onFocus: onMouseLeave, onMouseOver: onMouseLeave }, weekdays));
-}
-
-var __assign$2 = (undefined && undefined.__assign) || function () {
-    __assign$2 = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign$2.apply(this, arguments);
-};
-var __rest$1 = (undefined && undefined.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
-                t[p[i]] = s[p[i]];
-        }
-    return t;
-};
-var className = 'react-calendar__tile';
-function WeekNumber(props) {
-    var onClickWeekNumber = props.onClickWeekNumber, weekNumber = props.weekNumber;
-    var children = React.createElement("span", null, weekNumber);
-    if (onClickWeekNumber) {
-        var date_1 = props.date, onClickWeekNumber_1 = props.onClickWeekNumber, weekNumber_1 = props.weekNumber, otherProps = __rest$1(props, ["date", "onClickWeekNumber", "weekNumber"]);
-        return (React.createElement("button", __assign$2({}, otherProps, { className: className, onClick: function (event) { return onClickWeekNumber_1(weekNumber_1, date_1, event); }, type: "button" }), children));
-    }
-    else {
-        props.date; props.onClickWeekNumber; props.weekNumber; var otherProps = __rest$1(props, ["date", "onClickWeekNumber", "weekNumber"]);
-        return (React.createElement("div", __assign$2({}, otherProps, { className: className }), children));
-    }
-}
-
-function WeekNumbers(props) {
-    var activeStartDate = props.activeStartDate, calendarTypeOrDeprecatedCalendarType = props.calendarType, onClickWeekNumber = props.onClickWeekNumber, onMouseLeave = props.onMouseLeave, showFixedNumberOfWeeks = props.showFixedNumberOfWeeks;
-    var calendarType = mapCalendarType(calendarTypeOrDeprecatedCalendarType);
-    var numberOfWeeks = (function () {
-        if (showFixedNumberOfWeeks) {
-            return 6;
-        }
-        var numberOfDays = getDaysInMonth(activeStartDate);
-        var startWeekday = getDayOfWeek(activeStartDate, calendarType);
-        var days = numberOfDays - (7 - startWeekday);
-        return 1 + Math.ceil(days / 7);
-    })();
-    var dates = (function () {
-        var year = getYear(activeStartDate);
-        var monthIndex = getMonth(activeStartDate);
-        var day = getDate(activeStartDate);
-        var result = [];
-        for (var index = 0; index < numberOfWeeks; index += 1) {
-            result.push(getBeginOfWeek(new Date(year, monthIndex, day + index * 7), calendarType));
-        }
-        return result;
-    })();
-    var weekNumbers = dates.map(function (date) { return getWeekNumber(date, calendarType); });
-    return (React.createElement(Flex, { className: "react-calendar__month-view__weekNumbers", count: numberOfWeeks, direction: "column", onFocus: onMouseLeave, onMouseOver: onMouseLeave, style: { flexBasis: 'calc(100% * (1 / 8)', flexShrink: 0 } }, weekNumbers.map(function (weekNumber, weekIndex) {
-        var date = dates[weekIndex];
-        if (!date) {
-            throw new Error('date is not defined');
-        }
-        return (React.createElement(WeekNumber, { key: weekNumber, date: date, onClickWeekNumber: onClickWeekNumber, weekNumber: weekNumber }));
-    })));
-}
-
-var __assign$1 = (undefined && undefined.__assign) || function () {
-    __assign$1 = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign$1.apply(this, arguments);
-};
-var __rest = (undefined && undefined.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
-                t[p[i]] = s[p[i]];
-        }
-    return t;
-};
-function getCalendarTypeFromLocale(locale) {
-    if (locale) {
-        for (var _i = 0, _a = Object.entries(CALENDAR_TYPE_LOCALES); _i < _a.length; _i++) {
-            var _b = _a[_i], calendarType = _b[0], locales = _b[1];
-            if (locales.includes(locale)) {
-                return calendarType;
-            }
-        }
-    }
-    return CALENDAR_TYPES.ISO_8601;
-}
-var MonthView = function MonthView(props) {
-    var activeStartDate = props.activeStartDate, locale = props.locale, onMouseLeave = props.onMouseLeave, showFixedNumberOfWeeks = props.showFixedNumberOfWeeks;
-    var _a = props.calendarType, calendarType = _a === void 0 ? getCalendarTypeFromLocale(locale) : _a, formatShortWeekday = props.formatShortWeekday, formatWeekday = props.formatWeekday, onClickWeekNumber = props.onClickWeekNumber, showWeekNumbers = props.showWeekNumbers, childProps = __rest(props, ["calendarType", "formatShortWeekday", "formatWeekday", "onClickWeekNumber", "showWeekNumbers"]);
-    function renderWeekdays() {
-        return (React.createElement(Weekdays, { calendarType: calendarType, formatShortWeekday: formatShortWeekday, formatWeekday: formatWeekday, locale: locale, onMouseLeave: onMouseLeave }));
-    }
-    function renderWeekNumbers() {
-        if (!showWeekNumbers) {
-            return null;
-        }
-        return (React.createElement(WeekNumbers, { activeStartDate: activeStartDate, calendarType: calendarType, onClickWeekNumber: onClickWeekNumber, onMouseLeave: onMouseLeave, showFixedNumberOfWeeks: showFixedNumberOfWeeks }));
-    }
-    function renderDays() {
-        return React.createElement(Days, __assign$1({ calendarType: calendarType }, childProps));
-    }
-    var className = 'react-calendar__month-view';
-    return (React.createElement("div", { className: clsx(className, showWeekNumbers ? "".concat(className, "--weekNumbers") : '') },
-        React.createElement("div", { style: {
-                display: 'flex',
-                alignItems: 'flex-end',
-            } },
-            renderWeekNumbers(),
-            React.createElement("div", { style: {
-                    flexGrow: 1,
-                    width: '100%',
-                } },
-                renderWeekdays(),
-                renderDays()))));
-};
-MonthView.propTypes = __assign$1(__assign$1({}, tileGroupProps), { calendarType: isCalendarType, formatDay: PropTypes.func, formatLongDate: PropTypes.func, formatShortWeekday: PropTypes.func, formatWeekday: PropTypes.func, onClickWeekNumber: PropTypes.func, onMouseLeave: PropTypes.func, showFixedNumberOfWeeks: PropTypes.bool, showNeighboringMonth: PropTypes.bool, showWeekNumbers: PropTypes.bool });
-var MonthView$1 = MonthView;
-
-var __assign = (undefined && undefined.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var baseClassName = 'react-calendar';
-var allViews = ['century', 'decade', 'year', 'month'];
-var allValueTypes = ['decade', 'year', 'month', 'day'];
-var defaultMinDate = new Date();
-defaultMinDate.setFullYear(1, 0, 1);
-defaultMinDate.setHours(0, 0, 0, 0);
-var defaultMaxDate = new Date(8.64e15);
-function toDate(value) {
-    if (value instanceof Date) {
-        return value;
-    }
-    return new Date(value);
-}
-/**
- * Returns views array with disallowed values cut off.
- */
-function getLimitedViews(minDetail, maxDetail) {
-    return allViews.slice(allViews.indexOf(minDetail), allViews.indexOf(maxDetail) + 1);
-}
-/**
- * Determines whether a given view is allowed with currently applied settings.
- */
-function isViewAllowed(view, minDetail, maxDetail) {
-    var views = getLimitedViews(minDetail, maxDetail);
-    return views.indexOf(view) !== -1;
-}
-/**
- * Gets either provided view if allowed by minDetail and maxDetail, or gets
- * the default view if not allowed.
- */
-function getView(view, minDetail, maxDetail) {
-    if (!view) {
-        return maxDetail;
-    }
-    if (isViewAllowed(view, minDetail, maxDetail)) {
-        return view;
-    }
-    return maxDetail;
-}
-/**
- * Returns value type that can be returned with currently applied settings.
- */
-function getValueType(view) {
-    var index = allViews.indexOf(view);
-    return allValueTypes[index];
-}
-function getValue(value, index) {
-    var rawValue = Array.isArray(value) ? value[index] : value;
-    if (!rawValue) {
-        return null;
-    }
-    var valueDate = toDate(rawValue);
-    if (isNaN(valueDate.getTime())) {
-        throw new Error("Invalid date: ".concat(value));
-    }
-    return valueDate;
-}
-function getDetailValue(_a, index) {
-    var value = _a.value, minDate = _a.minDate, maxDate = _a.maxDate, maxDetail = _a.maxDetail;
-    var valuePiece = getValue(value, index);
-    if (!valuePiece) {
-        return null;
-    }
-    var valueType = getValueType(maxDetail);
-    var detailValueFrom = (function () {
-        switch (index) {
-            case 0:
-                return getBegin(valueType, valuePiece);
-            case 1:
-                return getEnd(valueType, valuePiece);
-            default:
-                throw new Error("Invalid index value: ".concat(index));
-        }
-    })();
-    return between(detailValueFrom, minDate, maxDate);
-}
-var getDetailValueFrom = function (args) { return getDetailValue(args, 0); };
-var getDetailValueTo = function (args) { return getDetailValue(args, 1); };
-var getDetailValueArray = function (args) {
-    return [getDetailValueFrom, getDetailValueTo].map(function (fn) { return fn(args); });
-};
-function getActiveStartDate(_a) {
-    var maxDate = _a.maxDate, maxDetail = _a.maxDetail, minDate = _a.minDate, minDetail = _a.minDetail, value = _a.value, view = _a.view;
-    var rangeType = getView(view, minDetail, maxDetail);
-    var valueFrom = getDetailValueFrom({
-        value: value,
-        minDate: minDate,
-        maxDate: maxDate,
-        maxDetail: maxDetail,
-    }) || new Date();
-    return getBegin(rangeType, valueFrom);
-}
-function getInitialActiveStartDate(_a) {
-    var activeStartDate = _a.activeStartDate, defaultActiveStartDate = _a.defaultActiveStartDate, defaultValue = _a.defaultValue, defaultView = _a.defaultView, maxDate = _a.maxDate, maxDetail = _a.maxDetail, minDate = _a.minDate, minDetail = _a.minDetail, value = _a.value, view = _a.view;
-    var rangeType = getView(view, minDetail, maxDetail);
-    var valueFrom = activeStartDate || defaultActiveStartDate;
-    if (valueFrom) {
-        return getBegin(rangeType, valueFrom);
-    }
-    return getActiveStartDate({
-        maxDate: maxDate,
-        maxDetail: maxDetail,
-        minDate: minDate,
-        minDetail: minDetail,
-        value: value || defaultValue,
-        view: view || defaultView,
-    });
-}
-function getIsSingleValue(value) {
-    return value && (!Array.isArray(value) || value.length === 1);
-}
-function areDatesEqual(date1, date2) {
-    return date1 instanceof Date && date2 instanceof Date && date1.getTime() === date2.getTime();
-}
-var Calendar$1 = forwardRef(function Calendar(props, ref) {
-    var activeStartDateProps = props.activeStartDate, allowPartialRange = props.allowPartialRange, calendarType = props.calendarType, className = props.className, defaultActiveStartDate = props.defaultActiveStartDate, defaultValue = props.defaultValue, defaultView = props.defaultView, formatDay = props.formatDay, formatLongDate = props.formatLongDate, formatMonth = props.formatMonth, formatMonthYear = props.formatMonthYear, formatShortWeekday = props.formatShortWeekday, formatWeekday = props.formatWeekday, formatYear = props.formatYear, _a = props.goToRangeStartOnSelect, goToRangeStartOnSelect = _a === void 0 ? true : _a, inputRef = props.inputRef, locale = props.locale, _b = props.maxDate, maxDate = _b === void 0 ? defaultMaxDate : _b, _c = props.maxDetail, maxDetail = _c === void 0 ? 'month' : _c, _d = props.minDate, minDate = _d === void 0 ? defaultMinDate : _d, _e = props.minDetail, minDetail = _e === void 0 ? 'century' : _e, navigationAriaLabel = props.navigationAriaLabel, navigationAriaLive = props.navigationAriaLive, navigationLabel = props.navigationLabel, next2AriaLabel = props.next2AriaLabel, next2Label = props.next2Label, nextAriaLabel = props.nextAriaLabel, nextLabel = props.nextLabel, onActiveStartDateChange = props.onActiveStartDateChange, onChangeProps = props.onChange, onClickDay = props.onClickDay, onClickDecade = props.onClickDecade, onClickMonth = props.onClickMonth, onClickWeekNumber = props.onClickWeekNumber, onClickYear = props.onClickYear, onDrillDown = props.onDrillDown, onDrillUp = props.onDrillUp, onViewChange = props.onViewChange, prev2AriaLabel = props.prev2AriaLabel, prev2Label = props.prev2Label, prevAriaLabel = props.prevAriaLabel, prevLabel = props.prevLabel, _f = props.returnValue, returnValue = _f === void 0 ? 'start' : _f, selectRange = props.selectRange, showDoubleView = props.showDoubleView, showFixedNumberOfWeeks = props.showFixedNumberOfWeeks, _g = props.showNavigation, showNavigation = _g === void 0 ? true : _g, _h = props.showNeighboringMonth, showNeighboringMonth = _h === void 0 ? true : _h, showWeekNumbers = props.showWeekNumbers, tileClassName = props.tileClassName, tileContent = props.tileContent, tileDisabled = props.tileDisabled, valueProps = props.value, viewProps = props.view;
-    var _j = useState(defaultActiveStartDate), activeStartDateState = _j[0], setActiveStartDateState = _j[1];
-    var _k = useState(null), hoverState = _k[0], setHoverState = _k[1];
-    var _l = useState(Array.isArray(defaultValue)
-        ? defaultValue.map(function (el) { return (el !== null ? toDate(el) : null); })
-        : defaultValue !== null && defaultValue !== undefined
-            ? toDate(defaultValue)
-            : null), valueState = _l[0], setValueState = _l[1];
-    var _m = useState(defaultView), viewState = _m[0], setViewState = _m[1];
-    var activeStartDate = activeStartDateProps ||
-        activeStartDateState ||
-        getInitialActiveStartDate({
-            activeStartDate: activeStartDateProps,
-            defaultActiveStartDate: defaultActiveStartDate,
-            defaultValue: defaultValue,
-            defaultView: defaultView,
-            maxDate: maxDate,
-            maxDetail: maxDetail,
-            minDate: minDate,
-            minDetail: minDetail,
-            value: valueProps,
-            view: viewProps,
-        });
-    var value = (function () {
-        var rawValue = (function () {
-            // In the middle of range selection, use value from state
-            if (selectRange && getIsSingleValue(valueState)) {
-                return valueState;
-            }
-            return valueProps !== undefined ? valueProps : valueState;
-        })();
-        if (!rawValue) {
-            return null;
-        }
-        return Array.isArray(rawValue)
-            ? rawValue.map(function (el) { return (el !== null ? toDate(el) : null); })
-            : rawValue !== null
-                ? toDate(rawValue)
-                : null;
-    })();
-    var valueType = getValueType(maxDetail);
-    var view = getView(viewProps || viewState, minDetail, maxDetail);
-    var views = getLimitedViews(minDetail, maxDetail);
-    var hover = selectRange ? hoverState : null;
-    var drillDownAvailable = views.indexOf(view) < views.length - 1;
-    var drillUpAvailable = views.indexOf(view) > 0;
-    var getProcessedValue = useCallback(function (value) {
-        var processFunction = (function () {
-            switch (returnValue) {
-                case 'start':
-                    return getDetailValueFrom;
-                case 'end':
-                    return getDetailValueTo;
-                case 'range':
-                    return getDetailValueArray;
-                default:
-                    throw new Error('Invalid returnValue.');
-            }
-        })();
-        return processFunction({
-            maxDate: maxDate,
-            maxDetail: maxDetail,
-            minDate: minDate,
-            value: value,
-        });
-    }, [maxDate, maxDetail, minDate, returnValue]);
-    var setActiveStartDate = useCallback(function (nextActiveStartDate, action) {
-        setActiveStartDateState(nextActiveStartDate);
-        var args = {
-            action: action,
-            activeStartDate: nextActiveStartDate,
-            value: value,
-            view: view,
-        };
-        if (onActiveStartDateChange && !areDatesEqual(activeStartDate, nextActiveStartDate)) {
-            onActiveStartDateChange(args);
-        }
-    }, [activeStartDate, onActiveStartDateChange, value, view]);
-    var onClickTile = useCallback(function (value, event) {
-        var callback = (function () {
-            switch (view) {
-                case 'century':
-                    return onClickDecade;
-                case 'decade':
-                    return onClickYear;
-                case 'year':
-                    return onClickMonth;
-                case 'month':
-                    return onClickDay;
-                default:
-                    throw new Error("Invalid view: ".concat(view, "."));
-            }
-        })();
-        if (callback)
-            callback(value, event);
-    }, [onClickDay, onClickDecade, onClickMonth, onClickYear, view]);
-    var drillDown = useCallback(function (nextActiveStartDate, event) {
-        if (!drillDownAvailable) {
-            return;
-        }
-        onClickTile(nextActiveStartDate, event);
-        var nextView = views[views.indexOf(view) + 1];
-        if (!nextView) {
-            throw new Error('Attempted to drill down from the lowest view.');
-        }
-        setActiveStartDateState(nextActiveStartDate);
-        setViewState(nextView);
-        var args = {
-            action: 'drillDown',
-            activeStartDate: nextActiveStartDate,
-            value: value,
-            view: nextView,
-        };
-        if (onActiveStartDateChange && !areDatesEqual(activeStartDate, nextActiveStartDate)) {
-            onActiveStartDateChange(args);
-        }
-        if (onViewChange && view !== nextView) {
-            onViewChange(args);
-        }
-        if (onDrillDown) {
-            onDrillDown(args);
-        }
-    }, [
-        activeStartDate,
-        drillDownAvailable,
-        onActiveStartDateChange,
-        onClickTile,
-        onDrillDown,
-        onViewChange,
-        value,
-        view,
-        views,
-    ]);
-    var drillUp = useCallback(function () {
-        if (!drillUpAvailable) {
-            return;
-        }
-        var nextView = views[views.indexOf(view) - 1];
-        if (!nextView) {
-            throw new Error('Attempted to drill up from the highest view.');
-        }
-        var nextActiveStartDate = getBegin(nextView, activeStartDate);
-        setActiveStartDateState(nextActiveStartDate);
-        setViewState(nextView);
-        var args = {
-            action: 'drillUp',
-            activeStartDate: nextActiveStartDate,
-            value: value,
-            view: nextView,
-        };
-        if (onActiveStartDateChange && !areDatesEqual(activeStartDate, nextActiveStartDate)) {
-            onActiveStartDateChange(args);
-        }
-        if (onViewChange && view !== nextView) {
-            onViewChange(args);
-        }
-        if (onDrillUp) {
-            onDrillUp(args);
-        }
-    }, [
-        activeStartDate,
-        drillUpAvailable,
-        onActiveStartDateChange,
-        onDrillUp,
-        onViewChange,
-        value,
-        view,
-        views,
-    ]);
-    var onChange = useCallback(function (rawNextValue, event) {
-        var previousValue = value;
-        onClickTile(rawNextValue, event);
-        var isFirstValueInRange = selectRange && !getIsSingleValue(previousValue);
-        var nextValue;
-        if (selectRange) {
-            // Range selection turned on
-            if (isFirstValueInRange) {
-                // Value has 0 or 2 elements - either way we're starting a new array
-                // First value
-                nextValue = getBegin(valueType, rawNextValue);
-            }
-            else {
-                if (!previousValue) {
-                    throw new Error('previousValue is required');
-                }
-                if (Array.isArray(previousValue)) {
-                    throw new Error('previousValue must not be an array');
-                }
-                // Second value
-                nextValue = getValueRange(valueType, previousValue, rawNextValue);
-            }
-        }
-        else {
-            // Range selection turned off
-            nextValue = getProcessedValue(rawNextValue);
-        }
-        var nextActiveStartDate = 
-        // Range selection turned off
-        !selectRange ||
-            // Range selection turned on, first value
-            isFirstValueInRange ||
-            // Range selection turned on, second value, goToRangeStartOnSelect toggled on
-            goToRangeStartOnSelect
-            ? getActiveStartDate({
-                maxDate: maxDate,
-                maxDetail: maxDetail,
-                minDate: minDate,
-                minDetail: minDetail,
-                value: nextValue,
-                view: view,
-            })
-            : null;
-        event.persist();
-        setActiveStartDateState(nextActiveStartDate);
-        setValueState(nextValue);
-        var args = {
-            action: 'onChange',
-            activeStartDate: nextActiveStartDate,
-            value: nextValue,
-            view: view,
-        };
-        if (onActiveStartDateChange && !areDatesEqual(activeStartDate, nextActiveStartDate)) {
-            onActiveStartDateChange(args);
-        }
-        if (onChangeProps) {
-            if (selectRange) {
-                var isSingleValue = getIsSingleValue(nextValue);
-                if (!isSingleValue) {
-                    onChangeProps(nextValue || null, event);
-                }
-                else if (allowPartialRange) {
-                    if (Array.isArray(nextValue)) {
-                        throw new Error('value must not be an array');
-                    }
-                    onChangeProps([nextValue || null, null], event);
-                }
-            }
-            else {
-                onChangeProps(nextValue || null, event);
-            }
-        }
-    }, [
-        activeStartDate,
-        allowPartialRange,
-        getProcessedValue,
-        goToRangeStartOnSelect,
-        maxDate,
-        maxDetail,
-        minDate,
-        minDetail,
-        onActiveStartDateChange,
-        onChangeProps,
-        onClickTile,
-        selectRange,
-        value,
-        valueType,
-        view,
-    ]);
-    function onMouseOver(nextHover) {
-        setHoverState(nextHover);
-    }
-    function onMouseLeave() {
-        setHoverState(null);
-    }
-    useImperativeHandle(ref, function () { return ({
-        activeStartDate: activeStartDate,
-        drillDown: drillDown,
-        drillUp: drillUp,
-        onChange: onChange,
-        setActiveStartDate: setActiveStartDate,
-        value: value,
-        view: view,
-    }); }, [activeStartDate, drillDown, drillUp, onChange, setActiveStartDate, value, view]);
-    function renderContent(next) {
-        var currentActiveStartDate = next
-            ? getBeginNext(view, activeStartDate)
-            : getBegin(view, activeStartDate);
-        var onClick = drillDownAvailable ? drillDown : onChange;
-        var commonProps = {
-            activeStartDate: currentActiveStartDate,
-            hover: hover,
-            locale: locale,
-            maxDate: maxDate,
-            minDate: minDate,
-            onClick: onClick,
-            onMouseOver: selectRange ? onMouseOver : undefined,
-            tileClassName: tileClassName,
-            tileContent: tileContent,
-            tileDisabled: tileDisabled,
-            value: value,
-            valueType: valueType,
-        };
-        switch (view) {
-            case 'century': {
-                return React.createElement(CenturyView$1, __assign({ formatYear: formatYear }, commonProps));
-            }
-            case 'decade': {
-                return React.createElement(DecadeView$1, __assign({ formatYear: formatYear }, commonProps));
-            }
-            case 'year': {
-                return (React.createElement(YearView$1, __assign({ formatMonth: formatMonth, formatMonthYear: formatMonthYear }, commonProps)));
-            }
-            case 'month': {
-                return (React.createElement(MonthView$1, __assign({ calendarType: calendarType, formatDay: formatDay, formatLongDate: formatLongDate, formatShortWeekday: formatShortWeekday, formatWeekday: formatWeekday, onClickWeekNumber: onClickWeekNumber, onMouseLeave: selectRange ? onMouseLeave : undefined, showFixedNumberOfWeeks: typeof showFixedNumberOfWeeks !== 'undefined'
-                        ? showFixedNumberOfWeeks
-                        : showDoubleView, showNeighboringMonth: showNeighboringMonth, showWeekNumbers: showWeekNumbers }, commonProps)));
-            }
-            default:
-                throw new Error("Invalid view: ".concat(view, "."));
-        }
-    }
-    function renderNavigation() {
-        if (!showNavigation) {
-            return null;
-        }
-        return (React.createElement(Navigation, { activeStartDate: activeStartDate, drillUp: drillUp, formatMonthYear: formatMonthYear, formatYear: formatYear, locale: locale, maxDate: maxDate, minDate: minDate, navigationAriaLabel: navigationAriaLabel, navigationAriaLive: navigationAriaLive, navigationLabel: navigationLabel, next2AriaLabel: next2AriaLabel, next2Label: next2Label, nextAriaLabel: nextAriaLabel, nextLabel: nextLabel, prev2AriaLabel: prev2AriaLabel, prev2Label: prev2Label, prevAriaLabel: prevAriaLabel, prevLabel: prevLabel, setActiveStartDate: setActiveStartDate, showDoubleView: showDoubleView, view: view, views: views }));
-    }
-    var valueArray = Array.isArray(value) ? value : [value];
-    return (React.createElement("div", { className: clsx(baseClassName, selectRange && valueArray.length === 1 && "".concat(baseClassName, "--selectRange"), showDoubleView && "".concat(baseClassName, "--doubleView"), className), ref: inputRef },
-        renderNavigation(),
-        React.createElement("div", { className: "".concat(baseClassName, "__viewContainer"), onBlur: selectRange ? onMouseLeave : undefined, onMouseLeave: selectRange ? onMouseLeave : undefined },
-            renderContent(),
-            showDoubleView ? renderContent(true) : null)));
-});
-var isActiveStartDate = PropTypes.instanceOf(Date);
-var isValue = PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]);
-var isValueOrValueArray = PropTypes.oneOfType([isValue, rangeOf(isValue)]);
-Calendar$1.propTypes = {
-    activeStartDate: isActiveStartDate,
-    allowPartialRange: PropTypes.bool,
-    calendarType: isCalendarType,
-    className: isClassName,
-    defaultActiveStartDate: isActiveStartDate,
-    defaultValue: isValueOrValueArray,
-    defaultView: isView,
-    formatDay: PropTypes.func,
-    formatLongDate: PropTypes.func,
-    formatMonth: PropTypes.func,
-    formatMonthYear: PropTypes.func,
-    formatShortWeekday: PropTypes.func,
-    formatWeekday: PropTypes.func,
-    formatYear: PropTypes.func,
-    goToRangeStartOnSelect: PropTypes.bool,
-    inputRef: isRef,
-    locale: PropTypes.string,
-    maxDate: isMaxDate,
-    maxDetail: PropTypes.oneOf(allViews),
-    minDate: isMinDate,
-    minDetail: PropTypes.oneOf(allViews),
-    navigationAriaLabel: PropTypes.string,
-    navigationAriaLive: PropTypes.oneOf(['off', 'polite', 'assertive']),
-    navigationLabel: PropTypes.func,
-    next2AriaLabel: PropTypes.string,
-    next2Label: PropTypes.node,
-    nextAriaLabel: PropTypes.string,
-    nextLabel: PropTypes.node,
-    onActiveStartDateChange: PropTypes.func,
-    onChange: PropTypes.func,
-    onClickDay: PropTypes.func,
-    onClickDecade: PropTypes.func,
-    onClickMonth: PropTypes.func,
-    onClickWeekNumber: PropTypes.func,
-    onClickYear: PropTypes.func,
-    onDrillDown: PropTypes.func,
-    onDrillUp: PropTypes.func,
-    onViewChange: PropTypes.func,
-    prev2AriaLabel: PropTypes.string,
-    prev2Label: PropTypes.node,
-    prevAriaLabel: PropTypes.string,
-    prevLabel: PropTypes.node,
-    returnValue: PropTypes.oneOf(['start', 'end', 'range']),
-    selectRange: PropTypes.bool,
-    showDoubleView: PropTypes.bool,
-    showFixedNumberOfWeeks: PropTypes.bool,
-    showNavigation: PropTypes.bool,
-    showNeighboringMonth: PropTypes.bool,
-    showWeekNumbers: PropTypes.bool,
-    tileClassName: PropTypes.oneOfType([PropTypes.func, isClassName]),
-    tileContent: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
-    tileDisabled: PropTypes.func,
-    value: isValueOrValueArray,
-    view: isView,
-};
-var Calendar$2 = Calendar$1;
 
 function Calendar(props) {
   var date = props.date,
@@ -101699,7 +97785,7 @@ function Calendar(props) {
     timeAlign = props.timeAlign,
     showTime = props.showTime,
     containerProps = props.containerProps,
-    rest = __rest$b(props, ["date", "setDate", "class", "timeClass", "dateClass", "readonly", "time", "timeFormat", "style", "timeStyle", "timeAlign", "showTime", "containerProps"]);
+    rest = __rest(props, ["date", "setDate", "class", "timeClass", "dateClass", "readonly", "time", "timeFormat", "style", "timeStyle", "timeAlign", "showTime", "containerProps"]);
   var _a = useState(new Date().toLocaleString()),
     now = _a[0],
     setNow = _a[1];
@@ -101714,21 +97800,21 @@ function Calendar(props) {
   var ContainerProps = function ContainerProps() {
     var _a = containerProps !== null && containerProps !== void 0 ? containerProps : {};
       _a.class;
-      var rest = __rest$b(_a, ["class"]);
+      var rest = __rest(_a, ["class"]);
     return rest;
   };
-  return jsxRuntimeExports.jsxs(EvpDom, __assign$f({
+  return jsxRuntimeExports.jsxs(EvpDom, __assign({
     class: classNames("evp", "evp-calendar", (containerProps === null || containerProps === void 0 ? void 0 : containerProps.class) || className, readonly ? "evp-readonly" : ""),
     style: style
   }, ContainerProps(), {
-    children: [showTime !== false ? jsxRuntimeExports.jsx("div", __assign$f({
+    children: [showTime !== false ? jsxRuntimeExports.jsx("div", __assign({
       className: classNames("evp-calendar-time", timeClass),
-      style: __assign$f({
+      style: __assign({
         textAlign: timeAlign !== null && timeAlign !== void 0 ? timeAlign : "center"
       }, timeStyle)
     }, {
       children: moment(time !== null && time !== void 0 ? time : now).format(timeFormat !== null && timeFormat !== void 0 ? timeFormat : "YYYY / MM / DD \xa0 hh : mm : ss")
-    })) : void 0, jsxRuntimeExports.jsx(Calendar$2, __assign$f({
+    })) : void 0, jsxRuntimeExports.jsx(CalendarDate, __assign({
       className: classNames("evp-calendar-date", dateClass),
       value: date,
       onChange: setDate
@@ -101749,7 +97835,7 @@ var EvpProgress = function EvpProgress(_a) {
   var _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
   var value = _a.value,
     onChange = _a.onChange,
-    props = __rest$b(_a, ["value", "onChange"]);
+    props = __rest(_a, ["value", "onChange"]);
   var rate = function rate() {
     var _a, _b;
     return (value ? value - ((_a = props.min) !== null && _a !== void 0 ? _a : 0) : 0) * 100 / ((_b = props.max) !== null && _b !== void 0 ? _b : 100);
@@ -101776,10 +97862,10 @@ var EvpProgress = function EvpProgress(_a) {
       didMounted.current = true;
     }
   }, [value]);
-  return jsxRuntimeExports.jsxs("div", __assign$f({
+  return jsxRuntimeExports.jsxs("div", __assign({
     className: classNames("evp-progress", props.class),
     id: props.id,
-    style: __assign$f({
+    style: __assign({
       // @ts-ignore
       "--size": typeof props.size === "number" ? "".concat(props.size, "px") : props.size && ["sm", "md", "lg"].includes(props.size) ? sizeMap[props.size] : (_b = props.size) !== null && _b !== void 0 ? _b : "100px",
       "--fillColor": rate() > 50 ? (_c = props.fillColor) !== null && _c !== void 0 ? _c : "#6ed4bf" : "transparent",
@@ -101795,7 +97881,7 @@ var EvpProgress = function EvpProgress(_a) {
       className: "evp-progress__extra"
     }), jsxRuntimeExports.jsx("div", {
       className: "evp-progress__fill"
-    }), jsxRuntimeExports.jsx("div", __assign$f({
+    }), jsxRuntimeExports.jsx("div", __assign({
       className: "evp-progress__mask"
     }, {
       children: jsxRuntimeExports.jsx("span", {
@@ -101825,40 +97911,40 @@ var EvpSteps = function EvpSteps(props) {
     }
   }, [step]);
   var $props = AllParser(props);
-  return jsxRuntimeExports.jsxs(EvpDom, __assign$f({
+  return jsxRuntimeExports.jsxs(EvpDom, __assign({
     class: classNames("evp", "evp-steps", $props.class),
     id: $props.id,
-    style: __assign$f(__assign$f({}, $props.style), {
+    style: __assign(__assign({}, $props.style), {
       height: typeof props.h === "number" ? "".concat(props.h, "px") : (_b = props.h) !== null && _b !== void 0 ? _b : "100%"
     }),
     loading: $props.loading
   }, $props.event, {
     hidden: $props.hidden
   }, {
-    children: [props.header ? props.header(__assign$f({}, (_d = (_c = props.steps) === null || _c === void 0 ? void 0 : _c[step() - 1]) !== null && _d !== void 0 ? _d : {}), (_f = (_e = props.steps) === null || _e === void 0 ? void 0 : _e.findIndex(function (item) {
+    children: [props.header ? props.header(__assign({}, (_d = (_c = props.steps) === null || _c === void 0 ? void 0 : _c[step() - 1]) !== null && _d !== void 0 ? _d : {}), (_f = (_e = props.steps) === null || _e === void 0 ? void 0 : _e.findIndex(function (item) {
       var _a;
       return item === ((_a = props.steps) === null || _a === void 0 ? void 0 : _a[step() - 1]);
-    })) !== null && _f !== void 0 ? _f : -1, (_g = props.steps) !== null && _g !== void 0 ? _g : []) : jsxRuntimeExports.jsxs("div", __assign$f({
+    })) !== null && _f !== void 0 ? _f : -1, (_g = props.steps) !== null && _g !== void 0 ? _g : []) : jsxRuntimeExports.jsxs("div", __assign({
       className: "evp-steps-header"
     }, {
-      children: [jsxRuntimeExports.jsx("span", __assign$f({
+      children: [jsxRuntimeExports.jsx("span", __assign({
         className: "evp-steps-header-title"
       }, {
         children: (_j = (_h = props.steps) === null || _h === void 0 ? void 0 : _h[step() - 1]) === null || _j === void 0 ? void 0 : _j.title
-      })), jsxRuntimeExports.jsx("span", __assign$f({
+      })), jsxRuntimeExports.jsx("span", __assign({
         className: "evp-steps-header-desc"
       }, {
         children: (_l = (_k = props.steps) === null || _k === void 0 ? void 0 : _k[step() - 1]) === null || _l === void 0 ? void 0 : _l.desc
       }))]
-    })), jsxRuntimeExports.jsx("div", __assign$f({}, props.windowProps, {
+    })), jsxRuntimeExports.jsx("div", __assign({}, props.windowProps, {
       className: classNames("evp-steps-window", (_m = props.windowProps) === null || _m === void 0 ? void 0 : _m.className),
-      style: __assign$f({
+      style: __assign({
         // @ts-ignore
         "--windowWidth": typeof props.windowWidth === "number" ? "".concat(props.windowWidth, "px") : (_o = props.windowWidth) !== null && _o !== void 0 ? _o : "400px",
         height: typeof props.windowHeight === "number" ? "".concat(props.windowHeight, "px") : (_p = props.windowHeight) !== null && _p !== void 0 ? _p : "100%"
       }, (_q = props.windowProps) === null || _q === void 0 ? void 0 : _q.style)
     }, {
-      children: jsxRuntimeExports.jsx("div", __assign$f({
+      children: jsxRuntimeExports.jsx("div", __assign({
         className: "evp-steps-list",
         style: {
           width: "".concat(100 * ((_s = (_r = props.steps) === null || _r === void 0 ? void 0 : _r.length) !== null && _s !== void 0 ? _s : 1), "%"),
@@ -101867,7 +97953,7 @@ var EvpSteps = function EvpSteps(props) {
       }, {
         children: (_t = props.steps) === null || _t === void 0 ? void 0 : _t.map(function (item) {
           return jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, {
-            children: jsxRuntimeExports.jsx("div", __assign$f({
+            children: jsxRuntimeExports.jsx("div", __assign({
               className: "evp-steps-item"
             }, {
               children: item.content
@@ -101875,10 +97961,10 @@ var EvpSteps = function EvpSteps(props) {
           });
         })
       }))
-    })), jsxRuntimeExports.jsxs("div", __assign$f({
+    })), jsxRuntimeExports.jsxs("div", __assign({
       className: "evp-steps-btns"
     }, {
-      children: [props.hideLastAtStepOne === true && step() === 1 ? void 0 : jsxRuntimeExports.jsx(EvpButton, __assign$f({
+      children: [props.hideLastAtStepOne === true && step() === 1 ? void 0 : jsxRuntimeExports.jsx(EvpButton, __assign({
         theme: "white",
         "$click": function $click() {
           var _a;
@@ -101893,7 +97979,7 @@ var EvpSteps = function EvpSteps(props) {
         mgr_8: true
       }, props.lastProps, {
         children: "Last Step"
-      })), props.hideNextAtLastStep !== false && step() === ((_v = (_u = props.steps) === null || _u === void 0 ? void 0 : _u.length) !== null && _v !== void 0 ? _v : 1) ? void 0 : jsxRuntimeExports.jsx(EvpButton, __assign$f({
+      })), props.hideNextAtLastStep !== false && step() === ((_v = (_u = props.steps) === null || _u === void 0 ? void 0 : _u.length) !== null && _v !== void 0 ? _v : 1) ? void 0 : jsxRuntimeExports.jsx(EvpButton, __assign({
         "$click": function $click() {
           var _a, _b, _c;
           if (step() === ((_b = (_a = props.steps) === null || _a === void 0 ? void 0 : _a.length) !== null && _b !== void 0 ? _b : 0)) return;
@@ -101907,7 +97993,7 @@ var EvpSteps = function EvpSteps(props) {
         mgr_8: true
       }, props.nextProps, {
         children: "Next Step"
-      })), step() === ((_y = props.steps) === null || _y === void 0 ? void 0 : _y.length) ? jsxRuntimeExports.jsx(EvpButton, __assign$f({
+      })), step() === ((_y = props.steps) === null || _y === void 0 ? void 0 : _y.length) ? jsxRuntimeExports.jsx(EvpButton, __assign({
         mgr_8: true,
         "$click": function $click() {
           var _a;
@@ -101924,8 +98010,8 @@ function EvpRequired(_a) {
   var className = _a.className,
     hidden = _a.hidden,
     children = _a.children,
-    props = __rest$b(_a, ["className", "hidden", "children"]);
-  return hidden ? jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, {}) : jsxRuntimeExports.jsx("div", __assign$f({
+    props = __rest(_a, ["className", "hidden", "children"]);
+  return hidden ? jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, {}) : jsxRuntimeExports.jsx("div", __assign({
     className: "evp-required ".concat(className !== null && className !== void 0 ? className : "").trim()
   }, props, {
     children: children !== null && children !== void 0 ? children : "*"
@@ -101936,7 +98022,7 @@ var EvpWaterfalls = function EvpWaterfalls(_a) {
   var className = _a.className;
     _a.style;
     var children = _a.children,
-    props = __rest$b(_a, ["className", "style", "children"]);
+    props = __rest(_a, ["className", "style", "children"]);
   var columns = props.columns || 4;
   var nodes = React.Children.toArray(children);
   // split nodes into every column
@@ -101947,7 +98033,7 @@ var EvpWaterfalls = function EvpWaterfalls(_a) {
     columnsNodes[index % columns].push(node);
   });
   console.log(columnsNodes[0]);
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  return jsxRuntimeExports.jsx("div", __assign({
     className: classNames("evp", "evp-waterfalls", className),
     style: {
       // @ts-ignore
@@ -101956,7 +98042,7 @@ var EvpWaterfalls = function EvpWaterfalls(_a) {
     }
   }, props, {
     children: columnsNodes.map(function (nodes, index) {
-      return jsxRuntimeExports.jsx("div", __assign$f({
+      return jsxRuntimeExports.jsx("div", __assign({
         className: "evp-waterfalls-column"
       }, {
         children: nodes
@@ -101998,7 +98084,7 @@ var actions = [{
   // @ts-ignore
   handler: function handler(state, action) {
     var _a;
-    return __assign$f(__assign$f({}, state), {
+    return __assign(__assign({}, state), {
       current: (_a = action.payload) !== null && _a !== void 0 ? _a : state.current
     });
   }
@@ -102012,7 +98098,7 @@ var actions = [{
     if (max && newCur > max) {
       return state;
     }
-    return __assign$f(__assign$f({}, state), {
+    return __assign(__assign({}, state), {
       current: newCur
     });
   }
@@ -102026,7 +98112,7 @@ var actions = [{
     if (newCur < min) {
       return state;
     }
-    return __assign$f(__assign$f({}, state), {
+    return __assign(__assign({}, state), {
       current: newCur
     });
   }
@@ -102034,7 +98120,7 @@ var actions = [{
   type: "CURRENT_TO_FIRST",
   // @ts-ignore
   handler: function handler(state, action) {
-    return __assign$f(__assign$f({}, state), {
+    return __assign(__assign({}, state), {
       current: 0
     });
   }
@@ -102042,13 +98128,13 @@ var actions = [{
   type: "CURRENT_TO_LAST",
   // @ts-ignore
   handler: function handler(state, action) {
-    return __assign$f(__assign$f({}, state), {
+    return __assign(__assign({}, state), {
       current: action.payload
     });
   }
 }];
 
-var purifyProps = function purifyProps(props) {
+var purifyProps$1 = function purifyProps(props) {
   props.className;
     props.style;
     props.items;
@@ -102059,7 +98145,7 @@ var purifyProps = function purifyProps(props) {
     props.onClickItem;
     props.showScroll;
     props.adjacentTabScaled;
-    var rest = __rest$b(props, ["className", "style", "items", "children", "showBtns", "onClickLeft", "onClickRight", "onClickItem", "showScroll", "adjacentTabScaled"]);
+    var rest = __rest(props, ["className", "style", "items", "children", "showBtns", "onClickLeft", "onClickRight", "onClickItem", "showScroll", "adjacentTabScaled"]);
   return rest;
 };
 // I want to make a component like a carousel
@@ -102101,29 +98187,29 @@ var EvpSlides = function EvpSlides(props) {
       type: "CURRENT_MINUS"
     });
   };
-  return jsxRuntimeExports.jsxs("div", __assign$f({
+  return jsxRuntimeExports.jsxs("div", __assign({
     ref: evpSlidesRef,
     className: classNames("evp-slides", props.className),
-    style: __assign$f({
+    style: __assign({
       // @ts-ignore
       "--showScroll": props.showScroll !== true ? "none" : "block"
     }, props.style)
-  }, purifyProps(props), {
+  }, purifyProps$1(props), {
     children: [items.map(function (item) {
-      return jsxRuntimeExports.jsx("div", __assign$f({
+      return jsxRuntimeExports.jsx("div", __assign({
         className: "evp-slides-item"
       }, {
         children: item
       }));
     }), props.showBtns !== false ? jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
-      children: [jsxRuntimeExports.jsx(EvpButton, __assign$f({
+      children: [jsxRuntimeExports.jsx(EvpButton, __assign({
         "$click": scrollToLastItem,
         shape: "circle",
         theme: "white",
         class: "evp-slides__left"
       }, {
         children: jsxRuntimeExports.jsx(Left$1, {})
-      })), jsxRuntimeExports.jsx(EvpButton, __assign$f({
+      })), jsxRuntimeExports.jsx(EvpButton, __assign({
         "$click": scrollToNextItem,
         shape: "circle",
         theme: "white",
@@ -102131,7 +98217,7 @@ var EvpSlides = function EvpSlides(props) {
       }, {
         children: jsxRuntimeExports.jsx(Right$1, {})
       }))]
-    }) : void 0, props.showTabSpots !== false ? jsxRuntimeExports.jsx("div", __assign$f({
+    }) : void 0, props.showTabSpots !== false ? jsxRuntimeExports.jsx("div", __assign({
       className: "evp-slides__tab-spots",
       style: {
         // @ts-ignore
@@ -102145,7 +98231,7 @@ var EvpSlides = function EvpSlides(props) {
       }
     }, {
       children: items.map(function (_, index) {
-        return jsxRuntimeExports.jsx("div", __assign$f({
+        return jsxRuntimeExports.jsx("div", __assign({
           className: classNames("evp-slides__tab-spot-box", {
             "evp-slides__tab-spot-box--active": index === state.current,
             "evp-slides__tab-spot--active-box-next": props.adjacentTabScaled ? index === state.current + 1 || index === state.current - 1 : false
@@ -102195,9 +98281,9 @@ var EvpTitle = function EvpTitle(_a) {
     fontSize = _a.fontSize,
     underline = _a.underline,
     style = _a.style,
-    props = __rest$b(_a, ["className", "id", "stressed", "stressLineColor", "size", "weight", "fontSize", "underline", "style"]);
+    props = __rest(_a, ["className", "id", "stressed", "stressLineColor", "size", "weight", "fontSize", "underline", "style"]);
   var _fontSize = (_b = style === null || style === void 0 ? void 0 : style.fontSize) !== null && _b !== void 0 ? _b : fontSize;
-  return jsxRuntimeExports.jsxs("div", __assign$f({
+  return jsxRuntimeExports.jsxs("div", __assign({
     className: classNames("evp", "evp-title", className),
     id: id,
     style: {
@@ -102211,13 +98297,13 @@ var EvpTitle = function EvpTitle(_a) {
         // @ts-ignore
         "--bgColor": stressLineColor
       }
-    }) : null, jsxRuntimeExports.jsx("div", __assign$f({
+    }) : null, jsxRuntimeExports.jsx("div", __assign({
       className: "evp-title__main",
       style: function () {
         var _a = style !== null && style !== void 0 ? style : {};
           _a.fontSize;
-          var rest = __rest$b(_a, ["fontSize"]);
-        return __assign$f({
+          var rest = __rest(_a, ["fontSize"]);
+        return __assign({
           textDecorationLine: underline === true ? "underline" : underline || "none",
           fontWeight: weight !== null && weight !== void 0 ? weight : "bold"
         }, rest);
@@ -102252,7 +98338,7 @@ var EvpRate = function EvpRate(_a) {
     onStarClick = _a.onStarClick,
     onChange = _a.onChange,
     starColor = _a.starColor,
-    props = __rest$b(_a, ["class", "count", "value", "setValue", "defaultValue", "onStarClick", "onChange", "starColor"]);
+    props = __rest(_a, ["class", "count", "value", "setValue", "defaultValue", "onStarClick", "onChange", "starColor"]);
   if (count !== undefined && count < 1) {
     throw new Error("EvpStar count must be greater than 0 !");
   }
@@ -102266,7 +98352,7 @@ var EvpRate = function EvpRate(_a) {
   useEffect(function () {
     onChange === null || onChange === void 0 ? void 0 : onChange(realVal);
   }, [realVal]);
-  return jsxRuntimeExports.jsx(EvpDom, __assign$f({
+  return jsxRuntimeExports.jsx(EvpDom, __assign({
     class: classNames("evp-rate", className !== null && className !== void 0 ? className : "")
   }, props, {
     children: range(1, count !== null && count !== void 0 ? count : 5).map(function (i) {
@@ -102313,7 +98399,7 @@ var EvpGhostButtonGroup = function EvpGhostButtonGroup(_a) {
     boxShadow = _a.boxShadow,
     open = _a.open,
     setOpen = _a.setOpen,
-    props = __rest$b(_a, ["class", "items", "children", "direction", "gap", "style", "groupRotate", "reverse", "shadow", "boxShadow", "open", "setOpen"]);
+    props = __rest(_a, ["class", "items", "children", "direction", "gap", "style", "groupRotate", "reverse", "shadow", "boxShadow", "open", "setOpen"]);
   var _c = React.useState(false),
     opened = _c[0],
     openSet = _c[1];
@@ -102355,11 +98441,11 @@ var EvpGhostButtonGroup = function EvpGhostButtonGroup(_a) {
         };
     }
   };
-  return jsxRuntimeExports.jsxs(EvpButton, __assign$f({
+  return jsxRuntimeExports.jsxs(EvpButton, __assign({
     theme: "white",
     shape: "circle",
     position: "relative",
-    style: __assign$f({
+    style: __assign({
       overflow: "visible",
       // @ts-ignore
       "--show-pre-boxshadow": shadow !== false ? boxShadow !== null && boxShadow !== void 0 ? boxShadow : "8px 10px 25px 0px rgba(0, 0, 0, 0.17)" : "none"
@@ -102370,9 +98456,9 @@ var EvpGhostButtonGroup = function EvpGhostButtonGroup(_a) {
       className: true
     })
   }, props, {
-    children: [jsxRuntimeExports.jsx("div", __assign$f({
+    children: [jsxRuntimeExports.jsx("div", __assign({
       className: "evp-ghost-buttons-group__items-quene",
-      style: __assign$f(__assign$f({}, queneAdapter(direction)), {
+      style: __assign(__assign({}, queneAdapter(direction)), {
         pointerEvents: realOpen ? "all" : "none",
         gap: (_b = valParser(gap)) !== null && _b !== void 0 ? _b : "12px",
         visibility: realOpen ? "visible" : "hidden"
@@ -102380,8 +98466,8 @@ var EvpGhostButtonGroup = function EvpGhostButtonGroup(_a) {
     }, {
       children: items === null || items === void 0 ? void 0 : items.map(function (_a, index) {
         var className = _a.class,
-          item = __rest$b(_a, ["class"]);
-        return jsxRuntimeExports.jsx(EvpButton, __assign$f({
+          item = __rest(_a, ["class"]);
+        return jsxRuntimeExports.jsx(EvpButton, __assign({
           class: classNames("evp-ghost-buttons-group__items-quene__item", className),
           theme: "white",
           shape: "circle"
@@ -102394,7 +98480,7 @@ var EvpGhostButtonGroup = function EvpGhostButtonGroup(_a) {
           }
         }));
       })
-    })), jsxRuntimeExports.jsx("div", __assign$f({
+    })), jsxRuntimeExports.jsx("div", __assign({
       className: "evp-ghost-buttons-group__main-wrapper",
       style: {
         width: "fit-content",
@@ -102513,7 +98599,7 @@ Template.FrostedGlass = function (_a) {
     borderWidth = _a.borderWidth,
     borderStyle = _a.borderStyle,
     borderColor = _a.borderColor,
-    props = __rest$b(_a, ["style", "background", "filterBlur", "radius", "border", "borderWidth", "borderStyle", "borderColor"]);
+    props = __rest(_a, ["style", "background", "filterBlur", "radius", "border", "borderWidth", "borderStyle", "borderColor"]);
   var FrostedGlassOptions = {
     background: background,
     filterBlur: filterBlur,
@@ -102523,8 +98609,8 @@ Template.FrostedGlass = function (_a) {
     borderStyle: borderStyle,
     borderColor: borderColor
   };
-  return jsxRuntimeExports.jsx("div", __assign$f({}, props, {
-    style: __assign$f(__assign$f({}, CSS.FrostedGlass(FrostedGlassOptions).style), style)
+  return jsxRuntimeExports.jsx("div", __assign({}, props, {
+    style: __assign(__assign({}, CSS.FrostedGlass(FrostedGlassOptions).style), style)
   }, {
     children: props.children
   }));
@@ -102626,9 +98712,9 @@ var EvpAnimation = function EvpAnimation(_a) {
   var duration = _a.duration,
     delay = _a.delay,
     name = _a.name,
-    props = __rest$b(_a, ["duration", "delay", "name"]);
+    props = __rest(_a, ["duration", "delay", "name"]);
   console.log("animationName", name);
-  return jsxRuntimeExports.jsx(AnimationDomFC, __assign$f({
+  return jsxRuntimeExports.jsx(AnimationDomFC, __assign({
     duration: duration !== null && duration !== void 0 ? duration : "1000",
     delay: delay !== null && delay !== void 0 ? delay : "0",
     animationName: name !== null && name !== void 0 ? name : ""
@@ -102657,7 +98743,7 @@ var AnimationDomFC = function AnimationDomFC(_a) {
     activeState = _a.activeState,
     onActive = _a.onActive,
     onInactive = _a.onInactive,
-    props = __rest$b(_a, ["animationName", "duration", "delay", "timingFunction", "fillMode", "direction", "iterationCount", "className", "style", "trigger", "cancelOnLeave", "activeGap", "activeState", "onActive", "onInactive"]);
+    props = __rest(_a, ["animationName", "duration", "delay", "timingFunction", "fillMode", "direction", "iterationCount", "className", "style", "trigger", "cancelOnLeave", "activeGap", "activeState", "onActive", "onInactive"]);
   var animation = Animation.fromObject({
     name: animationName,
     duration: duration,
@@ -102714,7 +98800,7 @@ var AnimationDomFC = function AnimationDomFC(_a) {
       });
     }, Number(animation.animationDelay));
   };
-  return jsxRuntimeExports.jsx("div", __assign$f({
+  return jsxRuntimeExports.jsx("div", __assign({
     tabIndex: -1,
     className: classNames(animation.animationName, className),
     onMouseEnter: function onMouseEnter() {
@@ -102738,7 +98824,7 @@ var AnimationDomFC = function AnimationDomFC(_a) {
         dispatchAnimation();
       }
     },
-    style: __assign$f({
+    style: __assign({
       // ...bounce.style,
       width: "fit-content",
       height: "fit-content",
@@ -102751,8 +98837,8 @@ var AnimationDomFC = function AnimationDomFC(_a) {
 EvpAnimation.Bounce = function (_a) {
   var duration = _a.duration,
     delay = _a.delay,
-    props = __rest$b(_a, ["duration", "delay"]);
-  return jsxRuntimeExports.jsx(AnimationDomFC, __assign$f({
+    props = __rest(_a, ["duration", "delay"]);
+  return jsxRuntimeExports.jsx(AnimationDomFC, __assign({
     duration: duration !== null && duration !== void 0 ? duration : "500",
     delay: delay !== null && delay !== void 0 ? delay : "0",
     animationName: "evp-animation__bounce"
@@ -102761,8 +98847,8 @@ EvpAnimation.Bounce = function (_a) {
 EvpAnimation.Twinkle = function (_a) {
   var duration = _a.duration,
     delay = _a.delay,
-    props = __rest$b(_a, ["duration", "delay"]);
-  return jsxRuntimeExports.jsx(AnimationDomFC, __assign$f({
+    props = __rest(_a, ["duration", "delay"]);
+  return jsxRuntimeExports.jsx(AnimationDomFC, __assign({
     duration: duration !== null && duration !== void 0 ? duration : "1000",
     delay: delay !== null && delay !== void 0 ? delay : "0",
     animationName: "evp-animation__Twinkle"
@@ -102771,8 +98857,8 @@ EvpAnimation.Twinkle = function (_a) {
 EvpAnimation.BounceIn = function (_a) {
   var duration = _a.duration,
     delay = _a.delay,
-    props = __rest$b(_a, ["duration", "delay"]);
-  return jsxRuntimeExports.jsx(AnimationDomFC, __assign$f({
+    props = __rest(_a, ["duration", "delay"]);
+  return jsxRuntimeExports.jsx(AnimationDomFC, __assign({
     duration: duration !== null && duration !== void 0 ? duration : "1000",
     delay: delay !== null && delay !== void 0 ? delay : "0",
     animationName: "evp-animation__BounceIn"
@@ -102781,8 +98867,8 @@ EvpAnimation.BounceIn = function (_a) {
 EvpAnimation.Flip = function (_a) {
   var duration = _a.duration,
     delay = _a.delay,
-    props = __rest$b(_a, ["duration", "delay"]);
-  return jsxRuntimeExports.jsx(AnimationDomFC, __assign$f({
+    props = __rest(_a, ["duration", "delay"]);
+  return jsxRuntimeExports.jsx(AnimationDomFC, __assign({
     duration: duration !== null && duration !== void 0 ? duration : "500",
     delay: delay !== null && delay !== void 0 ? delay : "0",
     animationName: "evp-animation__Flip"
@@ -102791,20 +98877,55 @@ EvpAnimation.Flip = function (_a) {
 EvpAnimation.Shake = function (_a) {
   var duration = _a.duration,
     delay = _a.delay,
-    props = __rest$b(_a, ["duration", "delay"]);
-  return jsxRuntimeExports.jsx(AnimationDomFC, __assign$f({
+    props = __rest(_a, ["duration", "delay"]);
+  return jsxRuntimeExports.jsx(AnimationDomFC, __assign({
     duration: duration !== null && duration !== void 0 ? duration : "1000",
     delay: delay !== null && delay !== void 0 ? delay : "0",
     animationName: "evp-animation__Shake"
   }, props));
 };
 
-var EvpList = function EvpList(props) {
-  return jsxRuntimeExports.jsx("div", {
-    children: jsxRuntimeExports.jsx("h1", {
-      children: "EvpList"
-    })
-  });
+var EvpList = function EvpList(_a) {
+  var _b, _c, _d, _e;
+  var className = _a.class,
+    id = _a.id,
+    children = _a.children,
+    style = _a.style,
+    schema = _a.schema,
+    data = _a.data,
+    pagination = _a.pagination,
+    paginator = _a.paginator;
+    _a.zebra;
+    var props = __rest(_a, ["class", "id", "children", "style", "schema", "data", "pagination", "paginator", "zebra"]);
+  return jsxRuntimeExports.jsxs("div", __assign({
+    style: {
+      width: "fit-content",
+      height: "fit-content"
+    }
+  }, {
+    children: [jsxRuntimeExports.jsx("div", __assign({
+      className: "evp evp-list ".concat(className !== null && className !== void 0 ? className : "").trim(),
+      id: id,
+      style: __assign({
+        width: "fit-content",
+        height: "fit-content"
+      }, style)
+    }, props, {
+      children: data === null || data === void 0 ? void 0 : data.slice((((_b = pagination === null || pagination === void 0 ? void 0 : pagination.currentPage) !== null && _b !== void 0 ? _b : 1) - 1) * ((_c = pagination === null || pagination === void 0 ? void 0 : pagination.pageSize) !== null && _c !== void 0 ? _c : data.length), (pagination === null || pagination === void 0 ? void 0 : pagination.currentPage) && (pagination === null || pagination === void 0 ? void 0 : pagination.pageSize) ? (pagination === null || pagination === void 0 ? void 0 : pagination.currentPage) * (pagination === null || pagination === void 0 ? void 0 : pagination.pageSize) : void 0).map(function (item, idx, items) {
+        var _a;
+        return jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, {
+          children: schema ? (_a = schema.render) === null || _a === void 0 ? void 0 : _a.call(schema, item, idx, items) : item.toString()
+        });
+      })
+    })), paginator ? jsxRuntimeExports.jsx(EvpRow, __assign({
+      w: "100%",
+      justifyContent: "flex-end"
+    }, {
+      children: jsxRuntimeExports.jsx(EvpPaginator, __assign({}, __assign(__assign({}, pagination), {
+        total: (_e = (_d = pagination === null || pagination === void 0 ? void 0 : pagination.total) !== null && _d !== void 0 ? _d : data === null || data === void 0 ? void 0 : data.length) !== null && _e !== void 0 ? _e : 0
+      })))
+    })) : void 0, children]
+  }));
 };
 
 var EvpFrostedGlass = function EvpFrostedGlass(props) {
@@ -102820,10 +98941,10 @@ var EvpFrostedGlass = function EvpFrostedGlass(props) {
     filterBlur = props.filterBlur,
     style = props.style,
     children = props.children,
-    rest = __rest$b(props, ["class", "radius", "border", "borderWidth", "borderStyle", "borderColor", "background", "filterAlpha", "filterBackGround", "filterBlur", "style", "children"]);
-  return jsxRuntimeExports.jsxs(EvpDom, __assign$f({
+    rest = __rest(props, ["class", "radius", "border", "borderWidth", "borderStyle", "borderColor", "background", "filterAlpha", "filterBackGround", "filterBlur", "style", "children"]);
+  return jsxRuntimeExports.jsxs(EvpDom, __assign({
     className: classNames("evp", "evp-frosted-glass__background", className),
-    style: __assign$f({
+    style: __assign({
       background: background,
       position: "relative"
     }, style)
@@ -102849,4 +98970,109 @@ var EvpFrostedGlass = function EvpFrostedGlass(props) {
   }));
 };
 
-export { EvpAlert as Alert, AllParser, EvpAnchor as Anchor, EvpAnimation as Animation, EvpBadge as Badge, EvpBreadCrumb as BreadCrume, EvpButton as Button, Calendar, EvpCardV2 as Card, EvpCheckBox as CheckBox, EvpCheckBoxGroup as CheckBoxGroup, EvpCode as Code, EvpCol as Col, Color, EvpCounter as Counter, CSS as Css, EvpDateTimePicker as DateTimePicker, EvpDialog as Dialog, EvpDivider as Divider, EvpDom as Dom, EvpDrawer as Drawer, EvpAlert, EvpAnchor, EvpAnimation, EvpBadge, EvpBreadCrumb, EvpButton, Calendar as EvpCalendar, EvpCardV2 as EvpCard, EvpCheckBox, EvpCheckBoxGroup, EvpCode, EvpCol, Color as EvpColor, EvpCounter, CSS as EvpCss, EvpDateTimePicker, EvpDialog, EvpDivider, EvpDom, EvpDrawer, EvpFlexbar, EvpForm, EvpFrostedGlass, EvpGallery, EvpGhostButtonGroup, EvpHeader, EvpHello, EvpIcon, EvpImg, EvpInput, EvpLabel, EvpList, EvpLoading, EvpMenu, EvpMenuItem, EvpModal, EvpMsg, EvpNiuniu, EvpPaginator, EvpPopover, EvpProgress, EvpRadio, EvpRadioGroup, EvpRate, EvpRequired, EvpRow, EvpSelect, index as EvpShadow, EvpSliderV2 as EvpSlider, EvpSliderV2, EvpSlider as EvpSlider_V1, EvpSlides, EvpSnake, EvpSteps, SvgIcons as EvpSvgIcon, EvpSwitch, EvpTable, EvpTag, Template as EvpTemplate, EvpTitle, EvpToast, EvpToolTip, EvpWaterfalls, EvpFlexbar as Flexbar, EvpForm as Form, EvpFrostedGlass as FrostedGlass, EvpGallery as Gallery, EvpGhostButtonGroup as GhostButtonGroup, EvpHeader as Header, EvpHello as Hello, EvpIcon as Icon, EvpImg as Img, EvpInput as Input, EvpLabel as Label, EvpList as List, EvpLoading as Loading, EvpMenu as Menu, EvpMenuItem as MenuItem, EvpModal as Modal, EvpMsg as Msg, EvpNiuniu as Niuniu, EvpPaginator as Paginator, EvpPopover as Popover, EvpProgress as Progress, EvpRadio as Radio, EvpRadioGroup as RadioGroup, EvpRate as Rate, Reactify, ReactifyMemo, ReactiveCtx, EvpRequired as Required, EvpRow as Row, EvpSelect as Select, EvpSliderV2 as Slider, EvpSliderV2 as SliderV2, EvpSlider as Slider_V1, EvpSlides as Slides, EvpSnake as Snake, EvpSteps as Steps, SvgIcons as SvgIcon, EvpSwitch as Switch, EvpTable as Table, EvpTag as Tag, Template, EvpTitle as Title, EvpToast as Toast, EvpToolTip as ToolTip, EvpWaterfalls as Waterfalls, EvpCard as _Card, EvpCard as _EvpCard, createReactiveContext, listen, reactive, shift, useForm, useReactive, useReactiveRef, useReativeContext, index$1 as utils };
+var purifyProps = function purifyProps(props) {
+  props.class;
+    props.children;
+    props.items;
+    props.schema;
+    props.size;
+    props.itemSize;
+    props.style;
+    props.mainProps;
+    var rest = __rest(props, ["class", "children", "items", "schema", "size", "itemSize", "style", "mainProps"]);
+  return rest;
+};
+function calculateRadius(d, x) {
+  var r = d / 2 * (1 - Math.cos(2 * Math.PI / x));
+  return r;
+}
+var EvpCircle = function EvpCircle(props) {
+  var _a, _b;
+  var mainProps = function () {
+    var _a;
+    var _b = props.mainProps || {};
+      _b.className;
+      var rest = __rest(_b, ["className"]);
+    return {
+      class: (_a = props.mainProps) === null || _a === void 0 ? void 0 : _a.className,
+      rest: rest
+    };
+  }();
+  var items = (_a = props.items) !== null && _a !== void 0 ? _a : [].map(function (i, idx) {
+    var _a, _b, _c;
+    return (_b = (_a = props.schema) === null || _a === void 0 ? void 0 : _a.render) === null || _b === void 0 ? void 0 : _b.call(_a, i, idx, (_c = props.items) !== null && _c !== void 0 ? _c : []);
+  });
+  var itemsEvents = eventParser$1(props.schema);
+  return jsxRuntimeExports.jsxs("div", __assign({
+    className: "evp-circle",
+    style: __assign({
+      // @ts-ignore
+      "--evp-circle-width": valParser(props.size),
+      "--_angle": "".concat(360 / items.length, "deg"),
+      "--_length": "".concat(items.length),
+      "--evp-circle-item-size": "".concat(props.itemSize ? valParser(props.itemSize) : "".concat(calculateRadius(NumUtils.pickNum(props.size).value, items.length) + NumUtils.pickNum(props.size).unit, ")"))
+    }, props.style)
+  }, purifyProps(props), {
+    children: [items.map(function (i, idx) {
+      var _a, _b, _c, _d, _e, _f, _g;
+      return jsxRuntimeExports.jsx("div", __assign({
+        className: "evp-circle__item ".concat(((_a = props.schema) === null || _a === void 0 ? void 0 : _a.class) ? ((_b = props.schema) === null || _b === void 0 ? void 0 : _b.class) + " " : "", "evp-circle__item--").concat(i),
+        style: __assign({
+          // @ts-ignore
+          "--i": idx
+        }, (_c = props.schema) === null || _c === void 0 ? void 0 : _c.style)
+      }, itemsEvents, {
+        children: ((_d = props.schema) === null || _d === void 0 ? void 0 : _d.render) ? (_f = (_e = props.schema) === null || _e === void 0 ? void 0 : _e.render) === null || _f === void 0 ? void 0 : _f.call(_e, i, idx, (_g = props.items) !== null && _g !== void 0 ? _g : []) : i
+      }), i);
+    }), jsxRuntimeExports.jsx("div", __assign({
+      className: "evp-circle__main ".concat((_b = mainProps.class) !== null && _b !== void 0 ? _b : "")
+    }, mainProps.rest, {
+      children: props.children
+    }))]
+  }));
+};
+
+var EvpDroplet = function EvpDroplet(_a) {
+  var className = _a.class,
+    borderRadius = _a.borderRadius,
+    wave = _a.wave,
+    lightSpot = _a.lightSpot,
+    lightSpotSize = _a.lightSpotSize,
+    style = _a.style,
+    children = _a.children,
+    props = __rest(_a, ["class", "borderRadius", "wave", "lightSpot", "lightSpotSize", "style", "children"]);
+  var _b = [Math.random() * 10, Math.random() * 10],
+    ran1 = _b[0],
+    ran2 = _b[1];
+  var min = Math.min(Math.floor(ran1), Math.floor(ran2));
+  var max = Math.max(Math.floor(ran1), Math.floor(ran2));
+  var spotSetting = typeof lightSpotSize === "number" ? {
+    min: lightSpotSize,
+    max: lightSpotSize
+  } : lightSpotSize;
+  return jsxRuntimeExports.jsxs(EvpDom, __assign({
+    class: "evp-droplet ".concat(className !== null && className !== void 0 ? className : "").trim(),
+    style: __assign({
+      borderRadius: borderRadius !== null && borderRadius !== void 0 ? borderRadius : "61% 39% 57% 43% / 46% 67% 33% 54%",
+      // @ts-ignore
+      "--border-radius": borderRadius !== null && borderRadius !== void 0 ? borderRadius : "61% 39% 57% 43% / 46% 67% 33% 54%",
+      animationName: wave === true ? void 0 : "none"
+    }, style)
+  }, props, {
+    children: [children, lightSpot !== false && (typeof lightSpot === "number" ? range(1, lightSpot) : range(min, max)).map(function () {
+      var _a, _b;
+      return jsxRuntimeExports.jsx("div", {
+        className: "light-spot",
+        style: {
+          left: "".concat(Math.random() * 100, "%"),
+          top: "".concat(Math.random() * 100, "%"),
+          width: "".concat(Math.random() * 12, "px"),
+          animationDuration: "".concat((Math.random() || ((_a = spotSetting === null || spotSetting === void 0 ? void 0 : spotSetting.min) !== null && _a !== void 0 ? _a : 4) / 10) * ((_b = spotSetting === null || spotSetting === void 0 ? void 0 : spotSetting.max) !== null && _b !== void 0 ? _b : 12), "s"),
+          animationDelay: "".concat(Math.random() * 10, "s")
+        }
+      });
+    })]
+  }));
+};
+
+export { EvpAlert as Alert, AllParser, EvpAnchor as Anchor, EvpAnimation as Animation, EvpBadge as Badge, EvpBreadCrumb as BreadCrume, EvpButton as Button, Calendar, EvpCardV2 as Card, EvpCheckBox as CheckBox, EvpCheckBoxGroup as CheckBoxGroup, EvpCircle as Circle, EvpCode as Code, EvpCol as Col, Color, EvpCounter as Counter, CSS as Css, EvpDateTimePicker as DateTimePicker, EvpDialog as Dialog, EvpDivider as Divider, EvpDom as Dom, EvpDrawer as Drawer, EvpDroplet as Droplet, EvpAlert, EvpAnchor, EvpAnimation, EvpBadge, EvpBreadCrumb, EvpButton, Calendar as EvpCalendar, EvpCardV2 as EvpCard, EvpCheckBox, EvpCheckBoxGroup, EvpCircle, EvpCode, EvpCol, Color as EvpColor, EvpCounter, CSS as EvpCss, EvpDateTimePicker, EvpDialog, EvpDivider, EvpDom, EvpDrawer, EvpDroplet, EvpFlexbar, EvpForm, EvpFrostedGlass, EvpGallery, EvpGhostButtonGroup, EvpHeader, EvpHello, EvpIcon, EvpImg, EvpInput, EvpLabel, EvpList, EvpLoading, EvpMenu, EvpMenuItem, EvpModal, EvpMsg, EvpNiuniu, EvpPaginator, EvpPopover, EvpProgress, EvpRadio, EvpRadioGroup, EvpRate, EvpRequired, EvpRow, EvpSelect, index as EvpShadow, EvpSliderV2 as EvpSlider, EvpSliderV2, EvpSlider as EvpSlider_V1, EvpSlides, EvpSnake, EvpSteps, SvgIcons as EvpSvgIcon, EvpSwitch, EvpTable, EvpTag, Template as EvpTemplate, EvpTitle, EvpToast, EvpToolTip, EvpWaterfalls, EvpFlexbar as Flexbar, EvpForm as Form, EvpFrostedGlass as FrostedGlass, EvpGallery as Gallery, EvpGhostButtonGroup as GhostButtonGroup, EvpHeader as Header, EvpHello as Hello, EvpIcon as Icon, EvpImg as Img, EvpInput as Input, EvpLabel as Label, EvpList as List, EvpLoading as Loading, EvpMenu as Menu, EvpMenuItem as MenuItem, EvpModal as Modal, EvpMsg as Msg, EvpNiuniu as Niuniu, EvpPaginator as Paginator, EvpPopover as Popover, EvpProgress as Progress, EvpRadio as Radio, EvpRadioGroup as RadioGroup, EvpRate as Rate, Reactify, ReactifyMemo, ReactiveCtx, EvpRequired as Required, EvpRow as Row, EvpSelect as Select, EvpSliderV2 as Slider, EvpSliderV2 as SliderV2, EvpSlider as Slider_V1, EvpSlides as Slides, EvpSnake as Snake, EvpSteps as Steps, SvgIcons as SvgIcon, EvpSwitch as Switch, EvpTable as Table, EvpTag as Tag, Template, EvpTitle as Title, EvpToast as Toast, EvpToolTip as ToolTip, EvpWaterfalls as Waterfalls, EvpCard as _Card, EvpCard as _EvpCard, createReactiveContext, listen, reactive, shift, useForm, useReactive, useReactiveRef, useReativeContext, index$1 as utils };
