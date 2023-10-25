@@ -53,8 +53,8 @@ const EvpDroplet: React.FC<EvpDropletProps> = ({
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
-                width: `${Math.random() * 12}px`,
-                animationDuration: `${(Math.random() || (spotSetting?.min ?? 4) / 10) * (spotSetting?.max ?? 12)}s`,
+                width: `${((Math.random() * (spotSetting?.min ?? 4)) / 10) * (spotSetting?.max ?? 12)}px`,
+                animationDuration: `${2}s`,
                 animationDelay: `${Math.random() * 10}s`,
               }}
             />

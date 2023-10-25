@@ -308,13 +308,11 @@ export {
   type EvpHelloProps,
 } from './evp-hello';
 
-
 export {
   default as EvpGallery,
   default as Gallery,
   type EvpGalleryProps,
 } from './evp-gallery';
-
 
 export {
   default as EvpSlides,
@@ -329,20 +327,11 @@ export {
   type EvpTitleProps,
 } from './evp-title';
 
-
-export {
-  default as EvpNiuniu,
-  default as Niuniu,
-  type EvpNiuniuProps,
-} from './evp-niuniu';
-
-
 export {
   default as EvpRate,
   default as Rate,
   type EvpRateProps,
 } from './evp-rate';
-
 
 export {
   default as EvpGhostButtonGroup,
@@ -410,7 +399,6 @@ export {
   default as FrostedGlass,
   type EvpFrostedGlassProps,
 } from './evp-frosted-glass';
-
 
 export {
   default as EvpCircle,

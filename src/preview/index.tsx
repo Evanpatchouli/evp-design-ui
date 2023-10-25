@@ -46,7 +46,6 @@ export { default as WaterfallsView } from "./evp-waterfalls";
 export { default as GalleryView } from "./evp-gallery";
 export { default as SlidesView } from "./evp-slides";
 export { default as TitleView } from "./evp-title";
-export { default as NiuniuView } from "./evp-niuniu";
 export { default as RateView } from "./evp-rate";
 export { default as GhostButtonGroupView } from "./evp-ghost-button-group";
 export { default as CssView } from "./evp-css";
