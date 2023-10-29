@@ -6,7 +6,7 @@ import {
   EvpAnimationTimeFunction as TimeFunction,
 } from "./../typings";
 import classNames from "classnames";
-import { Nullable, Pretify } from "../utils";
+import { Hintable, Nullable, Pretify } from "../utils";
 import { Animation } from "../utils/animation";
 
 export type AnimationConfig = {
@@ -36,14 +36,34 @@ const EvpAnimation = ({
   name,
   ...props
 }: EvpAnimationProps & {
-  name?: string;
+  name?: Hintable<
+    | "evp-animation__bounce"
+    | "evp-animation__BounceIn"
+    | "evp-animation__Twinkle"
+    | "evp-animation__Flip"
+    | "evp-animation__Shake"
+    | "evp-animation__ZoomIn"
+    | "evp-animation__Fade"
+    | "evp-animation__FadeIn"
+    | "evp-animation__FadeInOut"
+  >;
 }) => {
   console.log("animationName", name);
   return <AnimationDomFC duration={duration ?? "1000"} delay={delay ?? "0"} animationName={name ?? ""} {...props} />;
 };
 
 export type EvpAnimationFCProps<T = any> = EvpAnimationProps & {
-  animationName: string;
+  animationName: Hintable<
+    | "evp-animation__bounce"
+    | "evp-animation__BounceIn"
+    | "evp-animation__Twinkle"
+    | "evp-animation__Flip"
+    | "evp-animation__Shake"
+    | "evp-animation__ZoomIn"
+    | "evp-animation__Fade"
+    | "evp-animation__FadeIn"
+    | "evp-animation__FadeInOut"
+  >;
   cancelOnLeave?: boolean;
   /** `${num}ms, default is 50ms` */
   activeGap?: number;
@@ -225,6 +245,50 @@ EvpAnimation.Shake = ({ duration, delay, ...props }: Omit<EvpAnimationFCProps, "
       duration={duration ?? "1000"}
       delay={delay ?? "0"}
       animationName={"evp-animation__Shake"}
+      {...props}
+    />
+  );
+};
+
+EvpAnimation.ZoomIn = ({ duration, delay, ...props }: Omit<EvpAnimationFCProps, "animationName">) => {
+  return (
+    <AnimationDomFC
+      duration={duration ?? "500"}
+      delay={delay ?? "0"}
+      animationName={"evp-animation__ZoomIn"}
+      {...props}
+    />
+  );
+};
+
+EvpAnimation.Fade = ({ duration, delay, ...props }: Omit<EvpAnimationFCProps, "animationName">) => {
+  return (
+    <AnimationDomFC
+      duration={duration ?? "500"}
+      delay={delay ?? "0"}
+      animationName={"evp-animation__Fade"}
+      {...props}
+    />
+  );
+};
+
+EvpAnimation.FadeIn = ({ duration, delay, ...props }: Omit<EvpAnimationFCProps, "animationName">) => {
+  return (
+    <AnimationDomFC
+      duration={duration ?? "500"}
+      delay={delay ?? "0"}
+      animationName={"evp-animation__FadeIn"}
+      {...props}
+    />
+  );
+};
+
+EvpAnimation.FadeOut = ({ duration, delay, ...props }: Omit<EvpAnimationFCProps, "animationName">) => {
+  return (
+    <AnimationDomFC
+      duration={duration ?? "500"}
+      delay={delay ?? "0"}
+      animationName={"evp-animation__FadeOut"}
       {...props}
     />
   );

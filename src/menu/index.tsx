@@ -82,6 +82,10 @@ export default function DocsMenu() {
         <MenuItem link={"/components/evp-animation/Twinkle"} title={"Twinkle"} />
         <MenuItem link={"/components/evp-animation/Flip"} title={"Flip"} />
         <MenuItem link={"/components/evp-animation/Shake"} title={"Shake"} />
+        <MenuItem link={"/components/evp-animation/ZoomIn"} title={"ZoomIn"} />
+        <MenuItem link={"/components/evp-animation/Fade"} title={"Fade"} />
+        <MenuItem link={"/components/evp-animation/FadeIn"} title={"FadeIn"} />
+        <MenuItem link={"/components/evp-animation/FadeOut"} title={"FadeOut"} />
         {/* <MenuItem link={"/components/evp-row"} title={"Row"} />
         <MenuItem link={"/components/evp-dom"} title={"Dom"} />
         <MenuItem link={"/components/evp-divider"} title={"Divider"} /> */}

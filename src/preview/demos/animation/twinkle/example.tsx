@@ -21,9 +21,9 @@ import { Animation } from "evp-design-ui";
 const Demo: React.FC = () => {
   return (
     <>
-      <Animation.Bounce>
+      <Animation.Twinkle>
         <Button>Hover Me</Button>
-      </Animation.Bounce>
+      </Animation.Twinkle>
     </>
   );
 };

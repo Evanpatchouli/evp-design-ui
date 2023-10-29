@@ -7,7 +7,7 @@ import AnimationApi from "../apis/animation.api";
 import Trigger from "../demos/animation/shake/trigger";
 
 export default function AnimationView() {
-  const next = { route: "", name: "" };
+  const next = { route: "evp-animation/ZoomIn", name: "ZoomIn" };
   useEffect(() => {
     window.scrollTo({
       top: 0,

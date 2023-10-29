@@ -1,43 +1,32 @@
-@keyframes evp-animation__BounceIn {
+@keyframes evp-animation__bounce {
   0% {
-    opacity: 0;
-    transform: translateY(-1000vh);
-  }
-  30% {
-    opacity: 1;
     transform: translateY(0%);
   }
-  50% {
-    opacity: 1;
-    transform: translateY(-200%);
+  30% {
+    transform: translateY(-33.3%);
   }
-  65% {
-    opacity: 1;
+  60% {
     transform: translateY(0%);
   }
   75% {
-    opacity: 1;
-    transform: translateY(-30%);
+    transform: translateY(-20%);
   }
-  85% {
-    opacity: 1;
+  90% {
     transform: translateY(0%);
   }
   95% {
-    opacity: 1;
-    transform: translateY(-10%);
+    transform: translateY(-5%);
   }
   100% {
-    opacity: 1;
-    transform: translateY(0%);
+    transform: translateY(0px);
   }
 }
 
-.evp-animation__BounceIn {
+.evp-animation__bounce {
+  transition: transform 0.5s ease-in-out;
   cursor: pointer;
-  animation-name: evp-animation__BounceIn;
-  animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
-  animation-duration: 1s;
+  animation-name: evp-animation__bounce;
+  animation-duration: 0.5s;
   animation-fill-mode: none;
   animation-iteration-count: 1;
 }

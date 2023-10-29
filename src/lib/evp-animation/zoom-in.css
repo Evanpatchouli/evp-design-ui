@@ -1,0 +1,19 @@
+@keyframes evp-animation__ZoomIn {
+  from {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.evp-animation__ZoomIn {
+  transition: transform 0.5s ease-in-out;
+  cursor: pointer;
+  animation-name: evp-animation__ZoomIn;
+  animation-duration: 0.5s;
+  animation-fill-mode: none;
+  animation-iteration-count: 1;
+}

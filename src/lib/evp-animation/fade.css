@@ -1,0 +1,242 @@
+@keyframes evp-animation__Fade {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes evp-animation__FadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes evp-animation__FadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes evp-animation__FadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-1000px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(25px);
+  }
+  75% {
+    transform: translateY(-10px);
+  }
+  90% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes evp-animation__FadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(1000px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-25px);
+  }
+  75% {
+    transform: translateY(10px);
+  }
+  90% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes evp-animation__FadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-1000px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateX(25px);
+  }
+  75% {
+    transform: translateX(-10px);
+  }
+  90% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes evp-animation__FadeInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(1000px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateX(-25px);
+  }
+  75% {
+    transform: translateX(10px);
+  }
+  90% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes evp-animation__FadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-1000px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(25px);
+  }
+  75% {
+    transform: translateY(-10px);
+  }
+  90% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes evp-animation__FadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(1000px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-25px);
+  }
+  75% {
+    transform: translateY(10px);
+  }
+  90% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes evp-animation__FadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-1000px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateX(25px);
+  }
+  75% {
+    transform: translateX(-10px);
+  }
+  90% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes evp-animation__FadeInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(1000px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateX(-25px);
+  }
+  75% {
+    transform: translateX(10px);
+  }
+  90% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.evp-animation__Fade {
+  animation-name: evp-animation__Fade;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+}
+
+.evp-animation__FadeIn {
+  animation-name: evp-animation__FadeIn;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+}
+
+.evp-animation__FadeOut {
+  animation-name: evp-animation__FadeOut;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+}
+
+.evp-animation__FadeInUp {
+  animation-name: evp-animation__FadeInUp;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+}
+
+.evp-animation__FadeInLeft {
+  animation-name: evp-animation__FadeInLeft;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+}
+
+.evp-animation__FadeInRight {
+  animation-name: evp-animation__FadeInRight;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+}
+
+.evp-animation__FadeOutUp {
+  animation-name: evp-animation__FadeOutUp;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+}
+
+.evp-animation__FadeOutLeft {
+  animation-name: evp-animation__FadeOutLeft;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+}
+
+.evp-animation__FadeOutRight {
+  animation-name: evp-animation__FadeOutRight;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+}

@@ -3,3 +3,7 @@ export { default as TwinkleView } from "./twinkle";
 export { default as ShakeView } from "./shake";
 export { default as FlipView } from "./flip";
 export { default as DefaultView } from "./default";
+export { default as ZoomInView } from "./zoom-in";
+export { default as FadeView } from "./fade";
+export { default as FadeInView } from "./fade-in";
+export { default as FadeOutView } from "./fade-out";
