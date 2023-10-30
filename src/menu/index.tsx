@@ -56,6 +56,7 @@ export default function DocsMenu() {
       <MenuItem link={"/components/evp-modal"} title={"Modal"} />
       <MenuItem link={"/components/evp-dialog"} title={"Dialog"} />
       <MenuItem link={"/components/evp-drawer"} title={"Drawer"} />
+      <MenuItem link={"/components/evp-alert"} title={"Alert"} />
       <MenuItem link={"/components/evp-code"} title={"Code"} />
       <MenuItem link={"/components/evp-table"} title={"Table"} />
       <MenuItem link={"/components/evp-paginator"} title={"Paginator"} />

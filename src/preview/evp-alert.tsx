@@ -1,13 +1,13 @@
-
 import Md from "@/components/md";
 import Tsx from "@/components/tsx";
 import { EvpButton } from "evp-design-ui";
 import { useEffect } from "react";
 import Example from "./demos/alert/example";
 import AlertApi from "./apis/alert.api";
+import Options from "./demos/alert/options";
 
 export default function AlertView() {
-  const next = { route: "", name: "" };
+  const next = { route: "evp-code", name: "Code" };
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -22,7 +22,8 @@ export default function AlertView() {
         {`
 # Alert
 
-Alert is a component that ...
+Alert is almost same with Dialog. The difference is that when an Alert is opened, the mouse cannot scroll the page, besides, 
+Alert is created by a static method named "alert".
 
 ## Basic Usage
 
@@ -46,15 +47,18 @@ import { Alert } from 'evp-design-ui'
 
 Here are some examples about Alert.
 
+### Options
+
+Customize the Alert with options.
 `}
       </Md>
-      <Example />
+      <Options />
       <Md>
         {`
 ## Api
 
-★ based on div  
-★ props extends EvpBaseProps
+★ based on EvpDialog  
+★ static method : \`alert(content?: string, options?: AlertOptions) => void\`
 
 **Alert Apis:**
 
@@ -73,4 +77,3 @@ Here are some examples about Alert.
     </div>
   );
 }
-

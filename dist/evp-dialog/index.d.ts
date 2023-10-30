@@ -7,6 +7,7 @@ declare const DialogOpenEventExample: Event;
 type DialogOpenEvent = typeof DialogOpenEventExample;
 export type EvpDialogProps = {
     children?: React.ReactNode;
+    defaultOpen?: boolean;
     open?: boolean;
     setOpen?: React.Dispatch<React.SetStateAction<boolean>>;
     onClose?: (e?: DialogCloseEvent) => void;

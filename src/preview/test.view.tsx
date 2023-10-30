@@ -18,6 +18,7 @@ import EvpSlider from "@/lib/evp-slider-v2";
 import EvpCardV2 from "@/lib/evp-card/index.v2";
 import { useState } from "react";
 import EvpSliderV2 from "@/lib/evp-slider-v2";
+import core from "@/lib/evp-alert/core";
 
 export default function TestViewView() {
   const store = useMobx("store");
@@ -249,6 +250,23 @@ export default function TestViewView() {
         </EvpCardV2>
         <Card>
           <EvpSliderV2 name="slid" />
+        </Card>
+
+        <Card>
+          <Button
+            $click={() => {
+              core.alert("Hello", {
+                onClose: () => {
+                  Toast("Alert Closed");
+                },
+                onOpen: () => {
+                  Toast("Alert Opened");
+                },
+              });
+            }}
+          >
+            Alert
+          </Button>
         </Card>
       </PreContext.Provider>
     </div>

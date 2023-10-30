@@ -19,6 +19,7 @@ type DialogOpenEvent = typeof DialogOpenEventExample;
 
 export type EvpDialogProps = {
   children?: React.ReactNode;
+  defaultOpen?: boolean;
   open?: boolean;
   setOpen?: React.Dispatch<React.SetStateAction<boolean>>;
   onClose?: (e?: DialogCloseEvent) => void;
@@ -34,9 +35,10 @@ export type EvpDialogProps = {
 
 export default function EvpDialog(props: EvpDialogProps) {
   const { open, setOpen, onClose, onOpen, class: className, blur, ...rest } = props;
+  const [_open, _setOpen] = React.useState(props.defaultOpen ?? false);
 
   return (
-    <EvpModal open={props.open !== undefined ? props.open : open} onClose={onClose} onOpen={onOpen} blur={blur}>
+    <EvpModal open={props.open !== undefined ? props.open : _open} onClose={onClose} onOpen={onOpen} blur={blur}>
       <EvpCard
         class={classNames(`evp`, `evp-dialog`, className)}
         w={400}
@@ -50,6 +52,7 @@ export default function EvpDialog(props: EvpDialogProps) {
               class="evp-dialog-close-btn"
               onClick={() => {
                 setOpen?.(false);
+                _setOpen(false);
               }}
             />
           </>
@@ -65,6 +68,7 @@ export default function EvpDialog(props: EvpDialogProps) {
               text="cancel"
               $click={() => {
                 setOpen?.(false);
+                _setOpen(false);
               }}
               {...props.cancelProps}
             />
@@ -72,6 +76,7 @@ export default function EvpDialog(props: EvpDialogProps) {
               text="confirm"
               $click={() => {
                 setOpen?.(false);
+                _setOpen(false);
               }}
               {...props.confirmProps}
             />

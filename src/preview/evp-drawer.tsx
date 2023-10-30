@@ -6,7 +6,7 @@ import { EvpButton, Drawer } from "evp-design-ui";
 import { useEffect, useState } from "react";
 
 export default function DrawerView() {
-  const next = { route: "evp-code", name: "Code" };
+  const next = { route: "evp-alert", name: "Alert" };
   useEffect(() => {
     window.scrollTo({
       top: 0,

@@ -141,6 +141,10 @@ export default function EvpSliderV2(props: EvpSliderProps) {
             min={props.range?.[0] ?? 0}
             max={props.range?.[1] ?? 100}
             onInput={(e) => {
+              if (props.value !== undefined && props.setValue === undefined) {
+                e.preventDefault();
+                return;
+              }
               const step = props.step ?? 1;
               let newVal = Number(e.currentTarget.value);
               newVal = Number(parseInt(`${(newVal ?? val) / step}`)) * step;

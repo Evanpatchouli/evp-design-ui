@@ -360,9 +360,11 @@ export {
 
 
 export {
-  default as EvpAlert,
-  default as Alert,
+  default as alert,
+  Alert,
+  Alert as EvpAlert,
   type EvpAlertProps,
+  type AlertOptions,
 } from './evp-alert';
 
 

@@ -61,7 +61,7 @@ export { default as EvpGhostButtonGroup, default as GhostButtonGroup, type EvpGh
 export { default as EvpCss, default as Css, } from './evp-css';
 export { default as EvpTemplate, default as Template, type EvpTemplateProps, } from './evp-template';
 export { default as EvpSnake, default as Snake, type EvpSnakeProps, } from './evp-snake';
-export { default as EvpAlert, default as Alert, type EvpAlertProps, } from './evp-alert';
+export { default as alert, Alert, Alert as EvpAlert, type EvpAlertProps, type AlertOptions, } from './evp-alert';
 export { default as EvpAnimation, default as Animation, type EvpAnimationProps, } from './evp-animation';
 export * as utils from './utils';
 export { reactive, listen, Reactify, ReactifyMemo, ReactiveCtx, useReactive, useReactiveRef, useReativeContext, createReactiveContext, type ReactiveCtxModel } from './utils/reactive';

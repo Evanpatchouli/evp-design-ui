@@ -1,26 +1,39 @@
-
 import Tsx from "@/components/tsx";
 import { Card, Row } from "@/lib";
 import React from "react";
 import { Button, Toast } from "evp-design-ui";
 
-import { Alert } from "evp-design-ui";
+import { alert } from "evp-design-ui";
 
 const Demo: React.FC = () => {
   return (
     <>
-      <Alert />
+      <Button
+        theme="danger"
+        $click={() => {
+          alert("You should not click me! Now you cannot scroll, Haha!");
+        }}
+      >
+        Click Me
+      </Button>
     </>
   );
 };
 
 const codes = `
-import { Alert } from "evp-design-ui";
+import { alert } from "evp-design-ui";
 
 const Demo: React.FC = () => {
   return (
     <>
-      <Alert />
+      <Button
+        theme="danger"
+        $click={() => {
+          alert("You should not click me! Now you cannot scroll!");
+        }}
+      >
+        Click Me
+      </Button>
     </>
   );
 };
@@ -79,4 +92,3 @@ export default class Example extends React.Component {
     );
   }
 }
-
