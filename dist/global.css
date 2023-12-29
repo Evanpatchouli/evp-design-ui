@@ -3,10 +3,6 @@
 .evp {
   font-size: var(--text-size-md);
   transition: all 0.2s ease-in-out;
-  * {
-    padding: 0;
-    margin: 0;
-  }
 }
 
 .evp-base-shadow {
@@ -24,17 +20,17 @@
   color: var(--LightGray) !important;
   stroke: var(--LightGray) !important;
 
-  > * * * {
+  >* * * {
     color: var(--LightGray) !important;
     stroke: var(--LightGray) !important;
   }
 
-  > * * {
+  >* * {
     color: var(--LightGray) !important;
     stroke: var(--LightGray) !important;
   }
 
-  > * {
+  >* {
     color: var(--LightGray) !important;
     stroke: var(--LightGray) !important;
   }

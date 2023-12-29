@@ -15,7 +15,7 @@
 .evp-card-toolbar {
   display: flex;
   align-items: center;
-  padding: 4;
+  padding: 4px;
 }
 
 .evp-card-lefter {

@@ -46,7 +46,7 @@ export default function EvpCardV2(props: EvpCardProps) {
       },
       loading: cardLoading,
       ...rest,
-      class: `evp evp-card evp-base-shadow ${props.class} ?? ""`.trim(),
+      class: `evp evp-card evp-base-shadow ${props.class || ""}`.trim(),
     };
   };
 
@@ -84,7 +84,7 @@ export default function EvpCardV2(props: EvpCardProps) {
       <div className={`evp-card-main`}>
         {props.header !== undefined ? <EvpDom {...headerProps()}>{props.header}</EvpDom> : void 0}
         <EvpDom
-          class={`evp-card-content ${props.contentClass}`.trim()}
+          class={`evp-card-content ${props.contentClass || ""}`.trim()}
           style={{ ...props.contentStyle }}
           loading={props.loading}
         >
