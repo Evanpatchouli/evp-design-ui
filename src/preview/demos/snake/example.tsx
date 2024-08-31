@@ -1,4 +1,3 @@
-
 import Tsx from "@/components/tsx";
 import { Card, Row } from "@/lib";
 import React from "react";
@@ -7,9 +6,30 @@ import { Button, Toast } from "evp-design-ui";
 import { Snake } from "evp-design-ui";
 
 const Demo: React.FC = () => {
+  const items = Array.from({ length: 9 }, (_, i) => i);
   return (
     <>
-      <Snake />
+      <Snake w="fit-content">
+        {items.map((item) => (
+          <div
+            key={item}
+            style={{
+              // width: 40,
+              height: 40,
+              lineHeight: "40px",
+              margin: "5px",
+              borderRadius: "8px",
+              textAlign: "center",
+              verticalAlign: "middle",
+              background:
+                // 用随机数生成颜色
+                `hsl(${Math.floor(Math.random() * 360)}, 50%, 50%)`,
+            }}
+          >
+            {item}
+          </div>
+        ))}
+      </Snake>
     </>
   );
 };
@@ -79,4 +99,3 @@ export default class Example extends React.Component {
     );
   }
 }
-

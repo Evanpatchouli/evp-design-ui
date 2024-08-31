@@ -1,0 +1,47 @@
+.evp-snake {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.evp-snake-item {
+  flex: 1 1 30%; /* Adjust the width as needed */
+  box-sizing: border-box;
+}
+
+.row-left {
+  order: 1;
+}
+
+.row-right {
+  order: -1;
+}
+
+.evp-snake.evp-snake-from-left .evp-snake-item:nth-child(3n + 1),
+.evp-snake.evp-snake-from-top .evp-snake-item:nth-child(3n + 1) {
+  order: 1;
+}
+
+.evp-snake.evp-snake-from-left .evp-snake-item:nth-child(3n + 2),
+.evp-snake.evp-snake-from-top .evp-snake-item:nth-child(3n + 2) {
+  order: 2;
+}
+
+.evp-snake.evp-snake-from-left .evp-snake-item:nth-child(3n + 3),
+.evp-snake.evp-snake-from-top .evp-snake-item:nth-child(3n + 3) {
+  order: 3;
+}
+
+.evp-snake.evp-snake-from-right .evp-snake-item:nth-child(3n + 1),
+.evp-snake.evp-snake-from-bottom .evp-snake-item:nth-child(3n + 1) {
+  order: 3;
+}
+
+.evp-snake.evp-snake-from-right .evp-snake-item:nth-child(3n + 2),
+.evp-snake.evp-snake-from-bottom .evp-snake-item:nth-child(3n + 2) {
+  order: 2;
+}
+
+.evp-snake.evp-snake-from-right .evp-snake-item:nth-child(3n + 3),
+.evp-snake.evp-snake-from-bottom .evp-snake-item:nth-child(3n + 3) {
+  order: 1;
+}

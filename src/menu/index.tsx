@@ -77,6 +77,7 @@ export default function DocsMenu() {
       <MenuItem link={"/components/evp-frosted-glass"} title={"FrostedGlass"} />
       <MenuItem link={"/components/evp-circle"} title={"Circle"} />
       <MenuItem link={"/components/evp-droplet"} title={"Droplet"} />
+      <MenuItem link={"/components/evp-snake"} title={"Snake"} />
       <Menu submenu itemIndent title={"Animation"}>
         <MenuItem link={"/components/evp-animation"} title={"Animation"} />
         <MenuItem link={"/components/evp-animation/Bounce"} title={"Bounce"} />
@@ -87,9 +88,6 @@ export default function DocsMenu() {
         <MenuItem link={"/components/evp-animation/Fade"} title={"Fade"} />
         <MenuItem link={"/components/evp-animation/FadeIn"} title={"FadeIn"} />
         <MenuItem link={"/components/evp-animation/FadeOut"} title={"FadeOut"} />
-        {/* <MenuItem link={"/components/evp-row"} title={"Row"} />
-        <MenuItem link={"/components/evp-dom"} title={"Dom"} />
-        <MenuItem link={"/components/evp-divider"} title={"Divider"} /> */}
       </Menu>
       <Menu submenu itemIndent title={"utils (unstable)"}>
         <MenuItem link={"/components/evp-utils"} title={"Utils"} />

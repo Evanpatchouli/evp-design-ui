@@ -22,7 +22,7 @@ export default {
   // 入口
   input: entry,
   // 打包信息
-  output: [{ filname: "index.esm.js", dir: ".", format: "esm" }],
+  output: [{ filename: "index.esm.js", dir: ".", format: "esm" }],
   // 插件配置
   plugins: [
     // 可使用 `import {module} from './file'` 替换 `import {module} from './file/index.js`

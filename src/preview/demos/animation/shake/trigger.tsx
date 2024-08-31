@@ -7,7 +7,6 @@ import { Animation } from "evp-design-ui";
 
 const Demo: React.FC = () => {
   const [theme, setTheme] = React.useState<"primary" | "danger">("primary");
-  const [timer, setTimer] = React.useState<NodeJS.Timeout | null>(null);
   return (
     <Row gap={8}>
       <Animation.Shake>

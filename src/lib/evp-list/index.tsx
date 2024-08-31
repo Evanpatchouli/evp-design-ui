@@ -80,8 +80,6 @@ const EvpList: React.FC<EvpListProps> = ({
         className={`evp evp-list ${className ?? ""}`.trim()}
         id={id}
         style={{
-          width: "fit-content",
-          height: "fit-content",
           ...style,
         }}
         {...props}

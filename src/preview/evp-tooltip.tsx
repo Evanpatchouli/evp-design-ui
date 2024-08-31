@@ -2,7 +2,7 @@ import Api from "@/components/api";
 import Card from "@/components/card";
 import Md from "@/components/md";
 import Tsx from "@/components/tsx";
-import { EvpButton, EvpCode, EvpTag, EvpToolTip } from "evp-design-ui";
+import { EvpButton, EvpTag, EvpToolTip } from "evp-design-ui";
 import { useEffect, useState } from "react";
 import Position from "./demos/tooltip/position";
 
