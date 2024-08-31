@@ -1,4 +1,4 @@
-.evp-toast {
+.evp.evp-toast {
   transform: translate(0%, 50%);
   box-shadow: var(--base-shadow);
   background-color: var(--FloralWhite);
@@ -7,30 +7,31 @@
   height: 40px;
   justify-content: left;
   align-items: center;
+  z-index: 10002;
 }
 
-.evp-toast.evp-toast-appear {
+.evp.evp-toast.evp-toast-appear {
   animation: evp-toast-appear 0.2s ease-in-out forwards;
 }
 
-.evp-toast.evp-toast-leave {
+.evp.evp-toast.evp-toast-leave {
   animation: evp-toast-leave 0.2s ease-in forwards;
 }
 
-.evp-toast > * {
+.evp.evp-toast > * {
   float: left;
 }
-.evp-toast > *:first-child {
+.evp.evp-toast > *:first-child {
   padding-left: 12px;
   padding-right: 12px;
 }
-.evp-toast > *:last-child {
+.evp.evp-toast > *:last-child {
   clear: right;
   padding-right: 12px;
   padding-bottom: 3px;
 }
 
-.evp-toasts-container {
+.evp.evp-toasts-container {
   z-index: 10001;
   position: fixed;
   top: 0%;
@@ -44,7 +45,7 @@
   pointer-events: none;
   overflow: hidden;
 }
-.evp-toasts-container > * {
+.evp.evp-toasts-container > * {
   margin-bottom: 20px;
 }
 

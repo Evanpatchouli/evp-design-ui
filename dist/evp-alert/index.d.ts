@@ -1,6 +1,6 @@
-import React from "react";
+/// <reference types="react" />
 export type EvpAlertProps = {};
-export { type AlertOptions } from "./core";
+export { type AlertOptions } from "./alert";
 export { default as Alert } from "./alert";
-declare const alert: (content?: React.ReactNode, options?: import("..").EvpDialogProps | undefined) => void;
+declare const alert: (content?: import("react").ReactNode, options?: import("..").EvpDialogProps | undefined) => void;
 export default alert;

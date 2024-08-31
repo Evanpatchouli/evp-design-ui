@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/evp-design-ui/static/css/main.eb849adb.css",
-    "main.js": "/evp-design-ui/static/js/main.0883d94f.js",
+    "main.css": "/evp-design-ui/static/css/main.de339048.css",
+    "main.js": "/evp-design-ui/static/js/main.dc1cf5b8.js",
     "static/js/787.b426a438.chunk.js": "/evp-design-ui/static/js/787.b426a438.chunk.js",
     "static/media/shopcart.svg": "/evp-design-ui/static/media/shopcart.7f46cddfcb41ec818d75351749ce8799.svg",
     "index.html": "/evp-design-ui/index.html",
     "static/media/thumb.svg": "/evp-design-ui/static/media/thumb.660b35b3338edde6ff64.svg",
     "static/media/round_blue.svg": "/evp-design-ui/static/media/round_blue.fe9b3856b116cfa03dda.svg",
-    "main.eb849adb.css.map": "/evp-design-ui/static/css/main.eb849adb.css.map",
-    "main.0883d94f.js.map": "/evp-design-ui/static/js/main.0883d94f.js.map",
+    "main.de339048.css.map": "/evp-design-ui/static/css/main.de339048.css.map",
+    "main.dc1cf5b8.js.map": "/evp-design-ui/static/js/main.dc1cf5b8.js.map",
     "787.b426a438.chunk.js.map": "/evp-design-ui/static/js/787.b426a438.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.eb849adb.css",
-    "static/js/main.0883d94f.js"
+    "static/css/main.de339048.css",
+    "static/js/main.dc1cf5b8.js"
   ]
 }

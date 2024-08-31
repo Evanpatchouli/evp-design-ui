@@ -1,5 +1,11 @@
 @import url(./collect.css);
 
+*,
+*:focus,
+*:hover {
+  outline: none;
+}
+
 .evp {
   font-size: var(--text-size-md);
   transition: all 0.2s ease-in-out;
@@ -19,40 +25,20 @@
   opacity: 0.5 !important;
   color: var(--LightGray) !important;
   stroke: var(--LightGray) !important;
+}
 
-  >* * * {
-    color: var(--LightGray) !important;
-    stroke: var(--LightGray) !important;
-  }
-
-  >* * {
-    color: var(--LightGray) !important;
-    stroke: var(--LightGray) !important;
-  }
-
-  >* {
-    color: var(--LightGray) !important;
-    stroke: var(--LightGray) !important;
-  }
-
-  * {
-    color: var(--LightGray) !important;
-    stroke: var(--LightGray) !important;
-  }
+.evp-disabled,
+.evp-disabled * {
+  color: var(--LightGray) !important;
+  stroke: var(--LightGray) !important;
 }
 
 .evp-disabled:active {
-  pointer-events: none !important;
   cursor: not-allowed !important;
+  pointer-events: none !important;
 }
 
 .evp-readonly,
 .evp.evp-readonly {
   pointer-events: none !important;
-}
-
-*,
-*:focus,
-*:hover {
-  outline: none;
 }
