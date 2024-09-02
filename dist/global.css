@@ -34,8 +34,8 @@
 }
 
 .evp-disabled:active {
-  pointer-events: none !important;
   cursor: not-allowed !important;
+  pointer-events: none !important;
 }
 
 .evp-readonly,

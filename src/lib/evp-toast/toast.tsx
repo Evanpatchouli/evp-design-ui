@@ -2,13 +2,14 @@ import classNames from "classnames";
 import { Color } from "../constant";
 import EvpIcon from "../evp-icon";
 import { IndexableFuzzy } from "../typings";
+import { Nullable } from "../utils";
 
 export type EvpToastType = "info" | "warn" | "error" | "success";
 
 export interface ToastProps {
   text?: string;
-  keep?: number;
-  delay?: number;
+  keep?: Nullable<number>;
+  delay?: Nullable<number>;
   type?: EvpToastType;
   key: any;
   id: any;
@@ -52,8 +53,8 @@ export interface EvpToastCreate {
     key: any,
     type?: EvpToastType,
     text?: string,
-    keep?: number,
-    delay?: number,
+    keep?: Nullable<number>,
+    delay?: Nullable<number>,
     firstRendered?: boolean,
     lastRendered?: boolean
   ): JSX.Element;

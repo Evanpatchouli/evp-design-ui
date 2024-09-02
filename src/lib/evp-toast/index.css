@@ -32,21 +32,58 @@
 }
 
 .evp.evp-toasts-container {
+  box-sizing: border-box;
   z-index: 10001;
   position: fixed;
-  top: 0%;
-  height: 1000vh;
-  width: 100vw;
+  left: 0;
+  right: 0;
+  height: 9999vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
   background-color: rgba(0, 0, 0, 0);
   pointer-events: none;
   overflow: hidden;
+  padding: 1rem;
+  > * {
+    margin-bottom: 20px;
+  }
 }
-.evp.evp-toasts-container > * {
-  margin-bottom: 20px;
+.evp.evp-toasts-container.top {
+  top: 0;
+  justify-content: flex-start;
+  align-items: center;
+}
+.evp.evp-toasts-container.center {
+  bottom: 50%;
+  justify-content: flex-end;
+  align-items: center;
+}
+.evp.evp-toasts-container.bottom {
+  bottom: 0;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 1rem;
+}
+
+.evp.evp-toasts-container.leftTop {
+  top: 0;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.evp.evp-toasts-container.leftBottom {
+  bottom: 0;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+.evp.evp-toasts-container.rightTop {
+  top: 0;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+.evp.evp-toasts-container.rightBottom {
+  bottom: 0;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 
 @keyframes evp-toast-appear {
