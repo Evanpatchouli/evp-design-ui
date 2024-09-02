@@ -8,33 +8,43 @@
 
 ## Installation
 
-This repository is the development workspace of **evp-design-ui** , you should install evp-design-ui from npm( <font color=#1E90FF>unpublished</font> ) or from github / gitee releases assets.
+This repository is the development workspace of **evp-design-ui** , you should install evp-design-ui from npm or from github / gitee releases assets.
 
 **npm:**
+
 ```shell
 npm install evp-design-ui --save
 ```
 
 **yarn:**
+
 ```shell
 yarn add evp-design-ui
 ```
 
 ## Getting started
 
+### Import global style
+
+At your entry file (such as `main.jsx`), import the global style file.
+
+```jsx
+import "evp-design-ui/global.css";
+```
+
+### Use components
+
 ```tsx
-import { Button } from 'evp-design-ui';
+import { Button } from "evp-design-ui";
 
 export default function Page() {
-  return (
-    <Button>Click me</Button>
-  );
+  return <Button>Click me</Button>;
 }
 ```
 
 ## Documentation
 
-[Live Documents](https://jun-laner.gitee.io/evp-design-ui/) [( https://jun-laner.gitee.io/evp-design-ui /)](https://jun-laner.gitee.io/evp-design-ui/)
+[Live Documents](https://evanpatchouli.github.io/evp-design-ui/) [( https://evanpatchouli.github.io/evp-design-ui /)](https://evanpatchouli.github.io/evp-design-ui/)
 
 ## Issues
 
