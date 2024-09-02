@@ -1,6 +1,8 @@
 /// <reference types="react" />
+import { ToastPlacement } from "./container";
+import { Nullable } from "../utils";
 export interface EvpToastAdd {
-    (text?: string, keep?: number, delay?: number): void;
+    (text?: string, keep?: Nullable<number>, delay?: Nullable<number>, placement?: ToastPlacement): void;
 }
 /**
  * Render a global info toast
@@ -34,7 +36,7 @@ declare function setReverse(reverse?: "true" | "false" | true | false): void;
 /** @todo */
 export declare const context: () => readonly (JSX.Element | React.ReactNode)[];
 declare const EvpToast: {
-    (text?: any, keep?: number, delay?: number): void;
+    (text?: any, keep?: Nullable<number>, delay?: Nullable<number>, placement?: ToastPlacement): void;
     info: EvpToastAdd;
     warn: EvpToastAdd;
     error: EvpToastAdd;
