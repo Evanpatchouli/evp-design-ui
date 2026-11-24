@@ -34,6 +34,17 @@ export type EvpCalendarProps = Omit<
   "value" | "onChange" | "className"
 >;
 
+const defaultTimeFormat = "YYYY / MM / DD \xa0 hh : mm : ss";
+
+function Clock({ format }: { format: string }) {
+  const [now, setNow] = useState(Date.now);
+  useEffect(() => {
+    const timer = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(timer);
+  }, []);
+  return <>{moment(now).format(format)}</>;
+}
+
 export default function Calendar(props: EvpCalendarProps) {
   const {
     date,
@@ -51,16 +62,6 @@ export default function Calendar(props: EvpCalendarProps) {
     containerProps,
     ...rest
   } = props;
-  const [now, setNow] = useState(new Date().toLocaleString());
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setNow(new Date().toLocaleString());
-    }, 1000);
-    return function cleanTimer() {
-      clearInterval(timer);
-    };
-  }, []);
 
   const ContainerProps = () => {
     const { class: _class, ...rest } = containerProps ?? {};
@@ -81,7 +82,7 @@ export default function Calendar(props: EvpCalendarProps) {
             ...timeStyle,
           }}
         >
-          {moment(time ?? now).format(timeFormat ?? "YYYY / MM / DD \xa0 hh : mm : ss")}
+          {time == null ? <Clock format={timeFormat ?? defaultTimeFormat} /> : moment(time).format(timeFormat ?? defaultTimeFormat)}
         </div>
       ) : (
         void 0

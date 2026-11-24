@@ -44,7 +44,14 @@ const EvpButton: React.FC<EvpButtonProps> = (props: EvpButtonProps) => {
   const shape = props.shape ?? "";
   const $class = props.class ?? "";
 
-  const [rippleMaskConfig, setRippleMaskConfig] = React.useState<any>({});
+  function positionRipple(event: React.MouseEvent<HTMLButtonElement>) {
+    const button = event.currentTarget;
+    const { clientWidth, clientHeight } = button;
+    button.style.setProperty("--ripple-x", `${event.nativeEvent.offsetX}px`);
+    button.style.setProperty("--ripple-y", `${event.nativeEvent.offsetY}px`);
+    button.style.setProperty("--ripple-w", `${clientWidth * 3}px`);
+    button.style.setProperty("--ripple-h", `${clientHeight * 3}px`);
+  }
 
   return (
     <button
@@ -66,25 +73,8 @@ const EvpButton: React.FC<EvpButtonProps> = (props: EvpButtonProps) => {
       })}
       id={$props.id}
       onClick={clickHandler}
-      onClickCapture={(e) => {
-        const newRippleMaskConfig = {
-          offsetX: e.nativeEvent.offsetX,
-          offsetY: e.nativeEvent.offsetY,
-          clientX: e.currentTarget.clientWidth,
-          clientY: e.currentTarget.clientHeight,
-        };
-        if (rippleMaskConfig !== newRippleMaskConfig) {
-          setRippleMaskConfig(newRippleMaskConfig);
-        }
-      }}
-      style={{
-        ...$props.style,
-        // @ts-ignore
-        "--ripple-x": `${rippleMaskConfig.offsetX ?? 0}px`,
-        "--ripple-y": `${rippleMaskConfig.offsetY ?? 0}px`,
-        "--ripple-w": `${(rippleMaskConfig.clientX ?? 0) * 3}px`,
-        "--ripple-h": `${(rippleMaskConfig.clientY ?? 0) * 3}px`,
-      }}
+      onClickCapture={props.ripple ? positionRipple : undefined}
+      style={$props.style}
       type={props.type ?? "button"}
     >
       <div className="evp-button-content">
