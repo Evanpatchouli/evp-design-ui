@@ -60,7 +60,6 @@ async function buildPackage(source = library, destination = path.join(project, "
     const { scripts, devDependencies, ...manifest } = JSON.parse(fs.readFileSync(path.join(source, "package.json"), "utf8"));
     fs.writeFileSync(path.join(output, "package.json"), JSON.stringify(manifest, null, 2) + "\n");
     fs.copyFileSync(path.join(source, "Readme.md"), path.join(output, "Readme.md"));
-    fs.copyFileSync(path.join(project, "LICENSE"), path.join(output, "LICENSE"));
     for (const entry of [manifest.main, manifest.module, manifest.types, "global.css", "collect.css"]) {
       if (!fs.statSync(path.join(output, entry)).size) throw new Error("Empty package entry: " + entry);
     }

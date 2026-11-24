@@ -16,9 +16,7 @@ export type Hintable<T> = T | (string & {});
 export type Indexable<T, E extends unknown> = T & {
     [x: string]: E;
 };
-export type IndexableVididy<T, E extends unknown> = T & {
-    [x: Hintable<T>]: E;
-};
+export type IndexableVididy<T, E> = T & Record<string, E>;
 /** Force to convert an object as to be indexable with string key without given hintable type */
 export type IndexableFuzzy<E extends unknown> = {
     [x: string]: E;

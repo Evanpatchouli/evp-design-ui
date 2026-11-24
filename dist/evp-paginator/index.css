@@ -1,4 +1,25 @@
-.evp-paginator-tab {
+.evp-paginator-tabs, .evp-paginator-jumper {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+.evp-paginator-tabs > button {
+  display: inline-grid;
+  place-items: center;
+  min-width: 30px;
+  min-height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: 5px;
+  background-color: transparent;
+  font: inherit;
+  cursor: pointer;
+}
+.evp-paginator-tabs > button:disabled {
+  opacity: .5;
+  cursor: default;
+}
+.evp-paginator-tabs > .evp-paginator-tab {
   transition: all 0.2s ease-in-out;
   &::selection {
     background: none !important;
@@ -11,7 +32,7 @@
     color: var(--tabHoverColor);
   }
 }
-.evp-paginator-tab-active {
+.evp-paginator-tabs > .evp-paginator-tab-active {
   transition: all 0.2s ease-in-out;
   &::selection {
     background: none !important;

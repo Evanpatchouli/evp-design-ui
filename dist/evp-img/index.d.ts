@@ -7,6 +7,8 @@ interface BaseImgProps extends React.DetailedHTMLProps<React.ImgHTMLAttributes<H
     downLoadTooltipText?: string;
     copyTooltipText?: string;
 }
-export type EvpImgProps = {} & BaseImgProps & EvpBaseProps;
+export type EvpImgProps = BaseImgProps & {
+    [K in keyof EvpBaseProps as K extends "loading" ? never : K]: EvpBaseProps[K];
+};
 declare const EvpImg: React.FC<EvpImgProps>;
 export default EvpImg;

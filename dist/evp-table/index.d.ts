@@ -1,4 +1,5 @@
 /// <reference types="react" />
+import { type RecordKey } from "../evp-paginator/useRecords";
 import { ThProps } from "./th";
 import { TdProps } from "./td";
 import { ArrayStrictLengthed } from "../utils";
@@ -11,7 +12,7 @@ export type TableItemSchema<T extends Object = any> = {
     key?: keyof T | (string & {});
     cellProps?: TdProps;
     align?: "left" | "center" | "right" | "char" | "justify";
-    render?: (value: T[keyof T | (string & {})], row: T, records: T[]) => React.ReactNode;
+    render?: (value: T[keyof T], row: T, records: T[]) => React.ReactNode;
 };
 export interface EvpTableProps<RecordType extends Object = any> extends React.DOMAttributes<HTMLTableElement> {
     class?: string;
@@ -27,6 +28,7 @@ export interface EvpTableProps<RecordType extends Object = any> extends React.DO
     indexAlign?: "left" | "center" | "right" | "char" | "justify";
     indexProps?: TdProps;
     data?: RecordType[];
+    rowKey?: RecordKey<RecordType>;
     pagination?: {
         pageSize?: number;
         pageSizes?: number[];
@@ -70,4 +72,4 @@ export interface EvpTableProps<RecordType extends Object = any> extends React.DO
     index?: boolean;
     style?: React.CSSProperties;
 }
-export default function EvpTable({ class: className, id, children, style, schema, labelAlign, labelProps, indexLabelAlign, indexLabelProps, indexAlign, indexProps, data, align, cellProps, pagination, paginator, zebra, caption, selection, index, ...events }: EvpTableProps): import("react/jsx-runtime").JSX.Element;
+export default function EvpTable({ class: className, id, children, style, schema, labelAlign, labelProps, indexLabelAlign, indexLabelProps, indexAlign, indexProps, data, rowKey, align, cellProps, pagination, paginator, zebra, caption, selection, index, ...events }: EvpTableProps): import("react/jsx-runtime").JSX.Element;

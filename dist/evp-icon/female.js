@@ -1,0 +1,14 @@
+'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+var tslib = require('tslib');
+var jsxRuntime = require('react/jsx-runtime');
+var props_parser = require('../utils/props.parser.js');
+
+var Radio = function (props) {
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
+    return (jsxRuntime.jsx("div", tslib.__assign({ className: "evp icon ".concat((_a = props.class) !== null && _a !== void 0 ? _a : "").trim(), onClick: props.onClick, style: tslib.__assign({ visibility: ((_b = props.$visibleSync) !== null && _b !== void 0 ? _b : true) ? "visible" : "hidden", display: ((_c = props.$displaySync) !== null && _c !== void 0 ? _c : true) ? "flex" : "none", strokeWidth: (_d = props.strokeWidth) !== null && _d !== void 0 ? _d : 4, stroke: (_e = props.color) !== null && _e !== void 0 ? _e : "#333", fill: (_f = props.fill) !== null && _f !== void 0 ? _f : "#333", cursor: (_g = props.cursor) !== null && _g !== void 0 ? _g : (props.pointer ? "pointer" : "unset"), width: props.w, height: props.h, padding: (_h = props_parser.propsParser.get("pd")) === null || _h === void 0 ? void 0 : _h(props.pd), margin: (_j = props_parser.propsParser.get("mg")) === null || _j === void 0 ? void 0 : _j(props.mg) }, props.style) }, { children: jsxRuntime.jsxs("svg", tslib.__assign({ width: (_k = props.radius) !== null && _k !== void 0 ? _k : 24, height: (_l = props.radius) !== null && _l !== void 0 ? _l : 24, viewBox: "0 0 48 48", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: [jsxRuntime.jsxs("g", tslib.__assign({ "clip-path": "url(#icon-d15d880bccbbd09)" }, { children: [jsxRuntime.jsx("path", { d: "M38.3785 9.85132C32.9112 4.38398 24.0468 4.38398 18.5795 9.85132C15.8458 12.585 14.479 16.1679 14.479 19.7508C14.479 23.3337 15.8458 26.9166 18.5795 29.6503C24.0468 35.1176 32.9112 35.1176 38.3785 29.6503C43.8458 24.183 43.8458 15.3187 38.3785 9.85132Z", fill: "none", strokeLinejoin: "round" }), jsxRuntime.jsx("path", { d: "M18.4642 29.5353L5.73633 42.2632", strokeLinecap: "round", strokeLinejoin: "round" }), jsxRuntime.jsx("path", { d: "M19.1714 41.5562L6.44346 28.8282", strokeLinecap: "round", strokeLinejoin: "round" })] })), jsxRuntime.jsx("defs", { children: jsxRuntime.jsx("clipPath", tslib.__assign({ id: "icon-d15d880bccbbd09" }, { children: jsxRuntime.jsx("rect", { width: "48", height: "48", fill: "#333" }) })) })] })) })));
+};
+
+exports["default"] = Radio;

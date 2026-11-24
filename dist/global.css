@@ -1,9 +1,8 @@
 @import url(./collect.css);
 
-*,
-*:focus,
-*:hover {
-  outline: none;
+:where(.evp):focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
 }
 
 .evp {

@@ -1,10 +1,8 @@
 import React from "react";
 import { EvpCardProps } from "../evp-card/index.v2";
 import { EvpButtonProps } from "../evp-button";
-declare const DialogCloseEventExample: Event;
-type DialogCloseEvent = typeof DialogCloseEventExample;
-declare const DialogOpenEventExample: Event;
-type DialogOpenEvent = typeof DialogOpenEventExample;
+type DialogCloseEvent = Event;
+type DialogOpenEvent = Event;
 export type EvpDialogProps = {
     children?: React.ReactNode;
     defaultOpen?: boolean;

@@ -1,6 +1,6 @@
 import { CommonCSS } from "./typing";
 declare const CSS: {
-    FrostedGlass: ((options?: import("./typing").FrostedGlassOptions) => Omit<CommonCSS, "className" | "id">) & {
+    FrostedGlass: ((options?: import("./typing").FrostedGlassOptions) => Omit<CommonCSS, "id" | "className">) & {
         background: string;
         backdropFilter: string;
         WebkitBackdropFilter: string;
@@ -13,7 +13,7 @@ declare const CSS: {
         (): Omit<CommonCSS, "className" | "id">;
         textShadow: string;
     };
-    Centred: (() => Omit<CommonCSS, "className" | "id">) & {
+    Centred: (() => Omit<CommonCSS, "id" | "className">) & {
         textAlign: "center" | "left" | "right" | "start" | "end";
         display: string;
         justifyContent: string;

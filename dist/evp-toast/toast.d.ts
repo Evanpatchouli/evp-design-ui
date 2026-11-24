@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { Nullable } from "../utils";
 export type EvpToastType = "info" | "warn" | "error" | "success";
 export interface ToastProps {

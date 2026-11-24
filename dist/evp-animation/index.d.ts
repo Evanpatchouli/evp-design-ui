@@ -20,7 +20,7 @@ export type ActiveStateWithAnimation<T = any> = Pretify<{
 }>;
 declare const EvpAnimation: {
     ({ duration, delay, name, ...props }: {
-        trigger?: "click" | "hover" | ("click" | "hover")[] | undefined;
+        trigger?: "hover" | "click" | ("hover" | "click")[] | undefined;
     } & React.ClassAttributes<HTMLDivElement> & React.HTMLAttributes<HTMLDivElement> & AnimationConfig & {
         name?: Hintable<"evp-animation__bounce" | "evp-animation__BounceIn" | "evp-animation__Twinkle" | "evp-animation__Flip" | "evp-animation__Shake" | "evp-animation__ZoomIn" | "evp-animation__Fade" | "evp-animation__FadeIn" | "evp-animation__FadeInOut"> | undefined;
     }): import("react/jsx-runtime").JSX.Element;

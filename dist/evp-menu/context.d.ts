@@ -11,7 +11,7 @@ export interface MenuCtx {
     multiOpened?: boolean;
     setMultiSelected?: (multiSelected: boolean) => void;
     _setSelectedMap?: Map<string, any>;
-    _add_setSelectedMap?: (key: string, fc: any) => void;
+    _add_setSelectedMap?: (key: string, fc: (selected: boolean) => void) => void | (() => void);
     _handleSelectOne?: (s: string) => void;
     _handleUnselectOne?: (s: string) => void;
     _handleOpenOne?: (s: string) => void;

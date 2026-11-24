@@ -1,3 +1,16 @@
 .evp.input-checkbox {
   margin-right: 8px;
 }
+.evp-checkbox-control {
+  position: relative;
+}
+.evp-checkbox-control > input {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  opacity: 0;
+}
+.evp-checkbox-control:focus-within {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}

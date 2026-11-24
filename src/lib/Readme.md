@@ -8,7 +8,7 @@
 
 ## Installation
 
-This repository is the development workspace of **evp-design-ui** , you should install evp-design-ui from npm( <font color=#1E90FF>unpublished</font> ) or from github / gitee releases assets.
+Use matching versions of React and React DOM in the `^18.2.0` range. The package provides ESM and CommonJS entry points and uses the application's React runtime.
 
 **npm:**
 ```shell
@@ -24,6 +24,7 @@ yarn add evp-design-ui
 
 ```tsx
 import { Button } from 'evp-design-ui';
+import 'evp-design-ui/global.css';
 
 export default function Page() {
   return (
@@ -34,7 +35,7 @@ export default function Page() {
 
 ## Documentation
 
-[Live Documents](https://jun-laner.gitee.io/evp-design-ui/) [( https://jun-laner.gitee.io/evp-design-ui /)](https://jun-laner.gitee.io/evp-design-ui/)
+[Component documentation](https://evanpatchouli.github.io/evp-design-ui/)
 
 ## Issues
 

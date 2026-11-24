@@ -1,4 +1,3 @@
-/// <reference types="react" />
 export type EvpAlertProps = {};
 export { type AlertOptions } from "./alert";
 export { default as Alert } from "./alert";

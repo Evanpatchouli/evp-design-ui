@@ -31,9 +31,9 @@ export type EvpCheckBoxGroupProps = {
     name?: string;
     placeholder?: string;
     /** defaultValue assigned to input box*/
-    default?: string | number;
+    default?: string | number | readonly string[];
     /** Reactive value assigned to input box */
-    value?: string | number;
+    value?: string | number | readonly string[];
     hint?: {
         text?: string;
         color?: string;

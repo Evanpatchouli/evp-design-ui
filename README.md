@@ -8,6 +8,8 @@
 
 ## Installation
 
+Use matching versions of React and React DOM in the `^18.2.0` range. The package uses the application's React runtime and provides ESM and CommonJS entry points.
+
 This repository is the development workspace of **evp-design-ui** , you should install evp-design-ui from npm or from github / gitee releases assets.
 
 **npm:**

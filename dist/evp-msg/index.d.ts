@@ -1,3 +1,4 @@
+/// <reference types="react" />
 type EvpMsgType = 'info' | 'warn' | 'error' | 'success';
 export interface EvpMessageProps {
     id: string;

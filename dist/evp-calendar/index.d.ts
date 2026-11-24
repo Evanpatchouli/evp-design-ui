@@ -1,7 +1,7 @@
 /// <reference types="react" />
 import { CalendarProps as CalendarDateProps } from "react-calendar";
-import { LooseValue } from "react-calendar/dist/cjs/shared/types";
 import EvpBaseProps from "../props";
+type LooseValue = CalendarDateProps["value"];
 export type EvpCalendarProps = Omit<CalendarDateProps & React.RefAttributes<unknown> & {
     class?: string;
     style?: React.CSSProperties;
@@ -25,3 +25,4 @@ export type EvpCalendarProps = Omit<CalendarDateProps & React.RefAttributes<unkn
     setDate?: (value: LooseValue, event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }, "value" | "onChange" | "className">;
 export default function Calendar(props: EvpCalendarProps): import("react/jsx-runtime").JSX.Element;
+export {};

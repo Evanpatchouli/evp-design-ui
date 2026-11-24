@@ -1,4 +1,5 @@
-/// <reference types="react" />
+import { useEffect } from "react";
+export declare const useFormLayoutEffect: typeof useEffect;
 export interface EvpFormInstance<T extends Partial<T> = Partial<any>> {
     get: (name?: string & keyof T) => T[keyof T];
     set: (name: string & keyof T, value?: T[keyof T]) => void;
@@ -34,4 +35,5 @@ export declare class FormStore<T extends Partial<T> = Partial<any>> {
     submit: () => void;
 }
 declare const useForm: <T extends Partial<T> = Partial<any>>() => import("react").MutableRefObject<EvpFormInstance<T>>;
+export declare function useFormField(form: EvpFormInstance | undefined, name: string | undefined, value: unknown): void;
 export default useForm;

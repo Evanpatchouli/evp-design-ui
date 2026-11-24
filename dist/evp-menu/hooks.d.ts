@@ -12,8 +12,8 @@ export declare class MenuCtxInstance implements MenuCtx {
     setSelectedKeys: (keys: string[] | undefined, type: "select" | "unselect") => void;
     onSelect?: <R = any>(keys: string[]) => R;
     onUnselect?: <R = any>(keys: string[]) => R;
-    _setSelectedMap?: Map<any, any> | undefined;
-    _add_setSelectedMap?: ((key: string, fc: any) => void) | undefined;
+    _setSelectedMap?: Map<string, (selected: boolean) => void> | undefined;
+    _add_setSelectedMap?: ((key: string, fc: (selected: boolean) => void) => () => void) | undefined;
     _handleOpenOne: (key: string) => void;
     _handleCloseOne: (key: string) => void;
     selectOne: (key: string) => void;
@@ -48,4 +48,4 @@ export default function useMenu(options?: {
     multiSelected: boolean;
     onSelect?: <R = any>(keys: string[]) => R;
     onUnselect?: <R = any>(keys: string[]) => R;
-}): MenuCtxInstance | MenuCtx;
+}): MenuCtx;

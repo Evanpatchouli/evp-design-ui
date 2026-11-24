@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import { ArrayStrictLengthed } from "../utils";
-export interface EvpPaginatorProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+export interface EvpPaginatorProps extends Omit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "onChange"> {
     class?: string;
     id?: string;
     children?: React.ReactNode;

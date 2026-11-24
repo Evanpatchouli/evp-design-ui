@@ -41,6 +41,8 @@ npm run package
 
 Install the root lockfile with `npm ci`. The package script compiles TypeScript, bundles the library with Rollup, copies styles and assets, and checks the package entry points in a temporary directory. It replaces `dist` only after these checks pass.
 
+Run `npm run test:package` after packaging to validate strict TypeScript consumers, server rendering with ESM and CommonJS, the global CSS entry point, and the production JS size of a single Button. The check prints a native React button baseline alongside the library result and checks that calendar and syntax-highlighting dependencies stay out of the Button chunk.
+
 ## How to publish the library
 
 ```shell

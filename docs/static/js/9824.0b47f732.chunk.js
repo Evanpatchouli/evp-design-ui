@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkevp_design_ui=self.webpackChunkevp_design_ui||[]).push([[9824],{99824:function(e,n,r){r.r(n),r.d(n,{default:function(){return f}});var u=r(12321),a=r(49358),i=r.n(a),t=(0,u.Z)(i(),{});t.registerLanguage=function(e,n){return i().register(n)},t.alias=function(e,n){return i().alias(e,n)};var s=t,g=r(79338),c=r.n(g)();s.registerLanguage("tsx",c);var f=s}}]);
+//# sourceMappingURL=9824.0b47f732.chunk.js.map

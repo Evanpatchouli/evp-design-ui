@@ -10,6 +10,8 @@
 
 ## 安装
 
+应用中的 React 和 React DOM 请使用相同版本，支持范围为 `^18.2.0`。组件库复用应用的 React，提供 ESM 和 CommonJS 两种入口。
+
 这个仓库是 **evp-design-ui** 的开发工作空间，你应该从 npm 或从 github / gitee 的发布资源中安装 evp-design-ui。
 
 **npm:**
