@@ -169,9 +169,8 @@ const Jumper = ({
   </>
 );
 
-// @ts-ignore
 export interface EvpPaginatorProps
-  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+  extends Omit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "onChange"> {
   class?: string;
   id?: string;
   children?: React.ReactNode;

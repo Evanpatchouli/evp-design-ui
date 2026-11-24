@@ -1,4 +1,4 @@
-import { Prism as Highlight } from "react-syntax-highlighter";
+import { Prism as Highlight, type SyntaxHighlighterProps } from "react-syntax-highlighter";
 import * as Theme from "react-syntax-highlighter/dist/esm/styles/prism"; // 代码高亮主题风格
 import { Hintable } from "../utils";
 
@@ -97,8 +97,8 @@ export type EvpCodeProps = {
   lineNumberStyle?: React.CSSProperties;
   wrapLines?: boolean;
   wrapLongLines?: boolean;
-  lineProps?: lineTagPropsFunction | React.HTMLProps<HTMLElement>;
-  renderer?: (props: rendererProps) => React.ReactNode;
+  lineProps?: SyntaxHighlighterProps["lineProps"];
+  renderer?: SyntaxHighlighterProps["renderer"];
   PreTag?: React.ComponentType<any> | keyof JSX.IntrinsicElements;
   CodeTag?: React.ComponentType<any> | keyof JSX.IntrinsicElements;
   codeTagProps?: React.HTMLProps<HTMLElement>;

@@ -16,8 +16,7 @@ export type TableItemSchema<T extends Object = any> = {
   key?: keyof T | (string & {});
   cellProps?: TdProps;
   align?: "left" | "center" | "right" | "char" | "justify";
-  // @ts-ignore
-  render?: (value: T[keyof T | (string & {})], row: T, records: T[]) => React.ReactNode;
+  render?: (value: T[keyof T], row: T, records: T[]) => React.ReactNode;
 };
 
 export interface EvpTableProps<RecordType extends Object = any> extends React.DOMAttributes<HTMLTableElement> {

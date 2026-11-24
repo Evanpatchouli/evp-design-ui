@@ -1,10 +1,11 @@
 import classNames from "classnames";
 import EvpDom from "../evp-dom";
 import CalendarDate, { CalendarProps as CalendarDateProps } from "react-calendar";
-import { LooseValue } from "react-calendar/dist/cjs/shared/types";
 import { useEffect, useState } from "react";
 import moment from "moment";
 import EvpBaseProps from "../props";
+
+type LooseValue = CalendarDateProps["value"];
 
 export type EvpCalendarProps = Omit<
   CalendarDateProps &
