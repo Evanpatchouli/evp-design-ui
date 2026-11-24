@@ -11,6 +11,7 @@ import CopyLink from "../evp-icon/copy-link";
 import Toast from "../evp-toast";
 import EvpToolTip from "../evp-tooltip";
 import ImgUtils from "../utils/img.utils";
+import useHasOpened from "../utils/useHasOpened";
 
 interface BaseImgProps extends React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement> {
   alt: string;
@@ -20,7 +21,9 @@ interface BaseImgProps extends React.DetailedHTMLProps<React.ImgHTMLAttributes<H
   copyTooltipText?: string;
 }
 
-export type EvpImgProps = {} & BaseImgProps & EvpBaseProps;
+export type EvpImgProps = BaseImgProps & {
+  [K in keyof EvpBaseProps as K extends "loading" ? never : K]: EvpBaseProps[K];
+};
 
 const EvpImg: React.FC<EvpImgProps> = ({
   alt,
@@ -29,6 +32,7 @@ const EvpImg: React.FC<EvpImgProps> = ({
   style,
   preview,
   setPreview,
+  loading,
   downLoadTooltipText,
   copyTooltipText,
   ...props
@@ -37,11 +41,13 @@ const EvpImg: React.FC<EvpImgProps> = ({
   const { display, ...$style } = $props.style;
 
   const scale = useState(100);
+  const mountPreview = useHasOpened(preview);
 
   return (
     <div style={{ display: display }} className="evp evp-img-wrapper">
       <img
         alt={alt}
+        loading={loading}
         hidden={$props.hidden}
         className={classNames("evp", "evp-img", className)}
         id={id}
@@ -51,7 +57,7 @@ const EvpImg: React.FC<EvpImgProps> = ({
         }}
         {...props}
       />
-      <EvpDialog
+      {mountPreview && <EvpDialog
         open={preview}
         setOpen={setPreview}
         class="evp-img-preview-container"
@@ -120,7 +126,7 @@ const EvpImg: React.FC<EvpImgProps> = ({
             height: `${scale[0]}%`,
           }}
         />
-      </EvpDialog>
+      </EvpDialog>}
     </div>
   );
 };

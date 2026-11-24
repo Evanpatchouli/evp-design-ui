@@ -2,6 +2,7 @@ import React from "react";
 import EvpBaseProps from "../props";
 import AllParser from "../utils/props.parser";
 import Loading from "../evp-loading";
+import useHasOpened from "../utils/useHasOpened";
 
 export interface BaseDomProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
@@ -17,6 +18,7 @@ export default function EvpDom($props: EvpDomProps) {
   const props = AllParser($props);
   // console.log('EvpDom.props after parsed:', props);
   const event = props.event;
+  const mountModal = useHasOpened($props.modal);
   return (
     <div
       id={props.id}
@@ -40,12 +42,16 @@ export default function EvpDom($props: EvpDomProps) {
       onKeyDown={event.onKeyDown}
     >
       {$props.children}
-      <div className="dom-loading__modal" hidden={!$props.loading === true}>
-        <Loading.SpinDot className={"dom-loading__elem"} />
-      </div>
-      <div className="dom__modal" hidden={!$props.modal === true}>
-        <div className={"dom__modal__content"}>{$props.modalContent}</div>
-      </div>
+      {$props.loading && (
+        <div className="dom-loading__modal">
+          <Loading.SpinDot className="dom-loading__elem" />
+        </div>
+      )}
+      {mountModal && (
+        <div className="dom__modal" hidden={!$props.modal}>
+          <div className="dom__modal__content">{$props.modalContent}</div>
+        </div>
+      )}
     </div>
   );
 }
