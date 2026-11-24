@@ -6,6 +6,7 @@ import { Color } from "../constant";
 import CheckedBox from "../evp-icon/checked-box";
 import UncheckedBox from "../evp-icon/unchecked-box";
 import EvpFormContext from "../evp-form-v2/context";
+import { useFormLayoutEffect } from "../evp-form-v2/hooks";
 import GroupContext from "../evp-checkbox-group/context";
 
 export type EvpCheckBoxRule = {
@@ -62,7 +63,7 @@ export default function EvpCheckBox(props: EvpCheckBoxProps) {
   const includesValue = (values: string | number | readonly string[]) =>
     Array.isArray(values) ? values.includes(value) : String(values) === value;
 
-  useEffect(() => {
+  useFormLayoutEffect(() => {
     if (formCtx && name && !disabled) return formCtx.register({ name, value: [] });
   }, [formCtx, name, disabled]);
 
@@ -104,7 +105,7 @@ export default function EvpCheckBox(props: EvpCheckBoxProps) {
   );
   const checked = group?.value !== undefined ? includesValue(group.value) : localChecked;
 
-  useEffect(() => {
+  useFormLayoutEffect(() => {
     if (!formCtx || !name || !checked || disabled) return;
     const values: string[] = formCtx.get(name) ?? [];
     if (!values.includes(value)) formCtx.set(name, [...values, value]);

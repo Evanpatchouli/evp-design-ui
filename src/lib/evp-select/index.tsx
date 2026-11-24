@@ -13,9 +13,10 @@ const defaultVisibleRows = 8;
 const overscan = 3;
 const windowThreshold = 100;
 
-function SelectOptions({ id, label, rows, options, active, selected, onSelect }: {
+function SelectOptions({ id, label, labelledBy, rows, options, active, selected, onSelect }: {
   id: string;
   label?: string;
+  labelledBy?: string;
   rows?: number;
   options: SelectOption[];
   active: number;
@@ -85,7 +86,7 @@ function SelectOptions({ id, label, rows, options, active, selected, onSelect }:
 
   const menuHeight = (requestedRows ?? defaultVisibleRows) * optionHeight + listPadding;
   return (
-    <div id={id} role="listbox" ref={listRef} className="evp-select-options" aria-label={label}
+    <div id={id} role="listbox" ref={listRef} className="evp-select-options" aria-label={label} aria-labelledby={labelledBy}
       onMouseDown={(event) => event.preventDefault()}
       onScroll={virtual ? (event) => setScrollRow(Math.floor(event.currentTarget.scrollTop / optionHeight)) : undefined}
       style={{ width: "100%", cursor: "pointer",
@@ -107,7 +108,7 @@ export type EvpSelectProps = {
   defaultValue?: any;
   onChange?: (value: any, option: SelectOption) => void;
   placeholder?: string;
-  label?: string | JSX.Element;
+  label?: React.ReactNode;
   labelSize?: string;
   labelWidth?: number | string;
   labelAlign?: "left" | "center" | "right";
@@ -130,6 +131,8 @@ export default function EvpSelect(props: EvpSelectProps) {
   const [active, setActive] = useState(-1);
   const id = useId();
   const listId = id + "-options";
+  const hasLabel = props.label != null && typeof props.label !== "boolean" && props.label !== "";
+  const labelId = hasLabel ? id + "-label" : undefined;
 
 
   function nextEnabled(start: number, direction: number) {
@@ -147,7 +150,10 @@ export default function EvpSelect(props: EvpSelectProps) {
 
   function select(option?: SelectOption) {
     if (!option || option.disabled) return;
-    if (props.value === undefined) setLocalValue(() => option.value);
+    if (props.value === undefined) {
+      setLocalValue(() => option.value);
+      if (form && name) form.set(name, option.value);
+    }
     props.onChange?.(option.value, option);
     setOpen(false);
   }
@@ -186,8 +192,8 @@ export default function EvpSelect(props: EvpSelectProps) {
   return (
     <EvpCol mg={[4, 0, 4, 0]} alignItems="flex-start">
       <EvpRow>
-        {props.label && (
-          <label htmlFor={id} className="evp input label"
+        {hasLabel && (
+          <label id={labelId} htmlFor={id} className="evp input label"
             style={{ fontSize: props.labelSize, width: props.labelWidth, justifyContent: props.labelAlign ?? "left" }}>
             {props.required && <span className="evp-required">*</span>}
             {props.label}{props.labelColon === true ? ":" : props.labelColon}
@@ -196,12 +202,12 @@ export default function EvpSelect(props: EvpSelectProps) {
         <div className="evp evp-select">
           <input id={id} role="combobox" aria-expanded={open} aria-controls={open ? listId : undefined}
             aria-activedescendant={open && options[active] ? listId + "-" + active : undefined}
-            aria-label={props.label ? undefined : props.placeholder ?? name}
+            aria-label={hasLabel ? undefined : props.placeholder ?? name}
             placeholder={props.placeholder} className="evp input input-box evp-select-input"
             value={selected?.label ?? ""} readOnly onBlur={() => setOpen(false)}
             onClick={() => open ? setOpen(false) : openMenu()} onKeyDown={handleKeyDown} />
           {open && (
-            <SelectOptions id={listId} label={typeof props.label === "string" ? props.label : name} rows={props.rows}
+            <SelectOptions id={listId} labelledBy={labelId} label={hasLabel ? undefined : props.placeholder ?? name} rows={props.rows}
               options={options} active={active} selected={selected} onSelect={select} />
           )}
           <select name={selected ? name : undefined} hidden>

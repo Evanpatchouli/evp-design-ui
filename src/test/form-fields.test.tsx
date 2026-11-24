@@ -1,8 +1,10 @@
-import { StrictMode } from "react";
+import { StrictMode, useEffect } from "react";
 import { fireEvent, render, renderHook } from "@testing-library/react";
 import Form from "../lib/evp-form-v2";
 import useForm, { FormStore } from "../lib/evp-form-v2/hooks";
 import Input from "../lib/evp-input";
+import Checkbox from "../lib/evp-checkbox";
+import Radio from "../lib/evp-radio";
 
 test("field ownership and reads distinguish empty values from missing fields", () => {
   const store = new FormStore();
@@ -16,6 +18,23 @@ test("field ownership and reads distinguish empty values from missing fields", (
   second();
   expect(store.gets()).toEqual({ count: 0 });
   expect(() => store.set("shared", 1)).toThrow();
+});
+
+test("a child passive effect can submit all mounted fields before their passive effects", () => {
+  const { result } = renderHook(() => useForm());
+  const submit = jest.fn();
+  function SubmitOnMount() {
+    useEffect(() => { result.current.current.submit(); }, []);
+    return null;
+  }
+  render(<Form formRef={result.current} $submit={submit}>
+    <SubmitOnMount />
+    <Input name="memo" default="ready" />
+    <Checkbox name="colors" value="red" defaultChecked />
+    <Radio name="size" value="large" defaultChecked />
+  </Form>);
+  expect(submit).toHaveBeenCalledTimes(1);
+  expect(submit).toHaveBeenCalledWith({ memo: "ready", colors: ["red"], size: "large" });
 });
 
 test("native and imperative submission share the current mounted fields", () => {

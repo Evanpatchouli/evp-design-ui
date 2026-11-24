@@ -1,6 +1,7 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useRef } from "react";
 import GroupContext from "../evp-radio-group/context";
 import EvpFormContext from "../evp-form-v2/context";
+import { useFormLayoutEffect } from "../evp-form-v2/hooks";
 
 
 export type EvpRadioProps = {
@@ -37,7 +38,7 @@ export default function EvpRadio(props: EvpRadioProps) {
   const checked = controlled ? group?.value === value : undefined;
   const defaultChecked = group?.default !== undefined ? group.default === value : props.defaultChecked;
 
-  useEffect(() => {
+  useFormLayoutEffect(() => {
     if (!formCtx || !name || disabled) return;
     const unregister = formCtx.register({ name });
     if (inputRef.current?.checked) formCtx.set(name, value);
@@ -46,7 +47,7 @@ export default function EvpRadio(props: EvpRadioProps) {
       unregister();
     };
   }, [formCtx, name, value, disabled]);
-  useEffect(() => {
+  useFormLayoutEffect(() => {
     if (!controlled || !formCtx || !name || disabled) return;
     if (checked) formCtx.set(name, value);
     else if (formCtx.get(name) === value) formCtx.set(name, undefined);

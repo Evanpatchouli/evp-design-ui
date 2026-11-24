@@ -59,6 +59,36 @@ test("a long menu renders bounded windows, preserves active IDs and reaches dist
   expect(new FormData(view.container.querySelector("form")!).get("field")).toBe("2500");
 });
 
+test("change callbacks see the accepted form value and rich labels name the listbox", () => {
+  const { result } = renderHook(() => useForm());
+  const submit = jest.fn();
+  const readInChange = jest.fn();
+  const label: React.ReactNode = ["Field ", <strong key="code">code</strong>];
+  const field = (controlled: boolean) => (
+    <Form formRef={result.current} $submit={submit}>
+      <Select name="id" label={label} options={options.slice(0, 4)}
+        value={controlled ? 0 : undefined} defaultValue={0}
+        onChange={() => {
+          readInChange(result.current.current.get("id"));
+          result.current.current.submit();
+        }} />
+    </Form>
+  );
+  for (const controlled of [false, true]) {
+    const view = render(field(controlled));
+    const combo = screen.getByRole<HTMLInputElement>("combobox", { name: "Field code" });
+    fireEvent.click(combo);
+    const menu = screen.getByRole("listbox", { name: "Field code" });
+    expect(document.getElementById(menu.getAttribute("aria-labelledby")!)).toBe(combo.labels?.[0]);
+    fireEvent.click(screen.getByRole("option", { name: "Option 2" }));
+    const expected = controlled ? 0 : 2;
+    expect(readInChange).toHaveBeenLastCalledWith(expected);
+    expect(submit).toHaveBeenLastCalledWith({ id: expected });
+    expect(combo).toHaveValue("Option " + expected);
+    view.unmount();
+  }
+});
+
 test("keyboard and pointer selections skip disabled values and update submission", () => {
   const { result } = renderHook(() => useForm());
   const view = render(<Form formRef={result.current}>

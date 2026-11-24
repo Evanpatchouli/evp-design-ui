@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { BaseDomProps } from "../evp-dom";
 import Icon from "../evp-icon/index";
 import EvpRow from "../evp-row";

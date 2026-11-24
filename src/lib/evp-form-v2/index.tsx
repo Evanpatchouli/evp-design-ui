@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import useForm, { EvpFormInstance } from "./hooks";
+import useForm, { EvpFormInstance, useFormLayoutEffect } from "./hooks";
 import EvpFormContext from "./context";
 
 export type EvpFormProps<T = any> = {
@@ -13,7 +12,7 @@ export default function EvpForm(props: EvpFormProps) {
   const ownedRef = useForm();
   const formRef = props.formRef ?? ownedRef;
   const form = formRef.current;
-  useEffect(() => {
+  useFormLayoutEffect(() => {
     form.set$Submit(props.$submit);
     return () => form.set$Submit(undefined);
   }, [form, props.$submit]);

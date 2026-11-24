@@ -1,4 +1,7 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
+
+// Form data and its submit handler must be ready before descendants' passive effects.
+export const useFormLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
 
 export interface EvpFormInstance<T extends Partial<T> = Partial<any>> {
   get: (name?: string & keyof T) => T[keyof T];
@@ -80,10 +83,10 @@ const useForm = <T extends Partial<T> = Partial<any>>(): React.MutableRefObject<
 };
 
 export function useFormField(form: EvpFormInstance | undefined, name: string | undefined, value: unknown) {
-  useEffect(() => {
+  useFormLayoutEffect(() => {
     if (form && name) return form.register({ name });
   }, [form, name]);
-  useEffect(() => {
+  useFormLayoutEffect(() => {
     if (form && name) form.set(name, value);
   }, [form, name, value]);
 }
