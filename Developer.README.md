@@ -39,7 +39,7 @@ We have configured to use rollup to complie the library, the relative configs ar
 npm run package
 ```
 
-After this, scripts will copy all files in `src\lib` ( Exclude node_modules ) into `dist` at ROOT folder and start to compile the library. After the compliation, the dist will be ready to publish.
+Install the root lockfile with `npm ci`. The package script compiles TypeScript, bundles the library with Rollup, copies styles and assets, and checks the package entry points in a temporary directory. It replaces `dist` only after these checks pass.
 
 ## How to publish the library
 

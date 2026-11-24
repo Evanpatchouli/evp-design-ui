@@ -4,7 +4,7 @@
   "description": "evp-design-ui is a lightweight and easy-custom UI framework with atomlized attributes for React.js.",
   "main": "index.js",
   "scripts": {
-    "build": "npx rollup -c"
+    "build": "node ../../scripts/package.js"
   },
   "keywords": [],
   "author": "",

@@ -181,6 +181,7 @@
     "@types/react-router-dom": "^5.3.3",
     "@types/react-syntax-highlighter": "^15.5.7",
     "mobx": "^6.10.2",
+    "rollup": "2.79.1",
     "zustand": "^4.4.1"
   }
 }

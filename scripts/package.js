@@ -1,69 +1,86 @@
 "use strict";
 
-process.env.BABEL_ENV = "development";
-process.env.NODE_ENV = "development";
-
+const fs = require("fs");
 const path = require("path");
-// const { cp } = require("fs");
-const utils = require("./_utils");
-const chalk = require("chalk");
-const { execSync } = require("child_process");
+const { execFileSync } = require("child_process");
+const { rollup } = require("rollup");
 
-// cp("./src/lib", "./dist", ()=>{
-//   console.log('success');
-// });
-const lib = path.join(__dirname, "..", "src", "lib");
-const dist = path.join(__dirname, "..", "dist");
+const project = path.resolve(__dirname, "..");
+const library = path.join(project, "src", "lib");
 
-const step1 = () => {
+function copyAssets(source, output) {
+  for (const entry of fs.readdirSync(source, { withFileTypes: true })) {
+    const from = path.join(source, entry.name);
+    const to = path.join(output, entry.name);
+    if (entry.isDirectory() && entry.name !== "node_modules") {
+      copyAssets(from, to);
+    } else if (entry.isFile() && /\.(css|scss|svg|png|gif|jpe?g|woff2?|d\.ts)$/i.test(entry.name)) {
+      fs.mkdirSync(output, { recursive: true });
+      fs.copyFileSync(from, to);
+    }
+  }
+}
+
+async function buildPackage(source = library, destination = path.join(project, "dist")) {
+  const work = fs.mkdtempSync(path.join(path.dirname(destination), ".evp-package-"));
+  const output = path.join(work, "package");
+  const compiled = path.join(work, "compiled");
+  const previous = path.join(work, "previous");
+  let preserveBackup = false;
   try {
-    console.log("Step 1 : cleaning up dist folder...");
-    utils.deleteFolderRecursive(dist, ["node_modules"], { deleteRoot: false });
-    console.log(chalk.default.green("Delete dist folder success"));
-  } catch (error) {
+    fs.mkdirSync(output);
+    execFileSync(process.execPath, [
+      require.resolve("typescript/bin/tsc"), "-p", path.join(source, "tsconfig.json"),
+      "--noEmit", "false", "--allowJs", "false", "--noEmitOnError",
+      "--outDir", compiled, "--declarationDir", output
+    ], { stdio: "inherit" });
+
+    const bundle = await rollup({
+      input: path.join(compiled, "index.js"),
+      external: id => !id.startsWith(".") && !path.isAbsolute(id),
+      plugins: [{
+        name: "compiled-relative-modules",
+        resolveId(id, importer) {
+          if (importer && id.startsWith(".")) return require.resolve(path.resolve(path.dirname(importer), id));
+          return null;
+        }
+      }]
+    });
+    try {
+      await bundle.write({ file: path.join(output, "index.js"), format: "es" });
+    } finally {
+      await bundle.close();
+    }
+
+    copyAssets(source, output);
+    const { scripts, devDependencies, ...manifest } = JSON.parse(fs.readFileSync(path.join(source, "package.json"), "utf8"));
+    fs.writeFileSync(path.join(output, "package.json"), JSON.stringify(manifest, null, 2) + "\n");
+    fs.copyFileSync(path.join(source, "Readme.md"), path.join(output, "Readme.md"));
+    fs.copyFileSync(path.join(project, "LICENSE"), path.join(output, "LICENSE"));
+    for (const entry of [manifest.main, "index.d.ts", "global.css", "collect.css"]) {
+      if (!fs.statSync(path.join(output, entry)).size) throw new Error("Empty package entry: " + entry);
+    }
+
+    if (fs.existsSync(destination)) fs.renameSync(destination, previous);
+    try {
+      fs.renameSync(output, destination);
+    } catch (error) {
+      if (fs.existsSync(previous)) {
+        preserveBackup = true;
+        fs.renameSync(previous, destination);
+        preserveBackup = false;
+      }
+      throw error;
+    }
+  } finally {
+    if (!preserveBackup) fs.rmSync(work, { recursive: true, force: true });
+  }
+}
+
+module.exports = buildPackage;
+if (require.main === module) {
+  buildPackage().then(() => console.log("Package ready in dist")).catch(error => {
     console.error(error);
-    console.log(chalk.default.red("Delete dist folder failed"));
-  }
+    process.exitCode = 1;
+  });
 }
-
-const step2 = () => {
-  try {
-    console.log("Step 2 : copying unpackaged lib to dist...");
-    utils.copyFolderSync(lib, dist, ["node_modules"]);
-    console.log(chalk.default.green("Copy lib to dist success"));
-  } catch (error) {
-    console.log(chalk.default.red("Copy lib to dist failed"));
-  }
-}
-
-const step3 = () => {
-  console.log(`Step 3 : installing dependencies in ${dist}...`);
-
-  // execute npm install command and set cwd option to dist folder path
-  execSync("npm install", { cwd: dist });
-}
-
-const step4 = () => {
-  try {
-    console.log("Step 4 : building dist with rollup...");
-
-    // execute npm install command and set cwd option to dist folder path
-    execSync("npx rollup -c", { cwd: dist });
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-const step5 = () => {
-  // delete all files like *.ts(exclude *.d.ts), *.tsx
-  console.log("Step 5 : deleting *.ts, *.tsx at dist...");
-  utils.deleteFilesMatchExt(dist, ["ts", "tsx"], ["d.ts"], ["node_modules"]);
-}
-
-step1();
-step2();
-// step3();  // 有点问题，手动安装
-step4();
-step5();
-
-console.log(chalk.default.green("Package dist success"));
