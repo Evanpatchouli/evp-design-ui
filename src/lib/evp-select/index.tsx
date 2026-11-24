@@ -1,4 +1,4 @@
-import { useContext, useEffect, useId, useMemo, useRef, useState } from "react";
+import { useContext, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
 import EvpCol from "../evp-col";
 import EvpRow from "../evp-row";
 import GroupContext from "../evp-radio-group/context";
@@ -7,6 +7,97 @@ import { useFormField } from "../evp-form-v2/hooks";
 
 type SelectOption = { label: string; value: any; key: React.Key; disabled?: boolean };
 const emptyOptions: SelectOption[] = [];
+const optionHeight = 32;
+const listPadding = 8;
+const defaultVisibleRows = 8;
+const overscan = 3;
+const windowThreshold = 100;
+
+function SelectOptions({ id, label, rows, options, active, selected, onSelect }: {
+  id: string;
+  label?: string;
+  rows?: number;
+  options: SelectOption[];
+  active: number;
+  selected?: SelectOption;
+  onSelect: (option: SelectOption) => void;
+}) {
+  const listRef = useRef<HTMLDivElement>(null);
+  const activeRef = useRef<HTMLDivElement>(null);
+  const virtual = options.length > windowThreshold;
+  const requestedRows = rows !== undefined && Number.isFinite(rows) && rows > 0 ? rows : undefined;
+  const [visibleRows, setVisibleRows] = useState(Math.min(Math.ceil(requestedRows ?? defaultVisibleRows), defaultVisibleRows));
+  const [scrollRow, setScrollRow] = useState(0);
+
+  useLayoutEffect(() => {
+    const list = listRef.current;
+    if (!virtual || !list) return;
+    const measure = () => {
+      const height = list.clientHeight - listPadding;
+      if (height > 0) setVisibleRows(Math.ceil(height / optionHeight));
+    };
+    measure();
+    if (typeof ResizeObserver === "undefined") return;
+    const observer = new ResizeObserver(measure);
+    observer.observe(list);
+    return () => observer.disconnect();
+  }, [virtual, requestedRows]);
+
+  useLayoutEffect(() => {
+    const list = listRef.current;
+    if (!list || active < 0 || active >= options.length) return;
+    if (!virtual) {
+      activeRef.current?.scrollIntoView?.({ block: "nearest" });
+      return;
+    }
+    const height = list.clientHeight ? list.clientHeight - listPadding : visibleRows * optionHeight;
+    const top = active * optionHeight;
+    if (top < list.scrollTop) list.scrollTop = top;
+    else if (top + optionHeight > list.scrollTop + height) list.scrollTop = top + optionHeight - height;
+    setScrollRow(Math.floor(list.scrollTop / optionHeight));
+  }, [active, virtual, options.length, visibleRows]);
+
+  function renderOption(option: SelectOption, index: number) {
+    return (
+      <div key={option.key} id={id + "-" + index} role="option"
+        aria-selected={option === selected} aria-disabled={option.disabled}
+        aria-posinset={virtual ? index + 1 : undefined} aria-setsize={virtual ? options.length : undefined}
+        ref={index === active ? activeRef : undefined}
+        className={["evp-select-option", option === selected && "evp-select-option-selected",
+          index === active && "evp-select-option-active", option.disabled && "evp-disabled"].filter(Boolean).join(" ")}
+        style={virtual ? { top: index * optionHeight, height: optionHeight } : undefined}
+        onClick={() => onSelect(option)}>
+        {option.label}
+      </div>
+    );
+  }
+
+  function visibleOptions() {
+    const row = Math.max(0, Math.min(scrollRow, options.length - visibleRows));
+    const first = Math.max(0, row - overscan);
+    const end = Math.min(options.length, row + visibleRows + overscan + 1);
+    // Keep the active descendant mounted when a pointer scrolls away from it.
+    const indices = Array.from({ length: end - first }, (_, i) => first + i);
+    if (active >= 0 && active < first) indices.unshift(active);
+    if (active >= end && active < options.length) indices.push(active);
+    return indices.map((index) => renderOption(options[index], index));
+  }
+
+  const menuHeight = (requestedRows ?? defaultVisibleRows) * optionHeight + listPadding;
+  return (
+    <div id={id} role="listbox" ref={listRef} className="evp-select-options" aria-label={label}
+      onMouseDown={(event) => event.preventDefault()}
+      onScroll={virtual ? (event) => setScrollRow(Math.floor(event.currentTarget.scrollTop / optionHeight)) : undefined}
+      style={{ width: "100%", cursor: "pointer",
+        maxHeight: virtual ? `min(${menuHeight}px, 60vh)` : requestedRows ? menuHeight : undefined }}>
+      {virtual ? (
+        <div role="presentation" className="evp-select-window" style={{ height: options.length * optionHeight }}>
+          {visibleOptions()}
+        </div>
+      ) : options.map(renderOption)}
+    </div>
+  );
+}
 
 export type EvpSelectProps = {
   name?: string;
@@ -39,10 +130,7 @@ export default function EvpSelect(props: EvpSelectProps) {
   const [active, setActive] = useState(-1);
   const id = useId();
   const listId = id + "-options";
-  const activeRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    if (open) activeRef.current?.scrollIntoView?.({ block: "nearest" });
-  }, [open, active]);
+
 
   function nextEnabled(start: number, direction: number) {
     for (let step = 1; step <= options.length; step++) {
@@ -113,21 +201,8 @@ export default function EvpSelect(props: EvpSelectProps) {
             value={selected?.label ?? ""} readOnly onBlur={() => setOpen(false)}
             onClick={() => open ? setOpen(false) : openMenu()} onKeyDown={handleKeyDown} />
           {open && (
-            <div id={listId} role="listbox" className="evp-select-options"
-              aria-label={typeof props.label === "string" ? props.label : name}
-              onMouseDown={(event) => event.preventDefault()}
-              style={{ width: "100%", cursor: "pointer", maxHeight: props.rows ? props.rows * 32 + 8 : undefined }}>
-              {options.map((option, index) => (
-                <div key={option.key} id={listId + "-" + index} role="option"
-                  aria-selected={option === selected} aria-disabled={option.disabled}
-                  ref={index === active ? activeRef : undefined}
-                  className={["evp-select-option", option === selected && "evp-select-option-selected",
-                    index === active && "evp-select-option-active", option.disabled && "evp-disabled"].filter(Boolean).join(" ")}
-                  onClick={() => select(option)}>
-                  {option.label}
-                </div>
-              ))}
-            </div>
+            <SelectOptions id={listId} label={typeof props.label === "string" ? props.label : name} rows={props.rows}
+              options={options} active={active} selected={selected} onSelect={select} />
           )}
           <select name={selected ? name : undefined} hidden>
             {selected && <option value={String(selected.value)}>{selected.label}</option>}

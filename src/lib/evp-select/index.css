@@ -28,6 +28,18 @@
   } */
 }
 
+.evp-select-window {
+  position: relative;
+}
+.evp-select-window > .evp-select-option {
+  position: absolute;
+  inset-inline: 0;
+  box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .evp-select-option-active {
   outline: 1px solid currentColor;
   outline-offset: -1px;
