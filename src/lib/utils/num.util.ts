@@ -17,23 +17,17 @@ interface RangeOptions {
 }
 
 export function range(start: number, end: number, options: RangeOptions = {}) {
-  if (typeof start !== "number" || typeof end !== "number") {
-    throw new Error("The proped start and end must be numbers");
+  if (!Number.isFinite(start) || !Number.isFinite(end) || Math.max(Math.abs(start), Math.abs(end)) > Number.MAX_SAFE_INTEGER) {
+    throw new RangeError("Range bounds must be finite and within safe numeric limits");
   }
   if (start > end) {
     throw new Error("The proped start must be smaller than or equal to end");
   }
-  if (start === end) return [start];
   const { inclusiveStart = true, inclusiveEnd = true } = options;
+  if (end - start >= 0xffffffff) throw new RangeError("Range exceeds the array length limit");
   const result = [];
-  const step = start <= end ? 1 : -1;
-  if (start === end) return [start];
-  for (let i = start; i !== end + step; i += step) {
-    if ((i === start && inclusiveStart) || (i === end && inclusiveEnd)) {
-      result.push(i);
-    } else if (i !== start && i !== end) {
-      result.push(i);
-    }
+  for (let i = start; i <= end; i++) {
+    if ((i !== start || inclusiveStart) && (i !== end || inclusiveEnd)) result.push(i);
   }
   return result;
 }

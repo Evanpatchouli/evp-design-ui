@@ -44,8 +44,8 @@ const EvpRate: React.FC<EvpRateProps> = ({
   starColor,
   ...props
 }) => {
-  if (count !== undefined && count < 1) {
-    throw new Error("EvpStar count must be greater than 0 !");
+  if (count !== undefined && (!Number.isSafeInteger(count) || count < 1 || count > 0xffffffff)) {
+    throw new RangeError("EvpRate count must be a positive integer within the array length limit");
   }
   const [val, setVal] = useState(defaultValue ?? 0);
   const [last, setLast] = useState(val);
