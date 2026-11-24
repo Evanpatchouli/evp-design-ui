@@ -11,9 +11,9 @@ const Demo: React.FC = () => {
   const handleClick = () => {
     state.value++;
   };
-  listen(state).then((newState) => {
+  React.useEffect(() => listen(state).then((newState) => {
     Toast.info(JSON.stringify(newState));
-  });
+  }), [state]);
   return (
     <>
       <Button $click={handleClick}>{count}</Button>
@@ -22,6 +22,7 @@ const Demo: React.FC = () => {
 };
 
 const codes = `
+import React from "react";
 import { reactive, listen, Button } from "evp-design-ui";
 
 const Demo: React.FC = () => {
@@ -30,9 +31,9 @@ const Demo: React.FC = () => {
   const handleClick = () => {
     state.value++;
   };
-  listen(state).then((newState) => {
+  React.useEffect(() => listen(state).then((newState) => {
     Toast.info(JSON.stringify(newState));
-  });
+  }), [state]);
   return (
     <>
       <Button $click={handleClick}>{count}</Button>

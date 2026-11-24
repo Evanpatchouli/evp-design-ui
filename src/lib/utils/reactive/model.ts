@@ -4,14 +4,10 @@ export type Listener<T> = (state: T) => any;
 
 export class Reactive<T = any> implements ReactiveCtxModel {
   private _state: T;
-  private _setState: any = (newState: T) => {
-    this._state = newState;
-  };
-  private _listeners: Listener<Readonly<T>>[] = [];
+  private _listeners: Listener<T>[] = [];
 
-  constructor(state: T, setState?: any) {
+  constructor(state: T, private _setState?: (state: T) => void) {
     this._state = state;
-    setState ? (this._setState = setState) : void 0;
   }
 
   get value(): T {
@@ -19,6 +15,7 @@ export class Reactive<T = any> implements ReactiveCtxModel {
   }
 
   set value(newState: T) {
+    this._state = newState;
     this._setState?.(newState);
     this._listeners.forEach((listener) => listener(newState));
   }

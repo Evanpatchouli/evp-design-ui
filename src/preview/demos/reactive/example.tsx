@@ -18,10 +18,10 @@ const Demo: React.FC = () => {
       Toast.error(err.message);
     }
   );
-  listen(state).then((newVal) => {
+  React.useEffect(() => listen(state).then((newVal) => {
     Toast(`newVal: ${newVal}`);
     throwErr();
-  });
+  }), [state, throwErr]);
 
   return (
     <>
@@ -40,6 +40,7 @@ const Demo: React.FC = () => {
 };
 
 const codes = `
+import React from "react";
 import { utils, useReactive, listen, } from "evp-design-ui";
 import Kid from "./kid";
 
@@ -56,10 +57,10 @@ const Demo: React.FC = () => {
       Toast.error(err.message);
     }
   );
-  listen(state).then((newVal) => {
+  React.useEffect(() => listen(state).then((newVal) => {
     Toast(\`newVal: \${newVal}\`);
     throwErr();
-  });
+  }), [state, throwErr]);
 
   return (
     <>

@@ -2,73 +2,53 @@ import React from "react";
 import { Reactive } from "./model";
 import ReactiveCtx, { ReactiveCtxModel } from "./context";
 
-/**
- * When store.state changes, call the given function.
- * @param target listened Reactive store
- * @returns unlistener
- */
-export function listen<T = any>(target: Omit<Reactive<T>, "_state" | "_setState">) {
+export function listen<T = any>(target: ReactiveCtxModel<T>) {
   return {
-    then: (...fns: ((value: T) => any)[]) => {
-      const fn = (value: T) => fns.forEach((f) => f(value));
-      const dispose = target.subscribe(fn);
-      return dispose;
-    },
+    then: (...listeners: ((value: T) => any)[]) =>
+      target.subscribe((value) => listeners.forEach((listener) => listener(value))),
   };
 }
 
-export const Reactify = <T = any>(initialValue: T): Reactive<T> => {
-  const [state, setState] = React.useState<T>(initialValue);
-  const observer = new Reactive(state, setState);
-  return observer;
-};
+function useSnapshot<T>(store: ReactiveCtxModel<T>) {
+  const subscribe = React.useCallback((notify: () => void) => store.subscribe(notify), [store]);
+  const read = React.useCallback(() => store.value, [store]);
+  React.useSyncExternalStore(subscribe, read, read);
+}
 
-export const ReactifyMemo = <T = any>(initialValue: T) => {
-  return React.useMemo(() => Reactify(initialValue), [initialValue]);
-};
+function useLocalStore<T>(initialValue: T) {
+  const [store] = React.useState(() => new Reactive(initialValue));
+  return store;
+}
 
-/**
- * reactive is same with Reactify
- */
+export function Reactify<T = any>(initialValue: T): Reactive<T> {
+  const store = useLocalStore(initialValue);
+  useSnapshot(store);
+  return store;
+}
+
+export const ReactifyMemo = Reactify;
 export const reactive = Reactify;
+export const reactiveMemo = Reactify;
 
-/**
- * reactiveMemo is same with ReactifyMemo
- */
-export const reactiveMemo = ReactifyMemo;
+export function useReactive<T = any>(initialValue?: T): Reactive<T> {
+  const local = useLocalStore(initialValue as T);
+  const inherited = React.useContext(ReactiveCtx);
+  const store = initialValue == null && inherited ? inherited : local;
+  useSnapshot(store);
+  return store as Reactive<T>;
+}
 
-/**
- * Accept a value and return a reactive object. When initalValue is valid a new reactive object will be created.
- */
-export const useReactive = <T = any>(initialValue?: T): Reactive<T> => {
-  const [state, setState] = React.useState<T>(initialValue ?? (undefined as T));
-  const reactiveObj = new Reactive(state, setState);
-  // const context = createReactiveCtx(reactiveObj);
-  // const newReactiveCtxModel = React.useContext(context);
-  const defaultContextModel = React.useContext((initialValue as any) ?? ReactiveCtx);
-  if (initialValue !== undefined && initialValue !== null) {
-    return reactiveObj as Reactive<T>;
-  }
-  // @ts-ignore
-  return defaultContextModel as Reactive<T>;
-  // return initialValue ? newReactiveCtxModel : defaultContextModel;
-};
+export function useReativeContext<T = any>(context?: React.Context<ReactiveCtxModel<T> | undefined>): Reactive<T> {
+  const inherited = React.useContext(context || ReactiveCtx);
+  const fallback = useLocalStore<T | undefined>(undefined);
+  const store = inherited ?? fallback;
+  useSnapshot(store);
+  return store as Reactive<T>;
+}
 
-export const useReativeContext = <T = any>(context?: React.Context<ReactiveCtxModel<T> | undefined>): Reactive<T> => {
-  const reactiveCtxModel = React.useContext(context || ReactiveCtx);
-  // @ts-ignore
-  return reactiveCtxModel;
-  // return initialValue ? newReactiveCtxModel : defaultContextModel;
-};
-
-/**
- * Accept a value and return a reactive object binded on a ReactRef instance.
- */
-export const useReactiveRef = <T = any>(initialValue?: T): React.MutableRefObject<Reactive<T>> => {
-  const ctx = useReactive(initialValue);
-  const reactiveRef = React.useRef<ReactiveCtxModel>() as React.MutableRefObject<Reactive>;
-  if (!reactiveRef.current) {
-    reactiveRef.current = ctx;
-  }
-  return reactiveRef;
-};
+export function useReactiveRef<T = any>(initialValue?: T): React.MutableRefObject<Reactive<T>> {
+  const store = useReactive(initialValue);
+  const ref = React.useRef(store);
+  ref.current = store;
+  return ref;
+}
