@@ -103,7 +103,7 @@ export default function EvpRadioGroup(props: EvpRadioGroupProps) {
           </div>
         ) : null}
         <div className="evp-radio-group-options">
-          <Context.Provider value={{ name: props.name }}>
+          <Context.Provider value={{ name: props.name, value: props.value, default: props.default }}>
             {props.children}
           </Context.Provider>
         </div>

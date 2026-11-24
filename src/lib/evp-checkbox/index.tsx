@@ -56,11 +56,15 @@ export default function EvpCheckBox(props: EvpCheckBoxProps) {
   const groupContext = useContext(GroupContext);
   const name = props.name ?? groupContext.name;
   const formCtx = useContext(EvpFormContext);
-  const val = props.value;
+  const value = props.value;
+  const disabled = props.disabled;
+  const group = name === groupContext.name ? groupContext : undefined;
+  const includesValue = (values: string | number | readonly string[]) =>
+    Array.isArray(values) ? values.includes(value) : String(values) === value;
 
   useEffect(() => {
-    if (formCtx && name) return formCtx.register({ name, value: [] });
-  }, [formCtx, name]);
+    if (formCtx && name && !disabled) return formCtx.register({ name, value: [] });
+  }, [formCtx, name, disabled]);
 
   const labelWidth = props.labelWidth
     ? typeof props.labelWidth === "number"
@@ -95,26 +99,20 @@ export default function EvpCheckBox(props: EvpCheckBoxProps) {
     return `${labelRef.current?.offsetWidth ?? 0}px`;
   };
 
-  const [checked, setChecked] = useState<boolean>(
-    props.defaultChecked ?? false
+  const [localChecked, setChecked] = useState(() =>
+    group?.default !== undefined ? includesValue(group.default) : props.defaultChecked ?? false
   );
-  const deChecked = () => {
-    setChecked(!checked);
-    return void 0;
-  };
+  const checked = group?.value !== undefined ? includesValue(group.value) : localChecked;
 
   useEffect(() => {
-    if (formCtx && name) {
-      const state = formCtx.get(name) as Array<string>;
-      if (checked) {
-        state.push(props.value as string);
-        formCtx.set(name as string, state);
-      } else {
-        state.splice(state.indexOf(props.value as string), 1);
-        formCtx.set(name as string, state);
-      }
-    }
-  }, [checked, formCtx, name, props.value]);
+    if (!formCtx || !name || !checked || disabled) return;
+    const values: string[] = formCtx.get(name) ?? [];
+    if (!values.includes(value)) formCtx.set(name, [...values, value]);
+    return () => {
+      const current: string[] | undefined = formCtx.get(name);
+      if (current?.includes(value)) formCtx.set(name, current.filter((item) => item !== value));
+    };
+  }, [checked, formCtx, name, value, disabled]);
 
   return (
     <EvpCol
@@ -123,7 +121,15 @@ export default function EvpCheckBox(props: EvpCheckBoxProps) {
       class={`${props.disabled ? "evp-disabled" : ""}`.trim()}
     >
       <EvpRow>
-        <div className="evp input">
+        <label className="evp input evp-checkbox-control">
+          <input
+            type="checkbox"
+            name={name}
+            value={value}
+            checked={checked}
+            disabled={disabled}
+            onChange={(event) => setChecked(event.currentTarget.checked)}
+          />
           {checked ? (
             <CheckedBox
               class="input-checkbox"
@@ -131,7 +137,7 @@ export default function EvpCheckBox(props: EvpCheckBoxProps) {
               color={Color.Blue}
               radius={props.radius ?? 21}
               cursor={props.disabled? 'not-allowed' : 'pointer'}
-              onClick={deChecked}
+
             />
           ) : (
             <UncheckedBox
@@ -140,7 +146,7 @@ export default function EvpCheckBox(props: EvpCheckBoxProps) {
               strokeWidth={2}
               radius={props.radius ?? 21}
               cursor={props.disabled? 'not-allowed' : 'pointer'}
-              onClick={deChecked}
+
             />
           )}
           {props.label ? (
@@ -157,14 +163,7 @@ export default function EvpCheckBox(props: EvpCheckBoxProps) {
               {props.label}
             </div>
           ) : null}
-          <input
-            hidden
-            type="checkbox"
-            name={name}
-            value={val}
-            checked={checked}
-            defaultChecked={props.defaultChecked}
-          />
+
           {showRightIcon ? (
             <div className="evp input icon">
               <Icon
@@ -174,7 +173,7 @@ export default function EvpCheckBox(props: EvpCheckBoxProps) {
               />
             </div>
           ) : null}
-        </div>
+        </label>
       </EvpRow>
       <div
         className="evp-input-msg"

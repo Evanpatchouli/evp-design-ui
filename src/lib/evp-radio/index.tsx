@@ -1,7 +1,7 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef } from "react";
 import GroupContext from "../evp-radio-group/context";
 import EvpFormContext from "../evp-form-v2/context";
-import { useFormField } from "../evp-form-v2/hooks";
+
 
 export type EvpRadioProps = {
   label?: React.ReactNode;
@@ -30,25 +30,41 @@ export default function EvpRadio(props: EvpRadioProps) {
   const labelAlign = props.labelAlign ?? "left";
   const labelRef = useRef<HTMLDivElement>(null);
 
-  const [val, setVal] = useState<typeof props.value>();
   const inputRef = useRef<HTMLInputElement>(null);
+  const { value, disabled } = props;
+  const group = name === groupContext.name ? groupContext : undefined;
+  const controlled = group?.value !== undefined;
+  const checked = controlled ? group?.value === value : undefined;
+  const defaultChecked = group?.default !== undefined ? group.default === value : props.defaultChecked;
 
-  useFormField(formCtx, name, val);
+  useEffect(() => {
+    if (!formCtx || !name || disabled) return;
+    const unregister = formCtx.register({ name });
+    if (inputRef.current?.checked) formCtx.set(name, value);
+    return () => {
+      if (formCtx.get(name) === value) formCtx.set(name, undefined);
+      unregister();
+    };
+  }, [formCtx, name, value, disabled]);
+  useEffect(() => {
+    if (!controlled || !formCtx || !name || disabled) return;
+    if (checked) formCtx.set(name, value);
+    else if (formCtx.get(name) === value) formCtx.set(name, undefined);
+  }, [controlled, checked, formCtx, name, value, disabled]);
 
   return (
-    <div className={`evp input evp-radio ${props.class ?? ""} ${props.disabled ? "evp-disabled" : ""}`.trim()}>
+    <label className={`evp input evp-radio ${props.class ?? ""} ${props.disabled ? "evp-disabled" : ""}`.trim()}>
       <input
         className="evp input-radio"
         name={name}
         ref={inputRef}
         type="radio"
         value={props.value as string | number | undefined}
-        defaultChecked={props.defaultChecked}
-        // onChange={(e) => {
-        //   setVal(e.target.value);
-        // }}
-        onClick={(e) => {
-          setVal(props.value);
+        disabled={disabled}
+        checked={checked}
+        defaultChecked={controlled ? undefined : defaultChecked}
+        onChange={(event) => {
+          if (!controlled && formCtx && name && event.currentTarget.checked) formCtx.set(name, value);
         }}
         style={{
           cursor: props.disabled ? "not-allowed" : "pointer",
@@ -81,6 +97,6 @@ export default function EvpRadio(props: EvpRadioProps) {
           {props.children}
         </div>
       )}
-    </div>
+    </label>
   );
 }

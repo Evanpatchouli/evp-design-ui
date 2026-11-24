@@ -33,9 +33,9 @@ export type EvpCheckBoxGroupProps = {
   name?: string;
   placeholder?: string;
   /** defaultValue assigned to input box*/
-  default?: string | number;
+  default?: string | number | readonly string[];
   /** Reactive value assigned to input box */
-  value?: string | number;
+  value?: string | number | readonly string[];
   hint?: {
     text?: string;
     color?: string;
@@ -103,7 +103,7 @@ export default function EvpCheckBoxGroup(props: EvpCheckBoxGroupProps) {
           </div>
         ) : null}
         <div className="evp-checkbox-group-options">
-          <Context.Provider value={{ name: props.name }}>
+          <Context.Provider value={{ name: props.name, value: props.value, default: props.default }}>
             {props.children}
           </Context.Provider>
         </div>
