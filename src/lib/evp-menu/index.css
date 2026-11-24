@@ -31,6 +31,15 @@
   height: 0px !important;
 }
 
-.evp-menu-children > .evp-menu-item {
+.evp-menu-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+.evp-menu-link[hidden] { display: none; }
+.evp-menu-link:focus-visible { outline: 2px solid currentColor; outline-offset: -2px; }
+
+.evp-menu-children > .evp-menu-item,
+.evp-menu-children > .evp-menu-link > .evp-menu-item {
   padding-left: var(--item-indent);
 }

@@ -3,22 +3,15 @@ import SvgIcon from "@/lib/evp-icon/svg.icons";
 import ToolTip from "@/lib/evp-tooltip";
 import EvpButton from "@/lib/evp-button";
 import EvpHeader from "@/lib/evp-header";
-import { linkTo } from "@/lib/utils/route";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
     <EvpHeader
       title={
-        <span
-          onClick={() => {
-            linkTo("/", true);
-          }}
-          style={{
-            cursor: "pointer",
-          }}
-        >
+        <Link className="docs-header-link" to="/">
           Evp Design UI
-        </span>
+        </Link>
       }
       icon={
         <>
@@ -28,9 +21,9 @@ export default function Header() {
       rightContent={
         <>
           <ToolTip content="Components" position="left">
-            <EvpButton theme="text" link="/general" hash>
+            <Link to="/general" aria-label="Component documentation" className="docs-header-link icon-link">
               <SvgIcon.Component color={"rgb(140, 140, 255)"} />
-            </EvpButton>
+            </Link>
           </ToolTip>
           <ToolTip content="Github" position="left">
             <EvpButton theme="text" $click={() => window.open("https://github.com/Evanpatchouli/evp-design-ui")}>

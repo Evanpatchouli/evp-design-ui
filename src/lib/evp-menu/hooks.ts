@@ -27,7 +27,9 @@ export class MenuCtxInstance implements MenuCtx {
   setSelectedKeys = (keys: string[] = [], type: "select" | "unselect") => {
     // console.log("Going to set");
     // console.log("keys", keys);
-    this.selectedKeys = keys;
+    const previous = new Set(this.selectedKeys);
+    const next = new Set(keys);
+    this.selectedKeys = [...keys];
     switch (type) {
       case "select":
         this.onSelect?.([...keys]);
@@ -38,22 +40,23 @@ export class MenuCtxInstance implements MenuCtx {
       default:
         break;
     }
-    (this._setSelectedMap ?? new Map()).forEach((setThisSelected, k) => {
-      if (keys.includes(k)) {
-        // console.log(`set ${k} to selected`);
-        setThisSelected(true);
-      } else {
-        // console.log(`set ${k} to unselected`);
-        setThisSelected(false);
-      }
+    previous.forEach(key => {
+      if (!next.has(key)) this._setSelectedMap?.get(key)?.(false);
+    });
+    next.forEach(key => {
+      if (!previous.has(key)) this._setSelectedMap?.get(key)?.(true);
     });
   };
   onSelect?: <R = any>(keys: string[]) => R;
   onUnselect?: <R = any>(keys: string[]) => R;
 
-  _setSelectedMap? = new Map();
-  _add_setSelectedMap? = (key: string, fc: any) => {
+  _setSelectedMap? = new Map<string, (selected: boolean) => void>();
+  _add_setSelectedMap? = (key: string, fc: (selected: boolean) => void) => {
     this._setSelectedMap?.set(key, fc);
+    fc(this.selectedKeys?.includes(key) ?? false);
+    return () => {
+      if (this._setSelectedMap?.get(key) === fc) this._setSelectedMap.delete(key);
+    };
   };
 
   _handleOpenOne = (key: string) => {
@@ -183,7 +186,11 @@ export default function useMenu(
     multiOpened: false,
   }
 ) {
-  return useContext(MenuContext) || new MenuCtxInstance(options);
+  const parent = useContext(MenuContext);
+  const local = useRef<MenuCtx>();
+  if (parent) return parent;
+  if (!local.current) local.current = new MenuCtxInstance(options);
+  return local.current;
 }
 
 // export default function useMenu(multiSelected: boolean = false) {

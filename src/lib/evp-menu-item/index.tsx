@@ -5,7 +5,6 @@ import { IconType } from "../evp-icon";
 import EvpBaseProps from "../props";
 import AllParser from "../utils/props.parser";
 import EvpCol from "../evp-col";
-import { linkTo } from "../utils/route";
 import { nanoid } from "nanoid";
 import useMenu from "../evp-menu/hooks";
 import classNames from "classnames";
@@ -27,23 +26,18 @@ export interface EvpMenuItemProps extends EvpBaseProps {
 }
 
 export default function EvpMenuItem(props: EvpMenuItemProps) {
-  const didMounted = React.useRef<any>(null);
+  const generatedKey = React.useRef<string>();
+  const linkPath = typeof props.link === "string" ? props.link : props.link?.path;
+  if (props.keyId == null && !linkPath?.trim() && !generatedKey.current) {
+    generatedKey.current = `menu-item_${nanoid()}`;
+  }
+  const uniqueKey = props.keyId ?? (linkPath?.trim() || generatedKey.current);
   const menuCtx = useMenu();
   const [selected, setSelected] = React.useState(false);
 
   React.useEffect(() => {
-    if (!didMounted.current) {
-      let linkUrl = "";
-      if (typeof props.link === "string") {
-        linkUrl = props.link.trim();
-      } else if (typeof props.link === "object") {
-        linkUrl = props.link.path?.trim() ?? "";
-      }
-      const uniqueKey = props.keyId ?? (linkUrl ? linkUrl : `menu-item_${nanoid()}`);
-      didMounted.current = uniqueKey;
-      menuCtx?._add_setSelectedMap?.(uniqueKey, setSelected);
-    }
-  }, [menuCtx, props.keyId, props.link]);
+    return menuCtx?._add_setSelectedMap?.(uniqueKey, setSelected);
+  }, [menuCtx, uniqueKey]);
 
   // useEffect(() => {
   //   console.log(menuCtx.multiSelected, menuCtx.selectedKeys, props.keyId ?? didMounted.current);
@@ -64,23 +58,20 @@ export default function EvpMenuItem(props: EvpMenuItemProps) {
           // Going to unselect
           if (props.unselectOnReClick) {
             setSelected(false);
-            menuCtx._handleUnselectOne?.(props.keyId ?? didMounted.current);
-            props.onUnselect?.(props.keyId ?? didMounted.current);
+            menuCtx._handleUnselectOne?.(uniqueKey);
+            props.onUnselect?.(uniqueKey);
           }
         } else {
           setSelected(true); // Going to select
-          menuCtx._handleSelectOne?.(props.keyId ?? didMounted.current);
-          props.onSelect?.(props.keyId ?? didMounted.current);
+          menuCtx._handleSelectOne?.(uniqueKey);
+          props.onSelect?.(uniqueKey);
         }
         $event.onMouseDown?.(e);
-        if (props.link) {
-          linkTo(props.link, props.hash);
-        }
       };
 
   const disabled = props["not-allowed"] ? "evp-disabled" : "";
 
-  return (
+  const item = (
     <EvpCol
       alignItems="space-between"
       class={classNames({
@@ -89,7 +80,7 @@ export default function EvpMenuItem(props: EvpMenuItemProps) {
         "evp-menu-item-selected": selected,
       })}
       style={$props.style}
-      $click={$click}
+      $click={linkPath ? undefined : $click}
       hidden={props.hidden}
       cursor={props.cursor ?? "pointer"}
     >
@@ -104,5 +95,25 @@ export default function EvpMenuItem(props: EvpMenuItemProps) {
         )}
       </EvpRow>
     </EvpCol>
+  );
+  if (!linkPath) return item;
+
+  const hash = typeof props.link === "object" ? props.link.hash ?? props.hash : props.hash;
+  const hashRoute = hash || (typeof window !== "undefined" && window.location.hash);
+  const href = hashRoute && !linkPath.startsWith("#") ? `#${linkPath}` : linkPath;
+  return (
+    <a
+      className="evp-menu-link"
+      hidden={props.hidden}
+      aria-disabled={disabled ? true : undefined}
+      href={disabled ? undefined : href}
+      onClick={event => {
+        if (event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) {
+          $click?.(event);
+        }
+      }}
+    >
+      {item}
+    </a>
   );
 }

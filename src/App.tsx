@@ -1,7 +1,6 @@
 // import React from 'react';
 // import logo from './logo.svg';
-import { Route, Routes } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import Header from "./components/header";
 import Preview from "./preview/home";
 import Anchors from "./components/anchors";
@@ -11,48 +10,57 @@ import DocsMenu from "./menu";
 import "./App.css";
 import "./preview/index.css";
 import "./lib/global.css";
-import { lazy, Suspense, useEffect, useRef } from "react";
-import { getRouteStore, updateRouteCurrent, linkTo } from "./router/store";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
+import { recentRoutes, rememberRoute } from "./router/store";
 const GeneralView = lazy(() => import("./preview/general"));
 
 function App() {
   const location = useLocation();
+  const navigate = useNavigate();
+  const initialVisit = useRef(true);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuToggle = useRef<HTMLButtonElement>(null);
+  function closeMenu() {
+    if (menuOpen) menuToggle.current?.focus();
+    setMenuOpen(false);
+  }
+  const showMenu = location.pathname === "/general" || location.pathname.startsWith("/components/");
   const now = new Date().toLocaleDateString();
-  const didMount = useRef(false);
   useEffect(() => {
-    if (!didMount.current) {
-      didMount.current = true;
-      const routeStore = getRouteStore();
-      if (routeStore.history.length > 0 && location.pathname !== routeStore.history[routeStore.history.length - 1]) {
-        linkTo(routeStore.history[routeStore.history.length - 1], true);
+    if (initialVisit.current) {
+      initialVisit.current = false;
+      if (!window.location.hash && location.pathname === "/") {
+        const history = recentRoutes();
+        const last = history[history.length - 1];
+        if (last && last !== "/") {
+          navigate(last, { replace: true });
+          return;
+        }
       }
-      return;
-    } else {
-      updateRouteCurrent(location.pathname);
     }
-  }, [location.pathname]);
+    rememberRoute(location.pathname);
+    setMenuOpen(false);
+  }, [location.pathname, navigate]);
 
   return (
     <div className="App">
       <Header />
-      {/* <header className="App-header">
-        {location.pathname==='/' ? <img src={logo} className="App-logo" alt="logo" /> : null}
-      </header> */}
-      <div className="Main">
-        <div
-          className="evp NavMenu"
-          style={{
-            display: location.pathname === "/" || location.pathname.includes("/404") ? "none" : void 0,
-          }}
-        >
-          <DocsMenu />
-        </div>
-        <div
-          className="Content"
-          style={{
-            marginLeft: location.pathname === "/" || location.pathname === "/404" ? "0px" : "260px",
-          }}
-        >
+      <div className={showMenu ? "Main with-menu" : "Main"}>
+        {showMenu && (
+          <>
+            <button
+              ref={menuToggle} type="button" className="docs-menu-toggle" aria-expanded={menuOpen} aria-controls="docs-navigation"
+              onClick={() => setMenuOpen(open => !open)}
+            >
+              Components
+            </button>
+            <nav id="docs-navigation" aria-label="Documentation" className={`NavMenu${menuOpen ? " open" : ""}`}
+              onKeyDown={event => { if (event.key === "Escape") closeMenu(); }}>
+              <DocsMenu onNavigate={closeMenu} />
+            </nav>
+          </>
+        )}
+        <main className="Content">
           <Suspense fallback={<p role="status">Loading documentation…</p>}>
             <Routes>
               <Route path="/" element={<Preview />} />
@@ -68,7 +76,7 @@ function App() {
           <div className="foot">
             <p>CopyRight &copy; 2023-{now} Evp Design UI</p>
           </div>
-        </div>
+        </main>
       </div>
     </div>
   );

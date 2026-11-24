@@ -55,7 +55,7 @@ const Preview: React.FC = () => {
           </p>
         </Row>
         <Row h={"fit-content"}>
-          <Button size="huge" theme="dark" display="flex" alignItems="center">
+          <Button size="huge" theme="dark" display="flex" alignItems="center" link="/general" hash>
             <div>Get right now</div>
             <div style={{ paddingBottom: 4, paddingLeft: 8 }}>👉</div>
           </Button>

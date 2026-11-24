@@ -1,98 +1,92 @@
-import Menu from "@/lib/evp-menu";
-import MenuItem from "@/lib/evp-menu-item";
-import { useMenuRef } from "@/lib/evp-menu/hooks";
-import { useEffect } from "react";
-import { useLocation } from "react-router";
+import { NavLink, useLocation } from "react-router-dom";
 
-export default function DocsMenu() {
-  const menu = useMenuRef();
-  const location = useLocation();
+type Page = readonly [label: string, path: string];
+type Group = { label: string; pages: Page[] };
 
-  useEffect(() => {
-    menu.current?.setSelectedKeys?.([location.pathname], "select");
-  }, [location.pathname, menu]);
+const entries: (Page | Group)[] = [
+  ["General", "/general"],
+  { label: "Layout", pages: [
+    ["Col", "/components/evp-col"],
+    ["Row", "/components/evp-row"],
+    ["Dom", "/components/evp-dom"],
+    ["Divider", "/components/evp-divider"],
+  ] },
+  ["Shadow", "/components/evp-shadow"],
+  ["Button", "/components/evp-button"],
+  ["Input", "/components/evp-input"],
+  ["Color", "/components/evp-color"],
+  ["Card", "/components/evp-card"],
+  ["Menu", "/components/evp-menu"],
+  ["Header", "/components/evp-header"],
+  ["Msg", "/components/evp-msg"],
+  ["Toast", "/components/evp-toast"],
+  ["Popover", "/components/evp-popover"],
+  ["Flexbar", "/components/evp-flexbar"],
+  ["Radio", "/components/evp-radio"],
+  ["CheckBox", "/components/evp-checkbox"],
+  ["Select", "/components/evp-select"],
+  ["Slider", "/components/evp-slider"],
+  ["Form", "/components/evp-form"],
+  ["Tag", "/components/evp-tag"],
+  ["ToolTip", "/components/evp-tooltip"],
+  ["Badge", "/components/evp-badge"],
+  ["Anchor", "/components/evp-anchor"],
+  ["BreadCrumb", "/components/evp-breadcrumb"],
+  ["Counter", "/components/evp-counter"],
+  ["Switch", "/components/evp-switch"],
+  ["Loading", "/components/evp-loading"],
+  ["Label", "/components/evp-label"],
+  ["Modal", "/components/evp-modal"],
+  ["Dialog", "/components/evp-dialog"],
+  ["Drawer", "/components/evp-drawer"],
+  ["Alert", "/components/evp-alert"],
+  ["Code", "/components/evp-code"],
+  ["Table", "/components/evp-table"],
+  ["Paginator", "/components/evp-paginator"],
+  ["List", "/components/evp-list"],
+  ["Img", "/components/evp-img"],
+  ["Calendar", "/components/evp-calendar"],
+  ["Progress", "/components/evp-progress"],
+  ["Steps", "/components/evp-steps"],
+  ["Required", "/components/evp-required"],
+  ["Waterfalls", "/components/evp-waterfalls"],
+  ["Slides", "/components/evp-slides"],
+  ["Title", "/components/evp-title"],
+  ["Rate", "/components/evp-rate"],
+  ["GhostButtonGroup", "/components/evp-ghost-button-group"],
+  ["FrostedGlass", "/components/evp-frosted-glass"],
+  ["Circle", "/components/evp-circle"],
+  ["Droplet", "/components/evp-droplet"],
+  ["Snake", "/components/evp-snake"],
+  { label: "Animation", pages: [
+    ["Animation", "/components/evp-animation"],
+    ["Bounce", "/components/evp-animation/Bounce"],
+    ["Twinkle", "/components/evp-animation/Twinkle"],
+    ["Flip", "/components/evp-animation/Flip"],
+    ["Shake", "/components/evp-animation/Shake"],
+    ["ZoomIn", "/components/evp-animation/ZoomIn"],
+    ["Fade", "/components/evp-animation/Fade"],
+    ["FadeIn", "/components/evp-animation/FadeIn"],
+    ["FadeOut", "/components/evp-animation/FadeOut"],
+  ] },
+  { label: "utils (unstable)", pages: [
+    ["Utils", "/components/evp-utils"],
+  ] },
+];
 
+export default function DocsMenu({ onNavigate }: { onNavigate: () => void }) {
+  const { pathname } = useLocation();
+  const link = ([label, path]: Page) => (
+    <NavLink key={path} to={path} end onClick={onNavigate}>{label}</NavLink>
+  );
   return (
-    <Menu menuRef={menu} border="none" link={"/general"} title={"General"}>
-      {/* <button
-        onClick={() => {
-          // console.log(menu.current);
-          menu.current?.setSelectedKeys?.(["/components/evp-button"], "select");
-        }}
-      >
-        ceshi
-      </button> */}
-      <Menu submenu itemIndent title={"Layout"}>
-        <MenuItem link={"/components/evp-col"} title={"Col"} />
-        <MenuItem link={"/components/evp-row"} title={"Row"} />
-        <MenuItem link={"/components/evp-dom"} title={"Dom"} />
-        <MenuItem link={"/components/evp-divider"} title={"Divider"} />
-      </Menu>
-      <MenuItem link={"/components/evp-shadow"} title={"Shadow"} />
-      <MenuItem link={"/components/evp-button"} title={"Button"} />
-      <MenuItem link={"/components/evp-input"} title={"Input"} />
-      <MenuItem link={"/components/evp-color"} title={"Color"} />
-      <MenuItem link={"/components/evp-card"} title={"Card"} />
-      <MenuItem link={"/components/evp-menu"} title={"Menu"} />
-      <MenuItem link={"/components/evp-header"} title={"Header"} />
-      <MenuItem link={"/components/evp-msg"} title={"Msg"} />
-      <MenuItem link={"/components/evp-toast"} title={"Toast"} />
-      <MenuItem link={"/components/evp-popover"} title={"Popover"} />
-      <MenuItem link={"/components/evp-flexbar"} title={"Flexbar"} />
-      <MenuItem link={"/components/evp-radio"} title={"Radio"} />
-      <MenuItem link={"/components/evp-checkbox"} title={"CheckBox"} />
-      <MenuItem link={"/components/evp-select"} title={"Select"} />
-      <MenuItem link={"/components/evp-slider"} title={"Slider"} />
-      <MenuItem link={"/components/evp-form"} title={"Form"} />
-      <MenuItem link={"/components/evp-tag"} title={"Tag"} />
-      <MenuItem link={"/components/evp-tooltip"} title={"ToolTip"} />
-      <MenuItem link={"/components/evp-badge"} title={"Badge"} />
-      <MenuItem link={"/components/evp-anchor"} title={"Anchor"} />
-      <MenuItem link={"/components/evp-breadcrumb"} title={"BreadCrumb"} />
-      <MenuItem link={"/components/evp-counter"} title={"Counter"} />
-      <MenuItem hidden link={"/components/evp-datetime-picker"} title={"DateTimePicker"} />
-      <MenuItem link={"/components/evp-switch"} title={"Switch"} />
-      <MenuItem link={"/components/evp-loading"} title={"Loading"} />
-      <MenuItem link={"/components/evp-label"} title={"Label"} />
-      <MenuItem link={"/components/evp-modal"} title={"Modal"} />
-      <MenuItem link={"/components/evp-dialog"} title={"Dialog"} />
-      <MenuItem link={"/components/evp-drawer"} title={"Drawer"} />
-      <MenuItem link={"/components/evp-alert"} title={"Alert"} />
-      <MenuItem link={"/components/evp-code"} title={"Code"} />
-      <MenuItem link={"/components/evp-table"} title={"Table"} />
-      <MenuItem link={"/components/evp-paginator"} title={"Paginator"} />
-      <MenuItem link={"/components/evp-list"} title={"List"} />
-      <MenuItem link={"/components/evp-img"} title={"Img"} />
-      <MenuItem link={"/components/evp-calendar"} title={"Calendar"} />
-      <MenuItem link={"/components/evp-progress"} title={"Progress"} />
-      <MenuItem link={"/components/evp-steps"} title={"Steps"} />
-      <MenuItem link={"/components/evp-required"} title={"Required"} />
-      <MenuItem link={"/components/evp-waterfalls"} title={"Waterfalls"} />
-      {/* <MenuItem link={"/components/evp-gallery"} title={"Gallery"} /> */}
-      <MenuItem link={"/components/evp-slides"} title={"Slides"} />
-      <MenuItem link={"/components/evp-title"} title={"Title"} />
-      <MenuItem link={"/components/evp-rate"} title={"Rate"} />
-      <MenuItem link={"/components/evp-ghost-button-group"} title={"GhostButtonGroup"} />
-      {/* <MenuItem link={"/components/evp-css"} title={"Css"} />
-      <MenuItem link={"/components/evp-template"} title={"Template"} /> */}
-      <MenuItem link={"/components/evp-frosted-glass"} title={"FrostedGlass"} />
-      <MenuItem link={"/components/evp-circle"} title={"Circle"} />
-      <MenuItem link={"/components/evp-droplet"} title={"Droplet"} />
-      <MenuItem link={"/components/evp-snake"} title={"Snake"} />
-      <Menu submenu itemIndent title={"Animation"}>
-        <MenuItem link={"/components/evp-animation"} title={"Animation"} />
-        <MenuItem link={"/components/evp-animation/Bounce"} title={"Bounce"} />
-        <MenuItem link={"/components/evp-animation/Twinkle"} title={"Twinkle"} />
-        <MenuItem link={"/components/evp-animation/Flip"} title={"Flip"} />
-        <MenuItem link={"/components/evp-animation/Shake"} title={"Shake"} />
-        <MenuItem link={"/components/evp-animation/ZoomIn"} title={"ZoomIn"} />
-        <MenuItem link={"/components/evp-animation/Fade"} title={"Fade"} />
-        <MenuItem link={"/components/evp-animation/FadeIn"} title={"FadeIn"} />
-        <MenuItem link={"/components/evp-animation/FadeOut"} title={"FadeOut"} />
-      </Menu>
-      <Menu submenu itemIndent title={"utils (unstable)"}>
-        <MenuItem link={"/components/evp-utils"} title={"Utils"} />
-      </Menu>
-    </Menu>
+    <>
+      {entries.map(entry => "pages" in entry ? (
+        <details key={entry.label} open={entry.pages.some(([, path]) => path === pathname) || undefined}>
+          <summary>{entry.label}</summary>
+          {entry.pages.map(link)}
+        </details>
+      ) : link(entry))}
+    </>
   );
 }
