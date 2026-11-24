@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { Color } from "../constant";
 import { default as Thumb } from "../evp-icon/radio";
 import EvpToolTip from "../evp-tooltip";
@@ -55,19 +55,10 @@ export default function EvpSlider(props: EvpSliderProps) {
   const length = (props.range?.[1] ?? 100) - (props.range?.[0] ?? 0);
   const min = props.min ?? props.range?.[0] ?? 0;
   const max = props.max ?? (props.range?.[0] ?? 0) + length;
-  const [val, setVal] = useState(
-    (props.value ?? props.defaultValue ?? min) >= min ? props.value ?? props.defaultValue ?? min : min
-  );
+  const [localValue, setLocalValue] = useState(props.defaultValue ?? min);
+  const val = Math.max(min, Math.min(max, props.value ?? localValue));
 
-  const CompDidMount = useRef(false);
 
-  useEffect(() => {
-    if (CompDidMount.current) {
-      props.onChange?.(val);
-    } else {
-      CompDidMount.current = true;
-    }
-  }, [val]);
 
   const [hiddenTip, setHiddenTip] = useState(true);
   const prgsRef = useRef<HTMLDivElement>(null);
@@ -91,7 +82,7 @@ export default function EvpSlider(props: EvpSliderProps) {
     });
   };
 
-  useFormField(formCtx, name, props.value ?? val);
+  useFormField(formCtx, name, val);
 
   const labelWidth = props.labelWidth
     ? typeof props.labelWidth === "number"
@@ -181,9 +172,10 @@ export default function EvpSlider(props: EvpSliderProps) {
                   newVal = min;
                 }
                 newVal = Number(newVal.toFixed(props.precision ?? 0));
-                setVal(newVal);
+                if (newVal === val) return;
+                if (props.value === undefined) setLocalValue(newVal);
                 props.setValue?.(newVal);
-                if (name) formCtx?.set(name, newVal);
+                props.onChange?.(newVal);
                 return false;
               }
             }}

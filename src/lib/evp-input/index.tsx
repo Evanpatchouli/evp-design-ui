@@ -78,12 +78,15 @@ export interface EvpInputProps extends BaseDomProps {
 
 export default function EvpInput(props: EvpInputProps) {
   const formCtx = useContext(EvpFormContext);
-  const [val, setVal] = useState<typeof props.value>(props.value ?? props.default);
+  const [localValue, setLocalValue] = useState(props.default ?? "");
+  const val = props.value ?? localValue;
 
   useFormField(formCtx, props.name, val);
 
   const inputType = props.type ?? "text";
-  const [validateTrigger, setValidateTrigger] = useState("onChange");
+  const [validateTrigger, setValidateTrigger] = useState(
+    props.rule?.smartTrigger === false ? props.rule.trigger ?? "onEnter" : "onChange"
+  );
   const [warning_msg, setWarning_msg] = useState<string | undefined>(props.warnReader?.ref);
   const warnColor = props.rule?.color ?? "red";
   const hintColor = props.hint?.color ?? "grey";
@@ -124,7 +127,7 @@ export default function EvpInput(props: EvpInputProps) {
   }
 
   function checkMax(str: string | undefined, max: number): boolean {
-    if (props.rule?.type?.val === "text") {
+    if (props.rule?.type?.val !== "number") {
       let value = "";
       if (str) {
         value = str as string;
@@ -137,11 +140,7 @@ export default function EvpInput(props: EvpInputProps) {
   }
 
   function checkReg(str: string | undefined, reg: RegExp): boolean {
-    const result = str?.match(reg);
-    if (typeof result === "object" && result) {
-      return result?.length === 0;
-    }
-    return true;
+    return new RegExp(reg).test(str ?? "");
   }
 
   /**
@@ -155,9 +154,9 @@ export default function EvpInput(props: EvpInputProps) {
     } else if (props.rule?.required?.on) {
       result = result
         ? result
-        : props.rule?.required?.on
+        : props.rule.required.val
         ? isEmpty(v)
-          ? `${
+          ? props.rule.required.msg ?? `${
               props.label
                 ? typeof props.label == "string"
                   ? props.label
@@ -253,7 +252,7 @@ export default function EvpInput(props: EvpInputProps) {
     } else {
       // if valid, reset validation trigger to props' trigger
       if (smartTrigger) {
-        setValidateTrigger(props.rule?.trigger ?? "onChange");
+        setValidateTrigger(props.rule?.trigger ?? "onEnter");
       }
       setIsValid(true);
     }
@@ -316,10 +315,7 @@ export default function EvpInput(props: EvpInputProps) {
             onKeyDown={(e) => {
               // onEnter
               if (e.key.toLowerCase() === "enter") {
-                if (smartTrigger && props.rule?.trigger === "onEnter") {
-                  validate(e.currentTarget.value);
-                  alert(labelRef.current?.offsetWidth);
-                }
+                if ((props.rule?.trigger ?? "onEnter") === "onEnter") validate(e.currentTarget.value);
                 if (props.onEnter) {
                   props.onEnter(e);
                 }
@@ -327,7 +323,7 @@ export default function EvpInput(props: EvpInputProps) {
             }}
             onChange={(e) => {
               e.preventDefault();
-              setVal(e.currentTarget.value);
+              if (props.value === undefined) setLocalValue(e.currentTarget.value);
               props.onChange?.(e);
               if (validateTrigger === "onChange") {
                 validate(e.currentTarget.value);

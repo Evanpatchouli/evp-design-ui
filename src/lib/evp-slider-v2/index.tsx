@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useId, useRef, useState } from "react";
 import EvpToolTip from "../evp-tooltip";
 import GroupContext from "../evp-radio-group/context";
 import EvpFormContext from "../evp-form-v2/context";
@@ -53,23 +53,15 @@ export default function EvpSliderV2(props: EvpSliderProps) {
   const length = (props.range?.[1] ?? 100) - (props.range?.[0] ?? 0);
   const min = props.min ?? props.range?.[0] ?? 0;
   const max = props.max ?? (props.range?.[0] ?? 0) + length;
-  const [val, setVal] = useState(
-    (props.value ?? props.defaultValue ?? min) >= min ? props.value ?? props.defaultValue ?? min : min
-  );
+  const [localValue, setLocalValue] = useState(props.defaultValue ?? min);
+  const val = Math.max(min, Math.min(max, props.value ?? localValue));
 
-  const rate = (val - (props.range?.[0] ?? 0)) / length;
+  const rate = length > 0 ? (val - (props.range?.[0] ?? 0)) / length : 0;
+  const id = useId();
 
-  const CompDidMount = useRef(false);
 
-  useEffect(() => {
-    if (CompDidMount.current) {
-      props.onChange?.(val);
-    } else {
-      CompDidMount.current = true;
-    }
-  }, [val]);
 
-  useFormField(formCtx, name, props.value ?? val);
+  useFormField(formCtx, name, val);
 
   const labelWidth = props.labelWidth
     ? typeof props.labelWidth === "number"
@@ -125,26 +117,22 @@ export default function EvpSliderV2(props: EvpSliderProps) {
             style={{ width: valParser(width) }}
             min={props.range?.[0] ?? 0}
             max={props.range?.[1] ?? 100}
-            onInput={(e) => {
+            step={props.step && props.step > 0 ? props.step : 1}
+            onChange={(e) => {
               if (props.value !== undefined && props.setValue === undefined) {
                 e.preventDefault();
                 return;
               }
-              const step = props.step ?? 1;
-              let newVal = Number(e.currentTarget.value);
-              newVal = Number(parseInt(`${(newVal ?? val) / step}`)) * step;
-              if (newVal >= max) {
-                newVal = max;
-              } else if (newVal <= min) {
-                newVal = min;
-              }
-              setVal(newVal);
+              const newVal = Math.max(min, Math.min(max, e.currentTarget.valueAsNumber));
+              if (newVal === val) return;
+              if (props.value === undefined) setLocalValue(newVal);
               props.setValue?.(newVal);
-              if (name) formCtx?.set(name, newVal);
+              props.onChange?.(newVal);
             }}
-            value={props.value ?? val}
+            value={val}
             className="evp-slider-input"
-            id="myRange"
+            id={id}
+            aria-label={typeof props.label === "string" ? props.label : props.name}
           />
         </EvpToolTip>
       </div>
