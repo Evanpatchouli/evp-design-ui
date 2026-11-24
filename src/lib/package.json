@@ -23,7 +23,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "browserslist": {
     "production": [
       ">0.2%",

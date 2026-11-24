@@ -31,6 +31,8 @@ async function checkPackage() {
       assert.match(renderToString(React.createElement(Button, null, "Example")), /<button\b[\s\S]*Example/);
     }
     assert.ok(fs.statSync(consumer.resolve("evp-design-ui/global.css")).size > 0);
+    assert.equal(consumer("evp-design-ui/package.json").license, require("../../package.json").license);
+    assert.deepEqual(fs.readFileSync(consumer.resolve("evp-design-ui/LICENSE")), fs.readFileSync(path.join(project, "LICENSE")));
 
     const common = "import React from 'react'; import {createRoot} from 'react-dom/client';";
     const entries = {};
