@@ -59,15 +59,7 @@ export default function EvpCheckBox(props: EvpCheckBoxProps) {
   const val = props.value;
 
   useEffect(() => {
-    if (formCtx) {
-      const state = formCtx.get(name) as Array<string> | undefined;
-      if (!state) {
-        formCtx.register({
-          name: name as string,
-          value: [],
-        });
-      }
-    }
+    if (formCtx && name) return formCtx.register({ name, value: [] });
   }, [formCtx, name]);
 
   const labelWidth = props.labelWidth
@@ -112,7 +104,7 @@ export default function EvpCheckBox(props: EvpCheckBoxProps) {
   };
 
   useEffect(() => {
-    if (formCtx) {
+    if (formCtx && name) {
       const state = formCtx.get(name) as Array<string>;
       if (checked) {
         state.push(props.value as string);

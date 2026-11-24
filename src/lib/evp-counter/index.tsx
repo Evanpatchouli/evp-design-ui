@@ -2,10 +2,11 @@ import cloneDeep from "lodash/cloneDeep.js";
 import EvpBaseProps from "../props";
 import AllParser from "../utils/props.parser";
 import classNames from "classnames";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import Left from "../evp-icon/left";
 import Right from "../evp-icon/right";
 import EvpFormContext from "../evp-form-v2/context";
+import { useFormField } from "../evp-form-v2/hooks";
 import EvpCol from "../evp-col";
 
 export interface EvpCounterProps extends EvpBaseProps {
@@ -41,7 +42,7 @@ const purifyProps = (props: EvpCounterProps) => {
 const EvpCounter: React.FC<EvpCounterProps> = (props) => {
   const formCtx = useContext(EvpFormContext);
   const [val, setVal] = useState<number>(
-    props.value !== undefined ? props.value : 0
+    props.value ?? props.defaultValue ?? 0
   );
   const step = props.step ?? 1;
 
@@ -57,23 +58,7 @@ const EvpCounter: React.FC<EvpCounterProps> = (props) => {
     }
   };
 
-  useEffect(() => {
-    if (formCtx) {
-      const state = formCtx.get(props.name) as string | number | undefined;
-      if (!state) {
-        formCtx.register({
-          name: props.name as string,
-          value: undefined,
-        });
-      }
-    }
-  }, [formCtx, props.name]);
-
-  useEffect(() => {
-    if (formCtx) {
-      formCtx.set(props.name as string, val);
-    }
-  }, [formCtx, props.name, val]);
+  useFormField(formCtx, props.name, props.value ?? val);
 
   const pureProps = purifyProps(props);
 
@@ -148,7 +133,7 @@ const EvpCounter: React.FC<EvpCounterProps> = (props) => {
               }
             }}
             value={props.value !== undefined ? props.value : val}
-            defaultValue={props.defaultValue}
+
           ></input>
           <Right
             class={classNames("evp-counter-righter", banRight())}

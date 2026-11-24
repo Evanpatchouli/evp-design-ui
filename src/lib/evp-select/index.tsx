@@ -1,8 +1,9 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import EvpCol from "../evp-col";
 import EvpRow from "../evp-row";
 import GroupContext from "../evp-radio-group/context";
 import EvpFormContext from "../evp-form-v2/context";
+import { useFormField } from "../evp-form-v2/hooks";
 
 export type EvpSelectProps = {
   name?: string;
@@ -38,23 +39,7 @@ export default function EvpSelect(props: EvpSelectProps) {
 
   const [closeDelay, setCloseDelay] = useState("0s");
 
-  useEffect(() => {
-    if (formCtx) {
-      const state = formCtx.get(name) as string | number | undefined;
-      if (!state) {
-        formCtx.register({
-          name: name as string,
-          value: undefined,
-        });
-      }
-    }
-  }, [formCtx, name]);
-
-  useEffect(() => {
-    if (formCtx) {
-      formCtx.set(name as string, val);
-    }
-  }, [formCtx, name, val]);
+  useFormField(formCtx, name, val);
 
   const inputRef = useRef<HTMLInputElement>(null);
   const optionsRef = useRef<HTMLDivElement>(null);

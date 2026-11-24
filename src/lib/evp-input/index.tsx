@@ -6,6 +6,7 @@ import EvpRow from "../evp-row";
 import EvpCol from "../evp-col";
 import { Color } from "../constant";
 import EvpFormContext from "../evp-form-v2/context";
+import { useFormField } from "../evp-form-v2/hooks";
 
 export type EvpInputRule = {
   /** default color is "red" */
@@ -77,25 +78,9 @@ export interface EvpInputProps extends BaseDomProps {
 
 export default function EvpInput(props: EvpInputProps) {
   const formCtx = useContext(EvpFormContext);
-  const [val, setVal] = useState<typeof props.value>(props.value);
+  const [val, setVal] = useState<typeof props.value>(props.value ?? props.default);
 
-  useEffect(() => {
-    if (formCtx) {
-      const state = formCtx.get(props.name) as string | number | undefined;
-      if (!state) {
-        formCtx.register({
-          name: props.name as string,
-          value: undefined,
-        });
-      }
-    }
-  }, [formCtx, props.name]);
-
-  useEffect(() => {
-    if (formCtx) {
-      formCtx.set(props.name as string, val);
-    }
-  }, [formCtx, props.name, val]);
+  useFormField(formCtx, props.name, val);
 
   const inputType = props.type ?? "text";
   const [validateTrigger, setValidateTrigger] = useState("onChange");
@@ -324,7 +309,7 @@ export default function EvpInput(props: EvpInputProps) {
             autoSave="off"
             className={`evp input input-box`}
             value={val}
-            defaultValue={props.default}
+
             placeholder={props.placeholder}
             type={inputType}
             spellCheck={false}

@@ -4,6 +4,7 @@ import { default as Thumb } from "../evp-icon/radio";
 import EvpToolTip from "../evp-tooltip";
 import GroupContext from "../evp-radio-group/context";
 import EvpFormContext from "../evp-form-v2/context";
+import { useFormField } from "../evp-form-v2/hooks";
 import { getEmptyImg } from "../utils/img.utils";
 import EvpCol from "../evp-col";
 import { ArrayLengthed } from "../utils";
@@ -90,23 +91,7 @@ export default function EvpSlider(props: EvpSliderProps) {
     });
   };
 
-  useEffect(() => {
-    if (formCtx) {
-      const state = formCtx.get(name) as string | number | undefined;
-      if (!state) {
-        formCtx.register({
-          name: name as string,
-          value: undefined,
-        });
-      }
-    }
-  }, [formCtx, name]);
-
-  useEffect(() => {
-    if (formCtx) {
-      formCtx.set(name as string, val);
-    }
-  }, [formCtx, name, val]);
+  useFormField(formCtx, name, props.value ?? val);
 
   const labelWidth = props.labelWidth
     ? typeof props.labelWidth === "number"
@@ -198,7 +183,7 @@ export default function EvpSlider(props: EvpSliderProps) {
                 newVal = Number(newVal.toFixed(props.precision ?? 0));
                 setVal(newVal);
                 props.setValue?.(newVal);
-                formCtx?.set(name, newVal);
+                if (name) formCtx?.set(name, newVal);
                 return false;
               }
             }}

@@ -2,6 +2,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import EvpToolTip from "../evp-tooltip";
 import GroupContext from "../evp-radio-group/context";
 import EvpFormContext from "../evp-form-v2/context";
+import { useFormField } from "../evp-form-v2/hooks";
 import EvpCol from "../evp-col";
 import { ArrayLengthed } from "../utils";
 import NumUtils from "../utils/num.util";
@@ -68,23 +69,7 @@ export default function EvpSliderV2(props: EvpSliderProps) {
     }
   }, [val]);
 
-  useEffect(() => {
-    if (formCtx) {
-      const state = formCtx.get(name) as string | number | undefined;
-      if (!state) {
-        formCtx.register({
-          name: name as string,
-          value: undefined,
-        });
-      }
-    }
-  }, [formCtx, name]);
-
-  useEffect(() => {
-    if (formCtx) {
-      formCtx.set(name as string, val);
-    }
-  }, [formCtx, name, val]);
+  useFormField(formCtx, name, props.value ?? val);
 
   const labelWidth = props.labelWidth
     ? typeof props.labelWidth === "number"
@@ -155,7 +140,7 @@ export default function EvpSliderV2(props: EvpSliderProps) {
               }
               setVal(newVal);
               props.setValue?.(newVal);
-              formCtx?.set(name, newVal);
+              if (name) formCtx?.set(name, newVal);
             }}
             value={props.value ?? val}
             className="evp-slider-input"

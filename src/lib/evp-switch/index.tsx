@@ -1,7 +1,8 @@
 import classNames from "classnames";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { boolStringfy } from "../utils";
 import EvpFormContext from "../evp-form-v2/context";
+import { useFormField } from "../evp-form-v2/hooks";
 import EvpBaseProps from "../props";
 import AllParser from "../utils/props.parser";
 
@@ -51,27 +52,9 @@ const EvpSwitch: React.FC<EvpSwitchProps> = (props) => {
     return props.active !== undefined ? props.active : active;
   }
 
-  const [val, setVal] = useState<"true" | "false" | undefined>(
-    boolStringfy(Active())
-  );
 
-  useEffect(() => {
-    if (formCtx && props.name) {
-      const state = formCtx.get(props.name) as string | number | undefined;
-      if (!state) {
-        formCtx.register({
-          name: props.name as string,
-          value: undefined,
-        });
-      }
-    }
-  }, [formCtx, props.name]);
 
-  useEffect(() => {
-    if (formCtx && props.name) {
-      formCtx.set(props.name, val);
-    }
-  }, [formCtx, props.name, val]);
+  useFormField(formCtx, props.name, boolStringfy(Active()));
 
   const labelWidth = props.labelWidth
     ? typeof props.labelWidth === "number"
@@ -113,7 +96,7 @@ const EvpSwitch: React.FC<EvpSwitchProps> = (props) => {
         )}
         onClick={() => {
           setActive(!active);
-          setVal(boolStringfy(!active));
+
         }}
         style={{
           // @ts-ignore

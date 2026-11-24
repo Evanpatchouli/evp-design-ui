@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import useForm, { EvpFormInstance } from "./hooks";
 import EvpFormContext from "./context";
 
@@ -9,20 +10,22 @@ export type EvpFormProps<T = any> = {
 };
 
 export default function EvpForm(props: EvpFormProps) {
-  let formRef = useForm();
-  if (props.formRef) {
-    formRef = props.formRef;
-  }
-  formRef.current.set$Submit(props.$submit);
+  const ownedRef = useForm();
+  const formRef = props.formRef ?? ownedRef;
+  const form = formRef.current;
+  useEffect(() => {
+    form.set$Submit(props.$submit);
+    return () => form.set$Submit(undefined);
+  }, [form, props.$submit]);
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        props.$submit?.(e);
+        form.submit();
       }}
       style={props.style}
     >
-      <EvpFormContext.Provider value={formRef.current}>{props.children}</EvpFormContext.Provider>
+      <EvpFormContext.Provider value={form}>{props.children}</EvpFormContext.Provider>
     </form>
   );
 }

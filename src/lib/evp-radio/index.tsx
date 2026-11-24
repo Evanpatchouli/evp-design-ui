@@ -1,6 +1,7 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import GroupContext from "../evp-radio-group/context";
 import EvpFormContext from "../evp-form-v2/context";
+import { useFormField } from "../evp-form-v2/hooks";
 
 export type EvpRadioProps = {
   label?: React.ReactNode;
@@ -32,23 +33,7 @@ export default function EvpRadio(props: EvpRadioProps) {
   const [val, setVal] = useState<typeof props.value>();
   const inputRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    if (formCtx) {
-      const state = formCtx.get(name) as string | number | undefined;
-      if (!state) {
-        formCtx.register({
-          name: name as string,
-          value: undefined,
-        });
-      }
-    }
-  }, [formCtx, name]);
-
-  useEffect(() => {
-    if (formCtx) {
-      formCtx.set(name as string, val);
-    }
-  }, [formCtx, name, val]);
+  useFormField(formCtx, name, val);
 
   return (
     <div className={`evp input evp-radio ${props.class ?? ""} ${props.disabled ? "evp-disabled" : ""}`.trim()}>

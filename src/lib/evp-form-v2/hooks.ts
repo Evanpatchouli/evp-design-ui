@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 export interface EvpFormInstance<T extends Partial<T> = Partial<any>> {
   get: (name?: string & keyof T) => T[keyof T];
@@ -17,7 +17,7 @@ export interface EvpFormInstance<T extends Partial<T> = Partial<any>> {
 }
 
 export class FormStore<T extends Partial<T> = Partial<any>> {
-  private store: Array<{ name: string & keyof T; value?: any; msg?: string }> = [];
+  private store = new Map<string, { value?: any; owners: number }>();
 
   private $submit: Function | undefined;
 
@@ -26,20 +26,23 @@ export class FormStore<T extends Partial<T> = Partial<any>> {
   };
 
   register = (entity: { name: string & keyof T; value?: any; msg?: string }) => {
-    this.store.push(entity);
+    const field = this.store.get(entity.name) ?? { value: entity.value, owners: 0 };
+    field.owners++;
+    this.store.set(entity.name, field);
+    let registered = true;
     return () => {
-      this.store = this.store.filter(
-        (item: { name: string & keyof T; value?: any; msg?: string }) => item.name !== entity.name
-      );
+      if (!registered) return;
+      registered = false;
+      if (--field.owners === 0) this.store.delete(entity.name);
     };
   };
 
   get: (name?: string & keyof T) => T[keyof T] = (name) => {
-    return this.store.find((item) => item.name === name)?.value;
+    return name === undefined ? undefined : this.store.get(name)?.value;
   };
 
   set: (name: string & keyof T, value?: T[keyof T]) => void = (name, value) => {
-    const item = this.store.find((item) => item.name === name);
+    const item = this.store.get(name);
     if (item) {
       item.value = value;
     } else {
@@ -48,12 +51,8 @@ export class FormStore<T extends Partial<T> = Partial<any>> {
   };
 
   gets: (names?: Array<string & keyof T>) => { [K in keyof T]: T[K] } = (names) => {
-    const keys = names?.length ? names : (this.store.map((item) => item.name) as Array<string & keyof T>);
-    const results: any = {};
-    keys.forEach((key) => {
-      results[key] = this.get(key);
-    });
-    return results;
+    const keys = names?.length ? names : Array.from(this.store.keys());
+    return Object.fromEntries(keys.map((key) => [key, this.store.get(key)?.value])) as T;
   };
 
   sets: (map?: T) => void = (map) => {
@@ -77,17 +76,16 @@ const useForm = <T extends Partial<T> = Partial<any>>(): React.MutableRefObject<
     const formStore = new FormStore();
     formRef.current = formStore as unknown as EvpFormInstance<T>;
   }
-  return {
-    current: {
-      get: formRef.current.get,
-      set: formRef.current.set,
-      gets: formRef.current.gets,
-      sets: formRef.current.sets,
-      submit: formRef.current.submit,
-      set$Submit: formRef.current.set$Submit,
-      register: formRef.current.register,
-    },
-  };
+  return formRef;
 };
+
+export function useFormField(form: EvpFormInstance | undefined, name: string | undefined, value: unknown) {
+  useEffect(() => {
+    if (form && name) return form.register({ name });
+  }, [form, name]);
+  useEffect(() => {
+    if (form && name) form.set(name, value);
+  }, [form, name, value]);
+}
 
 export default useForm;
