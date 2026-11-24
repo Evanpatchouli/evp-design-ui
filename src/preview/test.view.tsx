@@ -4,6 +4,8 @@ import EvpFlexbarContentfixed from "@/lib/evp-flexbar/content-fixed";
 import EvpDivider from "@/lib/evp-divider";
 import { Anchor, Button, EvpButton, EvpCard, Img, EvpRow, EvpTag, Input, Row, Toast } from "@/lib";
 import useMobx from "@/store/hooks";
+import { Provider } from "mobx-react";
+import MobxStore from "@/store";
 import EvpForm from "@/lib/evp-form";
 import useForm from "@/lib/evp-form/hooks";
 import EvpFormField from "@/lib/evp-form/field";
@@ -21,6 +23,10 @@ import EvpSliderV2 from "@/lib/evp-slider-v2";
 import core from "@/lib/evp-alert/core";
 
 export default function TestViewView() {
+  return <Provider {...MobxStore}><TestPage /></Provider>;
+}
+
+function TestPage() {
   const store = useMobx("store");
   const formRef = useForm<{
     name: string;

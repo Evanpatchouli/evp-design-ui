@@ -1,7 +1,8 @@
 import Card from "@/components/card";
 import Md from "@/components/md";
 import Tsx from "@/components/tsx";
-import { EvpCode, Toast } from "@/lib";
+import EvpCode from "@/components/code";
+import { Toast } from "@/lib";
 import { EvpButton, Button, Dialog } from "evp-design-ui";
 import { useEffect, useState } from "react";
 

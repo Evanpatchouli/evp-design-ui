@@ -1,4 +1,6 @@
-import { EvpIcon, SvgIcon, ToolTip } from "@/lib";
+import EvpIcon from "@/lib/evp-icon";
+import SvgIcon from "@/lib/evp-icon/svg.icons";
+import ToolTip from "@/lib/evp-tooltip";
 import EvpButton from "@/lib/evp-button";
 import EvpHeader from "@/lib/evp-header";
 import { linkTo } from "@/lib/utils/route";

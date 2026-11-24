@@ -1,4 +1,5 @@
-import { Menu, MenuItem } from "@/lib";
+import Menu from "@/lib/evp-menu";
+import MenuItem from "@/lib/evp-menu-item";
 import { useMenuRef } from "@/lib/evp-menu/hooks";
 import { useEffect } from "react";
 import { useLocation } from "react-router";

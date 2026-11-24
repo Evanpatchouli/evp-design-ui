@@ -1,7 +1,8 @@
 import Card from "@/components/card";
 import Md from "@/components/md";
 import Tsx from "@/components/tsx";
-import { EvpCode, EvpSlider } from "@/lib";
+import EvpCode from "@/components/code";
+import { EvpSlider } from "@/lib";
 import EvpButton from "@/lib/evp-button";
 import EvpCheckBox from "@/lib/evp-checkbox";
 import EvpCheckBoxGroup from "@/lib/evp-checkbox-group/inedx";

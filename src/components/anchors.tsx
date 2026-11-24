@@ -1,4 +1,6 @@
-import { Button, Icon, ToolTip } from "@/lib";
+import Button from "@/lib/evp-button";
+import Icon from "@/lib/evp-icon";
+import ToolTip from "@/lib/evp-tooltip";
 import { useLocation } from "react-router-dom";
 
 export default function Anchors() {

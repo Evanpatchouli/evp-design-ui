@@ -1,5 +1,6 @@
 import Api from "@/components/api";
-import { Code, Color, Popover } from "@/lib";
+import Code from "@/components/code";
+import { Color, Popover } from "@/lib";
 
 export default function SlidesApi() {
   return (

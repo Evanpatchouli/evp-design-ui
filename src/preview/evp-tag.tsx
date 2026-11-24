@@ -1,7 +1,8 @@
 import Card from "@/components/card";
 import Md from "@/components/md";
 import Tsx from "@/components/tsx";
-import { Row, EvpTag, EvpCode } from "evp-design-ui";
+import EvpCode from "@/components/code";
+import { Row, EvpTag } from "evp-design-ui";
 import EvpButton from "@/lib/evp-button";
 import { useEffect, useState } from "react";
 

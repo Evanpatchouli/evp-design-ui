@@ -342,6 +342,13 @@ module.exports = function (webpackEnv) {
     module: {
       strictExportPresence: true,
       rules: [
+        // The docs use named component exports and load the library stylesheet in App.
+        // Skip unreferenced component modules when resolving the source package barrel.
+        {
+          test: /\.tsx?$/,
+          include: path.join(paths.appSrc, 'lib'),
+          sideEffects: false,
+        },
         // Handle node_modules packages that contain sourcemaps
         shouldUseSourceMap && {
           enforce: 'pre',

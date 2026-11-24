@@ -1,5 +1,6 @@
 import Api from "@/components/api";
-import { EvpCode, EvpPopover } from "@/lib";
+import EvpCode from "@/components/code";
+import { EvpPopover } from "@/lib";
 
 export default function TitleApi() {
   return (

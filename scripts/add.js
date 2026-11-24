@@ -222,7 +222,8 @@ const apiPath = path.join(__dirname, "..", "src", "preview", "apis", componentNa
 
 const apiContent = `
 import Api from "@/components/api";
-import { Code, Popover } from "@/lib";
+import Code from "@/components/code";
+import { Popover } from "@/lib";
 
 export default function SlidesApi() {
   return (
@@ -400,7 +401,7 @@ try {
 const routerPath = path.join(__dirname, "..", "src", "router", "index.tsx");
 
 // 新的路由配置
-const newRoute = `{ path: "/${componentName}", key: "${componentNameWithoutEvp}", element: <Pre.${componentNameCamelCaseWithoutEvp}View /> }`;
+const newRoute = `  route("/${componentName}", () => import("../preview/${componentName}")),`;
 console.log(`\nStep 11: Register view to @/router/index.tsx...`);
 fs.readFile(routerPath, "utf8", (err, data) => {
   if (err) {
@@ -408,14 +409,7 @@ fs.readFile(routerPath, "utf8", (err, data) => {
     return;
   }
 
-  // 将文件内容解析为数组
-  const routes = data.split("\n").slice(0, -1);
-
-  // 在倒数第二行之前插入新的路由配置
-  routes.splice(-1, 0, `  ${newRoute},`);
-
-  // 将更新后的数组写回到路由文件中
-  const updatedContent = `${routes.join("\n")}\n\n`;
+  const updatedContent = data.trimEnd().replace(/\];$/, `${newRoute}\n];\n`);
   fs.writeFile(routerPath, updatedContent, (err) => {
     if (err) {
       console.error(err);

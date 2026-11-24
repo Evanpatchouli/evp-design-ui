@@ -25,8 +25,11 @@ test('opens the documentation home', async () => {
   expect(await screen.findByRole('button', { name: /Get right now/ })).toBeInTheDocument();
 });
 
+// A cold Jest run also compiles the lazy route and its ESM Markdown dependencies.
+const routeTimeout = 30000;
+
 test('opens the Button documentation from its hash URL', async () => {
   openRoute('/components/evp-button');
-  expect(await screen.findByRole('heading', { name: 'EvpButton', level: 1 })).toBeInTheDocument();
+  expect(await screen.findByRole('heading', { name: 'EvpButton', level: 1 }, { timeout: routeTimeout })).toBeInTheDocument();
   expect(screen.getByRole('button', { name: 'Primary Plain' })).toBeInTheDocument();
-});
+}, routeTimeout);

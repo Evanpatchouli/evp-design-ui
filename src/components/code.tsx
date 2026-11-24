@@ -1,63 +1,36 @@
-import { Hintable } from "@/lib";
-import { Prism as Highlight } from "react-syntax-highlighter";
-import { coldarkDark as Dark } from "react-syntax-highlighter/dist/esm/styles/prism"; // 代码高亮主题风格
+import { lazy, Suspense } from "react";
+import type { EvpCodeProps } from "@/lib/evp-code";
 
-type LangOptions =
-  | "javascript"
-  | "typescript"
-  | "jsx"
-  | "tsx"
-  | "java"
-  | "python"
-  | "c"
-  | "cpp"
-  | "csharp"
-  | "go"
-  | "ruby"
-  | "rust"
-  | "swift"
-  | "kotlin"
-  | "php"
-  | "html"
-  | "css"
-  | "scss"
-  | "less"
-  | "json"
-  | "xml"
-  | "yml"
-  | "yaml"
-  | "bash"
-  | "sh"
-  | "shell"
-  | "cmd"
-  | "bat"
-  | "console"
-  | "sql"
-  | "markdown"
-  | "text";
+type SnippetProps = Pick<EvpCodeProps, "children" | "lang" | "show"> & {
+  theme?: "coldarkDark" | "oneLight";
+};
 
-export default function Code(props: {
-  children?: string;
-  lang?: Hintable<LangOptions>;
-  show?: boolean;
-}) {
-  const $show = props.show ?? true;
-  return (
-    <>
-      {$show ? (
-        <Highlight
-          language={props.lang ?? "text"}
-          PreTag={"div"}
-          style={Dark}
-          customStyle={{
-            borderRadius: 6,
-          }}
-        >
-          {`${props.children?.replace("\n", "")}`}
+function snippetHighlighter(loadTheme: () => Promise<{ default: Record<string, React.CSSProperties> }>) {
+  return lazy(async () => {
+    const [{ default: Highlight }, { default: style }] = await Promise.all([
+      import("./snippet-highlighter"),
+      loadTheme(),
+    ]);
+    return {
+      default: ({ children, lang }: SnippetProps) => (
+        <Highlight language={lang ?? "text"} PreTag="div" style={style} customStyle={{ borderRadius: 6 }}>
+          {children ?? ""}
         </Highlight>
-      ) : (
-        void 0
-      )}
-    </>
+      ),
+    };
+  });
+}
+
+const DarkSnippet = snippetHighlighter(() => import("react-syntax-highlighter/dist/esm/styles/prism/coldark-dark"));
+const LightSnippet = snippetHighlighter(() => import("react-syntax-highlighter/dist/esm/styles/prism/one-light"));
+
+export default function Code({ children, lang, show = true, theme }: SnippetProps) {
+  if (!show) return null;
+  const Highlight = theme === "oneLight" ? LightSnippet : DarkSnippet;
+  const source = children?.replace(/^\r?\n/, "") ?? "";
+  return (
+    <Suspense fallback={<pre><code>{source}</code></pre>}>
+      <Highlight lang={lang}>{source}</Highlight>
+    </Suspense>
   );
 }

@@ -1,22 +1,19 @@
 import { Evp } from "@/lib/evp-icon/svg.icons";
-import {
-  Row,
-  Col,
-  Button,
-  Tag,
-  EvpCard,
-  EvpButton,
-  EvpCheckBox,
-  EvpCheckBoxGroup,
-  EvpForm,
-  EvpInput,
-  EvpRadio,
-  EvpRadioGroup,
-  EvpSelect,
-  EvpSlider,
-  Toast,
-  EvpShadow,
-} from "evp-design-ui";
+import Row from "@/lib/evp-row";
+import Col from "@/lib/evp-col";
+import Button from "@/lib/evp-button";
+import Tag from "@/lib/evp-tag";
+import EvpCard from "@/lib/evp-card/index.v2";
+import EvpCheckBox from "@/lib/evp-checkbox";
+import EvpCheckBoxGroup from "@/lib/evp-checkbox-group/inedx";
+import EvpForm from "@/lib/evp-form-v2";
+import EvpInput from "@/lib/evp-input";
+import EvpRadio from "@/lib/evp-radio";
+import EvpRadioGroup from "@/lib/evp-radio-group/inedx";
+import EvpSelect from "@/lib/evp-select";
+import EvpSlider from "@/lib/evp-slider-v2";
+import Toast from "@/lib/evp-toast";
+import * as EvpShadow from "@/lib/evp-shadow";
 import React, { useState } from "react";
 import classNames from "classnames";
 
@@ -147,13 +144,13 @@ const Preview: React.FC = () => {
                   range={[0, 100]}
                 />
                 <Row justifyContent="right">
-                  <EvpButton
+                  <Button
                     $click={() => {
                       Toast.success("Submit successfully!");
                     }}
                   >
                     Submit
-                  </EvpButton>
+                  </Button>
                 </Row>
               </EvpForm>
             </EvpCard>

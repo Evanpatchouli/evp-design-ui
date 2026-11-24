@@ -3,7 +3,6 @@
 import { Route, Routes } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import Header from "./components/header";
-import GeneralView from "./preview/general";
 import Preview from "./preview/home";
 import Anchors from "./components/anchors";
 import NotFound from "./preview/404";
@@ -12,8 +11,10 @@ import DocsMenu from "./menu";
 import "./App.css";
 import "./preview/index.css";
 import "./lib/global.css";
-import { useEffect, useRef } from "react";
+import { lazy, Suspense, useEffect, useRef } from "react";
 import { getRouteStore, updateRouteCurrent, linkTo } from "./router/store";
+const GeneralView = lazy(() => import("./preview/general"));
+
 function App() {
   const location = useLocation();
   const now = new Date().toLocaleDateString();
@@ -52,15 +53,17 @@ function App() {
             marginLeft: location.pathname === "/" || location.pathname === "/404" ? "0px" : "260px",
           }}
         >
-          <Routes>
-            <Route path="/" key={"home"} element={<Preview />}></Route>
-            <Route path="/general" key={"general"} element={<GeneralView />}></Route>
-            {routes.map((route) => (
-              <Route key={route.key} path={`/components${route.path}`} element={route.element} />
-            ))}
-            <Route path="/404" key={"404"} element={<NotFound />}></Route>
-            <Route path="*" key={"404-catch"} element={<NotFound />}></Route>
-          </Routes>
+          <Suspense fallback={<p role="status">Loading documentation…</p>}>
+            <Routes>
+              <Route path="/" element={<Preview />} />
+              <Route path="/general" element={<GeneralView />} />
+              {routes.map(({ path, Page }) => (
+                <Route key={path} path={`/components${path}`} element={<Page />} />
+              ))}
+              <Route path="/404" element={<NotFound />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
           <Anchors />
           <div className="foot">
             <p>CopyRight &copy; 2023-{now} Evp Design UI</p>
