@@ -8,10 +8,16 @@ test("linked menu items retain native link activation and menu callbacks", () =>
   const selectAction = jest.fn();
   render(
     <Menu>
+      <MenuItem title="Disabled item" link="/disabled" not-allowed onSelect={selectLink} />
       <MenuItem title="Linked item" link="/example" hash onSelect={selectLink} />
       <MenuItem title="Local action" onSelect={selectAction} />
     </Menu>
   );
+  const disabled = screen.getByRole("link", { name: "Disabled item" });
+  expect(disabled).toHaveAttribute("aria-disabled", "true");
+  expect(disabled).not.toHaveAttribute("href");
+  fireEvent.click(disabled);
+  expect(selectLink).not.toHaveBeenCalled();
   const link = screen.getByRole("link", { name: "Linked item" });
   expect(link).toHaveAttribute("href", "#/example");
   expect(fireEvent.click(link, { ctrlKey: true })).toBe(true);

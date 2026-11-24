@@ -97,6 +97,9 @@ export default function EvpMenuItem(props: EvpMenuItemProps) {
     </EvpCol>
   );
   if (!linkPath) return item;
+  if (disabled) {
+    return <span role="link" aria-disabled="true" className="evp-menu-link" hidden={props.hidden}>{item}</span>;
+  }
 
   const hash = typeof props.link === "object" ? props.link.hash ?? props.hash : props.hash;
   const hashRoute = hash || (typeof window !== "undefined" && window.location.hash);
@@ -105,8 +108,7 @@ export default function EvpMenuItem(props: EvpMenuItemProps) {
     <a
       className="evp-menu-link"
       hidden={props.hidden}
-      aria-disabled={disabled ? true : undefined}
-      href={disabled ? undefined : href}
+      href={href}
       onClick={event => {
         if (event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) {
           $click?.(event);
