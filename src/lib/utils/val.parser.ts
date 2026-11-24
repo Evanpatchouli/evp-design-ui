@@ -5,7 +5,7 @@ import { Option } from "../typings";
  * Parse number to px
  */
 const valParser: PropsParserFunc = (props?: string | number): Option<string> => {
-  if (!props) {
+  if (props == null || props === "") {
     return undefined;
   } else {
     if (typeof props === 'number') {

@@ -11,7 +11,7 @@ export const paddingParser: PropsParserFunc = (
   function parse(val: string | number | undefined | null) {
     return typeof val === "number" ? `${val}px` : val ?? "";
   }
-  if (pd) {
+  if (pd != null) {
     if (typeof pd === "number") {
       return `${pd}px`;
     } else {

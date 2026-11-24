@@ -7,7 +7,7 @@ export const marginParser: PropsParserFunc = (
   function parse(val: string | number | undefined | null) {
     return typeof val === "number" ? `${val}px` : val ?? "";
   }
-  if (mg) {
+  if (mg != null) {
     if (typeof mg === "number") {
       return `${mg}px`;
     } else {

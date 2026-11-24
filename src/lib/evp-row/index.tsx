@@ -1,6 +1,5 @@
 import AllParser from "../utils/props.parser";
 import EvpBaseProps from "../props";
-import { shift } from "../utils";
 import valParser from "../utils/val.parser";
 
 export interface EvpRowProps extends EvpBaseProps {
@@ -18,7 +17,7 @@ export default function EvpRow(props: EvpRowProps) {
     alignItems: props.alignItems ?? "center",
     width: props.w ?? "100%",
     height: props.h ?? "100%",
-    ...shift($props.style),
+    ...$props.style,
   };
   return (
     <div

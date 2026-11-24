@@ -30,20 +30,15 @@ const preservedCursors: preservedProp[] = [
 const cursorParser: PropsParserFunc = (props?: EvpStyleProps) => {
   let cursor: Option<Hintable<EvpCursorRule>> = undefined;
   if (props) {
-    const keys = Object.keys(props);
-    let cursors = keys.map(key => {
-      if (preservedCursors.includes(key) && props[key]) {
-        return key;
+    for (const key of preservedCursors) {
+      if (Object.prototype.hasOwnProperty.call(props, key) && props[key]) {
+        if (cursor !== undefined) {
+          throw new Error('Evp design ui component can only have one valid cursor prop');
+        }
+        cursor = key;
       }
-      return undefined;
-    })
-    // filter means to keep which matches the rule and filter out others
-    cursors = cursors.filter( elem => elem);
-    if (cursors.length > 1) {
-      throw new Error('Evp design ui component can only have one valid cursor prop');
     }
-    cursor = props.cursor??(cursors[0]??cursor);
-    return cursor;
+    return props.cursor ?? cursor;
   }
   return cursor;
 }
