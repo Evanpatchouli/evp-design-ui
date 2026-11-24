@@ -1,4 +1,5 @@
 import React from "react";
+import { useRecordKey, useRecordPage } from "../evp-paginator/useRecords";
 import { ArrayStrictLengthed } from "../typings";
 import EvpRow from "../evp-row";
 import Paginator from "../evp-paginator";
@@ -69,6 +70,8 @@ const EvpList: React.FC<EvpListProps> = ({
   zebra,
   ...props
 }) => {
+  const { records, ...page } = useRecordPage(data, pagination, paginator);
+  const recordKey = useRecordKey<(typeof records)[number]>(schema?.key);
   return (
     <div
       style={{
@@ -84,39 +87,16 @@ const EvpList: React.FC<EvpListProps> = ({
         }}
         {...props}
       >
-        {data
-          ?.slice(
-            ((pagination?.currentPage ?? 1) - 1) * (pagination?.pageSize ?? data.length),
-            pagination?.currentPage && pagination?.pageSize ? pagination?.currentPage * pagination?.pageSize : void 0
-          )
-          .map((item, idx, items) => (
-            <>
-              {/* <Cell.Td align="center" hidden={!selection} className={"checkbox"}>
-                <input type="checkbox" style={{ cursor: "pointer" }} />
-              </Cell.Td>
-              <Cell.Td
-                hidden={!index}
-                align={indexAlign ?? align}
-                {...(indexProps ?? cellProps)}
-                className={"evp-table-column-idx"}
-              >
-                {++idx}
-              </Cell.Td> */}
-              {schema ? schema.render?.(item, idx, items) : item.toString()}
-            </>
-          ))}
+        {records.map((item, idx) => (
+          <React.Fragment key={recordKey(item)}>
+            {schema ? schema.render?.(item, idx, records) : item.toString()}
+          </React.Fragment>
+        ))}
       </div>
-      {paginator ? (
-        <EvpRow w={"100%"} justifyContent="flex-end">
-          <Paginator
-            {...{
-              ...pagination,
-              total: pagination?.total ?? data?.length ?? 0,
-            }}
-          />
+      {paginator && (
+        <EvpRow w="100%" justifyContent="flex-end">
+          <Paginator {...pagination} {...page} />
         </EvpRow>
-      ) : (
-        void 0
       )}
       {children}
     </div>

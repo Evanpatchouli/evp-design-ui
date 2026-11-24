@@ -1,4 +1,6 @@
 import classNames from "classnames";
+import { useState } from "react";
+import { useRecordKey, useRecordPage, type RecordKey } from "../evp-paginator/useRecords";
 import Tr from "./tr";
 import Cell from "./cell";
 import { ThProps } from "./th";
@@ -33,6 +35,7 @@ export interface EvpTableProps<RecordType extends Object = any> extends React.DO
   indexAlign?: "left" | "center" | "right" | "char" | "justify";
   indexProps?: TdProps;
   data?: RecordType[];
+  rowKey?: RecordKey<RecordType>;
   pagination?: {
     pageSize?: number;
     pageSizes?: number[];
@@ -90,6 +93,7 @@ export default function EvpTable({
   indexAlign,
   indexProps,
   data,
+  rowKey,
   align,
   cellProps,
   pagination,
@@ -100,89 +104,67 @@ export default function EvpTable({
   index,
   ...events
 }: EvpTableProps) {
+  const { records, ...page } = useRecordPage(data, pagination, paginator);
+  const recordKey = useRecordKey(rowKey);
+  const [selectedKeys, setSelectedKeys] = useState(() => new Set<string>());
+  const columns: TableItemSchema[] = schema?.filter((column) => !column.hidden) ??
+    Object.keys(data?.[0] ?? {}).map((prop) => ({ prop, label: prop }));
+  const columnKey = (column: TableItemSchema, index: number) => String(column.key ?? column.prop ?? index);
+
+  function toggleRecord(key: string) {
+    setSelectedKeys((previous) => {
+      const next = new Set(previous);
+      if (next.has(key)) next.delete(key);
+      else next.add(key);
+      return next;
+    });
+  }
+
   return (
     <div style={{ width: "fit-content" }}>
-      <table
-        className={classNames("evp", "evp-table", className)}
-        cellSpacing={0}
-        cellPadding={12}
-        {...events}
-        style={style}
-      >
+      <table id={id} className={classNames("evp", "evp-table", className)}
+        cellSpacing={0} cellPadding={12} {...events} style={style}>
         <caption>{caption}</caption>
         <thead>
           <Tr.Header>
-            <Cell.Th align="center" hidden={!selection}>
-              {""}
-            </Cell.Th>
-            <Cell.Th hidden={!index} align={indexLabelAlign ?? align} {...(indexLabelProps ?? labelProps)}>
-              Index
-            </Cell.Th>
-            {schema
-              ? schema
-                  ?.filter((item) => !item.hidden)
-                  .map((item) => (
-                    <Cell.Th align={item.labelAlign ?? labelAlign ?? align} {...(item.labelProps ?? labelProps)}>
-                      {item.label}
-                    </Cell.Th>
-                  ))
-              : data?.[0]
-              ? Object.keys(data?.[0]).map((key) => (
-                  <Cell.Th align={labelAlign ?? align} {...labelProps}>
-                    {key}
-                  </Cell.Th>
-                ))
-              : void 0}
+            {selection && <Cell.Th align="center" />}
+            {index && <Cell.Th align={indexLabelAlign ?? align} {...(indexLabelProps ?? labelProps)}>Index</Cell.Th>}
+            {columns.map((column, idx) => (
+              <Cell.Th key={columnKey(column, idx)} align={column.labelAlign ?? labelAlign ?? align}
+                {...(column.labelProps ?? labelProps)}>{column.label}</Cell.Th>
+            ))}
           </Tr.Header>
         </thead>
         <tbody className={zebra ? "zebra" : ""}>
-          {data
-            ?.slice(
-              ((pagination?.currentPage ?? 1) - 1) * (pagination?.pageSize ?? data.length),
-              pagination?.currentPage && pagination?.pageSize ? pagination?.currentPage * pagination?.pageSize : void 0
-            )
-            .map((row, idx, records) => (
-              <Tr.Record>
-                <Cell.Td align="center" hidden={!selection} className={"checkbox"}>
-                  <input type="checkbox" style={{ cursor: "pointer" }} />
-                </Cell.Td>
-                <Cell.Td
-                  hidden={!index}
-                  align={indexAlign ?? align}
-                  {...(indexProps ?? cellProps)}
-                  className={"evp-table-column-idx"}
-                >
-                  {++idx}
-                </Cell.Td>
-                {schema
-                  ? schema?.map((col) => (
-                      <Cell.Td align={col.align ?? align} {...(col.cellProps ?? cellProps)}>
-                        {col.render ? col.render(row[col.prop as string], row, records) : row[col.prop as string]}
-                      </Cell.Td>
-                    ))
-                  : data?.[0]
-                  ? Object.values(row).map((val: any) => (
-                      <Cell.Td align={align} {...cellProps}>
-                        {val}
-                      </Cell.Td>
-                    ))
-                  : void 0}
+          {records.map((row, idx) => {
+            const key = recordKey(row);
+            return (
+              <Tr.Record key={key}>
+                {selection && <Cell.Td align="center" className="checkbox">
+                  <input type="checkbox" style={{ cursor: "pointer" }} checked={selectedKeys.has(key)}
+                    aria-label={`Select row ${(page.currentPage - 1) * page.pageSize + idx + 1}`} onChange={() => toggleRecord(key)} />
+                </Cell.Td>}
+                {index && <Cell.Td align={indexAlign ?? align} {...(indexProps ?? cellProps)}
+                  className="evp-table-column-idx">{idx + 1}</Cell.Td>}
+                {columns.map((column, colIndex) => {
+                  const value = column.prop === undefined ? undefined : row[column.prop];
+                  return (
+                    <Cell.Td key={columnKey(column, colIndex)} align={column.align ?? align}
+                      {...(column.cellProps ?? cellProps)}>
+                      {column.render ? column.render(value, row, records) : value}
+                    </Cell.Td>
+                  );
+                })}
               </Tr.Record>
-            ))}
+            );
+          })}
         </tbody>
-        <tfoot></tfoot>
+        <tfoot />
       </table>
-      {paginator ? (
-        <EvpRow w={"100%"} justifyContent="flex-end">
-          <Paginator
-            {...{
-              ...pagination,
-              total: pagination?.total ?? data?.length ?? 0,
-            }}
-          />
+      {paginator && (
+        <EvpRow w="100%" justifyContent="flex-end">
+          <Paginator {...pagination} {...page} />
         </EvpRow>
-      ) : (
-        void 0
       )}
       {children}
     </div>
