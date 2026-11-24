@@ -6,7 +6,7 @@ import classNames from "classnames";
 import NumUtils from "../utils/num.util";
 import Left from "../evp-icon/left";
 import { useEffect, useState } from "react";
-import { isInteger } from "lodash";
+import isInteger from "lodash/isInteger.js";
 import { ArrayStrictLengthed, hexAlpha } from "../utils";
 
 const Total = ({ showTotal, total }: { showTotal?: boolean; total?: number }) => (

@@ -1,5 +1,5 @@
 import { Prism as Highlight, type SyntaxHighlighterProps } from "react-syntax-highlighter";
-import * as Theme from "react-syntax-highlighter/dist/esm/styles/prism"; // 代码高亮主题风格
+import * as Theme from "react-syntax-highlighter/dist/cjs/styles/prism/index.js";
 import { Hintable } from "../utils";
 
 export type LangOptions =

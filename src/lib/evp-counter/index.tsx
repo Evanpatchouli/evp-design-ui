@@ -1,4 +1,4 @@
-import { cloneDeep } from "lodash";
+import cloneDeep from "lodash/cloneDeep.js";
 import EvpBaseProps from "../props";
 import AllParser from "../utils/props.parser";
 import classNames from "classnames";

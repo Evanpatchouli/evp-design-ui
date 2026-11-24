@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { cloneDeep } from "lodash";
+import cloneDeep from "lodash/cloneDeep.js";
 import { type EvpDisplayRule } from "../typings";
 
 const EvpTag = (props: EvpTagProps) => {

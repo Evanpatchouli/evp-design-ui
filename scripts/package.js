@@ -32,7 +32,7 @@ async function buildPackage(source = library, destination = path.join(project, "
     execFileSync(process.execPath, [
       require.resolve("typescript/bin/tsc"), "-p", path.join(source, "tsconfig.json"),
       "--noEmit", "false", "--allowJs", "false", "--noEmitOnError",
-      "--outDir", compiled, "--declarationDir", output
+      "--outDir", compiled, "--declarationDir", output, "--importHelpers"
     ], { stdio: "inherit" });
 
     const bundle = await rollup({
@@ -47,7 +47,11 @@ async function buildPackage(source = library, destination = path.join(project, "
       }]
     });
     try {
-      await bundle.write({ file: path.join(output, "index.js"), format: "es" });
+      const modules = { preserveModules: true, preserveModulesRoot: compiled, entryFileNames: "[name].js" };
+      await bundle.write({ ...modules, dir: output, format: "cjs", exports: "named", interop: "auto" });
+      const esm = path.join(output, "esm");
+      await bundle.write({ ...modules, dir: esm, format: "es" });
+      fs.writeFileSync(path.join(esm, "package.json"), '{"type":"module","sideEffects":false}\n');
     } finally {
       await bundle.close();
     }
@@ -57,7 +61,7 @@ async function buildPackage(source = library, destination = path.join(project, "
     fs.writeFileSync(path.join(output, "package.json"), JSON.stringify(manifest, null, 2) + "\n");
     fs.copyFileSync(path.join(source, "Readme.md"), path.join(output, "Readme.md"));
     fs.copyFileSync(path.join(project, "LICENSE"), path.join(output, "LICENSE"));
-    for (const entry of [manifest.main, "index.d.ts", "global.css", "collect.css"]) {
+    for (const entry of [manifest.main, manifest.module, manifest.types, "global.css", "collect.css"]) {
       if (!fs.statSync(path.join(output, entry)).size) throw new Error("Empty package entry: " + entry);
     }
 
