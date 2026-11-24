@@ -10,12 +10,10 @@ interface ToastsContainerProps {
 }
 
 const ToastsContainer: React.FC<ToastsContainerProps> = (props) => {
-  React.useEffect(() => {}, [props.toasts]);
   const toasts = props.toasts ?? [];
-  const Toasts = toasts.map((toast, index) => <>{toast}</>);
   return (
     <div key={props.id} className={`evp evp-toasts-container ${props.placement || "top"}`}>
-      {store.config.reverse ? Toasts.reverse() : Toasts}
+      {store.config.reverse ? [...toasts].reverse() : toasts}
     </div>
   );
 };

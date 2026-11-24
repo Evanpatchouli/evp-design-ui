@@ -4,7 +4,7 @@ import { default as Thumb } from "../evp-icon/radio";
 import EvpToolTip from "../evp-tooltip";
 import GroupContext from "../evp-radio-group/context";
 import EvpFormContext from "../evp-form-v2/context";
-import { emptyImg } from "../utils/img.utils";
+import { getEmptyImg } from "../utils/img.utils";
 import EvpCol from "../evp-col";
 import { ArrayLengthed } from "../utils";
 import NumUtils from "../utils/num.util";
@@ -134,7 +134,7 @@ export default function EvpSlider(props: EvpSliderProps) {
           setHiddenTip(true);
         }}
         onDragStart={(e) => {
-          e.nativeEvent.dataTransfer?.setDragImage(emptyImg, 0, 0);
+          e.nativeEvent.dataTransfer?.setDragImage(getEmptyImg(), 0, 0);
           if (e.nativeEvent.dataTransfer?.effectAllowed) {
             e.nativeEvent.dataTransfer.effectAllowed = "move";
           }

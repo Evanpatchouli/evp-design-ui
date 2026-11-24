@@ -1,6 +1,8 @@
-export const emptyImg = document.createElement("img");
+let emptyImg: HTMLImageElement | undefined;
 
-emptyImg.src = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
+export function getEmptyImg() {
+  return emptyImg ?? (emptyImg = createEmptyImg());
+}
 
 function createEmptyImg() {
   const _emptyImage = document.createElement("img");
@@ -49,7 +51,7 @@ const lazy = (dom: any) => {
 };
 
 const ImgUtils = {
-  emptyImg: emptyImg,
+  get emptyImg() { return getEmptyImg(); },
   createEmptyImg: createEmptyImg,
   downloadImage: downloadImage,
   lazy: lazy,

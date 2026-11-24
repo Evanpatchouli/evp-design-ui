@@ -5,17 +5,8 @@ import EvpCard, { EvpCardProps } from "../evp-card/index.v2";
 import EvpButton, { EvpButtonProps } from "../evp-button";
 import Close from "../evp-icon/close";
 
-const DialogCloseEventExample = new Event("DialogCloseEvent", {
-  bubbles: true,
-  cancelable: false,
-});
-type DialogCloseEvent = typeof DialogCloseEventExample;
-
-const DialogOpenEventExample = new Event("DialogOpenEvent", {
-  bubbles: true,
-  cancelable: false,
-});
-type DialogOpenEvent = typeof DialogOpenEventExample;
+type DialogCloseEvent = Event;
+type DialogOpenEvent = Event;
 
 export type EvpDialogProps = {
   children?: React.ReactNode;

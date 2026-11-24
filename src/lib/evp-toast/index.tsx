@@ -1,46 +1,25 @@
 import store from "./store";
-import { createRoot } from "react-dom/client";
+import { createRoot, type Root } from "react-dom/client";
 import { createToastsContainer, ToastPlacement } from "./container";
 import Toast, { EvpToastCreate, EvpToastType } from "./toast";
 import { nanoid } from "nanoid";
 import { Nullable } from "../utils";
 
-const div = document.createElement("div");
-document.body.appendChild(div);
-const root = createRoot(div);
-
-const containerKey = nanoid();
+let container: { host: HTMLDivElement; root: Root; key: string } | undefined;
 
 function rerender(placement?: ToastPlacement) {
-  let toastor = store.toastor;
-  if (!toastor) {
-    store.toastor = createToastsContainer(
-      store.toasts.map((toast) => toast.dom),
-      containerKey,
-      placement
-    ); // new toasts container
-    root.render(store.toastor); // rerender toastor
-  } else {
-    toastor = createToastsContainer(
-      store.toasts.map((toast) => toast.dom),
-      containerKey,
-      placement
-    );
-    root.render(toastor); // rerender toastor
+  if (!store.toasts.length) {
+    container?.root.unmount();
+    container?.host.remove();
+    container = undefined;
+    return;
   }
-  // after rerender, make all toasts tagged as not firstRendered
-  if (!store.toasts) {
-    store.toasts = [];
-  } else {
-    if (store.toasts.length > 0) {
-      store.toasts = store.toasts.map(({ dom: { props } }: any) => {
-        return {
-          id: props.id,
-          dom: createToast(props.id, props.type, props.text, props.keep, props.delay, false),
-        };
-      });
-    }
+  if (!container) {
+    const host = document.createElement("div");
+    document.body.appendChild(host);
+    container = { host, root: createRoot(host), key: nanoid() };
   }
+  container.root.render(createToastsContainer(store.toasts.map((toast) => toast.dom), container.key, placement));
 }
 
 function addToast(
@@ -50,7 +29,7 @@ function addToast(
   delay?: Nullable<number>,
   placement?: ToastPlacement
 ) {
-  const timer = setTimeout(() => {
+  setTimeout(() => {
     const key = nanoid();
     store.toasts.push({
       id: key,
@@ -58,14 +37,18 @@ function addToast(
     });
     rerender(placement);
     setTimeout(() => {
-      let idx = store.toasts.findIndex(({ id }) => key === id);
+      const idx = store.toasts.findIndex(({ id }) => key === id);
+      if (idx < 0) return;
       store.toasts[idx] = {
         id: key,
         dom: createToast(key, type, text, keep, delay, false, true),
       };
       rerender(placement);
-      store.toasts = store.toasts.filter(({ id }) => key !== id);
-      clearTimeout(timer);
+      // The leave animation in index.css lasts 200 ms.
+      setTimeout(() => {
+        store.toasts = store.toasts.filter(({ id }) => key !== id);
+        rerender(placement);
+      }, 200);
     }, keep ?? 3000);
   }, delay ?? 0);
 }

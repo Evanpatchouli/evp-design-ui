@@ -1,6 +1,6 @@
 import Dialog, { EvpDialogProps as DialogProps } from "../evp-dialog";
 import React, { useEffect, useRef } from "react";
-import render from "./render";
+import { clearAlert } from "./render";
 import classNames from "classnames";
 
 const Alert = ({
@@ -47,7 +47,7 @@ const Alert = ({
         defaultOpen={true}
         onClose={() => {
           onClose?.();
-          render(<></>);
+          clearAlert();
         }}
         class={classNames(classname, "evp-alert")}
         {...props}

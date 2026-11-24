@@ -5,7 +5,7 @@ import EvpIcon from '../evp-icon';
 import { Color } from '../constant';
 import Close from '../evp-icon/close';
 import { nanoid } from 'nanoid';
-import store, { MsgState } from './store';
+import store from './store';
 import { IndexableFuzzy } from '../typings';
 
 type EvpMsgType = 'info' | 'warn' | 'error' | 'success';
@@ -19,23 +19,29 @@ export interface EvpMessageProps {
 }
 
 
+function closeMessage(id: string) {
+  const msg = store.getMessageById(id);
+  if (!msg) return;
+  clearTimeout(msg.timer.start);
+  clearTimeout(msg.timer.clean);
+  msg.root.unmount();
+  msg.dom.remove();
+  store.delMessageByid(id);
+}
+
 function render(id: string, text: string, dom: JSX.Element, keep?: number, delay?: number) {
   const div = document.createElement('div')
   document.body.appendChild(div);
   const root = createRoot(div);
   const startTimer = setTimeout(() => {
     root.render(dom);
-    const msgState = store.getMessageById(id) as MsgState;
-    const cleanTimer = setTimeout(() => {
-      document.body.removeChild(div)
-      clearTimeout(startTimer);
-      store.delMessageByid(id);
-    }, keep??8000);
-    msgState.timer.clean = cleanTimer;
+    const msg = store.getMessageById(id);
+    if (msg) msg.timer.clean = setTimeout(() => closeMessage(id), keep ?? 8000);
   }, delay??0);
   store.addMessage({
     id: id,
     dom: div,
+    root,
     text: text,
     timer: {
       start: startTimer
@@ -58,16 +64,8 @@ export function EvpMessage(props: EvpMessageProps){
     'success': Color.Green
   }
 
-  function undisplay(e: React.MouseEvent): void {
-    const msgState = store.getMessageById(props.id) as MsgState;
-    const { dom: div, timer: { start, clean } } = msgState;
-
-    document.body.removeChild(div)
-    clearTimeout(start);
-    clearTimeout(clean);
-
-    store.delMessageByid(props.id);
-    return void 0 ;
+  function undisplay(): void {
+    closeMessage(props.id);
   }
   
   return(

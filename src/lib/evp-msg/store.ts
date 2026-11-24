@@ -1,4 +1,4 @@
-const storage = new Map();
+import type { Root } from 'react-dom/client';
 
 export type MsgState = {
   /** the text of the message */
@@ -7,6 +7,7 @@ export type MsgState = {
   id: any,
   /** the DOM Node where the message is appended */
   dom: HTMLDivElement,
+  root: Root,
   timer: {
     /** the timer to start to show message */
     start?: NodeJS.Timeout,
@@ -31,11 +32,9 @@ export const delMessageByid = (id: string) => {
   state.messages = state.messages.filter(msg => msg.id !== id);
 }
 
-storage.set('state', state);
-
 const store = {
   state: state,
-  messages: state.messages,
+  get messages() { return state.messages; },
   addMessage,
   getMessageById,
   delMessageByid
