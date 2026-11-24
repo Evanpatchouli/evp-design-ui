@@ -140,11 +140,14 @@
       "^(?!.*\\.(js|jsx|mjs|cjs|ts|tsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
     },
     "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|cjs|ts|tsx)$",
+      "[/\\\\]node_modules[/\\\\](?!(?:nanoid|react-markdown|remark-[^/\\\\]+|unified|bail|trough|vfile(?:-message)?|is-plain-obj|unist-util-[^/\\\\]+|mdast-util-[^/\\\\]+|hast-util-[^/\\\\]+|micromark(?:-[^/\\\\]+)?|decode-named-character-reference|character-entities|property-information|(?:comma|space)-separated-tokens|trim-lines)[/\\\\]).+\\.(js|jsx|mjs|cjs|ts|tsx)$",
       "^.+\\.module\\.(css|sass|scss)$"
     ],
     "modulePaths": [],
     "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1",
+      "^evp-design-ui$": "<rootDir>/src/lib",
+      "^react-syntax-highlighter/dist/esm/(.*)$": "react-syntax-highlighter/dist/cjs/$1",
       "^react-native$": "react-native-web",
       "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
     },
