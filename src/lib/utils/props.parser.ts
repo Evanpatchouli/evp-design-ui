@@ -35,7 +35,7 @@ export default function AllParser(props?: EvpBaseProps) {
     children,
     id: props?.id,
     class: props?.class,
-    key: props?.key,
+    key: props && Object.prototype.propertyIsEnumerable.call(props, "key") ? props.key : undefined,
     loading: props?.loading,
     hidden: props?.hidden,
   };

@@ -1,5 +1,13 @@
 import AllParser from "../lib/utils/props.parser";
 
+test("plain input retains its key and React's reserved key accessor is never read", () => {
+  expect(AllParser({ key: "plain" }).key).toBe("plain");
+  const props = Object.defineProperty({}, "key", {
+    get() { throw new Error("reserved React prop"); },
+  });
+  expect(AllParser(props).key).toBeUndefined();
+});
+
 test("explicit styles override defined atomic properties without mutating caller input", () => {
   const style = Object.freeze({ color: undefined, margin: 0, "--label": "text" });
   const props = Object.freeze({ style, color: "red", mg: 12, pd: 0, pdt_6: true, gap: 0, scale: 0 });
