@@ -1,3 +1,4 @@
+import CopyCodeButton from "@/components/copy-code-button";
 import Card from "@/components/card";
 import Md from "@/components/md";
 import Tsx from "@/components/tsx";
@@ -88,7 +89,7 @@ Label is almost same to FormItem's label, so you can use it as a FormItem's labe
               size="mini"
               text="code"
             />
-            <EvpButton theme="text" size="mini" text="copy" />
+            <CopyCodeButton source={exampleSource} />
           </>
         }
       >
@@ -99,18 +100,7 @@ Label is almost same to FormItem's label, so you can use it as a FormItem's labe
           <input />
         </EvpLabel>
       </Card>
-      <Tsx show={showCode[1]}>
-        {`
-<Card>
-  <EvpLabel required label={"User"}>
-    <input />
-  </EvpLabel>
-  <EvpLabel required label={"User"} labelPosition="top">
-    <input />
-  </EvpLabel>
-</Card>
-`}
-      </Tsx>
+      <Tsx show={showCode[1]}>{exampleSource}</Tsx>
       <Md>
         {`
 ## Api
@@ -155,3 +145,13 @@ export type EvpLabelProps = {
     </div>
   );
 }
+
+const exampleSource = `<Card>
+  <EvpLabel required label={"User"}>
+    <input />
+  </EvpLabel>
+  <EvpLabel required label={"User"} labelPosition="top">
+    <input />
+  </EvpLabel>
+</Card>
+`;

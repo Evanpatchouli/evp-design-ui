@@ -1,3 +1,4 @@
+import CopyCodeButton from "@/components/copy-code-button";
 import EvpInput from "../lib/evp-input";
 import React, { useEffect, useState } from "react";
 import Icons from '../lib/evp-icon/svg.icons';
@@ -102,7 +103,7 @@ You can assign onEnter event to EvpInput.
 </Md>
       <Card toolBar={<>
         <EvpButton theme="text" $click={()=>clickCode(1)} plain size="mini" text="code" />
-        <EvpButton theme="text" size="mini" text="copy" />
+        <CopyCodeButton source={onEnterSource} />
       </>}>
         <EvpInput
           name="account"
@@ -115,19 +116,7 @@ You can assign onEnter event to EvpInput.
         ></EvpInput>
       </Card>
 {showCode[1]?
-<Tsx>
-{`
-<EvpInput
-  name="account"
-  label={"account"}
-  labelSize="16px"
-  placeholder="Input your account..."
-  onEnter={(e) => {
-    EvpToast.info(e.currentTarget.value);
-  }}
-></EvpInput>
-`}
-</Tsx>
+<Tsx>{onEnterSource}</Tsx>
 : void 0}
 <Md>
 {`
@@ -138,7 +127,7 @@ You can add a label at the left of input box by assigning a string or Element to
 </Md>
       <Card toolBar={<>
         <EvpButton theme="text" $click={()=>clickCode(2)} plain size="mini" text="code" />
-        <EvpButton theme="text" size="mini" text="copy" />
+        <CopyCodeButton source={labelSource} />
       </>}>
         <EvpInput
           name="account"
@@ -152,20 +141,7 @@ You can add a label at the left of input box by assigning a string or Element to
         ></EvpInput>
       </Card>
 {showCode[2]?
-<Tsx>
-{`
-<EvpInput
-  name="account"
-  label={<EvpIcon user />}
-  labelSize="16px"
-  value={user}
-  placeholder="Input your account..."
-  onChange={(e) => {
-    setUser(e.currentTarget.value);
-  }}
-></EvpInput>
-`}
-</Tsx>
+<Tsx>{labelSource}</Tsx>
 : void 0}
 <Md>
 {`
@@ -181,7 +157,7 @@ Here are some examples:
 </Md>
       <Card toolBar={<>
         <EvpButton theme="text" $click={()=>clickCode(3)} plain size="mini" text="code" />
-        <EvpButton theme="text" size="mini" text="copy" />
+        <CopyCodeButton source={validationSource} />
       </>}>
         <label>Required :
           <EvpInput
@@ -234,62 +210,7 @@ Here are some examples:
         </label>
       </Card>
 {showCode[3]?
-<Tsx>
-{`
-<label>Required :
-  <EvpInput
-    name="account"
-    labelSize="16px"
-    placeholder="Input your account..."
-    rule={{
-      trigger: 'onEnter',
-      required: { on: true, val: true }
-    }}
-  ></EvpInput>
-</label>
-
-<label>Type should be number :
-  <EvpInput
-    name="account"
-    labelSize="16px"
-    placeholder="Input your account..."
-    rule={{
-      trigger: 'onEnter',
-      required: { on: true, val: true },
-      type: { on: true, val: 'number' }
-    }}
-  ></EvpInput>
-</label> 
-
-<label>Min length should be 4 character :
-  <EvpInput
-    name="account"
-    labelSize="16px"
-    placeholder="Input your account..."
-    rule={{
-      trigger: 'onEnter',
-      required: { on: true, val: true },
-      min: { on: true, val: 4 }
-    }}
-  ></EvpInput>
-</label>
-
-<label>Must have "user" slice :
-  <EvpInput
-    name="account"
-    labelSize="16px"
-    placeholder="Input your account..."
-    rule={{
-      trigger: 'onEnter',
-      required: { on: true, val: true },
-      mustHave: [
-        { on: true, val: 'user' }
-      ]
-    }}
-  ></EvpInput>
-</label>
-`}
-</Tsx>
+<Tsx>{validationSource}</Tsx>
 : void 0}
 <Md>
 {`
@@ -300,7 +221,7 @@ If you like to show a right icon when validation success, you can assign resultI
 </Md>
       <Card toolBar={<>
         <EvpButton theme="text" $click={()=>clickCode(4)} plain size="mini" text="code" />
-        <EvpButton theme="text" size="mini" text="copy" />
+        <CopyCodeButton source={resultIconSource} />
       </>}>
         <div>Show result Icon by right :
             <EvpInput
@@ -317,22 +238,7 @@ If you like to show a right icon when validation success, you can assign resultI
           </div>
       </Card>
 {showCode[4]?
-<Tsx>
-{`
-<label>Show result Icon by right :
-  <EvpInput
-    name="account"
-    labelSize="16px"
-    placeholder="Input your account..."
-    resultIcon
-    rule={{
-      trigger: 'onEnter',
-      required: { on: true, val: true },
-    }}
-  ></EvpInput>
-</label>
-`}
-</Tsx>
+<Tsx>{resultIconSource}</Tsx>
 : void 0}
 <Md>
 {`
@@ -405,3 +311,94 @@ If you like to show a right icon when validation success, you can assign resultI
     </div>
   );
 }
+
+const onEnterSource = `<EvpInput
+  name="account"
+  label={"account"}
+  labelSize="16px"
+  placeholder="Input your account..."
+  onEnter={(e) => {
+    EvpToast.info(e.currentTarget.value);
+  }}
+></EvpInput>
+`;
+
+const labelSource = `<EvpInput
+  name="account"
+  label={<EvpIcon user />}
+  labelSize="16px"
+  value={user}
+  placeholder="Input your account..."
+  onChange={(e) => {
+    setUser(e.currentTarget.value);
+  }}
+></EvpInput>
+`;
+
+const validationSource = `<label>Required :
+  <EvpInput
+    name="account"
+    labelSize="16px"
+    placeholder="Input your account..."
+    rule={{
+      trigger: 'onEnter',
+      required: { on: true, val: true }
+    }}
+  ></EvpInput>
+</label>
+
+<label>Type should be number :
+  <EvpInput
+    name="account"
+    labelSize="16px"
+    placeholder="Input your account..."
+    rule={{
+      trigger: 'onEnter',
+      required: { on: true, val: true },
+      type: { on: true, val: 'number' }
+    }}
+  ></EvpInput>
+</label>
+
+<label>Min length should be 4 character :
+  <EvpInput
+    name="account"
+    labelSize="16px"
+    placeholder="Input your account..."
+    rule={{
+      trigger: 'onEnter',
+      required: { on: true, val: true },
+      min: { on: true, val: 4 }
+    }}
+  ></EvpInput>
+</label>
+
+<label>Must have "user" slice :
+  <EvpInput
+    name="account"
+    labelSize="16px"
+    placeholder="Input your account..."
+    rule={{
+      trigger: 'onEnter',
+      required: { on: true, val: true },
+      mustHave: [
+        { on: true, val: 'user' }
+      ]
+    }}
+  ></EvpInput>
+</label>
+`;
+
+const resultIconSource = `<label>Show result Icon by right :
+  <EvpInput
+    name="account"
+    labelSize="16px"
+    placeholder="Input your account..."
+    resultIcon
+    rule={{
+      trigger: 'onEnter',
+      required: { on: true, val: true },
+    }}
+  ></EvpInput>
+</label>
+`;

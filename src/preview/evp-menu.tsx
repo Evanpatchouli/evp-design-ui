@@ -1,3 +1,4 @@
+import CopyCodeButton from "@/components/copy-code-button";
 import Md from "@/components/md";
 import SvgIcons from "../lib/evp-icon/svg.icons";
 import EvpMenu from "../lib/evp-menu";
@@ -102,7 +103,7 @@ If you want to disable some menu or menuitem, you can assign not-allowed attribu
         toolBar={
           <>
             <EvpButton theme="text" $click={() => clickCode(1)} plain size="mini" text="code" />
-            <EvpButton theme="text" size="mini" text="copy" />
+            <CopyCodeButton source={disabledSource} />
           </>
         }
       >
@@ -136,32 +137,7 @@ If you want to disable some menu or menuitem, you can assign not-allowed attribu
         </EvpMenu>
       </Card>
       {showCode[1] ? (
-        <Tsx>
-          {`
-<EvpMenu title={
-  <EvpRow>
-    <SvgIcons.All radius={18} pd={[0,12,0,0]}/>
-    <h4>Main Menu</h4>
-  </EvpRow>
-}
-mg={[0,0,0,0]}
->
-  <EvpMenuItem icon='user'>UserIcon Item</EvpMenuItem>
-  <EvpMenuItem icon='waterfalls_h'>UserIcon Item</EvpMenuItem>
-  <EvpMenu not-allowed submenu icon='user' title="SubMenu">
-    <EvpMenuItem not-allowed icon='unknown'>Unknown Item</EvpMenuItem>
-    <EvpMenuItem icon='unknown'>Unknown Item</EvpMenuItem>
-    <EvpMenuItem icon='unknown'>Unknown Item</EvpMenuItem>
-  </EvpMenu>
-  <EvpMenu submenu icon='user' title="SubMenu">
-    <EvpMenuItem not-allowed icon='unknown'>Unknown Item</EvpMenuItem>
-    <EvpMenuItem icon='unknown'>Unknown Item</EvpMenuItem>
-    <EvpMenuItem icon='unknown'>Unknown Item</EvpMenuItem>
-  </EvpMenu>
-  <EvpMenuItem icon='true_circle'>UserIcon Item</EvpMenuItem>
-</EvpMenu>
-`}
-        </Tsx>
+        <Tsx>{disabledSource}</Tsx>
       ) : (
         void 0
       )}
@@ -176,7 +152,7 @@ If you want to navigate to a route while clicking, you can assign to the link at
         toolBar={
           <>
             <EvpButton theme="text" $click={() => clickCode(2)} plain size="mini" text="code" />
-            <EvpButton theme="text" size="mini" text="copy" />
+            <CopyCodeButton source={linkSource} />
           </>
         }
       >
@@ -186,16 +162,7 @@ If you want to navigate to a route while clicking, you can assign to the link at
         </EvpMenu>
       </Card>
       {showCode[2] ? (
-        <Tsx>
-          {`
-<EvpMenu title={
-  <span style={{ fontWeight: 'bold' }}>Route Menu</span>
-}>
-  <EvpMenuItem link='/'>Home</EvpMenuItem>
-  <EvpMenuItem link='/components/evp-menu'>EvpMenu</EvpMenuItem>
-</EvpMenu>
-`}
-        </Tsx>
+        <Tsx>{linkSource}</Tsx>
       ) : (
         void 0
       )}
@@ -212,7 +179,7 @@ Default is no indent, if you set it to true, it will be indented at 18px. You ca
         toolBar={
           <>
             <EvpButton theme="text" $click={() => clickCode(3)} plain size="mini" text="code" />
-            <EvpButton theme="text" size="mini" text="copy" />
+            <CopyCodeButton source={itemIndentSource} />
           </>
         }
       >
@@ -224,18 +191,7 @@ Default is no indent, if you set it to true, it will be indented at 18px. You ca
         </EvpMenu>
       </Card>
       {showCode[3] ? (
-        <Tsx>
-          {`
-<EvpMenu title={
-  <span style={{ fontWeight: 'bold' }}>Route Menu</span>
-}>
-  <EvpMenuItem icon="user">User</EvpMenuItem>
-  <EvpMenu submenu itemIndent icon="help" title="Help">
-    <EvpMenuItem icon="user">User</EvpMenuItem>
-  </EvpMenu>
-</EvpMenu>
-`}
-        </Tsx>
+        <Tsx>{itemIndentSource}</Tsx>
       ) : (
         void 0
       )}
@@ -276,3 +232,45 @@ You can customize menuitem colors at different states by setting \`itemColor\` p
     </div>
   );
 }
+
+const disabledSource = `<EvpMenu title={
+  <EvpRow>
+    <SvgIcons.All radius={18} pd={[0,12,0,0]}/>
+    <h4>Main Menu</h4>
+  </EvpRow>
+}
+mg={[0,0,0,0]}
+>
+  <EvpMenuItem icon='user'>UserIcon Item</EvpMenuItem>
+  <EvpMenuItem icon='waterfalls_h'>UserIcon Item</EvpMenuItem>
+  <EvpMenu not-allowed submenu icon='user' title="SubMenu">
+    <EvpMenuItem not-allowed icon='unknown'>Unknown Item</EvpMenuItem>
+    <EvpMenuItem icon='unknown'>Unknown Item</EvpMenuItem>
+    <EvpMenuItem icon='unknown'>Unknown Item</EvpMenuItem>
+  </EvpMenu>
+  <EvpMenu submenu icon='user' title="SubMenu">
+    <EvpMenuItem not-allowed icon='unknown'>Unknown Item</EvpMenuItem>
+    <EvpMenuItem icon='unknown'>Unknown Item</EvpMenuItem>
+    <EvpMenuItem icon='unknown'>Unknown Item</EvpMenuItem>
+  </EvpMenu>
+  <EvpMenuItem icon='true_circle'>UserIcon Item</EvpMenuItem>
+</EvpMenu>
+`;
+
+const linkSource = `<EvpMenu title={
+  <span style={{ fontWeight: 'bold' }}>Route Menu</span>
+}>
+  <EvpMenuItem link='/'>Home</EvpMenuItem>
+  <EvpMenuItem link='/components/evp-menu'>EvpMenu</EvpMenuItem>
+</EvpMenu>
+`;
+
+const itemIndentSource = `<EvpMenu title={
+  <span style={{ fontWeight: 'bold' }}>Route Menu</span>
+}>
+  <EvpMenuItem icon="user">User</EvpMenuItem>
+  <EvpMenu submenu itemIndent icon="help" title="Help">
+    <EvpMenuItem icon="user">User</EvpMenuItem>
+  </EvpMenu>
+</EvpMenu>
+`;

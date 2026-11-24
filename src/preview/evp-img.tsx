@@ -1,8 +1,10 @@
+import DemoCard from "@/components/demo-card";
 import Md from "@/components/md";
 import Tsx from "@/components/tsx";
 import { EvpButton } from "evp-design-ui";
 import { useEffect } from "react";
 import Example from "./demos/img/example";
+import exampleSource from "./demos/img/example.tsx?source";
 import ImgApi from "./apis/img.api";
 
 export default function ImgView() {
@@ -38,7 +40,7 @@ import { Img } from 'evp-design-ui'
 **example:**
 `}
       </Md>
-      <Example />
+      <DemoCard source={exampleSource}><Example /></DemoCard>
       <Md>
         {`
 ## Examples

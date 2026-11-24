@@ -2,12 +2,18 @@ import Md from "@/components/md";
 import Tsx from "@/components/tsx";
 import EvpCode from "@/components/code";
 import { EvpButton } from "evp-design-ui";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import DemoCard from "@/components/demo-card";
 import Example from "./demos/table/example";
 import Render from "./demos/table/render";
 import WithoutSchema from "./demos/table/without-schema";
 import Zebra from "./demos/table/zebra";
 import Pagination from "./demos/table/pagination";
+import exampleSource from "./demos/table/example.tsx?source";
+import renderSource from "./demos/table/render.tsx?source";
+import withoutSchemaSource from "./demos/table/without-schema.tsx?source";
+import zebraSource from "./demos/table/zebra.tsx?source";
+import paginationSource from "./demos/table/pagination.tsx?source";
 
 export default function TableView() {
   const next = { route: "evp-paginator", name: "Paginator" };
@@ -18,23 +24,6 @@ export default function TableView() {
       behavior: "smooth",
     });
   }, []);
-  const [showCode, setShowCode] = useState<{ [x: number]: boolean }>({
-    1: false,
-    2: false,
-    3: false,
-    4: false,
-    5: false,
-    6: false,
-    7: false,
-    8: false,
-  });
-
-  const clickCode = (idx: number) => {
-    let $showCode = { ...showCode };
-    $showCode[idx] = !showCode[idx];
-    setShowCode($showCode);
-  };
-
   return (
     <div className="preview-container">
       <Md>
@@ -59,7 +48,7 @@ import { Table } from 'evp-design-ui'
 **example:**
 `}
       </Md>
-      <Example />
+      <DemoCard source={exampleSource}><Example /></DemoCard>
       <Md>
         {`
 ## Examples
@@ -67,9 +56,13 @@ import { Table } from 'evp-design-ui'
 Here are some examples about EvpTable.
 
 EvpTable recieve a schema to know which columns in table are needed to show, and recieve a data to show the records.
+
+### render
+
+Use a column's \`render\` function to display an icon or add action buttons.
 `}
       </Md>
-      <Render />
+      <DemoCard source={renderSource}><Render /></DemoCard>
       <Md>
         {`
 ### without schema
@@ -77,7 +70,7 @@ EvpTable recieve a schema to know which columns in table are needed to show, and
 If you want to use record feild key as col title, you can use Table directly without schema.
 `}
       </Md>
-      <WithoutSchema />
+      <DemoCard source={withoutSchemaSource}><WithoutSchema /></DemoCard>
       <Md>
         {`
 ### zebra
@@ -85,16 +78,16 @@ If you want to use record feild key as col title, you can use Table directly wit
 You can set \`zebra\` to show zebra-striped table.
 `}
       </Md>
-      <Zebra />
+      <DemoCard source={zebraSource}><Zebra /></DemoCard>
       <Md>
         {`
 ### pagination
 
-You can set \`pagination\` to control pagination of table records.  
-If you want to show the provided paginator in Table, just set \`paginator\` to \`true\`.
+Set \`pagination={{ pageSize: 10 }}\` to display ten records per page. The first page is 1.
+Set \`paginator\` to show the page controls. When pagination is disabled, Table displays every record.
 `}
       </Md>
-      <Pagination />
+      <DemoCard source={paginationSource}><Pagination /></DemoCard>
       <Md>
         {`
 ## Api
@@ -104,6 +97,12 @@ If you want to show the provided paginator in Table, just set \`paginator\` to \
 ★ cell based on <td>
 
 **Table Apis:**
+
+- Use \`rowKey="id"\` or a function such as \`rowKey={row => row.email}\` to identify each record across
+  sorting, pagination and replacement data. Keys must be unique. By default Table uses the record's
+  \`key\`, then its \`id\`, then its object identity.
+- Set a column's \`hidden\` to omit its header and cells. Table calls the column's
+  \`render(value, row, records)\` only for visible columns. The third argument contains the current page.
 
 `}
       </Md>
@@ -118,8 +117,7 @@ export type TableItemSchema<T extends Object = any> = {
   key?: keyof T | (string & {});
   cellProps?: TdProps;
   align?: "left" | "center" | "right" | "char" | "justify";
-  // @ts-ignore
-  render?: (value: T[keyof T | (string & {})], row: T, records: T[]) => React.ReactNode;
+  render?: (value: T[keyof T], row: T, records: T[]) => React.ReactNode;
 };
 
 export interface EvpTableProps<RecordType extends Object = any> extends React.DOMAttributes<HTMLTableElement> {
@@ -136,6 +134,7 @@ export interface EvpTableProps<RecordType extends Object = any> extends React.DO
   indexAlign?: "left" | "center" | "right" | "char" | "justify";
   indexProps?: TdProps;
   data?: RecordType[];
+  rowKey?: keyof RecordType | ((row: RecordType) => React.Key);
   pagination?: {
     pageSize?: number;
     pageSizes?: number[];

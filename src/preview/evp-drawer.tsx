@@ -1,3 +1,4 @@
+import CopyCodeButton from "@/components/copy-code-button";
 import Card from "@/components/card";
 import Md from "@/components/md";
 import Tsx from "@/components/tsx";
@@ -86,7 +87,7 @@ Drawer can be opened from left, right, top, bottom, totally four different direc
         toolBar={
           <>
             <EvpButton $click={() => clickCode(1)} theme="text" size="mini" text="code" />
-            <EvpButton theme="text" size="mini" text="copy" />
+            <CopyCodeButton source={exampleSource} />
           </>
         }
       >
@@ -138,57 +139,7 @@ Drawer can be opened from left, right, top, bottom, totally four different direc
           </div>
         </Drawer>
       </Card>
-      <Tsx show={showCode[1]}>
-        {`
-      <Button
-        $click={() => {
-          openSet1(!open1);
-        }}
-        plain
-      >
-        Open {position} Drawer
-      </Button>
-      <Row>
-        <Button
-          $click={() => {
-            positionSet("left");
-          }}
-          mg={[8, 8, 0, 0]}
-        >
-          Left
-        </Button>
-        <Button
-          $click={() => {
-            positionSet("right");
-          }}
-          mg={[8, 8, 0, 0]}
-        >
-          Right
-        </Button>
-        <Button
-          $click={() => {
-            positionSet("top");
-          }}
-          mg={[8, 8, 0, 0]}
-        >
-          Top
-        </Button>
-        <Button
-          $click={() => {
-            positionSet("bottom");
-          }}
-          mg={[8, 8, 0, 0]}
-        >
-          Bottom
-        </Button>
-      </Row>
-      <Drawer open={open1} setOpen={openSet1} position={position}>
-        <div style={{ width: 240 }}>
-          <h3>this is a drawer from {position}</h3>
-        </div>
-      </Drawer>
-`}
-      </Tsx>
+      <Tsx show={showCode[1]}>{exampleSource}</Tsx>
       <Md>
         {`
 ### Without Modal
@@ -253,3 +204,52 @@ export type EvpDrawerProps = {
     </div>
   );
 }
+
+const exampleSource = `      <Button
+        $click={() => {
+          openSet1(!open1);
+        }}
+        plain
+      >
+        Open {position} Drawer
+      </Button>
+      <Row>
+        <Button
+          $click={() => {
+            positionSet("left");
+          }}
+          mg={[8, 8, 0, 0]}
+        >
+          Left
+        </Button>
+        <Button
+          $click={() => {
+            positionSet("right");
+          }}
+          mg={[8, 8, 0, 0]}
+        >
+          Right
+        </Button>
+        <Button
+          $click={() => {
+            positionSet("top");
+          }}
+          mg={[8, 8, 0, 0]}
+        >
+          Top
+        </Button>
+        <Button
+          $click={() => {
+            positionSet("bottom");
+          }}
+          mg={[8, 8, 0, 0]}
+        >
+          Bottom
+        </Button>
+      </Row>
+      <Drawer open={open1} setOpen={openSet1} position={position}>
+        <div style={{ width: 240 }}>
+          <h3>this is a drawer from {position}</h3>
+        </div>
+      </Drawer>
+`;

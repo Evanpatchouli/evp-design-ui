@@ -1,3 +1,4 @@
+import CopyCodeButton from "@/components/copy-code-button";
 import Card from "@/components/card";
 import Tsx from "@/components/tsx";
 import EvpButton from "@/lib/evp-button";
@@ -77,7 +78,7 @@ You need to set justifyContent to "center" if you want to justify the child-elem
         <EvpButton theme="text" $click={() => {
           clickCode(1);
         }} size="mini" text="code" />
-        <EvpButton theme="text" size="mini" text="copy" />
+        <CopyCodeButton source={justificationSource} />
       </>}>
         <EvpRow justifyContent="center" border='1px solid black'>
           <div>Hello,</div>
@@ -85,14 +86,7 @@ You need to set justifyContent to "center" if you want to justify the child-elem
         </EvpRow>
       </Card>
 {showCode[1]?
-<Tsx>
-{`
-<EvpRow justifyContent="center" border='1px solid black'>
-  <div>Hello,</div>
-  <div>World!</div>
-</EvpRow>
-`}
-</Tsx>
+<Tsx>{justificationSource}</Tsx>
 : void 0}
       <Md>
 {`
@@ -106,7 +100,7 @@ You need to set alignItems to "flex-start" if you want to align the child-elemen
         <EvpButton theme="text" $click={() => {
           clickCode(2);
         }} size="mini" text="code" />
-        <EvpButton theme="text" size="mini" text="copy" />
+        <CopyCodeButton source={alignmentSource} />
       </>}>
         <EvpRow alignItems="flex-start" border='1px solid black' h={100}>
           <div>Hello,</div>
@@ -114,14 +108,7 @@ You need to set alignItems to "flex-start" if you want to align the child-elemen
         </EvpRow>
       </Card>
 {showCode[2]?
-<Tsx>
-{`
-<EvpRow justifyContent="flex-start" border='1px solid black' h={100}>
-  <div>Hello,</div>
-  <div>World!</div>
-</EvpRow>
-`}
-</Tsx>
+<Tsx>{alignmentSource}</Tsx>
 : void 0}
       <Md>
 {`
@@ -138,3 +125,15 @@ Please refer to EvpBaseProps in docs of EvpDom.
     </div>
   )
 }
+
+const justificationSource = `<EvpRow justifyContent="center" border='1px solid black'>
+  <div>Hello,</div>
+  <div>World!</div>
+</EvpRow>
+`;
+
+const alignmentSource = `<EvpRow alignItems="flex-start" border='1px solid black' h={100}>
+  <div>Hello,</div>
+  <div>World!</div>
+</EvpRow>
+`;

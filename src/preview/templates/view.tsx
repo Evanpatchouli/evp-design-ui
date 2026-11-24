@@ -3,7 +3,9 @@ import Tsx from "@/components/tsx";
 import EvpCode from "@/components/code";
 import { EvpButton } from "evp-design-ui";
 import { useEffect } from "react";
+import DemoCard from "@/components/demo-card";
 import Example from "../demos/img/example";
+import source from "../demos/img/example.tsx?source";
 
 const CamelCaseName = "Img";
 
@@ -40,7 +42,7 @@ import { ${CamelCaseName} } from 'evp-design-ui'
 **example:**
 `}
       </Md>
-      <Example />
+      <DemoCard source={source}><Example /></DemoCard>
       <Md>
         {`
 ## Examples

@@ -1,3 +1,4 @@
+import CopyCodeButton from "@/components/copy-code-button";
 import Card from "@/components/card";
 import Md from "@/components/md";
 import Tsx from "@/components/tsx";
@@ -89,7 +90,7 @@ If you need to group up several radios without EvpRadioGroup, you should use the
               size="mini"
               text="code"
             />
-            <EvpButton theme="text" size="mini" text="copy" />
+            <CopyCodeButton source={singleSource} />
           </>
         }
       >
@@ -99,12 +100,7 @@ If you need to group up several radios without EvpRadioGroup, you should use the
         </EvpRadio>
       </Card>
       {showCode[1] ? (
-        <Tsx>
-          {`
-<EvpRadio name="radio" label="Radio" value="radio" />
-<EvpRadio name="radio" value="radio" >Radio</EvpRadio>
-`}
-        </Tsx>
+        <Tsx>{singleSource}</Tsx>
       ) : (
         void 0
       )}
@@ -126,7 +122,7 @@ If you want to set a radio as default checked, you can set \`defaultChecked\` at
               size="mini"
               text="code"
             />
-            <EvpButton theme="text" size="mini" text="copy" />
+            <CopyCodeButton source={defaultCheckedSource} />
           </>
         }
       >
@@ -139,12 +135,7 @@ If you want to set a radio as default checked, you can set \`defaultChecked\` at
         <EvpRadio name="radio2" label="Option 2" value="option_2" />
       </Card>
       {showCode[2] ? (
-        <Tsx>
-          {`
-<EvpRadio name="radio2" label="Default Checked" defaultChecked value="option_1" />
-<EvpRadio name="radio2" label="Option 2" value="option_2" />
-`}
-        </Tsx>
+        <Tsx>{defaultCheckedSource}</Tsx>
       ) : (
         void 0
       )}
@@ -171,7 +162,7 @@ If you want to ban a radio, just set the \`disabled\` attribute to \`true\`.
               size="mini"
               text="code"
             />
-            <EvpButton theme="text" size="mini" text="copy" />
+            <CopyCodeButton source={groupSource} />
           </>
         }
       >
@@ -189,22 +180,7 @@ If you want to ban a radio, just set the \`disabled\` attribute to \`true\`.
         </EvpRadioGroup>
       </Card>
       {showCode[3] ? (
-        <Tsx>
-          {`
-<EvpRadioGroup required label="Am I handsome?" name="handsome">
-  <EvpRadio label="Yes" name="handsome" value="yes" />
-  <EvpRadio label="No" value="no" disabled />
-  <EvpRadio label="Secret" value="secret" />
-  <EvpRadio
-    label="Other Group's Radio"
-    labelWidth={180}
-    defaultChecked
-    name="other"
-    value="other"
-  />
-</EvpRadioGroup>
-`}
-        </Tsx>
+        <Tsx>{groupSource}</Tsx>
       ) : (
         void 0
       )}
@@ -261,3 +237,25 @@ If you want to ban a radio, just set the \`disabled\` attribute to \`true\`.
     </div>
   );
 }
+
+const singleSource = `<EvpRadio name="radio" label="Radio" value="radio" />
+<EvpRadio name="radio" value="radio" >Radio</EvpRadio>
+`;
+
+const defaultCheckedSource = `<EvpRadio name="radio2" label="Default Checked" defaultChecked value="option_1" />
+<EvpRadio name="radio2" label="Option 2" value="option_2" />
+`;
+
+const groupSource = `<EvpRadioGroup required label="Am I handsome?" name="handsome">
+  <EvpRadio label="Yes" name="handsome" value="yes" />
+  <EvpRadio label="No" value="no" disabled />
+  <EvpRadio label="Secret" value="secret" />
+  <EvpRadio
+    label="Other Group's Radio"
+    labelWidth={180}
+    defaultChecked
+    name="other"
+    value="other"
+  />
+</EvpRadioGroup>
+`;

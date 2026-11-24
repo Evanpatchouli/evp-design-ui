@@ -1,3 +1,4 @@
+import CopyCodeButton from "@/components/copy-code-button";
 import Card from "@/components/card";
 import Md from "@/components/md";
 import Tsx from "@/components/tsx";
@@ -112,7 +113,7 @@ Here are some examples about EvpCard.
               size="mini"
               text="code"
             />
-            <EvpButton theme="text" size="mini" text="copy" />
+            <CopyCodeButton source={exampleSource} />
           </>
         }
       >
@@ -163,9 +164,41 @@ Here are some examples about EvpCard.
           </EvpButton>
         </EvpForm>
       </Card>
-      <Tsx show={showCode[1]}>
+      <Tsx show={showCode[1]}>{exampleSource}</Tsx>
+      <Md>
         {`
-<EvpForm formRef={ref}
+## Api
+
+★ container based on EvpDom\\
+★ props extends EvpBaseProps
+
+**EvpForm Apis:**
+`}
+      </Md>
+      <EvpCode lang="typescript" theme="coldarkDark">
+{`
+export type EvpFormProps<T = any> = {
+  children: JSX.Element | React.ReactNode;
+  $submit?: (formData: { [K in keyof T]: T[K]; }) => void;
+  formRef?: React.MutableRefObject<EvpFormInstance<T>>;
+  style?: React.CSSProperties;
+};
+`}
+      </EvpCode>
+      <EvpButton
+        position="absolute"
+        right={40}
+        bottom={0}
+        plain
+        shadow={false}
+        link="/components/evp-tag"
+        text="★ Next Doc EvpTag >"
+      />
+    </div>
+  );
+}
+
+const exampleSource = `<EvpForm formRef={ref}
 $submit={() => {
   const formData = ref.current?.gets();
   console.table(formData);
@@ -209,37 +242,4 @@ $submit={() => {
     Submit
   </EvpButton>
 </EvpForm>
-`}
-      </Tsx>
-      <Md>
-        {`
-## Api
-
-★ container based on EvpDom  
-★ props extends EvpBaseProps
-
-**EvpForm Apis:**
-`}
-      </Md>
-      <EvpCode lang="typescript" theme="coldarkDark">
-{`
-export type EvpFormProps<T = any> = {
-  children: JSX.Element | React.ReactNode;
-  $submit?: (formData: { [K in keyof T]: T[K]; }) => void;
-  formRef?: React.MutableRefObject<EvpFormInstance<T>>;
-  style?: React.CSSProperties;
-};
-`}
-      </EvpCode>
-      <EvpButton
-        position="absolute"
-        right={40}
-        bottom={0}
-        plain
-        shadow={false}
-        link="/components/evp-tag"
-        text="★ Next Doc EvpTag >"
-      />
-    </div>
-  );
-}
+`;

@@ -1,3 +1,4 @@
+import CopyCodeButton from "@/components/copy-code-button";
 import Card from "@/components/card";
 import Code from "@/components/code";
 import Md from "@/components/md";
@@ -71,7 +72,7 @@ The label position can be set to 'left', 'right', 'top' or 'bottom'. Exactly, it
         <EvpButton theme="text" $click={() => {
           clickCode(1);
         }} size="mini" text="code" />
-        <EvpButton theme="text" size="mini" text="copy" />
+        <CopyCodeButton source={labelPositionSource} />
       </>}>
         <div style={{ position: 'relative', display: 'flex', justifyItems: 'flex-start' }}>
           <EvpFlexbar labelPosition="left" label="left">
@@ -92,24 +93,7 @@ The label position can be set to 'left', 'right', 'top' or 'bottom'. Exactly, it
       </Card>
 {showCode[1]?
 <Code lang="tsx">
-{`
-<div style={{ position: 'relative', display: 'flex', justifyItems: 'flex-start' }}>
-  <EvpFlexbar labelPosition="left" label="left">
-    <div>这是往左方向的伸缩条</div>
-  </EvpFlexbar>
-  <EvpFlexbar labelPosition="bottom" label="bot">
-    <div>这是竖向底部的伸缩条</div>
-  </EvpFlexbar>
-</div>
-<div style={{ position: 'relative', display: 'flex', justifyItems: 'flex-start' }}>
-  <EvpFlexbar labelPosition="top" label="top">
-    <div>这是竖向顶部的伸缩条</div>
-  </EvpFlexbar>
-  <EvpFlexbar labelPosition="right" label="right" style={{ marginBottom: 8 }}>
-    <div>这是往右方向的伸缩条</div>
-  </EvpFlexbar>
-</div>
-`}</Code>
+{labelPositionSource}</Code>
 : void 0}
 <Md>
 {`
@@ -123,18 +107,13 @@ The trigger can be set to 'click' or 'hover' to expand and close the flexbar.
       <EvpButton theme="text" $click={() => {
         clickCode(2);
       }} size="mini" text="code" />
-      <EvpButton theme="text" size="mini" text="copy" />
+      <CopyCodeButton source={triggerSource} />
     </>}>
       <EvpFlexbar label="click" trigger="click">I'am triggered by clicking</EvpFlexbar>
       <EvpFlexbar label="hover" trigger="hover">I'am triggered by hovering</EvpFlexbar>
     </Card>
 {showCode[2]?
-  <Code lang="tsx">
-{`
-<EvpFlexbar label="click" trigger="click">I'am triggered by clicking</EvpFlexbar>
-<EvpFlexbar label="hover" trigger="hover">I'am triggered by hovering</EvpFlexbar>
-`}
-</Code>
+  <Code lang="tsx">{triggerSource}</Code>
 : void 0}
 <Md>
 {`
@@ -187,3 +166,25 @@ EvpFlexbar Apis:
     </div>
   )
 }
+
+const labelPositionSource = `<div style={{ position: 'relative', display: 'flex', justifyItems: 'flex-start' }}>
+  <EvpFlexbar labelPosition="left" label="left">
+    <div>这是往左方向的伸缩条</div>
+  </EvpFlexbar>
+  <EvpFlexbar labelPosition="bottom" label="bot">
+    <div>这是竖向底部的伸缩条</div>
+  </EvpFlexbar>
+</div>
+<div style={{ position: 'relative', display: 'flex', justifyItems: 'flex-start' }}>
+  <EvpFlexbar labelPosition="top" label="top">
+    <div>这是竖向顶部的伸缩条</div>
+  </EvpFlexbar>
+  <EvpFlexbar labelPosition="right" label="right" style={{ marginBottom: 8 }}>
+    <div>这是往右方向的伸缩条</div>
+  </EvpFlexbar>
+</div>
+`;
+
+const triggerSource = `<EvpFlexbar label="click" trigger="click">I'am triggered by clicking</EvpFlexbar>
+<EvpFlexbar label="hover" trigger="hover">I'am triggered by hovering</EvpFlexbar>
+`;

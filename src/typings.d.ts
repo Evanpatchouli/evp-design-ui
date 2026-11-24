@@ -6,3 +6,7 @@ declare module '*.css';
 declare module '*.svg';
 declare module '*.md';
 declare module '*.mdx';
+declare module '*.tsx?source' {
+  const source: string;
+  export default source;
+}

@@ -1,3 +1,4 @@
+import CopyCodeButton from "@/components/copy-code-button";
 import Card from "@/components/card";
 import Md from "@/components/md";
 import Tsx from "@/components/tsx";
@@ -75,7 +76,7 @@ Here are some examples about EvpTag with three different types and seven differe
         toolBar={
           <>
             <EvpButton $click={() => clickCode(1)} theme="text" size="mini" text="code" />
-            <EvpButton theme="text" size="mini" text="copy" />
+            <CopyCodeButton source={themeSource} />
           </>
         }
       >
@@ -112,42 +113,7 @@ Here are some examples about EvpTag with three different types and seven differe
           <EvpTag text="Dark" theme="dark" plain style={{ marginRight: 12 }} />
         </Row>
       </Card>
-      <Tsx show={showCode[1]}>
-        {`
-<Row>
-  <span style={{ marginRight: 12 }}>Default ( Deep )</span>
-  <EvpTag text="White" theme="white" style={{ marginRight: 12 }} />
-  <EvpTag text="Primary" theme="primary" style={{ marginRight: 12 }} />
-  <EvpTag text="Success" theme="success" style={{ marginRight: 12 }} />
-  <EvpTag text="Warning" theme="warning" style={{ marginRight: 12 }} />
-  <EvpTag text="Danger" theme="danger" style={{ marginRight: 12 }} />
-  <EvpTag text="Info" theme="info" style={{ marginRight: 12 }} />
-  <EvpTag text="Dark" theme="dark" style={{ marginRight: 12 }} />
-</Row>
-
-<Row mgt_20>
-  <span style={{ marginRight: 12 }}>Light</span>
-  <EvpTag text="White" theme="white" light style={{ marginRight: 12 }} />
-  <EvpTag text="Primary" theme="primary" light style={{ marginRight: 12 }} />
-  <EvpTag text="Success" theme="success" light style={{ marginRight: 12 }} />
-  <EvpTag text="Warning" theme="warning" light style={{ marginRight: 12 }} />
-  <EvpTag text="Danger" theme="danger" light style={{ marginRight: 12 }} />
-  <EvpTag text="Info" theme="info" light style={{ marginRight: 12 }} />
-  <EvpTag text="Dark" theme="dark" light style={{ marginRight: 12 }} />
-</Row>
-
-<Row mgt_20>
-  <span style={{ marginRight: 12 }}>Plain</span>
-  <EvpTag text="White" theme="white" plain style={{ marginRight: 12 }} />
-  <EvpTag text="Primary" theme="primary" plain style={{ marginRight: 12 }} />
-  <EvpTag text="Success" theme="success" plain style={{ marginRight: 12 }} />
-  <EvpTag text="Warning" theme="warning" plain style={{ marginRight: 12 }} />
-  <EvpTag text="Danger" theme="danger" plain style={{ marginRight: 12 }} />
-  <EvpTag text="Info" theme="info" plain style={{ marginRight: 12 }} />
-  <EvpTag text="Dark" theme="dark" plain style={{ marginRight: 12 }} />
-</Row>
-`}
-      </Tsx>
+      <Tsx show={showCode[1]}>{themeSource}</Tsx>
       <Md>
         {`
 ### Size
@@ -162,7 +128,7 @@ We provide three different sizes for EvpTag, you can use \`size\` props to set i
         toolBar={
           <>
             <EvpButton $click={() => clickCode(2)} theme="text" size="mini" text="code" />
-            <EvpButton theme="text" size="mini" text="copy" />
+            <CopyCodeButton source={sizeSource} />
           </>
         }
       >
@@ -173,16 +139,7 @@ We provide three different sizes for EvpTag, you can use \`size\` props to set i
           <EvpTag text="Large" light size="lg" style={{ marginRight: 12 }} />
         </Row>
       </Card>
-      <Tsx show={showCode[2]}>
-        {`
-<Row mgt_20>
-  <EvpTag text="Default" light style={{ marginRight: 12 }} />
-  <EvpTag text="Small" light size="sm" style={{ marginRight: 12 }} />
-  <EvpTag text="Middle" light size="md" style={{ marginRight: 12 }} />
-  <EvpTag text="Large" light size="lg" style={{ marginRight: 12 }} />
-</Row>
-`}
-      </Tsx>
+      <Tsx show={showCode[2]}>{sizeSource}</Tsx>
       <Md>
         {`
 ### Rounded
@@ -197,7 +154,7 @@ You can use \`round\` props to set EvpTag's radius types.
         toolBar={
           <>
             <EvpButton $click={() => clickCode(3)} theme="text" size="mini" text="code" />
-            <EvpButton theme="text" size="mini" text="copy" />
+            <CopyCodeButton source={roundedSource} />
           </>
         }
       >
@@ -206,14 +163,7 @@ You can use \`round\` props to set EvpTag's radius types.
           <EvpTag text="Round" light round style={{ marginRight: 12 }} />
         </Row>
       </Card>
-      <Tsx show={showCode[3]}>
-        {`
-<Row mgt_20>
-  <EvpTag text="Default" light style={{ marginRight: 12 }} />
-  <EvpTag text="Round" light round style={{ marginRight: 12 }} />
-</Row>
-        `}
-      </Tsx>
+      <Tsx show={showCode[3]}>{roundedSource}</Tsx>
       <Md>
         {`
 ## Api
@@ -264,3 +214,51 @@ export interface EvpTagProps extends React.HTMLAttributes<HTMLDivElement> {
     </div>
   );
 }
+
+const themeSource = `<Row>
+  <span style={{ marginRight: 12 }}>Default ( Deep )</span>
+  <EvpTag text="White" theme="white" style={{ marginRight: 12 }} />
+  <EvpTag text="Primary" theme="primary" style={{ marginRight: 12 }} />
+  <EvpTag text="Success" theme="success" style={{ marginRight: 12 }} />
+  <EvpTag text="Warning" theme="warning" style={{ marginRight: 12 }} />
+  <EvpTag text="Danger" theme="danger" style={{ marginRight: 12 }} />
+  <EvpTag text="Info" theme="info" style={{ marginRight: 12 }} />
+  <EvpTag text="Dark" theme="dark" style={{ marginRight: 12 }} />
+</Row>
+
+<Row mgt_20>
+  <span style={{ marginRight: 12 }}>Light</span>
+  <EvpTag text="White" theme="white" light style={{ marginRight: 12 }} />
+  <EvpTag text="Primary" theme="primary" light style={{ marginRight: 12 }} />
+  <EvpTag text="Success" theme="success" light style={{ marginRight: 12 }} />
+  <EvpTag text="Warning" theme="warning" light style={{ marginRight: 12 }} />
+  <EvpTag text="Danger" theme="danger" light style={{ marginRight: 12 }} />
+  <EvpTag text="Info" theme="info" light style={{ marginRight: 12 }} />
+  <EvpTag text="Dark" theme="dark" light style={{ marginRight: 12 }} />
+</Row>
+
+<Row mgt_20>
+  <span style={{ marginRight: 12 }}>Plain</span>
+  <EvpTag text="White" theme="white" plain style={{ marginRight: 12 }} />
+  <EvpTag text="Primary" theme="primary" plain style={{ marginRight: 12 }} />
+  <EvpTag text="Success" theme="success" plain style={{ marginRight: 12 }} />
+  <EvpTag text="Warning" theme="warning" plain style={{ marginRight: 12 }} />
+  <EvpTag text="Danger" theme="danger" plain style={{ marginRight: 12 }} />
+  <EvpTag text="Info" theme="info" plain style={{ marginRight: 12 }} />
+  <EvpTag text="Dark" theme="dark" plain style={{ marginRight: 12 }} />
+</Row>
+`;
+
+const sizeSource = `<Row mgt_20>
+  <EvpTag text="Default" light style={{ marginRight: 12 }} />
+  <EvpTag text="Small" light size="sm" style={{ marginRight: 12 }} />
+  <EvpTag text="Middle" light size="md" style={{ marginRight: 12 }} />
+  <EvpTag text="Large" light size="lg" style={{ marginRight: 12 }} />
+</Row>
+`;
+
+const roundedSource = `<Row mgt_20>
+  <EvpTag text="Default" light style={{ marginRight: 12 }} />
+  <EvpTag text="Round" light round style={{ marginRight: 12 }} />
+</Row>
+        `;

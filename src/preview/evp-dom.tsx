@@ -1,3 +1,4 @@
+import CopyCodeButton from "@/components/copy-code-button";
 import Card from "@/components/card";
 import Code from "@/components/code";
 import Tsx from "@/components/tsx";
@@ -171,7 +172,7 @@ Here are examples of loading and modal:
               size="mini"
               text="code"
             />
-            <EvpButton theme="text" size="mini" text="copy" />
+            <CopyCodeButton source={exampleSource} />
           </>
         }
       >
@@ -257,9 +258,30 @@ Here are examples of loading and modal:
           </Tsx>
         </EvpDom>
       </Card>
-      <Tsx show={showCode[1]}>
+      <Tsx show={showCode[1]}>{exampleSource}</Tsx>
+      <Md>
         {`
-<Button
+## Api
+
+**EvpCol Apis:**
+
+Please refer to EvpBaseProps in docs of EvpDom.
+`}
+      </Md>
+      <EvpButton
+        position="absolute"
+        right={40}
+        bottom={0}
+        plain
+        shadow={false}
+        link="/components/evp-divider"
+        text="★ Next Doc EvpDivider >"
+      />
+    </div>
+  );
+}
+
+const exampleSource = `<Button
 $click={() => {
   setLoading(!loading);
 }}
@@ -340,26 +362,4 @@ content in evpdom...
   \`}
 </Tsx>
 </EvpDom>
-`}
-      </Tsx>
-      <Md>
-        {`
-## Api
-
-**EvpCol Apis:**
-
-Please refer to EvpBaseProps in docs of EvpDom.
-`}
-      </Md>
-      <EvpButton
-        position="absolute"
-        right={40}
-        bottom={0}
-        plain
-        shadow={false}
-        link="/components/evp-divider"
-        text="★ Next Doc EvpDivider >"
-      />
-    </div>
-  );
-}
+`;

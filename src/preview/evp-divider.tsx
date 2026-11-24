@@ -1,3 +1,4 @@
+import CopyCodeButton from "@/components/copy-code-button";
 import Card from "@/components/card";
 import Md from "@/components/md";
 import Tsx from "@/components/tsx";
@@ -98,26 +99,12 @@ Attributes of "top", "right", "bottom", "left" mean the gap of the divider to su
       top={10} bottom={10} right={20} />
       <Card toolBar={<>
         <EvpButton theme="text" $click={()=>clickCode(1)} plain size="mini" text="code" />
-        <EvpButton theme="text" size="mini" text="copy" />
+        <CopyCodeButton source={spacingSource} />
       </>} 
       style={{ marginTop: 20 }}
       contentStyle={{ padding: 0 }}/>
 {showCode[1]?
-<Tsx>
-{`
-top: 10px bottom: 10px
-<EvpDivider style={{ border: '1px solid gray' }} 
-top={10} bottom={10} />
-
-top: 10px bottom: 10px left: 10px
-<EvpDivider style={{ border: '1px solid gray' }} 
-top={10} bottom={10} left={20} />
-
-top: 10px bottom: 10px right: 10px
-<EvpDivider style={{ border: '1px solid gray' }} 
-top={10} bottom={10} right={20} />
-`}
-</Tsx>
+<Tsx>{spacingSource}</Tsx>
 : void 0}
 <Md>
 {`
@@ -132,22 +119,12 @@ Attribute of "width" means the width of the divider line, not the divider contai
       top={10} bottom={10} right={20} width={400} />
       <Card toolBar={<>
         <EvpButton theme="text" $click={()=>clickCode(2)} plain size="mini" text="code" />
-        <EvpButton theme="text" size="mini" text="copy" />
+        <CopyCodeButton source={widthSource} />
       </>} 
       style={{ marginTop: 20 }}
       contentStyle={{ padding: 0 }}/>
 {showCode[2]?
-<Tsx>
-{`
-top: 10px bottom: 10px right: 20px width: 50%
-<EvpDivider style={{ border: '1px solid gray' }}
-top={10} bottom={10} right={20} width={'50%'} />
-
-top: 10px bottom: 10px right: 20px width: 400px
-<EvpDivider style={{ border: '1px solid gray' }}
-top={10} bottom={10} right={20} width={400} />
-`}
-</Tsx>
+<Tsx>{widthSource}</Tsx>
 : void 0}
 <Md>
 {`
@@ -162,22 +139,12 @@ Attribute of "gap" means the gap between left and right and does not override at
       top={10} bottom={10} width={400} left={10} gap={10} />
       <Card toolBar={<>
         <EvpButton theme="text" $click={()=>clickCode(3)} plain size="mini" text="code" />
-        <EvpButton theme="text" size="mini" text="copy" />
+        <CopyCodeButton source={gapSource} />
       </>} 
       style={{ marginTop: 20 }}
       contentStyle={{ padding: 0 }}/>
 {showCode[3]?
-<Tsx>
-{`
-top: 10px bottom: 10px width: 400px gap: 10px
-<EvpDivider style={{ border: '1px solid gray' }}
-top={10} bottom={10} width={400} gap={10} />
-
-top: 10px bottom: 10px width: 400px left: 10px gap: 10px
-<EvpDivider style={{ border: '1px solid gray' }}
-top={10} bottom={10} width={400} left={10} gap={10} />
-`}
-</Tsx>
+<Tsx>{gapSource}</Tsx>
 : void 0}
 <Md>
 {`
@@ -198,23 +165,12 @@ Attribute of "radius" makes you to customize the corner radius of the divider li
       lineWidth={10} top={10} bottom={10} radius="round" />
       <Card toolBar={<>
         <EvpButton theme="text" $click={()=>clickCode(4)} plain size="mini" text="code" />
-        <EvpButton theme="text" size="mini" text="copy" />
+        <CopyCodeButton source={lineWidthSource} />
       </>} 
       style={{ marginTop: 20 }}
       contentStyle={{ padding: 0 }}/>
 {showCode[4]?
-<Tsx>
-{`
-lineWidth: 10px top: 10px bottom: 10px
-<EvpDivider 
-lineWidth={10} top={10} bottom={10} />
-
-lineWidth: 10px top: 10px bottom: 10px radius: "round" type: "solid"
-<EvpDivider 
-type="solid"
-lineWidth={10} top={10} bottom={10} radius="round" />
-`}
-</Tsx>
+<Tsx>{lineWidthSource}</Tsx>
 : void 0}
 <Md>
 {`
@@ -242,32 +198,12 @@ You can assign any elements in the center of a divider line.
       </EvpDivider>
       <Card toolBar={<>
         <EvpButton theme="text" $click={()=>clickCode(5)} plain size="mini" text="code" />
-        <EvpButton theme="text" size="mini" text="copy" />
+        <CopyCodeButton source={contentSource} />
       </>} 
       style={{ marginTop: 20 }}
       contentStyle={{ padding: 0 }}/>
 {showCode[5]?
-<Tsx>
-{`
-<EvpDivider
-top={10} bottom={10} gap={20}
->
-  Hello, World!
-</EvpDivider>
-
-<EvpDivider
-top={10} bottom={10} gap={20} contentGap={20}
->
-  Hello, World!
-</EvpDivider>
-
-<EvpDivider
-top={10} bottom={10} gap={20}
->
-  Hello, World! <SvgIcons.Info color={'#CFCFCF'} />
-</EvpDivider>
-`}
-</Tsx>
+<Tsx>{contentSource}</Tsx>
 : void 0}
 <Md>
 {`
@@ -333,3 +269,63 @@ top={10} bottom={10} gap={20}
     </div>
   ) 
 }
+
+const spacingSource = `top: 10px bottom: 10px
+<EvpDivider style={{ border: '1px solid gray' }}
+top={10} bottom={10} />
+
+top: 10px bottom: 10px left: 10px
+<EvpDivider style={{ border: '1px solid gray' }}
+top={10} bottom={10} left={20} />
+
+top: 10px bottom: 10px right: 10px
+<EvpDivider style={{ border: '1px solid gray' }}
+top={10} bottom={10} right={20} />
+`;
+
+const widthSource = `top: 10px bottom: 10px right: 20px width: 50%
+<EvpDivider style={{ border: '1px solid gray' }}
+top={10} bottom={10} right={20} width={'50%'} />
+
+top: 10px bottom: 10px right: 20px width: 400px
+<EvpDivider style={{ border: '1px solid gray' }}
+top={10} bottom={10} right={20} width={400} />
+`;
+
+const gapSource = `top: 10px bottom: 10px width: 400px gap: 10px
+<EvpDivider style={{ border: '1px solid gray' }}
+top={10} bottom={10} width={400} gap={10} />
+
+top: 10px bottom: 10px width: 400px left: 10px gap: 10px
+<EvpDivider style={{ border: '1px solid gray' }}
+top={10} bottom={10} width={400} left={10} gap={10} />
+`;
+
+const lineWidthSource = `lineWidth: 10px top: 10px bottom: 10px
+<EvpDivider
+lineWidth={10} top={10} bottom={10} />
+
+lineWidth: 10px top: 10px bottom: 10px radius: "round" type: "solid"
+<EvpDivider
+type="solid"
+lineWidth={10} top={10} bottom={10} radius="round" />
+`;
+
+const contentSource = `<EvpDivider
+top={10} bottom={10} gap={20}
+>
+  Hello, World!
+</EvpDivider>
+
+<EvpDivider
+top={10} bottom={10} gap={20} contentGap={20}
+>
+  Hello, World!
+</EvpDivider>
+
+<EvpDivider
+top={10} bottom={10} gap={20}
+>
+  Hello, World! <SvgIcons.Info color={'#CFCFCF'} />
+</EvpDivider>
+`;

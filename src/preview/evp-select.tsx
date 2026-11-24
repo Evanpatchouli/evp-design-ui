@@ -1,3 +1,4 @@
+import CopyCodeButton from "@/components/copy-code-button";
 import Card from "@/components/card";
 import Md from "@/components/md";
 import Tsx from "@/components/tsx";
@@ -77,12 +78,7 @@ import { EvpSelect } from 'evp-design-ui'
 {`
 ## Examples
 
-Here are some examples about EvpSelect.
-
-Since now, options EvpSelect should be set from attribute and it's a array of object with label, value and **key**. The key is necessary and must be unique!
- And you'd better not to use array index as key, because it may cause some problems when you change the options array. If you have no idea about using what as key, you can use unique value as key or use [uuid](https://www.npmjs.com/package/uuid) to generate a unique key.
-
-If you want to ban an option, you can set it to disabled
+Give each option a stable, unique key. Set an option's \`disabled\` flag to keep it visible and skip it during selection.
 `}
 </Md>
       <Card
@@ -92,7 +88,7 @@ If you want to ban an option, you can set it to disabled
       toolBar={
       <>
         <EvpButton $click={() => clickCode(1)} theme="text" size="mini" text="code" />
-        <EvpButton theme="text" size="mini" text="copy" />
+        <CopyCodeButton source={exampleSource} />
       </>}>
         <Card style={{
           width: 'fit-content'
@@ -106,38 +102,27 @@ If you want to ban an option, you can set it to disabled
           ]} />
         </Card>
       </Card>
-<Tsx show={showCode[1]}>
-{`
-<EvpSelect name="demo2"
-  placeholder="Select one option"
-  options={[
-  { label: 'Option 1', value: '1', key: '1', disabled: true },
-  { label: 'Option 2', value: '2', key: '2' },
-  { label: 'Option 3', value: '3', key: '3' },
-]} />
-`}
-</Tsx>
+<Tsx show={showCode[1]}>{exampleSource}</Tsx>
 <Md>
 {`
 ## Api
 
-★ container based on EvpDom  
-★ props extends EvpBaseProps
+- **options** accepts an array of \`{ label: string; value: any; key: React.Key; disabled?: boolean }\`.
+- **value** controls the selection. Pass the new value back through this prop in **onChange**.
+  For an uncontrolled Select, pass **defaultValue** to choose the initial option.
+- **onChange(value, option)** receives the selected value and the complete option object. Selection
+  displays its label. A named Select submits its selected value with a native form.
+- **placeholder** is displayed when the value does not match an option.
+- **name**, **label**, **labelSize**, **labelWidth**, **labelAlign** and **labelColon** configure the
+  field and its label. **required** displays an asterisk alongside the label.
+- **rows** sets the visible option count. A closed Select mounts no listbox. With more than 100 options,
+  an open Select renders the visible rows, a small scroll buffer and the active option.
 
-**EvpSelect Apis:**
+### Keyboard
 
-- **name** ? : string
-- **options** ? : Array<{ label: string; value: any; key: React.Key; disabled** ? : boolean }>
-- **children** ? : React.ReactNode
-- **value** ? : any
-- **label** ? : string | JSX.Element
-- **labelSize** ? : string
-- **labelWidth** ? : number | string
-- **labelAlign** ? : "left" | "center" | "right"
-- **required** ? : Whether to show a required * character, this is only a character not a validation!
-  + **type** : boolean
-- **rows** ? : the rows of options visiable
-  + **type** : number
+Focus the field and press Enter, Space, Arrow Down or Arrow Up to open the list. Arrow keys move
+between enabled options. Home and End move to the first or last enabled option. Enter or Space
+selects the active option. Escape closes the list and preserves the previous value.
 `}
 </Md>
       <EvpButton position="absolute" right={40} bottom={0}
@@ -146,3 +131,12 @@ If you want to ban an option, you can set it to disabled
     </div>
   )
 }
+
+const exampleSource = `<EvpSelect name="demo2"
+  placeholder="Select one option"
+  options={[
+  { label: 'Option 1', value: '1', key: '1', disabled: true },
+  { label: 'Option 2', value: '2', key: '2' },
+  { label: 'Option 3', value: '3', key: '3' },
+]} />
+`;

@@ -1,3 +1,4 @@
+import CopyCodeButton from "@/components/copy-code-button";
 import Card from "@/components/card";
 import Tsx from "@/components/tsx";
 import EvpButton from "@/lib/evp-button";
@@ -77,7 +78,7 @@ You need to set alignItems to "flex-start" if you want to align the child-elemen
         <EvpButton theme="text" $click={() => {
           clickCode(1);
         }} size="mini" text="code" />
-        <EvpButton theme="text" size="mini" text="copy" />
+        <CopyCodeButton source={alignmentSource} />
       </>}>
         <EvpCol alignItems="flex-start" border='1px solid black'>
           <span>Hello,</span>
@@ -85,14 +86,7 @@ You need to set alignItems to "flex-start" if you want to align the child-elemen
         </EvpCol>
       </Card>
 {showCode[1]?
-<Tsx>
-{`
-<EvpCol alignItems="flex-start" border='1px solid black'>
-  <span>Hello,</span>
-  <span>World!</span>
-</EvpCol>
-`}
-</Tsx>
+<Tsx>{alignmentSource}</Tsx>
 : void 0}
       <Md>
 {`
@@ -106,7 +100,7 @@ You need to set justifyContent to "flex-start" if you want to justify the child-
         <EvpButton theme="text" $click={() => {
           clickCode(2);
         }} size="mini" text="code" />
-        <EvpButton theme="text" size="mini" text="copy" />
+        <CopyCodeButton source={justificationSource} />
       </>}>
         <EvpCol justifyContent="flex-start" border='1px solid black' h={100}>
           <span>Hello,</span>
@@ -114,14 +108,7 @@ You need to set justifyContent to "flex-start" if you want to justify the child-
         </EvpCol>
       </Card>
 {showCode[2]?
-<Tsx>
-{`
-<EvpCol justifyContent="flex-start" border='1px solid black' h={100}>
-  <span>Hello,</span>
-  <span>World!</span>
-</EvpCol>
-`}
-</Tsx>
+<Tsx>{justificationSource}</Tsx>
 : void 0}
       <Md>
 {`
@@ -138,3 +125,15 @@ Please refer to EvpBaseProps in docs of EvpDom.
     </div>
   )
 }
+
+const alignmentSource = `<EvpCol alignItems="flex-start" border='1px solid black'>
+  <span>Hello,</span>
+  <span>World!</span>
+</EvpCol>
+`;
+
+const justificationSource = `<EvpCol justifyContent="flex-start" border='1px solid black' h={100}>
+  <span>Hello,</span>
+  <span>World!</span>
+</EvpCol>
+`;

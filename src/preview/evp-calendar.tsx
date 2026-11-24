@@ -1,10 +1,13 @@
+import DemoCard from "@/components/demo-card";
 import Md from "@/components/md";
 import Tsx from "@/components/tsx";
 import EvpCode from "@/components/code";
 import { EvpButton } from "evp-design-ui";
 import { useEffect } from "react";
 import Example from "./demos/calendar/example";
+import exampleSource from "./demos/calendar/example.tsx?source";
 import Time from "./demos/calendar/time";
+import timeSource from "./demos/calendar/time.tsx?source";
 import TimeFormat from "./demos/calendar/timeFormat";
 
 export default function CalendarView() {
@@ -40,7 +43,7 @@ import { Calendar } from 'evp-design-ui'
 **example:**
 `}
       </Md>
-      <Example />
+      <DemoCard source={exampleSource}><Example /></DemoCard>
       <Md>
         {`
 ## Examples
@@ -53,7 +56,7 @@ Default, calendar will display centrally the current time on top of Calendar. Yo
 to change the position of time. And you can set \`showTime\` to decicde whether to display time.
 `}
       </Md>
-      <Time />
+      <DemoCard source={timeSource}><Time /></DemoCard>
       <Md>
         {`
 ### timeFormat

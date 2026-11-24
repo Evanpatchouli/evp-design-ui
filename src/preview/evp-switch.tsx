@@ -1,3 +1,4 @@
+import CopyCodeButton from "@/components/copy-code-button";
 import Card from "@/components/card";
 import Md from "@/components/md";
 import Tsx from "@/components/tsx";
@@ -91,7 +92,7 @@ We provides five size switch: mini, small, middle and large. Default is middle.
               size="mini"
               text="code"
             />
-            <EvpButton theme="text" size="mini" text="copy" />
+            <CopyCodeButton source={sizeSource} />
           </>
         }
       >
@@ -102,18 +103,7 @@ We provides five size switch: mini, small, middle and large. Default is middle.
         <EvpSwitch label="Large" size="large" labelWidth={60} mgt_6 />
         <EvpSwitch label="Huge" size="huge" labelWidth={60} mgt_8 />
       </Card>
-      <Tsx show={showCode[1]}>
-        {`
-<Card>
-  <EvpSwitch label="Default" labelWidth={60} />
-  <EvpSwitch label="Mini" size="mini" labelWidth={60} />
-  <EvpSwitch label="Small" size="small" labelWidth={60} />
-  <EvpSwitch label="Medium" size="middle" labelWidth={60} />
-  <EvpSwitch label="Large" size="large" labelWidth={60} mgt_6 />
-  <EvpSwitch label="Huge" size="huge" labelWidth={60} mgt_8 />
-</Card>
-`}
-      </Tsx>
+      <Tsx show={showCode[1]}>{sizeSource}</Tsx>
       <Md>
         {`
 ### widthFactor
@@ -133,7 +123,7 @@ Default widthFactor is 2, which means the width of switch is twice of height. Yo
               size="mini"
               text="code"
             />
-            <EvpButton theme="text" size="mini" text="copy" />
+            <CopyCodeButton source={widthFactorSource} />
           </>
         }
       >
@@ -141,15 +131,7 @@ Default widthFactor is 2, which means the width of switch is twice of height. Yo
         <EvpSwitch label="Trible" widthFactor={3} labelWidth={80} />
         <EvpSwitch label="Quadruple" widthFactor={4} labelWidth={80} />
       </Card>
-      <Tsx show={showCode[2]}>
-        {`
-<Card>
-  <EvpSwitch label="Default" labelWidth={80} />
-  <EvpSwitch label="Trible" widthFactor={3} labelWidth={80} />
-  <EvpSwitch label="Quadruple" widthFactor={4} labelWidth={80} />   
-</Card>  
-`}
-      </Tsx>
+      <Tsx show={showCode[2]}>{widthFactorSource}</Tsx>
       <Md>
         {`
 ## EvpSwitch
@@ -195,3 +177,20 @@ interface IEvpSwitchProp {
     </div>
   );
 }
+
+const sizeSource = `<Card>
+  <EvpSwitch label="Default" labelWidth={60} />
+  <EvpSwitch label="Mini" size="mini" labelWidth={60} />
+  <EvpSwitch label="Small" size="small" labelWidth={60} />
+  <EvpSwitch label="Medium" size="middle" labelWidth={60} />
+  <EvpSwitch label="Large" size="large" labelWidth={60} mgt_6 />
+  <EvpSwitch label="Huge" size="huge" labelWidth={60} mgt_8 />
+</Card>
+`;
+
+const widthFactorSource = `<Card>
+  <EvpSwitch label="Default" labelWidth={80} />
+  <EvpSwitch label="Trible" widthFactor={3} labelWidth={80} />
+  <EvpSwitch label="Quadruple" widthFactor={4} labelWidth={80} />
+</Card>
+`;

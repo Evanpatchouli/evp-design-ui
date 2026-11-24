@@ -1,3 +1,4 @@
+import CopyCodeButton from "@/components/copy-code-button";
 import Card from "@/components/card";
 import Md from "@/components/md";
 import Tsx from "@/components/tsx";
@@ -84,7 +85,7 @@ Besides, you can set step to change the step of the counter ( default is 1 ).
               size="mini"
               text="code"
             />
-            <EvpButton theme="text" size="mini" text="copy" />
+            <CopyCodeButton source={exampleSource} />
           </>
         }
       >
@@ -104,25 +105,7 @@ Besides, you can set step to change the step of the counter ( default is 1 ).
           required
         />
       </Card>
-      <Tsx show={showCode[1]}>
-        {`
-<EvpCounter
-  label={"None limited"}
-  labelWidth={110}
-  labelAlign="right"
-  required
-/>
-<EvpCounter
-  label={"Limited 2 Step"}
-  labelWidth={110}
-  labelAlign="right"
-  min={0}
-  max={5}
-  step={2}
-  required
-/>
-`}
-      </Tsx>
+      <Tsx show={showCode[1]}>{exampleSource}</Tsx>
       <Md>
         {`
 ## Api
@@ -171,3 +154,20 @@ export interface EvpCounterProps extends EvpBaseProps {
     </div>
   );
 }
+
+const exampleSource = `<EvpCounter
+  label={"None limited"}
+  labelWidth={110}
+  labelAlign="right"
+  required
+/>
+<EvpCounter
+  label={"Limited 2 Step"}
+  labelWidth={110}
+  labelAlign="right"
+  min={0}
+  max={5}
+  step={2}
+  required
+/>
+`;

@@ -134,7 +134,7 @@ export default function EvpCode(props: EvpCodeProps) {
           renderer={props.renderer}
           CodeTag={props.CodeTag}
         >
-          {`${props.children?.replace("\n", "")}`}
+          {props.children?.replace(/^\r?\n/, "") ?? ""}
         </Highlight>
       ) : (
         void 0

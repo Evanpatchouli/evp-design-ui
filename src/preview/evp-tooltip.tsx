@@ -1,3 +1,4 @@
+import CopyCodeButton from "@/components/copy-code-button";
 import Api from "@/components/api";
 import Card from "@/components/card";
 import Md from "@/components/md";
@@ -81,7 +82,7 @@ You can set plain to make tooltip plain, and you can also customize tooltip cont
         toolBar={
           <>
             <EvpButton $click={() => clickCode(1)} theme="text" size="mini" text="code" />
-            <EvpButton theme="text" size="mini" text="copy" />
+            <CopyCodeButton source={basicSource} />
           </>
         }
       >
@@ -107,31 +108,7 @@ You can set plain to make tooltip plain, and you can also customize tooltip cont
           <EvpTag light text="Hover Me" />
         </EvpToolTip>
       </Card>
-      <Tsx show={showCode[1]}>
-        {`
-<EvpToolTip content="This is a evp-tag" display="inline-block">
-  <EvpTag light text="Hover Me" />
-</EvpToolTip>
-<EvpToolTip content="This is a evp-tag" display="inline-block" plain>
-  <EvpTag light text="Plain Tooltip" />
-</EvpToolTip>
-<EvpToolTip content="This is a evp-tag" display="inline-block" color="white" bgColor="black">
-  <EvpTag light text="Hover Me" />
-</EvpToolTip>
-<EvpToolTip content="This is a evp-tag" display="inline-block" color="white" bgColor="gray">
-  <EvpTag light text="Hover Me" />
-</EvpToolTip>
-<EvpToolTip
-  content="This is a evp-tag"
-  display="inline-block"
-  color="purple"
-  bgColor="white"
-  border="1px purple solid"
->
-  <EvpTag light text="Hover Me" />
-</EvpToolTip>
-`}
-      </Tsx>
+      <Tsx show={showCode[1]}>{basicSource}</Tsx>
       <Md>
         {`
 ### Trigger
@@ -146,7 +123,7 @@ You can set trigger to control tooltip trigger type, default is hover. The value
         toolBar={
           <>
             <EvpButton $click={() => clickCode(2)} theme="text" size="mini" text="code" />
-            <EvpButton theme="text" size="mini" text="copy" />
+            <CopyCodeButton source={triggerSource} />
           </>
         }
       >
@@ -160,16 +137,7 @@ You can set trigger to control tooltip trigger type, default is hover. The value
           <EvpTag plain text="Hover and Click Me" />
         </EvpToolTip>
       </Card>
-      <Tsx show={showCode[2]}>
-        {`
-<EvpToolTip content="This is a evp-tag" display="inline-block">
-  <EvpTag light text="Hover Me" />
-</EvpToolTip>
-<EvpToolTip content="This is a evp-tag" display="inline-block" trigger={"click"} plain>
-  <EvpTag light text="Click Me" />
-</EvpToolTip>
-`}
-      </Tsx>
+      <Tsx show={showCode[2]}>{triggerSource}</Tsx>
       <Md>
         {`
 ### Position and Transform
@@ -290,3 +258,34 @@ By default, the tooltip will be positioned relative to the trigger element.
     </div>
   );
 }
+
+const basicSource = `<EvpToolTip content="This is a evp-tag" display="inline-block">
+  <EvpTag light text="Hover Me" />
+</EvpToolTip>
+<EvpToolTip content="This is a evp-tag" display="inline-block" plain>
+  <EvpTag light text="Plain Tooltip" />
+</EvpToolTip>
+<EvpToolTip content="This is a evp-tag" display="inline-block" color="white" bgColor="black">
+  <EvpTag light text="Hover Me" />
+</EvpToolTip>
+<EvpToolTip content="This is a evp-tag" display="inline-block" color="white" bgColor="gray">
+  <EvpTag light text="Hover Me" />
+</EvpToolTip>
+<EvpToolTip
+  content="This is a evp-tag"
+  display="inline-block"
+  color="purple"
+  bgColor="white"
+  border="1px purple solid"
+>
+  <EvpTag light text="Hover Me" />
+</EvpToolTip>
+`;
+
+const triggerSource = `<EvpToolTip content="This is a evp-tag" display="inline-block">
+  <EvpTag light text="Hover Me" />
+</EvpToolTip>
+<EvpToolTip content="This is a evp-tag" display="inline-block" trigger={"click"} plain>
+  <EvpTag light text="Click Me" />
+</EvpToolTip>
+`;

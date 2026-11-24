@@ -1,3 +1,4 @@
+import CopyCodeButton from "@/components/copy-code-button";
 import Card from "@/components/card";
 import Md from "@/components/md";
 import Tsx from "@/components/tsx";
@@ -91,7 +92,7 @@ If you need to group up several radios without EvpCheckBoxGroup, you should use 
               size="mini"
               text="code"
             />
-            <EvpButton theme="text" size="mini" text="copy" />
+            <CopyCodeButton source={singleSource} />
           </>
         }
       >
@@ -111,15 +112,7 @@ If you need to group up several radios without EvpCheckBoxGroup, you should use 
         </label>
       </Card>
       {showCode[1] ? (
-        <Tsx>
-          {`
-<label>Web Frameworks you like ? 
-  <EvpCheckBox name="Web Frameworks you like" label="React" value="react" />
-  <EvpCheckBox name="Web Frameworks you like" label="Vue" value="vue" />
-  <EvpCheckBox name="Web Frameworks you like"label="Angular" value="angular" />
-</label>
-`}
-        </Tsx>
+        <Tsx>{singleSource}</Tsx>
       ) : (
         void 0
       )}
@@ -141,7 +134,7 @@ If you want to set a checkbox as default checked, you can set \`defaultChecked\`
               size="mini"
               text="code"
             />
-            <EvpButton theme="text" size="mini" text="copy" />
+            <CopyCodeButton source={defaultCheckedSource} />
           </>
         }
       >
@@ -160,24 +153,7 @@ If you want to set a checkbox as default checked, you can set \`defaultChecked\`
           />
         </label>
       </Card>
-      <Tsx show={showCode[2]}>
-        {`
-<label>
-  Rust Web Frameworks you like ?
-  <EvpCheckBox
-    name="Rust Web Frameworks you like"
-    label="ActixWeb"
-    value="ActixWeb"
-    defaultChecked
-  />
-  <EvpCheckBox
-    name="Rust Web Frameworks you like"
-    label="Rocket"
-    value="Rocket"
-  />
-</label>
-`}
-      </Tsx>
+      <Tsx show={showCode[2]}>{defaultCheckedSource}</Tsx>
       <Md>
 {`
 ## EvpCheckBoxGroup
@@ -200,7 +176,7 @@ If you want to ban a checkbox, just set the \`disabled\` attribute to \`true\`.
               size="mini"
               text="code"
             />
-            <EvpButton theme="text" size="mini" text="copy" />
+            <CopyCodeButton source={groupSource} />
           </>
         }
       >
@@ -221,9 +197,38 @@ If you want to ban a checkbox, just set the \`disabled\` attribute to \`true\`.
           />
         </label>
       </Card>
-      <Tsx show={showCode[3]}>
-        {`
-<label>
+      <Tsx show={showCode[3]}>{groupSource}</Tsx>
+      <EvpButton position="absolute" right={40} bottom={0}
+        plain shadow={false}
+        link="/components/evp-select" text="★ Next Doc EvpSelect >" />
+    </div>
+  );
+}
+
+const singleSource = `<label>Web Frameworks you like ?
+  <EvpCheckBox name="Web Frameworks you like" label="React" value="react" />
+  <EvpCheckBox name="Web Frameworks you like" label="Vue" value="vue" />
+  <EvpCheckBox name="Web Frameworks you like"label="Angular" value="angular" />
+</label>
+`;
+
+const defaultCheckedSource = `<label>
+  Rust Web Frameworks you like ?
+  <EvpCheckBox
+    name="Rust Web Frameworks you like"
+    label="ActixWeb"
+    value="ActixWeb"
+    defaultChecked
+  />
+  <EvpCheckBox
+    name="Rust Web Frameworks you like"
+    label="Rocket"
+    value="Rocket"
+  />
+</label>
+`;
+
+const groupSource = `<label>
 How about Evp Design UI ?
   <EvpCheckBox
     name="How about Evp Design UI"
@@ -239,11 +244,4 @@ How about Evp Design UI ?
     disabled
   />
 </label>
-`}
-      </Tsx>
-      <EvpButton position="absolute" right={40} bottom={0}
-        plain shadow={false}
-        link="/components/evp-select" text="★ Next Doc EvpSelect >" />
-    </div>
-  );
-}
+`;

@@ -1,3 +1,4 @@
+import CopyCodeButton from "@/components/copy-code-button";
 import Card from "@/components/card";
 import Md from "@/components/md";
 import Tsx from "@/components/tsx";
@@ -89,23 +90,13 @@ Only when route.path exists, can the breadcrumb items be clicked.
         toolBar={
           <>
             <EvpButton $click={() => clickCode(1)} theme="text" size="mini" text="code" />
-            <EvpButton theme="text" size="mini" text="copy" />
+            <CopyCodeButton source={routePathSource} />
           </>
         }
       >
         <EvpBreadCrumb routes={[{ title: "Home" }, { title: "Components" }, { title: "BreadCrumb" }]} />
       </Card>
-      <Tsx show={showCode[1]}>
-        {`
-<EvpBreadCrumb
-  routes={[
-    { title: "Home" },
-    { title: "Components" },
-    { title: "BreadCrumb" },
-  ]}
-/>
-`}
-      </Tsx>
+      <Tsx show={showCode[1]}>{routePathSource}</Tsx>
       <Md>
         {`
 ### itemClick
@@ -120,7 +111,7 @@ You can customize the click event handler of routes items by set itemClick. The 
         toolBar={
           <>
             <EvpButton $click={() => clickCode(2)} theme="text" size="mini" text="code" />
-            <EvpButton theme="text" size="mini" text="copy" />
+            <CopyCodeButton source={itemClickSource} />
           </>
         }
       >
@@ -135,20 +126,7 @@ You can customize the click event handler of routes items by set itemClick. The 
           }}
         />
       </Card>
-      <Tsx show={showCode[2]}>
-        {`
-<EvpBreadCrumb
-  routes={[
-    { title: "Home", path: "/", meta: { desc: "home route" } },
-    { title: "Components", path: "/components", meta: { desc: "components route" } },
-    { title: "BreadCrumb", path: "/components/evp-breadcrumb", meta: { desc: "evp-breadcrumb route" } },
-  ]}
-  itemClick={(e, route) => {
-    alert(route?.meta?.desc);
-  }}
-/>
-`}
-      </Tsx>
+      <Tsx show={showCode[2]}>{itemClickSource}</Tsx>
       <Md>
         {`
 ## Api
@@ -187,3 +165,24 @@ export interface EvpBreadCrumbProps extends EvpBaseProps {
     </div>
   );
 }
+
+const routePathSource = `<EvpBreadCrumb
+  routes={[
+    { title: "Home" },
+    { title: "Components" },
+    { title: "BreadCrumb" },
+  ]}
+/>
+`;
+
+const itemClickSource = `<EvpBreadCrumb
+  routes={[
+    { title: "Home", path: "/", meta: { desc: "home route" } },
+    { title: "Components", path: "/components", meta: { desc: "components route" } },
+    { title: "BreadCrumb", path: "/components/evp-breadcrumb", meta: { desc: "evp-breadcrumb route" } },
+  ]}
+  itemClick={(e, route) => {
+    alert(route?.meta?.desc);
+  }}
+/>
+`;

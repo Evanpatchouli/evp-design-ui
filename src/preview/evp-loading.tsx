@@ -1,3 +1,4 @@
+import CopyCodeButton from "@/components/copy-code-button";
 import Card from "@/components/card";
 import Md from "@/components/md";
 import Tsx from "@/components/tsx";
@@ -89,7 +90,7 @@ it's smaller than others, its size make it easy to be placed in a text.
               size="mini"
               text="code"
             />
-            <EvpButton theme="text" size="mini" text="copy" />
+            <CopyCodeButton source={variantsSource} />
           </>
         }
       >
@@ -122,36 +123,7 @@ it's smaller than others, its size make it easy to be placed in a text.
           </Label>
         </Row>
       </Card>
-      <Tsx show={showCode[1]}>
-        {`
-<Card>
-  <Label labelWidth={80} label={"Wave"}>
-    <Loading.Wave style={{ marginRight: 48 }} />
-  </Label>
-  <Label labelWidth={80} label={"BreatheSpin"}>
-    <Loading.BreatheSpin style={{ marginRight: 48 }} />
-  </Label>
-  <Label labelWidth={80} label={"Grid"}>
-    <Loading.Grid style={{ marginRight: 48 }} />
-  </Label>
-  <Label labelWidth={80} label={"Spin"}>
-    <Loading.Spin style={{ marginRight: 48 }} />
-  </Label>
-  <Label labelWidth={80} label={"Spin2"}>
-    <Loading.Spin2 style={{ marginRight: 48 }} />
-  </Label>
-  <Label labelWidth={80} label={"SpinDot"}>
-    <Loading.SpinDot style={{ marginRight: 48 }} />
-  </Label>
-  <Label labelWidth={80} label={"Chase"}>
-    <Loading.Chase style={{ marginRight: 48 }} />
-  </Label>
-  <Label labelWidth={80} label={"Text"}>
-    <Loading.Text style={{ marginRight: 48 }} />
-  </Label>
-</Card>
-`}
-      </Tsx>
+      <Tsx show={showCode[1]}>{variantsSource}</Tsx>
       <Md>
         {`
 ### Size
@@ -171,7 +143,7 @@ You can set props.size to change its size. (Default is 2em and desided by the pa
               size="mini"
               text="code"
             />
-            <EvpButton theme="text" size="mini" text="copy" />
+            <CopyCodeButton source={sizeSource} />
           </>
         }
       >
@@ -187,23 +159,7 @@ You can set props.size to change its size. (Default is 2em and desided by the pa
           </Label>
         </Row>
       </Card>
-      <Tsx show={showCode[2]}>
-        {`
-<Card>
-  <Row>
-    <Label label={"Default"} containerStyle={{ marginRight: 24 }}>
-      <Loading.Wave />
-    </Label>
-    <Label label={"Size 20"} containerStyle={{ marginRight: 24 }}>
-      <Loading.Wave size={20} />
-    </Label>
-    <Label label={"Size 30"} containerStyle={{ marginRight: 24 }}>
-      <Loading.Wave size={30} />
-    </Label>
-  </Row>
-</Card>
-`}
-      </Tsx>
+      <Tsx show={showCode[2]}>{sizeSource}</Tsx>
       <Md>
         {`
 ### Color
@@ -223,7 +179,7 @@ Default loading color is a bit lighter blue, you can set props.color to customiz
               size="mini"
               text="code"
             />
-            <EvpButton theme="text" size="mini" text="copy" />
+            <CopyCodeButton source={colorSource} />
           </>
         }
       >
@@ -239,23 +195,7 @@ Default loading color is a bit lighter blue, you can set props.color to customiz
           </Label>
         </Row>
       </Card>
-      <Tsx show={showCode[3]}>
-        {`
-<Card>
-  <Row>
-    <Label label={"Default"} labelPosition="top">
-      <Loading.Grid />
-    </Label>
-    <Label label={"Red"} labelPosition="top">
-      <Loading.Grid color="red" />
-    </Label>
-    <Label label={"Blue"} labelPosition="top">
-      <Loading.Grid color="blue" />
-    </Label>
-  </Row>
-</Card>
-`}
-      </Tsx>
+      <Tsx show={showCode[3]}>{colorSource}</Tsx>
       <Md>
         {`
 ### Component loading
@@ -274,7 +214,7 @@ You can alse make other components loadable if supported. By now, only Button is
               size="mini"
               text="code"
             />
-            <EvpButton theme="text" size="mini" text="copy" />
+            <CopyCodeButton source={componentLoadingSource} />
           </>
         }
       >
@@ -291,24 +231,7 @@ You can alse make other components loadable if supported. By now, only Button is
           mgl_12
         />
       </Card>
-      <Tsx show={showCode[4]}>
-        {`
-<Card>
-  <Button
-    plain
-    $click={() => {
-      setBtnLoading(!btnLoading);
-    }}
-    text="Switch"
-  />
-  <Button
-    loading={btnLoading}
-    text={btnLoading ? "Loading..." : "Normal"}
-    mgl_12
-  />
-</Card>
-`}
-      </Tsx>
+      <Tsx show={showCode[4]}>{componentLoadingSource}</Tsx>
       <Md>
         {`
 ## Api
@@ -339,3 +262,77 @@ export interface EvpLoadingProps extends React.HTMLAttributes<HTMLDivElement> {
     </div>
   );
 }
+
+const variantsSource = `<Card>
+  <Label labelWidth={80} label={"Wave"}>
+    <Loading.Wave style={{ marginRight: 48 }} />
+  </Label>
+  <Label labelWidth={80} label={"BreatheSpin"}>
+    <Loading.BreatheSpin style={{ marginRight: 48 }} />
+  </Label>
+  <Label labelWidth={80} label={"Grid"}>
+    <Loading.Grid style={{ marginRight: 48 }} />
+  </Label>
+  <Label labelWidth={80} label={"Spin"}>
+    <Loading.Spin style={{ marginRight: 48 }} />
+  </Label>
+  <Label labelWidth={80} label={"Spin2"}>
+    <Loading.Spin2 style={{ marginRight: 48 }} />
+  </Label>
+  <Label labelWidth={80} label={"SpinDot"}>
+    <Loading.SpinDot style={{ marginRight: 48 }} />
+  </Label>
+  <Label labelWidth={80} label={"Chase"}>
+    <Loading.Chase style={{ marginRight: 48 }} />
+  </Label>
+  <Label labelWidth={80} label={"Text"}>
+    <Loading.Text style={{ marginRight: 48 }} />
+  </Label>
+</Card>
+`;
+
+const sizeSource = `<Card>
+  <Row>
+    <Label label={"Default"} containerStyle={{ marginRight: 24 }}>
+      <Loading.Wave />
+    </Label>
+    <Label label={"Size 20"} containerStyle={{ marginRight: 24 }}>
+      <Loading.Wave size={20} />
+    </Label>
+    <Label label={"Size 30"} containerStyle={{ marginRight: 24 }}>
+      <Loading.Wave size={30} />
+    </Label>
+  </Row>
+</Card>
+`;
+
+const colorSource = `<Card>
+  <Row>
+    <Label label={"Default"} labelPosition="top">
+      <Loading.Grid />
+    </Label>
+    <Label label={"Red"} labelPosition="top">
+      <Loading.Grid color="red" />
+    </Label>
+    <Label label={"Blue"} labelPosition="top">
+      <Loading.Grid color="blue" />
+    </Label>
+  </Row>
+</Card>
+`;
+
+const componentLoadingSource = `<Card>
+  <Button
+    plain
+    $click={() => {
+      setBtnLoading(!btnLoading);
+    }}
+    text="Switch"
+  />
+  <Button
+    loading={btnLoading}
+    text={btnLoading ? "Loading..." : "Normal"}
+    mgl_12
+  />
+</Card>
+`;

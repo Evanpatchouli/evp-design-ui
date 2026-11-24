@@ -1,3 +1,4 @@
+import CopyCodeButton from "@/components/copy-code-button";
 import Card from "@/components/card";
 import Md from "@/components/md";
 import Tsx from "@/components/tsx";
@@ -82,7 +83,7 @@ If the badge content is a number and greater than the **max** value, the badge c
         toolBar={
           <>
             <EvpButton $click={() => clickCode(1)} theme="text" size="mini" text="code" />
-            <EvpButton theme="text" size="mini" text="copy" />
+            <CopyCodeButton source={contentSource} />
           </>
         }
       >
@@ -101,22 +102,7 @@ If the badge content is a number and greater than the **max** value, the badge c
           </EvpBadge>
         </Row>
       </Card>
-      <Tsx show={showCode[1]}>
-        {`
-<EvpBadge content={1} mgr_14>
-  <EvpIcon name="warn" />
-</EvpBadge>
-<EvpBadge content={24} mgr_18>
-  <EvpIcon name="warn" />
-</EvpBadge>
-<EvpBadge content={1024} mgr_24>
-  <EvpIcon name="warn" />
-</EvpBadge>
-<EvpBadge content={1024} max={1000}>
-  <EvpIcon name="warn" />
-</EvpBadge>
-`}
-      </Tsx>
+      <Tsx show={showCode[1]}>{contentSource}</Tsx>
       <Md>
         {`
 ### show & invisble & showZero
@@ -135,7 +121,7 @@ Default, when content is number 0, the badge dot will hidden, if you want to sho
         toolBar={
           <>
             <EvpButton $click={() => clickCode(2)} theme="text" size="mini" text="code" />
-            <EvpButton theme="text" size="mini" text="copy" />
+            <CopyCodeButton source={visibilitySource} />
           </>
         }
       >
@@ -154,22 +140,7 @@ Default, when content is number 0, the badge dot will hidden, if you want to sho
           </EvpBadge>
         </Row>
       </Card>
-      <Tsx show={showCode[2]}>
-        {`
-<EvpBadge content={20} show={false} mgr_14>
-  <EvpIcon name="warn" />
-</EvpBadge>
-<EvpBadge content={20} invisble mgr_14>
-  <EvpIcon name="warn" />
-</EvpBadge>
-<EvpBadge content={0} mgr_14>
-  <EvpIcon name="warn" />
-</EvpBadge>
-<EvpBadge content={0} showZero mgr_14>
-  <EvpIcon name="warn" />
-</EvpBadge>
-        `}
-      </Tsx>
+      <Tsx show={showCode[2]}>{visibilitySource}</Tsx>
       <Md>
         {`
 ## Api
@@ -226,3 +197,31 @@ export interface EvpBadgeProps extends EvpBaseProps {
     </div>
   );
 }
+
+const contentSource = `<EvpBadge content={1} mgr_14>
+  <EvpIcon name="warn" />
+</EvpBadge>
+<EvpBadge content={24} mgr_18>
+  <EvpIcon name="warn" />
+</EvpBadge>
+<EvpBadge content={1024} mgr_24>
+  <EvpIcon name="warn" />
+</EvpBadge>
+<EvpBadge content={1024} max={1000}>
+  <EvpIcon name="warn" />
+</EvpBadge>
+`;
+
+const visibilitySource = `<EvpBadge content={20} show={false} mgr_14>
+  <EvpIcon name="warn" />
+</EvpBadge>
+<EvpBadge content={20} invisble mgr_14>
+  <EvpIcon name="warn" />
+</EvpBadge>
+<EvpBadge content={0} mgr_14>
+  <EvpIcon name="warn" />
+</EvpBadge>
+<EvpBadge content={0} showZero mgr_14>
+  <EvpIcon name="warn" />
+</EvpBadge>
+        `;

@@ -1,3 +1,4 @@
+import CopyCodeButton from "@/components/copy-code-button";
 import Card from "@/components/card";
 import Md from "@/components/md";
 import Tsx from "@/components/tsx";
@@ -122,7 +123,7 @@ Here are some examples about EvpModal.
         toolBar={
           <>
             <EvpButton $click={() => clickCode(1)} theme="text" size="mini" text="code" />
-            <EvpButton theme="text" size="mini" text="copy" />
+            <CopyCodeButton source={exampleSource} />
           </>
         }
       >
@@ -163,46 +164,7 @@ Here are some examples about EvpModal.
           }}
         />
       </Card>
-      <Tsx show={showCode[1]}>
-        {`
-<Modal
-  open={modalOne}
-  onOpen={() => {
-    Toast.success("Modal opened");
-  }}
-  onClose={() => {
-    Toast.success("Modal closed");
-  }}
-  >
-  <EvpCard
-    w={300}
-    h={160}
-    footer={
-      <Row justifyContent="right">
-        <Button
-          $click={() => {
-            modalOneShow(false);
-          }}
-        >
-          Close
-        </Button>
-      </Row>
-    }
-    footerProps={{
-      justifyContent: "flex-end",
-    }}
-  >
-    Hello, I'm a card in Modal.
-  </EvpCard>
-</Modal>
-<EvpButton
-text="Open"
-$click={() => {
-  modalOneShow(true);
-}}
-/>
-`}
-      </Tsx>
+      <Tsx show={showCode[1]}>{exampleSource}</Tsx>
       <Md>
         {`
 ## Api
@@ -266,3 +228,41 @@ export type EvpModalProps = {
     </div>
   );
 }
+
+const exampleSource = `<Modal
+  open={modalOne}
+  onOpen={() => {
+    Toast.success("Modal opened");
+  }}
+  onClose={() => {
+    Toast.success("Modal closed");
+  }}
+  >
+  <EvpCard
+    w={300}
+    h={160}
+    footer={
+      <Row justifyContent="right">
+        <Button
+          $click={() => {
+            modalOneShow(false);
+          }}
+        >
+          Close
+        </Button>
+      </Row>
+    }
+    footerProps={{
+      justifyContent: "flex-end",
+    }}
+  >
+    Hello, I'm a card in Modal.
+  </EvpCard>
+</Modal>
+<EvpButton
+text="Open"
+$click={() => {
+  modalOneShow(true);
+}}
+/>
+`;

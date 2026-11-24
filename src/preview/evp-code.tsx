@@ -1,3 +1,4 @@
+import CopyCodeButton from "@/components/copy-code-button";
 import Card from "@/components/card";
 import Md from "@/components/md";
 import Tsx from "@/components/tsx";
@@ -81,7 +82,7 @@ EvpCode is based on react-syntax-highlighter.Prism
         toolBar={
           <>
             <EvpButton $click={() => clickCode(1)} theme="text" size="mini" text="code" />
-            <EvpButton theme="text" size="mini" text="copy" />
+            <CopyCodeButton source={exampleSource} />
           </>
         }
       >
@@ -101,26 +102,7 @@ export function View() {
 }`}
         </Code>
       </Card>
-      <Tsx show={showCode[1]}>
-        {`
-<Code
-  lang="tsx"
-  style={{ width: 400, backgroundColor: "white", boxShadow: "0 2px 12px 0 rgba(0, 0, 0, 0.1)" }}
-  showLineNumbers
-  lineNumberStyle={{ textAlign: "left" }}
->
-{\`
-export function View() {
-  return(
-    <div>
-      <h2>View</h2>
-    </div>
-  )
-}\`
-}
-</Code>
-`}
-      </Tsx>
+      <Tsx show={showCode[1]}>{exampleSource}</Tsx>
       <Md>
         {`
 ## Api
@@ -248,3 +230,21 @@ export type CodeTheme =
     </div>
   );
 }
+
+const exampleSource = `<Code
+  lang="tsx"
+  style={{ width: 400, backgroundColor: "white", boxShadow: "0 2px 12px 0 rgba(0, 0, 0, 0.1)" }}
+  showLineNumbers
+  lineNumberStyle={{ textAlign: "left" }}
+>
+{\`
+export function View() {
+  return(
+    <div>
+      <h2>View</h2>
+    </div>
+  )
+}\`
+}
+</Code>
+`;

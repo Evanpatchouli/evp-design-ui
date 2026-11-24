@@ -1,3 +1,4 @@
+import CopyCodeButton from "@/components/copy-code-button";
 import Md from "@/components/md";
 import Tsx from "@/components/tsx";
 import EvpButton from "@/lib/evp-button";
@@ -83,7 +84,7 @@ Default is not but EvpCard can be with a toolbar side of it.
         footer={
           <>
             <EvpButton $click={() => clickCode(1)} theme="text" size="mini" text="code" />
-            <EvpButton theme="text" size="mini" text="copy" />
+            <CopyCodeButton source={toolbarSource} />
           </>
         }
       >
@@ -106,26 +107,7 @@ Default is not but EvpCard can be with a toolbar side of it.
           <EvpButton text="Greet" />
         </EvpCard>
       </EvpCard>
-      <Tsx show={showCode[1]}>
-        {`
-<EvpCard w={400}
-toolbarStyle={{
-  justifyContent: 'flex-end'
-}}
-toolBar={
-<>
-  <EvpButton plain size="mini" text="Hello" />
-  <EvpButton plain size="mini" text="World" />
-</>}
->
-  <p>Hello, i am EvpCard.</p>
-  <p>I extends EvpBaseProps.</p>
-  <p>I use EvpDom as container.</p>
-  <p>That's me.</p>
-  <EvpButton text="Greet" />
-</EvpCard>
-`}
-      </Tsx>
+      <Tsx show={showCode[1]}>{toolbarSource}</Tsx>
       <Md>
         {`
 ## ToolBarPosition
@@ -139,7 +121,7 @@ Toolbar can be displayed on its four side
         footer={
           <>
             <EvpButton $click={() => clickCode(2)} theme="text" size="mini" text="code" />
-            <EvpButton theme="text" size="mini" text="copy" />
+            <CopyCodeButton source={toolbarPositionSource} />
           </>
         }
         footerProps={{
@@ -160,42 +142,7 @@ Toolbar can be displayed on its four side
         </EvpCard>
       </EvpCard>
       {showCode[2] ? (
-        <Tsx>
-          {`
-<EvpCard mgr_30 h={120}
-  toolBar={
-    <span>code</span>
-  }
-  toolBarPosition="top"
->
-  <h3>top toolbar</h3>
-</EvpCard>
-<EvpCard mgr_30 h={120}
-  toolBar={
-    <span>code</span>
-  }
-  toolBarPosition="bottom"
->
-  <h3>bottom toolbar</h3>
-</EvpCard>
-<EvpCard mgr_30 h={120}
-  toolBar={
-    <span>code</span>
-  }
-  toolBarPosition="left"
-  >
-  <h3>left toolbar</h3>
-</EvpCard>
-<EvpCard mgr_30 h={120}
-  toolBar={
-    <span>code</span>
-  }
-  toolBarPosition="right"
-  >
-  <h3>right toolbar</h3>
-</EvpCard>
-`}
-        </Tsx>
+        <Tsx>{toolbarPositionSource}</Tsx>
       ) : (
         void 0
       )}
@@ -237,3 +184,37 @@ Toolbar can be displayed on its four side
     </div>
   );
 }
+
+const toolbarSource = `<EvpCard
+  w={400}
+  footerProps={{
+    justifyContent: "flex-end",
+  }}
+  footer={
+    <>
+      <EvpButton plain size="mini" text="Hello" />
+      <EvpButton plain size="mini" text="World" />
+    </>
+  }
+>
+  <p>Hello, i am EvpCard.</p>
+  <p>I extends EvpBaseProps.</p>
+  <p>I use EvpDom as container.</p>
+  <p>That's me.</p>
+  <EvpButton text="Greet" />
+</EvpCard>
+`;
+
+const toolbarPositionSource = `<EvpCard mgr_30 h={120} header={<span>code</span>} toolBarPosition="top">
+  <h3>header toolbar</h3>
+</EvpCard>
+<EvpCard mgr_30 h={120} footer={<span>code</span>} toolBarPosition="bottom">
+  <h3>footer toolbar</h3>
+</EvpCard>
+<EvpCard mgr_30 h={120} lefter={<span>code</span>} toolBarPosition="left">
+  <h3>left toolbar</h3>
+</EvpCard>
+<EvpCard mgr_30 h={120} righter={<span>code</span>} toolBarPosition="right">
+  <h3>right toolbar</h3>
+</EvpCard>
+`;

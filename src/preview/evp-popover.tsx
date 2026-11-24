@@ -1,3 +1,4 @@
+import CopyCodeButton from "@/components/copy-code-button";
 import Card from "@/components/card";
 import Code from "@/components/code";
 import Md from "@/components/md";
@@ -64,7 +65,7 @@ Total 16 different position provided to display the popover. Click them to have 
             1: !showCode[1]
           })
         }} size="mini" text="code" />
-        <EvpButton theme="text" size="mini" text="copy" />
+        <CopyCodeButton source={positionSource} />
       </>}>
         <EvpPopover position='top' content={"i am top"} trigger='click'>
           <EvpButton plain>top</EvpButton>
@@ -120,9 +121,69 @@ Total 16 different position provided to display the popover. Click them to have 
         </EvpPopover>
       </Card>
 {showCode[1]?
-<Code lang="tsx">
+<Code lang="tsx">{positionSource}</Code>
+: void 0}
+<Md>
 {`
-<EvpPopover position='top' content={"i am top"} trigger='click'>
+## Trigger
+
+How to tigger the popover to show / hidden? There are two trigger: "click" | "hover".
+`}
+</Md>
+      <Card contentClass="evp-popover-view-card"
+      toolBar={<>
+        <EvpButton theme="text" $click={() => {
+          setShowCode({
+            ...showCode,
+            2: !showCode[2]
+          })
+        }} size="mini" text="code" />
+        <CopyCodeButton source={triggerSource} />
+      </>}>
+        <EvpPopover position="top" content={"i am default trigger"}>
+          <EvpButton plain>default</EvpButton>
+        </EvpPopover>
+        <EvpPopover position="top" content={"i am click trigger"} trigger="click">
+          <EvpButton plain>click</EvpButton>
+        </EvpPopover>
+        <EvpPopover position="top" content={"i am hover trigger"} trigger="hover">
+          <EvpButton plain>hover</EvpButton>
+        </EvpPopover>
+      </Card>
+{showCode[2]?
+<Code lang="tsx">{triggerSource}</Code>
+: void 0}
+<Md>
+{`
+## Api
+
+**EvpPopover Apis**:
+
+- content: the content of popover
+  + type: React.ReactNode
+- children: the one element you want to wrap by EvpPopover
+- style?: content style;
+- class?: content className;
+- id?: content id;
+- trigger?: how to trigger the popover
+  + default: "click"
+  + options: "hover" | "click"
+- hiddenOnBlur?: whether to hidden popover when the element is unfocus
+  + default: true
+  + options: true | false
+- position?: the position of the popover
+  + default: "top'
+  + options: "top" | "topLeft" | "topRight" | "bottom" | "bottomLeft" | "bottomRight" | "left" | "leftTop" | "leftBottom" | "right" | "rightTop" | "rightBottom" | "upperLeftCorner" | "upperRightCorner" | "lowerLeftCorner" | "lowerRightCorner"
+`}
+</Md>
+      <EvpButton position="absolute" right={40} bottom={0}
+        plain shadow={false}
+        link="/components/evp-flexbar" text="★ Next Doc EvpFlexbar >" />
+    </div>
+  )
+}
+
+const positionSource = `<EvpPopover position='top' content={"i am top"} trigger='click'>
   <EvpButton plain>top</EvpButton>
 </EvpPopover>
 <EvpPopover position='topLeft' content={"i am topLeft"} trigger='click'>
@@ -174,40 +235,9 @@ Total 16 different position provided to display the popover. Click them to have 
 <EvpPopover position="lowerRightCorner" content={"i am lowerRightCorner"} trigger='click'>
   <EvpButton plain>lowerRightCorner</EvpButton>
 </EvpPopover>
-`}
-</Code>
-: void 0}
-<Md>
-{`
-## Trigger
+`;
 
-How to tigger the popover to show / hidden? There are two trigger: "click" | "hover".
-`}
-</Md>
-      <Card contentClass="evp-popover-view-card"
-      toolBar={<>
-        <EvpButton theme="text" $click={() => {
-          setShowCode({
-            ...showCode,
-            2: !showCode[2]
-          })
-        }} size="mini" text="code" />
-        <EvpButton theme="text" size="mini" text="copy" />
-      </>}>
-        <EvpPopover position="top" content={"i am default trigger"}>
-          <EvpButton plain>default</EvpButton>
-        </EvpPopover>
-        <EvpPopover position="top" content={"i am click trigger"} trigger="click">
-          <EvpButton plain>click</EvpButton>
-        </EvpPopover>
-        <EvpPopover position="top" content={"i am hover trigger"} trigger="hover">
-          <EvpButton plain>hover</EvpButton>
-        </EvpPopover>
-      </Card>
-{showCode[2]?
-<Code lang="tsx">
-{`
-<EvpPopover position="top" content={"i am default trigger"}>
+const triggerSource = `<EvpPopover position="top" content={"i am default trigger"}>
   <EvpButton plain>default</EvpButton>
 </EvpPopover>
 <EvpPopover position="top" content={"i am click trigger"} trigger="click">
@@ -216,35 +246,4 @@ How to tigger the popover to show / hidden? There are two trigger: "click" | "ho
 <EvpPopover position="top" content={"i am hover trigger"} trigger="hover">
   <EvpButton plain>hover</EvpButton>
 </EvpPopover>
-`}
-</Code>
-: void 0}
-<Md>
-{`
-## Api
-
-**EvpPopover Apis**:
-
-- content: the content of popover
-  + type: React.ReactNode
-- children: the one element you want to wrap by EvpPopover
-- style?: content style;
-- class?: content className;
-- id?: content id;
-- trigger?: how to trigger the popover
-  + default: "click"
-  + options: "hover" | "click"
-- hiddenOnBlur?: whether to hidden popover when the element is unfocus
-  + default: true
-  + options: true | false
-- position?: the position of the popover
-  + default: "top'
-  + options: "top" | "topLeft" | "topRight" | "bottom" | "bottomLeft" | "bottomRight" | "left" | "leftTop" | "leftBottom" | "right" | "rightTop" | "rightBottom" | "upperLeftCorner" | "upperRightCorner" | "lowerLeftCorner" | "lowerRightCorner"
-`}
-</Md>
-      <EvpButton position="absolute" right={40} bottom={0}
-        plain shadow={false}
-        link="/components/evp-flexbar" text="★ Next Doc EvpFlexbar >" />
-    </div>
-  )
-}
+`;

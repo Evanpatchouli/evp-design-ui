@@ -1,3 +1,4 @@
+import CopyCodeButton from "@/components/copy-code-button";
 import Card from "@/components/card";
 import Md from "@/components/md";
 import Tsx from "@/components/tsx";
@@ -106,7 +107,7 @@ You can customize by overriding the footer of Dialog (same with header) .
         toolBar={
           <>
             <EvpButton $click={() => clickCode(1)} theme="text" size="mini" text="code" />
-            <EvpButton theme="text" size="mini" text="copy" />
+            <CopyCodeButton source={basicSource} />
           </>
         }
       >
@@ -121,13 +122,7 @@ You can customize by overriding the footer of Dialog (same with header) .
           Hello
         </Dialog>
       </Card>
-      <Tsx show={showCode[1]}>
-        {`
-<Dialog open={openTwo} setOpen={setOpenTwo} footer={<div>My footer.</div>}>
-  Hello
-</Dialog>
-`}
-      </Tsx>
+      <Tsx show={showCode[1]}>{basicSource}</Tsx>
       <Md>
         {`
 Or if you only want to customize the cancel and confirm button, you can use \`cancelProps\` and \`confirmProps\` to do that.        
@@ -140,7 +135,7 @@ Or if you only want to customize the cancel and confirm button, you can use \`ca
         toolBar={
           <>
             <EvpButton $click={() => clickCode(2)} theme="text" size="mini" text="code" />
-            <EvpButton theme="text" size="mini" text="copy" />
+            <CopyCodeButton source={actionsSource} />
           </>
         }
       >
@@ -167,32 +162,7 @@ Or if you only want to customize the cancel and confirm button, you can use \`ca
           Hello
         </Dialog>
       </Card>
-      <Tsx show={showCode[2]}>
-        {`
-<Button
-  $click={() => {
-    setOpenThree(true);
-  }}
->
-  open
-</Button>
-<Dialog
-  open={openThree}
-  setOpen={setOpenThree}
-  confirmProps={{
-     text: "确认",
-    $click: () => {
-      Toast.info("You should close by clicking the cancel button.");
-     }
-   }}
-  cancelProps={{
-    text: "取消",
-   }}
->
-  Hello
-</Dialog>
-`}
-      </Tsx>
+      <Tsx show={showCode[2]}>{actionsSource}</Tsx>
       <Md>
         {`
 ## content
@@ -209,7 +179,7 @@ The content's container of the dialog card is based on EvpDom. Therefore, you ca
         toolBar={
           <>
             <EvpButton $click={() => clickCode(3)} theme="text" size="mini" text="code" />
-            <EvpButton theme="text" size="mini" text="copy" />
+            <CopyCodeButton source={contentSource} />
           </>
         }
       >
@@ -244,30 +214,7 @@ The content's container of the dialog card is based on EvpDom. Therefore, you ca
           </Button>
         </Dialog>
       </Card>
-      <Tsx show={showCode[3]}>
-        {`
-<Button
-  $click={() => {
-    setOpenFour(true);
-  }}
->
-  open
-</Button>
-<Dialog open={openFour} setOpen={setOpenFour} loading={loading}>
-  <Button
-    loading={loading}
-    $click={() => {
-      setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
-      }, 2000);
-    }}
-  >
-    {loading ? "loading" : "click me"}
-  </Button>
-</Dialog>
-`}
-      </Tsx>
+      <Tsx show={showCode[3]}>{contentSource}</Tsx>
       <Md>
         {`
 ## Api
@@ -304,3 +251,54 @@ export type EvpDialogProps = {
     </div>
   );
 }
+
+const basicSource = `<Dialog open={openTwo} setOpen={setOpenTwo} footer={<div>My footer.</div>}>
+  Hello
+</Dialog>
+`;
+
+const actionsSource = `<Button
+  $click={() => {
+    setOpenThree(true);
+  }}
+>
+  open
+</Button>
+<Dialog
+  open={openThree}
+  setOpen={setOpenThree}
+  confirmProps={{
+     text: "确认",
+    $click: () => {
+      Toast.info("You should close by clicking the cancel button.");
+     }
+   }}
+  cancelProps={{
+    text: "取消",
+   }}
+>
+  Hello
+</Dialog>
+`;
+
+const contentSource = `<Button
+  $click={() => {
+    setOpenFour(true);
+  }}
+>
+  open
+</Button>
+<Dialog open={openFour} setOpen={setOpenFour} loading={loading}>
+  <Button
+    loading={loading}
+    $click={() => {
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+    }}
+  >
+    {loading ? "loading" : "click me"}
+  </Button>
+</Dialog>
+`;
